@@ -1,4 +1,4 @@
-# What's New with TheTeamAei
+# What's New with JTool
 
 All notable changes to this project will be documented in this file.
 
@@ -8,4 +8,10 @@ All notable changes to this project will be documented in this file.
 
 - Added initial files for development.
 - Added dungeon, Hazardous Valley (Awakened) available for automation.
+
+## v1.10
+
+## v1.10 Features
+
+- Added GUI.
 

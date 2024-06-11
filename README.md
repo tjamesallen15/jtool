@@ -1,4 +1,4 @@
-# MrCabal
+# JTool
 
 A Cabal Online Macro and Automation
 
@@ -136,7 +136,7 @@ Copyright (c) 2020-present TheTeamAei
 
 This software are licensed as follows:
 
-* It is for exclusive use only for TeamAei. 
+* It is for exclusive use only for TheTeamAei. 
 * All of the files inside are confidential.
 * It is not intended for distribution and should not be sold.
 

@@ -1,678 +1,712 @@
-import pyautogui
+import pyautogui as pyauto
 import pyscreeze
-import keyboard as kb
+import keyboard as shortcut
 import time
 import sys
 
 from pynput import keyboard 
 from pynput.keyboard import Key, Listener
 from pynput.keyboard import Key, Controller
+pynboard = Controller()
 
-pkeyboard = Controller()
-
+# GLOBAL VARIABLES
 select = 'z'
 dash = '1'
 fade = '2'
 attack = ['3', '4', '5']
 buffAttack = ['6']
-lootSpace = Key.space
 loot = '7'
 fury = '8'
 pots = '9'
 bmaura = '0'
 bm3atk = '-'
 bm3 = '='
+lootSpace = Key.space
 
+# GLOBAL VALIDATION
 cabalwindow = []
-
 combo = True
 pathing = True
 moving = True
+boxing = True
 macro = True
 
+# GLOBAL MESSAGES
+msgExit = "Macro Exit"
+msgTerminate ="Macro Terminate"
+msgBackTrack = "Backtrack: "
+msgPathFind = "Pathfind: "
+msgAttackMobs = "Attack: "
+msgAttackBoss = "Boss Attack"
+msgMobsFound = "Mobs Found: "
+msgBossFound = "Boss Found"
+msgBossKilled = "Boss Killed"
+msgNoMobsFound = "No Mobs Found"
+msgNoBossFound = "No Boss Found"
+msgMobsCleared = "Mobs Cleared"
+msgNoVineFound = "No Vine Found"
+msgBoxFound = "Box Found"
+msgNoBoxFound = "No Box Found"
+msgPathStop = "Pathing stop, proceeds to attack"
+
+# GLOBAL PICTURES
+imgCabalWindow = "cabalwindow.jpg"
+imgChallengeDg = "challengedg.jpg"
+imgDungeon = "dungeon.jpg"
+imgEnterDg = "enterdg.jpg"
+imgEndDg = "enddg.jpg"
+imgExitDg = "exitdg.jpg"
+imgDualBoss = "dualboss.jpg"
+imgBoss = "boss.jpg"
+imgSemiBoss = "semiboss.jpg"
+imgMobs = "mobs.jpg"
+imgDiceRoll = "rolladice.jpg"
+imgBox = "box.jpg"
+imgWarp = "warp.jpg"
+imgVine1 = "vineblock1.jpg"
+imgVine2 = "vineblock2.jpg"
+
+# GLOBAL UNITS
+unitMushFlower = "Mushed and Ectoflower"
+unitMossToad = "Mossites and Toad"
+unitLumberMoth = "Lumber and Moth"
+
+
 def terminate():
-  print("exit looper")
+  print(msgExit)
   global macro
   macro = False
 
+def doHardBuffs():
+  pyauto.moveTo(cabalwindow[0] + 470, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+  time.sleep(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+  time.sleep(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 540, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+  time.sleep(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 570, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+  time.sleep(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 360)
+
+def cancelAura():
+  pyauto.moveTo(cabalwindow[0] + 175, cabalwindow[1] + 100)
+  pyauto.click(button="right")
+
+def doDash():
+  pynboard.press(dash)
+  pynboard.release(dash)
+
+def doFade():
+  pynboard.press(fade)
+  pynboard.release(fade)
+
+def doSelect():
+  pynboard.press(select)
+  pynboard.release(select)
+
 def lootBox():
-  pkeyboard.press(select)
-  pkeyboard.release(select)
-  pkeyboard.press(bm3atk)
-  pkeyboard.release(bm3atk)
-  pkeyboard.press(attack[0])
-  pkeyboard.release(attack[0])
-  pkeyboard.press(attack[1])
-  pkeyboard.release(attack[1])
-  pkeyboard.press(attack[2])
-  pkeyboard.release(attack[2])
-  pkeyboard.press(bm3atk)
-  pkeyboard.release(bm3atk)
-  time.sleep(1)
+  pynboard.press(select)
+  pynboard.release(select)
+  pynboard.press(bm3atk)
+  pynboard.release(bm3atk)
+  pynboard.press(attack[0])
+  pynboard.release(attack[0])
+  pynboard.press(attack[1])
+  pynboard.release(attack[1])
+  pynboard.press(attack[2])
+  pynboard.release(attack[2])
+  pynboard.press(bm3atk)
+  pynboard.release(bm3atk)
   for x in range(4):
-    pkeyboard.press(loot)
-    pkeyboard.release(loot)
+    pynboard.press(loot)
+    pynboard.release(loot)
     time.sleep(0.5)
-    pkeyboard.press(lootSpace)
-    pkeyboard.release(lootSpace)
+    pynboard.press(lootSpace)
+    pynboard.release(lootSpace)
     time.sleep(0.5)
 
 def autoEssentials():
-  pkeyboard.press(lootSpace)
-  pkeyboard.release(lootSpace)
-  pkeyboard.press(fury)
-  pkeyboard.release(fury)
-  pkeyboard.press(pots)
-  pkeyboard.release(pots)
-  pkeyboard.press(loot)
-  pkeyboard.release(loot)
+  pynboard.press(lootSpace)
+  pynboard.release(lootSpace)
+  pynboard.press(fury)
+  pynboard.release(fury)
+  pynboard.press(pots)
+  pynboard.release(pots)
+  pynboard.press(loot)
+  pynboard.release(loot)
 
-  pkeyboard.release(Key.alt)
-  pkeyboard.release(Key.ctrl)
+  pynboard.release(Key.alt)
+  pynboard.release(Key.ctrl)
 
-def attackMobs(msg):
+def doAura():
+  pynboard.press(bm3)
+  pynboard.release(bm3)
+  autoEssentials()
+  pynboard.press(bmaura)
+  pynboard.release(bmaura)
+  autoEssentials()
+  pynboard.press(bm3)
+  pynboard.release(bm3)
+
+def doAttack():
+  pynboard.press(bm3atk)
+  pynboard.release(bm3atk)
+  autoEssentials()
+  pynboard.press(bm3atk)
+  pynboard.release(bm3atk)
+  autoEssentials()
+  pynboard.press(bm3atk)
+  pynboard.release(bm3atk)
+  pynboard.press(attack[0])
+  pynboard.release(attack[0])
+  autoEssentials()
+  pynboard.press(attack[1])
+  pynboard.release(attack[1])
+  autoEssentials()
+  pynboard.press(attack[2])
+  pynboard.release(attack[2])
+  autoEssentials()
+
+def attackMobs(unit="NA"):
   combo = True
   while combo:
     if not macro:
-      print("attackMobs Terminate")
+      print(msgTerminate)
       combo = False
       sys.exit()
       break
-
-    pkeyboard.press(bm3)
-    pkeyboard.release(bm3)
-    autoEssentials()
-    pkeyboard.press(bmaura)
-    pkeyboard.release(bmaura)
-
+    
+    doAura()
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
+      doSelect()
       time.sleep(0.1)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      print("Attack Mobs: " + msg)
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      pkeyboard.press(attack[0])
-      pkeyboard.release(attack[0])
-      autoEssentials()
-      pkeyboard.press(attack[1])
-      pkeyboard.release(attack[1])
-      autoEssentials()
-      pkeyboard.press(attack[2])
-      pkeyboard.release(attack[2])
-      autoEssentials()
-      time.sleep(1)
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      pkeyboard.press(attack[0])
-      pkeyboard.release(attack[0])
-      autoEssentials()
-      pkeyboard.press(attack[1])
-      pkeyboard.release(attack[1])
-      autoEssentials()
-      pkeyboard.press(attack[2])
-      pkeyboard.release(attack[2])
-      autoEssentials()
-      time.sleep(0.5)
-    except pyautogui.ImageNotFoundException:
-      print("Mobs Killed: " + msg)
+
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      print(msgAttackMobs + unit)
+
+      doAttack()
+      time.sleep(0.3)
+
+      doAttack()
+      time.sleep(0.3)
+    except pyauto.ImageNotFoundException:
+      print(msgMobsCleared)
       combo = False
       break
 
 def attackBoss():
   combo = True
+  doSelect()
   while combo:
     if not macro:
-      print("attackMobs Terminate")
+      print(msgTerminate)
       combo = False
       break
 
-    pkeyboard.press(bm3)
-    pkeyboard.release(bm3)
-    autoEssentials()
-    pkeyboard.press(bmaura)
-    pkeyboard.release(bmaura)
-
+    doAura()
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      print("Attack Boss.")
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      pkeyboard.press(attack[0])
-      pkeyboard.release(attack[0])
-      autoEssentials()
-      pkeyboard.press(attack[1])
-      pkeyboard.release(attack[1])
-      autoEssentials()
-      pkeyboard.press(attack[2])
-      pkeyboard.release(attack[2])
-      autoEssentials()
-      time.sleep(1)
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      autoEssentials()
-      pkeyboard.press(bm3atk)
-      pkeyboard.release(bm3atk)
-      pkeyboard.press(attack[0])
-      pkeyboard.release(attack[0])
-      autoEssentials()
-      pkeyboard.press(attack[1])
-      pkeyboard.release(attack[1])
-      autoEssentials()
-      pkeyboard.press(attack[2])
-      pkeyboard.release(attack[2])
-      autoEssentials()
-      time.sleep(0.5)
-    except pyautogui.ImageNotFoundException:
-      print("Boss Killed.")
+      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      print(msgAttackBoss)
+      doAttack()
+      time.sleep(0.1)
+      doAttack()
+      time.sleep(0.1)
+    except pyauto.ImageNotFoundException:
+      print(msgBossKilled)
       combo = False
       break
 
-def pathFind(msg):
+def pathFind(unit):
   pathing = True
   boss = 0
   while pathing:
     if not macro:
-      print("attackMobs Terminate")
+      print(msgTerminate)
       pathing = False
       sys.exit()
       break
 
-    print("Pathfinding: " + msg)
+    print(msgPathFind + unit)
 
-    if msg == "Mossites && Toad":
+    if unit == unitMossToad:
       try:
-        vineblock = pyautogui.locateOnScreen('vineblock1.jpg', grayscale=False, confidence=.9)
-      except pyautogui.ImageNotFoundException:
-        print("No vine found.")
+        vineblock = pyauto.locateOnScreen(imgVine1, grayscale=False, confidence=.9)
+      except pyauto.ImageNotFoundException:
+        print(msgNoVineFound)
       else:
-        pathBackTrack("backtrack toad")
+        pathBackTrack(unitMossToad)
 
       try:
-        vineblock = pyautogui.locateOnScreen('vineblock2.jpg', grayscale=False, confidence=.9)
-      except pyautogui.ImageNotFoundException:
-        print("No vine found.")
+        vineblock = pyauto.locateOnScreen(imgVine2, grayscale=False, confidence=.9)
+      except pyauto.ImageNotFoundException:
+        print(msgNoVineFound)
       else:
-        pathBackTrack("backtrack toad")
+        pathBackTrack(unitMossToad)
     
     try:
-      pyautogui.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
-      pyautogui.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
+      pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      print("Boss Mobs found: " + msg)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      print(msgBossFound)
       pathing = False
       boss = 1
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
-      pyautogui.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
+      pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      doDash()
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
     
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      print("Boss Mobs found: " + msg)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      print(msgBossFound)
       pathing = False
       boss = 1
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
-      pyautogui.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
+      pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      doDash()
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      print("Boss Mobs found: " + msg)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      print(msgBossFound)
       pathing = False
       boss = 1
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 300, cabalwindow[1] + 260)
-      pyautogui.click(cabalwindow[0] + 300, cabalwindow[1] + 260)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 300, cabalwindow[1] + 260)
+      pyauto.click(cabalwindow[0] + 300, cabalwindow[1] + 260)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      doDash()
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      print("Boss Mobs found: " + msg)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      print(msgBossFound)
       pathing = False
       boss = 1
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 260)
-      pyautogui.click(cabalwindow[0] + 200, cabalwindow[1] + 260)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 260)
+      pyauto.click(cabalwindow[0] + 200, cabalwindow[1] + 260)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      doDash()
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      print("Boss Mobs found: " + msg)
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      print(msgBossFound)
       pathing = False
       boss = 1
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
-    if msg == "Lumber and Moth":
+    if unit == unitLumberMoth:
       try:
-        pyautogui.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 460)
-        pyautogui.click(cabalwindow[0] + 200, cabalwindow[1] + 460)
-        pkeyboard.press(select)
-        pkeyboard.release(select)
-        mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-        pkeyboard.press(dash)
-        pkeyboard.release(dash)
-        print("Mobs found: " + msg)
+        pyauto.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 460)
+        pyauto.click(cabalwindow[0] + 200, cabalwindow[1] + 460)
+        doSelect()
+        mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+        doDash()
+        print(msgMobsFound + unit)
         pathing = False
-        print("pathing set to false")
+        print(msgPathStop)
         break
-      except pyautogui.ImageNotFoundException:
-        print("No mobs found.")
+      except pyauto.ImageNotFoundException:
+        print(msgNoMobsFound)
 
       try:
-        pkeyboard.press(select)
-        pkeyboard.release(select)
-        mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-        print("Boss Mobs found: " + msg)
+        doSelect()
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        print(msgBossFound)
         pathing = False
         boss = 1
-        print("pathing set to false")
+        print(msgPathStop)
         break
-      except pyautogui.ImageNotFoundException:
-        print("No mobs found.")
+      except pyauto.ImageNotFoundException:
+        print(msgNoMobsFound)
 
   if boss == 0:
-    attackMobs(msg)
+    attackMobs(unit)
 
-def pathBackTrack(msg):
+def pathBackTrack(unit):
   pathing = True
   boss = 0
   while pathing:
     if not macro:
-      print("attackMobs Terminate")
+      print(msgTerminate)
       combo = False
       sys.exit()
       break
 
-    print("Path Backtrack: " + msg)
+    print(msgBackTrack + unit)
     try:
-      pyautogui.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 560)
-      pyautogui.click(cabalwindow[0] + 650, cabalwindow[1] + 560)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 560)
+      pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 560)
+      doDash()
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 560)
-      pyautogui.click(cabalwindow[0] + 700, cabalwindow[1] + 560)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 560)
+      pyauto.click(cabalwindow[0] + 700, cabalwindow[1] + 560)
+      doDash()
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 560)
-      pyautogui.click(cabalwindow[0] + 750, cabalwindow[1] + 560)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 560)
+      pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 560)
+      doDash()
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 560)
-      pyautogui.click(cabalwindow[0] + 800, cabalwindow[1] + 560)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 560)
+      pyauto.click(cabalwindow[0] + 800, cabalwindow[1] + 560)
+      doDash()
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
     try:
-      pyautogui.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 560)
-      pyautogui.click(cabalwindow[0] + 850, cabalwindow[1] + 560)
-      pkeyboard.press(dash)
-      pkeyboard.release(dash)
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('mobs.jpg', grayscale=False, confidence=.9)
-      print("Mobs found: " + msg)
+      pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 560)
+      pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 560)
+      doDash()
+      doSelect()
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      print(msgMobsFound + unit)
       pathing = False
-      print("pathing set to false")
+      print(msgPathStop)
       break
-    except pyautogui.ImageNotFoundException:
-      print("No mobs found.")
+    except pyauto.ImageNotFoundException:
+      print(msgNoMobsFound)
 
-  attackMobs(msg)
+  attackMobs(unit)
 
-def runAhv():
-  # MAIN
-  kb.add_hotkey("esc", terminate)
-  global cabalwindow
-  cabalwindow = pyautogui.locateOnScreen('cabalwindow.jpg', grayscale=False, confidence=.5)
-  pyautogui.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
-  pyautogui.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
-  print(cabalwindow)
+def runAhv(runs=1):
+  runCounter = 0
+  while runCounter < runs:
+    # MAIN
+    shortcut.add_hotkey("esc", terminate)
 
-  # AHV
-  # AHV ENTER FREE VIEW
-  pyautogui.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
-  pyautogui.moveTo(cabalwindow[0] + 680, cabalwindow[1] + 361)
+    pynboard.press(Key.f3)
+    pynboard.release(Key.f3)
 
-  time.sleep(1)
-  pyautogui.click(cabalwindow[0] + 680, cabalwindow[1] + 361)
+    global cabalwindow
+    cabalwindow = pyauto.locateOnScreen(imgCabalWindow, grayscale=False, confidence=.5)
+    pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
+    pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
+    print(cabalwindow)
 
-  time.sleep(1)
+    # AHV
+    # AHV ENTER FREE VIEW
+    pyauto.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
+    pyauto.moveTo(cabalwindow[0] + 690, cabalwindow[1] + 361)
+    time.sleep(1)
+    
+    pyauto.click(cabalwindow[0] + 690, cabalwindow[1] + 361)
+    time.sleep(1)
 
-  enterdg = pyautogui.locateOnScreen('enterdg.jpg', grayscale=False, confidence=.9)
-  pyautogui.moveTo(enterdg[0] + 15, enterdg[1] + 15)
-  pyautogui.click(enterdg[0] + 15, enterdg[1] + 15)
+    enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
+    pyauto.moveTo(enterdg[0] + 15, enterdg[1] + 15)
+    pyauto.click(enterdg[0] + 15, enterdg[1] + 15)
+    time.sleep(2)
 
-  time.sleep(2)
+    challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
+    pyauto.moveTo(challengedg[0] + 15, challengedg[1] + 15)
+    pyauto.click(challengedg[0] + 15, challengedg[1] + 15)
+    time.sleep(1)
 
-  challengedg = pyautogui.locateOnScreen('challengedg.jpg', grayscale=False, confidence=.9)
-  pyautogui.moveTo(challengedg[0] + 15, challengedg[1] + 15)
-  pyautogui.click(challengedg[0] + 15, challengedg[1] + 15)
+    pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 150)
+    pyauto.mouseDown(button="right")
+    pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 150)
+    pyauto.mouseUp(button="right")
+    pyauto.scroll(-10000)
+    time.sleep(1)
 
-  time.sleep(1)
+    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    pynboard.press(dash)
+    pynboard.release(dash)
+    time.sleep(1)
 
-  pyautogui.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 150)
-  pyautogui.mouseDown(button="right")
-  pyautogui.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 150)
-  pyautogui.mouseUp(button="right")
-  pyautogui.scroll(-10000)
+    # Mush and Flower Sequence
+    moving = True
+    while moving:
+      if not macro:
+          print(msgTerminate)
+          moving = False
+          sys.exit()
+          break
 
-  time.sleep(3)
-
-  pyautogui.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-  pkeyboard.press(dash)
-  pkeyboard.release(dash)
-
-  time.sleep(2)
-
-  # LEAFING
-  moving = True
-  while moving:
-    if not macro:
-        print("attackMobs Terminate")
+      pathFind(unitMushFlower)
+      try:
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         moving = False
-        sys.exit()
+        print(msgPathStop)
         break
+      except pyauto.ImageNotFoundException:
+        print(msgNoBossFound)
 
-    pathFind("Mushed and Ectoflower")
-    try:
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      moving = False
-      print("moving set to false")
-      break
-    except pyautogui.ImageNotFoundException:
-      print("No boss found.")
+    pyauto.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
+    pynboard.press(dash)
+    pynboard.release(dash)
 
-  pyautogui.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
-  pkeyboard.press(dash)
-  pkeyboard.release(dash)
-
-  attackBoss()
-  lootBox()
-
-  # MOSSITES & TOAD
-  moving = True
-  while moving:
-    pathFind("Mossites && Toad")
-    try:
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      moving = False
-      print("moving set to false")
-      break
-    except pyautogui.ImageNotFoundException:
-      print("No boss found.")
-
-  attackBoss()
-  lootBox()
-
-  # LUMBER AND MOTH
-  moving = True
-  while moving:
-    if not macro:
-        print("attackMobs Terminate")
-        moving = False
-        sys.exit()
-        break
-
-    pathFind("Lumber and Moth")
-    try:
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.9)
-      moving = False
-      print("moving set to false")
-      break
-    except pyautogui.ImageNotFoundException:
-      print("No boss found.")
-
-
-  pyautogui.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
-  pyautogui.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-
-  time.sleep(1)
-
-  pyautogui.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
-  pyautogui.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
-
-  time.sleep(1)
-
-  pyautogui.moveTo(cabalwindow[0] + 350, cabalwindow[1] + 260)
-  pyautogui.click(cabalwindow[0] + 350, cabalwindow[1] + 260)
-
-  time.sleep(1)
-
-  pyautogui.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 260)
-  pyautogui.click(cabalwindow[0] + 250, cabalwindow[1] + 260)
-
-  time.sleep(1)
-
-  pyautogui.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 660)
-  pyautogui.click(cabalwindow[0] + 250, cabalwindow[1] + 660)
-
-  pkeyboard.press(dash)
-  pkeyboard.release(dash)
-
-  time.sleep(1)
-
-  try:
-    pkeyboard.press(select)
-    pkeyboard.release(select)
-    mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.8)
+    # First Boss
+    doHardBuffs()
     attackBoss()
-  except pyautogui.ImageNotFoundException:
-    print("No boss found.")
+    lootBox()
 
-  time.sleep(1)
-
-  pyautogui.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
-  pyautogui.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
-
-  time.sleep(0.2)
-
-  pkeyboard.press(dash)
-  pkeyboard.release(dash)
-
-  bossCount = 0
-  while bossCount < 2:
-    if not macro:
-        print("attackMobs Terminate")
+    # Mossites and Toad Sequence
+    moving = True
+    while moving:
+      pathFind(unitMossToad)
+      try:
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         moving = False
-        sys.exit()
+        print(msgPathStop)
         break
-  
+      except pyauto.ImageNotFoundException:
+        print(msgNoBossFound)
+
+    # Second Boss
+    attackBoss()
+    lootBox()
+
+    # Lumber and Moth Sequence
+    moving = True
+    while moving:
+      if not macro:
+          print(msgTerminate)
+          moving = False
+          sys.exit()
+          break
+
+      pathFind(unitLumberMoth)
+      try:
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        moving = False
+        print(msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        print(msgNoBossFound)
+
+    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
+    time.sleep(1)
+
+    pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
+    time.sleep(1)
+
+    pyauto.moveTo(cabalwindow[0] + 350, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 350, cabalwindow[1] + 260)
+    time.sleep(1)
+
+    pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 250, cabalwindow[1] + 260)
+    time.sleep(1)
+
+    pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 660)
+    pyauto.click(cabalwindow[0] + 250, cabalwindow[1] + 660)
+
+    time.sleep(1)
+
+    # First Orphidia
     try:
-      pkeyboard.press(select)
-      pkeyboard.release(select)
-      mobs = pyautogui.locateOnScreen('boss.jpg', grayscale=False, confidence=.8)
-      bossCount += 1
+      doSelect
+      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.8)
       attackBoss()
-    except pyautogui.ImageNotFoundException:
-      print("No boss found.")
-  
-  pyautogui.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 60)
-  pyautogui.click(cabalwindow[0] + 550, cabalwindow[1] + 60)
+    except pyauto.ImageNotFoundException:
+      print(msgNoBossFound)
+    
+    time.sleep(1)
+    pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
+    pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
+    time.sleep(0.2)
 
-  pkeyboard.press(dash)
-  pkeyboard.release(dash)
+    doDash()
+    time.sleep(0.2)
 
-  time.sleep(3)
+    # Second and Third Orphidia
+    bossCount = 0
+    while bossCount < 2:
+      if not macro:
+          print(msgTerminate)
+          moving = False
+          sys.exit()
+          break
+      
+      if (bossCount == 1):
+        doHardBuffs()
+    
+      try:
+        doSelect()
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.8)
+        bossCount += 1
+        attackBoss()
+      except pyauto.ImageNotFoundException:
+        print(msgNoBossFound)
+    
+    # Pathfind Treasure Boxes
+    boxing = True
+    while boxing:
+      pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
+      pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
+      time.sleep(0.5)
 
-  pyautogui.moveTo(cabalwindow[0] + 1050, cabalwindow[1] + 430)
-  pyautogui.click(cabalwindow[0] + 1050, cabalwindow[1] + 430)
+      pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
+      pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
+      time.sleep(0.5)
 
-  pkeyboard.press(dash)
-  pkeyboard.release(dash)
+      pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 160)
+      pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 160)
+      time.sleep(0.5)
 
-  time.sleep(0.1)
+      pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 160)
+      pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 160)
+      time.sleep(0.5)
 
-  pkeyboard.press(fade)
-  pkeyboard.release(fade)
+      pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 160)
+      pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 160)
+      time.sleep(0.5)
 
-  time.sleep(4)
+      pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 360)
+      pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 360)
 
-  lootBox()
-  time.sleep(0.5)
-  lootBox()
-  time.sleep(0.5)
-  lootBox()
-  time.sleep(0.5)
+      doDash()
+      time.sleep(0.5)
 
-  enddungeon = pyautogui.locateOnScreen('enddungeon.jpg', grayscale=False, confidence=.9)
-  pyautogui.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
-  pyautogui.click(enddungeon[0] + 50, enddungeon[1] + 15)
+      doFade()
+      time.sleep(0.5)
 
-  rolladice = pyautogui.locateOnScreen('rolladice.jpg', grayscale=False, confidence=.9)
-  pyautogui.moveTo(rolladice[0] + 50, rolladice[1] + 15)
-  pyautogui.click(rolladice[0] + 50, rolladice[1] + 15)
+      try:
+        doSelect()
+        mobs = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+        print(msgBoxFound)
+        boxing = False
+        print(msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        print(msgNoBoxFound)
 
-  time.sleep(1)
-  pyautogui.click(rolladice[0] + 50, rolladice[1] + 15)
+    time.sleep(2)
+
+    # Loot Treasure Boxes
+    lootBox()
+    time.sleep(0.5)
+
+    lootBox()
+    time.sleep(0.5)
+
+    lootBox()
+    time.sleep(0.5)
+
+    cancelAura()
+
+    # Start to End Dungeon
+    enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
+    pyauto.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
+    pyauto.click(enddungeon[0] + 50, enddungeon[1] + 15)
+
+    rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
+    pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
+    pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+
+    time.sleep(1)
+    pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+
+    runCounter += 1
+    time.sleep(3)
