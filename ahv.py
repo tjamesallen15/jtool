@@ -682,7 +682,8 @@ def runDungeon(runs=1):
     doDeselect()
     time.sleep(1)
     pyauto.moveTo(cabalwindow[0] + 660, cabalwindow[1] + 250)
-    time.sleep(0.5)
+    pyauto.moveTo(cabalwindow[0] + 660, cabalwindow[1] + 250)
+    time.sleep(1)
     doDash()
     time.sleep(1)
     doSelect()
@@ -752,6 +753,7 @@ def runDungeon(runs=1):
 
     # Second and Third Orphidia
     bossCount = 0
+    shortBuffsCounter = 0
     while bossCount < 2:
       if not macro:
           logAction(msgTerminate)
@@ -759,7 +761,8 @@ def runDungeon(runs=1):
           sys.exit()
           break
       
-      if (bossCount == 2):
+      if (bossCount == 1 and shortBuffsCounter == 0):
+        shortBuffsCounter = 1
         doShortBuffs()
     
       try:
