@@ -1,53 +1,3 @@
-# MrCabal
-
-The Official Server of TheTeamAei
-
-## Members
-
-Listed below are the contributors for this project.
-
-* James Allen Tadique
-* Genessa Nepomuceno
-
-# Project Rules
-
-Contributors need to follow listed rules to ensure a more clean and readable project.
-
-## Branching
-
-The branch names is essential and important in project development. Branch name represents on what section the contributors are working on.
-
-### Branch Development
-
-Branch naming for development is labeled by **lastname-dev**. This will represent who is the contributor for the development. **(Ex. tadique-dev)**
-
-### Branch Issue
-
-Branch naming for issues are labeled by **issue_id** This will represent the fixed or patch for the issue to be resolved. **(Ex. TTA1)**
-
-### Issues
-
-Issues are either bugs, enhancements or development for the project. Always make an appropriate title that best describes the issue.
-
-Steps:
-* Create a new issue.
-* Make a approriate title for the issue
-* Assign it to the developer.
-* Assign appropriate milestone and label for the merge request.
-* Submit the issue.
-
-### Merge Request
-
-Merge request is the act of merging branches for deployment.
-
-Steps:
-* Create a merge request.
-* Make a approriate title for the merge request. Make sure to put **WIP:** before the title to let us know that it is still in progress.
-* Assign it to the code reviewers.
-* Assign appropriate milestone and label for the merge request. It should be the same milestone and label for the issue.
-* Untick **Delete source branch when merge request is accepted.** in the Merge Options.
-* Submit the merge request.
-
 # Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue,
@@ -129,21 +79,3 @@ available at [http://contributor-covenant.org/version/1/4][version]
 
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/
-
-# License
-
-Copyright (c) 2020-present TheTeamAei
-
-This software are licensed as follows:
-
-* It is for exclusive use only for TeamAei. 
-* All of the files inside are confidential.
-* It is not intended for distribution and should not be sold.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
