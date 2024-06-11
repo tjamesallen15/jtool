@@ -14,4 +14,5 @@ All notable changes to this project will be documented in this file.
 ## v1.10 Features
 
 - Added GUI.
+- Added Trial Program.
 
