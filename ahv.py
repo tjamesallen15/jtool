@@ -566,30 +566,6 @@ def testDungeon(frame, btn, lbl, runs=1):
   pyauto.moveTo(cabalwindow[0] + 20, cabalwindow[1] + 45)
   pyauto.click(cabalwindow[0] + 20, cabalwindow[1] + 45)
 
-  # Mossites and Toad Sequence
-  moving = True
-  while moving:
-    pathFind(unitMossToad)
-    try:
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
-      moving = False
-      logAction(msgPathStop)
-      print(msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      print(msgNoBossFound)
-      logAction(msgNoBossFound)
-
-  # Second Boss
-  doDeselect()
-  pyauto.moveTo(cabalwindow[0] + 660, cabalwindow[1] + 160)
-  doDash()
-  time.sleep(1)
-  doFade()
-  time.sleep(2)
-  attackBoss()
-  lootBox()
-
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
