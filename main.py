@@ -23,7 +23,7 @@ runList = [1, 5, 10, 15, 20, 25, 30]
 
 appFont = "Tahoma 10"
 rootFrame = Tk()
-rootFrame.title("MrCabal")
+rootFrame.title("Cabal JTool")
 rootFrame.resizable(0, 0)
 rootFrame.geometry("330x105")
 
