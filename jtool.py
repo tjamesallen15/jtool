@@ -17,11 +17,18 @@ from tkinter import ttk
 pkeyboard = Controller()
 
 dungeonList = [
-  "Hazardous Valley (Awakened)",
-  "Hazardous Valley (Hard)",
+  "Hazardous Valley (Awakened)"
+  # "Hazardous Valley (Hard)",
 ]
-runList = [1, 5, 10, 15, 20, 25, 30]
+# runList = [1, 5, 10, 15, 20, 25, 30]
+runList = [1, 2, 3, 4, 5]
 appFont = "Tahoma 10"
+
+dgList = []
+runEntry = []
+startButton = []
+macroLbl = []
+rootFrame = []
 
 def start():
   choice = dgList.get()
@@ -31,6 +38,7 @@ def start():
 
 def generateGui():
   # CREATE FRAME
+  global rootFrame
   rootFrame = Tk()
   rootFrame.title("Cabal JTool")
   rootFrame.resizable(0, 0)
@@ -42,6 +50,7 @@ def generateGui():
   dungeon = Label(rootFrame, text="Dungeon: ")
   dungeon.place(x=10, y=10)
 
+  global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
   dgList.current(0)
   dgList.config(width=30)
@@ -50,11 +59,13 @@ def generateGui():
   runs = Label(rootFrame, text="Runs: ")
   runs.place(x=10, y=43)
 
+  global runEntry
   runEntry = ttk.Combobox(values=runList, state="readonly")
   runEntry.current(0)
   runEntry.config(width=5)
   runEntry.place(x=75, y=43)
 
+  global startButton
   startButton = Button(rootFrame, text="Start", command=start)
   startButton.config(width=10)
   startButton.place(x=140, y=40)
@@ -63,18 +74,21 @@ def generateGui():
   stopButton.config(width=10)
   stopButton.place(x=230, y=40)
 
-  licenseLbl = Label(rootFrame, text="Status: Activated")
+  licenseLbl = Label(rootFrame, text="Status: Trial")
   licenseLbl.place(x=10, y=75)
 
   expirationLbl = Label(rootFrame, text="Expiration: 00/00/2024")
   expirationLbl.place(x=175, y=75)
 
+  global macroLbl
   macroLbl = Label(rootFrame, text="Action: --")
   macroLbl.place(x=10, y=105)
 
   rootFrame.mainloop()
 
 generateGui()
+
+
 # 1 pyautogui.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
 # 2 pyautogui.moveTo(cabalwindow[0] + 430, cabalwindow[1] + 670)
 # 3 pyautogui.moveTo(cabalwindow[0] + 470, cabalwindow[1] + 670)

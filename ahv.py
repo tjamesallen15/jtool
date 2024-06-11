@@ -54,24 +54,24 @@ msgNoVineFound = "No Vine Found"
 msgBoxFound = "Box Found"
 msgNoBoxFound = "No Box Found"
 msgPathStop = "Pathing stop, proceeds to attack"
-msgAction = "Action, "
+msgAction = "Action: "
 
 # GLOBAL PICTURES
-imgCabalWindow = "cabalwindow.jpg"
-imgChallengeDg = "challengedg.jpg"
-imgDungeon = "dungeon.jpg"
-imgEnterDg = "enterdg.jpg"
-imgEndDg = "enddg.jpg"
-imgExitDg = "exitdg.jpg"
-imgDualBoss = "dualboss.jpg"
-imgBoss = "boss.jpg"
-imgSemiBoss = "semiboss.jpg"
-imgMobs = "mobs.jpg"
-imgDiceRoll = "rolladice.jpg"
-imgBox = "box.jpg"
-imgWarp = "warp.jpg"
-imgVine1 = "vineblock1.jpg"
-imgVine2 = "vineblock2.jpg"
+imgCabalWindow = "img/cabalwindow.jpg"
+imgChallengeDg = "img/challengedg.jpg"
+imgDungeon = "img/dungeon.jpg"
+imgEnterDg = "img/enterdg.jpg"
+imgEndDg = "img/enddg.jpg"
+imgExitDg = "img/exitdg.jpg"
+imgDualBoss = "img/dualboss.jpg"
+imgBoss = "img/boss.jpg"
+imgSemiBoss = "img/semiboss.jpg"
+imgMobs = "img/mobs.jpg"
+imgDiceRoll = "img/rolladice.jpg"
+imgBox = "img/box.jpg"
+imgWarp = "img/warp.jpg"
+imgVine1 = "img/vineblock1.jpg"
+imgVine2 = "img/vineblock2.jpg"
 
 # GLOBAL UNITS
 unitMushFlower = "Mushed and Ectoflower"
@@ -89,7 +89,10 @@ def initialize(frame, btn, lbl, runs=1):
   macroLbl = lbl
   
   startButton.config(state="disabled")
+  rootFrame.update()
   runDungeon(int(runs))
+  startButton.config(state="active")
+  rootFrame.update()
 
 def logAction(message):
   msgBuilder = StringVar()
