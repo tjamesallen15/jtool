@@ -1,6 +1,6 @@
 # MrCabal
 
-The Official Server of TheTeamAei
+A Cabal Online Macro and Automation
 
 ## Members
 
