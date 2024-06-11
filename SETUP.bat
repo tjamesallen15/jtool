@@ -5,3 +5,4 @@ pip install pynput
 pip install tk
 pip install pyinstaller
 pip install Pillow
+pip install opencv-python

@@ -109,6 +109,10 @@ def terminate():
   global macro
   macro = False
 
+def goSkillSlot():
+  pynboard.press(Key.f3)
+  pynboard.release(Key.f3)
+
 def doBuffs():
   pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
   pyauto.click(button="right")
@@ -624,6 +628,9 @@ def runDungeon(runs=1):
     pyauto.scroll(-10000)
     time.sleep(1)
 
+    goSkillSlot()
+    time.sleep(0.5)
+
     doBuffs()
     time.sleep(1)
 
@@ -706,19 +713,19 @@ def runDungeon(runs=1):
 
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    time.sleep(1)
+    time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(1)
+    time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
-    time.sleep(1)
+    time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    time.sleep(1)
+    time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
   
@@ -752,7 +759,7 @@ def runDungeon(runs=1):
           sys.exit()
           break
       
-      if (bossCount == 1):
+      if (bossCount == 2):
         doShortBuffs()
     
       try:
@@ -769,23 +776,23 @@ def runDungeon(runs=1):
       logAction(msgPathFind + unitBox)
       pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
-      time.sleep(0.5)
+      time.sleep(0.8)
 
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
-      time.sleep(0.5)
+      time.sleep(0.8)
 
       pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 160)
-      time.sleep(0.5)
+      time.sleep(0.8)
 
       pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 160)
-      time.sleep(0.5)
+      time.sleep(0.8)
 
       pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 160)
-      time.sleep(0.5)
+      time.sleep(0.8)
 
       pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 480)
       pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 480)
