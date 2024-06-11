@@ -1,7 +1,7 @@
-import os
-import pyautogui
+import pyautogui as pyauto
 import pyscreeze
-import keyboard as kb
+import keyboard as shortcut
+import os
 import time
 import sys
 import uuid
@@ -9,12 +9,12 @@ import tkinter.font as tkFont
 
 import ahv
 
+from tkinter import *
+from tkinter import ttk
 from pynput import keyboard 
 from pynput.keyboard import Key, Listener
 from pynput.keyboard import Key, Controller
-from tkinter import *
-from tkinter import ttk
-pkeyboard = Controller()
+pynboard = Controller()
 
 dungeonList = [
   "Hazardous Valley (Awakened)"
@@ -35,6 +35,7 @@ def start():
 
   if (choice == dungeonList[0]):
     ahv.initialize(rootFrame, startButton, macroLbl, runEntry.get()) 
+    # ahv.testDungeon(rootFrame, startButton, macroLbl, runEntry.get())
 
 def generateGui():
   # CREATE FRAME
@@ -88,6 +89,9 @@ def generateGui():
 
 generateGui()
 
+# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.5)
+# pyauto.moveTo(cabalwindow[0] + 660, cabalwindow[1] + 250)
+# pyauto.click(cabalwindow[0] + 660, cabalwindow[1] + 300)
 
 # 1 pyautogui.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
 # 2 pyautogui.moveTo(cabalwindow[0] + 430, cabalwindow[1] + 670)
