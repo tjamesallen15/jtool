@@ -331,7 +331,7 @@ def pathFind(unit):
 
     backTrackCheck += 1
     print(msgBackTrack + str(backTrackCheck))
-    if (backTrackCheck >= 5):
+    if (backTrackCheck >= 7):
       backTrackCheck = 0
       pathBackTrack(unit)
     
