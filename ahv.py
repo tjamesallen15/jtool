@@ -56,7 +56,7 @@ msgCheckBoss = "Checking Boss"
 msgBoxFound = "Box Found"
 msgNoBoxFound = "No Box Found"
 msgPathStop = "Pathing stop, proceeds to attack"
-msgAction = "Action: "
+msgAction = ""
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -228,11 +228,11 @@ def attackMobs(unit="NA"):
   combo = True
   fadeCount = 0
 
-  if unit != unitMushFlower:
-    doDeselect()
-    time.sleep(0.5)
-    doDash()
-    time.sleep(0.3)
+  # if unit != unitMushFlower:
+  #   doDeselect()
+  #   time.sleep(0.5)
+  #   doDash()
+  #   time.sleep(0.3)
 
   doSelect()
   doSelect()
@@ -380,6 +380,7 @@ def pathFind(unit):
       try:
         pyauto.moveTo(cabalwindow[0] + 475, cabalwindow[1] + 260)
         pyauto.click(cabalwindow[0] + 475, cabalwindow[1] + 260)
+        doFade()
         doSelect()
         mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
         logAction(msgMobsFound + unit)
@@ -404,6 +405,7 @@ def pathFind(unit):
       try:
         pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
         pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
+        doFade()
         doSelect()
         mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
         logAction(msgMobsFound + unit)
@@ -665,8 +667,7 @@ def runDungeon(runs=1):
     time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    pynboard.press(dash)
-    pynboard.release(dash)
+    doDash()
     time.sleep(1)
 
     # Mush and Flower Sequence
@@ -715,7 +716,11 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 710, cabalwindow[1] + 250)
     time.sleep(1)
     doDash()
+    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
+    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
     time.sleep(1)
+    doFade()
+    doFade()
     doSelect()
     doSelect()
     time.sleep(2)
