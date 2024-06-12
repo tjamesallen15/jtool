@@ -55,7 +55,7 @@ msgNoVineFound = "No Vine Found"
 msgCheckBoss = "Checking Boss"
 msgBoxFound = "Box Found"
 msgNoBoxFound = "No Box Found"
-msgPathStop = "Pathing stop, proceeds to attack"
+msgPathStop = "Pathing stop, attacking mobs"
 msgAction = ""
 
 # GLOBAL PICTURES
@@ -228,11 +228,8 @@ def attackMobs(unit="NA"):
   combo = True
   fadeCount = 0
 
-  # if unit != unitMushFlower:
-  #   doDeselect()
-  #   time.sleep(0.5)
-  #   doDash()
-  #   time.sleep(0.3)
+  doDeselect()
+  time.sleep(0.5)
 
   doSelect()
   doSelect()
