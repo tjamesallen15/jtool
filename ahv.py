@@ -61,6 +61,9 @@ msgCheckEndDg = "Check End Dungeon"
 msgAction = ""
 msgRunNumber =  "Run #: "
 msgBackTrack = "Backtrack #: "
+msgChallengeDungeon = "Challenge Dungeon"
+msgEnterDungeon = "Enter Dungeon"
+msgNoButtonFound = "No Button Found"
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -328,7 +331,7 @@ def pathFind(unit):
 
     backTrackCheck += 1
     print(msgBackTrack + str(backTrackCheck))
-    if (backTrackCheck >= 15):
+    if (backTrackCheck >= 5):
       backTrackCheck = 0
       pathBackTrack(unit)
 
@@ -663,15 +666,29 @@ def runDungeon(runs=1):
     pyauto.click(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(1)
 
-    enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
-    pyauto.moveTo(enterdg[0] + 15, enterdg[1] + 15)
-    pyauto.click(enterdg[0] + 15, enterdg[1] + 15)
-    time.sleep(2)
+    isEntering = True
+    while isEntering:
+      try:
+        enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
+        pyauto.moveTo(enterdg[0] + 15, enterdg[1] + 15)
+        pyauto.click(enterdg[0] + 15, enterdg[1] + 15)
+        time.sleep(2)
+        isEntering = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
 
-    challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
-    pyauto.moveTo(challengedg[0] + 15, challengedg[1] + 15)
-    pyauto.click(challengedg[0] + 15, challengedg[1] + 15)
-    time.sleep(1)
+    isChallenging = True
+    while isChallenging:
+      try:
+        challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
+        pyauto.moveTo(challengedg[0] + 15, challengedg[1] + 15)
+        pyauto.click(challengedg[0] + 15, challengedg[1] + 15)
+        time.sleep(1)
+        isChallenging = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
 
     pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 150)
     pyauto.mouseDown(button="right")
@@ -922,17 +939,30 @@ def runDungeon(runs=1):
     cancelAura()
 
     # Start to End Dungeon
-    enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
-    pyauto.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
-    pyauto.click(enddungeon[0] + 50, enddungeon[1] + 15)
-    time.sleep(0.5)
-
-    rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
-    pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
-    pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
-    time.sleep(0.8)
-
-    pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+    isEnding = True
+    while isEnding:
+      try:
+        enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
+        pyauto.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
+        pyauto.click(enddungeon[0] + 50, enddungeon[1] + 15)
+        time.sleep(0.5)
+        isEnding = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
+    
+    isDicing = True
+    while isDicing:
+      try:
+        rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
+        pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
+        pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+        time.sleep(0.8)
+        pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+        isDicing = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
 
     runCounter += 1
     logAction(msgEndDg)
