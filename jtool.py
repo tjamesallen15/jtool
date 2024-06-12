@@ -43,7 +43,7 @@ def start():
   choice = dgList.get()
 
   if (choice == dungeonList[0]):
-    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, runEntry.get())
+    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, 0, runEntry.get())
 
 def generateGui():
   # CREATE FRAME

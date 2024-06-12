@@ -36,6 +36,7 @@ pathing = True
 moving = True
 boxing = True
 macro = True
+buffAllowed = 1
 
 # GLOBAL MESSAGES
 msgStartDg = "Starting Dungeon"
@@ -88,7 +89,7 @@ unitMossToad = "Mossites and Toad"
 unitLumberMoth = "Lumber and Moth"
 unitBox = "Box"
 
-def initialize(frame, btn, mlbl, rlbl, runs=1):
+def initialize(frame, btn, mlbl, rlbl, buff, runs=1):
   global rootFrame
   rootFrame = frame
 
@@ -100,6 +101,9 @@ def initialize(frame, btn, mlbl, rlbl, runs=1):
 
   global runNumberLbl
   runNumberLbl = rlbl 
+
+  global buffAllowed
+  buffAllowed = buff
   
   startButton.config(state="disabled")
   rootFrame.update()
@@ -694,8 +698,9 @@ def runDungeon(runs=1):
     goSkillSlot()
     time.sleep(0.5)
 
-    doBuffs()
-    time.sleep(1)
+    if buffAllowed == 1:
+      doBuffs()
+      time.sleep(1)
 
     # Initial Position
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
@@ -725,7 +730,9 @@ def runDungeon(runs=1):
 
     doDeselect()
     doDeselect()
+    time.sleep(0.3)
     doDeselect()
+    time.sleep(0.3)
     pyauto.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
     time.sleep(0.5)
     doDash()
@@ -762,6 +769,7 @@ def runDungeon(runs=1):
         logAction(msgNoBossFound)
 
     # Second Boss
+    doDeselect()
     doDeselect()
     time.sleep(0.5)
     doDeselect()
