@@ -327,7 +327,7 @@ def pathFind(unit):
     logAction(msgPathFind + unit)
 
     backTrackCheck += 1
-    print(msgBackTrack + backTrackCheck)
+    print(msgBackTrack + str(backTrackCheck))
     if (backTrackCheck >= 15):
       backTrackCheck = 0
       pathBackTrack(unit)
