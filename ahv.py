@@ -721,8 +721,18 @@ def runDungeon(runs=1):
     time.sleep(1)
     doFade()
     doFade()
-    doSelect()
-    doSelect()
+
+    # Second Boss
+    secondBoss = True
+    while secondBoss:
+      try:
+        doSelect()
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        secondBoss = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoBossFound)
+    
     time.sleep(2)
     attackBoss()
     lootBox()
@@ -749,11 +759,11 @@ def runDungeon(runs=1):
 
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    time.sleep(0.5)
+    time.sleep(2)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(0.5)
+    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
@@ -863,7 +873,7 @@ def runDungeon(runs=1):
         logAction(msgPathStop)
         boxCount += 1
         lootBox()
-        time.sleep(0.3)
+        time.sleep(0.5)
       except pyauto.ImageNotFoundException:
         logAction(msgNoBoxFound)
 
