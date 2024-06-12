@@ -352,6 +352,9 @@ def pathFind(unit):
     try:
       pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
       pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
+      time.sleep(0.5)
+      doDash()
+      time.sleep(0.5)
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
