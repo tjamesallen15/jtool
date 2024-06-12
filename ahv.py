@@ -254,8 +254,10 @@ def attackMobs(unit="NA"):
       doSelect()
       time.sleep(0.1)
 
-      if (fadeCount == 30):
+      if (fadeCount == 20):
         fadeCount = 0
+        pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 440)
+        time.sleep(0.2)
         doFade()
         time.sleep(0.1)
       else:
@@ -372,8 +374,8 @@ def pathFind(unit):
       logAction(msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
-      pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
+      pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
+      pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
@@ -583,7 +585,6 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
     pyauto.moveTo(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(1)
-    
 
     pyauto.click(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(1)
@@ -658,12 +659,11 @@ def runDungeon(runs=1):
     doDeselect()
     doDeselect()
     time.sleep(1)
-    pyauto.moveTo(cabalwindow[0] + 680, cabalwindow[1] + 250)
-    pyauto.moveTo(cabalwindow[0] + 680, cabalwindow[1] + 250)
+    pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 250)
+    pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 250)
     time.sleep(1)
     doDash()
     time.sleep(1)
-    doSelect()
     doSelect()
     time.sleep(2)
     attackBoss()
@@ -756,11 +756,11 @@ def runDungeon(runs=1):
       logAction(msgPathFind + unitBox)
       pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
-      time.sleep(0.8)
+      time.sleep(1)
 
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
-      time.sleep(0.8)
+      time.sleep(0.3)
 
       pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 160)
