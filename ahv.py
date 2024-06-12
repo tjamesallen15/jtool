@@ -28,6 +28,7 @@ lootSpace = Key.space
 # GLOBAL VALIDATION
 cabalwindow = []
 rootFrame = []
+runNumberLbl = []
 macroLbl = []
 startButton = []
 combo = True
@@ -35,6 +36,10 @@ pathing = True
 moving = True
 boxing = True
 macro = True
+isBattleMode = False
+battleMode = 0
+buffsAllowed = 1
+shortBuffsAllowed = 1
 
 # GLOBAL MESSAGES
 msgStartDg = "Starting Dungeon"
@@ -55,8 +60,17 @@ msgNoVineFound = "No Vine Found"
 msgCheckBoss = "Checking Boss"
 msgBoxFound = "Box Found"
 msgNoBoxFound = "No Box Found"
-msgPathStop = "Pathing stop, proceeds to attack"
-msgAction = "Action: "
+msgPathStop = "Pathing stop, attacking"
+msgCheckEndDg = "Check End Dungeon"
+msgAction = ""
+msgRunNumber =  "Run #: "
+msgBackTrack = "Backtrack #: "
+msgChallengeDungeon = "Challenge Dungeon"
+msgEnterDungeon = "Enter Dungeon"
+msgNoButtonFound = "No Button Found"
+msgBuffs = "Buffing"
+msgShortBuffs = "Buffing Shorts"
+msgBattleModeTwo = "Doing Mode 2"
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -81,7 +95,7 @@ unitMossToad = "Mossites and Toad"
 unitLumberMoth = "Lumber and Moth"
 unitBox = "Box"
 
-def initialize(frame, btn, lbl, runs=1):
+def initialize(frame, btn, mlbl, rlbl, mode=0, buff=1, sbuffs=1, runs=1):
   global rootFrame
   rootFrame = frame
 
@@ -89,12 +103,34 @@ def initialize(frame, btn, lbl, runs=1):
   startButton = btn
   
   global macroLbl
-  macroLbl = lbl
+  macroLbl = mlbl
+
+  global runNumberLbl
+  runNumberLbl = rlbl 
+
+  global battleMode
+  battleMode = int(mode)
+
+  global isBattleMode
+  isBattleMode = False
+
+  global buffsAllowed
+  buffsAllowed = int(buff)
+
+  global shortBuffsAllowed
+  shortBuffsAllowed = int(sbuffs)
   
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))
   startButton.config(state="active")
+  rootFrame.update()
+
+def logRun(runNumber):
+  runBuilder = StringVar()
+  runBuilder = msgRunNumber + str(runNumber)
+  print(runBuilder)
+  runNumberLbl.config(text=runBuilder)
   rootFrame.update()
 
 def logAction(message):
@@ -113,7 +149,20 @@ def goSkillSlot():
   pynboard.press(Key.f3)
   pynboard.release(Key.f3)
 
+def doBattleMode():
+  logAction(msgBattleModeTwo)
+  cancelAura()
+  time.sleep(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+
+  global isBattleMode
+  isBattleMode = True
+  time.sleep(5)
+
 def doBuffs():
+  logAction(msgBuffs)
   pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
   pyauto.click(button="right")
   time.sleep(0.5)
@@ -122,6 +171,7 @@ def doBuffs():
   pyauto.click(button="right")
 
 def doShortBuffs():
+  logAction(msgShortBuffs)
   pyauto.moveTo(cabalwindow[0] + 470, cabalwindow[1] + 670)
   pyauto.click(button="right")
   time.sleep(0.5)
@@ -146,34 +196,57 @@ def cancelAura():
   pyauto.moveTo(cabalwindow[0] + 175, cabalwindow[1] + 100)
   pyauto.click(button="right")
 
-def doDash():
+def doDash(sec=0):
   pynboard.press(dash)
   pynboard.release(dash)
+  
+  if (sec != 0):
+    time.sleep(sec)
 
-def doFade():
+def doFade(sec=0):
   pynboard.press(fade)
   pynboard.release(fade)
+  
+  if (sec != 0):
+    time.sleep(sec)
 
-def doSelect():
+def doSelect(sec=0):
   pynboard.press(select)
   pynboard.release(select)
 
-def doDeselect():
+  if (sec != 0):
+    time.sleep(sec)
+
+def doDeselect(sec=0):
   pynboard.press(deselect)
   pynboard.release(deselect)
 
+  if (sec != 0):
+    time.sleep(sec)
+
+def doDeselectPack():
+  doDeselect()
+  doDeselect(0.1)
+  doDeselect(0.1)
+
 def lootBox():
-  doSelect()
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  pynboard.press(attack[0])
-  pynboard.release(attack[0])
-  pynboard.press(attack[1])
-  pynboard.release(attack[1])
-  pynboard.press(attack[2])
-  pynboard.release(attack[2])
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
+  doSelect(0.5)
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+
   for x in range(4):
     pynboard.press(loot)
     pynboard.release(loot)
@@ -206,36 +279,35 @@ def doAura():
   pynboard.release(bm3)
 
 def doAttack():
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  autoEssentials()
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  autoEssentials()
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  pynboard.press(attack[0])
-  pynboard.release(attack[0])
-  autoEssentials()
-  pynboard.press(attack[1])
-  pynboard.release(attack[1])
-  autoEssentials()
-  pynboard.press(attack[2])
-  pynboard.release(attack[2])
-  autoEssentials()
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    autoEssentials()
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    autoEssentials()
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
+    autoEssentials()
 
 def attackMobs(unit="NA"):
   combo = True
   fadeCount = 0
 
-  if unit != unitMushFlower:
-    doDeselect()
-    time.sleep(0.5)
-    doDash()
-    time.sleep(0.3)
-
-  doSelect()
-  doSelect()
+  doDeselectPack()
+  doSelect(0.1)
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -254,15 +326,14 @@ def attackMobs(unit="NA"):
 
     doAura()
     try:
-      doSelect()
-      time.sleep(0.1)
+      doSelect(0.1)
 
       if (fadeCount == 20):
         fadeCount = 0
         pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 440)
+        pyauto.click(cabalwindow[0] + 700, cabalwindow[1] + 440)
         time.sleep(0.2)
-        doFade()
-        time.sleep(0.1)
+        doFade(0.1)
       else:
         fadeCount += 1
 
@@ -281,16 +352,18 @@ def attackMobs(unit="NA"):
 
 def attackBoss():
   combo = True
-  doSelect()
+  doSelect(0.1)
   while combo:
     if not macro:
       logAction(msgTerminate)
       combo = False
       break
 
-    doAura()
+    if isBattleMode == False:
+      doAura()
+
     try:
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       logAction(msgAttackBoss)
       doAttack()
       time.sleep(0.1)
@@ -304,6 +377,7 @@ def attackBoss():
 def pathFind(unit):
   pathing = True
   boss = 0
+  backTrackCheck = 0
   while pathing:
     if not macro:
       logAction(msgTerminate)
@@ -313,25 +387,18 @@ def pathFind(unit):
 
     logAction(msgPathFind + unit)
 
-    if unit == unitMossToad:
-      try:
-        vineblock = pyauto.locateOnScreen(imgVine1, grayscale=False, confidence=.9)
-      except pyauto.ImageNotFoundException:
-        logAction(msgNoVineFound)
-      else:
-        pathBackTrack(unitMossToad)
-
-      try:
-        vineblock = pyauto.locateOnScreen(imgVine2, grayscale=False, confidence=.9)
-      except pyauto.ImageNotFoundException:
-        logAction(msgNoVineFound)
-      else:
-        pathBackTrack(unitMossToad)
+    backTrackCheck += 1
+    pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 450)
+    pyauto.click(cabalwindow[0] + 675, cabalwindow[1] + 450)
+    print(msgBackTrack + str(backTrackCheck))
+    if (backTrackCheck >= 10):
+      backTrackCheck = 0
+      pathBackTrack(unit)
     
     try:
       pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
       pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
       pathing = False
@@ -341,9 +408,9 @@ def pathFind(unit):
       logAction(msgNoMobsFound)
 
     try:
-      doSelect()
+      doSelect(0.1)
       logAction(msgCheckBoss)
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       logAction(msgBossFound)
       pathing = False
       boss = 1
@@ -355,7 +422,9 @@ def pathFind(unit):
     try:
       pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
       pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-      doSelect()
+      time.sleep(0.5)
+      doDash(0.5)
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
       pathing = False
@@ -365,9 +434,9 @@ def pathFind(unit):
       logAction(msgNoMobsFound)
     
     try:
-      doSelect()
+      doSelect(0.1)
       logAction(msgCheckBoss)
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       logAction(msgBossFound)
       pathing = False
       boss = 1
@@ -380,7 +449,8 @@ def pathFind(unit):
       try:
         pyauto.moveTo(cabalwindow[0] + 475, cabalwindow[1] + 260)
         pyauto.click(cabalwindow[0] + 475, cabalwindow[1] + 260)
-        doSelect()
+        doFade()
+        doSelect(0.1)
         mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
         logAction(msgMobsFound + unit)
         pathing = False
@@ -390,9 +460,9 @@ def pathFind(unit):
         logAction(msgNoMobsFound)
       
       try:
-        doSelect()
+        doSelect(0.1)
         logAction(msgCheckBoss)
-        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         logAction(msgBossFound)
         pathing = False
         boss = 1
@@ -401,10 +471,11 @@ def pathFind(unit):
       except pyauto.ImageNotFoundException:
         logAction(msgNoMobsFound)
 
-        try:
+      try:
         pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
         pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
-        doSelect()
+        doFade()
+        doSelect(0.1)
         mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
         logAction(msgMobsFound + unit)
         pathing = False
@@ -414,9 +485,9 @@ def pathFind(unit):
         logAction(msgNoMobsFound)
       
       try:
-        doSelect()
+        doSelect(0.1)
         logAction(msgCheckBoss)
-        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         logAction(msgBossFound)
         pathing = False
         boss = 1
@@ -428,7 +499,7 @@ def pathFind(unit):
     try:
       pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
       pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
       pathing = False
@@ -438,9 +509,9 @@ def pathFind(unit):
       logAction(msgNoMobsFound)
 
     try:
-      doSelect()
+      doSelect(0.1)
       logAction(msgCheckBoss)
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       logAction(msgBossFound)
       pathing = False
       boss = 1
@@ -452,7 +523,7 @@ def pathFind(unit):
     try:
       pyauto.moveTo(cabalwindow[0] + 300, cabalwindow[1] + 260)
       pyauto.click(cabalwindow[0] + 300, cabalwindow[1] + 260)
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
       pathing = False
@@ -462,9 +533,9 @@ def pathFind(unit):
       logAction(msgNoMobsFound)
 
     try:
-      doSelect()
+      doSelect(0.1)
       logAction(msgCheckBoss)
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       logAction(msgBossFound)
       pathing = False
       boss = 1
@@ -476,7 +547,7 @@ def pathFind(unit):
     try:
       pyauto.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 260)
       pyauto.click(cabalwindow[0] + 200, cabalwindow[1] + 260)
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
       pathing = False
@@ -486,9 +557,9 @@ def pathFind(unit):
       logAction(msgNoMobsFound)
 
     try:
-      doSelect()
+      doSelect(0.1)
       logAction(msgCheckBoss)
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       logAction(msgBossFound)
       pathing = False
       boss = 1
@@ -501,7 +572,7 @@ def pathFind(unit):
       try:
         pyauto.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 360)
         pyauto.click(cabalwindow[0] + 200, cabalwindow[1] + 360)
-        doSelect()
+        doSelect(0.1)
         mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
         logAction(msgMobsFound + unit)
         pathing = False
@@ -511,7 +582,7 @@ def pathFind(unit):
         logAction(msgNoMobsFound)
 
       try:
-        doSelect()
+        doSelect(0.1)
         logAction(msgCheckBoss)
         mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         logAction(msgBossFound)
@@ -526,24 +597,31 @@ def pathFind(unit):
     attackMobs(unit)
 
 def pathBackTrack(unit):
-  pathing = True
+  backtracking = True
   boss = 0
-  while pathing:
+  backTrackCancel = 0
+  while backtracking:
     if not macro:
       logAction(msgTerminate)
       combo = False
       sys.exit()
       break
 
+    backTrackCancel += 1
+    print(msgBackTrack + str(backTrackCancel))
+    if (backTrackCancel >= 10):
+      backTrackCancel = 0
+      backtracking = False
+
     logAction(msgBackTrack + unit)
     try:
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 560)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 560)
       doDash()
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -553,10 +631,10 @@ def pathBackTrack(unit):
       pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 560)
       pyauto.click(cabalwindow[0] + 700, cabalwindow[1] + 560)
       doDash()
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -566,10 +644,10 @@ def pathBackTrack(unit):
       pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 560)
       pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 560)
       doDash()
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -579,10 +657,10 @@ def pathBackTrack(unit):
       pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 560)
       pyauto.click(cabalwindow[0] + 800, cabalwindow[1] + 560)
       doDash()
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -592,10 +670,10 @@ def pathBackTrack(unit):
       pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 560)
       pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 560)
       doDash()
-      doSelect()
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -603,53 +681,48 @@ def pathBackTrack(unit):
 
   attackMobs(unit)
 
-def testDungeon(frame, btn, lbl, runs=1):
-  global rootFrame
-  rootFrame = frame
-
-  global startButton
-  startButton = btn
-  
-  global macroLbl
-  macroLbl = lbl
-
-  shortcut.add_hotkey("esc", terminate)
-
-  global cabalwindow
-  cabalwindow = pyauto.locateOnScreen(imgCabalWindow, grayscale=False, confidence=.5)
-  pyauto.moveTo(cabalwindow[0] + 20, cabalwindow[1] + 45)
-  pyauto.click(cabalwindow[0] + 20, cabalwindow[1] + 45)
-
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
-    # MAIN
     shortcut.add_hotkey("ctrl+r", terminate)
     logAction(msgStartDg)
+    logRun(runCounter + 1)
 
     global cabalwindow
     cabalwindow = pyauto.locateOnScreen(imgCabalWindow, grayscale=False, confidence=.9)
     pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
     pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
-    # AHV
-    # AHV ENTER FREE VIEW
     pyauto.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
     pyauto.moveTo(cabalwindow[0] + 735, cabalwindow[1] + 361)
-    time.sleep(1)
+    time.sleep(0.5)
 
     pyauto.click(cabalwindow[0] + 735, cabalwindow[1] + 361)
-    time.sleep(1)
+    time.sleep(0.5)
 
-    enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
-    pyauto.moveTo(enterdg[0] + 15, enterdg[1] + 15)
-    pyauto.click(enterdg[0] + 15, enterdg[1] + 15)
-    time.sleep(2)
+    isEntering = True
+    while isEntering:
+      try:
+        enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
+        pyauto.moveTo(enterdg[0] + 15, enterdg[1] + 15)
+        pyauto.click(enterdg[0] + 15, enterdg[1] + 15)
+        time.sleep(2)
+        isEntering = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
 
-    challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
-    pyauto.moveTo(challengedg[0] + 15, challengedg[1] + 15)
-    pyauto.click(challengedg[0] + 15, challengedg[1] + 15)
-    time.sleep(1)
+    isChallenging = True
+    while isChallenging:
+      try:
+        challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
+        pyauto.moveTo(challengedg[0] + 15, challengedg[1] + 15)
+        pyauto.click(challengedg[0] + 15, challengedg[1] + 15)
+        time.sleep(1)
+        isChallenging = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
 
     pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 150)
     pyauto.mouseDown(button="right")
@@ -661,13 +734,14 @@ def runDungeon(runs=1):
     goSkillSlot()
     time.sleep(0.5)
 
-    doBuffs()
-    time.sleep(1)
+    if buffsAllowed == 1:
+      doBuffs()
+      time.sleep(1)
 
+    # Initial Position
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    pynboard.press(dash)
-    pynboard.release(dash)
-    time.sleep(1)
+    time.sleep(0.5)
+    doDash(0.1)
 
     # Mush and Flower Sequence
     moving = True
@@ -687,20 +761,33 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
 
+    doDeselectPack()
     pyauto.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
-    doDash()
+    time.sleep(0.5)
+    doDash(0.5)
 
     # First Boss
-    doShortBuffs()
+    if shortBuffsAllowed == 1:
+      doShortBuffs()
+      time.sleep(0.5)
+
     attackBoss()
+    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    time.sleep(0.5)
+    doFade(0.5)
     lootBox()
+
+    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
+    time.sleep(0.8)
+    doDash()
 
     # Mossites and Toad Sequence
     moving = True
     while moving:
       pathFind(unitMossToad)
       try:
-        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         moving = False
         logAction(msgPathStop)
         break
@@ -708,19 +795,32 @@ def runDungeon(runs=1):
         logAction(msgNoBossFound)
 
     # Second Boss
-    doDeselect()
-    doDeselect()
+    doDeselectPack()
+    pyauto.moveTo(cabalwindow[0] + 730, cabalwindow[1] + 300)
+    time.sleep(0.8)
+    doDash(0.3)
+    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
+    time.sleep(0.8)
+    doFade(0.1)
+
+    secondBoss = True
+    while secondBoss:
+      try:
+        doSelect(0.1)
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        secondBoss = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoBossFound)
+    
     time.sleep(1)
-    pyauto.moveTo(cabalwindow[0] + 710, cabalwindow[1] + 250)
-    pyauto.moveTo(cabalwindow[0] + 710, cabalwindow[1] + 250)
-    time.sleep(1)
-    doDash()
-    time.sleep(1)
-    doSelect()
-    doSelect()
-    time.sleep(2)
     attackBoss()
+
+    doDeselectPack()
+    pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 100)
+    doFade(0.5)
     lootBox()
+    time.sleep(0.5)
 
     # Lumber and Moth Sequence
     moving = True
@@ -740,46 +840,46 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
 
-    doDeselect()
+    doDeselectPack()
 
+    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
+    time.sleep(2)
+
+    doDash()
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    time.sleep(0.5)
+    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
-    time.sleep(0.5)
+    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    time.sleep(0.5)
+    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
   
-    doDeselect()
-    time.sleep(1)
-    doDash()
-    time.sleep(2)
+    doDeselectPack()
+    doDash(0.5)
 
     # First Orphidia
     try:
-      doSelect()
-      mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      doSelect(0.1)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       attackBoss()
     except pyauto.ImageNotFoundException:
       logAction(msgNoBossFound)
-    
-    time.sleep(1)
+
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
     time.sleep(0.2)
 
-    doDash()
-    time.sleep(0.2)
+    doDash(0.5)
+
+    if battleMode == 1:
+      doBattleMode()
 
     # Second and Third Orphidia
     bossCount = 0
@@ -793,23 +893,36 @@ def runDungeon(runs=1):
       
       if (bossCount == 1 and shortBuffsCounter == 0):
         shortBuffsCounter = 1
+
+      if shortBuffsAllowed == 1 and shortBuffsCounter == 1:
         doShortBuffs()
-    
+
       try:
-        doSelect()
-        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        doSelect(0.1)
+        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         bossCount += 1
         attackBoss()
+        doDeselectPack()
+        if (bossCount == 1):
+          time.sleep(5)
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
     
     # Pathfind Treasure Boxes
     boxing = True
     while boxing:
+      if not macro:
+          logAction(msgTerminate)
+          boxing = False
+          sys.exit()
+          break
+
       logAction(msgPathFind + unitBox)
       pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
       time.sleep(1)
+
+      doDash(0.5)
 
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
@@ -830,15 +943,12 @@ def runDungeon(runs=1):
       pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 480)
       pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 480)
 
-      doDash()
-      time.sleep(0.5)
-
-      doFade()
-      time.sleep(0.5)
+      doDash(1)
+      doFade(0.5)
 
       try:
-        doSelect()
-        mobs = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+        doSelect(0.1)
+        box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
         logAction(msgBoxFound)
         boxing = False
         logAction(msgPathStop)
@@ -846,39 +956,80 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgNoBoxFound)
 
-    time.sleep(2)
-
     # Loot Treasure Boxes
-    boxCount = 0
-    while boxCount < 3:
+    boxCounter = 0
+    while boxCounter < 10:
+      if not macro:
+          logAction(msgTerminate)
+          boxCounter = False
+          sys.exit()
+          break
+
       try:
-        doSelect()
+        doSelect(0.1)
+        boxCounter += 1
         mobs = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
         logAction(msgBoxFound)
         logAction(msgPathStop)
-        boxCount += 1
+        boxCounter += 2
         lootBox()
-        time.sleep(0.3)
       except pyauto.ImageNotFoundException:
         logAction(msgNoBoxFound)
 
-    time.sleep(1)
-    cancelAura()
+      try:
+        checkenddg = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
+        boxCounter += 10
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgCheckEndDg)
 
     # Start to End Dungeon
-    enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
-    pyauto.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
-    pyauto.click(enddungeon[0] + 50, enddungeon[1] + 15)
+    isEnding = True
+    endCheckTrack = 0
+    while isEnding:
+      if not macro:
+          logAction(msgTerminate)
+          isEnding = False
+          sys.exit()
+          break
 
-    time.sleep(0.5)
+      endCheckTrack += 1
+      if (endCheckTrack >= 10):
+        isEnding = False
+        break
 
-    rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
-    pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
-    pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+      try:
+        enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
+        pyauto.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
+        pyauto.click(enddungeon[0] + 50, enddungeon[1] + 15)
+        time.sleep(0.5)
+        isEnding = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
+    
+    isDicing = True
+    while isDicing:
+      if not macro:
+          logAction(msgTerminate)
+          isDicing = False
+          sys.exit()
+          break
 
-    time.sleep(0.8)
-    pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+      try:
+        rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
+        pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
+        pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+        time.sleep(0.8)
+        pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
+        isDicing = False
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoButtonFound)
 
     runCounter += 1
     logAction(msgEndDg)
     time.sleep(3)
+    global isBattleMode
+    isBattleMode = False
+    cancelAura()
