@@ -16,3 +16,12 @@ All notable changes to this project will be documented in this file.
 - Added GUI.
 - Added Trial Program.
 
+# v2.10
+
+## v2.10 Features
+
+- Added GUI for Buffs, Shorts and Mode Two
+
+## v2.10 Fixes
+
+- Fixed glitches in AHV Automation

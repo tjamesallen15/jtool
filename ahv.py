@@ -36,7 +36,10 @@ pathing = True
 moving = True
 boxing = True
 macro = True
-buffAllowed = 1
+isBattleMode = False
+battleMode = 0
+buffsAllowed = 1
+shortBuffsAllowed = 1
 
 # GLOBAL MESSAGES
 msgStartDg = "Starting Dungeon"
@@ -65,6 +68,9 @@ msgBackTrack = "Backtrack #: "
 msgChallengeDungeon = "Challenge Dungeon"
 msgEnterDungeon = "Enter Dungeon"
 msgNoButtonFound = "No Button Found"
+msgBuffs = "Buffing"
+msgShortBuffs = "Buffing Shorts"
+msgBattleModeTwo = "Doing Mode 2"
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -89,7 +95,7 @@ unitMossToad = "Mossites and Toad"
 unitLumberMoth = "Lumber and Moth"
 unitBox = "Box"
 
-def initialize(frame, btn, mlbl, rlbl, buff, runs=1):
+def initialize(frame, btn, mlbl, rlbl, mode=0, buff=1, sbuffs=1, runs=1):
   global rootFrame
   rootFrame = frame
 
@@ -102,8 +108,17 @@ def initialize(frame, btn, mlbl, rlbl, buff, runs=1):
   global runNumberLbl
   runNumberLbl = rlbl 
 
-  global buffAllowed
-  buffAllowed = buff
+  global battleMode
+  battleMode = int(mode)
+
+  global isBattleMode
+  isBattleMode = False
+
+  global buffsAllowed
+  buffsAllowed = int(buff)
+
+  global shortBuffsAllowed
+  shortBuffsAllowed = int(sbuffs)
   
   startButton.config(state="disabled")
   rootFrame.update()
@@ -134,7 +149,20 @@ def goSkillSlot():
   pynboard.press(Key.f3)
   pynboard.release(Key.f3)
 
+def doBattleMode():
+  logAction(msgBattleModeTwo)
+  cancelAura()
+  time.sleep(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+
+  global isBattleMode
+  isBattleMode = True
+  time.sleep(5)
+
 def doBuffs():
+  logAction(msgBuffs)
   pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
   pyauto.click(button="right")
   time.sleep(0.5)
@@ -143,6 +171,7 @@ def doBuffs():
   pyauto.click(button="right")
 
 def doShortBuffs():
+  logAction(msgShortBuffs)
   pyauto.moveTo(cabalwindow[0] + 470, cabalwindow[1] + 670)
   pyauto.click(button="right")
   time.sleep(0.5)
@@ -202,16 +231,22 @@ def doDeselectPack():
 
 def lootBox():
   doSelect(0.5)
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  pynboard.press(attack[0])
-  pynboard.release(attack[0])
-  pynboard.press(attack[1])
-  pynboard.release(attack[1])
-  pynboard.press(attack[2])
-  pynboard.release(attack[2])
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+
   for x in range(4):
     pynboard.press(loot)
     pynboard.release(loot)
@@ -244,23 +279,28 @@ def doAura():
   pynboard.release(bm3)
 
 def doAttack():
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  autoEssentials()
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  autoEssentials()
-  pynboard.press(bm3atk)
-  pynboard.release(bm3atk)
-  pynboard.press(attack[0])
-  pynboard.release(attack[0])
-  autoEssentials()
-  pynboard.press(attack[1])
-  pynboard.release(attack[1])
-  autoEssentials()
-  pynboard.press(attack[2])
-  pynboard.release(attack[2])
-  autoEssentials()
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    autoEssentials()
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    autoEssentials()
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    autoEssentials()
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
+    autoEssentials()
 
 def attackMobs(unit="NA"):
   combo = True
@@ -319,7 +359,9 @@ def attackBoss():
       combo = False
       break
 
-    doAura()
+    if isBattleMode == False:
+      doAura()
+
     try:
       boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       logAction(msgAttackBoss)
@@ -692,7 +734,7 @@ def runDungeon(runs=1):
     goSkillSlot()
     time.sleep(0.5)
 
-    if buffAllowed == 1:
+    if buffsAllowed == 1:
       doBuffs()
       time.sleep(1)
 
@@ -725,13 +767,14 @@ def runDungeon(runs=1):
     doDash(0.5)
 
     # First Boss
-    doShortBuffs()
-    time.sleep(0.5)
-    attackBoss()
+    if shortBuffsAllowed == 1:
+      doShortBuffs()
+      time.sleep(0.5)
 
+    attackBoss()
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
     time.sleep(0.5)
-    doDash(1)
+    doFade(0.5)
     lootBox()
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
@@ -758,19 +801,19 @@ def runDungeon(runs=1):
     doDash(0.3)
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
     time.sleep(0.8)
-    doFade(0.5)
+    doFade(0.1)
 
     secondBoss = True
     while secondBoss:
       try:
-        doSelect()
+        doSelect(0.1)
         mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         secondBoss = False
         break
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
     
-    time.sleep(2)
+    time.sleep(1)
     attackBoss()
 
     doDeselectPack()
@@ -835,6 +878,9 @@ def runDungeon(runs=1):
 
     doDash(0.5)
 
+    if battleMode == 1:
+      doBattleMode()
+
     # Second and Third Orphidia
     bossCount = 0
     shortBuffsCounter = 0
@@ -847,8 +893,10 @@ def runDungeon(runs=1):
       
       if (bossCount == 1 and shortBuffsCounter == 0):
         shortBuffsCounter = 1
+
+      if shortBuffsAllowed == 1 and shortBuffsCounter == 1:
         doShortBuffs()
-    
+
       try:
         doSelect(0.1)
         boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
@@ -982,4 +1030,6 @@ def runDungeon(runs=1):
     runCounter += 1
     logAction(msgEndDg)
     time.sleep(3)
+    global isBattleMode
+    isBattleMode = False
     cancelAura()

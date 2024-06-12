@@ -24,9 +24,9 @@ dungeonList = [
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
 # runList = [1, 2, 3, 4, 5]
-bmList = ["Yes", "No"]
-buffList = ["Yes", "No"]
-shortList = ["Yes", "No"]
+bmList = [1, 0]
+buffList = [1, 0]
+shortList = [1, 0]
 appFont = "Tahoma 10"
 
 dgList = []
@@ -43,7 +43,7 @@ def start():
   choice = dgList.get()
 
   if (choice == dungeonList[0]):
-    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, 0, runEntry.get())
+    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, bmTwo.get(), buffs.get(), shorts.get(), runEntry.get())
 
 def generateGui():
   # CREATE FRAME
@@ -92,7 +92,7 @@ def generateGui():
   askBmLbl.place(x=10, y=75)
 
   global bmTwo
-  bmTwo = ttk.Combobox(values=bmList, state="disabled")
+  bmTwo = ttk.Combobox(values=bmList, state="readonly")
   bmTwo.current(1)
   bmTwo.config(width=5)
   bmTwo.place(x=75, y=75)
@@ -104,19 +104,19 @@ def generateGui():
   askBuffs.place(x=10, y=105)
 
   global buffs
-  buffs = ttk.Combobox(values=buffList, state="disabled")
+  buffs = ttk.Combobox(values=buffList, state="readonly")
   buffs.current(0)
   buffs.config(width=5)
   buffs.place(x=75, y=105)
 
-  expirationLbl = Label(rootFrame, text="Expiration: 00/00/2024")
+  expirationLbl = Label(rootFrame, text="Expiration: 12/12/2024")
   expirationLbl.place(x=140, y=105)
 
   askShorts = Label(rootFrame, text="Shorts: ")
   askShorts.place(x=10, y=135)
 
   global shorts
-  shorts = ttk.Combobox(values=shortList, state="disabled")
+  shorts = ttk.Combobox(values=shortList, state="readonly")
   shorts.current(0)
   shorts.config(width=5)
   shorts.place(x=75, y=135)

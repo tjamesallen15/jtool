@@ -14,5 +14,5 @@
 # 8 pyautogui.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 670)
 # 9 pyautogui.moveTo(cabalwindow[0] + 680, cabalwindow[1] + 670)
 # 10 pyautogui.moveTo(cabalwindow[0] + 715, cabalwindow[1] + 670)
-# 11 pyautogui.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 670)
-# 12 pyautogui.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
+# - pyautogui.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 670)
+# = pyautogui.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
