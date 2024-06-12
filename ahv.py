@@ -326,7 +326,7 @@ def pathFind(unit):
     logAction(msgPathFind + unit)
 
     backTrackCheck += 1
-    if (backTrackCheck == 40):
+    if (backTrackCheck >= 25):
       backTrackCheck = 0
       pathBackTrack(unit)
 
