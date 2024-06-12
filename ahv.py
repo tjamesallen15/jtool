@@ -315,6 +315,7 @@ def attackBoss():
 def pathFind(unit):
   pathing = True
   boss = 0
+  backTrackCheck = 0
   while pathing:
     if not macro:
       logAction(msgTerminate)
@@ -324,20 +325,25 @@ def pathFind(unit):
 
     logAction(msgPathFind + unit)
 
-    if unit == unitMossToad:
-      try:
-        vineblock = pyauto.locateOnScreen(imgVine1, grayscale=False, confidence=.9)
-      except pyauto.ImageNotFoundException:
-        logAction(msgNoVineFound)
-      else:
-        pathBackTrack(unitMossToad)
+    backTrackCheck += 1
+    if (backTrackCheck == 40):
+      backTrackCheck = 0
+      pathBackTrack(unit)
 
-      try:
-        vineblock = pyauto.locateOnScreen(imgVine2, grayscale=False, confidence=.9)
-      except pyauto.ImageNotFoundException:
-        logAction(msgNoVineFound)
-      else:
-        pathBackTrack(unitMossToad)
+    # if unit == unitMossToad:
+      # try:
+      #   vineblock = pyauto.locateOnScreen(imgVine1, grayscale=False, confidence=.9)
+      # except pyauto.ImageNotFoundException:
+      #   logAction(msgNoVineFound)
+      # else:
+      #   pathBackTrack(unitMossToad)
+
+      # try:
+      #   vineblock = pyauto.locateOnScreen(imgVine2, grayscale=False, confidence=.9)
+      # except pyauto.ImageNotFoundException:
+      #   logAction(msgNoVineFound)
+      # else:
+      #   pathBackTrack(unitMossToad)
     
     try:
       pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
@@ -710,6 +716,11 @@ def runDungeon(runs=1):
     time.sleep(0.5)
     attackBoss()
     lootBox()
+
+    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
+    time.sleep(0.8)
+    doDash()
 
     # Mossites and Toad Sequence
     moving = True
