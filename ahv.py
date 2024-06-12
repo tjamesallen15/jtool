@@ -721,12 +721,16 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
 
+    doDeselect()
+    doDeselect()
+    doDeselect()
     pyauto.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
+    time.sleep(0.5)
     doDash()
+    time.sleep(0.5)
 
     # First Boss
     doShortBuffs()
-
     time.sleep(0.5)
     attackBoss()
 
