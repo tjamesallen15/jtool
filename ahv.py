@@ -887,7 +887,10 @@ def runDungeon(runs=1):
       logAction(msgPathFind + unitBox)
       pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
-      time.sleep(2)
+      time.sleep(1)
+
+      doDash()
+      time.sleep(0.5)
 
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
