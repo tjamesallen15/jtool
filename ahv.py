@@ -373,9 +373,35 @@ def pathFind(unit):
     except pyauto.ImageNotFoundException:
       logAction(msgNoMobsFound)
 
+
+    if unit == unitMossToad:
+      try:
+        pyauto.moveTo(cabalwindow[0] + 475, cabalwindow[1] + 260)
+        pyauto.click(cabalwindow[0] + 475, cabalwindow[1] + 260)
+        doSelect()
+        mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+        logAction(msgMobsFound + unit)
+        pathing = False
+        logAction(msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoMobsFound)
+      
+      try:
+        doSelect()
+        logAction(msgCheckBoss)
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        logAction(msgBossFound)
+        pathing = False
+        boss = 1
+        logAction(msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoMobsFound)
+
     try:
-      pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
-      pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
+      pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
+      pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
@@ -659,11 +685,12 @@ def runDungeon(runs=1):
     doDeselect()
     doDeselect()
     time.sleep(1)
-    pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 250)
-    pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 250)
+    pyauto.moveTo(cabalwindow[0] + 730, cabalwindow[1] + 250)
+    pyauto.moveTo(cabalwindow[0] + 730, cabalwindow[1] + 250)
     time.sleep(1)
     doDash()
     time.sleep(1)
+    doSelect()
     doSelect()
     time.sleep(2)
     attackBoss()
@@ -823,7 +850,7 @@ def runDungeon(runs=1):
     pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
     pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
 
-    time.sleep(1)
+    time.sleep(0.8)
     pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
 
     runCounter += 1
