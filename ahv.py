@@ -847,25 +847,21 @@ def runDungeon(runs=1):
 
     doDeselectPack()
 
-    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
-    time.sleep(2)
-
-    doDash()
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    time.sleep(1)
+    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
+    doDash(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
+    doDash(0.5)
+    doDash(0.5)
+    time.sleep(1)
+    doFade(0.5)
     time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
-  
     doDeselectPack()
     doDash(0.5)
 
