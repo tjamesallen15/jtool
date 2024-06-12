@@ -688,10 +688,13 @@ def runDungeon(runs=1):
     doBuffs()
     time.sleep(1)
 
+    # Initial Position
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    time.sleep(0.5)
-    doDash()
+    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
     time.sleep(1)
+    doDash()
+    doDash()
+    time.sleep(2)
 
     # Mush and Flower Sequence
     moving = True
@@ -743,15 +746,15 @@ def runDungeon(runs=1):
     time.sleep(0.5)
     doDeselect()
     time.sleep(0.5)
-    pyauto.moveTo(cabalwindow[0] + 710, cabalwindow[1] + 250)
-    pyauto.moveTo(cabalwindow[0] + 710, cabalwindow[1] + 250)
+    pyauto.moveTo(cabalwindow[0] + 730, cabalwindow[1] + 300)
+    pyauto.moveTo(cabalwindow[0] + 730, cabalwindow[1] + 300)
     time.sleep(0.8)
     doDash()
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
     time.sleep(0.8)
     doFade()
-    time.sleep(0.2)
+    time.sleep(0.5)
 
     # Second Boss
     secondBoss = True
@@ -767,6 +770,7 @@ def runDungeon(runs=1):
     time.sleep(2)
     attackBoss()
     lootBox()
+    time.sleep(0.5)
 
     # Lumber and Moth Sequence
     moving = True
@@ -788,15 +792,17 @@ def runDungeon(runs=1):
 
     doDeselect()
     doDeselect()
+    doDeselect()
+    time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    time.sleep(1)
+    time.sleep(2)
 
     doDash()
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(0.5)
+    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
@@ -828,7 +834,7 @@ def runDungeon(runs=1):
     time.sleep(0.2)
 
     doDash()
-    time.sleep(0.2)
+    time.sleep(0.5)
 
     # Second and Third Orphidia
     bossCount = 0
@@ -860,7 +866,7 @@ def runDungeon(runs=1):
       logAction(msgPathFind + unitBox)
       pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
-      time.sleep(1)
+      time.sleep(2)
 
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
