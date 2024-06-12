@@ -581,10 +581,11 @@ def runDungeon(runs=1):
     # AHV
     # AHV ENTER FREE VIEW
     pyauto.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
-    pyauto.moveTo(cabalwindow[0] + 690, cabalwindow[1] + 361)
+    pyauto.moveTo(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(1)
     
-    pyauto.click(cabalwindow[0] + 690, cabalwindow[1] + 361)
+
+    pyauto.click(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(1)
 
     enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
@@ -657,8 +658,8 @@ def runDungeon(runs=1):
     doDeselect()
     doDeselect()
     time.sleep(1)
-    pyauto.moveTo(cabalwindow[0] + 660, cabalwindow[1] + 250)
-    pyauto.moveTo(cabalwindow[0] + 660, cabalwindow[1] + 250)
+    pyauto.moveTo(cabalwindow[0] + 680, cabalwindow[1] + 250)
+    pyauto.moveTo(cabalwindow[0] + 680, cabalwindow[1] + 250)
     time.sleep(1)
     doDash()
     time.sleep(1)
@@ -763,15 +764,15 @@ def runDungeon(runs=1):
 
       pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 160)
-      time.sleep(0.8)
+      time.sleep(0.3)
 
       pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 160)
-      time.sleep(0.8)
+      time.sleep(0.3)
 
       pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 160)
-      time.sleep(0.8)
+      time.sleep(0.3)
 
       pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 480)
       pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 480)
