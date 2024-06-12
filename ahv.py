@@ -56,6 +56,7 @@ msgCheckBoss = "Checking Boss"
 msgBoxFound = "Box Found"
 msgNoBoxFound = "No Box Found"
 msgPathStop = "Pathing stop, attacking mobs"
+msgCheckEndDg = "Check End Dungeon"
 msgAction = ""
 
 # GLOBAL PICTURES
@@ -257,6 +258,7 @@ def attackMobs(unit="NA"):
       if (fadeCount == 20):
         fadeCount = 0
         pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 440)
+        pyauto.click(cabalwindow[0] + 700, cabalwindow[1] + 440)
         time.sleep(0.2)
         doFade()
         time.sleep(0.1)
@@ -625,7 +627,6 @@ def testDungeon(frame, btn, lbl, runs=1):
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
-    # MAIN
     shortcut.add_hotkey("ctrl+r", terminate)
     logAction(msgStartDg)
 
@@ -634,8 +635,6 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
     pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
-    # AHV
-    # AHV ENTER FREE VIEW
     pyauto.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
     pyauto.moveTo(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(1)
@@ -667,6 +666,7 @@ def runDungeon(runs=1):
     time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    time.sleep(0.5)
     doDash()
     time.sleep(1)
 
@@ -712,17 +712,18 @@ def runDungeon(runs=1):
 
     # Second Boss
     doDeselect()
+    time.sleep(0.5)
     doDeselect()
-    time.sleep(1)
+    time.sleep(0.5)
     pyauto.moveTo(cabalwindow[0] + 710, cabalwindow[1] + 250)
     pyauto.moveTo(cabalwindow[0] + 710, cabalwindow[1] + 250)
-    time.sleep(1)
+    time.sleep(0.8)
     doDash()
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
-    time.sleep(1)
+    time.sleep(0.8)
     doFade()
-    doFade()
+    time.sleep(0.2)
 
     # Second Boss
     secondBoss = True
@@ -758,13 +759,13 @@ def runDungeon(runs=1):
         logAction(msgNoBossFound)
 
     doDeselect()
+    doDeselect()
 
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
     time.sleep(1)
 
     doDash()
-
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
     time.sleep(0.5)
@@ -775,14 +776,16 @@ def runDungeon(runs=1):
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    time.sleep(0.3)
+    time.sleep(0.8)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
   
     doDeselect()
-    time.sleep(1)
+    doDeselect()
+    doDeselect()
+    time.sleep(0.5)
     doDash()
-    time.sleep(2)
+    time.sleep(0.5)
 
     # First Orphidia
     try:
@@ -791,8 +794,7 @@ def runDungeon(runs=1):
       attackBoss()
     except pyauto.ImageNotFoundException:
       logAction(msgNoBossFound)
-    
-    time.sleep(1)
+
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
     time.sleep(0.2)
@@ -819,7 +821,7 @@ def runDungeon(runs=1):
         mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         bossCount += 1
         attackBoss()
-        time.sleep(10)
+        time.sleep(5)
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
     
@@ -877,11 +879,17 @@ def runDungeon(runs=1):
         mobs = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
         logAction(msgBoxFound)
         logAction(msgPathStop)
-        boxCounter += 1
+        boxCounter += 2
         lootBox()
-        time.sleep(0.5)
       except pyauto.ImageNotFoundException:
         logAction(msgNoBoxFound)
+
+      try:
+        checkenddg = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
+        boxCounter += 10
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgCheckEndDg)
 
     time.sleep(1)
     cancelAura()
@@ -890,14 +898,13 @@ def runDungeon(runs=1):
     enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
     pyauto.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
     pyauto.click(enddungeon[0] + 50, enddungeon[1] + 15)
-
     time.sleep(0.5)
 
     rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
     pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
     pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
-
     time.sleep(0.8)
+
     pyauto.click(rolladice[0] + 50, rolladice[1] + 15)
 
     runCounter += 1
