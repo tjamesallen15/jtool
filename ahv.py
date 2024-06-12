@@ -1029,7 +1029,7 @@ def runDungeon(runs=1):
 
     runCounter += 1
     logAction(msgEndDg)
-    time.sleep(3)
     global isBattleMode
     isBattleMode = False
     cancelAura()
+    time.sleep(3)
