@@ -330,6 +330,8 @@ def pathFind(unit):
     logAction(msgPathFind + unit)
 
     backTrackCheck += 1
+    pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 450)
+    pyauto.click(cabalwindow[0] + 675, cabalwindow[1] + 450)
     print(msgBackTrack + str(backTrackCheck))
     if (backTrackCheck >= 10):
       backTrackCheck = 0
@@ -790,6 +792,12 @@ def runDungeon(runs=1):
     
     time.sleep(2)
     attackBoss()
+
+    doDeselect()
+    doDeselect()
+    pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 100)
+    doFade()
+    time.sleep(0.5)
     lootBox()
     time.sleep(0.5)
 
@@ -816,17 +824,17 @@ def runDungeon(runs=1):
     doDeselect()
     time.sleep(0.5)
 
-    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
+    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 800, cabalwindow[1] + 260)
     time.sleep(2)
 
     doDash()
-    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
+    pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 700, cabalwindow[1] + 260)
     time.sleep(1)
 
-    pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
+    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
     time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
