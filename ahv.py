@@ -891,10 +891,8 @@ def runDungeon(runs=1):
           sys.exit()
           break
       
-      if (bossCount == 1 and shortBuffsCounter == 0):
+      if (bossCount == 1 and shortBuffsCounter == 0 and shortBuffsAllowed == 1):
         shortBuffsCounter = 1
-
-      if shortBuffsAllowed == 1 and shortBuffsCounter == 1:
         doShortBuffs()
 
       try:
