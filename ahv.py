@@ -227,10 +227,13 @@ def doAttack():
 def attackMobs(unit="NA"):
   combo = True
   fadeCount = 0
-  doDeselect()
-  time.sleep(0.5)
-  doDash()
-  time.sleep(0.3)
+
+  if unit != unitMushFlower:
+    doDeselect()
+    time.sleep(0.5)
+    doDash()
+    time.sleep(0.3)
+
   doSelect()
   doSelect()
   while combo:
@@ -373,11 +376,34 @@ def pathFind(unit):
     except pyauto.ImageNotFoundException:
       logAction(msgNoMobsFound)
 
-
     if unit == unitMossToad:
       try:
         pyauto.moveTo(cabalwindow[0] + 475, cabalwindow[1] + 260)
         pyauto.click(cabalwindow[0] + 475, cabalwindow[1] + 260)
+        doSelect()
+        mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+        logAction(msgMobsFound + unit)
+        pathing = False
+        logAction(msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoMobsFound)
+      
+      try:
+        doSelect()
+        logAction(msgCheckBoss)
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        logAction(msgBossFound)
+        pathing = False
+        boss = 1
+        logAction(msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        logAction(msgNoMobsFound)
+
+        try:
+        pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
+        pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
         doSelect()
         mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
         logAction(msgMobsFound + unit)
