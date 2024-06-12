@@ -730,9 +730,9 @@ def runDungeon(runs=1):
 
     doDeselect()
     doDeselect()
-    time.sleep(0.3)
+    time.sleep(0.5)
     doDeselect()
-    time.sleep(0.3)
+    time.sleep(0.5)
     pyauto.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
     time.sleep(0.5)
     doDash()
@@ -787,7 +787,6 @@ def runDungeon(runs=1):
     doFade()
     time.sleep(0.5)
 
-    # Second Boss
     secondBoss = True
     while secondBoss:
       try:
@@ -803,6 +802,9 @@ def runDungeon(runs=1):
 
     doDeselect()
     doDeselect()
+    time.sleep(0.5)
+    doDeselect()
+    time.sleep(0.5)
     pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 100)
     doFade()
     time.sleep(0.5)
@@ -829,30 +831,32 @@ def runDungeon(runs=1):
 
     doDeselect()
     doDeselect()
+    time.sleep(0.5)
     doDeselect()
     time.sleep(0.5)
 
-    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 800, cabalwindow[1] + 260)
+    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
     time.sleep(2)
 
     doDash()
-    pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 700, cabalwindow[1] + 260)
+    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
     time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(0.5)
+    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    time.sleep(0.8)
+    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
   
     doDeselect()
     doDeselect()
+    time.sleep(0.5)
     doDeselect()
     time.sleep(0.5)
     doDash()
@@ -892,6 +896,11 @@ def runDungeon(runs=1):
         mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         bossCount += 1
         attackBoss()
+        doDeselect()
+        doDeselect()
+        time.sleep(0.5)
+        doDeselect()
+        time.sleep(0.5)
         if (bossCount == 1):
           time.sleep(5)
       except pyauto.ImageNotFoundException:
@@ -900,6 +909,12 @@ def runDungeon(runs=1):
     # Pathfind Treasure Boxes
     boxing = True
     while boxing:
+      if not macro:
+          logAction(msgTerminate)
+          boxing = False
+          sys.exit()
+          break
+
       logAction(msgPathFind + unitBox)
       pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
@@ -948,6 +963,12 @@ def runDungeon(runs=1):
     # Loot Treasure Boxes
     boxCounter = 0
     while boxCounter < 10:
+      if not macro:
+          logAction(msgTerminate)
+          boxCounter = False
+          sys.exit()
+          break
+
       try:
         doSelect()
         boxCounter += 1
@@ -973,6 +994,12 @@ def runDungeon(runs=1):
     isEnding = True
     endCheckTrack = 0
     while isEnding:
+      if not macro:
+          logAction(msgTerminate)
+          isEnding = False
+          sys.exit()
+          break
+
       endCheckTrack += 1
       if (endCheckTrack >= 10):
         isEnding = False
@@ -990,6 +1017,12 @@ def runDungeon(runs=1):
     
     isDicing = True
     while isDicing:
+      if not macro:
+          logAction(msgTerminate)
+          isDicing = False
+          sys.exit()
+          break
+
       try:
         rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
         pyauto.moveTo(rolladice[0] + 50, rolladice[1] + 15)
