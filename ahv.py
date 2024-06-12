@@ -401,7 +401,7 @@ def pathFind(unit):
       except pyauto.ImageNotFoundException:
         logAction(msgNoMobsFound)
 
-        try:
+      try:
         pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
         pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
         doSelect()
