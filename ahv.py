@@ -945,7 +945,13 @@ def runDungeon(runs=1):
 
     # Start to End Dungeon
     isEnding = True
+    endCheckTrack = 0
     while isEnding:
+      endCheckTrack += 1
+      if (endCheckTrack >= 10):
+        isEnding = False
+        break
+
       try:
         enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
         pyauto.moveTo(enddungeon[0] + 50, enddungeon[1] + 15)
