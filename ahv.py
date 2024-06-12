@@ -283,6 +283,7 @@ def doAttack():
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
     autoEssentials()
+    doBattleMode()
   else:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
