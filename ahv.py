@@ -56,7 +56,7 @@ msgNoVineFound = "No Vine Found"
 msgCheckBoss = "Checking Boss"
 msgBoxFound = "Box Found"
 msgNoBoxFound = "No Box Found"
-msgPathStop = "Pathing stop, attacking mobs"
+msgPathStop = "Pathing stop, attacking"
 msgCheckEndDg = "Check End Dungeon"
 msgAction = ""
 msgRunNumber =  "Run #: "
@@ -334,21 +334,6 @@ def pathFind(unit):
     if (backTrackCheck >= 5):
       backTrackCheck = 0
       pathBackTrack(unit)
-
-    # if unit == unitMossToad:
-      # try:
-      #   vineblock = pyauto.locateOnScreen(imgVine1, grayscale=False, confidence=.9)
-      # except pyauto.ImageNotFoundException:
-      #   logAction(msgNoVineFound)
-      # else:
-      #   pathBackTrack(unitMossToad)
-
-      # try:
-      #   vineblock = pyauto.locateOnScreen(imgVine2, grayscale=False, confidence=.9)
-      # except pyauto.ImageNotFoundException:
-      #   logAction(msgNoVineFound)
-      # else:
-      #   pathBackTrack(unitMossToad)
     
     try:
       pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
