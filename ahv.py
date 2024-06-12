@@ -722,6 +722,13 @@ def runDungeon(runs=1):
 
     time.sleep(0.5)
     attackBoss()
+
+    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    time.sleep(0.5)
+    doDash()
+    doDash()
+    time.sleep(1)
     lootBox()
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
@@ -795,8 +802,8 @@ def runDungeon(runs=1):
     doDeselect()
     time.sleep(0.5)
 
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
+    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
+    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
     time.sleep(2)
 
     doDash()
