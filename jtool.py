@@ -49,7 +49,7 @@ def generateGui():
   # CREATE FRAME
   global rootFrame
   rootFrame = Tk()
-  rootFrame.title("Cabal JTool")
+  rootFrame.title("Cabal JTool v2.10")
   rootFrame.resizable(0, 0)
   rootFrame.geometry("330x165")
 
