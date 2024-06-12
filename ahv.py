@@ -60,6 +60,7 @@ msgPathStop = "Pathing stop, attacking mobs"
 msgCheckEndDg = "Check End Dungeon"
 msgAction = ""
 msgRunNumber =  "Run #: "
+msgBackTrack = "Backtrack #: "
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -326,7 +327,8 @@ def pathFind(unit):
     logAction(msgPathFind + unit)
 
     backTrackCheck += 1
-    if (backTrackCheck >= 25):
+    print(msgBackTrack + backTrackCheck)
+    if (backTrackCheck >= 15):
       backTrackCheck = 0
       pathBackTrack(unit)
 
