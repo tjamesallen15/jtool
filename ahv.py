@@ -693,6 +693,8 @@ def runDungeon(runs=1):
 
     # First Boss
     doShortBuffs()
+
+    time.sleep(0.5)
     attackBoss()
     lootBox()
 
@@ -759,15 +761,17 @@ def runDungeon(runs=1):
 
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    time.sleep(2)
+    time.sleep(1)
+
+    doDash()
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(0.3)
+    time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
-    time.sleep(0.3)
+    time.sleep(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
