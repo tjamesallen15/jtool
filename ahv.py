@@ -161,6 +161,10 @@ def doBattleMode():
   isBattleMode = True
   time.sleep(5)
 
+def doContBattleMode():
+  pyauto.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+
 def doBuffs():
   logAction(msgBuffs)
   pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
@@ -283,7 +287,7 @@ def doAttack():
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
     autoEssentials()
-    doBattleMode()
+    doContBattleMode()
   else:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
