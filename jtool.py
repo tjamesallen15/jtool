@@ -17,13 +17,13 @@ from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 dungeonList = [
-  "Hazardous Valley (Awakened)",
-  "Hazardous Valley (Hard)",
-  "Hazardous Valley (Medium)",
-  "Hazardous Valley (Easy)",
+  "Hazardous Valley (Awakened)"
+  # "Hazardous Valley (Hard)",
+  # "Hazardous Valley (Medium)",
+  # "Hazardous Valley (Easy)",
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
-runList = [1, 2, 3, 4, 5]
+# runList = [1, 2, 3, 4, 5]
 bmList = ["Yes", "No"]
 buffList = ["Yes", "No"]
 shortList = ["Yes", "No"]
@@ -36,13 +36,14 @@ buffs = []
 shorts = []
 startButton = []
 macroLbl = []
+runNumberLbl = []
 rootFrame = []
 
 def start():
   choice = dgList.get()
 
   if (choice == dungeonList[0]):
-    ahv.initialize(rootFrame, startButton, macroLbl, runEntry.get())
+    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, runEntry.get())
 
 def generateGui():
   # CREATE FRAME
@@ -64,8 +65,8 @@ def generateGui():
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
-  runs = Label(rootFrame, text="Runs: ")
-  runs.place(x=10, y=43)
+  runsLbl = Label(rootFrame, text="Runs: ")
+  runsLbl.place(x=10, y=43)
 
   global runEntry
   runEntry = ttk.Combobox(values=runList, state="readonly")
@@ -76,17 +77,22 @@ def generateGui():
   global startButton
   startButton = Button(rootFrame, text="Start", command=start)
   startButton.config(width=10)
-  startButton.place(x=140, y=40)
+  startButton.place(x=230, y=40)
+  # startButton.place(x=140, y=40)
 
-  stopButton = Button(rootFrame, text="Stop", state="disabled")
-  stopButton.config(width=10)
-  stopButton.place(x=230, y=40)
+  global runNumberLbl
+  runNumberLbl = Label(rootFrame, text="Run #: --")
+  runNumberLbl.place(x=140, y=43)
 
-  askBm = Label(rootFrame, text="BM2: ")
-  askBm.place(x=10, y=75)
+  # stopButton = Button(rootFrame, text="Stop", state="disabled")
+  # stopButton.config(width=10)
+  # stopButton.place(x=230, y=40)
+
+  askBmLbl = Label(rootFrame, text="Mode 2: ")
+  askBmLbl.place(x=10, y=75)
 
   global bmTwo
-  bmTwo = ttk.Combobox(values=bmList, state="readonly")
+  bmTwo = ttk.Combobox(values=bmList, state="disabled")
   bmTwo.current(1)
   bmTwo.config(width=5)
   bmTwo.place(x=75, y=75)
@@ -98,7 +104,7 @@ def generateGui():
   askBuffs.place(x=10, y=105)
 
   global buffs
-  buffs = ttk.Combobox(values=buffList, state="readonly")
+  buffs = ttk.Combobox(values=buffList, state="disabled")
   buffs.current(0)
   buffs.config(width=5)
   buffs.place(x=75, y=105)
@@ -110,7 +116,7 @@ def generateGui():
   askShorts.place(x=10, y=135)
 
   global shorts
-  shorts = ttk.Combobox(values=shortList, state="readonly")
+  shorts = ttk.Combobox(values=shortList, state="disabled")
   shorts.current(0)
   shorts.config(width=5)
   shorts.place(x=75, y=135)

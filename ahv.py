@@ -28,6 +28,7 @@ lootSpace = Key.space
 # GLOBAL VALIDATION
 cabalwindow = []
 rootFrame = []
+runNumberLbl = []
 macroLbl = []
 startButton = []
 combo = True
@@ -58,6 +59,7 @@ msgNoBoxFound = "No Box Found"
 msgPathStop = "Pathing stop, attacking mobs"
 msgCheckEndDg = "Check End Dungeon"
 msgAction = ""
+msgRunNumber =  "Run #: "
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -82,7 +84,7 @@ unitMossToad = "Mossites and Toad"
 unitLumberMoth = "Lumber and Moth"
 unitBox = "Box"
 
-def initialize(frame, btn, lbl, runs=1):
+def initialize(frame, btn, mlbl, rlbl, runs=1):
   global rootFrame
   rootFrame = frame
 
@@ -90,12 +92,22 @@ def initialize(frame, btn, lbl, runs=1):
   startButton = btn
   
   global macroLbl
-  macroLbl = lbl
+  macroLbl = mlbl
+
+  global runNumberLbl
+  runNumberLbl = rlbl 
   
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))
   startButton.config(state="active")
+  rootFrame.update()
+
+def logRun(runNumber):
+  runBuilder = StringVar()
+  runBuilder = msgRunNumber + str(runNumber)
+  print(runBuilder)
+  runNumberLbl.config(text=runBuilder)
   rootFrame.update()
 
 def logAction(message):
@@ -629,6 +641,7 @@ def runDungeon(runs=1):
   while runCounter < runs:
     shortcut.add_hotkey("ctrl+r", terminate)
     logAction(msgStartDg)
+    logRun(runCounter + 1)
 
     global cabalwindow
     cabalwindow = pyauto.locateOnScreen(imgCabalWindow, grayscale=False, confidence=.9)
@@ -821,7 +834,8 @@ def runDungeon(runs=1):
         mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         bossCount += 1
         attackBoss()
-        time.sleep(5)
+        if (bossCount == 1):
+          time.sleep(5)
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
     
