@@ -331,7 +331,7 @@ def pathFind(unit):
 
     backTrackCheck += 1
     print(msgBackTrack + str(backTrackCheck))
-    if (backTrackCheck >= 7):
+    if (backTrackCheck >= 10):
       backTrackCheck = 0
       pathBackTrack(unit)
     
@@ -538,14 +538,21 @@ def pathFind(unit):
     attackMobs(unit)
 
 def pathBackTrack(unit):
-  pathing = True
+  backtracking = True
   boss = 0
-  while pathing:
+  backTrackCancel = 0
+  while backtracking:
     if not macro:
       logAction(msgTerminate)
       combo = False
       sys.exit()
       break
+
+    backTrackCancel += 1
+    print(msgBackTrack + str(backTrackCancel))
+    if (backTrackCancel >= 10):
+      backTrackCancel = 0
+      backtracking = False
 
     logAction(msgBackTrack + unit)
     try:
@@ -555,7 +562,7 @@ def pathBackTrack(unit):
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -568,7 +575,7 @@ def pathBackTrack(unit):
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -581,7 +588,7 @@ def pathBackTrack(unit):
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -594,7 +601,7 @@ def pathBackTrack(unit):
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
@@ -607,7 +614,7 @@ def pathBackTrack(unit):
       doSelect()
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgMobsFound + unit)
-      pathing = False
+      backtracking = False
       logAction(msgPathStop)
       break
     except pyauto.ImageNotFoundException:
