@@ -25,3 +25,13 @@ All notable changes to this project will be documented in this file.
 ## v2.10 Fixes
 
 - Fixed glitches in AHV Automation
+
+# v3.40
+
+## v3.40 Features
+
+- Added Hazardous Valley Easy, Normal and Hard
+
+## v3.40 Fixes
+
+- Fixed glitches in AHV Automation
