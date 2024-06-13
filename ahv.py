@@ -801,7 +801,7 @@ def runDungeon(runs=1):
 
     # Second Boss
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 730, cabalwindow[1] + 300)
+    pyauto.moveTo(cabalwindow[0] + 760, cabalwindow[1] + 330)
     time.sleep(0.8)
     doDash(0.3)
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
@@ -848,6 +848,8 @@ def runDungeon(runs=1):
     doDeselectPack()
 
     pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
+    doDash(0.5)
+    time.sleep(0.5)
     doDash(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
