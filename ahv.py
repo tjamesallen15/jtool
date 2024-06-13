@@ -161,6 +161,10 @@ def doBattleMode():
   isBattleMode = True
   time.sleep(5)
 
+def doContBattleMode():
+  pyauto.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
+  pyauto.click(button="right")
+
 def doBuffs():
   logAction(msgBuffs)
   pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
@@ -283,6 +287,7 @@ def doAttack():
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
     autoEssentials()
+    doContBattleMode()
   else:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -842,27 +847,26 @@ def runDungeon(runs=1):
 
     doDeselectPack()
 
-    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
-    time.sleep(2)
-
-    doDash()
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 260)
-    time.sleep(1)
+    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
+    doDash(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
+    doDash(0.5)
+    doDash(0.5)
+    time.sleep(1)
+    doFade(0.5)
     time.sleep(1)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
-  
     doDeselectPack()
     doDash(0.5)
+
+    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 360)
+    doFade(0.5)
 
     # First Orphidia
     try:
@@ -891,10 +895,8 @@ def runDungeon(runs=1):
           sys.exit()
           break
       
-      if (bossCount == 1 and shortBuffsCounter == 0):
+      if (bossCount == 1 and shortBuffsCounter == 0 and shortBuffsAllowed == 1):
         shortBuffsCounter = 1
-
-      if shortBuffsAllowed == 1 and shortBuffsCounter == 1:
         doShortBuffs()
 
       try:
@@ -1029,7 +1031,7 @@ def runDungeon(runs=1):
 
     runCounter += 1
     logAction(msgEndDg)
-    time.sleep(3)
     global isBattleMode
     isBattleMode = False
     cancelAura()
+    time.sleep(3)
