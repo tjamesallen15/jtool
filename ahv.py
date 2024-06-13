@@ -856,6 +856,7 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 320)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 320)
     doDash(1)
+    doDash(1)
     doFade(0.1)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
