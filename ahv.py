@@ -747,14 +747,12 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
-    time.sleep(1)
 
     goSkillSlot()
     time.sleep(0.5)
 
     if buffsAllowed == 1:
       doBuffs()
-      time.sleep(1)
 
     # Initial Position
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
@@ -809,13 +807,9 @@ def runDungeon(runs=1):
 
     # Second Boss
     doDeselectPack()
-    # pyauto.moveTo(cabalwindow[0] + 760, cabalwindow[1] + 320)
     pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 360)
-    # time.sleep(0.8)
     doDash(1)
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 300)
-    # pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
-    # time.sleep(0.3)
     doFade(0.1)
 
     secondBoss = True
@@ -828,9 +822,7 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
     
-    time.sleep(1)
     attackBoss()
-
     doDeselectPack()
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 100)
     doFade(0.5)
@@ -863,10 +855,8 @@ def runDungeon(runs=1):
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 320)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 320)
-    doDash(0.5)
-    time.sleep(1)
-    doFade(0.5)
-    time.sleep(1)
+    doDash(1)
+    doFade(0.1)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
     doDeselectPack()
@@ -884,8 +874,6 @@ def runDungeon(runs=1):
       logAction(msgNoBossFound)
 
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
-    pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
-    time.sleep(0.2)
     doDash(0.5)
 
     if battleMode == 1:
@@ -1018,7 +1006,7 @@ def runDungeon(runs=1):
         isEnding = False
         break
       except pyauto.ImageNotFoundException:
-        logAction(msgNoButtonFound + "CHECK END DG")
+        logAction(msgCheckEndDg)
     
     isDicing = True
     while isDicing:
