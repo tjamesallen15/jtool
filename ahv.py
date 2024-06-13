@@ -758,7 +758,6 @@ def runDungeon(runs=1):
 
     # Initial Position
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    time.sleep(0.5)
     doDash(0.1)
 
     # Mush and Flower Sequence
@@ -781,8 +780,7 @@ def runDungeon(runs=1):
 
     doDeselectPack()
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    time.sleep(0.5)
-    doDash(0.5)
+    doDash(0.1)
 
     # First Boss
     if shortBuffsAllowed == 1:
@@ -791,7 +789,6 @@ def runDungeon(runs=1):
 
     attackBoss()
     pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 600)
-    time.sleep(0.5)
     doFade(0.5)
     lootBox()
 
@@ -835,7 +832,7 @@ def runDungeon(runs=1):
     attackBoss()
 
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 620, cabalwindow[1] + 100)
+    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 100)
     doFade(0.5)
     lootBox()
     time.sleep(0.5)
@@ -861,15 +858,12 @@ def runDungeon(runs=1):
     doDeselectPack()
     pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
     doDash(0.5)
-    time.sleep(0.5)
-    doDash(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 320)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 320)
-    doDash(0.5)
     doDash(0.5)
     time.sleep(1)
     doFade(0.5)
@@ -998,6 +992,11 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgCheckEndDg)
 
+    global isBattleMode
+    isBattleMode = False
+    cancelAura()
+    time.sleep(3)
+  
     # Start to End Dungeon
     isEnding = True
     endCheckTrack = 0
@@ -1021,7 +1020,7 @@ def runDungeon(runs=1):
         isEnding = False
         break
       except pyauto.ImageNotFoundException:
-        logAction(msgNoButtonFound)
+        logAction(msgNoButtonFound + "CHECK END DG")
     
     isDicing = True
     while isDicing:
@@ -1044,7 +1043,4 @@ def runDungeon(runs=1):
 
     runCounter += 1
     logAction(msgEndDg)
-    global isBattleMode
-    isBattleMode = False
-    cancelAura()
     time.sleep(3)
