@@ -71,6 +71,7 @@ msgNoButtonFound = "No Button Found"
 msgBuffs = "Buffing"
 msgShortBuffs = "Buffing Shorts"
 msgBattleModeTwo = "Doing Mode 2"
+msgDiceRoll = "Check Dice Roll"
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -234,11 +235,63 @@ def doDeselectPack():
   doDeselect(0.1)
 
 def lootBox():
-  doSelect(0.5)
+  doSelect(0.1)
+  doSelect(0.1)
+  checkBox = True
+  while checkBox:
+    try:
+      doSelect(0.1)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      logAction(msgBoxFound)
+      checkBox = False
+      logAction(msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoBoxFound)
+
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
     autoEssentials()
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+
+  for x in range(4):
+    pynboard.press(loot)
+    pynboard.release(loot)
+    time.sleep(0.5)
+    pynboard.press(lootSpace)
+    pynboard.release(lootSpace)
+    time.sleep(0.5)
+
+def finalLootBox():
+  doSelect(0.1)
+  doSelect(0.1)
+  checkBox = True
+  while checkBox:
+    try:
+      doSelect(0.1)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      logAction(msgBoxFound)
+      checkBox = False
+      logAction(msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoBoxFound)
+
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    lootEssentials()
   else:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -271,6 +324,18 @@ def autoEssentials():
 
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
+
+def lootEssentials():
+  pynboard.press(lootSpace)
+  pynboard.release(lootSpace)
+  pynboard.press(pots)
+  pynboard.release(pots)
+  pynboard.press(loot)
+  pynboard.release(loot)
+
+  pynboard.release(Key.alt)
+  pynboard.release(Key.ctrl)
+
 
 def doAura():
   pynboard.press(bm3)
@@ -734,18 +799,15 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
-    time.sleep(1)
 
     goSkillSlot()
     time.sleep(0.5)
 
     if buffsAllowed == 1:
       doBuffs()
-      time.sleep(1)
 
     # Initial Position
     pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    time.sleep(0.5)
     doDash(0.1)
 
     # Mush and Flower Sequence
@@ -767,25 +829,21 @@ def runDungeon(runs=1):
         logAction(msgNoBossFound)
 
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
-    time.sleep(0.5)
-    doDash(0.5)
+    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    doDash(0.1)
 
     # First Boss
     if shortBuffsAllowed == 1:
       doShortBuffs()
-      time.sleep(0.5)
 
     attackBoss()
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    time.sleep(0.5)
+    pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 450)
     doFade(0.5)
     lootBox()
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    time.sleep(0.8)
-    doDash()
+    doDash(0.5)
 
     # Mossites and Toad Sequence
     moving = True
@@ -801,11 +859,9 @@ def runDungeon(runs=1):
 
     # Second Boss
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 760, cabalwindow[1] + 330)
-    time.sleep(0.8)
-    doDash(0.3)
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
-    time.sleep(0.8)
+    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 360)
+    doDash(1)
+    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 300)
     doFade(0.1)
 
     secondBoss = True
@@ -818,14 +874,11 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
     
-    time.sleep(1)
     attackBoss()
-
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 100)
+    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 100)
     doFade(0.5)
     lootBox()
-    time.sleep(0.5)
 
     # Lumber and Moth Sequence
     moving = True
@@ -846,10 +899,7 @@ def runDungeon(runs=1):
         logAction(msgNoBossFound)
 
     doDeselectPack()
-
     pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
-    doDash(0.5)
-    time.sleep(0.5)
     doDash(0.5)
 
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
@@ -857,17 +907,15 @@ def runDungeon(runs=1):
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 320)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 320)
-    doDash(0.5)
-    doDash(0.5)
-    time.sleep(1)
-    doFade(0.5)
-    time.sleep(1)
+    doDash(1)
+    doDash(1)
+    doFade(0.1)
 
     pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
     doDeselectPack()
     doDash(0.5)
 
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 360)
+    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 400)
     doFade(0.5)
 
     # First Orphidia
@@ -879,9 +927,6 @@ def runDungeon(runs=1):
       logAction(msgNoBossFound)
 
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
-    pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
-    time.sleep(0.2)
-
     doDash(0.5)
 
     if battleMode == 1:
@@ -927,7 +972,6 @@ def runDungeon(runs=1):
       time.sleep(1)
 
       doDash(0.5)
-
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
       time.sleep(0.3)
@@ -972,11 +1016,11 @@ def runDungeon(runs=1):
       try:
         doSelect(0.1)
         boxCounter += 1
-        mobs = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+        box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
         logAction(msgBoxFound)
         logAction(msgPathStop)
         boxCounter += 2
-        lootBox()
+        finalLootBox()
       except pyauto.ImageNotFoundException:
         logAction(msgNoBoxFound)
 
@@ -987,6 +1031,11 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgCheckEndDg)
 
+    global isBattleMode
+    isBattleMode = False
+    cancelAura()
+    time.sleep(3)
+  
     # Start to End Dungeon
     isEnding = True
     endCheckTrack = 0
@@ -998,7 +1047,7 @@ def runDungeon(runs=1):
           break
 
       endCheckTrack += 1
-      if (endCheckTrack >= 10):
+      if (endCheckTrack >= 60):
         isEnding = False
         break
 
@@ -1010,7 +1059,7 @@ def runDungeon(runs=1):
         isEnding = False
         break
       except pyauto.ImageNotFoundException:
-        logAction(msgNoButtonFound)
+        logAction(msgCheckEndDg)
     
     isDicing = True
     while isDicing:
@@ -1029,11 +1078,8 @@ def runDungeon(runs=1):
         isDicing = False
         break
       except pyauto.ImageNotFoundException:
-        logAction(msgNoButtonFound)
+        logAction(msgDiceRoll)
 
     runCounter += 1
     logAction(msgEndDg)
-    global isBattleMode
-    isBattleMode = False
-    cancelAura()
     time.sleep(3)

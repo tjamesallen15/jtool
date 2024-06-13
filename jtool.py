@@ -130,12 +130,13 @@ def generateGui():
 
   rootFrame.mainloop()
 
-## GENERATE MAIN
+# GENERATE MAIN
 generateGui()
 
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 # pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
 # pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
+
 
 
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
