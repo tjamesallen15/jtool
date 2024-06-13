@@ -18,10 +18,10 @@ from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 dungeonList = [
-  "Hazardous Valley (Awakened)"
-  # "Hazardous Valley (Hard)",
-  # "Hazardous Valley (Medium)",
-  # "Hazardous Valley (Easy)"
+  "Hazardous Valley (Awakened)",
+  "Hazardous Valley (Hard)",
+  "Hazardous Valley (Medium)",
+  "Hazardous Valley (Easy)"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
 bmList = [1, 0]
