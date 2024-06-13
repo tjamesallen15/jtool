@@ -910,7 +910,7 @@ def runDungeon(runs=1):
     
     # First Boss
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 460)
+    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 470)
     doDash(1)
     pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 300)
     doFade(0.1)
@@ -927,8 +927,14 @@ def runDungeon(runs=1):
     
     attackBoss()
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 160)
+    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 160)
+    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 160)
     doFade(0.5)
+
+    pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 160)
+    pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 160)
+    doFade(0.5)
+
     lootBox()
 
     # Boars and Snakes Sequence
