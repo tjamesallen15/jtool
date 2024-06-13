@@ -234,7 +234,20 @@ def doDeselectPack():
   doDeselect(0.1)
 
 def lootBox():
-  doSelect(0.5)
+  doSelect(0.1)
+  doSelect(0.1)
+  checkBox = True
+  while checkBox:
+    try:
+      doSelect(0.1)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      logAction(msgBoxFound)
+      checkBox = False
+      logAction(msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoBoxFound)
+
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -767,7 +780,7 @@ def runDungeon(runs=1):
         logAction(msgNoBossFound)
 
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] +  850, cabalwindow[1] + 600)
+    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
     time.sleep(0.5)
     doDash(0.5)
 
@@ -777,14 +790,14 @@ def runDungeon(runs=1):
       time.sleep(0.5)
 
     attackBoss()
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 600)
     time.sleep(0.5)
     doFade(0.5)
     lootBox()
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    time.sleep(0.8)
+    time.sleep(0.5)
     doDash()
 
     # Mossites and Toad Sequence
@@ -801,7 +814,7 @@ def runDungeon(runs=1):
 
     # Second Boss
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 760, cabalwindow[1] + 330)
+    pyauto.moveTo(cabalwindow[0] + 760, cabalwindow[1] + 320)
     time.sleep(0.8)
     doDash(0.3)
     pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
@@ -822,7 +835,7 @@ def runDungeon(runs=1):
     attackBoss()
 
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 100)
+    pyauto.moveTo(cabalwindow[0] + 620, cabalwindow[1] + 100)
     doFade(0.5)
     lootBox()
     time.sleep(0.5)
@@ -846,7 +859,6 @@ def runDungeon(runs=1):
         logAction(msgNoBossFound)
 
     doDeselectPack()
-
     pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
     doDash(0.5)
     time.sleep(0.5)
@@ -881,7 +893,6 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
     pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 600)
     time.sleep(0.2)
-
     doDash(0.5)
 
     if battleMode == 1:
@@ -998,7 +1009,7 @@ def runDungeon(runs=1):
           break
 
       endCheckTrack += 1
-      if (endCheckTrack >= 10):
+      if (endCheckTrack >= 20):
         isEnding = False
         break
 
