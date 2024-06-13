@@ -863,7 +863,7 @@ def runDungeon(runs=1):
     doDeselectPack()
     doDash(0.5)
 
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 360)
+    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 400)
     doFade(0.5)
 
     # First Orphidia
