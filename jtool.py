@@ -8,6 +8,7 @@ import uuid
 import tkinter.font as tkFont
 
 import ahv
+import hvenh
 
 from tkinter import *
 from tkinter import ttk
@@ -17,10 +18,10 @@ from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 dungeonList = [
-  "Hazardous Valley (Awakened)"
-  # "Hazardous Valley (Hard)",
-  # "Hazardous Valley (Medium)",
-  # "Hazardous Valley (Easy)",
+  "Hazardous Valley (Awakened)",
+  "Hazardous Valley (Hard)",
+  "Hazardous Valley (Medium)",
+  "Hazardous Valley (Easy)"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
 # runList = [1, 2, 3, 4, 5]
@@ -44,12 +45,14 @@ def start():
 
   if (choice == dungeonList[0]):
     ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, bmTwo.get(), buffs.get(), shorts.get(), runEntry.get())
+  elif (choice == dungeonList[1] or choice == dungeonList[2] or choice == dungeonList[3]):
+    hvenh.initialize(rootFrame, startButton, macroLbl, runNumberLbl, choice, bmTwo.get(), buffs.get(), shorts.get(), runEntry.get())
 
 def generateGui():
   # CREATE FRAME
   global rootFrame
   rootFrame = Tk()
-  rootFrame.title("Cabal JTool v2.10")
+  rootFrame.title("Cabal JTool v3.40")
   rootFrame.resizable(0, 0)
   rootFrame.geometry("330x165")
 
@@ -135,3 +138,7 @@ generateGui()
 # pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
 
+# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# pyauto.moveTo(cabalwindow[0] + 440, cabalwindow[1] + 260)
+# pyauto.moveTo(cabalwindow[0] + 440, cabalwindow[1] + 280)
+# pyauto.moveTo(cabalwindow[0] + 440, cabalwindow[1] + 300)
