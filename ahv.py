@@ -785,17 +785,15 @@ def runDungeon(runs=1):
     # First Boss
     if shortBuffsAllowed == 1:
       doShortBuffs()
-      time.sleep(0.5)
 
     attackBoss()
-    pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 600)
+    pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 450)
     doFade(0.5)
     lootBox()
 
     pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    time.sleep(0.5)
-    doDash()
+    doDash(0.5)
 
     # Mossites and Toad Sequence
     moving = True
@@ -814,10 +812,10 @@ def runDungeon(runs=1):
     # pyauto.moveTo(cabalwindow[0] + 760, cabalwindow[1] + 320)
     pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 360)
     # time.sleep(0.8)
-    doDash(0.5)
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 100)
+    doDash(1)
+    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 300)
     # pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
-    # time.sleep(0.8)
+    # time.sleep(0.3)
     doFade(0.1)
 
     secondBoss = True
@@ -834,10 +832,9 @@ def runDungeon(runs=1):
     attackBoss()
 
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 100)
+    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 100)
     doFade(0.5)
     lootBox()
-    time.sleep(0.5)
 
     # Lumber and Moth Sequence
     moving = True
@@ -934,7 +931,6 @@ def runDungeon(runs=1):
       time.sleep(1)
 
       doDash(0.5)
-
       pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
       pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
       time.sleep(0.3)
@@ -1010,7 +1006,7 @@ def runDungeon(runs=1):
           break
 
       endCheckTrack += 1
-      if (endCheckTrack >= 20):
+      if (endCheckTrack >= 60):
         isEnding = False
         break
 
