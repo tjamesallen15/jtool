@@ -25,13 +25,12 @@ bm3 = '='
 deselect = Key.esc
 lootSpace = Key.space
 
-# GLOBAL VALIDATION
+# GLOBAL VARIABLES
 cabalwindow = []
 rootFrame = []
 runNumberLbl = []
 macroLbl = []
 startButton = []
-difficulty = "Hazardous Valley (Easy)"
 combo = True
 pathing = True
 moving = True
@@ -41,6 +40,7 @@ isBattleMode = False
 battleMode = 0
 buffsAllowed = 1
 shortBuffsAllowed = 1
+difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
@@ -77,6 +77,7 @@ msgNoButtonFound = "No Button Found"
 msgBuffs = "Buffing"
 msgShortBuffs = "Buffing Shorts"
 msgBattleModeTwo = "Doing Mode 2"
+msgDiceRoll = "Check Dice Roll"
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -91,14 +92,12 @@ imgSemiBoss = "img/semiboss.jpg"
 imgMobs = "img/mobs.jpg"
 imgDiceRoll = "img/rolladice.jpg"
 imgBox = "img/box.jpg"
-imgWarp = "img/warp.jpg"
-imgVine1 = "img/vineblock1.jpg"
-imgVine2 = "img/vineblock2.jpg"
 
 # GLOBAL UNITS
-unitCutterToad = "Moscutters and Toad"
-unitBoarSnake = "Boar and Snakes"
+unitCutterToad = "Moscutter and Toad"
+unitBoarSnake = "Boarsand Snake"
 unitBox = "Box"
+unitWhiteSnake = "White Snake"
 
 def initialize(frame, btn, mlbl, rlbl, diff, mode=0, buff=1, sbuffs=1, runs=1):
   global rootFrame
@@ -242,11 +241,63 @@ def doDeselectPack():
   doDeselect(0.1)
 
 def lootBox():
-  doSelect(0.5)
+  doSelect(0.1)
+  doSelect(0.1)
+  checkBox = True
+  while checkBox:
+    try:
+      doSelect(0.1)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      logAction(msgBoxFound)
+      checkBox = False
+      logAction(msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoBoxFound)
+
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
     autoEssentials()
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+
+  for x in range(4):
+    pynboard.press(loot)
+    pynboard.release(loot)
+    time.sleep(0.5)
+    pynboard.press(lootSpace)
+    pynboard.release(lootSpace)
+    time.sleep(0.5)
+
+def finalLootBox():
+  doSelect(0.1)
+  doSelect(0.1)
+  checkBox = True
+  while checkBox:
+    try:
+      doSelect(0.1)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      logAction(msgBoxFound)
+      checkBox = False
+      logAction(msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoBoxFound)
+
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    lootEssentials()
   else:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -279,6 +330,18 @@ def autoEssentials():
 
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
+
+def lootEssentials():
+  pynboard.press(lootSpace)
+  pynboard.release(lootSpace)
+  pynboard.press(pots)
+  pynboard.release(pots)
+  pynboard.press(loot)
+  pynboard.release(loot)
+
+  pynboard.release(Key.alt)
+  pynboard.release(Key.ctrl)
+
 
 def doAura():
   pynboard.press(bm3)
@@ -694,6 +757,72 @@ def pathBackTrack(unit):
 
   attackMobs(unit)
 
+def positionOrphidia():
+  doDeselectPack()
+  pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
+  doDash(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
+  pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
+
+  pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 320)
+  pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 320)
+  doDash(1)
+  doDash(1)
+  doFade(0.1)
+
+  pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
+  doDeselectPack()
+  doDash(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 400)
+  doFade(0.5)
+
+def pathFindWhiteSnake():
+  logAction(msgPathFind + unitWhiteSnake)
+  pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
+  pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
+  time.sleep(1)
+
+  doDash(0.5)
+
+  pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
+  pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
+  time.sleep(0.3)
+
+  pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 160)
+  pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 160)
+  time.sleep(0.3)
+
+  pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 160)
+  pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 160)
+  time.sleep(0.3)
+
+  pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 160)
+  pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 160)
+  time.sleep(0.3)
+
+  pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 480)
+  pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 480)
+
+  doDash(1)
+  doFade(0.5)
+  time.sleep(1)
+
+  pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+  pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 600)
+
+  doDash(1)
+  doFade(0.5)
+  time.sleep(1)
+
+  pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+  pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 600)
+
+  doDash(1)
+  doFade(0.5)
+  time.sleep(1)
+
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
@@ -701,11 +830,13 @@ def runDungeon(runs=1):
     logAction(msgStartDg)
     logRun(runCounter + 1)
 
+    # Click Cabal Window
     global cabalwindow
     cabalwindow = pyauto.locateOnScreen(imgCabalWindow, grayscale=False, confidence=.9)
     pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
     pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
+    # Click Dungeon
     pyauto.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
     pyauto.moveTo(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(0.5)
@@ -752,16 +883,14 @@ def runDungeon(runs=1):
     pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
-    time.sleep(1)
 
     goSkillSlot()
     time.sleep(0.5)
 
     if buffsAllowed == 1:
       doBuffs()
-      time.sleep(1)
 
-    # Moscutters and Toads Sequence
+    # Cutter and Toad Sequence
     moving = True
     while moving:
       if not macro:
@@ -772,7 +901,7 @@ def runDungeon(runs=1):
 
       pathFind(unitCutterToad)
       try:
-        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         moving = False
         logAction(msgPathStop)
         break
@@ -781,33 +910,26 @@ def runDungeon(runs=1):
     
     # First Boss
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 760, cabalwindow[1] + 330)
-    time.sleep(0.8)
-    doDash(0.3)
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 400)
-    time.sleep(0.8)
+    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 460)
+    doDash(1)
+    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 300)
     doFade(0.1)
 
     firstBoss = True
     while firstBoss:
       try:
         doSelect(0.1)
-        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         firstBoss = False
         break
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
     
-    time.sleep(1)
     attackBoss()
-
     doDeselectPack()
-    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 100)
+    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 160)
     doFade(0.5)
-    doSelect(0.1)
-    doSelect(0.1)
     lootBox()
-    time.sleep(0.5)
 
     # Boars and Snakes Sequence
     moving = True
@@ -826,87 +948,23 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
-    
-    doDeselectPack()
 
-    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    doDash(0.5)
-    doDash(0.5)
-    doFade(0.5)
-    time.sleep(1)
-
-    pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
-    doDeselectPack()
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 360)
-    doFade(0.5)
+    # Position for First Orphidia
+    positionOrphidia()
 
     # First Orphidia
     try:
       doSelect(0.1)
       boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       attackBoss()
-      time.sleep(0.5)
     except pyauto.ImageNotFoundException:
       logAction(msgNoBossFound)
 
-    doSelect(0.1)
-    doSelect(0.1)
-    time.sleep(0.5)
+    pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 560)
+    doFade(0.5)
     lootBox()
-    time.sleep(0.5)
 
-    logAction(msgPathFind + unitBox)
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
-    time.sleep(1)
-
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 480)
-    pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 480)
-
-    doDash(1)
-    doFade(0.5)
-    time.sleep(1)
-
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 600)
-
-    doDash(1)
-    doFade(0.5)
-    time.sleep(1)
-
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 600)
-
-    doDash(1)
-    doFade(0.5)
-    time.sleep(1)
+    pathFindWhiteSnake()
 
     # Boars and Snakes Sequence II
     moving = True
@@ -919,95 +977,32 @@ def runDungeon(runs=1):
 
       pathFind(unitBoarSnake)
       try:
-        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         moving = False
         logAction(msgPathStop)
         break
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
-    
-    doDeselectPack()
 
-    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    doDash(0.5)
-    doDash(0.5)
-    doFade(0.5)
-    time.sleep(1)
-
-    pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
-    doDeselectPack()
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 360)
-    doFade(0.5)
+    # Position for Second 
+    lootBox()
+    positionOrphidia()
 
     # Second Orphidia
     try:
       doSelect(0.1)
       boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       attackBoss()
-      time.sleep(0.5)
     except pyauto.ImageNotFoundException:
       logAction(msgNoBossFound)
 
-    doSelect(0.1)
-    doSelect(0.1)
-    time.sleep(0.5)
+    pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 560)
+    doFade(0.5)
     lootBox()
-    time.sleep(0.5)
 
-    logAction(msgPathFind + unitBox)
-    pyauto.moveTo(cabalwindow[0] + 550, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 550, cabalwindow[1] + 160)
-    time.sleep(1)
+    pathFindWhiteSnake()
 
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 160)
-    pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 160)
-    time.sleep(0.3)
-
-    pyauto.moveTo(cabalwindow[0] + 950, cabalwindow[1] + 480)
-    pyauto.click(cabalwindow[0] + 950, cabalwindow[1] + 480)
-
-    doDash(1)
-    doFade(0.5)
-    time.sleep(1)
-
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 600)
-
-    doDash(1)
-    doFade(0.5)
-    time.sleep(1)
-
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
-    pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 600)
-
-    doDash(1)
-    doFade(0.5)
-    time.sleep(1)
-
-    # Boars and Snakes Sequence II
+    # Boars and Snakes Sequence III
     moving = True
     while moving:
       if not macro:
@@ -1018,50 +1013,34 @@ def runDungeon(runs=1):
 
       pathFind(unitBoarSnake)
       try:
-        mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
         moving = False
         logAction(msgPathStop)
         break
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
-    
-    doDeselectPack()
 
-    pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
-    doDash(0.5)
-    doDash(0.5)
-    doFade(0.5)
-    time.sleep(1)
-
-    pyauto.moveTo(cabalwindow[0] + 320, cabalwindow[1] + 540)
-    doDeselectPack()
-    doDash(0.5)
-
-    pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 360)
-    doFade(0.5)
+    # Position for Third Orphidia
+    lootBox()
+    positionOrphidia()
 
     # Third Orphidia
     try:
       doSelect(0.1)
       boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
       attackBoss()
-      time.sleep(0.5)
     except pyauto.ImageNotFoundException:
       logAction(msgNoBossFound)
 
-    doSelect(0.1)
-    doSelect(0.1)
-    time.sleep(0.5)
-    lootBox()
-    time.sleep(0.5)
+    pyauto.moveTo(cabalwindow[0] + 640, cabalwindow[1] + 560)
+    doFade(0.5)
+    finalLootBox()
 
+    global isBattleMode
+    isBattleMode = False
+    cancelAura()
+    time.sleep(3)
+  
     # Start to End Dungeon
     isEnding = True
     endCheckTrack = 0
@@ -1073,7 +1052,7 @@ def runDungeon(runs=1):
           break
 
       endCheckTrack += 1
-      if (endCheckTrack >= 10):
+      if (endCheckTrack >= 60):
         isEnding = False
         break
 
@@ -1085,7 +1064,7 @@ def runDungeon(runs=1):
         isEnding = False
         break
       except pyauto.ImageNotFoundException:
-        logAction(msgNoButtonFound)
+        logAction(msgCheckEndDg)
     
     isDicing = True
     while isDicing:
@@ -1104,11 +1083,8 @@ def runDungeon(runs=1):
         isDicing = False
         break
       except pyauto.ImageNotFoundException:
-        logAction(msgNoButtonFound)
+        logAction(msgDiceRoll)
 
     runCounter += 1
     logAction(msgEndDg)
-    global isBattleMode
-    isBattleMode = False
-    cancelAura()
     time.sleep(3)

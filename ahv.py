@@ -25,7 +25,7 @@ bm3 = '='
 deselect = Key.esc
 lootSpace = Key.space
 
-# GLOBAL VALIDATION
+# GLOBAL VARIABLES
 cabalwindow = []
 rootFrame = []
 runNumberLbl = []
@@ -86,13 +86,10 @@ imgSemiBoss = "img/semiboss.jpg"
 imgMobs = "img/mobs.jpg"
 imgDiceRoll = "img/rolladice.jpg"
 imgBox = "img/box.jpg"
-imgWarp = "img/warp.jpg"
-imgVine1 = "img/vineblock1.jpg"
-imgVine2 = "img/vineblock2.jpg"
 
 # GLOBAL UNITS
 unitMushFlower = "Mushed and Ectoflower"
-unitMossToad = "Mossites and Toad"
+unitMossToad = "Mossite and Toad"
 unitLumberMoth = "Lumber and Moth"
 unitBox = "Box"
 
@@ -758,11 +755,13 @@ def runDungeon(runs=1):
     logAction(msgStartDg)
     logRun(runCounter + 1)
 
+    # Click Cabal Window
     global cabalwindow
     cabalwindow = pyauto.locateOnScreen(imgCabalWindow, grayscale=False, confidence=.9)
     pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
     pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
+    # Click Dungeon
     pyauto.moveTo(cabalwindow[0] + 677, cabalwindow[1] + 361)
     pyauto.moveTo(cabalwindow[0] + 735, cabalwindow[1] + 361)
     time.sleep(0.5)
@@ -772,6 +771,12 @@ def runDungeon(runs=1):
 
     isEntering = True
     while isEntering:
+      if not macro:
+          logAction(msgTerminate)
+          isEntering = False
+          sys.exit()
+          break
+
       try:
         enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
         pyauto.moveTo(enterdg[0] + 15, enterdg[1] + 15)
@@ -784,6 +789,12 @@ def runDungeon(runs=1):
 
     isChallenging = True
     while isChallenging:
+      if not macro:
+          logAction(msgTerminate)
+          isChallenging = False
+          sys.exit()
+          break
+
       try:
         challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
         pyauto.moveTo(challengedg[0] + 15, challengedg[1] + 15)
@@ -845,9 +856,15 @@ def runDungeon(runs=1):
     pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
     doDash(0.5)
 
-    # Mossites and Toad Sequence
+    # Mossite and Toad Sequence
     moving = True
     while moving:
+      if not macro:
+          logAction(msgTerminate)
+          moving = False
+          sys.exit()
+          break
+
       pathFind(unitMossToad)
       try:
         boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
@@ -866,6 +883,12 @@ def runDungeon(runs=1):
 
     secondBoss = True
     while secondBoss:
+      if not macro:
+          logAction(msgTerminate)
+          secondBoss = False
+          sys.exit()
+          break
+
       try:
         doSelect(0.1)
         mobs = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
@@ -898,6 +921,7 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         logAction(msgNoBossFound)
 
+    # Position for First Orphidia
     doDeselectPack()
     pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 260)
     doDash(0.5)
@@ -933,6 +957,7 @@ def runDungeon(runs=1):
       doBattleMode()
 
     # Second and Third Orphidia
+    bossTracker = 0
     bossCount = 0
     shortBuffsCounter = 0
     while bossCount < 2:
@@ -942,6 +967,12 @@ def runDungeon(runs=1):
           sys.exit()
           break
       
+      bossTracker += 1
+      if bossTracker >= 60:
+        bossTracker = 0
+        bossCount += 10
+        break
+
       if (bossCount == 1 and shortBuffsCounter == 0 and shortBuffsAllowed == 1):
         shortBuffsCounter = 1
         doShortBuffs()

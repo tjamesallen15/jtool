@@ -136,10 +136,3 @@ generateGui()
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 # pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
 # pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
-
-
-
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# pyauto.moveTo(cabalwindow[0] + 440, cabalwindow[1] + 260)
-# pyauto.moveTo(cabalwindow[0] + 440, cabalwindow[1] + 280)
-# pyauto.moveTo(cabalwindow[0] + 440, cabalwindow[1] + 300)
