@@ -138,11 +138,12 @@ def generateGui():
 
 
 # sca.runDungeon(1)
+# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 # pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
 # pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
 
-# pyauto.moveTo(cabalwindow[0] + 350, cabalwindow[1] + 250)
+# pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 300)
 # pyauto.click(cabalwindow[0] + 540, cabalwindow[1] + 150)
 
 generateGui()

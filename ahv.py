@@ -39,16 +39,14 @@ def pathFind(unit):
     util.logAction(util.msgPathFind + unit)
 
     backTrackCheck += 1
-    pyauto.moveTo(cabalwindow[0] + 675, cabalwindow[1] + 450)
-    pyauto.click(cabalwindow[0] + 675, cabalwindow[1] + 450)
+    util.moveClick(675, 450)
     print(util.msgBackTrack + str(backTrackCheck))
     if (backTrackCheck >= 10):
       backTrackCheck = 0
       pathBackTrack(unit)
     
     try:
-      pyauto.moveTo(cabalwindow[0] + 600, cabalwindow[1] + 260)
-      pyauto.click(cabalwindow[0] + 600, cabalwindow[1] + 260)
+      util.moveClick(600, 260)
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
       util.logAction(util.msgMobsFound + unit)
@@ -71,9 +69,7 @@ def pathFind(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 500, cabalwindow[1] + 260)
-      pyauto.click(cabalwindow[0] + 500, cabalwindow[1] + 260)
-      time.sleep(0.5)
+      util.moveClick(500, 260, 0.5)
       util.doDash(0.5)
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -96,10 +92,9 @@ def pathFind(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
-    if unit == unitMossToad:
+    if unit == util.unitMossToad:
       try:
-        pyauto.moveTo(cabalwindow[0] + 475, cabalwindow[1] + 260)
-        pyauto.click(cabalwindow[0] + 475, cabalwindow[1] + 260)
+        util.moveClick(475, 260)
         util.doFade()
         util.doSelect(0.1)
         mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -123,8 +118,7 @@ def pathFind(unit):
         util.logAction(util.msgNoMobsFound)
 
       try:
-        pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 260)
-        pyauto.click(cabalwindow[0] + 450, cabalwindow[1] + 260)
+        util.moveClick(450, 260)
         util.doFade()
         util.doSelect(0.1)
         mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -148,8 +142,7 @@ def pathFind(unit):
         util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 260)
-      pyauto.click(cabalwindow[0] + 400, cabalwindow[1] + 260)
+      util.moveClick(400, 260)
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
       util.logAction(util.msgMobsFound + unit)
@@ -172,8 +165,7 @@ def pathFind(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 300, cabalwindow[1] + 260)
-      pyauto.click(cabalwindow[0] + 300, cabalwindow[1] + 260)
+      util.moveClick(300, 260)
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
       util.logAction(util.msgMobsFound + unit)
@@ -196,8 +188,7 @@ def pathFind(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 260)
-      pyauto.click(cabalwindow[0] + 200, cabalwindow[1] + 260)
+      util.moveClick(200, 260)
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
       util.logAction(util.msgMobsFound + unit)
@@ -219,10 +210,9 @@ def pathFind(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
-    if unit == unitLumberMoth:
+    if unit == util.unitLumberMoth:
       try:
-        pyauto.moveTo(cabalwindow[0] + 200, cabalwindow[1] + 360)
-        pyauto.click(cabalwindow[0] + 200, cabalwindow[1] + 360)
+        util.moveClick(200, 360)
         util.doSelect(0.1)
         mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
         util.logAction(util.msgMobsFound + unit)
@@ -266,8 +256,7 @@ def pathBackTrack(unit):
 
     util.logAction(util.msgBackTrack + unit)
     try:
-      pyauto.moveTo(cabalwindow[0] + 650, cabalwindow[1] + 560)
-      pyauto.click(cabalwindow[0] + 650, cabalwindow[1] + 560)
+      util.moveClick(650, 560)
       util.doDash()
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -279,8 +268,7 @@ def pathBackTrack(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 700, cabalwindow[1] + 560)
-      pyauto.click(cabalwindow[0] + 700, cabalwindow[1] + 560)
+      util.moveClick(700, 560)
       util.doDash()
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -292,8 +280,7 @@ def pathBackTrack(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 560)
-      pyauto.click(cabalwindow[0] + 750, cabalwindow[1] + 560)
+      util.moveClick(750, 560)
       util.doDash()
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -305,8 +292,7 @@ def pathBackTrack(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 800, cabalwindow[1] + 560)
-      pyauto.click(cabalwindow[0] + 800, cabalwindow[1] + 560)
+      util.moveClick(800, 560)
       util.doDash()
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -318,8 +304,7 @@ def pathBackTrack(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
-      pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 560)
-      pyauto.click(cabalwindow[0] + 850, cabalwindow[1] + 560)
+      util.moveClick(850, 560)
       util.doDash()
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
@@ -389,7 +374,7 @@ def runDungeon(runs=1):
     util.doBuffs()
 
     # Initial Position
-    pyauto.moveTo(cabalwindow[0] + 850, cabalwindow[1] + 600)
+    util.move(850, 600)
     util.doDash(0.1)
 
     # Mush and Flower Sequence
@@ -418,7 +403,7 @@ def runDungeon(runs=1):
     util.doShortBuffs()
 
     util.attackBoss()
-    pyauto.moveTo(cabalwindow[0] + 450, cabalwindow[1] + 450)
+    util.move(450, 450)
     util.doFade(0.5)
     util.lootBox()
 
@@ -429,10 +414,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFind(util.unitMossToad)
       try:
@@ -453,10 +438,10 @@ def runDungeon(runs=1):
     secondBoss = True
     while secondBoss:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          secondBoss = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        secondBoss = False
+        sys.exit()
+        break
 
       try:
         util.doSelect(0.1)
@@ -476,10 +461,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFind(util.unitLumberMoth)
       try:
@@ -528,10 +513,10 @@ def runDungeon(runs=1):
     shortBuffsCounter = 0
     while bossCount < 2:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
       
       bossTracker += 1
       if bossTracker >= 60:
@@ -558,10 +543,10 @@ def runDungeon(runs=1):
     boxing = True
     while boxing:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          boxing = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        boxing = False
+        sys.exit()
+        break
 
       util.logAction(util.msgPathFind + util.unitBox)
       util.moveClick(550, 160)
@@ -590,10 +575,10 @@ def runDungeon(runs=1):
     boxCounter = 0
     while boxCounter < 10:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          boxCounter = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        boxCounter = False
+        sys.exit()
+        break
 
       try:
         util.doSelect(0.1)
@@ -621,10 +606,10 @@ def runDungeon(runs=1):
     endCheckTrack = 0
     while ending:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          ending = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        ending = False
+        sys.exit()
+        break
 
       endCheckTrack += 1
       if (endCheckTrack >= 60):
@@ -642,10 +627,10 @@ def runDungeon(runs=1):
     dicing = True
     while dicing:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          dicing = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        dicing = False
+        sys.exit()
+        break
 
       try:
         rolladice = pyauto.locateOnScreen(util.imgDiceRoll, grayscale=False, confidence=.9)

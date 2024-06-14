@@ -99,6 +99,7 @@ unitLumberMoth = "Lumber and Moth"
 unitCutterToad = "Moscutter and Toad"
 unitBoarSnake = "Boars and Snake"
 unitWhiteSnake = "White Snake"
+unitOrphidia = "Orphidia"
 unitBox = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -276,21 +277,7 @@ def doDeselectPack():
   doDeselect(0.1)
   doDeselect(0.1)
 
-def lootBox():
-  doSelect(0.1)
-  doSelect(0.1)
-  checkBox = True
-  while checkBox:
-    try:
-      doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
-      logAction(msgBoxFound)
-      checkBox = False
-      logAction(msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      logAction(msgNoBoxFound)
-
+def doLoot():
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -310,10 +297,99 @@ def lootBox():
   for x in range(4):
     pynboard.press(loot)
     pynboard.release(loot)
-    time.sleep(0.5)
+    time.sleep(0.3)
     pynboard.press(lootSpace)
     pynboard.release(lootSpace)
-    time.sleep(0.5)
+    time.sleep(0.3)
+
+def lootBox():
+  # Loot Treasure Boxes
+  # boxCounter = 0
+  # while boxCounter < 10:
+  #   if not util.macro:
+  #       util.logAction(util.msgTerminate)
+  #       boxCounter = False
+  #       sys.exit()
+  #       break
+
+  #   try:
+  #     util.doSelect(0.1)
+  #     boxCounter += 1
+  #     box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+  #     util.logAction(util.msgBoxFound)
+  #     util.logAction(util.msgPathStop)
+  #     boxCounter += 2
+  #     util.finalLootBox()
+  #   except pyauto.ImageNotFoundException:
+  #     util.logAction(util.msgNoBoxFound)
+
+  #   try:
+  #     checkenddg = pyauto.locateOnScreen(util.imgEndDg, grayscale=False, confidence=.9)
+  #     boxCounter += 10
+  #     break
+  #   except pyauto.ImageNotFoundException:
+  #     util.logAction(util.msgCheckEndDg)
+
+  checking = True
+  boxCounter = 0
+  while checking:
+    if not macro:
+      logAction(msgTerminate)
+      checking = False
+      sys.exit()
+      break
+
+    boxCounter += 1
+    if boxCounter > 2:
+      boxCounter = 0
+      break
+
+    try:
+      doSelect(0.1)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      logAction(msgBoxFound)
+      doLoot()
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoBoxFound)
+
+
+  # doSelect(0.1)
+  # doSelect(0.1)
+  # checkBox = True
+  # while checkBox:
+  #   try:
+  #     doSelect(0.1)
+  #     box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+  #     logAction(msgBoxFound)
+  #     checkBox = False
+  #     logAction(msgPathStop)
+  #     break
+  #   except pyauto.ImageNotFoundException:
+  #     logAction(msgNoBoxFound)
+
+  # if isBattleMode:
+  #   pynboard.press(bm3atk)
+  #   pynboard.release(bm3atk)
+  #   autoEssentials()
+  # else:
+  #   pynboard.press(bm3atk)
+  #   pynboard.release(bm3atk)
+  #   pynboard.press(attack[0])
+  #   pynboard.release(attack[0])
+  #   pynboard.press(attack[1])
+  #   pynboard.release(attack[1])
+  #   pynboard.press(attack[2])
+  #   pynboard.release(attack[2])
+  #   pynboard.press(bm3atk)
+  #   pynboard.release(bm3atk)
+
+  # for x in range(4):
+  #   pynboard.press(loot)
+  #   pynboard.release(loot)
+  #   time.sleep(0.5)
+  #   pynboard.press(lootSpace)
+  #   pynboard.release(lootSpace)
+  #   time.sleep(0.5)
 
 def finalLootBox():
   doSelect(0.1)
@@ -330,29 +406,7 @@ def finalLootBox():
     except pyauto.ImageNotFoundException:
       logAction(msgNoBoxFound)
   
-  if isBattleMode:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    lootEssentials()
-  else:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    pynboard.press(attack[0])
-    pynboard.release(attack[0])
-    pynboard.press(attack[1])
-    pynboard.release(attack[1])
-    pynboard.press(attack[2])
-    pynboard.release(attack[2])
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-
-  for x in range(4):
-    pynboard.press(loot)
-    pynboard.release(loot)
-    time.sleep(0.5)
-    pynboard.press(lootSpace)
-    pynboard.release(lootSpace)
-    time.sleep(0.5)
+  doLoot()
 
 def autoEssentials():
   pynboard.press(lootSpace)
