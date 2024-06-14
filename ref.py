@@ -2,8 +2,6 @@
 # pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
 # pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
-
-
 # 1 pyautogui.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
 # 2 pyautogui.moveTo(cabalwindow[0] + 430, cabalwindow[1] + 670)
 # 3 pyautogui.moveTo(cabalwindow[0] + 470, cabalwindow[1] + 670)

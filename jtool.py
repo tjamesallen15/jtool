@@ -7,8 +7,10 @@ import sys
 import uuid
 import tkinter.font as tkFont
 
+import util
 import ahv
 import hvenh
+import sca
 
 from tkinter import *
 from tkinter import ttk
@@ -40,12 +42,15 @@ runNumberLbl = []
 rootFrame = []
 
 def start():
+  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
   choice = dgList.get()
 
+  util.initialize(cabalwindow, rootFrame, macroLbl, runNumberLbl)
+  util.setVariables(bmTwo.get(), buffs.get(), shorts.get())
   if (choice == dungeonList[0]):
-    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, bmTwo.get(), buffs.get(), shorts.get(), runEntry.get())
+    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, runEntry.get())
   elif (choice == dungeonList[1] or choice == dungeonList[2] or choice == dungeonList[3]):
-    hvenh.initialize(rootFrame, startButton, macroLbl, runNumberLbl, choice, bmTwo.get(), buffs.get(), shorts.get(), runEntry.get())
+    hvenh.initialize(rootFrame, startButton, choice, runEntry.get())
 
 def generateGui():
   # CREATE FRAME
@@ -130,8 +135,14 @@ def generateGui():
   rootFrame.mainloop()
 
 # GENERATE MAIN
-generateGui()
 
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+
+# sca.runDungeon(1)
 # pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
 # pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
+
+
+# pyauto.moveTo(cabalwindow[0] + 350, cabalwindow[1] + 250)
+# pyauto.click(cabalwindow[0] + 540, cabalwindow[1] + 150)
+
+generateGui()
