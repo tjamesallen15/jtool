@@ -304,7 +304,7 @@ def doLoot():
     pynboard.release(lootSpace)
     time.sleep(0.3)
 
-def lootBox(sec=2):
+def lootBox(sec=1):
   checking = True
   boxCounter = 0
   while checking:
@@ -313,60 +313,21 @@ def lootBox(sec=2):
       checking = False
       sys.exit()
       break
+
+    try:
+      doSelect(0.1)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      logAction(msgBoxFound)
+      doLoot()
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoBoxFound)
 
     boxCounter += 1
     if boxCounter > sec:
       boxCounter = 0
       break
 
-    try:
-      doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
-      logAction(msgBoxFound)
-      doLoot()
-    except pyauto.ImageNotFoundException:
-      logAction(msgNoBoxFound)
-
-
-  # doSelect(0.1)
-  # doSelect(0.1)
-  # checkBox = True
-  # while checkBox:
-  #   try:
-  #     doSelect(0.1)
-  #     box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
-  #     logAction(msgBoxFound)
-  #     checkBox = False
-  #     logAction(msgPathStop)
-  #     break
-  #   except pyauto.ImageNotFoundException:
-  #     logAction(msgNoBoxFound)
-
-  # if isBattleMode:
-  #   pynboard.press(bm3atk)
-  #   pynboard.release(bm3atk)
-  #   autoEssentials()
-  # else:
-  #   pynboard.press(bm3atk)
-  #   pynboard.release(bm3atk)
-  #   pynboard.press(attack[0])
-  #   pynboard.release(attack[0])
-  #   pynboard.press(attack[1])
-  #   pynboard.release(attack[1])
-  #   pynboard.press(attack[2])
-  #   pynboard.release(attack[2])
-  #   pynboard.press(bm3atk)
-  #   pynboard.release(bm3atk)
-
-  # for x in range(4):
-  #   pynboard.press(loot)
-  #   pynboard.release(loot)
-  #   time.sleep(0.5)
-  #   pynboard.press(lootSpace)
-  #   pynboard.release(lootSpace)
-  #   time.sleep(0.5)
-
-def finalLootBox():
+def finalLootBox(sec=2):
   checking = True
   boxCounter = 0
   while checking:
@@ -376,11 +337,6 @@ def finalLootBox():
       sys.exit()
       break
 
-    boxCounter += 1
-    if boxCounter > 2:
-      boxCounter = 0
-      break
-
     try:
       doSelect(0.1)
       box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
@@ -388,20 +344,11 @@ def finalLootBox():
       doLoot()
     except pyauto.ImageNotFoundException:
       logAction(msgNoBoxFound)
-  # doSelect(0.1)
-  # doSelect(0.1)
-  # checkBox = True
-  # while checkBox:
-  #   try:
-  #     doSelect(0.1)
-  #     box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
-  #     logAction(msgBoxFound)
-  #     checkBox = False
-  #     logAction(msgPathStop)
-  #     break
-  #   except pyauto.ImageNotFoundException:
-  #     logAction(msgNoBoxFound)
-  # doLoot()
+
+    boxCounter += 1
+    if boxCounter > sec:
+      boxCounter = 0
+      break
 
 def autoEssentials():
   pynboard.press(lootSpace)
@@ -467,6 +414,39 @@ def doAttack(sec=0):
 
   if (sec != 0):
     time.sleep(sec)
+
+def focusMobs(unit="Unnamed"):
+  combo = True
+  fadeCount = 0
+
+  doDeselectPack()
+  doSelect(0.1)
+  while combo:
+    if not macro:
+      logAction(msgTerminate)
+      combo = False
+      sys.exit()
+      break
+
+    try:
+      doSelect(0.1)
+
+      if (fadeCount == 20):
+        fadeCount = 0
+        moveClick(700, 440, 0.2)
+        doFade(0.1)
+      else:
+        fadeCount += 1
+
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      logAction(msgAttackMobs + unit)
+
+      doAttack(0.3)
+      doAttack(0.3)
+    except pyauto.ImageNotFoundException:
+      logAction(msgMobsCleared)
+      combo = False
+      break
 
 def attackMobs(unit="Unnamed"):
   combo = True

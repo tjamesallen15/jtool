@@ -271,17 +271,17 @@ def pathFindBoss(unit):
     util.doSelect(0.1)
     util.logAction(util.msgCheckBoss)
 
+    try:
+      util.doSelect(0.1)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      util.logAction(util.msgMobsFound)
+      util.focusMobs(unitWhiteSnake)
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoMobsFound)
+
     util.moveClick(400, 260)
-    util.doSelect(0.1)
-    util.logAction(util.msgCheckBoss)
-
     util.moveClick(300, 260)
-    util.doSelect(0.1)
-    util.logAction(util.msgCheckBoss)
-
     util.moveClick(200, 260)
-    util.doSelect(0.1)
-    util.logAction(util.msgCheckBoss)
 
     try:
       util.moveClick(200, 360)
@@ -293,6 +293,7 @@ def pathFindBoss(unit):
       pathing = False
       boss = 1
       util.logAction(util.msgPathStop)
+      util.doDeselectPack()
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
@@ -307,6 +308,7 @@ def pathFindBoss(unit):
       pathing = False
       boss = 1
       util.logAction(util.msgPathStop)
+      util.doDeselectPack()
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
@@ -396,12 +398,6 @@ def positionOrphidia():
   util.move(800, 260)
   util.doDash(1)
 
-  # util.moveClick(500, 260)
-  # util.moveClick(400, 320)
-  # util.doDash(1)
-  # util.doDash(1)
-  # util.doFade(0.1)
-
   util.move(320, 540)
   util.doDeselectPack()
   util.doDash(0.5)
@@ -416,7 +412,10 @@ def pathFindWhiteSnake():
 
   util.moveClick(650, 160, 0.3)
   util.moveClick(750, 160, 0.3)
+  util.doDash(1)
+
   util.moveClick(850, 160, 1)
+  util.doFade(0.5)
 
   util.moveClick(950, 480)
   util.doDash(1)
@@ -430,11 +429,13 @@ def pathFindWhiteSnake():
   util.doDash(1)
   util.doFade(0.5)
 
+  util.moveClick(850, 600)
+  util.doDash(1)
+
 def moveToBox():
   util.moveClick(675, 450)
   util.moveClick(500, 260)
-  util.moveClick(400, 260)
-  # util.moveClick(300, 260)
+  time.sleep(1)
 
 def runDungeon(runs=1):
   runCounter = 0
@@ -532,7 +533,6 @@ def runDungeon(runs=1):
     util.doFade(0.5)
 
     moveToBox()
-    time.sleep(1)
     util.lootBox()
 
     # Boars and Snakes Sequence
@@ -591,7 +591,6 @@ def runDungeon(runs=1):
 
     # Position for Second Orphidia
     util.attackMobs(util.unitWhiteSnake)
-    util.doLoot()
 
     moving = True
     while moving:
@@ -603,6 +602,7 @@ def runDungeon(runs=1):
 
       pathFindBoss(util.unitOrphidia)
       try:
+        util.doSelect(0.1)
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
         util.logAction(util.msgBossFound)
         moving = False
@@ -613,7 +613,8 @@ def runDungeon(runs=1):
 
     util.doDeselectPack()
     util.move(320, 540)
-    util.doDash(0.5)
+    util.doDash(1)
+    util.doFade(1.5)
 
     # Second Orphidia
     try:
@@ -649,8 +650,6 @@ def runDungeon(runs=1):
 
     # Position for Third Orphidia
     util.attackMobs(util.unitWhiteSnake)
-    util.doLoot()
-    # positionFinalOrphidia()
 
     moving = True
     while moving:
@@ -673,7 +672,8 @@ def runDungeon(runs=1):
 
     util.doDeselectPack()
     util.move(320, 540)
-    util.doDash(0.5)
+    util.doDash(1)
+    util.doFade(1.5)
 
     # Third Orphidia
     try:
@@ -689,7 +689,7 @@ def runDungeon(runs=1):
 
     global isBattleMode
     isBattleMode = False
-    util.cancelAura(3)
+    util.cancelAura(1)
 
     # Start to End Dungeon
     ending = True

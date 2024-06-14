@@ -104,7 +104,7 @@ def generateGui():
   bmTwo.config(width=5)
   bmTwo.place(x=75, y=75)
 
-  licenseLbl = Label(rootFrame, text="Status: Trial")
+  licenseLbl = Label(rootFrame, text="Status: Free")
   licenseLbl.place(x=140, y=75)
 
   askBuffs = Label(rootFrame, text="Buffs: ")
