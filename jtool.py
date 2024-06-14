@@ -48,7 +48,7 @@ def start():
   util.initialize(cabalwindow, rootFrame, macroLbl, runNumberLbl)
   util.setVariables(bmTwo.get(), buffs.get(), shorts.get())
   if (choice == dungeonList[0]):
-    ahv.initialize(rootFrame, startButton, macroLbl, runNumberLbl, runEntry.get())
+    ahv.initialize(rootFrame, startButton, runEntry.get())
   elif (choice == dungeonList[1] or choice == dungeonList[2] or choice == dungeonList[3]):
     hvenh.initialize(rootFrame, startButton, choice, runEntry.get())
 
@@ -56,7 +56,7 @@ def generateGui():
   # CREATE FRAME
   global rootFrame
   rootFrame = Tk()
-  rootFrame.title("Cabal JTool v3.40")
+  rootFrame.title("Cabal JTool v4.50")
   rootFrame.resizable(0, 0)
   rootFrame.geometry("330x165")
 

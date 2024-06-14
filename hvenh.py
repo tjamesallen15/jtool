@@ -441,7 +441,6 @@ def runDungeon(runs=1):
     pyauto.scroll(-10000)
 
     util.goSkillSlot(0.5)
-
     util.doBuffs()
 
     # Cutter and Toad Sequence

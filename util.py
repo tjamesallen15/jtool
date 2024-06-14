@@ -182,6 +182,10 @@ def goSkillSlot(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
+def setBattleMode(val):
+  global isBattleMode
+  isBattleMode = val
+
 def doBattleMode():
   if battleMode == 1:
     logAction(msgBattleModeTwo)
