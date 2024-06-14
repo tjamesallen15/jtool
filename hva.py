@@ -244,7 +244,7 @@ def pathBackTrack(unit):
   while backtracking:
     if not util.macro:
       util.logAction(util.msgTerminate)
-      combo = False
+      backtracking = False
       sys.exit()
       break
 
@@ -599,7 +599,6 @@ def runDungeon(runs=1):
         util.logAction(util.msgCheckEndDg)
 
     util.setBattleMode(False)
-    util.cancelAura(3)
   
     # Start to End Dungeon
     ending = True

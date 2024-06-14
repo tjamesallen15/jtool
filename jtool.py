@@ -8,7 +8,7 @@ import uuid
 import tkinter.font as tkFont
 
 import util
-import ahv
+import hva
 import hvenh
 import sca
 
@@ -23,7 +23,8 @@ dungeonList = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
-  "Hazardous Valley (Easy)"
+  "Hazardous Valley (Easy)",
+  "Steamer Crazy (Awakened)"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
 bmList = [1, 0]
@@ -44,13 +45,19 @@ rootFrame = []
 def start():
   cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
   choice = dgList.get()
+  mode = bmTwo.get()
+  buff = buffs.get()
+  short = shorts.get()
+  runs = runEntry.get()
 
   util.initialize(cabalwindow, rootFrame, macroLbl, runNumberLbl)
-  util.setVariables(bmTwo.get(), buffs.get(), shorts.get())
+  util.setVariables(mode, buff, short)
   if (choice == dungeonList[0]):
-    ahv.initialize(rootFrame, startButton, runEntry.get())
+    hva.initialize(rootFrame, startButton, runs)
   elif (choice == dungeonList[1] or choice == dungeonList[2] or choice == dungeonList[3]):
-    hvenh.initialize(rootFrame, startButton, choice, runEntry.get())
+    hvenh.initialize(rootFrame, startButton, choice, runs)
+  elif (choice == dungeonList[4]):
+    sca.initialize(rootFrame, startButton, runs)
 
 def generateGui():
   # CREATE FRAME
@@ -134,9 +141,6 @@ def generateGui():
 
   rootFrame.mainloop()
 
-# GENERATE MAIN
-
-
 # sca.runDungeon(1)
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 # pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
@@ -146,4 +150,5 @@ def generateGui():
 # pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 300)
 # pyauto.click(cabalwindow[0] + 540, cabalwindow[1] + 150)
 
+# GENERATE MAIN
 generateGui()

@@ -77,6 +77,8 @@ msgBuffs = "Buffing"
 msgShortBuffs = "Buffing Shorts"
 msgBattleModeTwo = "Doing Mode 2"
 msgDiceRoll = "Check Dice Roll"
+msgCheckDialogFound =  "Check Dialog Found"
+msgNoCheckDialogFound = "No Check Dialog Found"
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -90,6 +92,7 @@ imgBoss = "img/boss.jpg"
 imgSemiBoss = "img/semiboss.jpg"
 imgMobs = "img/mobs.jpg"
 imgDiceRoll = "img/rolladice.jpg"
+imgCheckDialog = "img/checkdialog.jpg"
 imgBox = "img/box.jpg"
 
 # GLOBAL UNITS
@@ -100,6 +103,9 @@ unitCutterToad = "Moscutter and Toad"
 unitBoarSnake = "Boars and Snake"
 unitWhiteSnake = "White Snake"
 unitOrphidia = "Orphidia"
+unitMechape = "Mechape"
+unitArmun = "Armun"
+unitTricus = "Tricus"
 unitBox = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -184,8 +190,10 @@ def goSkillSlot(sec=0):
     time.sleep(sec)
 
 def setBattleMode(val):
-  global isBattleMode
-  isBattleMode = val
+  if battleMode == 1:
+    global isBattleMode
+    isBattleMode = val
+    cancelAura(1)
 
 def doBattleMode():
   if battleMode == 1:
@@ -508,6 +516,30 @@ def attackBoss():
       logAction(msgAttackBoss)
       doAttack(0.1)
       doAttack(0.1)
+    except pyauto.ImageNotFoundException:
+      logAction(msgBossKilled)
+      combo = False
+      break
+
+def attackSemiBoss():
+  combo = True
+  doSelect(0.1)
+  while combo:
+    if not macro:
+      logAction(msgTerminate)
+      combo = False
+      break
+
+    if isBattleMode == False:
+      doAura()
+
+    try:
+      boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9)
+      logAction(msgAttackBoss)
+      doAttack()
+      time.sleep(0.1)
+      doAttack()
+      time.sleep(0.1)
     except pyauto.ImageNotFoundException:
       logAction(msgBossKilled)
       combo = False
