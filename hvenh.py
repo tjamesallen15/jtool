@@ -275,7 +275,7 @@ def pathFindBoss(unit):
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
       util.logAction(util.msgMobsFound)
-      util.focusMobs(unitWhiteSnake)
+      util.focusMobs(util.unitWhiteSnake)
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
@@ -395,8 +395,9 @@ def pathBackTrack(unit):
 
 def positionOrphidia():
   util.doDeselectPack()
-  util.move(800, 260)
+  util.move(400, 260)
   util.doDash(1)
+  util.doFade(1.5)
 
   util.move(320, 540)
   util.doDeselectPack()
