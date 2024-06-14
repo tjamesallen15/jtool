@@ -311,10 +311,6 @@ def pathFindBoss(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
-    util.doDeselectPack()
-    util.move(320, 540)
-    util.doDash(0.5)
-
 def pathBackTrack(unit):
   backtracking = True
   boss = 0
@@ -531,7 +527,8 @@ def runDungeon(runs=1):
     
     util.attackBoss()
     util.doDeselectPack()
-    util.moveClick(600, 260)
+    util.moveClick(620, 260)
+    util.doFade(1)
     util.doFade(0.5)
 
     moveToBox()
@@ -614,6 +611,10 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
 
+    util.doDeselectPack()
+    util.move(320, 540)
+    util.doDash(0.5)
+
     # Second Orphidia
     try:
       util.doSelect(0.1)
@@ -669,6 +670,10 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
+
+    util.doDeselectPack()
+    util.move(320, 540)
+    util.doDash(0.5)
 
     # Third Orphidia
     try:

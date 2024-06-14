@@ -278,6 +278,7 @@ def doDeselectPack():
   doDeselect(0.1)
 
 def doLoot():
+  doSelect(0.1)
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
