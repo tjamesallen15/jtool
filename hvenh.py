@@ -392,9 +392,9 @@ def pathBackTrack(unit):
   util.attackMobs(unit)
 
 def positionOrphidia():
-  # util.doDeselectPack()
-  # util.move(800, 260)
-  # util.doDash(0.5)
+  util.doDeselectPack()
+  util.move(800, 260)
+  util.doDash(1)
 
   # util.moveClick(500, 260)
   # util.moveClick(400, 320)
@@ -434,7 +434,7 @@ def moveToBox():
   util.moveClick(675, 450)
   util.moveClick(500, 260)
   util.moveClick(400, 260)
-  util.moveClick(300, 260)
+  # util.moveClick(300, 260)
 
 def runDungeon(runs=1):
   runCounter = 0
@@ -528,7 +528,7 @@ def runDungeon(runs=1):
     util.attackBoss()
     util.doDeselectPack()
     util.moveClick(620, 260)
-    util.doFade(1)
+    util.doFade(1.5)
     util.doFade(0.5)
 
     moveToBox()

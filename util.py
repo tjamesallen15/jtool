@@ -279,6 +279,7 @@ def doDeselectPack():
 
 def doLoot():
   doSelect(0.1)
+  doSelect(0.1)
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -303,34 +304,7 @@ def doLoot():
     pynboard.release(lootSpace)
     time.sleep(0.3)
 
-def lootBox():
-  # Loot Treasure Boxes
-  # boxCounter = 0
-  # while boxCounter < 10:
-  #   if not util.macro:
-  #       util.logAction(util.msgTerminate)
-  #       boxCounter = False
-  #       sys.exit()
-  #       break
-
-  #   try:
-  #     util.doSelect(0.1)
-  #     boxCounter += 1
-  #     box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
-  #     util.logAction(util.msgBoxFound)
-  #     util.logAction(util.msgPathStop)
-  #     boxCounter += 2
-  #     util.finalLootBox()
-  #   except pyauto.ImageNotFoundException:
-  #     util.logAction(util.msgNoBoxFound)
-
-  #   try:
-  #     checkenddg = pyauto.locateOnScreen(util.imgEndDg, grayscale=False, confidence=.9)
-  #     boxCounter += 10
-  #     break
-  #   except pyauto.ImageNotFoundException:
-  #     util.logAction(util.msgCheckEndDg)
-
+def lootBox(sec=2):
   checking = True
   boxCounter = 0
   while checking:
@@ -341,7 +315,7 @@ def lootBox():
       break
 
     boxCounter += 1
-    if boxCounter > 2:
+    if boxCounter > sec:
       boxCounter = 0
       break
 
@@ -393,21 +367,41 @@ def lootBox():
   #   time.sleep(0.5)
 
 def finalLootBox():
-  doSelect(0.1)
-  doSelect(0.1)
-  checkBox = True
-  while checkBox:
+  checking = True
+  boxCounter = 0
+  while checking:
+    if not macro:
+      logAction(msgTerminate)
+      checking = False
+      sys.exit()
+      break
+
+    boxCounter += 1
+    if boxCounter > 2:
+      boxCounter = 0
+      break
+
     try:
       doSelect(0.1)
       box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
       logAction(msgBoxFound)
-      checkBox = False
-      logAction(msgPathStop)
-      break
+      doLoot()
     except pyauto.ImageNotFoundException:
       logAction(msgNoBoxFound)
-  
-  doLoot()
+  # doSelect(0.1)
+  # doSelect(0.1)
+  # checkBox = True
+  # while checkBox:
+  #   try:
+  #     doSelect(0.1)
+  #     box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+  #     logAction(msgBoxFound)
+  #     checkBox = False
+  #     logAction(msgPathStop)
+  #     break
+  #   except pyauto.ImageNotFoundException:
+  #     logAction(msgNoBoxFound)
+  # doLoot()
 
 def autoEssentials():
   pynboard.press(lootSpace)
