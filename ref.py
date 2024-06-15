@@ -14,3 +14,13 @@
 # 10 pyautogui.moveTo(cabalwindow[0] + 715, cabalwindow[1] + 670)
 # - pyautogui.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 670)
 # = pyautogui.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
+
+# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# util.setCabalWindow(cabalwindow)
+# util.goCabalWindow()
+
+# util.move(375, 150)
+# pyauto.mouseDown(button="right")
+# util.move(700, 150)
+# pyauto.mouseUp(button="right")
+# pyauto.scroll(-10000)

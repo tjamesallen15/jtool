@@ -145,15 +145,5 @@ def generateGui():
 
   rootFrame.mainloop()
 
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.setCabalWindow(cabalwindow)
-# util.goCabalWindow()
-
-# util.move(375, 150)
-# pyauto.mouseDown(button="right")
-# util.move(700, 150)
-# pyauto.mouseUp(button="right")
-# pyauto.scroll(-10000)
-
 # GENERATE MAIN
 generateGui()
