@@ -11,6 +11,7 @@ import util
 import hva
 import hvenh
 import sca
+import hw
 
 from tkinter import *
 from tkinter import ttk
@@ -24,7 +25,8 @@ dungeonList = [
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
   "Hazardous Valley (Easy)",
-  "Steamer Crazy (Awakened)"
+  "Steamer Crazy (Awakened)",
+  "Holy Windmill"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
 bmList = [1, 0]
@@ -58,6 +60,8 @@ def start():
     hvenh.initialize(rootFrame, startButton, choice, runs)
   elif (choice == dungeonList[4]):
     sca.initialize(rootFrame, startButton, runs)
+  elif (choice == dungeonList[5]):
+    hw.initialize(rootFrame, startButton, runs)
 
 def generateGui():
   # CREATE FRAME
@@ -75,7 +79,7 @@ def generateGui():
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(0)
+  dgList.current(5)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
@@ -141,14 +145,15 @@ def generateGui():
 
   rootFrame.mainloop()
 
-# sca.runDungeon(1)
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
-# pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
+# util.setCabalWindow(cabalwindow)
+# util.goCabalWindow()
 
-
-# pyauto.moveTo(cabalwindow[0] + 250, cabalwindow[1] + 300)
-# pyauto.click(cabalwindow[0] + 540, cabalwindow[1] + 150)
+# util.move(375, 150)
+# pyauto.mouseDown(button="right")
+# util.move(700, 150)
+# pyauto.mouseUp(button="right")
+# pyauto.scroll(-10000)
 
 # GENERATE MAIN
 generateGui()

@@ -12,6 +12,10 @@ from pynput.keyboard import Key, Listener
 from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
+# GLOBAL VARIABLES
+rootFrame = []
+startButton = []
+
 def initialize(frame, btn, runs=1):
   global rootFrame
   rootFrame = frame

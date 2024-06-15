@@ -79,6 +79,8 @@ msgBattleModeTwo = "Doing Mode 2"
 msgDiceRoll = "Check Dice Roll"
 msgCheckDialogFound =  "Check Dialog Found"
 msgNoCheckDialogFound = "No Check Dialog Found"
+msgGateFound = "Gate Found"
+msgNoGateFound = "No Gate Found"
 
 # GLOBAL PICTURES
 imgCabalWindow = "img/cabalwindow.jpg"
@@ -94,6 +96,8 @@ imgMobs = "img/mobs.jpg"
 imgDiceRoll = "img/rolladice.jpg"
 imgCheckDialog = "img/checkdialog.jpg"
 imgBox = "img/box.jpg"
+imgGate = "img/gate.jpg"
+imgHolyBox = "img/holybox.jpg"
 
 # GLOBAL UNITS
 unitMushFlower = "Mushed and Ectoflower"
@@ -106,6 +110,14 @@ unitOrphidia = "Orphidia"
 unitMechape = "Mechape"
 unitArmun = "Armun"
 unitTricus = "Tricus"
+unitGateOne = "Gate One"
+unitGateTwo = "Gate Two"
+unitGateThree = "Gate Three"
+unitGateFour = "Gate Four"
+unitLegrin = "Legrin of Wind"
+unitLeo = "Leo of Wind"
+unitEspi = "Espi of Wind"
+unitDraco = "Draco of Wind"
 unitBox = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -133,6 +145,10 @@ def setVariables(mode=0, buff=1, sbuffs=1):
 
   global shortBuffsAllowed
   shortBuffsAllowed = int(sbuffs)
+
+def setCabalWindow(window):
+  global cabalwindow
+  cabalwindow = window
 
 def goCabalWindow():
   moveClick(50, 15)
@@ -423,6 +439,39 @@ def doAttack(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
+def focusGate(unit="Unnamed"):
+  combo = True
+  fadeCount = 0
+
+  doDeselectPack()
+  doSelect(0.1)
+  while combo:
+    if not macro:
+      logAction(msgTerminate)
+      combo = False
+      sys.exit()
+      break
+
+    try:
+      doSelect(0.1)
+
+      if (fadeCount == 20):
+        fadeCount = 0
+        moveClick(700, 440, 0.2)
+        doFade(0.1)
+      else:
+        fadeCount += 1
+
+      gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9)
+      logAction(msgAttackMobs + unit)
+
+      doAttack(0.3)
+      doAttack(0.3)
+    except pyauto.ImageNotFoundException:
+      logAction(msgMobsCleared)
+      combo = False
+      break
+
 def focusMobs(unit="Unnamed"):
   combo = True
   fadeCount = 0
@@ -456,7 +505,7 @@ def focusMobs(unit="Unnamed"):
       combo = False
       break
 
-def attackMobs(unit="Unnamed"):
+def attackMobs(unit="Unnamed", aura=1):
   combo = True
   fadeCount = 0
 
@@ -478,7 +527,9 @@ def attackMobs(unit="Unnamed"):
     except pyauto.ImageNotFoundException:
       logAction(msgAttackMobs + unit)
 
-    doAura()
+    if aura == 1:
+      doAura()
+
     try:
       doSelect(0.1)
 

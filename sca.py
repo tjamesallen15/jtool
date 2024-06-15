@@ -12,6 +12,9 @@ from pynput.keyboard import Key, Listener
 from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
+# GLOBAL VARIABLES
+rootFrame = []
+startButton = []
 portalCounter = 0
 
 def initialize(frame, btn, runs=1):

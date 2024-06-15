@@ -13,6 +13,8 @@ from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
+rootFrame = []
+startButton = []
 difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
   "Hazardous Valley (Hard)",
@@ -688,9 +690,7 @@ def runDungeon(runs=1):
     util.doFade(0.5)
     util.finalLootBox()
 
-    global isBattleMode
-    isBattleMode = False
-    util.cancelAura(1)
+    util.setBattleMode(False)
 
     # Start to End Dungeon
     ending = True
