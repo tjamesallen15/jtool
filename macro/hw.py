@@ -298,6 +298,7 @@ def pathFind(unit="Unnamed"):
         util.logAction(util.msgBoxFound)
         pathing = False
         util.logAction(util.msgPathStop)
+        util.doDeselectPack()
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
@@ -310,6 +311,7 @@ def pathFind(unit="Unnamed"):
         util.logAction(util.msgBoxFound)
         pathing = False
         util.logAction(util.msgPathStop)
+        util.doDeselectPack()
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
@@ -321,11 +323,12 @@ def pathFind(unit="Unnamed"):
         util.logAction(util.msgBoxFound)
         pathing = False
         util.logAction(util.msgPathStop)
+        util.doDeselectPack()
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
 
-    elif unit == util.unitLeo:
+    elif unit == util.unitLeo or unit == util.unitEspi:
       try:
         util.moveClick(700, 260)
         util.doSelect(0.1)
@@ -670,16 +673,19 @@ def runDungeon(runs=1):
         util.logAction(util.msgNoBossFound)
 
     # First Boss
+    util.doDeselectPack()
     util.move(620, 150)
     util.doDash(1)
 
     util.move(440, 560)
     util.doDash(1)
+    util.doFade(0.5)
 
     util.doDeselectPack()
     util.doShortBuffs()
     util.attackBoss()
     util.lootBox(2)
+    
 
     util.move(660, 150)
     pyauto.mouseDown(button="right")
@@ -846,7 +852,7 @@ def runDungeon(runs=1):
     util.doDeselectPack()
     util.move(400, 160)
     util.doDash(1)
-    util.move(1000, 360)
+    util.move(1000, 460)
     util.doDash(1)
 
     util.doShortBuffs()
