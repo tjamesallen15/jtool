@@ -7,11 +7,11 @@ import sys
 import uuid
 import tkinter.font as tkFont
 
-import lib.util
-import lib.hva
-import lib.hvenh
-import lib.sca
-import lib.hw
+import macro.util
+import macro.hva
+import macro.hvenh
+import macro.sca
+import macro.hw
 
 from tkinter import *
 from tkinter import ttk
@@ -45,7 +45,7 @@ runNumberLbl = []
 rootFrame = []
 
 def start():
-  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+  cabalwindow = pyauto.locateOnScreen(util.imgCabalWindow, grayscale=False, confidence=.9)
   choice = dgList.get()
   mode = bmTwo.get()
   buff = buffs.get()
