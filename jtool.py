@@ -7,11 +7,11 @@ import sys
 import uuid
 import tkinter.font as tkFont
 
-import util
-import hva
-import hvenh
-import sca
-import hw
+import lib.util
+import lib.hva
+import lib.hvenh
+import lib.sca
+import lib.hw
 
 from tkinter import *
 from tkinter import ttk
