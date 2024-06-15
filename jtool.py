@@ -8,10 +8,10 @@ import uuid
 import tkinter.font as tkFont
 
 import util
-import macro.hva
-import macro.hvenh
-import macro.sca
-import macro.hw
+import macro.hva as hva
+import macro.hvenh as hvenh
+import macro.sca as sca
+import macro.hw as hw
 
 from tkinter import *
 from tkinter import ttk
@@ -20,6 +20,14 @@ from pynput.keyboard import Key, Listener
 from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
+masterList = [
+  "Hazardous Valley (Awakened)",
+  "Hazardous Valley (Hard)",
+  "Hazardous Valley (Medium)",
+  "Hazardous Valley (Easy)",
+  "Steamer Crazy (Awakened)",
+  "Holy Windmill"
+]
 dungeonList = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
@@ -54,13 +62,13 @@ def start():
 
   util.initialize(cabalwindow, rootFrame, macroLbl, runNumberLbl)
   util.setVariables(mode, buff, short)
-  if (choice == dungeonList[0]):
+  if (choice == masterList[0]):
     hva.initialize(rootFrame, startButton, runs)
-  elif (choice == dungeonList[1] or choice == dungeonList[2] or choice == dungeonList[3]):
+  elif (choice == masterList[1] or choice == masterList[2] or choice == masterList[3]):
     hvenh.initialize(rootFrame, startButton, choice, runs)
-  elif (choice == dungeonList[4]):
+  elif (choice == masterList[4]):
     sca.initialize(rootFrame, startButton, runs)
-  elif (choice == dungeonList[5]):
+  elif (choice == masterList[5]):
     hw.initialize(rootFrame, startButton, runs)
 
 def generateGui():

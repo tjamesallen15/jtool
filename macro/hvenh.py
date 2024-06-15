@@ -322,6 +322,16 @@ def pathBackTrack(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
+      util.doSelect(0.1)
+      box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+      util.logAction(util.msgBoxFound)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoBoxFound)
+
+    try:
       util.moveClick(700, 560)
       util.doDash()
       util.doSelect(0.1)
@@ -332,6 +342,16 @@ def pathBackTrack(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
+
+    try:
+      util.doSelect(0.1)
+      box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+      util.logAction(util.msgBoxFound)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoBoxFound)
 
     try:
       util.moveClick(750, 560)
@@ -346,6 +366,16 @@ def pathBackTrack(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
+      util.doSelect(0.1)
+      box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+      util.logAction(util.msgBoxFound)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoBoxFound)
+
+    try:
       util.moveClick(800, 560)
       util.doDash()
       util.doSelect(0.1)
@@ -358,6 +388,16 @@ def pathBackTrack(unit):
       util.logAction(util.msgNoMobsFound)
 
     try:
+      util.doSelect(0.1)
+      box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+      util.logAction(util.msgBoxFound)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoBoxFound)
+
+    try:
       util.moveClick(850, 560)
       util.doDash()
       util.doSelect(0.1)
@@ -368,6 +408,16 @@ def pathBackTrack(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
+
+    try:
+      util.doSelect(0.1)
+      box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+      util.logAction(util.msgBoxFound)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoBoxFound)
 
   util.attackMobs(unit)
 
@@ -408,8 +458,8 @@ def pathFindWhiteSnake():
   util.doDash(1)
   util.doFade(0.5)
 
-  util.moveClick(850, 600)
-  util.doDash(1)
+  # util.moveClick(850, 600)
+  # util.doDash(1)
 
 def moveToBox():
   util.moveClick(675, 450)
@@ -512,7 +562,7 @@ def runDungeon(runs=1):
     util.doFade(0.5)
 
     moveToBox()
-    util.lootBox()
+    util.lootBox(2)
 
     # Boars and Snakes Sequence
     moving = True
@@ -546,7 +596,7 @@ def runDungeon(runs=1):
 
     util.move(640, 560)
     util.doFade(0.5)
-    util.lootBox()
+    util.lootBox(2)
     pathFindWhiteSnake()
 
     # Boars and Snakes Sequence II
@@ -570,14 +620,17 @@ def runDungeon(runs=1):
 
     # Position for Second Orphidia
     util.attackMobs(util.unitWhiteSnake)
+    util.move(620, 150)
+    util.doDash(1)
+    util.doFade(0.5)
 
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFindBoss(util.unitOrphidia)
       try:
@@ -605,17 +658,17 @@ def runDungeon(runs=1):
 
     util.move(640, 560)
     util.doFade(0.5)
-    util.lootBox()
+    util.lootBox(2)
     pathFindWhiteSnake()
 
     # Boars and Snakes Sequence III
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       try:
         util.doSelect(0.1)
@@ -629,14 +682,17 @@ def runDungeon(runs=1):
 
     # Position for Third Orphidia
     util.attackMobs(util.unitWhiteSnake)
+    util.move(620, 150)
+    util.doDash(1)
+    util.doFade(0.5)
 
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
       
       pathFindBoss(util.unitOrphidia)
       try:
@@ -664,7 +720,7 @@ def runDungeon(runs=1):
 
     util.move(640, 560)
     util.doFade(0.5)
-    util.finalLootBox()
+    util.finalLootBox(3)
 
     util.setBattleMode(False)
 
@@ -673,10 +729,10 @@ def runDungeon(runs=1):
     endCheckTrack = 0
     while ending:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          ending = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        ending = False
+        sys.exit()
+        break
 
       endCheckTrack += 1
       if (endCheckTrack >= 60):
@@ -694,10 +750,10 @@ def runDungeon(runs=1):
     dicing = True
     while dicing:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          dicing = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        dicing = False
+        sys.exit()
+        break
 
       try:
         rolladice = pyauto.locateOnScreen(util.imgDiceRoll, grayscale=False, confidence=.9)

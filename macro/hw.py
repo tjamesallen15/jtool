@@ -621,10 +621,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFindGateOnly(util.unitGateOne)
       try:
@@ -654,10 +654,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFindLegrinGate(util.unitLegrin)
       try:
@@ -691,10 +691,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFindGateOnly(util.unitGateTwo)
       try:
@@ -718,10 +718,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFind(util.unitLeo)
       try:
@@ -747,10 +747,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFindGateOnly(util.unitGateThree)
       try:
@@ -777,10 +777,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFind(util.unitEspi)
       try:
@@ -805,10 +805,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFindGateOnly(util.unitGateThree)
       try:
@@ -828,10 +828,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFind(util.unitDraco)
       try:
@@ -856,10 +856,10 @@ def runDungeon(runs=1):
     moving = True
     while moving:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          moving = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        moving = False
+        sys.exit()
+        break
 
       pathFind(util.unitBox)
       try:
@@ -886,10 +886,10 @@ def runDungeon(runs=1):
     endCheckTrack = 0
     while ending:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          ending = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        ending = False
+        sys.exit()
+        break
 
       endCheckTrack += 1
       if (endCheckTrack >= 60):
@@ -907,10 +907,10 @@ def runDungeon(runs=1):
     dicing = True
     while dicing:
       if not util.macro:
-          util.logAction(util.msgTerminate)
-          dicing = False
-          sys.exit()
-          break
+        util.logAction(util.msgTerminate)
+        dicing = False
+        sys.exit()
+        break
 
       try:
         rolladice = pyauto.locateOnScreen(util.imgDiceRoll, grayscale=False, confidence=.9)
