@@ -7,7 +7,7 @@ import sys
 import uuid
 import tkinter.font as tkFont
 
-import macro.util
+import util
 import macro.hva
 import macro.hvenh
 import macro.sca

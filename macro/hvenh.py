@@ -4,7 +4,7 @@ import keyboard as shortcut
 import time
 import sys
 
-import macro.util
+import util
 
 from tkinter import *
 from pynput import keyboard 
@@ -106,30 +106,6 @@ def pathFind(unit):
       util.logAction(util.msgNoMobsFound)
 
     if unit == util.unitCutterToad:
-      # try:
-      #   util.moveClick(475, 260)
-      #   util.doFade()
-      #   util.doSelect(0.1)
-      #   mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
-      #   util.logAction(util.msgMobsFound + unit)
-      #   pathing = False
-      #   util.logAction(util.msgPathStop)
-      #   break
-      # except pyauto.ImageNotFoundException:
-      #   util.logAction(util.msgNoMobsFound)
-      
-      # try:
-      #   util.doSelect(0.1)
-      #   util.logAction(util.msgCheckBoss)
-      #   boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-      #   util.logAction(util.msgBossFound)
-      #   pathing = False
-      #   boss = 1
-      #   util.logAction(util.msgPathStop)
-      #   break
-      # except pyauto.ImageNotFoundException:
-      #   util.logAction(util.msgNoMobsFound)
-
       try:
         util.moveClick(450, 260)
         util.doFade()

@@ -4,7 +4,7 @@ import keyboard as shortcut
 import time
 import sys
 
-import macro.util
+import util
 
 from tkinter import *
 from pynput import keyboard 
