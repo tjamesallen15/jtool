@@ -118,7 +118,7 @@ unitEspi = "Espi of Wind"
 unitDraco = "Draco of Wind"
 unitSpector = "Spector"
 unitDarkArcher = "Dark Archer"
-unitLavaArcher = "Lava Archer"
+unitJason = "Gatekeeper Jason"
 unitLavaGate = "Lava Gate"
 unitBox = "Box"
 

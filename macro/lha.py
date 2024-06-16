@@ -150,47 +150,47 @@ def pathFindBoss():
     if pathing == False:
       break
     
-    try:
-      util.moveClick(350, 250)
-      util.doSelect(0.1)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-      util.logAction(util.msgBossFound)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+    # try:
+    #   util.moveClick(350, 250)
+    #   util.doSelect(0.1)
+    #   boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+    #   util.logAction(util.msgBossFound)
+    #   pathing = False
+    #   util.logAction(util.msgPathStop)
+    #   break
+    # except pyauto.ImageNotFoundException:
+    #   util.logAction(util.msgNoBossFound)
 
-    if pathing == False:
-      break
+    # if pathing == False:
+    #   break
 
-    try:
-      util.moveClick(400, 250)
-      util.doSelect(0.1)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-      util.logAction(util.msgBossFound)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+    # try:
+    #   util.moveClick(400, 250)
+    #   util.doSelect(0.1)
+    #   boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+    #   util.logAction(util.msgBossFound)
+    #   pathing = False
+    #   util.logAction(util.msgPathStop)
+    #   break
+    # except pyauto.ImageNotFoundException:
+    #   util.logAction(util.msgNoBossFound)
 
-    if pathing == False:
-      break
+    # if pathing == False:
+    #   break
 
-    try:
-      util.moveClick(450, 250)
-      util.doSelect(0.1)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-      util.logAction(util.msgBossFound)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+    # try:
+    #   util.moveClick(450, 250)
+    #   util.doSelect(0.1)
+    #   boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+    #   util.logAction(util.msgBossFound)
+    #   pathing = False
+    #   util.logAction(util.msgPathStop)
+    #   break
+    # except pyauto.ImageNotFoundException:
+    #   util.logAction(util.msgNoBossFound)
 
-    if pathing == False:
-      break
+    # if pathing == False:
+    #   break
 
     try:
       util.moveClick(500, 250)
@@ -222,6 +222,7 @@ def pathFindBoss():
 
     try:
       util.moveClick(600, 250)
+      util.doDash(1)
       util.doSelect(0.1)
       boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
       util.logAction(util.msgBossFound)
@@ -236,6 +237,7 @@ def pathFindBoss():
 
     try:
       util.moveClick(650, 250)
+      util.doFade(0.5)
       util.doSelect(0.1)
       boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
       util.logAction(util.msgBossFound)
@@ -513,7 +515,7 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(0.5)
 
-    util.move(800, 420)
+    util.move(700, 420)
     util.doFade(0.5)
 
     # First Semi Boss Sequence
@@ -554,7 +556,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      pathFind(util.unitLavaArcher)
+      pathFind(util.unitJason)
       try:
         boss = pyauto.locateOnScreen(util.imgSemiBoss, grayscale=False, confidence=.9)
         moving = False
@@ -593,6 +595,9 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
 
+    util.move(720, 400)
+    util.doFade(0.5)
+
     util.focusMobs(util.unitLavaGate, 0)
 
     util.move(375, 150)
@@ -628,6 +633,8 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
 
+    util.doBattleMode()
+    util.doShortBuffs()
     util.attackBoss()
     util.lootBox()
     util.setBattleMode(False)
