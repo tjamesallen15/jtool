@@ -12,6 +12,7 @@ import macro.hva as hva
 import macro.hvenh as hvenh
 import macro.sca as sca
 import macro.hw as hw
+import macro.cfa as cfa
 
 from tkinter import *
 from tkinter import ttk
@@ -26,6 +27,7 @@ masterList = [
   "Hazardous Valley (Medium)",
   "Hazardous Valley (Easy)",
   "Steamer Crazy (Awakened)",
+  "Catacomb Frost (Awakened)",
   "Holy Windmill"
 ]
 dungeonList = [
@@ -34,6 +36,7 @@ dungeonList = [
   "Hazardous Valley (Medium)",
   "Hazardous Valley (Easy)",
   "Steamer Crazy (Awakened)",
+  "Catacomb Frost (Awakened)",
   "Holy Windmill"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
@@ -44,7 +47,7 @@ appFont = "Tahoma 10"
 
 frameSize = "330x200"
 appName = "Cabal JTool "
-version = "v4.51"
+version = "v4.61"
 appFullName = appName + version
 dgList = []
 runCount = []
@@ -75,6 +78,8 @@ def start():
   elif (choice == masterList[4]):
     sca.initialize(rootFrame, startButton, runs)
   elif (choice == masterList[5]):
+    cfa.initialize(rootFrame, startButton, runs)
+  elif (choice == masterList[6]):
     hw.initialize(rootFrame, startButton, runs)
 
 def generateGui():
@@ -187,10 +192,9 @@ def generateGui():
 # GENERATE MAIN
 generateGui()
 
+# util.move(520, 200)
+# util.move(620, 230)
+
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 # util.setCabalWindow(cabalwindow)
 # util.goCabalWindow()
-
-# util.move(520, 200)
-
-# util.move(620, 230)

@@ -302,6 +302,7 @@ def runDungeon(runs=1):
 
     # Click Cabal Window
     util.goCabalWindow()
+    util.releaseKeys()
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")

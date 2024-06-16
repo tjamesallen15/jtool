@@ -55,3 +55,9 @@ All notable changes to this project will be documented in this file.
 - Fixed glitches in HVENH Automation
 - Fixed glitches in Steamer Crazy (Awakened)
 - Improved reading image during loops
+
+# v4.61
+
+## Features
+
+- Started Catacomb Frost (Awakened) for Development
