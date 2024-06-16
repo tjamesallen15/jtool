@@ -42,11 +42,13 @@ def pathFind(unit):
       sys.exit()
       break
 
-    util.logAction(util.msgPathFind + unit)
+    if pathing == False:
+      break
 
+    util.logAction(util.msgPathFind + unit)
     backTrackCheck += 1
     util.moveClick(620, 460)
-    print(util.msgBackTrack + str(backTrackCheck))
+    util.logAction(util.msgBackTrack + str(backTrackCheck))
     if (backTrackCheck >= 10):
       backTrackCheck = 0
       pathBackTrack(unit)
@@ -231,8 +233,11 @@ def pathBackTrack(unit):
       sys.exit()
       break
 
+    if backtracking == False:
+      break
+
     backTrackCancel += 1
-    print(util.msgBackTrack + str(backTrackCancel))
+    util.logAction(util.msgBackTrack + str(backTrackCancel))
     if (backTrackCancel >= 10):
       backTrackCancel = 0
       backtracking = False
@@ -357,11 +362,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFind(util.unitMechape)
       try:
         boss = pyauto.locateOnScreen(util.imgSemiBoss, grayscale=False, confidence=.9)
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -388,11 +396,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFind(util.unitTricus)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)

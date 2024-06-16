@@ -30,15 +30,12 @@ cabalwindow = []
 rootFrame = []
 runNumberLbl = []
 macroLbl = []
-# combo = True
-# pathing = True
-# moving = True
-# boxing = True
 macro = True
 isBattleMode = False
 battleMode = 0
 buffsAllowed = 1
 shortBuffsAllowed = 1
+atkType = 0
 difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
   "Hazardous Valley (Hard)",
@@ -51,7 +48,6 @@ msgStartDg = "Starting Dungeon"
 msgEndDg = "End Dungeon"
 msgExit = "Macro Exit"
 msgTerminate ="Macro Terminate"
-msgBackTrack = "Backtrack, "
 msgPathFind = "Pathfind, "
 msgAttackMobs = "Attack, "
 msgAttackBoss = "Boss Attack"
@@ -66,6 +62,7 @@ msgCheckBoss = "Checking Boss"
 msgBoxFound = "Box Found"
 msgNoBoxFound = "No Box Found"
 msgPathStop = "Pathing stop, attacking"
+msgMoveStop = "Moving stop, proceeding"
 msgCheckEndDg = "Check End Dungeon"
 msgAction = ""
 msgRunNumber =  "Run #: "
@@ -75,11 +72,11 @@ msgEnterDungeon = "Enter Dungeon"
 msgNoButtonFound = "No Button Found"
 msgBuffs = "Buffing"
 msgShortBuffs = "Buffing Shorts"
-msgBattleModeTwo = "Doing Mode 2"
+msgBattleModeTwo = "Doing Mode II"
 msgDiceRoll = "Check Dice Roll"
 msgCheckDialogFound =  "Check Dialog Found"
 msgNoCheckDialogFound = "No Check Dialog Found"
-msgGateFound = "Gate Found"
+msgGateFound = "Gate Found "
 msgNoGateFound = "No Gate Found"
 
 # GLOBAL PICTURES
@@ -100,6 +97,7 @@ imgGate = "img/gate.jpg"
 imgHolyBox = "img/holybox.jpg"
 
 # GLOBAL UNITS
+unitBlank = "--"
 unitMushFlower = "Mushed and Ectoflower"
 unitMossToad = "Mossite and Toad"
 unitLumberMoth = "Lumber and Moth"
@@ -133,7 +131,7 @@ def initialize(window, frame, mlbl, rlbl):
   global runNumberLbl
   runNumberLbl = rlbl
 
-def setVariables(mode=0, buff=1, sbuffs=1):
+def setVariables(mode=0, buff=1, sbuffs=1, atk=0):
   global battleMode
   battleMode = int(mode)
 
@@ -145,6 +143,9 @@ def setVariables(mode=0, buff=1, sbuffs=1):
 
   global shortBuffsAllowed
   shortBuffsAllowed = int(sbuffs)
+
+  global atkType
+  atkType = int(atk)
 
 def setCabalWindow(window):
   global cabalwindow
@@ -206,15 +207,18 @@ def goSkillSlot(sec=0):
     time.sleep(sec)
 
 def setBattleMode(val):
+  cancelAura(1)
   if battleMode == 1:
     global isBattleMode
     isBattleMode = val
-    cancelAura(1)
 
 def doBattleMode():
   if battleMode == 1:
     logAction(msgBattleModeTwo)
-    cancelAura(0.5)
+    cancelAura(1)
+
+    move(790, 670)
+    pyauto.click(button="right")
 
     move(790, 670)
     pyauto.click(button="right")
@@ -384,6 +388,7 @@ def autoEssentials():
   pynboard.press(loot)
   pynboard.release(loot)
 
+  pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
 
@@ -395,8 +400,17 @@ def lootEssentials():
   pynboard.press(loot)
   pynboard.release(loot)
 
+  pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
+
+def releaseKeys(sec=0):
+  pynboard.release(Key.shift)
+  pynboard.release(Key.alt)
+  pynboard.release(Key.ctrl)
+
+  if (sec != 0):
+    time.sleep(sec)
 
 def doAura(sec=0):
   pynboard.press(bm3)
@@ -439,11 +453,31 @@ def doAttack(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def focusGate(unit="Unnamed"):
+def doAttackStrict(sec=0):
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
+
+  if (sec != 0):
+    time.sleep(sec)
+
+def focusGate(unit=unitBlank):
   combo = True
   fadeCount = 0
 
-  doDeselectPack()
   doSelect(0.1)
   while combo:
     if not macro:
@@ -454,14 +488,6 @@ def focusGate(unit="Unnamed"):
 
     try:
       doSelect(0.1)
-
-      if (fadeCount == 20):
-        fadeCount = 0
-        moveClick(700, 440, 0.2)
-        doFade(0.1)
-      else:
-        fadeCount += 1
-
       gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
@@ -472,7 +498,7 @@ def focusGate(unit="Unnamed"):
       combo = False
       break
 
-def focusMobs(unit="Unnamed"):
+def focusMobs(unit=unitBlank):
   combo = True
   fadeCount = 0
 
@@ -505,7 +531,7 @@ def focusMobs(unit="Unnamed"):
       combo = False
       break
 
-def attackMobs(unit="Unnamed", aura=1):
+def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
   combo = True
   fadeCount = 0
 
@@ -529,10 +555,8 @@ def attackMobs(unit="Unnamed", aura=1):
 
     if aura == 1:
       doAura()
-
-    try:
-      doSelect(0.1)
-
+    
+    if sidestep == 1:
       if (fadeCount == 20):
         fadeCount = 0
         moveClick(700, 440, 0.2)
@@ -540,11 +564,20 @@ def attackMobs(unit="Unnamed", aura=1):
       else:
         fadeCount += 1
 
+    try:
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
-      doAttack(0.3)
-      doAttack(0.3)
+      if interval > 0.3:
+        doAttack(interval)
+        doAttackStrict(0.3)
+        doAttack(interval)
+        doAttackStrict(0.3)
+      else:
+        doAttack(interval)
+        doAttack(interval)
+  
     except pyauto.ImageNotFoundException:
       logAction(msgMobsCleared)
       combo = False
@@ -552,6 +585,7 @@ def attackMobs(unit="Unnamed", aura=1):
 
 def attackBoss():
   combo = True
+
   doSelect(0.1)
   while combo:
     if not macro:
