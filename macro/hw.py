@@ -851,8 +851,9 @@ def runDungeon(runs=1):
         util.logAction(util.msgNoBossFound)
 
     util.doDeselectPack()
-    util.move(820, 150)
+    util.move(620, 150)
     util.doDash(1)
+    util.doFade(1.5)
 
     util.move(800, 360)
     util.doFade(0.5)
@@ -899,7 +900,7 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(1)
 
-    util.move(820, 160)
+    util.move(650, 160)
     util.doFade(1)
 
     util.doBattleMode()
