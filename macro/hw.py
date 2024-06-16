@@ -832,7 +832,7 @@ def runDungeon(runs=1):
     util.attackBoss()
     util.lootBox(2)
 
-    util.move(440, 200)
+    util.move(520, 200)
     util.doDash(1)
     util.doFade(0.5)
 
@@ -935,6 +935,7 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
 
+    util.cancelAura(1)
     util.move(660, 160)
     util.doDash(1)
     util.doFade(0.5)
