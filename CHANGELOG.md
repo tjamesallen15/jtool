@@ -47,3 +47,11 @@ All notable changes to this project will be documented in this file.
 
 - Fixed glitches in HVENH Automation
 - Fixed glitches in Steamer Crazy (Awakened)
+
+# v4.51
+
+## v4.50 Fixes
+
+- Fixed glitches in HVENH Automation
+- Fixed glitches in Steamer Crazy (Awakened)
+- Improved reading image during loops
