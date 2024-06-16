@@ -853,6 +853,10 @@ def runDungeon(runs=1):
     util.attackBoss()
     util.lootBox(2)
 
+    util.move(520, 100)
+    util.doDash(1)
+    util.doFade(0.5)
+
     util.move(520, 200)
     util.doDash(1)
     util.doFade(0.5)
