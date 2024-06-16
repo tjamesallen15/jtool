@@ -58,6 +58,9 @@ def pathFindGateOnly(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(500, 260)
         util.doSelect(0.1)
@@ -68,6 +71,9 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
 
       try:
         util.moveClick(600, 260)
@@ -80,6 +86,9 @@ def pathFindGateOnly(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(650, 260)
         util.doSelect(0.1)
@@ -90,6 +99,9 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
 
       try:
         util.moveClick(700, 260)
@@ -103,6 +115,9 @@ def pathFindGateOnly(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(750, 260)
         util.doSelect(0.1)
@@ -114,6 +129,9 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
 
     else:
       try:
@@ -127,6 +145,9 @@ def pathFindGateOnly(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(580, 260)
         util.doSelect(0.1)
@@ -137,6 +158,9 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
 
       try:
         util.moveClick(620, 260)
@@ -149,6 +173,9 @@ def pathFindGateOnly(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(540, 260)
         util.doSelect(0.1)
@@ -160,6 +187,9 @@ def pathFindGateOnly(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(660, 260)
         util.doSelect(0.1)
@@ -170,6 +200,9 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
 
 def pathFindLegrinGate(unit=util.unitBlank):
   pathing = True
@@ -208,6 +241,9 @@ def pathFindLegrinGate(unit=util.unitBlank):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
+    if pathing == False:
+        break
+
     try:
       util.moveClick(580, 260)
       util.doSelect(0.1)
@@ -230,6 +266,9 @@ def pathFindLegrinGate(unit=util.unitBlank):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
+
+    if pathing == False:
+        break
 
     try:
       util.moveClick(620, 260)
@@ -254,6 +293,9 @@ def pathFindLegrinGate(unit=util.unitBlank):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
+    if pathing == False:
+        break
+
     try:
       util.moveClick(300, 260)
       util.doSelect(0.1)
@@ -276,6 +318,9 @@ def pathFindLegrinGate(unit=util.unitBlank):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
+
+    if pathing == False:
+        break
   
   if boss == 0:
     util.focusGate(util.unitLegrin)
@@ -308,6 +353,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
 
+      if pathing == False:
+        break
+
       try:
         util.move(660, 160)
         util.doDash(0.5)
@@ -320,6 +368,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
 
+      if pathing == False:
+        break
+
       try:
         util.move(640, 160)
         util.doSelect(0.1)
@@ -330,6 +381,10 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
+
+      if pathing == False:
+        break
+
     elif unit == util.unitLeo:
       try:
         util.moveClick(600, 260)
@@ -354,6 +409,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(550, 260, 0.5)
         util.doSelect(0.1)
@@ -377,6 +435,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(500, 260)
         util.doSelect(0.1)
@@ -399,6 +460,9 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
       
       try:
         util.moveClick(450, 260)
@@ -410,6 +474,21 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
 
       try:
         util.moveClick(400, 260)
@@ -433,6 +512,10 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
+
     elif unit == util.unitEspi:
       try:
         util.moveClick(700, 260)
@@ -457,6 +540,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(650, 260, 0.5)
         util.doSelect(0.1)
@@ -480,6 +566,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(600, 260)
         util.doSelect(0.1)
@@ -502,6 +591,9 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
       
       try:
         util.moveClick(550, 260)
@@ -513,6 +605,21 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
 
       try:
         util.moveClick(500, 260)
@@ -536,6 +643,10 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
+
     elif unit == util.unitDraco:
       try:
         util.moveClick(600, 260)
@@ -561,6 +672,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(580, 260, 0.5)
         util.doFade(0.5)
@@ -585,6 +699,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(620, 260)
         util.doSelect(0.1)
@@ -607,6 +724,9 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
 
       try:
         util.moveClick(560, 260)
@@ -631,6 +751,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(640, 260)
         util.doSelect(0.1)
@@ -653,6 +776,9 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
   
     else:
       try:
@@ -678,6 +804,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(580, 260, 0.5)
         util.doDash(0.5)
@@ -702,6 +831,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(620, 260)
         util.doSelect(0.1)
@@ -724,6 +856,9 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
 
       try:
         util.moveClick(560, 260)
@@ -748,6 +883,9 @@ def pathFind(unit=util.unitBlank):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
       try:
         util.moveClick(640, 260)
         util.doSelect(0.1)
@@ -770,6 +908,9 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
 
     bossCheck += 1
     if bossCheck >= 3 and unit == util.unitDraco:
@@ -988,6 +1129,19 @@ def runDungeon(runs=1):
 
     util.attackBoss()
     util.setBattleMode(False)
+
+    util.move(620, 150)
+    util.doDash(1.2)
+
+    util.move(620, 150)
+    util.doDash(1.2)
+
+    util.move(620, 150)
+    util.doDash(1.2)
+
+    util.move(820, 550)
+    util.doDash(1)
+    util.doFade(0.5)
 
     util.lootBox(2)
     util.move(620, 150)

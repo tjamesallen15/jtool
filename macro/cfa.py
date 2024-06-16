@@ -16,6 +16,9 @@ pynboard = Controller()
 rootFrame = []
 startButton = []
 
+# UNIQUE VARIABLES
+sidestep = 0
+
 def initialize(frame, btn, runs=1):
   global rootFrame
   rootFrame = frame
@@ -40,6 +43,8 @@ def runDungeon(runs=1):
     util.goCabalWindow()
     util.releaseKeys()
     util.goSkillSlot(0.5)
+
+    util.doBuffs()
 
     util.move(500, 500)
     util.doDash(1)
@@ -142,11 +147,11 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-        util.attackMobs("--", 0)
+        util.attackMobs(util.unitSpector, 0, 0.3, sidestep)
 
     time.sleep(1)
     util.attackBoss()
-    util.lootBox(2)
+    util.lootBox()
 
     util.move(720, 385)
     util.doDash(1)
@@ -198,7 +203,7 @@ def runDungeon(runs=1):
 
     time.sleep(1)
     util.attackBoss()
-    util.lootBox(2)
+    util.lootBox()
 
     util.move(600, 600)
     util.doDash(1.2)

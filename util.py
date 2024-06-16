@@ -116,6 +116,10 @@ unitLegrin = "Legrin of Wind"
 unitLeo = "Leo of Wind"
 unitEspi = "Espi of Wind"
 unitDraco = "Draco of Wind"
+unitSpector = "Spector"
+unitDarkArcher = "Dark Archer"
+unitLavaArcher = "Lava Archer"
+unitLavaGate = "Lava Gate"
 unitBox = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -498,12 +502,13 @@ def focusGate(unit=unitBlank):
       combo = False
       break
 
-def focusMobs(unit=unitBlank):
+def focusMobs(unit=unitBlank, select=1):
   combo = True
   fadeCount = 0
 
-  doDeselectPack()
-  doSelect(0.1)
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -512,7 +517,8 @@ def focusMobs(unit=unitBlank):
       break
 
     try:
-      doSelect(0.1)
+      if select == 1:
+        doSelect(0.1)
 
       if (fadeCount == 20):
         fadeCount = 0
@@ -583,10 +589,12 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       combo = False
       break
 
-def attackBoss():
+def attackBoss(select=1):
   combo = True
 
-  doSelect(0.1)
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -606,9 +614,12 @@ def attackBoss():
       combo = False
       break
 
-def attackSemiBoss():
+def attackSemiBoss(select=1):
   combo = True
-  doSelect(0.1)
+  
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -620,6 +631,33 @@ def attackSemiBoss():
 
     try:
       boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9)
+      logAction(msgAttackBoss)
+      doAttack()
+      time.sleep(0.1)
+      doAttack()
+      time.sleep(0.1)
+    except pyauto.ImageNotFoundException:
+      logAction(msgBossKilled)
+      combo = False
+      break
+
+def attackLavaGate(select=1):
+  combo = True
+  
+  if select == 1:
+    doSelect(0.1)
+
+  while combo:
+    if not macro:
+      logAction(msgTerminate)
+      combo = False
+      break
+
+    if isBattleMode == False:
+      doAura()
+
+    try:
+      gate = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackBoss)
       doAttack()
       time.sleep(0.1)

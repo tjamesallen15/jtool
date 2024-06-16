@@ -84,6 +84,9 @@ def pathFind(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
+    if pathing == False:
+      break
+
     try:
       util.moveClick(500, 260, 0.5)
       util.doDash(0.5)
@@ -107,6 +110,9 @@ def pathFind(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
+
+    if pathing == False:
+      break
 
     if unit == util.unitCutterToad:
       try:
@@ -133,6 +139,9 @@ def pathFind(unit):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+      if pathing == False:
+        break
+
     try:
       util.moveClick(400, 260)
       util.doSelect(0.1)
@@ -155,6 +164,9 @@ def pathFind(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
+
+    if pathing == False:
+      break
 
     try:
       util.moveClick(300, 260)
@@ -179,6 +191,9 @@ def pathFind(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
+    if pathing == False:
+      break
+
     try:
       util.moveClick(200, 260)
       util.doSelect(0.1)
@@ -201,6 +216,9 @@ def pathFind(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
+
+    if pathing == False:
+      break
 
     if unit == util.unitBoarSnake:
       try:
@@ -225,6 +243,9 @@ def pathFind(unit):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+
+      if pathing == False:
+        break
 
   interval = 0.3
   if unit == util.unitCutterToad:
@@ -344,6 +365,9 @@ def pathBackTrack(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoBoxFound)
 
+    if backtracking == False:
+      break
+
     try:
       util.moveClick(700, 560)
       util.doDash()
@@ -365,6 +389,9 @@ def pathBackTrack(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoBoxFound)
+
+    if backtracking == False:
+      break
 
     try:
       util.moveClick(750, 560)
@@ -388,6 +415,9 @@ def pathBackTrack(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoBoxFound)
 
+    if backtracking == False:
+      break
+
     try:
       util.moveClick(800, 560)
       util.doDash()
@@ -410,6 +440,9 @@ def pathBackTrack(unit):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoBoxFound)
 
+    if backtracking == False:
+      break
+
     try:
       util.moveClick(850, 560)
       util.doDash()
@@ -431,6 +464,9 @@ def pathBackTrack(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoBoxFound)
+
+    if backtracking == False:
+      break
 
   util.attackMobs(unit)
 

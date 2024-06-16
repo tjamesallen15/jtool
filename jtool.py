@@ -13,6 +13,7 @@ import macro.hvenh as hvenh
 import macro.sca as sca
 import macro.hw as hw
 import macro.cfa as cfa
+import macro.lha as lha
 
 from tkinter import *
 from tkinter import ttk
@@ -28,6 +29,7 @@ masterList = [
   "Hazardous Valley (Easy)",
   "Steamer Crazy (Awakened)",
   "Catacomb Frost (Awakened)",
+  "Lava Hellfire (Awakened)",
   "Holy Windmill"
 ]
 dungeonList = [
@@ -37,6 +39,7 @@ dungeonList = [
   "Hazardous Valley (Easy)",
   "Steamer Crazy (Awakened)",
   "Catacomb Frost (Awakened)",
+  "Lava Hellfire (Awakened)",
   "Holy Windmill"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
@@ -80,6 +83,8 @@ def start():
   elif (choice == masterList[5]):
     cfa.initialize(rootFrame, startButton, runs)
   elif (choice == masterList[6]):
+    lha.initialize(rootFrame, startButton, runs)
+  elif (choice == masterList[7]):
     hw.initialize(rootFrame, startButton, runs)
 
 def generateGui():
@@ -98,7 +103,7 @@ def generateGui():
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(5)
+  dgList.current(6)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
