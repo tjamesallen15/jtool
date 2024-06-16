@@ -52,15 +52,15 @@ startButton = []
 macroLbl = []
 runNumberLbl = []
 rootFrame = []
-mode = IntVar(value=0)
-buffs = IntVar(value=1)
-shorts = IntVar(value=1)
-atk = IntVar(value=0)
+battlemode = 0
+buffs = 1
+shorts = 1
+atk = 0
 
 def start():
   cabalwindow = pyauto.locateOnScreen(util.imgCabalWindow, grayscale=False, confidence=.9)
   choice = dgList.get()
-  mode = mode.get()
+  mode = battlemode.get()
   buff = buffs.get()
   short = shorts.get()
   runs = runCount.get()
@@ -135,8 +135,9 @@ def generateGui():
   # bmTwo.config(width=5)
   # bmTwo.place(x=75, y=75)
 
-  global mode
-  chkBtnMode = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=mode)
+  global battlemode
+  battlemode = IntVar(value=0)
+  chkBtnMode = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=battlemode)
   chkBtnMode.place(x=75, y=76)
 
   licenseLbl = Label(rootFrame, text="Status: Free")
@@ -146,6 +147,7 @@ def generateGui():
   shortsLbl.place(x=10, y=105)
 
   global buffs
+  buffs = IntVar(value=1)
   chkBtnBuffs = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=buffs)
   chkBtnBuffs.place(x=75, y=106)
   # buffs = ttk.Combobox(values=buffList, state="readonly")
@@ -160,6 +162,7 @@ def generateGui():
   askShorts.place(x=10, y=135)
 
   global shorts
+  shorts = IntVar(value=1)
   chkBtnShorts = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=shorts)
   chkBtnShorts.place(x=75, y=136)
   # shorts = ttk.Combobox(values=shortList, state="readonly")
@@ -175,6 +178,7 @@ def generateGui():
   atkLbl.place(x=10, y=165)
 
   global atk
+  atk = IntVar(value=0)
   checkBtnRun = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
   checkBtnRun.place(x=75, y=166)
 
