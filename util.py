@@ -30,15 +30,12 @@ cabalwindow = []
 rootFrame = []
 runNumberLbl = []
 macroLbl = []
-# combo = True
-# pathing = True
-# moving = True
-# boxing = True
 macro = True
 isBattleMode = False
 battleMode = 0
 buffsAllowed = 1
 shortBuffsAllowed = 1
+atkType = 0
 difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
   "Hazardous Valley (Hard)",
@@ -134,7 +131,7 @@ def initialize(window, frame, mlbl, rlbl):
   global runNumberLbl
   runNumberLbl = rlbl
 
-def setVariables(mode=0, buff=1, sbuffs=1):
+def setVariables(mode=0, buff=1, sbuffs=1, atk=0):
   global battleMode
   battleMode = int(mode)
 
@@ -146,6 +143,9 @@ def setVariables(mode=0, buff=1, sbuffs=1):
 
   global shortBuffsAllowed
   shortBuffsAllowed = int(sbuffs)
+
+  global atkType
+  atkType = int(atk)
 
 def setCabalWindow(window):
   global cabalwindow
@@ -498,7 +498,7 @@ def focusMobs(unit=unitBlank):
       combo = False
       break
 
-def attackMobs(unit=unitBlank, aura=1, sidestep=1):
+def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
   combo = True
   fadeCount = 0
 
@@ -536,8 +536,8 @@ def attackMobs(unit=unitBlank, aura=1, sidestep=1):
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
-      doAttack(0.3)
-      doAttack(0.3)
+      doAttack(interval)
+      doAttack(interval)
     except pyauto.ImageNotFoundException:
       logAction(msgMobsCleared)
       combo = False

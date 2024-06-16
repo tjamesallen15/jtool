@@ -554,9 +554,11 @@ def pathFind(unit=util.unitBlank):
       bossCheck = 0
 
   if boss == 0 and boxFound == 0 and unit != util.unitEspi:
-    util.attackMobs(unit, 1, sidestep)
+    interval = 0.3
+    util.attackMobs(unit, util.atkType, inverval, sidestep)
   elif boss == 0 and boxFound == 0 and unit == util.unitEspi:
-    util.attackMobs(unit, 1, sidestep)
+    interval = 0.8
+    util.attackMobs(unit, util.atkType, inverval, sidestep)
 
 def runDungeon(runs=1):
   runCounter = 0
