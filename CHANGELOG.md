@@ -35,3 +35,23 @@ All notable changes to this project will be documented in this file.
 ## v3.40 Fixes
 
 - Fixed glitches in AHV Automation
+
+# v4.50
+
+## v4.50 Features
+
+- Added Utility class for refactoring purposes
+- Added Steamer Crazy (Awakened)
+
+## v4.50 Fixes
+
+- Fixed glitches in HVENH Automation
+- Fixed glitches in Steamer Crazy (Awakened)
+
+# v4.51
+
+## v4.50 Fixes
+
+- Fixed glitches in HVENH Automation
+- Fixed glitches in Steamer Crazy (Awakened)
+- Improved reading image during loops
