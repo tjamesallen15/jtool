@@ -30,7 +30,7 @@ masterList = [
 ]
 dungeonList = [
   "Hazardous Valley (Awakened)",
-  # "Hazardous Valley (Hard)",
+  "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
   "Hazardous Valley (Easy)",
   # "Steamer Crazy (Awakened)",
