@@ -126,7 +126,7 @@ def generateGui():
   # stopButton.config(width=10)
   # stopButton.place(x=230, y=40)
 
-  askBmLbl = Label(rootFrame, text="Mode 2: ")
+  askBmLbl = Label(rootFrame, text="Mode II: ")
   askBmLbl.place(x=10, y=75)
 
   # global bmTwo
@@ -162,7 +162,7 @@ def generateGui():
   askShorts.place(x=10, y=135)
 
   global shorts
-  shorts = IntVar(value=1)
+  shorts = IntVar(value=0)
   chkBtnShorts = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=shorts)
   chkBtnShorts.place(x=75, y=136)
   # shorts = ttk.Combobox(values=shortList, state="readonly")
