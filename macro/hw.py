@@ -694,6 +694,7 @@ def runDungeon(runs=1):
     util.doDeselectPack()
     util.move(620, 150)
     util.doDash(1)
+    util.doFade(0.5)
 
     util.move(440, 560)
     util.doDash(1)
@@ -920,6 +921,7 @@ def runDungeon(runs=1):
 
     # Final Boss
     util.doDeselectPack()
+    util.doDeselectPack()
 
     util.move(400, 160)
     util.doDash(1)
@@ -929,7 +931,7 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(1)
 
-    util.move(650, 160)
+    util.move(610, 160)
     util.doFade(1)
 
     util.doBattleMode()
