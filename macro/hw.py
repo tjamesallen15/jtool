@@ -41,8 +41,10 @@ def pathFindGateOnly(unit=util.unitBlank):
       sys.exit()
       break
 
+    if pathing == False:
+        break
+
     util.logAction(util.msgPathFind + unit)
-    # util.moveClick(675, 450)
 
     if unit == util.unitGateThree:
       try:
@@ -179,6 +181,9 @@ def pathFindLegrinGate(unit=util.unitBlank):
       sys.exit()
       break
 
+    if pathing == False:
+        break
+
     util.logAction(util.msgPathFind + unit)
     try:
       util.moveClick(600, 260)
@@ -288,12 +293,14 @@ def pathFind(unit=util.unitBlank):
       sys.exit()
       break
 
+    if pathing == False:
+      break
+
     if unit == util.unitBox:
       try:
         util.move(680, 160)
         util.doSelect(0.1)
         box = pyauto.locateOnScreen(util.imgHolyBox, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBoxFound)
         pathing = False
         util.logAction(util.msgPathStop)
@@ -306,7 +313,6 @@ def pathFind(unit=util.unitBlank):
         util.doDash(0.5)
         util.doSelect(0.1)
         box = pyauto.locateOnScreen(util.imgHolyBox, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBoxFound)
         pathing = False
         util.logAction(util.msgPathStop)
@@ -318,7 +324,6 @@ def pathFind(unit=util.unitBlank):
         util.move(640, 160)
         util.doSelect(0.1)
         box = pyauto.locateOnScreen(util.imgHolyBox, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBoxFound)
         pathing = False
         util.logAction(util.msgPathStop)
@@ -446,7 +451,6 @@ def pathFind(unit=util.unitBlank):
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBossFound)
         pathing = False
         boss = 1
@@ -471,7 +475,6 @@ def pathFind(unit=util.unitBlank):
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBossFound)
         pathing = False
         boss = 1
@@ -495,7 +498,6 @@ def pathFind(unit=util.unitBlank):
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBossFound)
         pathing = False
         boss = 1
@@ -519,7 +521,6 @@ def pathFind(unit=util.unitBlank):
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBossFound)
         pathing = False
         boss = 1
@@ -543,7 +544,6 @@ def pathFind(unit=util.unitBlank):
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBossFound)
         pathing = False
         boss = 1
@@ -639,12 +639,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFindGateOnly(util.unitGateOne)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -675,13 +677,15 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFindLegrinGate(util.unitLegrin)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBossFound)
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -715,12 +719,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFindGateOnly(util.unitGateTwo)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -745,12 +751,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFind(util.unitLeo)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -760,10 +768,9 @@ def runDungeon(runs=1):
     util.doBattleMode()
 
     util.attackBoss()
-    util.lootBox(2)
-
     util.setBattleMode(False)
 
+    util.lootBox(2)
     util.move(620, 150)
     util.doDash(1)
 
@@ -782,12 +789,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFindGateOnly(util.unitGateThree)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -826,12 +835,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFind(util.unitEspi)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -854,12 +865,14 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFindGateOnly(util.unitGateFour)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
@@ -893,18 +906,19 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFind(util.unitDraco)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
 
     # Final Boss
-    util.doDeselectPack()
     util.doDeselectPack()
 
     util.move(400, 160)
@@ -920,9 +934,8 @@ def runDungeon(runs=1):
 
     util.doBattleMode()
     util.doShortBuffs()
-    util.doSelect(0.1)
-    util.attackBoss()
 
+    util.attackBoss()
     util.setBattleMode(False)
 
     # Box Sequence
@@ -934,16 +947,20 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
+      if moving == False:
+        break
+
       pathFind(util.unitBox)
       try:
         box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
-        util.doDeselectPack()
         util.logAction(util.msgBoxFound)
         moving = False
-        util.logAction(util.msgPathStop)
+        util.logAction(util.msgMoveStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
+
+    util.doDeselectPack()
 
     util.move(660, 160)
     util.doDash(1)
