@@ -60,7 +60,7 @@ atk = 0
 def start():
   cabalwindow = pyauto.locateOnScreen(util.imgCabalWindow, grayscale=False, confidence=.9)
   choice = dgList.get()
-  mode = bmTwo.get()
+  mode = mode.get()
   buff = buffs.get()
   short = shorts.get()
   runs = runCount.get()
