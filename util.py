@@ -384,6 +384,7 @@ def autoEssentials():
   pynboard.press(loot)
   pynboard.release(loot)
 
+  pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
 
@@ -443,7 +444,7 @@ def focusGate(unit="Unnamed"):
   combo = True
   fadeCount = 0
 
-  doDeselectPack()
+  doSelect(0.1)
   doSelect(0.1)
   while combo:
     if not macro:
@@ -452,6 +453,7 @@ def focusGate(unit="Unnamed"):
       sys.exit()
       break
 
+    doAura()
     try:
       doSelect(0.1)
 

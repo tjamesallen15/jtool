@@ -104,6 +104,12 @@ def generateGui():
   startButton = Button(rootFrame, text="Start", command=start)
   startButton.config(width=10)
   startButton.place(x=230, y=40)
+
+  # var = IntVar(value=1)
+  # checkbutton = ttk.Checkbutton(rootFrame, text="", 
+  #   onvalue=1, offvalue=0, variable=var)
+  # checkbutton.place(x=230, y=75)
+  # print("TEST: " + str(var.get()))
   # startButton.place(x=140, y=40)
 
   global runNumberLbl

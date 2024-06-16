@@ -101,6 +101,7 @@ def pathFindGateOnly(unit="Unnamed"):
       try:
         util.moveClick(750, 260)
         util.doSelect(0.1)
+        util.doFade(0.5)
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
         util.logAction(util.msgGateFound + unit)
         pathing = False
@@ -275,6 +276,7 @@ def pathFind(unit="Unnamed"):
   pathing = True
   boss = 0
   backTrackCheck = 0
+  checkBoss = 0
   boxFound = 0
   while pathing:
     if not util.macro:
@@ -283,12 +285,13 @@ def pathFind(unit="Unnamed"):
       sys.exit()
       break
 
-    util.logAction(util.msgPathFind + unit)
-    backTrackCheck += 1
-    print(util.msgBackTrack + str(backTrackCheck))
-    if (backTrackCheck >= 10):
-      backTrackCheck = 0
-      pathBackTrack(unit)
+    # util.logAction(util.msgPathFind + unit)
+    # backTrackCheck += 1
+    # print(util.msgBackTrack + str(backTrackCheck))
+    # if (backTrackCheck >= 10):
+    #   backTrackCheck = 0
+    #   pathBackTrack(unit)
+    checkBoss += 1
 
     if unit == util.unitBox:
       try:
@@ -549,10 +552,15 @@ def pathFind(unit="Unnamed"):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+    if checkBoss >= 3 and unit == util.unitDraco:
+      util.moveClick(800, 260)
+      util.doFade(0.5)
+      checkBoss = 0
+
   if boss == 0 and boxFound == 0 and unit != util.unitEspi:
     util.attackMobs(unit)
   elif boss == 0 and boxFound == 0 and unit == util.unitEspi:
-    util.attackMobs(unit, 0)
+    util.attackMobs(unit, 1)
 
 def pathBackTrack(unit):
   backtracking = True
@@ -570,19 +578,21 @@ def runDungeon(runs=1):
     # Click Cabal Window
     util.goCabalWindow()
 
+    time.sleep(1)
+    util.autoEssentials()
+    util.goSkillSlot(0.5)
+
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
-
-    util.goSkillSlot(0.5)
     
     # Click Dungeon
     util.move(500, 300)
     util.doDash(1)
-    util.moveClick(570, 320, 0.5)
-    util.moveClick(570, 320, 0.5)
+    util.moveClick(570, 360, 0.5)
+    util.moveClick(570, 360, 0.5)
 
     entering = True
     while entering:
@@ -643,7 +653,7 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(0.5)
 
-    util.move(620, 150)
+    util.move(700, 150)
     util.doDash(1)
     util.doFade(0.5)
 
@@ -685,7 +695,6 @@ def runDungeon(runs=1):
     util.doShortBuffs()
     util.attackBoss()
     util.lootBox(2)
-    
 
     util.move(660, 150)
     pyauto.mouseDown(button="right")
@@ -716,6 +725,8 @@ def runDungeon(runs=1):
     util.doDash(1)
 
     util.focusGate(util.unitGateTwo)
+    
+    util.doDeselectPack()
     util.moveClick(400, 260)
     util.doDash(1)
     util.doFade(0.5)
@@ -743,6 +754,9 @@ def runDungeon(runs=1):
     util.attackBoss()
     util.lootBox(2)
 
+    util.move(620, 150)
+    util.doDash(1)
+
     util.move(375, 150)
     pyauto.mouseDown(button="right")
     util.move(660, 150)
@@ -768,8 +782,13 @@ def runDungeon(runs=1):
         util.logAction(util.msgNoBossFound)
 
     util.doDeselectPack()
+
+    util.move(1000, 360)
+    util.doDash(1)
+    util.doFade(0.5)
     util.move(620, 150)
     util.doDash(1)
+    util.doFade(0.5)
 
     util.move(600, 150)
     pyauto.mouseDown(button="right")
@@ -778,6 +797,14 @@ def runDungeon(runs=1):
     pyauto.scroll(-10000)
 
     util.focusGate(util.unitGateThree)
+
+    util.doDeselectPack()
+    util.move(620, 150)
+    util.doDash(1)
+
+    util.move(1000, 350)
+    util.doDash(1)
+    util.doFade(1)
 
     # Third Sequence
     moving = True
@@ -799,7 +826,6 @@ def runDungeon(runs=1):
 
     # Third Boss
     util.doDeselectPack()
-    util.doShortBuffs()
     util.attackBoss()
     util.lootBox(2)
 
@@ -828,7 +854,20 @@ def runDungeon(runs=1):
     util.doDeselectPack()
     util.move(620, 150)
     util.doDash(1)
-    util.focusGate(util.unitGateThree)
+    util.focusGate(util.unitGateFour)
+
+    util.doDeselectPack()
+    util.move(620, 150)
+    util.doDash(1)
+    # util.doFade(0.5)
+
+    util.move(200, 150)
+    # util.doDash(1)
+    util.doFade(0.5)
+
+    util.move(200, 150)
+    util.doDash(1)
+    util.doFade(0.5)
 
     # Fourth Sequence
     moving = True
@@ -848,17 +887,24 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
 
-    # Fourth Boss
+    # Final Boss
     util.doDeselectPack()
     util.move(400, 160)
     util.doDash(1)
-    util.move(1000, 460)
+    util.move(1000, 300)
     util.doDash(1)
+    util.doFade(1)
 
+    util.move(820, 160)
+    util.doFade(1)
+
+    util.doBattleMode()
     util.doShortBuffs()
+    util.doSelect(0.1)
     util.attackBoss()
+    util.setBattleMode(False)
 
-    # Fourth Sequence
+    # Box Sequence
     moving = True
     while moving:
       if not util.macro:
