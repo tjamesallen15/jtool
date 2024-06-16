@@ -601,7 +601,7 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
-      if boxCounter < 10:
+      if boxCounter > 10:
         break
 
       try:

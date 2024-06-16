@@ -330,8 +330,110 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBoxFound)
+    elif unit == util.unitLeo:
+      try:
+        util.moveClick(600, 260)
+        util.doSelect(0.1)
+        leo = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgBoxFound)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoBoxFound)
 
-    elif unit == util.unitLeo or unit == util.unitEspi:
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.moveClick(550, 260, 0.5)
+        util.doSelect(0.1)
+        leo = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgBoxFound)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoBoxFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.moveClick(500, 260)
+        util.doSelect(0.1)
+        leo = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgBoxFound)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoBoxFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+      
+      try:
+        util.moveClick(450, 260)
+        util.doSelect(0.1)
+        leo = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgBoxFound)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoBoxFound)
+
+      try:
+        util.moveClick(400, 260)
+        util.doSelect(0.1)
+        leo = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgBoxFound)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoBoxFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+    elif unit == util.unitEspi:
       try:
         util.moveClick(700, 260)
         util.doSelect(0.1)
@@ -434,7 +536,124 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
+    elif unit == util.unitDraco:
+      try:
+        util.moveClick(600, 260)
+        util.doDash(0.5)
+        util.doSelect(0.1)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgMobsFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
 
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.moveClick(580, 260, 0.5)
+        util.doFade(0.5)
+        util.doSelect(0.1)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgMobsFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+      
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.moveClick(620, 260)
+        util.doSelect(0.1)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgMobsFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.moveClick(560, 260)
+        util.doSelect(0.1)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgMobsFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.moveClick(640, 260)
+        util.doSelect(0.1)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        util.logAction(util.msgMobsFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+
+      try:
+        util.doSelect(0.1)
+        util.logAction(util.msgCheckBoss)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.logAction(util.msgBossFound)
+        pathing = False
+        boss = 1
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoMobsFound)
+  
     else:
       try:
         util.moveClick(600, 260)
@@ -578,8 +797,7 @@ def runDungeon(runs=1):
     # Click Cabal Window
     util.goCabalWindow()
 
-    time.sleep(1)
-    util.autoEssentials()
+    util.releaseKeys(1)
     util.goSkillSlot(0.5)
 
     util.move(700, 150)

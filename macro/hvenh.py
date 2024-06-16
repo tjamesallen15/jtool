@@ -226,8 +226,12 @@ def pathFind(unit):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
+  interval = 0.3
+  if unit == util.unitCutterToad:
+    interval = 0.5
+
   if boss == 0:
-    util.attackMobs(unit)
+    util.attackMobs(unit, 1, interval)
 
 def pathFindBoss(unit):
   pathing = True
@@ -484,6 +488,8 @@ def runDungeon(runs=1):
 
     # Click Cabal Window
     util.goCabalWindow()
+
+    util.releaseKeys()
 
     # Click Dungeon
     util.move(677, 361)

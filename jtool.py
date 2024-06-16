@@ -191,6 +191,6 @@ generateGui()
 # util.setCabalWindow(cabalwindow)
 # util.goCabalWindow()
 
-# util.move(620, 160)
+# util.move(520, 200)
 
 # util.move(620, 230)

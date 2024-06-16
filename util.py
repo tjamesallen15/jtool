@@ -215,7 +215,10 @@ def setBattleMode(val):
 def doBattleMode():
   if battleMode == 1:
     logAction(msgBattleModeTwo)
-    cancelAura(0.5)
+    cancelAura(1)
+
+    move(790, 670)
+    pyauto.click(button="right")
 
     move(790, 670)
     pyauto.click(button="right")
@@ -397,8 +400,17 @@ def lootEssentials():
   pynboard.press(loot)
   pynboard.release(loot)
 
+  pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
+
+def releaseKeys(sec=0):
+  pynboard.release(Key.shift)
+  pynboard.release(Key.alt)
+  pynboard.release(Key.ctrl)
+
+  if (sec != 0):
+    time.sleep(sec)
 
 def doAura(sec=0):
   pynboard.press(bm3)
@@ -437,6 +449,27 @@ def doAttack(sec=0):
     pynboard.press(attack[2])
     pynboard.release(attack[2])
     autoEssentials()
+
+  if (sec != 0):
+    time.sleep(sec)
+
+def doAttackStrict(sec=0):
+  if isBattleMode:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+  else:
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(bm3atk)
+    pynboard.release(bm3atk)
+    pynboard.press(attack[0])
+    pynboard.release(attack[0])
+    pynboard.press(attack[1])
+    pynboard.release(attack[1])
+    pynboard.press(attack[2])
+    pynboard.release(attack[2])
 
   if (sec != 0):
     time.sleep(sec)
@@ -536,8 +569,15 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
-      doAttack(interval)
-      doAttack(interval)
+      if interval > 0.3:
+        doAttack(interval)
+        doAttackStrict(0.3)
+        doAttack(interval)
+        doAttackStrict(0.3)
+      else:
+        doAttack(interval)
+        doAttack(interval)
+  
     except pyauto.ImageNotFoundException:
       logAction(msgMobsCleared)
       combo = False
