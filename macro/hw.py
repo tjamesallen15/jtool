@@ -16,6 +16,9 @@ pynboard = Controller()
 rootFrame = []
 startButton = []
 
+# UNIQUE VARIABLES
+sidestep = 0
+
 def initialize(frame, btn, runs=1):
   global rootFrame
   rootFrame = frame
@@ -29,7 +32,7 @@ def initialize(frame, btn, runs=1):
   startButton.config(state="active")
   rootFrame.update()
 
-def pathFindGateOnly(unit="Unnamed"):
+def pathFindGateOnly(unit=util.unitBlank):
   pathing = True
   while pathing:
     if not util.macro:
@@ -166,7 +169,7 @@ def pathFindGateOnly(unit="Unnamed"):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoGateFound)
 
-def pathFindLegrinGate(unit="Unnamed"):
+def pathFindLegrinGate(unit=util.unitBlank):
   pathing = True
   boss = 0
   while pathing:
@@ -272,11 +275,11 @@ def pathFindLegrinGate(unit="Unnamed"):
   if boss == 0:
     util.focusGate(util.unitLegrin)
 
-def pathFind(unit="Unnamed"):
+def pathFind(unit=util.unitBlank):
+  global sidestep
   pathing = True
   boss = 0
-  backTrackCheck = 0
-  checkBoss = 0
+  bossCheck = 0
   boxFound = 0
   while pathing:
     if not util.macro:
@@ -284,14 +287,6 @@ def pathFind(unit="Unnamed"):
       pathing = False
       sys.exit()
       break
-
-    # util.logAction(util.msgPathFind + unit)
-    # backTrackCheck += 1
-    # print(util.msgBackTrack + str(backTrackCheck))
-    # if (backTrackCheck >= 10):
-    #   backTrackCheck = 0
-    #   pathBackTrack(unit)
-    checkBoss += 1
 
     if unit == util.unitBox:
       try:
@@ -552,21 +547,16 @@ def pathFind(unit="Unnamed"):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
 
-    if checkBoss >= 3 and unit == util.unitDraco:
+    bossCheck += 1
+    if bossCheck >= 3 and unit == util.unitDraco:
       util.moveClick(800, 260)
       util.doFade(0.5)
-      checkBoss = 0
+      bossCheck = 0
 
   if boss == 0 and boxFound == 0 and unit != util.unitEspi:
-    util.attackMobs(unit)
+    util.attackMobs(unit, 1, sidestep)
   elif boss == 0 and boxFound == 0 and unit == util.unitEspi:
-    util.attackMobs(unit, 1)
-
-def pathBackTrack(unit):
-  backtracking = True
-  boss = 0
-  backTrackCancel = 0
-  util.attackMobs(unit)
+    util.attackMobs(unit, 1, sidestep)
 
 def runDungeon(runs=1):
   runCounter = 0
@@ -591,8 +581,8 @@ def runDungeon(runs=1):
     # Click Dungeon
     util.move(500, 300)
     util.doDash(1)
-    util.moveClick(570, 360, 0.5)
-    util.moveClick(570, 360, 0.5)
+    util.moveClick(595, 335, 0.5)
+    util.moveClick(595, 335, 0.5)
 
     entering = True
     while entering:
@@ -642,6 +632,7 @@ def runDungeon(runs=1):
       pathFindGateOnly(util.unitGateOne)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         moving = False
         util.logAction(util.msgPathStop)
         break
@@ -653,9 +644,11 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(0.5)
 
-    util.move(700, 150)
+    util.move(800, 300)
     util.doDash(1)
     util.doFade(0.5)
+
+    util.doAura()
 
     util.move(500, 150)
     pyauto.mouseDown(button="right")
@@ -675,6 +668,7 @@ def runDungeon(runs=1):
       pathFindLegrinGate(util.unitLegrin)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         util.logAction(util.msgBossFound)
         moving = False
         util.logAction(util.msgPathStop)
@@ -714,6 +708,7 @@ def runDungeon(runs=1):
       pathFindGateOnly(util.unitGateTwo)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         moving = False
         util.logAction(util.msgPathStop)
         break
@@ -743,6 +738,7 @@ def runDungeon(runs=1):
       pathFind(util.unitLeo)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         moving = False
         util.logAction(util.msgPathStop)
         break
@@ -775,6 +771,7 @@ def runDungeon(runs=1):
       pathFindGateOnly(util.unitGateThree)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         moving = False
         util.logAction(util.msgPathStop)
         break
@@ -818,6 +815,7 @@ def runDungeon(runs=1):
       pathFind(util.unitEspi)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         moving = False
         util.logAction(util.msgPathStop)
         break
@@ -842,9 +840,10 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
-      pathFindGateOnly(util.unitGateThree)
+      pathFindGateOnly(util.unitGateFour)
       try:
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         moving = False
         util.logAction(util.msgPathStop)
         break
@@ -852,17 +851,18 @@ def runDungeon(runs=1):
         util.logAction(util.msgNoBossFound)
 
     util.doDeselectPack()
-    util.move(620, 150)
+    util.move(820, 150)
     util.doDash(1)
+
+    util.move(800, 360)
+    util.doFade(0.5)
+
+    util.doSelect(0.1)
     util.focusGate(util.unitGateFour)
 
     util.doDeselectPack()
     util.move(620, 150)
     util.doDash(1)
-    # util.doFade(0.5)
-
-    util.move(200, 150)
-    # util.doDash(1)
     util.doFade(0.5)
 
     util.move(200, 150)
@@ -881,6 +881,7 @@ def runDungeon(runs=1):
       pathFind(util.unitDraco)
       try:
         boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         moving = False
         util.logAction(util.msgPathStop)
         break
@@ -889,8 +890,11 @@ def runDungeon(runs=1):
 
     # Final Boss
     util.doDeselectPack()
+
     util.move(400, 160)
     util.doDash(1)
+    util.doFade(0.5)
+    
     util.move(1000, 300)
     util.doDash(1)
     util.doFade(1)
@@ -902,6 +906,7 @@ def runDungeon(runs=1):
     util.doShortBuffs()
     util.doSelect(0.1)
     util.attackBoss()
+
     util.setBattleMode(False)
 
     # Box Sequence
@@ -916,6 +921,7 @@ def runDungeon(runs=1):
       pathFind(util.unitBox)
       try:
         box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+        util.doDeselectPack()
         util.logAction(util.msgBoxFound)
         moving = False
         util.logAction(util.msgPathStop)

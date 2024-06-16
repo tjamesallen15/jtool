@@ -79,7 +79,7 @@ msgBattleModeTwo = "Doing Mode 2"
 msgDiceRoll = "Check Dice Roll"
 msgCheckDialogFound =  "Check Dialog Found"
 msgNoCheckDialogFound = "No Check Dialog Found"
-msgGateFound = "Gate Found"
+msgGateFound = "Gate Found "
 msgNoGateFound = "No Gate Found"
 
 # GLOBAL PICTURES
@@ -100,6 +100,7 @@ imgGate = "img/gate.jpg"
 imgHolyBox = "img/holybox.jpg"
 
 # GLOBAL UNITS
+unitBlank = "--"
 unitMushFlower = "Mushed and Ectoflower"
 unitMossToad = "Mossite and Toad"
 unitLumberMoth = "Lumber and Moth"
@@ -206,10 +207,10 @@ def goSkillSlot(sec=0):
     time.sleep(sec)
 
 def setBattleMode(val):
+  cancelAura(1)
   if battleMode == 1:
     global isBattleMode
     isBattleMode = val
-    cancelAura(1)
 
 def doBattleMode():
   if battleMode == 1:
@@ -440,11 +441,10 @@ def doAttack(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def focusGate(unit="Unnamed"):
+def focusGate(unit=unitBlank):
   combo = True
   fadeCount = 0
 
-  doSelect(0.1)
   doSelect(0.1)
   while combo:
     if not macro:
@@ -453,17 +453,8 @@ def focusGate(unit="Unnamed"):
       sys.exit()
       break
 
-    doAura()
     try:
       doSelect(0.1)
-
-      if (fadeCount == 20):
-        fadeCount = 0
-        moveClick(700, 440, 0.2)
-        doFade(0.1)
-      else:
-        fadeCount += 1
-
       gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
@@ -474,7 +465,7 @@ def focusGate(unit="Unnamed"):
       combo = False
       break
 
-def focusMobs(unit="Unnamed"):
+def focusMobs(unit=unitBlank):
   combo = True
   fadeCount = 0
 
@@ -507,7 +498,7 @@ def focusMobs(unit="Unnamed"):
       combo = False
       break
 
-def attackMobs(unit="Unnamed", aura=1):
+def attackMobs(unit=unitBlank, aura=1, sidestep=1):
   combo = True
   fadeCount = 0
 
@@ -531,10 +522,8 @@ def attackMobs(unit="Unnamed", aura=1):
 
     if aura == 1:
       doAura()
-
-    try:
-      doSelect(0.1)
-
+    
+    if sidestep == 1:
       if (fadeCount == 20):
         fadeCount = 0
         moveClick(700, 440, 0.2)
@@ -542,6 +531,8 @@ def attackMobs(unit="Unnamed", aura=1):
       else:
         fadeCount += 1
 
+    try:
+      doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
@@ -554,6 +545,7 @@ def attackMobs(unit="Unnamed", aura=1):
 
 def attackBoss():
   combo = True
+
   doSelect(0.1)
   while combo:
     if not macro:
