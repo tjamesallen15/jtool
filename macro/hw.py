@@ -928,6 +928,106 @@ def pathFind(unit=util.unitBlank):
       interval = 0.8
     util.attackMobs(unit, 1, interval, sidestep)
 
+def pathBackTrack(unit):
+  backtracking = True
+  boss = 0
+  backTrackCancel = 0
+  while backtracking:
+    if not util.macro:
+      util.logAction(util.msgTerminate)
+      backtracking = False
+      sys.exit()
+      break
+
+    if backtracking == False:
+      break
+
+    backTrackCancel += 1
+    util.logAction(util.msgBackTrack + str(backTrackCancel))
+    if (backTrackCancel >= 10):
+      backTrackCancel = 0
+      backtracking = False
+
+    util.logAction(util.msgBackTrack + unit)
+
+    
+    try:
+      util.moveClick(650, 560)
+      util.doDash()
+      util.doSelect(0.1)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      util.logAction(util.msgMobsFound + unit)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoMobsFound)
+
+    if backtracking == False:
+      break
+
+    try:
+      util.moveClick(700, 560)
+      util.doDash()
+      util.doSelect(0.1)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      util.logAction(util.msgMobsFound + unit)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoMobsFound)
+
+    if backtracking == False:
+      break
+
+    try:
+      util.moveClick(750, 560)
+      util.doDash()
+      util.doSelect(0.1)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      util.logAction(util.msgMobsFound + unit)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoMobsFound)
+
+    if backtracking == False:
+      break
+
+    try:
+      util.moveClick(800, 560)
+      util.doDash()
+      util.doSelect(0.1)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      util.logAction(util.msgMobsFound + unit)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoMobsFound)
+
+    if backtracking == False:
+      break
+
+    try:
+      util.moveClick(850, 560)
+      util.doDash()
+      util.doSelect(0.1)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      util.logAction(util.msgMobsFound + unit)
+      backtracking = False
+      util.logAction(util.msgPathStop)
+      break
+    except pyauto.ImageNotFoundException:
+      util.logAction(util.msgNoMobsFound)
+
+    if backtracking == False:
+      break
+
+  util.attackMobs(unit)
+
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
@@ -1268,7 +1368,7 @@ def runDungeon(runs=1):
     util.doDeselectPack()
     util.move(620, 150)
     util.doDash(1)
-    util.doFade(0.5)
+    # util.doFade(0.5)
 
     util.move(200, 150)
     util.doDash(1)
