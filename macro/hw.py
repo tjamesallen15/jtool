@@ -605,6 +605,9 @@ def pathFind(unit=util.unitBlank):
         break
 
     elif unit == util.unitDraco:
+      util.move(200, 250)
+      util.doFade(0.5)
+
       try:
         util.moveClick(600, 260)
         util.doDash(0.5)
