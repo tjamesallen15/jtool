@@ -253,6 +253,7 @@ def pathFindLavaGate(unit=util.unitBlank, gateCount=0):
 
       pathingCounter += 1
       if pathingCounter > 2:
+        print("pthing: " + pathingCounter)
         pathingCounter = 0
         pathing = False
         break
@@ -285,11 +286,6 @@ def pathFindLavaGate(unit=util.unitBlank, gateCount=0):
       util.moveClick(700, 250)
 
 def positionDarkArcher():
-  util.move(580, 260)
-  util.doFade(0.5)
-
-  util.lootBox()
-
   util.move(620, 100)
   util.doDash(1)
   util.doFade(0.5)
@@ -343,12 +339,12 @@ def positionGateKeeper():
   util.doDash(1)
   util.doFade(0.5)
 
-  util.move(320, 440)
-  util.doDash(1)
-  util.doFade(0.5)
+  # util.move(320, 440)
+  # util.doDash(1)
+  # util.doFade(0.5)
 
-  util.move(320, 550)
-  util.doDash(1)
+  # util.move(320, 550)
+  # util.doDash(1)
 
 def positionBoss():
   util.move(720, 400)
@@ -434,6 +430,11 @@ def runDungeon(runs=1):
 
     # First Boss
     util.attackBoss()
+    util.move(580, 260)
+    util.doFade(0.5)
+
+    util.lootBox()
+    util.cancelAura(2)
 
     # First Semi Boss Sequence
     positionDarkArcher()
@@ -487,7 +488,15 @@ def runDungeon(runs=1):
     util.attackSemiBoss(0)
 
     # Gate Sequence
-    util.moveClick(320, 400, 2)
+    util.move(350, 420)
+    util.doDash(1)
+    util.doFade(0.5)
+    util.moveClick(450, 600, 2)
+    util.moveClick(450, 600, 1.5)
+    util.moveClick(450, 600, 1.5)
+    util.moveClick(450, 600, 1.5)
+    util.moveClick(250, 500, 1)
+
     moving = True
     gateCounter = 0
     unitCounter = 0
@@ -506,6 +515,8 @@ def runDungeon(runs=1):
         gate = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
         unitCounter += 1
         gateCounter += 15
+        util.move(550, 420)
+        util.doFade(1.5)
         util.focusMobs(util.unitLavaGate, 0)
         util.logAction(util.msgMoveStop)
       except pyauto.ImageNotFoundException:
