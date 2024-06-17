@@ -204,6 +204,36 @@ def pathFindGateOnly(unit=util.unitBlank):
       if pathing == False:
         break
 
+      if unit == util.unitGateTwo:
+        try:
+          util.moveClick(750, 260)
+          util.doSelect(0.1)
+          gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
+          util.logAction(util.msgGateFound + unit)
+          pathing = False
+          util.logAction(util.msgPathStop)
+          break
+        except pyauto.ImageNotFoundException:
+          util.logAction(util.msgNoGateFound)
+
+        if pathing == False:
+          break
+
+        try:
+          util.moveClick(550, 260)
+          util.doSelect(0.1)
+          gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
+          util.logAction(util.msgGateFound + unit)
+          pathing = False
+          util.logAction(util.msgPathStop)
+          break
+        except pyauto.ImageNotFoundException:
+          util.logAction(util.msgNoGateFound)
+
+        if pathing == False:
+          break
+
+
 def pathFindLegrinGate(unit=util.unitBlank):
   pathing = True
   boss = 0
