@@ -1408,7 +1408,6 @@ def runDungeon(runs=1):
     util.doDeselectPack()
     util.move(620, 150)
     util.doDash(1)
-    # util.doFade(0.5)
 
     util.move(200, 250)
     util.doDash(1)
