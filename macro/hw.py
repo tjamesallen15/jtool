@@ -271,9 +271,6 @@ def pathFindLegrinGate(unit=util.unitBlank):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
-    if pathing == False:
-        break
-
     try:
       util.moveClick(580, 260)
       util.doSelect(0.1)
@@ -296,9 +293,6 @@ def pathFindLegrinGate(unit=util.unitBlank):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
-
-    if pathing == False:
-        break
 
     try:
       util.moveClick(620, 260)
@@ -323,9 +317,6 @@ def pathFindLegrinGate(unit=util.unitBlank):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
-    if pathing == False:
-        break
-
     try:
       util.moveClick(300, 260)
       util.doSelect(0.1)
@@ -348,9 +339,6 @@ def pathFindLegrinGate(unit=util.unitBlank):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
-
-    if pathing == False:
-        break
   
   if boss == 0:
     util.focusGate(util.unitLegrin)
