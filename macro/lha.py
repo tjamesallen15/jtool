@@ -18,7 +18,6 @@ startButton = []
 
 # UNIQUE VARIABLES
 sidestep = 0
-pathingCounter = 0
 
 def initialize(frame, btn, runs=1):
   global rootFrame
@@ -217,11 +216,10 @@ def pathFindBoss():
     if pathing == False:
       break
 
-def pathFindLavaGate(unit=util.unitBlank, gateCount=0):
+def pathFindLavaGate(unit=util.unitBlank):
   pathing = True
   boss = 0
-  gateCounter = gateCount
-  global pathingCounter
+  gateCounter = 0
   while pathing:
     if not util.macro:
       util.logAction(util.msgTerminate)
@@ -234,21 +232,7 @@ def pathFindLavaGate(unit=util.unitBlank, gateCount=0):
 
     util.logAction(util.msgPathFind + unit)
     if gateCounter >= 10:
-
-      pathingCounter += 1
-      print("PATHING: " + str(pathingCounter))
-      if pathingCounter > 2:
-        print("PATHING GREATER THAN 2: " + str(pathingCounter))
-        pathingCounter = 0
-        pathing = False
-        break
-
-      util.moveClick(620, 600)
-      util.doFade(0.5)
-
       try:
-        util.move(650, 300)
-        util.doDash(0.5)
         util.doSelect(0.1)
         gate = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
         util.logAction(util.msgMobsFound + unit)
@@ -478,11 +462,10 @@ def runDungeon(runs=1):
 
     # Gate Sequence
     positionLavaGate()
+    pathFindLavaGate(util.unitLavaGate)
+    util.focusMobs(util.unitLavaGate, 0)
 
     moving = True
-    gateCounter = 0
-    unitCounter = 0
-    movingCounter = 0
     while moving:
       if not util.macro:
         util.logAction(util.msgTerminate)
@@ -490,29 +473,19 @@ def runDungeon(runs=1):
         sys.exit()
         break
 
-      if unitCounter > 1:
+      if moving == False:
         break
 
-      if gateCounter >= 15:
-        movingCounter += 1
-        print("MOVING: " + str(movingCounter))
-        if movingCounter > 2:
-          print("MOVING: " + str(movingCounter))
-          movingCounter = 0
-          moving = False
-          break
-
-      pathFindLavaGate(util.unitLavaGate, gateCounter)
       try:
-        gate = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
-        unitCounter += 1
-        gateCounter += 15
-        util.move(550, 420)
-        util.doFade(1.5)
-        util.focusMobs(util.unitLavaGate, 0)
+        util.doSelect(0.1)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        moving = False
         util.logAction(util.msgMoveStop)
+        break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
+    
+    util.focusMobs(util.unitLavaGate, 0)
 
     # Boss Sequence
     positionBoss()
