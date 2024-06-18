@@ -209,7 +209,7 @@ def generateGui():
 
   global veras
   veras = IntVar(value=0)
-  checkBtnVera = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
+  checkBtnVera = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=veras)
   checkBtnVera.place(x=75, y=196)
 
   rootFrame.mainloop()
