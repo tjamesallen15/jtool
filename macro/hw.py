@@ -1258,25 +1258,21 @@ def runDungeon(runs=1):
 
     # Second Boss
     util.doDeselectPack()
-    util.doBattleMode()
-
-    util.attackBoss()
-    util.setBattleMode(False)
 
     util.move(620, 150)
     util.doDash(1.2)
-
     util.move(620, 150)
     util.doDash(1.2)
-
     util.move(620, 150)
     util.doDash(1.2)
-
     util.move(820, 550)
     util.doDash(1)
-    util.doFade(0.5)
 
+    util.doBattleMode()
+    util.attackBoss()
+    util.setBattleMode(False)
     util.lootBox()
+
     util.move(620, 150)
     util.doDash(1)
 

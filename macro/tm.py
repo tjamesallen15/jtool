@@ -1005,7 +1005,7 @@ def runDungeon(runs=1):
 
     # Start to End Dungeon
     util.endDungeon()
-    util.challengeDungeon()
+    util.diceDungeon()
   
     runCounter += 1
     util.logAction(util.msgEndDg)
