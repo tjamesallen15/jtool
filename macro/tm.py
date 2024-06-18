@@ -752,7 +752,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 5:
+      if counter > 6:
         moving = False
         break
 
@@ -761,7 +761,7 @@ def runDungeon(runs=1):
       print(str(counter))
 
 
-    util.move(320, 500)
+    util.move(320, 550)
     util.doDash(1)
     util.doFade(0.5)
   
@@ -773,11 +773,14 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(530, 260)
+    util.move(800, 360)
+    util.doFade(0.5)
+
+    util.move(540, 260)
     util.doDash(1)
     util.doFade(0.5)
 
-    util.move(530, 260)
+    util.move(540, 260)
     util.doDash(1)
     util.doFade(0.5)
 
@@ -794,7 +797,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 4:
+      if counter > 6:
         moving = False
         break
 
@@ -823,7 +826,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 5:
+      if counter > 6:
         moving = False
         break
 
