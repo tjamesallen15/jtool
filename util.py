@@ -549,9 +549,6 @@ def enterDungeon():
       sys.exit()
       break
 
-    if entering == False:
-      break
-
     try:
       enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
       moveClickRel(15, 15, enterdg, 1)
@@ -567,9 +564,6 @@ def challengeDungeon():
       logAction(msgTerminate)
       challenging = False
       sys.exit()
-      break
-
-    if challenging == False:
       break
 
     try:
@@ -607,25 +601,22 @@ def endDungeon():
       logAction(msgCheckEndDg)
 
 def diceDungeon():
-  dicing = True
-  while dicing:
-    if not macro:
-      logAction(msgTerminate)
-      dicing = False
-      sys.exit()
-      break
+  # dicing = True
+  # while dicing:
+  #   if not macro:
+  #     logAction(msgTerminate)
+  #     dicing = False
+  #     sys.exit()
+  #     break
 
-    if dicing == False:
-      break
-
-    try:
-      rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
-      moveClickRel(50, 15, rolladice, 0.8)
-      # moveClickRel(50, 15, rolladice)
-      dicing = False
-      break
-    except pyauto.ImageNotFoundException:
-      logAction(msgDiceRoll)
+  #   try:
+  #     rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
+  #     moveClickRel(50, 15, rolladice, 0.8)
+  #     # moveClickRel(50, 15, rolladice)
+  #     dicing = False
+  #     break
+  #   except pyauto.ImageNotFoundException:
+  #     logAction(msgDiceRoll)
 
   confirming = True
   while confirming:
@@ -635,13 +626,10 @@ def diceDungeon():
       sys.exit()
       break
 
-    if confirming == False:
-      break
-
     try:
-      rolladice = pyauto.locateOnScreen(imgDiceOkay, grayscale=False, confidence=.9)
+      diceconfirm = pyauto.locateOnScreen(imgDiceOkay, grayscale=False, confidence=.9)
       # moveClickRel(10, 15, rolladice, 0.8)
-      moveClickRel(10, 15, rolladice)
+      moveClickRel(10, 5, diceconfirm)
       confirming = False
       break
     except pyauto.ImageNotFoundException:

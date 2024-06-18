@@ -524,7 +524,6 @@ def runDungeon(runs=1):
 
     # Click Cabal Window
     util.goCabalWindow()
-
     util.releaseKeys()
 
     # Click Dungeon
