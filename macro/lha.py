@@ -16,9 +16,6 @@ pynboard = Controller()
 rootFrame = []
 startButton = []
 
-# UNIQUE VARIABLES
-sidestep = 0
-
 def initialize(frame, btn, runs=1):
   global rootFrame
   rootFrame = frame

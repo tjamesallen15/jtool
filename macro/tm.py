@@ -15,7 +15,6 @@ pynboard = Controller()
 # GLOBAL VARIABLES
 rootFrame = []
 startButton = []
-sidestep = 1
 
 def initialize(frame, btn, runs=1):
   global rootFrame
@@ -31,7 +30,6 @@ def initialize(frame, btn, runs=1):
   rootFrame.update()
 
 def pathFind(unit=util.unitBlank):
-  global sidestep
   pathing = True
   bossFound = 0
   bossCheck = 0
@@ -48,13 +46,6 @@ def pathFind(unit=util.unitBlank):
       break
 
     util.logAction(util.msgPathFind + unit)
-
-    # backTrackCheck += 1
-    # util.logAction(util.msgBackTrack + str(backTrackCheck))
-    # if (backTrackCheck >= 10):
-    #   backTrackCheck = 0
-    #   pathBackTrack(unit)
-
     if unit == util.unitLihonar or unit == util.unitEspada or unit == util.unitEspadaII or unit == util.unitEspadaIII:
 
       if unit != util.unitEspadaII:
