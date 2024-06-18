@@ -122,7 +122,7 @@ def runDungeon(runs=1):
       util.moveClick(570, 375)
       util.moveClick(570, 375)
       time.sleep(2)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.hpBar)
+      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgCheckDialogFound)
       util.moveClickRel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:
@@ -146,7 +146,7 @@ def runDungeon(runs=1):
 
       try:
         util.doSelect(0.1)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.hpBar)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         secondBoss = False
         break
       except pyauto.ImageNotFoundException:
@@ -170,7 +170,7 @@ def runDungeon(runs=1):
         util.moveClick(610, 305)
         util.moveClick(610, 310)
         time.sleep(1)
-        dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.hpBar)
+        dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgCheckDialogFound)
         util.moveClickRel(10, 10, dialog, 2)
         checkDialog = False
@@ -194,7 +194,7 @@ def runDungeon(runs=1):
       util.moveClick(540, 440)
       util.moveClick(540, 445)
       time.sleep(1)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.hpBar)
+      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgCheckDialogFound)
       util.moveClickRel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:

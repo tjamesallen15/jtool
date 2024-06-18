@@ -220,6 +220,13 @@ def logAction(message):
   print(msgBuilder)
   macroLbl.config(text=msgBuilder)
   rootFrame.update()
+  
+def getHpBar():
+  if isBattleMode and atkType == 1:
+    return hpBarMode
+  else:
+    return hpBar
+  
 
 def terminate():
   logAction(msgExit)
@@ -387,7 +394,7 @@ def lootBox(sec=3):
 
     try:
       doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=hpBar)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgBoxFound)
     except pyauto.ImageNotFoundException:
       logAction(msgNoBoxFound)
@@ -410,7 +417,7 @@ def finalLootBox(sec=4):
 
     try:
       doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=hpBar)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgBoxFound)
     except pyauto.ImageNotFoundException:
       logAction(msgNoBoxFound)
@@ -639,7 +646,7 @@ def focusGate(unit=unitBlank, select=1):
     try:
       if select == 1:
         doSelect(0.1)
-      gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9, region=hpBar)
+      gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgAttackMobs + unit)
 
       doAttack(0.3)
@@ -677,7 +684,7 @@ def focusMobs(unit=unitBlank, aura=1, select=1, sidestep=1):
     try:
       if select == 1:
         doSelect(0.1)
-      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=hpBar)
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgAttackMobs + unit)
 
       doAttack(0.1)
@@ -704,7 +711,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       break
     
     try:
-      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=hpBar)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=getHpBar())
       doDeselect()
       logAction(msgBossFound)
       combo = False
@@ -725,7 +732,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
 
     try:
       doSelect(0.1)
-      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=hpBar)
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgAttackMobs + unit)
 
       if interval > 0.3:
@@ -758,7 +765,7 @@ def attackBoss(select=1):
       doAura()
 
     try:
-      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=hpBar)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgAttackBoss)
       doAttack(0.1)
       doAttack(0.1)
@@ -783,7 +790,7 @@ def attackSemiBoss(select=1):
       doAura()
 
     try:
-      boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9, region=hpBar)
+      boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgAttackBoss)
       doAttack()
       time.sleep(0.1)
@@ -810,7 +817,7 @@ def attackLavaGate(select=1):
       doAura()
 
     try:
-      gate = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=hpBar)
+      gate = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgAttackBoss)
       doAttack()
       time.sleep(0.1)
