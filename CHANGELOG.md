@@ -77,3 +77,4 @@ All notable changes to this project will be documented in this file.
 
 - Loop improvements for better response for image reading
 - Change variables, refactor structures
+- Image reading improvements by region sector
