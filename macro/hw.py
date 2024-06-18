@@ -1192,7 +1192,7 @@ def runDungeon(runs=1):
     util.doDeselectPack()
     util.doShortBuffs()
     util.attackBoss()
-    util.lootBox(2)
+    util.lootBox()
 
     util.move(660, 150)
     pyauto.mouseDown(button="right")
@@ -1276,7 +1276,7 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(0.5)
 
-    util.lootBox(2)
+    util.lootBox()
     util.move(620, 150)
     util.doDash(1)
 
@@ -1356,7 +1356,7 @@ def runDungeon(runs=1):
     # Third Boss
     util.doDeselectPack()
     util.attackBoss()
-    util.lootBox(2)
+    util.lootBox()
 
     util.move(520, 100)
     util.doDash(1)
@@ -1480,7 +1480,7 @@ def runDungeon(runs=1):
 
     util.move(700, 250)
     util.moveClick(700, 360)
-    util.finalLootBox(3)
+    util.finalLootBox()
 
     # Start to End Dungeon
     util.endDungeon()

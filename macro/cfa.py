@@ -155,7 +155,7 @@ def runDungeon(runs=1):
 
     time.sleep(1)
     util.attackBoss()
-    util.lootBox()
+    util.lootBox(2)
 
     util.move(720, 385)
     util.doDash(1)
@@ -184,7 +184,7 @@ def runDungeon(runs=1):
     util.doShortBuffs()
     time.sleep(1)
     util.attackBoss()
-    util.lootBox()
+    util.lootBox(2)
 
     util.move(600, 600)
     util.doDash(1.2)

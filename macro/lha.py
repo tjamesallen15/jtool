@@ -377,7 +377,7 @@ def runDungeon(runs=1):
     util.attackBoss()
     util.move(580, 260)
     util.doFade(0.5)
-    util.lootBox()
+    util.lootBox(2)
 
     # First Semi Boss Sequence
     positionDarkArcher()
@@ -482,7 +482,7 @@ def runDungeon(runs=1):
     util.doBattleMode()
     util.doShortBuffs()
     util.attackBoss()
-    util.lootBox()
+    util.lootBox(2)
     util.setBattleMode(False)
 
     # Start to End Dungeon

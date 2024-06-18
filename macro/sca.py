@@ -356,7 +356,7 @@ def runDungeon(runs=1):
     time.sleep(1)
     util.doBattleMode()
     util.attackSemiBoss()
-    util.lootBox(1)
+    util.lootBox(2)
 
     util.setBattleMode(False)
 
@@ -397,7 +397,7 @@ def runDungeon(runs=1):
     util.move(640, 350)
     util.doFade(0.5)
 
-    util.lootBox()
+    util.lootBox(2)
 
     util.setBattleMode(False)
     util.cancelAura(1)

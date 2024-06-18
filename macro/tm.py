@@ -639,7 +639,7 @@ def runDungeon(runs=1):
     util.doShortBuffs()
     util.doBattleMode()
     util.attackBoss()
-    util.lootBox(2)
+    util.lootBox()
     util.setBattleMode(False)
 
     util.move(700, 260)
@@ -652,7 +652,7 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(680, 200)
+    util.move(670, 200)
     util.doDash(1)
     util.doFade(0.5)
 
@@ -705,7 +705,7 @@ def runDungeon(runs=1):
 
     time.sleep(1)
 
-    util.move(500, 400)
+    util.move(400, 500)
     util.doFade(0.5)
 
     util.move(630, 200)
@@ -841,7 +841,7 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(0.5)
 
-    util.lootBox(2)
+    util.lootBox()
 
     # Poerte Sequence
     moving = True
@@ -939,7 +939,7 @@ def runDungeon(runs=1):
     
     # Third Boss
     util.attackBoss()
-    util.lootBox(2)
+    util.lootBox()
 
     util.move(720, 260)
     util.doDash(1)

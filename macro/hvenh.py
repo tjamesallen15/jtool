@@ -603,7 +603,7 @@ def runDungeon(runs=1):
     util.doFade(0.5)
 
     moveToBox()
-    util.lootBox(2)
+    util.lootBox()
 
     # Boars and Snakes Sequence
     moving = True
@@ -640,7 +640,7 @@ def runDungeon(runs=1):
 
     util.move(640, 560)
     util.doFade(0.5)
-    util.lootBox(2)
+    util.lootBox()
     pathFindWhiteSnake()
 
     # Orphidia Sequence II
@@ -708,7 +708,7 @@ def runDungeon(runs=1):
 
     util.move(640, 560)
     util.doFade(0.5)
-    util.lootBox(2)
+    util.lootBox()
     pathFindWhiteSnake()
 
     # Orphidia Sequence III
@@ -776,7 +776,7 @@ def runDungeon(runs=1):
 
     util.move(640, 560)
     util.doFade(0.5)
-    util.finalLootBox(3)
+    util.finalLootBox()
 
     util.setBattleMode(False)
 

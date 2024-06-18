@@ -371,7 +371,7 @@ def doLoot():
     pynboard.release(lootSpace)
     time.sleep(0.3)
 
-def lootBox(sec=1):
+def lootBox(sec=3):
   checking = True
   boxCounter = 0
   while checking:
@@ -385,16 +385,16 @@ def lootBox(sec=1):
       doSelect(0.1)
       box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgBoxFound)
-      doLoot()
     except pyauto.ImageNotFoundException:
       logAction(msgNoBoxFound)
 
+    doLoot()
     boxCounter += 1
     if boxCounter > sec:
       boxCounter = 0
       break
 
-def finalLootBox(sec=2):
+def finalLootBox(sec=4):
   checking = True
   boxCounter = 0
   while checking:
@@ -408,10 +408,10 @@ def finalLootBox(sec=2):
       doSelect(0.1)
       box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgBoxFound)
-      doLoot()
     except pyauto.ImageNotFoundException:
       logAction(msgNoBoxFound)
 
+    doLoot()
     boxCounter += 1
     if boxCounter > sec:
       boxCounter = 0
