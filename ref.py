@@ -24,3 +24,7 @@
 # util.move(700, 150)
 # pyauto.mouseUp(button="right")
 # pyauto.scroll(-10000)
+
+# hpBar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+# im1 = pyauto.screenshot(region=hpBar)
+# im1.save(r"c:\screenshot.png")

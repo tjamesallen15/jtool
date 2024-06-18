@@ -36,6 +36,7 @@ battleMode = 0
 buffsAllowed = 1
 shortBuffsAllowed = 1
 useVeradrix = 0
+auraCounter = 0
 atkType = 0
 difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
@@ -43,6 +44,7 @@ dungeonList = [
   "Hazardous Valley (Medium)",
   "Hazardous Valley (Easy)"
 ]
+hpBar = []
 
 # GLOBAL MESSAGES
 msgStartDg = "Starting Dungeon"
@@ -144,6 +146,10 @@ def initialize(window, frame, mlbl, rlbl):
 
   global runNumberLbl
   runNumberLbl = rlbl
+
+  global hpBar
+  hpBar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+
 
 def setVariables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):
   global battleMode
@@ -258,6 +264,11 @@ def doContBattleMode():
   pyauto.click(button="right")
 
   doVeradrix()
+  global auraCounter
+  auraCounter += 1
+  if auraCounter > 45:
+    doAuraStrict()
+    auraCounter = 0
 
 def doBuffs():
   if buffsAllowed == 1:
@@ -289,9 +300,9 @@ def doShortBuffs():
     pyauto.click(button="right")
     time.sleep(0.5)
 
-    move(640, 670)
-    pyauto.click(button="right")
-    time.sleep(0.5)
+    # move(640, 670)
+    # pyauto.click(button="right")
+    # time.sleep(0.5)
 
 def cancelAura(sec=0):
   move(175, 100)
@@ -372,7 +383,7 @@ def lootBox(sec=1):
 
     try:
       doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgBoxFound)
       doLoot()
     except pyauto.ImageNotFoundException:
@@ -395,7 +406,7 @@ def finalLootBox(sec=2):
 
     try:
       doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9)
+      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgBoxFound)
       doLoot()
     except pyauto.ImageNotFoundException:
@@ -457,6 +468,15 @@ def doAura(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
+def doAuraStrict(sec=0):
+  pynboard.press(bmaura)
+  pynboard.release(bmaura)
+  pynboard.press(bmaura)
+  pynboard.release(bmaura)
+
+  if (sec != 0):
+    time.sleep(sec)
+
 def doAttack(sec=0):
   doVeradrix()
 
@@ -508,6 +528,93 @@ def doAttackStrict(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
+def enterDungeon():
+  entering = True
+  while entering:
+    if not macro:
+      logAction(msgTerminate)
+      entering = False
+      sys.exit()
+      break
+
+    if entering == False:
+      break
+
+    try:
+      enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
+      moveClickRel(15, 15, enterdg, 1)
+      entering = False
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoButtonFound)
+
+def challengeDungeon():
+  challenging = True
+  while challenging:
+    if not macro:
+      logAction(msgTerminate)
+      challenging = False
+      sys.exit()
+      break
+
+    if challenging == False:
+      break
+
+    try:
+      challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
+      moveClickRel(15, 15, challengedg, 1)
+      challenging = False
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgNoButtonFound)
+
+def endDungeon():
+  ending = True
+  endCheckTrack = 0
+  while ending:
+    if not macro:
+      util.logAction(util.msgTerminate)
+      ending = False
+      sys.exit()
+      break
+
+    if ending == False:
+      break
+
+    endCheckTrack += 1
+    if (endCheckTrack >= 60):
+      ending = False
+      break
+
+    try:
+      enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
+      moveClickRel(50, 15, enddungeon, 0.5)
+      ending = False
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgCheckEndDg)
+
+def diceDungeon():
+  dicing = True
+  while dicing:
+    if not macro:
+      logAction(msgTerminate)
+      dicing = False
+      sys.exit()
+      break
+
+    if dicing == False:
+      break
+
+    try:
+      rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
+      moveClickRel(50, 15, rolladice, 0.8)
+      moveClickRel(50, 15, rolladice)
+      dicing = False
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgDiceRoll)
+
 def focusGate(unit=unitBlank, select=1):
   combo = True
   fadeCount = 0
@@ -522,17 +629,20 @@ def focusGate(unit=unitBlank, select=1):
       sys.exit()
       break
 
+    if combo == False:
+      break
+
     try:
       if select == 1:
         doSelect(0.1)
-      gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9)
+      gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgAttackMobs + unit)
 
       doAttack(0.3)
       doAttack(0.3)
     except pyauto.ImageNotFoundException:
-      logAction(msgMobsCleared)
       combo = False
+      logAction(msgMobsCleared)
       break
 
 def focusMobs(unit=unitBlank, aura=1, select=1, sidestep=1):
@@ -563,11 +673,14 @@ def focusMobs(unit=unitBlank, aura=1, select=1, sidestep=1):
     try:
       if select == 1:
         doSelect(0.1)
-      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgAttackMobs + unit)
 
       doAttack(0.1)
       doAttack(0.1)
+
+      if select == 1:
+        doDeselectPack()
     except pyauto.ImageNotFoundException:
       logAction(msgMobsCleared)
       combo = False
@@ -587,7 +700,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       break
     
     try:
-      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=hpBar)
       doDeselect()
       logAction(msgBossFound)
       combo = False
@@ -608,7 +721,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
 
     try:
       doSelect(0.1)
-      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgAttackMobs + unit)
 
       if interval > 0.3:
@@ -641,7 +754,7 @@ def attackBoss(select=1):
       doAura()
 
     try:
-      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgAttackBoss)
       doAttack(0.1)
       doAttack(0.1)
@@ -666,7 +779,7 @@ def attackSemiBoss(select=1):
       doAura()
 
     try:
-      boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgAttackBoss)
       doAttack()
       time.sleep(0.1)
@@ -693,7 +806,7 @@ def attackLavaGate(select=1):
       doAura()
 
     try:
-      gate = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
+      gate = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=hpBar)
       logAction(msgAttackBoss)
       doAttack()
       time.sleep(0.1)

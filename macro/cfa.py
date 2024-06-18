@@ -102,37 +102,9 @@ def runDungeon(runs=1):
 
     util.moveClick(570, 300)
 
-    entering = True
-    while entering:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        entering = False
-        sys.exit()
-        break
-
-      try:
-        enterdg = pyauto.locateOnScreen(util.imgEnterDg, grayscale=False, confidence=.9)
-        util.moveClickRel(15, 15, enterdg, 1)
-        entering = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoButtonFound)
-
-    challenging = True
-    while challenging:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        challenging = False
-        sys.exit()
-        break
-
-      try:
-        challengedg = pyauto.locateOnScreen(util.imgChallengeDg, grayscale=False, confidence=.9)
-        util.moveClickRel(15, 15, challengedg, 1)
-        challenging = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoButtonFound)
+    # Enter Dungeon
+    util.enterDungeon()
+    util.challengeDungeon()
 
     # First Boss
     util.move(570, 300)
@@ -150,7 +122,7 @@ def runDungeon(runs=1):
       util.moveClick(570, 375)
       util.moveClick(570, 375)
       time.sleep(2)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
+      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.hpBar)
       util.logAction(util.msgCheckDialogFound)
       util.moveClickRel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:
@@ -174,7 +146,7 @@ def runDungeon(runs=1):
 
       try:
         util.doSelect(0.1)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.hpBar)
         secondBoss = False
         break
       except pyauto.ImageNotFoundException:
@@ -198,7 +170,7 @@ def runDungeon(runs=1):
         util.moveClick(610, 305)
         util.moveClick(610, 310)
         time.sleep(1)
-        dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
+        dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.hpBar)
         util.logAction(util.msgCheckDialogFound)
         util.moveClickRel(10, 10, dialog, 2)
         checkDialog = False
@@ -222,7 +194,7 @@ def runDungeon(runs=1):
       util.moveClick(540, 440)
       util.moveClick(540, 445)
       time.sleep(1)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
+      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.hpBar)
       util.logAction(util.msgCheckDialogFound)
       util.moveClickRel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:
@@ -231,44 +203,8 @@ def runDungeon(runs=1):
     util.setBattleMode(False)
 
     # Start to End Dungeon
-    ending = True
-    endCheckTrack = 0
-    while ending:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        ending = False
-        sys.exit()
-        break
-
-      endCheckTrack += 1
-      if (endCheckTrack >= 60):
-        ending = False
-        break
-
-      try:
-        enddungeon = pyauto.locateOnScreen(util.imgEndDg, grayscale=False, confidence=.9)
-        util.moveClickRel(50, 15, enddungeon, 0.5)
-        ending = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgCheckEndDg)
-    
-    dicing = True
-    while dicing:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        dicing = False
-        sys.exit()
-        break
-
-      try:
-        rolladice = pyauto.locateOnScreen(util.imgDiceRoll, grayscale=False, confidence=.9)
-        util.moveClickRel(50, 15, rolladice, 0.8)
-        util.moveClickRel(50, 15, rolladice)
-        dicing = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgDiceRoll)
+    util.endDungeon()
+    util.diceDungeon()
 
     runCounter += 1
     util.logAction(util.msgEndDg)

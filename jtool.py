@@ -1,4 +1,5 @@
 import pyautogui as pyauto
+import pygetwindow as pywin
 import pyscreeze
 import keyboard as shortcut
 import os
@@ -114,7 +115,7 @@ def generateGui():
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(0)
+  dgList.current(8)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
@@ -168,7 +169,7 @@ def generateGui():
   shortsLbl.place(x=10, y=105)
 
   global buffs
-  buffs = IntVar(value=1)
+  buffs = IntVar(value=0)
   chkBtnBuffs = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=buffs)
   chkBtnBuffs.place(x=75, y=106)
   # buffs = ttk.Combobox(values=buffList, state="readonly")
