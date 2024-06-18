@@ -50,7 +50,7 @@ All notable changes to this project will be documented in this file.
 
 # v4.51
 
-## v4.50 Fixes
+## v4.51 Fixes
 
 - Fixed glitches in HVENH Automation
 - Fixed glitches in Steamer Crazy (Awakened)
