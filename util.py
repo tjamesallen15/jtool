@@ -15,7 +15,7 @@ select = 'z'
 dash = '1'
 fade = '2'
 attack = ['3', '4', '5']
-buffAttack = ['6']
+veradrix = '6'
 loot = '7'
 fury = '8'
 pots = '9'
@@ -35,6 +35,7 @@ isBattleMode = False
 battleMode = 0
 buffsAllowed = 1
 shortBuffsAllowed = 1
+useVeradrix = 0
 atkType = 0
 difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
@@ -120,6 +121,14 @@ unitSpector = "Spector"
 unitDarkArcher = "Dark Archer"
 unitJason = "Gatekeeper Jason"
 unitLavaGate = "Lava Gate"
+unitMechLion = "Mech Lion"
+unitLihonar = "Lihonar"
+unitEspada = "Espada"
+unitEspadaII = "Espada II"
+unitEspadaIII = "Espada III"
+unitPoerte = "Poerte"
+unitRedonno = "Redonno"
+unitPowerSupply = "Power Supply"
 unitBox = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -135,7 +144,7 @@ def initialize(window, frame, mlbl, rlbl):
   global runNumberLbl
   runNumberLbl = rlbl
 
-def setVariables(mode=0, buff=1, sbuffs=1, atk=0):
+def setVariables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):
   global battleMode
   battleMode = int(mode)
 
@@ -150,6 +159,9 @@ def setVariables(mode=0, buff=1, sbuffs=1, atk=0):
 
   global atkType
   atkType = int(atk)
+
+  global useVeradrix
+  useVeradrix = vera
 
 def setCabalWindow(window):
   global cabalwindow
@@ -231,9 +243,20 @@ def doBattleMode():
     isBattleMode = True
     time.sleep(5)
 
+    pynboard.press(bmaura)
+    pynboard.release(bmaura)
+    time.sleep(1)
+
+def doVeradrix():
+  if useVeradrix == 1:
+    pynboard.press(veradrix)
+    pynboard.release(veradrix)
+
 def doContBattleMode():
   move(790, 670)
   pyauto.click(button="right")
+
+  doVeradrix()
 
 def doBuffs():
   if buffsAllowed == 1:
@@ -392,6 +415,8 @@ def autoEssentials():
   pynboard.press(loot)
   pynboard.release(loot)
 
+  doVeradrix()
+
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
@@ -403,6 +428,8 @@ def lootEssentials():
   pynboard.release(pots)
   pynboard.press(loot)
   pynboard.release(loot)
+
+  doVeradrix()
 
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
@@ -430,6 +457,8 @@ def doAura(sec=0):
     time.sleep(sec)
 
 def doAttack(sec=0):
+  doVeradrix()
+
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -478,11 +507,13 @@ def doAttackStrict(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def focusGate(unit=unitBlank):
+def focusGate(unit=unitBlank, select=1):
   combo = True
   fadeCount = 0
 
-  doSelect(0.1)
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -491,7 +522,8 @@ def focusGate(unit=unitBlank):
       break
 
     try:
-      doSelect(0.1)
+      if select == 1:
+        doSelect(0.1)
       gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 

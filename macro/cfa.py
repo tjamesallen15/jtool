@@ -32,6 +32,63 @@ def initialize(frame, btn, runs=1):
   startButton.config(state="active")
   rootFrame.update()
 
+def positionSecondBoss():
+  util.move(700, 350)
+  util.doFade(0.5)
+
+  util.move(200, 320)
+  util.doDash(1.2)
+  util.move(200, 520)
+  util.doDash(1.2)
+
+  util.move(600, 520)
+  util.doDash(1.2)
+
+  util.move(200, 320)
+  util.doDash(1.2)
+
+  util.move(200, 420)
+  util.doDash(1.2)
+
+  util.move(620, 280)
+  util.doFade(0.5)
+  util.focusMobs()
+
+  util.move(800, 360)
+  util.doFade(0.5)
+
+  util.move(1000, 200)
+  util.doDash(1.2)
+  util.doFade(0.5)
+
+def positionFinalBoss():
+  util.move(250, 520)
+  util.doDash(1.2)
+
+  util.move(550, 600)
+  util.doDash(1.2)
+
+  util.move(350, 520)
+  util.doDash(1.2)
+
+  util.move(350, 520)
+  util.doDash(1.2)
+
+  util.move(350, 520)
+  util.doDash(1.2)
+
+  util.move(620, 650)
+  util.doDash(1.2)
+
+  util.move(350, 620)
+  util.doDash(1.2)
+
+  util.move(350, 560)
+  util.doDash(1.2)
+
+  util.move(350, 560)
+  util.doDash(1.2)
+
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
@@ -107,34 +164,7 @@ def runDungeon(runs=1):
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoCheckDialogFound)
 
-    util.move(700, 350)
-    util.doFade(0.5)
-
-    util.move(200, 320)
-    util.doDash(1.2)
-    util.move(200, 520)
-    util.doDash(1.2)
-
-    util.move(600, 520)
-    util.doDash(1.2)
-
-    util.move(200, 320)
-    util.doDash(1.2)
-
-    util.move(200, 420)
-    util.doDash(1.2)
-
-    util.move(620, 280)
-    util.doFade(0.5)
-    util.focusMobs()
-    
-    util.move(800, 360)
-    util.doFade(0.5)
-
-    util.move(1000, 200)
-    util.doDash(1.2)
-    util.doFade(0.5)
-    
+    positionSecondBoss()
     secondBoss = True
     while secondBoss:
       if secondBoss == False:
@@ -174,33 +204,10 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoCheckDialogFound)
 
-    util.move(250, 520)
-    util.doDash(1.2)
-
-    util.move(550, 600)
-    util.doDash(1.2)
-
-    util.move(350, 520)
-    util.doDash(1.2)
-
-    util.move(350, 520)
-    util.doDash(1.2)
-
-    util.move(350, 520)
-    util.doDash(1.2)
-
-    util.move(620, 650)
-    util.doDash(1.2)
-
-    util.move(350, 620)
-    util.doDash(1.2)
-
-    util.move(350, 560)
-    util.doDash(1.2)
-
-    util.move(350, 560)
-    util.doDash(1.2)
-
+    # Final Boss
+    positionFinalBoss()
+    util.doBattleMode()
+    util.doShortBuffs()
     time.sleep(1)
     util.attackBoss()
     util.lootBox()
