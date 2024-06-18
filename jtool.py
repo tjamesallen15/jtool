@@ -38,12 +38,7 @@ dungeonList = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
-  "Hazardous Valley (Easy)",
-  "Steamer Crazy (Awakened)",
-  "Catacomb Frost (Awakened)",
-  "Lava Hellfire (Awakened)",
-  "Holy Windmill",
-  "Terminus Machina"
+  "Hazardous Valley (Easy)"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
 bmList = [1, 0]
@@ -114,7 +109,7 @@ def generateGui():
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(8)
+  dgList.current(0)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
