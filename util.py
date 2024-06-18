@@ -45,6 +45,7 @@ dungeonList = [
   "Hazardous Valley (Easy)"
 ]
 hpBar = []
+hpBarMode = []
 
 # GLOBAL MESSAGES
 msgStartDg = "Starting Dungeon"
@@ -149,6 +150,9 @@ def initialize(window, frame, mlbl, rlbl):
 
   global hpBar
   hpBar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+
+  global hpBarMode
+  hpBarMode = (int(cabalwindow[0] + 350), int(cabalwindow[1] + 25), 325, 30)
 
 
 def setVariables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):

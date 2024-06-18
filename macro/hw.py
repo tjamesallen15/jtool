@@ -1231,7 +1231,7 @@ def runDungeon(runs=1):
     util.focusGate(util.unitGateTwo)
     
     util.doDeselectPack()
-    util.moveClick(400, 260)
+    util.move(400, 240)
     util.doDash(1)
     util.doFade(0.5)
 
@@ -1326,7 +1326,7 @@ def runDungeon(runs=1):
 
     util.move(1000, 350)
     util.doDash(1)
-    util.doFade(1)
+    util.doFade(0.5)
 
     # Third Sequence
     moving = True
@@ -1351,6 +1351,10 @@ def runDungeon(runs=1):
 
     # Third Boss
     util.doDeselectPack()
+    util.move(620, 500)
+    util.doDash(1)
+    util.doFade(0.5)
+
     util.attackBoss()
     util.lootBox()
 
