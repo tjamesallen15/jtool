@@ -601,22 +601,22 @@ def endDungeon():
       logAction(msgCheckEndDg)
 
 def diceDungeon():
-  # dicing = True
-  # while dicing:
-  #   if not macro:
-  #     logAction(msgTerminate)
-  #     dicing = False
-  #     sys.exit()
-  #     break
+  dicing = True
+  while dicing:
+    if not macro:
+      logAction(msgTerminate)
+      dicing = False
+      sys.exit()
+      break
 
-  #   try:
-  #     rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
-  #     moveClickRel(50, 15, rolladice, 0.8)
-  #     # moveClickRel(50, 15, rolladice)
-  #     dicing = False
-  #     break
-  #   except pyauto.ImageNotFoundException:
-  #     logAction(msgDiceRoll)
+    try:
+      rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
+      moveClickRel(50, 15, rolladice, 0.8)
+      # moveClickRel(50, 15, rolladice)
+      dicing = False
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgDiceRoll)
 
   confirming = True
   while confirming:
