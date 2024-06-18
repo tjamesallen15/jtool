@@ -15,7 +15,7 @@ select = 'z'
 dash = '1'
 fade = '2'
 attack = ['3', '4', '5']
-buffAttack = ['6']
+veradrix = '6'
 loot = '7'
 fury = '8'
 pots = '9'
@@ -35,6 +35,7 @@ isBattleMode = False
 battleMode = 0
 buffsAllowed = 1
 shortBuffsAllowed = 1
+useVeradrix = 0
 atkType = 0
 difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
@@ -79,7 +80,8 @@ msgNoCheckDialogFound = "No Check Dialog Found"
 msgGateFound = "Gate Found "
 msgNoGateFound = "No Gate Found"
 
-# GLOBAL PICTURES
+# GLOBAL IMAGES
+imgAppIcon = "img/icon.png"
 imgCabalWindow = "img/cabalwindow.jpg"
 imgChallengeDg = "img/challengedg.jpg"
 imgDungeon = "img/dungeon.jpg"
@@ -116,6 +118,18 @@ unitLegrin = "Legrin of Wind"
 unitLeo = "Leo of Wind"
 unitEspi = "Espi of Wind"
 unitDraco = "Draco of Wind"
+unitSpector = "Spector"
+unitDarkArcher = "Dark Archer"
+unitJason = "Gatekeeper Jason"
+unitLavaGate = "Lava Gate"
+unitMechLion = "Mech Lion"
+unitLihonar = "Lihonar"
+unitEspada = "Espada"
+unitEspadaII = "Espada II"
+unitEspadaIII = "Espada III"
+unitPoerte = "Poerte"
+unitRedonno = "Redonno"
+unitPowerSupply = "Power Supply"
 unitBox = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -131,7 +145,7 @@ def initialize(window, frame, mlbl, rlbl):
   global runNumberLbl
   runNumberLbl = rlbl
 
-def setVariables(mode=0, buff=1, sbuffs=1, atk=0):
+def setVariables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):
   global battleMode
   battleMode = int(mode)
 
@@ -146,6 +160,9 @@ def setVariables(mode=0, buff=1, sbuffs=1, atk=0):
 
   global atkType
   atkType = int(atk)
+
+  global useVeradrix
+  useVeradrix = vera
 
 def setCabalWindow(window):
   global cabalwindow
@@ -227,9 +244,20 @@ def doBattleMode():
     isBattleMode = True
     time.sleep(5)
 
+    pynboard.press(bmaura)
+    pynboard.release(bmaura)
+    time.sleep(1)
+
+def doVeradrix():
+  if useVeradrix == 1:
+    pynboard.press(veradrix)
+    pynboard.release(veradrix)
+
 def doContBattleMode():
   move(790, 670)
   pyauto.click(button="right")
+
+  doVeradrix()
 
 def doBuffs():
   if buffsAllowed == 1:
@@ -388,6 +416,8 @@ def autoEssentials():
   pynboard.press(loot)
   pynboard.release(loot)
 
+  doVeradrix()
+
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
@@ -399,6 +429,8 @@ def lootEssentials():
   pynboard.release(pots)
   pynboard.press(loot)
   pynboard.release(loot)
+
+  doVeradrix()
 
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
@@ -426,6 +458,8 @@ def doAura(sec=0):
     time.sleep(sec)
 
 def doAttack(sec=0):
+  doVeradrix()
+
   if isBattleMode:
     pynboard.press(bm3atk)
     pynboard.release(bm3atk)
@@ -474,11 +508,13 @@ def doAttackStrict(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def focusGate(unit=unitBlank):
+def focusGate(unit=unitBlank, select=1):
   combo = True
   fadeCount = 0
 
-  doSelect(0.1)
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -487,7 +523,8 @@ def focusGate(unit=unitBlank):
       break
 
     try:
-      doSelect(0.1)
+      if select == 1:
+        doSelect(0.1)
       gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
@@ -498,12 +535,13 @@ def focusGate(unit=unitBlank):
       combo = False
       break
 
-def focusMobs(unit=unitBlank):
+def focusMobs(unit=unitBlank, aura=1, select=1, sidestep=1):
   combo = True
   fadeCount = 0
 
-  doDeselectPack()
-  doSelect(0.1)
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -511,9 +549,10 @@ def focusMobs(unit=unitBlank):
       sys.exit()
       break
 
-    try:
-      doSelect(0.1)
-
+    if aura == 1:
+      doAura()
+    
+    if sidestep == 1:
       if (fadeCount == 20):
         fadeCount = 0
         moveClick(700, 440, 0.2)
@@ -521,11 +560,14 @@ def focusMobs(unit=unitBlank):
       else:
         fadeCount += 1
 
+    try:
+      if select == 1:
+        doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
-      doAttack(0.3)
-      doAttack(0.3)
+      doAttack(0.1)
+      doAttack(0.1)
     except pyauto.ImageNotFoundException:
       logAction(msgMobsCleared)
       combo = False
@@ -583,10 +625,12 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       combo = False
       break
 
-def attackBoss():
+def attackBoss(select=1):
   combo = True
 
-  doSelect(0.1)
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -606,9 +650,12 @@ def attackBoss():
       combo = False
       break
 
-def attackSemiBoss():
+def attackSemiBoss(select=1):
   combo = True
-  doSelect(0.1)
+  
+  if select == 1:
+    doSelect(0.1)
+
   while combo:
     if not macro:
       logAction(msgTerminate)
@@ -620,6 +667,33 @@ def attackSemiBoss():
 
     try:
       boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9)
+      logAction(msgAttackBoss)
+      doAttack()
+      time.sleep(0.1)
+      doAttack()
+      time.sleep(0.1)
+    except pyauto.ImageNotFoundException:
+      logAction(msgBossKilled)
+      combo = False
+      break
+
+def attackLavaGate(select=1):
+  combo = True
+  
+  if select == 1:
+    doSelect(0.1)
+
+  while combo:
+    if not macro:
+      logAction(msgTerminate)
+      combo = False
+      break
+
+    if isBattleMode == False:
+      doAura()
+
+    try:
+      gate = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackBoss)
       doAttack()
       time.sleep(0.1)

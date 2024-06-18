@@ -12,6 +12,9 @@ import macro.hva as hva
 import macro.hvenh as hvenh
 import macro.sca as sca
 import macro.hw as hw
+import macro.cfa as cfa
+import macro.lha as lha
+import macro.tm as tm
 
 from tkinter import *
 from tkinter import ttk
@@ -26,15 +29,21 @@ masterList = [
   "Hazardous Valley (Medium)",
   "Hazardous Valley (Easy)",
   "Steamer Crazy (Awakened)",
-  "Holy Windmill"
+  "Catacomb Frost (Awakened)",
+  "Lava Hellfire (Awakened)",
+  "Holy Windmill",
+  "Terminus Machina"
 ]
 dungeonList = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
   "Hazardous Valley (Easy)",
-  # "Steamer Crazy (Awakened)",
-  # "Holy Windmill"
+  "Steamer Crazy (Awakened)",
+  "Catacomb Frost (Awakened)",
+  "Lava Hellfire (Awakened)",
+  "Holy Windmill",
+  "Terminus Machina"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
 bmList = [1, 0]
@@ -42,9 +51,9 @@ buffList = [1, 0]
 shortList = [1, 0]
 appFont = "Tahoma 10"
 
-frameSize = "330x200"
+frameSize = "330x230"
 appName = "Cabal JTool "
-version = "v4.51"
+version = "v4.95"
 appFullName = appName + version
 dgList = []
 runCount = []
@@ -56,6 +65,7 @@ battlemode = 0
 buffs = 1
 shorts = 1
 atk = 0
+veras = 0
 
 def start():
   cabalwindow = pyauto.locateOnScreen(util.imgCabalWindow, grayscale=False, confidence=.9)
@@ -65,9 +75,11 @@ def start():
   short = shorts.get()
   runs = runCount.get()
   atktype = atk.get()
+  vera = veras.get()
 
   util.initialize(cabalwindow, rootFrame, macroLbl, runNumberLbl)
-  util.setVariables(mode, buff, short, atktype)
+  util.setVariables(mode, buff, short, atktype, vera)
+
   if (choice == masterList[0]):
     hva.initialize(rootFrame, startButton, runs)
   elif (choice == masterList[1] or choice == masterList[2] or choice == masterList[3]):
@@ -75,7 +87,13 @@ def start():
   elif (choice == masterList[4]):
     sca.initialize(rootFrame, startButton, runs)
   elif (choice == masterList[5]):
+    cfa.initialize(rootFrame, startButton, runs)
+  elif (choice == masterList[6]):
+    lha.initialize(rootFrame, startButton, runs)
+  elif (choice == masterList[7]):
     hw.initialize(rootFrame, startButton, runs)
+  elif (choice == masterList[8]):
+    tm.initialize(rootFrame, startButton, runs)
 
 def generateGui():
   # CREATE FRAME
@@ -85,6 +103,9 @@ def generateGui():
   rootFrame.resizable(0, 0)
   rootFrame.geometry(frameSize)
 
+  photo = PhotoImage(file = util.imgAppIcon)
+  rootFrame.iconphoto(False, photo)
+
   rootFrame.option_add("*TCombobox*Listbox.font", appFont)
   rootFrame.option_add("*Font", appFont)
 
@@ -93,7 +114,7 @@ def generateGui():
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(0)
+  dgList.current(8)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
@@ -179,18 +200,19 @@ def generateGui():
 
   global atk
   atk = IntVar(value=0)
-  checkBtnRun = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
-  checkBtnRun.place(x=75, y=166)
+  checkBtnAtk = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
+  checkBtnAtk.place(x=75, y=166)
+
+  global veraLbl
+  veraLbl = Label(rootFrame, text="Veradrix:")
+  veraLbl.place(x=10, y=195)
+
+  global veras
+  veras = IntVar(value=0)
+  checkBtnVera = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
+  checkBtnVera.place(x=75, y=196)
 
   rootFrame.mainloop()
 
 # GENERATE MAIN
 generateGui()
-
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.setCabalWindow(cabalwindow)
-# util.goCabalWindow()
-
-# util.move(520, 200)
-
-# util.move(620, 230)
