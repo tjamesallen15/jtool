@@ -103,6 +103,9 @@ def generateGui():
   rootFrame.resizable(0, 0)
   rootFrame.geometry(frameSize)
 
+  photo = PhotoImage(file = util.imgAppIcon)
+  rootFrame.iconphoto(False, photo)
+
   rootFrame.option_add("*TCombobox*Listbox.font", appFont)
   rootFrame.option_add("*Font", appFont)
 

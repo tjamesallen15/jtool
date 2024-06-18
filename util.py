@@ -80,7 +80,8 @@ msgNoCheckDialogFound = "No Check Dialog Found"
 msgGateFound = "Gate Found "
 msgNoGateFound = "No Gate Found"
 
-# GLOBAL PICTURES
+# GLOBAL IMAGES
+imgAppIcon = "img/icon.png"
 imgCabalWindow = "img/cabalwindow.jpg"
 imgChallengeDg = "img/challengedg.jpg"
 imgDungeon = "img/dungeon.jpg"
