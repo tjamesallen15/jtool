@@ -51,9 +51,9 @@ buffList = [1, 0]
 shortList = [1, 0]
 appFont = "Tahoma 10"
 
-frameSize = "330x200"
+frameSize = "330x230"
 appName = "Cabal JTool "
-version = "v4.61"
+version = "v4.95"
 appFullName = appName + version
 dgList = []
 runCount = []
@@ -65,6 +65,7 @@ battlemode = 0
 buffs = 1
 shorts = 1
 atk = 0
+veras = 0
 
 def start():
   cabalwindow = pyauto.locateOnScreen(util.imgCabalWindow, grayscale=False, confidence=.9)
@@ -74,10 +75,7 @@ def start():
   short = shorts.get()
   runs = runCount.get()
   atktype = atk.get()
-  vera = 1
-
-  # if choice == masterList[8]:
-  #   vera == 1
+  vera = veras.get()
 
   util.initialize(cabalwindow, rootFrame, macroLbl, runNumberLbl)
   util.setVariables(mode, buff, short, atktype, vera)
@@ -199,22 +197,19 @@ def generateGui():
 
   global atk
   atk = IntVar(value=0)
-  checkBtnRun = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
-  checkBtnRun.place(x=75, y=166)
+  checkBtnAtk = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
+  checkBtnAtk.place(x=75, y=166)
+
+  global veraLbl
+  veraLbl = Label(rootFrame, text="Veradrix:")
+  veraLbl.place(x=10, y=195)
+
+  global veras
+  veras = IntVar(value=0)
+  checkBtnVera = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
+  checkBtnVera.place(x=75, y=196)
 
   rootFrame.mainloop()
 
 # GENERATE MAIN
 generateGui()
-
-# util.move(520, 200)
-# util.move(620, 230)
-
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.setCabalWindow(cabalwindow)
-# util.goCabalWindow()
-
-
-
-# # util.move(680, 380)
-# util.doDash()

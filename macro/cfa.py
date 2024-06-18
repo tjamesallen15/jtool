@@ -52,14 +52,6 @@ def positionSecondBoss():
 
   util.move(620, 280)
   util.doFade(0.5)
-  util.focusMobs()
-
-  util.move(800, 360)
-  util.doFade(0.5)
-
-  util.move(1000, 200)
-  util.doDash(1.2)
-  util.doFade(0.5)
 
 def positionFinalBoss():
   util.move(250, 520)
@@ -165,6 +157,16 @@ def runDungeon(runs=1):
       util.logAction(util.msgNoCheckDialogFound)
 
     positionSecondBoss()
+
+    util.focusMobs(util.unitSpector)
+
+    util.move(800, 360)
+    util.doFade(0.5)
+
+    util.move(1000, 200)
+    util.doDash(1.2)
+    util.doFade(0.5)
+
     secondBoss = True
     while secondBoss:
       if secondBoss == False:

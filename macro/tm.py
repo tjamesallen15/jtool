@@ -287,12 +287,10 @@ def pathFind(unit=util.unitBlank):
         break
   
   if unit == util.unitEspada or unit == util.unitEspadaII or unit == util.unitEspadaIII:
-    util.focusMobs(unit, 0)
+    util.focusMobs(unit, 1, 0)
 
-  interval = 0.3  
   if bossFound == 0 and util.atkType == 0 and unit == util.unitRedonno:
-    interval = 0.8
-    util.attackMobs(unit, 1, interval)
+    util.focusMobs(unit, 1, 0)
   elif bossFound == 0:
     util.attackMobs(unit)
 
@@ -965,7 +963,10 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
 
-    util.focusGate(util.unitGateThree)
+    util.focusGate(util.unitGateFour)
+
+    util.doBattleMode()
+    util.doShortBuffs()
 
     # Final Boss Sequence
     moving = True
@@ -994,8 +995,6 @@ def runDungeon(runs=1):
     util.doFade(0.5)
 
     # Final Boss
-    util.doBattleMode()
-    util.doShortBuffs()
     util.attackBoss()
     util.lootBox(2)
     util.setBattleMode(False)

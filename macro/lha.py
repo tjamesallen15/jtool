@@ -463,7 +463,7 @@ def runDungeon(runs=1):
     # Gate Sequence
     positionLavaGate()
     pathFindLavaGate(util.unitLavaGate)
-    util.focusMobs(util.unitLavaGate, 0)
+    util.focusMobs(util.unitLavaGate, 1, 0)
 
     moving = True
     while moving:
@@ -485,7 +485,7 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
     
-    util.focusMobs(util.unitLavaGate, 0)
+    util.focusMobs(util.unitLavaGate, 1, 0)
 
     # Boss Sequence
     positionBoss()

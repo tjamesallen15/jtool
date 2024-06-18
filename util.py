@@ -534,7 +534,7 @@ def focusGate(unit=unitBlank, select=1):
       combo = False
       break
 
-def focusMobs(unit=unitBlank, select=1):
+def focusMobs(unit=unitBlank, aura=1, select=1, sidestep=1):
   combo = True
   fadeCount = 0
 
@@ -548,10 +548,10 @@ def focusMobs(unit=unitBlank, select=1):
       sys.exit()
       break
 
-    try:
-      if select == 1:
-        doSelect(0.1)
-
+    if aura == 1:
+      doAura()
+    
+    if sidestep == 1:
       if (fadeCount == 20):
         fadeCount = 0
         moveClick(700, 440, 0.2)
@@ -559,11 +559,14 @@ def focusMobs(unit=unitBlank, select=1):
       else:
         fadeCount += 1
 
+    try:
+      if select == 1:
+        doSelect(0.1)
       mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9)
       logAction(msgAttackMobs + unit)
 
-      doAttack(0.3)
-      doAttack(0.3)
+      doAttack(0.1)
+      doAttack(0.1)
     except pyauto.ImageNotFoundException:
       logAction(msgMobsCleared)
       combo = False

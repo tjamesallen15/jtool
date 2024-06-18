@@ -58,6 +58,22 @@ All notable changes to this project will be documented in this file.
 
 # v4.61
 
-## Features
+## v4.61 Features
 
 - Started Catacomb Frost (Awakened) for Development
+
+# v4.95
+
+## v4.95 Features
+
+- Added Lava Hellfire (Awakened) for Development Phase
+- Added Holy Windmill for Development Phase
+- Added Terminus Machina for Development Phase
+- Added Range Check
+- Added Veradrix Check
+- Change Combobox UI to Checkbox
+
+## v4.95 Fixes
+
+- Loop improvements for better response for image reading
+- Change variables, refactor structures
