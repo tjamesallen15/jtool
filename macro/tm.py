@@ -375,6 +375,20 @@ def pathFindGateOnly(unit=util.unitBlank):
 
     if unit == util.unitGateFour:
       try:
+        util.moveClick(450, 260)
+        util.doSelect(0.1)
+        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
+        util.logAction(util.msgGateFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
+
+      try:
         util.moveClick(500, 260)
         util.doSelect(0.1)
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
@@ -389,7 +403,35 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
 
       try:
+        util.moveClick(550, 260)
+        util.doSelect(0.1)
+        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
+        util.logAction(util.msgGateFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
+
+      try:
         util.moveClick(600, 260)
+        util.doSelect(0.1)
+        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
+        util.logAction(util.msgGateFound + unit)
+        pathing = False
+        util.logAction(util.msgPathStop)
+        break
+      except pyauto.ImageNotFoundException:
+        util.logAction(util.msgNoGateFound)
+
+      if pathing == False:
+        break
+
+      try:
+        util.moveClick(650, 260)
         util.doSelect(0.1)
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgGateFound + unit)
@@ -773,14 +815,14 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(800, 360)
+    util.move(400, 360)
     util.doFade(0.5)
 
-    util.move(540, 260)
+    util.move(550, 260)
     util.doDash(1)
     util.doFade(0.5)
 
-    util.move(540, 260)
+    util.move(550, 260)
     util.doDash(1)
     util.doFade(0.5)
 

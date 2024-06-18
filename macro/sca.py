@@ -70,7 +70,7 @@ def pathFind(unit):
 
     try:
       util.moveClick(620, 250)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.getHpBar())
+      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
       portalCounter += 1
       util.logAction(util.msgCheckDialogFound)
       util.moveClickRel(10, 10, dialog, 2)
@@ -125,7 +125,7 @@ def pathFind(unit):
 
     try:
       util.moveClick(590, 250)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.getHpBar())
+      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
       portalCounter += 1
       util.logAction(util.msgCheckDialogFound)
       util.moveClickRel(10, 10, dialog, 2)
@@ -180,7 +180,7 @@ def pathFind(unit):
 
     try:
       util.moveClick(650, 250)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9, region=util.getHpBar())
+      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
       portalCounter += 1
       util.logAction(util.msgCheckDialogFound)
       util.moveClickRel(10, 10, dialog, 2)

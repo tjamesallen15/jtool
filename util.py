@@ -78,6 +78,7 @@ msgBuffs = "Buffing"
 msgShortBuffs = "Buffing Shorts"
 msgBattleModeTwo = "Doing Mode II"
 msgDiceRoll = "Check Dice Roll"
+msgDiceRollOkay = "Check Dice Roll Okay"
 msgCheckDialogFound =  "Check Dialog Found"
 msgNoCheckDialogFound = "No Check Dialog Found"
 msgGateFound = "Gate Found "
@@ -96,6 +97,7 @@ imgBoss = "img/boss.jpg"
 imgSemiBoss = "img/semiboss.jpg"
 imgMobs = "img/mobs.jpg"
 imgDiceRoll = "img/rolladice.jpg"
+imgDiceOkay = "img/diceokay.jpg"
 imgCheckDialog = "img/checkdialog.jpg"
 imgBox = "img/box.jpg"
 imgGate = "img/gate.jpg"
@@ -226,7 +228,6 @@ def getHpBar():
     return hpBarMode
   else:
     return hpBar
-  
 
 def terminate():
   logAction(msgExit)
@@ -584,7 +585,7 @@ def endDungeon():
   endCheckTrack = 0
   while ending:
     if not macro:
-      util.logAction(util.msgTerminate)
+      logAction(util.msgTerminate)
       ending = False
       sys.exit()
       break
@@ -620,11 +621,31 @@ def diceDungeon():
     try:
       rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
       moveClickRel(50, 15, rolladice, 0.8)
-      moveClickRel(50, 15, rolladice)
+      # moveClickRel(50, 15, rolladice)
       dicing = False
       break
     except pyauto.ImageNotFoundException:
       logAction(msgDiceRoll)
+
+  confirming = True
+  while confirming:
+    if not macro:
+      logAction(msgTerminate)
+      confirming = False
+      sys.exit()
+      break
+
+    if confirming == False:
+      break
+
+    try:
+      rolladice = pyauto.locateOnScreen(imgDiceOkay, grayscale=False, confidence=.9)
+      # moveClickRel(10, 15, rolladice, 0.8)
+      moveClickRel(10, 15, rolladice)
+      confirming = False
+      break
+    except pyauto.ImageNotFoundException:
+      logAction(msgDiceRollOkay)
 
 def focusGate(unit=unitBlank, select=1):
   combo = True
