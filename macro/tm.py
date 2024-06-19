@@ -745,14 +745,14 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    time.sleep(1)
+    # time.sleep(1)
 
-    util.move(400, 500)
-    util.doFade(0.5)
+    # util.move(400, 500)
+    # util.doFade(0.5)
 
-    util.move(630, 200)
-    util.doDash(1)
-    util.doFade(0.5)
+    # util.move(630, 200)
+    # util.doDash(1)
+    # util.doFade(0.5)
 
     # Gate II
     moving = True
@@ -781,6 +781,10 @@ def runDungeon(runs=1):
     util.doDash(1)
     util.doFade(0.5)
 
+    util.move(660, 260)
+    util.doDash(1)
+    util.doFade(0.5)
+
     # Espada Sequence
     moving = True
     counter = 0
@@ -794,7 +798,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 6:
+      if counter > 5:
         moving = False
         break
 
@@ -839,7 +843,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 6:
+      if counter > 4:
         moving = False
         break
 
@@ -868,7 +872,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 6:
+      if counter > 4:
         moving = False
         break
 
@@ -887,6 +891,10 @@ def runDungeon(runs=1):
     util.doFade(0.5)
 
     util.lootBox()
+
+    util.move(640, 260)
+    util.doDash(1)
+    util.doFade(0.5)
 
     # Poerte Sequence
     moving = True
@@ -934,7 +942,7 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(660, 260)
+    util.move(650, 260)
     util.doDash(1)
     util.doFade(0.5)
 
@@ -983,8 +991,13 @@ def runDungeon(runs=1):
         util.logAction(util.msgNoBossFound)
     
     # Third Boss
+    util.doBattleMode()
     util.attackBoss()
+    util.setBattleMode(False)
     util.lootBox()
+
+    if util.battleMode == 1:
+      time.sleep(20)
 
     util.move(720, 260)
     util.doDash(1)
@@ -1015,6 +1028,7 @@ def runDungeon(runs=1):
 
     # Final Boss
     util.doBattleMode()
+    util.doAuraStrict()
     util.doShortBuffs()
 
     # Final Boss Sequence

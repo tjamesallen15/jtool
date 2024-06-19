@@ -16,6 +16,7 @@ import macro.hw as hw
 import macro.cfa as cfa
 import macro.lha as lha
 import macro.tm as tm
+import macro.pca as pca
 
 from tkinter import *
 from tkinter import ttk
@@ -33,7 +34,8 @@ masterList = [
   "Catacomb Frost (Awakened)",
   "Lava Hellfire (Awakened)",
   "Holy Windmill",
-  "Terminus Machina"
+  "Terminus Machina",
+  "Panic Cave (Awakened)"
 ]
 dungeonList = [
   "Hazardous Valley (Awakened)",
@@ -44,9 +46,10 @@ dungeonList = [
   "Catacomb Frost (Awakened)",
   "Lava Hellfire (Awakened)",
   "Holy Windmill",
-  "Terminus Machina"
+  "Terminus Machina",
+  "Panic Cave (Awakened)"
 ]
-runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
+runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 40, 50]
 bmList = [1, 0]
 buffList = [1, 0]
 shortList = [1, 0]
@@ -95,6 +98,8 @@ def start():
     hw.initialize(rootFrame, startButton, runs)
   elif (choice == masterList[8]):
     tm.initialize(rootFrame, startButton, runs)
+  elif (choice == masterList[9]):
+    pca.initialize(rootFrame, startButton, runs)
 
 def generateGui():
   # CREATE FRAME

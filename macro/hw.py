@@ -233,7 +233,6 @@ def pathFindGateOnly(unit=util.unitBlank):
         if pathing == False:
           break
 
-
 def pathFindLegrinGate(unit=util.unitBlank):
   pathing = True
   bossFound = 0
