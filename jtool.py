@@ -110,7 +110,7 @@ def generateGui():
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(7)
+  dgList.current(0)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
