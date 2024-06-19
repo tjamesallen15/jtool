@@ -284,7 +284,7 @@ def pathFindBoss(unit):
       util.doSelect(0.1)
       mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound)
-      util.focusMobs(util.unitWhiteSnake)
+      util.focusMobs(util.unitWhiteSnake, 0, 0)
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
 
@@ -579,9 +579,9 @@ def runDungeon(runs=1):
 
     # First Boss
     util.doDeselectPack()
-    util.move(800, 470)
-    util.doDash(1)
-    util.move(500, 300)
+    util.move(630, 520)
+    # util.doDash(1)
+    # util.move(500, 300)
     util.doFade(0.1)
 
     firstBoss = True
@@ -599,11 +599,11 @@ def runDungeon(runs=1):
     
     util.attackBoss()
     util.doDeselectPack()
-    util.moveClick(620, 260)
+    util.moveClick(590, 260)
     util.doFade(1.5)
     util.doFade(0.5)
 
-    moveToBox()
+    # moveToBox() z
     util.lootBox()
 
     # Boars and Snakes Sequence
