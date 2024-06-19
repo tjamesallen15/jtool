@@ -114,13 +114,14 @@ def generateGui():
 
   rootFrame.option_add("*TCombobox*Listbox.font", appFont)
   rootFrame.option_add("*Font", appFont)
+  # rootFrame.eval('tk::PlaceWindow . right')
 
   dungeon = Label(rootFrame, text="Dungeon: ")
   dungeon.place(x=10, y=10)
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(7)
+  dgList.current(9)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 

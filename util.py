@@ -210,20 +210,18 @@ def moveClickRel(x, y, ref, sec=0):
     time.sleep(sec)
 
 def logRun(runNumber):
-  # runBuilder = StringVar()
-  # runBuilder = msgRunNumber + str(runNumber)
-  # print(runBuilder)
-  # runNumberLbl.config(text=runBuilder)
-  # rootFrame.update()
-  print("LOGRUN")
+  runBuilder = StringVar()
+  runBuilder = msgRunNumber + str(runNumber)
+  print(runBuilder)
+  runNumberLbl.config(text=runBuilder)
+  rootFrame.update()
 
 def logAction(message):
-  # msgBuilder = StringVar()
-  # msgBuilder = msgAction + message
-  # print(msgBuilder)
-  # macroLbl.config(text=msgBuilder)
-  # rootFrame.update()
-  print("LOGACTION")
+  msgBuilder = StringVar()
+  msgBuilder = msgAction + message
+  print(msgBuilder)
+  macroLbl.config(text=msgBuilder)
+  rootFrame.update()
   
 def getHpBar():
   if isBattleMode and atkType == 1:
