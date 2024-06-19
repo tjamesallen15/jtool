@@ -623,7 +623,9 @@ def pathFind(unit=util.unitBlank):
         break
 
     elif unit == util.unitDraco:
+      util.doDeselectPack()
       util.move(200, 250)
+      util.doDash(1)
       util.doFade(0.5)
 
       try:
@@ -973,6 +975,7 @@ def pathBackTrack(unit):
 
       try:
         util.moveClick(900, 450)
+        util.doDash(1)
         util.doSelect(0.1)
         mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgMobsFound + unit)

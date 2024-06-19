@@ -513,7 +513,9 @@ def pathFindWhiteSnake():
 def moveToBox():
   util.moveClick(675, 450)
   util.moveClick(500, 260)
-  time.sleep(1)
+  
+  util.move(800, 380)
+  util.doFade(0.5)
 
 def runDungeon(runs=1):
   runCounter = 0
