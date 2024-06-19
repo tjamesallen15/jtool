@@ -371,7 +371,7 @@ def pathFindGateOnly(unit=util.unitBlank):
       util.logAction(util.msgNoGateFound)
 
     if pathing == False:
-      break
+      breakx
 
     if unit == util.unitGateFour:
       try:
@@ -417,7 +417,7 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
 
       try:
-        util.moveClick(600, 260)
+        util.moveClick(700, 260)
         util.doSelect(0.1)
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgGateFound + unit)
@@ -431,7 +431,7 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
 
       try:
-        util.moveClick(650, 260)
+        util.moveClick(750, 260)
         util.doSelect(0.1)
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgGateFound + unit)
