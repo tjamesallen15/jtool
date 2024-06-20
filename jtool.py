@@ -1,11 +1,16 @@
-import pyautogui as pyauto
-import pyscreeze
-import keyboard as shortcut
 import os
 import time
 import sys
 import uuid
 import tkinter.font as tkFont
+from tkinter import *
+from tkinter import ttk
+from pynput import keyboard
+from pynput.keyboard import Key, Listener, Controller
+import pyautogui as pyauto
+import pygetwindow as pywin
+import pyscreeze
+import keyboard as shortcut
 
 import util
 import macro.hva as hva
@@ -15,12 +20,7 @@ import macro.hw as hw
 import macro.cfa as cfa
 import macro.lha as lha
 import macro.tm as tm
-
-from tkinter import *
-from tkinter import ttk
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
+import macro.pca as pca
 pynboard = Controller()
 
 masterList = [
@@ -32,7 +32,8 @@ masterList = [
   "Catacomb Frost (Awakened)",
   "Lava Hellfire (Awakened)",
   "Holy Windmill",
-  "Terminus Machina"
+  "Terminus Machina",
+  "Panic Cave (Awakened)"
 ]
 dungeonList = [
   "Hazardous Valley (Awakened)",
@@ -43,9 +44,10 @@ dungeonList = [
   "Catacomb Frost (Awakened)",
   "Lava Hellfire (Awakened)",
   "Holy Windmill",
-  "Terminus Machina"
+  "Terminus Machina",
+  "Panic Cave (Awakened)"
 ]
-runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30]
+runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 40, 50]
 bmList = [1, 0]
 buffList = [1, 0]
 shortList = [1, 0]
@@ -53,7 +55,7 @@ appFont = "Tahoma 10"
 
 frameSize = "330x230"
 appName = "Cabal JTool "
-version = "v4.95"
+version = "v5.01"
 appFullName = appName + version
 dgList = []
 runCount = []
@@ -94,6 +96,8 @@ def start():
     hw.initialize(rootFrame, startButton, runs)
   elif (choice == masterList[8]):
     tm.initialize(rootFrame, startButton, runs)
+  elif (choice == masterList[9]):
+    pca.initialize(rootFrame, startButton, runs)
 
 def generateGui():
   # CREATE FRAME
@@ -108,13 +112,14 @@ def generateGui():
 
   rootFrame.option_add("*TCombobox*Listbox.font", appFont)
   rootFrame.option_add("*Font", appFont)
+  # rootFrame.eval('tk::PlaceWindow . right')
 
   dungeon = Label(rootFrame, text="Dungeon: ")
   dungeon.place(x=10, y=10)
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(0)
+  dgList.current(9)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
@@ -133,7 +138,7 @@ def generateGui():
   startButton.place(x=230, y=40)
 
   # var = IntVar(value=1)
-  # checkbutton = ttk.Checkbutton(rootFrame, text="", 
+  # checkbutton = ttk.Checkbutton(rootFrame, text="",
   #   onvalue=1, offvalue=0, variable=var)
   # checkbutton.place(x=230, y=75)
   # print("TEST: " + str(var.get()))
@@ -168,7 +173,7 @@ def generateGui():
   shortsLbl.place(x=10, y=105)
 
   global buffs
-  buffs = IntVar(value=1)
+  buffs = IntVar(value=0)
   chkBtnBuffs = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=buffs)
   chkBtnBuffs.place(x=75, y=106)
   # buffs = ttk.Combobox(values=buffList, state="readonly")
@@ -209,7 +214,7 @@ def generateGui():
 
   global veras
   veras = IntVar(value=0)
-  checkBtnVera = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
+  checkBtnVera = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=veras)
   checkBtnVera.place(x=75, y=196)
 
   rootFrame.mainloop()

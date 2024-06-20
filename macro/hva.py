@@ -1,15 +1,14 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
+
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
 
 import util
-
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -51,11 +50,11 @@ def pathFind(unit):
     if (backTrackCheck >= 10):
       backTrackCheck = 0
       pathBackTrack(unit)
-    
+
     try:
       util.moveClick(600, 260)
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       pathing = False
       util.logAction(util.msgPathStop)
@@ -66,7 +65,7 @@ def pathFind(unit):
     try:
       util.doSelect(0.1)
       util.logAction(util.msgCheckBoss)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgBossFound)
       pathing = False
       bossFound = 1
@@ -82,18 +81,18 @@ def pathFind(unit):
       util.moveClick(500, 260, 0.5)
       util.doDash(0.5)
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       pathing = False
       util.logAction(util.msgPathStop)
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
-    
+
     try:
       util.doSelect(0.1)
       util.logAction(util.msgCheckBoss)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgBossFound)
       pathing = False
       bossFound = 1
@@ -110,18 +109,18 @@ def pathFind(unit):
         util.moveClick(475, 260)
         util.doFade()
         util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgMobsFound + unit)
         pathing = False
         util.logAction(util.msgPathStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgBossFound)
         pathing = False
         bossFound = 1
@@ -137,18 +136,18 @@ def pathFind(unit):
         util.moveClick(450, 260)
         util.doFade()
         util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgMobsFound + unit)
         pathing = False
         util.logAction(util.msgPathStop)
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgBossFound)
         pathing = False
         bossFound = 1
@@ -163,7 +162,7 @@ def pathFind(unit):
     try:
       util.moveClick(400, 260)
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       pathing = False
       util.logAction(util.msgPathStop)
@@ -174,7 +173,7 @@ def pathFind(unit):
     try:
       util.doSelect(0.1)
       util.logAction(util.msgCheckBoss)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgBossFound)
       pathing = False
       bossFound = 1
@@ -189,7 +188,7 @@ def pathFind(unit):
     try:
       util.moveClick(300, 260)
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       pathing = False
       util.logAction(util.msgPathStop)
@@ -200,7 +199,7 @@ def pathFind(unit):
     try:
       util.doSelect(0.1)
       util.logAction(util.msgCheckBoss)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgBossFound)
       pathing = False
       bossFound = 1
@@ -215,7 +214,7 @@ def pathFind(unit):
     try:
       util.moveClick(200, 260)
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       pathing = False
       util.logAction(util.msgPathStop)
@@ -226,7 +225,7 @@ def pathFind(unit):
     try:
       util.doSelect(0.1)
       util.logAction(util.msgCheckBoss)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgBossFound)
       pathing = False
       bossFound = 1
@@ -242,7 +241,7 @@ def pathFind(unit):
       try:
         util.moveClick(200, 360)
         util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgMobsFound + unit)
         pathing = False
         util.logAction(util.msgPathStop)
@@ -253,7 +252,7 @@ def pathFind(unit):
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
-        mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgBossFound)
         pathing = False
         bossFound = 1
@@ -293,7 +292,7 @@ def pathBackTrack(unit):
       util.moveClick(650, 560)
       util.doDash()
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       backtracking = False
       util.logAction(util.msgPathStop)
@@ -308,7 +307,7 @@ def pathBackTrack(unit):
       util.moveClick(700, 560)
       util.doDash()
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       backtracking = False
       util.logAction(util.msgPathStop)
@@ -323,7 +322,7 @@ def pathBackTrack(unit):
       util.moveClick(750, 560)
       util.doDash()
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       backtracking = False
       util.logAction(util.msgPathStop)
@@ -338,7 +337,7 @@ def pathBackTrack(unit):
       util.moveClick(800, 560)
       util.doDash()
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       backtracking = False
       util.logAction(util.msgPathStop)
@@ -353,7 +352,7 @@ def pathBackTrack(unit):
       util.moveClick(850, 560)
       util.doDash()
       util.doSelect(0.1)
-      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9)
+      mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
       util.logAction(util.msgMobsFound + unit)
       backtracking = False
       util.logAction(util.msgPathStop)
@@ -369,9 +368,10 @@ def pathBackTrack(unit):
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
+    runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
-    util.logRun(runCounter + 1)
+    util.logRun(runCounter)
 
     # Click Cabal Window
     util.goCabalWindow()
@@ -381,37 +381,9 @@ def runDungeon(runs=1):
     util.move(735, 361, 0.5)
     util.moveClick(735, 361, 0.5)
 
-    entering = True
-    while entering:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        entering = False
-        sys.exit()
-        break
-
-      try:
-        enterdg = pyauto.locateOnScreen(util.imgEnterDg, grayscale=False, confidence=.9)
-        util.moveClickRel(15, 15, enterdg, 1)
-        entering = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoButtonFound)
-
-    challenging = True
-    while challenging:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        challenging = False
-        sys.exit()
-        break
-
-      try:
-        challengedg = pyauto.locateOnScreen(util.imgChallengeDg, grayscale=False, confidence=.9)
-        util.moveClickRel(15, 15, challengedg, 1)
-        challenging = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoButtonFound)
+    # Enter Dungeon
+    util.enterDungeon()
+    util.challengeDungeon()
 
     util.move(250, 150)
     pyauto.mouseDown(button="right")
@@ -440,7 +412,7 @@ def runDungeon(runs=1):
 
       pathFind(util.unitMushFlower)
       try:
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         moving = False
         util.logAction(util.msgMoveStop)
         break
@@ -476,7 +448,7 @@ def runDungeon(runs=1):
 
       pathFind(util.unitMossToad)
       try:
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         moving = False
         util.logAction(util.msgMoveStop)
         break
@@ -503,12 +475,12 @@ def runDungeon(runs=1):
 
       try:
         util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         secondBoss = False
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     util.attackBoss()
     util.doDeselectPack()
     util.move(500, 100)
@@ -529,7 +501,7 @@ def runDungeon(runs=1):
 
       pathFind(util.unitLumberMoth)
       try:
-        mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         moving = False
         util.logAction(util.msgMoveStop)
         break
@@ -557,7 +529,7 @@ def runDungeon(runs=1):
     # First Orphidia
     try:
       util.doSelect(0.1)
-      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+      boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
       util.attackBoss()
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoBossFound)
@@ -577,7 +549,7 @@ def runDungeon(runs=1):
         moving = False
         sys.exit()
         break
-      
+
       bossTracker += 1
       if bossTracker >= 60:
         bossTracker = 0
@@ -590,7 +562,7 @@ def runDungeon(runs=1):
 
       try:
         util.doSelect(0.1)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
         bossCount += 1
         util.attackBoss()
         util.doDeselectPack()
@@ -598,7 +570,7 @@ def runDungeon(runs=1):
           time.sleep(5)
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     # Pathfind Treasure Boxes
     boxing = True
     while boxing:
@@ -623,7 +595,7 @@ def runDungeon(runs=1):
 
       try:
         util.doSelect(0.1)
-        box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+        box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgBoxFound)
         boxing = False
         util.logAction(util.msgPathStop)
@@ -646,7 +618,7 @@ def runDungeon(runs=1):
       try:
         util.doSelect(0.1)
         boxCounter += 1
-        box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9)
+        box = pyauto.locateOnScreen(util.imgBox, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgBoxFound)
         util.logAction(util.msgPathStop)
         boxCounter += 2
@@ -662,47 +634,9 @@ def runDungeon(runs=1):
         util.logAction(util.msgCheckEndDg)
 
     util.setBattleMode(False)
-  
+
     # Start to End Dungeon
-    ending = True
-    endCheckTrack = 0
-    while ending:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        ending = False
-        sys.exit()
-        break
-
-      endCheckTrack += 1
-      if (endCheckTrack >= 60):
-        ending = False
-        break
-
-      try:
-        enddungeon = pyauto.locateOnScreen(util.imgEndDg, grayscale=False, confidence=.9)
-        util.moveClickRel(50, 15, enddungeon, 0.5)
-        ending = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgCheckEndDg)
-    
-    dicing = True
-    while dicing:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
-        dicing = False
-        sys.exit()
-        break
-
-      try:
-        rolladice = pyauto.locateOnScreen(util.imgDiceRoll, grayscale=False, confidence=.9)
-        util.moveClickRel(50, 15, rolladice, 0.8)
-        util.moveClickRel(50, 15, rolladice)
-        dicing = False
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgDiceRoll)
-
-    runCounter += 1
+    util.endDungeon()
+    util.diceDungeon()
     util.logAction(util.msgEndDg)
     time.sleep(3)
