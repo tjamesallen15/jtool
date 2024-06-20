@@ -1,15 +1,14 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
+
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
 
 import util
-
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -22,7 +21,7 @@ def initialize(frame, btn, runs=1):
 
   global startButton
   startButton = btn
-  
+
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))
@@ -346,9 +345,10 @@ def positionBoss():
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
+    runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
-    util.logRun(runCounter + 1)
+    util.logRun(runCounter)
 
     # Click Cabal Window
     util.goCabalWindow()
@@ -453,7 +453,7 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     util.focusMobs(util.unitLavaGate, 1, 0)
 
     # Boss Sequence
@@ -488,7 +488,5 @@ def runDungeon(runs=1):
     # Start to End Dungeon
     util.endDungeon()
     util.diceDungeon()
-
-    runCounter += 1
     util.logAction(util.msgEndDg)
     time.sleep(3)

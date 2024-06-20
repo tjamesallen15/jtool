@@ -1,12 +1,16 @@
-import pyautogui as pyauto
-import pygetwindow as pywin
-import pyscreeze
-import keyboard as shortcut
 import os
 import time
 import sys
 import uuid
 import tkinter.font as tkFont
+from tkinter import *
+from tkinter import ttk
+from pynput import keyboard
+from pynput.keyboard import Key, Listener, Controller
+import pyautogui as pyauto
+import pygetwindow as pywin
+import pyscreeze
+import keyboard as shortcut
 
 import util
 import macro.hva as hva
@@ -17,12 +21,6 @@ import macro.cfa as cfa
 import macro.lha as lha
 import macro.tm as tm
 import macro.pca as pca
-
-from tkinter import *
-from tkinter import ttk
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 masterList = [
@@ -140,7 +138,7 @@ def generateGui():
   startButton.place(x=230, y=40)
 
   # var = IntVar(value=1)
-  # checkbutton = ttk.Checkbutton(rootFrame, text="", 
+  # checkbutton = ttk.Checkbutton(rootFrame, text="",
   #   onvalue=1, offvalue=0, variable=var)
   # checkbutton.place(x=230, y=75)
   # print("TEST: " + str(var.get()))

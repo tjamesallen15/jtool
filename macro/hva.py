@@ -1,15 +1,14 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
+
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
 
 import util
-
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -51,7 +50,7 @@ def pathFind(unit):
     if (backTrackCheck >= 10):
       backTrackCheck = 0
       pathBackTrack(unit)
-    
+
     try:
       util.moveClick(600, 260)
       util.doSelect(0.1)
@@ -89,7 +88,7 @@ def pathFind(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
-    
+
     try:
       util.doSelect(0.1)
       util.logAction(util.msgCheckBoss)
@@ -117,7 +116,7 @@ def pathFind(unit):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
@@ -144,7 +143,7 @@ def pathFind(unit):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
@@ -369,9 +368,10 @@ def pathBackTrack(unit):
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
+    runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
-    util.logRun(runCounter + 1)
+    util.logRun(runCounter)
 
     # Click Cabal Window
     util.goCabalWindow()
@@ -480,7 +480,7 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     util.attackBoss()
     util.doDeselectPack()
     util.move(500, 100)
@@ -549,7 +549,7 @@ def runDungeon(runs=1):
         moving = False
         sys.exit()
         break
-      
+
       bossTracker += 1
       if bossTracker >= 60:
         bossTracker = 0
@@ -570,7 +570,7 @@ def runDungeon(runs=1):
           time.sleep(5)
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     # Pathfind Treasure Boxes
     boxing = True
     while boxing:
@@ -634,11 +634,9 @@ def runDungeon(runs=1):
         util.logAction(util.msgCheckEndDg)
 
     util.setBattleMode(False)
-  
+
     # Start to End Dungeon
     util.endDungeon()
     util.diceDungeon()
-
-    runCounter += 1
     util.logAction(util.msgEndDg)
     time.sleep(3)

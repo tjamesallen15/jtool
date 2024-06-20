@@ -1,15 +1,14 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
+
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
 
 import util
-
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -25,7 +24,7 @@ def initialize(frame, btn, runs=1):
 
   global startButton
   startButton = btn
-  
+
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))
@@ -186,7 +185,7 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
@@ -279,7 +278,7 @@ def pathFind(unit=util.unitBlank):
 
       if pathing == False:
         break
-  
+
   if unit == util.unitEspada or unit == util.unitEspadaII or unit == util.unitEspadaIII:
     util.focusMobs(unit, 1, 0, sidestep)
 
@@ -626,9 +625,10 @@ def pathFindBoss():
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
+    runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
-    util.logRun(runCounter + 1)
+    util.logRun(runCounter)
 
     # Click Cabal Window
     util.goCabalWindow()
@@ -738,7 +738,7 @@ def runDungeon(runs=1):
     util.move(350, 200)
     util.doDash(1)
     util.doFade(0.5)
-    
+
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
@@ -810,7 +810,7 @@ def runDungeon(runs=1):
     util.move(320, 550)
     util.doDash(1)
     util.doFade(0.5)
-  
+
     util.focusGate(util.unitPowerSupply)
 
     util.move(375, 150)
@@ -989,7 +989,7 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     # Third Boss
     util.doBattleMode()
     util.attackBoss()
@@ -1065,7 +1065,5 @@ def runDungeon(runs=1):
     # Start to End Dungeon
     util.endDungeon()
     util.diceDungeon()
-  
-    runCounter += 1
     util.logAction(util.msgEndDg)
     time.sleep(3)

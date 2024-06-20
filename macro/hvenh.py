@@ -1,15 +1,14 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
+
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
 
 import util
-
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -522,16 +521,17 @@ def pathFindWhiteSnake():
 def moveToBox():
   util.moveClick(675, 450)
   util.moveClick(500, 260)
-  
+
   util.move(800, 380)
   util.doFade(0.5)
 
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
+    runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
-    util.logRun(runCounter + 1)
+    util.logRun(runCounter)
 
     # Click Cabal Window
     util.goCabalWindow()
@@ -603,7 +603,7 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     util.attackBoss()
     util.doDeselectPack()
     util.moveClick(590, 260)
@@ -730,7 +730,5 @@ def runDungeon(runs=1):
     # Start to End Dungeon
     util.endDungeon()
     util.diceDungeon()
-
-    runCounter += 1
     util.logAction(util.msgEndDg)
     time.sleep(3)
