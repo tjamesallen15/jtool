@@ -431,7 +431,7 @@ def loot_box(sec=3, select=1):
     try:
       if select == 1:
         do_select(0.1)
-      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region_hp())
+      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BOX_FOUND)
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BOX_FOUND)
@@ -453,7 +453,7 @@ def loot_final_box(sec=4):
 
     try:
       do_select(0.1)
-      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region_hp())
+      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BOX_FOUND)
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BOX_FOUND)
@@ -684,7 +684,7 @@ def focus_gate(unit=UNIT_BLANK, select=1):
     try:
       if select == 1:
         do_select(0.1)
-      gate = pyauto.locateOnScreen(IMG_GATE, grayscale=False, confidence=.9, region=get_region_hp())
+      gate = pyauto.locateOnScreen(IMG_GATE, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
 
       do_attack(0.3)
@@ -721,7 +721,7 @@ def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
     try:
       if select == 1:
         do_select(0.1)
-      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region_hp())
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
 
       do_attack(0.1)
@@ -747,7 +747,7 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
       sys.exit()
 
     try:
-      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region_hp())
+      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
       do_deselect()
       log_action(MSG_BOSS_FOUND)
       combo = False
@@ -768,7 +768,7 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
 
     try:
       do_select(0.1)
-      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region_hp())
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
 
       if interval > 0.3:
@@ -805,7 +805,7 @@ def attack_boss(select=1, aura=1):
         do_aura()
 
     try:
-      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region_hp())
+      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
       do_attack(0.1)
       do_attack(0.1)
@@ -830,7 +830,7 @@ def attack_semi_boss(select=1):
       do_aura()
 
     try:
-      boss = pyauto.locateOnScreen(IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=get_region_hp())
+      boss = pyauto.locateOnScreen(IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
       do_attack()
       time.sleep(0.1)
@@ -857,7 +857,7 @@ def attack_lava_gate(select=1):
       do_aura()
 
     try:
-      gate = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region_hp())
+      gate = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
       do_attack()
       time.sleep(0.1)
