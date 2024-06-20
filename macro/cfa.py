@@ -84,6 +84,7 @@ def run_dungeon(runs=1):
   run_counter = 0
   trigger_continue = False
   while run_counter < runs:
+    trigger_continue = False
     run_counter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.log_action(util.MSG_START_DG)
@@ -111,11 +112,8 @@ def run_dungeon(runs=1):
     util.move(570, 300)
     util.do_dash(1)
 
-    time.sleep(1)
-    util.do_battle_mode()
     util.attack_boss()
     util.set_battle_mode(False)
-    time.sleep(1)
 
     util.move(400, 600)
     util.do_dash(1)
@@ -134,27 +132,36 @@ def run_dungeon(runs=1):
       continue
 
     position_second_boss()
-    util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
 
-    util.move(800, 360)
+    util.move_click(670, 380)
+    util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
+    time.sleep(0.5)
+
+    util.move(760, 335)
+    # util.do_fade(1.3)
+    util.do_dash(1.2)
+
+    util.move(850, 250)
+    util.do_fade(0.8)
+    # util.do_fade(1.3)
+
+    util.move(810, 320)
+    util.do_dash(1.2)
+    # util.do_dash(1.3)
+
+    util.move(740, 360)
     util.do_fade(0.5)
 
-    util.move(1000, 200)
-    util.do_dash(1)
-    util.do_fade(0.8)
-
-    util.move(810, 345)
-    util.do_dash(1)
-
-    secondBoss = True
-    while secondBoss:
-      if secondBoss == False:
+    time.sleep(3)
+    checking = True
+    while checking:
+      if checking == False:
          break
 
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-        secondBoss = False
+        checking = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
@@ -165,8 +172,8 @@ def run_dungeon(runs=1):
     util.cancel_aura(1)
     util.loot_box(2)
 
-    util.move(720, 385)
-    util.do_dash(1)
+    util.move(730, 390)
+    util.do_fade(1)
 
     dialog_check = True
     while dialog_check:

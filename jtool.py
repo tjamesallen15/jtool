@@ -47,7 +47,7 @@ LIST_DUNGEON = [
   "Terminus Machina",
   "Panic Cave (Awakened)"
 ]
-LIST_RUN = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 40, 50]
+LIST_RUN = [1, 2, 3, 4, 5, 10, 20, 30, 40, 50, 100]
 
 list_dg = []
 btn_start = []
@@ -120,7 +120,7 @@ def generate_gui():
   lbl_runs.place(x=10, y=43)
 
   global val_run_count
-  val_run_count = ttk.Combobox(values=LIST_RUN, state="readonly")
+  val_run_count = ttk.Combobox(values=LIST_RUN, state="")
   val_run_count.current(0)
   val_run_count.config(width=5)
   val_run_count.place(x=75, y=43)
