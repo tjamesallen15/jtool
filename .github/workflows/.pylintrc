@@ -1,2 +1,4 @@
+[MESSAGES CONTROL]
+
 disable=all
 enable=trailing-whitespace
