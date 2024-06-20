@@ -136,7 +136,7 @@ unitPoerte = "Poerte"
 unitRedonno = "Redonno"
 unitPowerSupply = "Power Supply"
 unitShoworaiFear = "Showorai's Fear"
-unitShoworaiResignation = "Showorai's Resignation"
+unitShoworaiResignation = "Showorai's Resign"
 unitShoworaiMadness = "Showorai's Madness"
 unitBox = "Box"
 

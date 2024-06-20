@@ -55,7 +55,7 @@ appFont = "Tahoma 10"
 
 frameSize = "330x230"
 appName = "Cabal JTool "
-version = "v4.95"
+version = "v5.01"
 appFullName = appName + version
 dgList = []
 runCount = []

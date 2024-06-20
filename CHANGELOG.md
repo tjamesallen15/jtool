@@ -78,3 +78,14 @@ All notable changes to this project will be documented in this file.
 - Loop improvements for better response for image reading
 - Change variables, refactor structures
 - Image reading improvements by region sector
+
+# v5.01
+
+## v5.01 Features
+
+- Added Panic Cave (Awakened) for Development Phase for Range Classes
+- Added Pylint
+
+## v5.01 Fixes
+
+- Fixes a lot of discrepancy movements in dungeons
