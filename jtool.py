@@ -39,13 +39,7 @@ dungeonList = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
-  "Hazardous Valley (Easy)",
-  "Steamer Crazy (Awakened)",
-  "Catacomb Frost (Awakened)",
-  "Lava Hellfire (Awakened)",
-  "Holy Windmill",
-  "Terminus Machina",
-  "Panic Cave (Awakened)"
+  "Hazardous Valley (Easy)"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 40, 50]
 bmList = [1, 0]
@@ -119,7 +113,7 @@ def generateGui():
 
   global dgList
   dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(9)
+  dgList.current(0)
   dgList.config(width=30)
   dgList.place(x=75, y=10)
 
@@ -173,7 +167,7 @@ def generateGui():
   shortsLbl.place(x=10, y=105)
 
   global buffs
-  buffs = IntVar(value=0)
+  buffs = IntVar(value=1)
   chkBtnBuffs = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=buffs)
   chkBtnBuffs.place(x=75, y=106)
   # buffs = ttk.Combobox(values=buffList, state="readonly")
@@ -188,7 +182,7 @@ def generateGui():
   askShorts.place(x=10, y=135)
 
   global shorts
-  shorts = IntVar(value=0)
+  shorts = IntVar(value=1)
   chkBtnShorts = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=shorts)
   chkBtnShorts.place(x=75, y=136)
   # shorts = ttk.Combobox(values=shortList, state="readonly")
