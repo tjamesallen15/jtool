@@ -211,7 +211,7 @@ def runDungeon(runs=1):
     util.goCabalWindow()
     util.releaseKeys()
     util.goSkillSlot(0.5)
-    util.doBuffs()
+    util.doBuffs(0.5)
 
     util.moveClick(720, 360)
 
