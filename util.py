@@ -11,181 +11,186 @@ from pynput import keyboard
 pynboard = Controller()
 
 # GLOBAL VARIABLES
-select = 'z'
-dash = '1'
-fade = '2'
-attack = ['3', '4', '5']
-veradrix = '6'
-loot = '7'
-fury = '8'
-pots = '9'
-bmaura = '0'
-bm3atk = '-'
-bm3 = '='
-deselect = Key.esc
-lootSpace = Key.space
+val_select = 'z'
+val_dash = '1'
+val_fade = '2'
+val_attack = ['3', '4', '5']
+val_veradrix  = '6'
+val_loot = '7'
+val_fury = '8'
+val_pots = '9'
+val_bm_aura = '0'
+val_bm3_atk = '-'
+val_bm3 = '='
+val_deselect = Key.esc
+loot_space = Key.space
 
 # GLOBAL VARIABLES
 cabalwindow = []
-rootFrame = []
-runNumberLbl = []
-macroLbl = []
+frame_root = []
+lbl_current_run = []
+lbl_macro = []
 macro = True
-isBattleMode = False
-battleMode = 0
-buffsAllowed = 1
-shortBuffsAllowed = 1
-useVeradrix = 0
-auraCounter = 0
-atkType = 0
-difficulty = "Hazardous Valley (Easy)"
-dungeonList = [
-  "Hazardous Valley (Hard)",
-  "Hazardous Valley (Medium)",
-  "Hazardous Valley (Easy)"
-]
-hpBar = []
-hpBarMode = []
+battle_mode = 0
+is_battle_mode = False
+is_buffs_allowed = 1
+is_short_buffs_allowed = 1
+is_veradrix_allowed = 0
+aura_counter = 0
+atk_type = 0
 
-# GLOBAL MESSAGES
-msgStartDg = "Starting Dungeon"
-msgEndDg = "End Dungeon"
-msgExit = "Macro Exit"
-msgTerminate ="Macro Terminate"
-msgPathFind = "Pathfind, "
-msgAttackMobs = "Attack, "
-msgAttackBoss = "Boss Attack"
-msgMobsFound = "Mobs Found, "
-msgBossFound = "Boss Found"
-msgBossKilled = "Boss Killed"
-msgNoMobsFound = "No Mobs Found"
-msgNoBossFound = "No Boss Found"
-msgMobsCleared = "Mobs Cleared"
-msgNoVineFound = "No Vine Found"
-msgCheckBoss = "Checking Boss"
-msgBoxFound = "Box Found"
-msgNoBoxFound = "No Box Found"
-msgPathStop = "Pathing stop, attacking"
-msgMoveStop = "Moving stop, proceeding"
-msgCheckEndDg = "Check End Dungeon"
-msgAction = ""
-msgRunNumber =  "Run #: "
-msgBackTrack = "Backtrack #: "
-msgChallengeDungeon = "Challenge Dungeon"
-msgEnterDungeon = "Enter Dungeon"
-msgNoButtonFound = "No Button Found"
-msgBuffs = "Buffing"
-msgShortBuffs = "Buffing Shorts"
-msgBattleModeTwo = "Doing Mode II"
-msgDiceRoll = "Check Dice Roll"
-msgDiceRollOkay = "Check Dice Roll Okay"
-msgCheckDialogFound =  "Check Dialog Found"
-msgNoCheckDialogFound = "No Check Dialog Found"
-msgGateFound = "Gate Found "
-msgNoGateFound = "No Gate Found"
+region_normal_bar = []
+region_mode_bar = []
+region_screen = []
 
-# GLOBAL IMAGES
-imgAppIcon = "img/icon.png"
-imgCabalWindow = "img/cabalwindow.jpg"
-imgChallengeDg = "img/challengedg.jpg"
-imgDungeon = "img/dungeon.jpg"
-imgEnterDg = "img/enterdg.jpg"
-imgEndDg = "img/enddg.jpg"
-imgExitDg = "img/exitdg.jpg"
-imgDualBoss = "img/dualboss.jpg"
-imgBoss = "img/boss.jpg"
-imgSemiBoss = "img/semiboss.jpg"
-imgMobs = "img/mobs.jpg"
-imgDiceRoll = "img/rolladice.jpg"
-imgDiceOkay = "img/diceokay.jpg"
-imgCheckDialog = "img/checkdialog.jpg"
-imgBox = "img/box.jpg"
-imgGate = "img/gate.jpg"
-imgHolyBox = "img/holybox.jpg"
+# CONSTANT UI VARIABLES
+APP_FONT = "Tahoma 10"
+APP_FRAME_SIZE = "330x230"
+APP_NAME = "Cabal JTool "
+APP_VERSION = "v5.01"
+APP_FULL_NAME = APP_NAME + APP_VERSION
 
-# GLOBAL UNITS
-unitBlank = "--"
-unitMushFlower = "Mushed and Ectoflower"
-unitMossToad = "Mossite and Toad"
-unitLumberMoth = "Lumber and Moth"
-unitCutterToad = "Moscutter and Toad"
-unitBoarSnake = "Boars and Snake"
-unitWhiteSnake = "White Snake"
-unitOrphidia = "Orphidia"
-unitMechape = "Mechape"
-unitArmun = "Armun"
-unitTricus = "Tricus"
-unitGateOne = "Gate One"
-unitGateTwo = "Gate Two"
-unitGateThree = "Gate Three"
-unitGateFour = "Gate Four"
-unitLegrin = "Legrin of Wind"
-unitLeo = "Leo of Wind"
-unitEspi = "Espi of Wind"
-unitDraco = "Draco of Wind"
-unitSpector = "Spector"
-unitIceBlock = "Ice Block"
-unitDarkArcher = "Dark Archer"
-unitJason = "Gatekeeper Jason"
-unitLavaGate = "Lava Gate"
-unitMechLion = "Mech Lion"
-unitLihonar = "Lihonar"
-unitEspada = "Espada"
-unitEspadaII = "Espada II"
-unitEspadaIII = "Espada III"
-unitPoerte = "Poerte"
-unitRedonno = "Redonno"
-unitPowerSupply = "Power Supply"
-unitShoworaiFear = "Showorai's Fear"
-unitShoworaiResignation = "Showorai's Resign"
-unitShoworaiMadness = "Showorai's Madness"
-unitBox = "Box"
+# CONSTANT MESSAGES
+MSG_START_DG = "Starting Dungeon"
+MSG_END_DG = "End Dungeon"
+MSG_EXIT = "Macro Exit"
+MSG_TERMINATE ="Macro Terminate"
+MSG_PATH_FIND = "Pathfind, "
+MSG_ATTACK_MOBS = "Attack, "
+MSG_ATTACK_BOSS = "Boss Attack"
+MSG_MOBS_FOUND = "Mobs Found, "
+MSG_BOSS_FOUND = "Boss Found"
+MSG_BOSS_KILLED = "Boss Killed"
+MSG_NO_MOBS_FOUND = "No Mobs Found"
+MSG_NO_BOSS_FOUND = "No Boss Found"
+MSG_MOBS_CLEARED = "Mobs Cleared"
+MSG_CHECK_BOSS = "Checking Boss"
+MSG_BOX_FOUND = "Box Found"
+MSG_NO_BOX_FOUND = "No Box Found"
+MSG_PATH_STOP = "Pathing stop, attacking"
+MSG_MOVE_STOP = "Moving stop, proceeding"
+MSG_CHECK_END_DG = "Check End Dungeon"
+MSG_ACTION = ""
+MSG_RUN_NUMBER =  "Run #: "
+MSG_BACKTRACK = "Backtrack #: "
+MSG_CHALLENGE_DG = "Challenge Dungeon"
+MSG_ENTER_DG = "Enter Dungeon"
+MSG_NO_BUTTON_FOUND = "No Button Found"
+MSG_BUFFS = "Buffing"
+MSG_SHORT_BUFFS = "Buffing Shorts"
+MSG_BATTLE_MODE = "Doing Mode II"
+MSG_DICE_ROLL = "Check Dice Roll"
+MSG_DICE_ROLL_OKAY = "Check Dice Roll Okay"
+MSG_CHECK_DIALOG_FOUND =  "Check Dialog Found"
+MSG_NO_CHECK_DIALOG_FOUND = "No Check Dialog Found"
+MSG_GATE_FOUND = "Gate Found "
+MSG_NO_GATE_FOUND = "No Gate Found"
+
+# CONSTANT IMAGES
+IMG_APP_ICON = "img/icon.png"
+IMG_CABAL_WINDOW = "img/cabalwindow.jpg"
+IMG_CHALLENGE_DG = "img/challengedg.jpg"
+IMG_DUNGEON = "img/dungeon.jpg"
+IMG_ENTER_DG = "img/enterdg.jpg"
+IMG_END_DG = "img/enddg.jpg"
+IMG_EXIT_DG = "img/exitdg.jpg"
+IMG_DUAL_BOSS = "img/dualboss.jpg"
+IMG_BOSS = "img/boss.jpg"
+IMG_SEMI_BOSS = "img/semiboss.jpg"
+IMG_MOBS = "img/mobs.jpg"
+IMG_DICE_ROLL = "img/rolladice.jpg"
+IMG_DICE_OKAY = "img/diceokay.jpg"
+IMG_CHECK_DIALOG = "img/checkdialog.jpg"
+IMG_BOX = "img/box.jpg"
+IMG_GATE = "img/gate.jpg"
+IMG_HOLY_BOX = "img/holybox.jpg"
+
+# CONSTANT UNITS
+UNIT_BLANK = "--"
+UNIT_MUSH_FLOWER = "Mushed and Ectoflower"
+UNIT_MOSS_TOAD = "Mossite and Toad"
+UNIT_LUMBER_DORIGO = "Lumber and Dorigo"
+UNIT_CUTTER_TOAD = "Moscutter and Toad"
+UNIT_BOAR_SNAKE = "Boars and Snake"
+UNIT_WHITE_SNAKE = "White Snake"
+UNIT_ORPHIDIA = "Orphidia"
+UNIT_MECHAPE = "Mechape"
+UNIT_ARMUN = "Armun"
+UNIT_TRICUS = "Tricus"
+UNIT_GATE_ONE = "Gate One"
+UNIT_GATE_TWO = "Gate Two"
+UNIT_GATE_THREE = "Gate Three"
+UNIT_GATE_FOUR = "Gate Four"
+UNIT_LEGRIN = "Legrin of Wind"
+UNIT_LEO = "Leo of Wind"
+UNIT_ESPI = "Espi of Wind"
+UNIT_DRACO = "Draco of Wind"
+UNIT_SPECTOR = "Spector"
+UNIT_ICE_BLOCK = "Ice Block"
+UNIT_DARK_ARCHER = "Dark Archer"
+UNIT_GATEKEEPER_JASON = "Gatekeeper Jason"
+UNIT_LAVA_GATE = "Lava Gate"
+UNIT_MECH_LION = "Mech Lion"
+UNIT_MECH_LIHONAR = "Mech Lihonar"
+UNIT_ESPADA_I = "Espada"
+UNIT_ESPADA_II = "Espada II"
+UNIT_ESPADA_III = "Espada III"
+UNIT_POERTE = "Poerte"
+UNIT_REDONNO = "Redonno"
+UNIT_POWER_SUPPLY = "Power Supply"
+UNIT_SHOWORAI_FEAR = "Showorai's Fear"
+UNIT_SHOWORAI_RESIGN = "Showorai's Resign"
+UNIT_SHOWORAI_MADNESS = "Showorai's Madness"
+UNIT_BOX = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
   global cabalwindow
   cabalwindow = window
 
-  global rootFrame
-  rootFrame = frame
+  global frame_root
+  frame_root = frame
 
-  global macroLbl
-  macroLbl = mlbl
+  global lbl_macro
+  lbl_macro = mlbl
 
-  global runNumberLbl
-  runNumberLbl = rlbl
+  global lbl_current_run
+  lbl_current_run = rlbl
 
-  global hpBar
-  hpBar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+  global region_normal_bar
+  region_normal_bar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
 
-  global hpBarMode
-  hpBarMode = (int(cabalwindow[0] + 350), int(cabalwindow[1] + 25), 325, 30)
+  global region_mode_bar
+  region_mode_bar = (int(cabalwindow[0] + 350), int(cabalwindow[1] + 25), 325, 30)
+
+  global region_screen
+  region_screen = (int(cabalwindow[0]), int(cabalwindow[1]) + 20, 1265, 720)
 
 
-def setVariables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):
-  global battleMode
-  battleMode = int(mode)
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):
+  global battle_mode
+  battle_mode = int(mode)
 
-  global isBattleMode
-  isBattleMode = False
+  global is_battle_mode
+  is_battle_mode = False
 
-  global buffsAllowed
-  buffsAllowed = int(buff)
+  global is_buffs_allowed
+  is_buffs_allowed = int(buff)
 
-  global shortBuffsAllowed
-  shortBuffsAllowed = int(sbuffs)
+  global is_short_buffs_allowed
+  is_short_buffs_allowed = int(sbuffs)
 
-  global atkType
-  atkType = int(atk)
+  global atk_type
+  atk_type = int(atk)
 
-  global useVeradrix
-  useVeradrix = vera
+  global is_veradrix_allowed
+  is_veradrix_allowed = vera
 
-def setCabalWindow(window):
+def set_cabal_window(window):
   global cabalwindow
   cabalwindow = window
 
-def goCabalWindow():
-  moveClick(50, 15)
+def go_cabal_window():
+  move_click(50, 15)
 
 def move(x, y, sec=0):
   pyauto.moveTo(cabalwindow[0] + x, cabalwindow[1] + y)
@@ -193,115 +198,115 @@ def move(x, y, sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def moveRel(x, y, ref, sec=0):
+def move_rel(x, y, ref, sec=0):
   pyauto.moveTo(ref[0] + x, ref[1] + y)
 
   if (sec != 0):
     time.sleep(sec)
 
-def moveClick(x, y, sec=0):
+def move_click(x, y, sec=0):
   pyauto.moveTo(cabalwindow[0] + x, cabalwindow[1] + y)
   pyauto.click(cabalwindow[0] + x, cabalwindow[1] + y)
 
   if (sec != 0):
     time.sleep(sec)
 
-def moveClickRel(x, y, ref, sec=0):
+def move_click_rel(x, y, ref, sec=0):
   pyauto.moveTo(ref[0] + x, ref[1] + y)
   pyauto.click(ref[0] + x, ref[1] + y)
 
   if (sec != 0):
     time.sleep(sec)
 
-def logRun(runNumber):
+def log_run(runNumber):
   runBuilder = StringVar()
-  runBuilder = msgRunNumber + str(runNumber)
+  runBuilder = MSG_RUN_NUMBER + str(runNumber)
   print(runBuilder)
-  runNumberLbl.config(text=runBuilder)
-  rootFrame.update()
+  lbl_current_run.config(text=runBuilder)
+  frame_root.update()
 
-def logAction(message):
+def log_action(message):
   msgBuilder = StringVar()
-  msgBuilder = msgAction + message
+  msgBuilder = MSG_ACTION + message
   print(msgBuilder)
-  macroLbl.config(text=msgBuilder)
-  rootFrame.update()
+  lbl_macro.config(text=msgBuilder)
+  frame_root.update()
 
-def getHpBar():
-  if isBattleMode and atkType == 1:
-    return hpBarMode
+def get_region():
+  if is_battle_mode and atk_type == 1:
+    return region_mode_bar
   else:
-    return hpBar
+    return region_normal_bar
 
 def terminate():
-  logAction(msgExit)
+  log_action(MSG_EXIT)
   global macro
   macro = False
 
-def forceExitDungeon():
-  moveClick(830, 710)
+def force_exit_dungeon():
+  move_click(830, 710)
   time.sleep(0.5)
 
-  moveClick(850, 430)
+  move_click(850, 430)
   time.sleep(0.5)
 
-  moveClick(1030, 485)
+  move_click(1030, 485)
   time.sleep(1)
 
-  moveClick(620, 440)
+  move_click(620, 440)
   time.sleep(3)
 
-def goSkillSlot(sec=0):
+def go_skill_slot(sec=0):
   pynboard.press(Key.f3)
   pynboard.release(Key.f3)
 
   if (sec != 0):
     time.sleep(sec)
 
-def setBattleMode(val):
-  cancelAura(1)
-  if battleMode == 1:
-    global isBattleMode
-    isBattleMode = val
+def set_battle_mode(val):
+  cancel_aura(1)
+  if battle_mode == 1:
+    global is_battle_mode
+    is_battle_mode = val
 
-def doBattleMode():
-  if battleMode == 1:
-    logAction(msgBattleModeTwo)
-    cancelAura(1)
-
-    move(790, 670)
-    pyauto.click(button="right")
+def do_battle_mode():
+  if battle_mode == 1:
+    log_action(MSG_BATTLE_MODE)
+    cancel_aura(1)
 
     move(790, 670)
     pyauto.click(button="right")
 
-    global isBattleMode
-    isBattleMode = True
+    move(790, 670)
+    pyauto.click(button="right")
+
+    global is_battle_mode
+    is_battle_mode = True
     time.sleep(5)
 
-    pynboard.press(bmaura)
-    pynboard.release(bmaura)
+    pynboard.press(val_bm_aura)
+    pynboard.release(val_bm_aura)
     time.sleep(1)
 
-def doVeradrix():
-  if useVeradrix == 1:
-    pynboard.press(veradrix)
-    pynboard.release(veradrix)
+def do_val_veradrix ():
+  if is_veradrix_allowed == 1:
+    pynboard.press(val_veradrix)
+    pynboard.release(val_veradrix)
 
-def doContBattleMode():
+def do_cont_battle_mode():
   move(790, 670)
   pyauto.click(button="right")
 
-  doVeradrix()
-  global auraCounter
-  auraCounter += 1
-  if auraCounter > 45:
-    doAuraStrict()
-    auraCounter = 0
+  do_val_veradrix ()
+  global aura_counter
+  aura_counter += 1
+  if aura_counter > 45:
+    do_aura_strict()
+    aura_counter = 0
 
-def doBuffs():
-  if buffsAllowed == 1:
-    logAction(msgBuffs)
+def do_buffs():
+  if is_buffs_allowed == 1:
+    log_action(MSG_BUFFS)
     move(400, 670)
     pyauto.click(button="right")
     time.sleep(0.5)
@@ -310,9 +315,9 @@ def doBuffs():
     pyauto.click(button="right")
     time.sleep(1.5)
 
-def doShortBuffs():
-  if shortBuffsAllowed == 1:
-    logAction(msgShortBuffs)
+def do_short_buffs():
+  if is_short_buffs_allowed == 1:
+    log_action(MSG_SHORT_BUFFS)
     move(470, 670)
     pyauto.click(button="right")
     time.sleep(0.5)
@@ -329,8 +334,8 @@ def doShortBuffs():
     pyauto.click(button="right")
     time.sleep(0.5)
 
-def forceShortBuffs():
-    logAction(msgShortBuffs)
+def force_short_buffs():
+    log_action(MSG_SHORT_BUFFS)
     move(470, 670)
     pyauto.click(button="right")
     time.sleep(0.5)
@@ -347,151 +352,149 @@ def forceShortBuffs():
     pyauto.click(button="right")
     time.sleep(0.5)
 
-def cancelAura(sec=0):
+def cancel_aura(sec=0):
   move(175, 100)
   pyauto.click(button="right")
 
   if (sec != 0):
     time.sleep(sec)
 
-def doDash(sec=0):
-  pynboard.press(dash)
-  pynboard.release(dash)
+def do_dash(sec=0):
+  pynboard.press(val_dash)
+  pynboard.release(val_dash)
 
   if (sec != 0):
     time.sleep(sec)
 
-def doFade(sec=0):
-  pynboard.press(fade)
-  pynboard.release(fade)
+def do_fade(sec=0):
+  pynboard.press(val_fade)
+  pynboard.release(val_fade)
 
   if (sec != 0):
     time.sleep(sec)
 
-def doSelect(sec=0):
-  pynboard.press(select)
-  pynboard.release(select)
+def do_select(sec=0):
+  pynboard.press(val_select)
+  pynboard.release(val_select)
 
   if (sec != 0):
     time.sleep(sec)
 
-def doDeselect(sec=0):
-  pynboard.press(deselect)
-  pynboard.release(deselect)
+def do_deselect(sec=0):
+  pynboard.press(val_deselect)
+  pynboard.release(val_deselect)
 
   if (sec != 0):
     time.sleep(sec)
 
-def doDeselectPack():
-  doDeselect()
-  doDeselect(0.1)
-  doDeselect(0.1)
+def do_deselect_pack():
+  do_deselect()
+  do_deselect(0.1)
+  do_deselect(0.1)
 
-def doLoot():
-  doSelect(0.1)
-  doSelect(0.1)
-  if isBattleMode:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    autoEssentials()
+def do_loot():
+  do_select(0.1)
+  do_select(0.1)
+  if is_battle_mode:
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    do_essentials()
   else:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    pynboard.press(attack[0])
-    pynboard.release(attack[0])
-    pynboard.press(attack[1])
-    pynboard.release(attack[1])
-    pynboard.press(attack[2])
-    pynboard.release(attack[2])
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    pynboard.press(val_attack[0])
+    pynboard.release(val_attack[0])
+    pynboard.press(val_attack[1])
+    pynboard.release(val_attack[1])
+    pynboard.press(val_attack[2])
+    pynboard.release(val_attack[2])
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
 
   for x in range(4):
-    pynboard.press(loot)
-    pynboard.release(loot)
+    pynboard.press(val_loot)
+    pynboard.release(val_loot)
     time.sleep(0.3)
-    pynboard.press(lootSpace)
-    pynboard.release(lootSpace)
+    pynboard.press(loot_space)
+    pynboard.release(loot_space)
     time.sleep(0.3)
 
-def lootBox(sec=3, select=1):
+def loot_box(sec=3, select=1):
   checking = True
   boxCounter = 0
   while checking:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       checking = False
       sys.exit()
-      break
 
     try:
       if select == 1:
-        doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgBoxFound)
+        do_select(0.1)
+      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_BOX_FOUND)
     except pyauto.ImageNotFoundException:
-      logAction(msgNoBoxFound)
+      log_action(MSG_NO_BOX_FOUND)
 
-    doLoot()
+    do_loot()
     boxCounter += 1
     if boxCounter > sec:
       boxCounter = 0
       break
 
-def finalLootBox(sec=4):
+def loot_final_box(sec=4):
   checking = True
   boxCounter = 0
   while checking:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       checking = False
       sys.exit()
-      break
 
     try:
-      doSelect(0.1)
-      box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgBoxFound)
+      do_select(0.1)
+      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_BOX_FOUND)
     except pyauto.ImageNotFoundException:
-      logAction(msgNoBoxFound)
+      log_action(MSG_NO_BOX_FOUND)
 
-    doLoot()
+    do_loot()
     boxCounter += 1
     if boxCounter > sec:
       boxCounter = 0
       break
 
-def autoEssentials():
-  pynboard.press(lootSpace)
-  pynboard.release(lootSpace)
-  pynboard.press(fury)
-  pynboard.release(fury)
-  pynboard.press(pots)
-  pynboard.release(pots)
-  pynboard.press(loot)
-  pynboard.release(loot)
+def do_essentials():
+  pynboard.press(loot_space)
+  pynboard.release(loot_space)
+  pynboard.press(val_fury)
+  pynboard.release(val_fury)
+  pynboard.press(val_pots)
+  pynboard.release(val_pots)
+  pynboard.press(val_loot)
+  pynboard.release(val_loot)
 
-  doVeradrix()
-
-  pynboard.release(Key.shift)
-  pynboard.release(Key.alt)
-  pynboard.release(Key.ctrl)
-
-def lootEssentials():
-  pynboard.press(lootSpace)
-  pynboard.release(lootSpace)
-  pynboard.press(pots)
-  pynboard.release(pots)
-  pynboard.press(loot)
-  pynboard.release(loot)
-
-  doVeradrix()
+  do_val_veradrix ()
 
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
 
-def releaseKeys(sec=0):
+def loot_essentials():
+  pynboard.press(loot_space)
+  pynboard.release(loot_space)
+  pynboard.press(val_pots)
+  pynboard.release(val_pots)
+  pynboard.press(val_loot)
+  pynboard.release(val_loot)
+
+  do_val_veradrix ()
+
+  pynboard.release(Key.shift)
+  pynboard.release(Key.alt)
+  pynboard.release(Key.ctrl)
+
+def release_keys(sec=0):
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
@@ -499,122 +502,119 @@ def releaseKeys(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def doAura(sec=0):
-  pynboard.press(bm3)
-  pynboard.release(bm3)
-  autoEssentials()
-  pynboard.press(bmaura)
-  pynboard.release(bmaura)
-  autoEssentials()
-  pynboard.press(bm3)
-  pynboard.release(bm3)
+def do_aura(sec=0):
+  pynboard.press(val_bm3)
+  pynboard.release(val_bm3)
+  do_essentials()
+  pynboard.press(val_bm_aura)
+  pynboard.release(val_bm_aura)
+  do_essentials()
+  pynboard.press(val_bm3)
+  pynboard.release(val_bm3)
 
   if (sec != 0):
     time.sleep(sec)
 
-def doAuraStrict(sec=0):
-  pynboard.press(bmaura)
-  pynboard.release(bmaura)
-  pynboard.press(bmaura)
-  pynboard.release(bmaura)
+def do_aura_strict(sec=0):
+  pynboard.press(val_bm_aura)
+  pynboard.release(val_bm_aura)
+  pynboard.press(val_bm_aura)
+  pynboard.release(val_bm_aura)
 
   if (sec != 0):
     time.sleep(sec)
 
-def doAttack(sec=0):
-  doVeradrix()
+def do_attack(sec=0):
+  do_val_veradrix ()
 
-  if isBattleMode:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    autoEssentials()
-    doContBattleMode()
+  if is_battle_mode:
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    do_essentials()
+    do_cont_battle_mode()
   else:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    autoEssentials()
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    autoEssentials()
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    pynboard.press(attack[0])
-    pynboard.release(attack[0])
-    autoEssentials()
-    pynboard.press(attack[1])
-    pynboard.release(attack[1])
-    autoEssentials()
-    pynboard.press(attack[2])
-    pynboard.release(attack[2])
-    autoEssentials()
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    do_essentials()
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    do_essentials()
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    pynboard.press(val_attack[0])
+    pynboard.release(val_attack[0])
+    do_essentials()
+    pynboard.press(val_attack[1])
+    pynboard.release(val_attack[1])
+    do_essentials()
+    pynboard.press(val_attack[2])
+    pynboard.release(val_attack[2])
+    do_essentials()
 
   if (sec != 0):
     time.sleep(sec)
 
-def doAttackStrict(sec=0):
-  if isBattleMode:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
+def do_attack_strict(sec=0):
+  if is_battle_mode:
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
   else:
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    pynboard.press(bm3atk)
-    pynboard.release(bm3atk)
-    pynboard.press(attack[0])
-    pynboard.release(attack[0])
-    pynboard.press(attack[1])
-    pynboard.release(attack[1])
-    pynboard.press(attack[2])
-    pynboard.release(attack[2])
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    pynboard.press(val_bm3_atk)
+    pynboard.release(val_bm3_atk)
+    pynboard.press(val_attack[0])
+    pynboard.release(val_attack[0])
+    pynboard.press(val_attack[1])
+    pynboard.release(val_attack[1])
+    pynboard.press(val_attack[2])
+    pynboard.release(val_attack[2])
 
   if (sec != 0):
     time.sleep(sec)
 
-def enterDungeon():
+def enter_dungeon():
   entering = True
   while entering:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       entering = False
       sys.exit()
-      break
 
     try:
-      enterdg = pyauto.locateOnScreen(imgEnterDg, grayscale=False, confidence=.9)
-      moveClickRel(15, 15, enterdg, 1)
+      enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
+      move_click_rel(15, 15, enterdg, 1)
       entering = False
       break
     except pyauto.ImageNotFoundException:
-      logAction(msgNoButtonFound)
+      log_action(MSG_NO_BUTTON_FOUND)
 
-def challengeDungeon():
+def challenge_dungeon():
   challenging = True
   while challenging:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       challenging = False
       sys.exit()
-      break
 
     try:
-      challengedg = pyauto.locateOnScreen(imgChallengeDg, grayscale=False, confidence=.9)
-      moveClickRel(15, 15, challengedg, 1)
+      challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+      move_click_rel(15, 15, challengedg, 1)
       challenging = False
       break
     except pyauto.ImageNotFoundException:
-      logAction(msgNoButtonFound)
+      log_action(MSG_NO_BUTTON_FOUND)
 
-def endDungeon():
+def end_dungeon():
   ending = True
   endCheckTrack = 0
   while ending:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       ending = False
       sys.exit()
-      break
 
     if ending == False:
       break
@@ -625,247 +625,245 @@ def endDungeon():
       break
 
     try:
-      enddungeon = pyauto.locateOnScreen(imgEndDg, grayscale=False, confidence=.9)
-      moveClickRel(50, 15, enddungeon, 0.5)
+      enddungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
+      move_click_rel(50, 15, enddungeon, 0.5)
       ending = False
       break
     except pyauto.ImageNotFoundException:
-      logAction(msgCheckEndDg)
+      log_action(MSG_CHECK_END_DG)
 
-def diceDungeon():
+def dice_dungeon():
   dicing = True
   while dicing:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       dicing = False
       sys.exit()
-      break
 
     try:
-      rolladice = pyauto.locateOnScreen(imgDiceRoll, grayscale=False, confidence=.9)
-      moveClickRel(50, 15, rolladice, 0.8)
-      # moveClickRel(50, 15, rolladice)
+      rolladice = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
+      move_click_rel(50, 15, rolladice, 0.8)
+      # move_click_rel(50, 15, rolladice)
       dicing = False
       break
     except pyauto.ImageNotFoundException:
-      logAction(msgDiceRoll)
+      log_action(MSG_DICE_ROLL)
 
   confirming = True
   while confirming:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       confirming = False
       sys.exit()
-      break
 
     try:
-      diceconfirm = pyauto.locateOnScreen(imgDiceOkay, grayscale=False, confidence=.9)
-      # moveClickRel(10, 15, rolladice, 0.8)
-      moveClickRel(10, 5, diceconfirm)
+      diceconfirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
+      # move_click_rel(10, 15, rolladice, 0.8)
+      move_click_rel(10, 5, diceconfirm)
       confirming = False
       break
     except pyauto.ImageNotFoundException:
-      logAction(msgDiceRollOkay)
+      log_action(MSG_DICE_ROLL_OKAY)
 
-def focusGate(unit=unitBlank, select=1):
+def focus_gate(unit=UNIT_BLANK, select=1):
   combo = True
-  fadeCount = 0
+  fade_count = 0
 
   if select == 1:
-    doSelect(0.1)
+    do_select(0.1)
 
   while combo:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       combo = False
       sys.exit()
-      break
 
     if combo == False:
       break
 
     try:
       if select == 1:
-        doSelect(0.1)
-      gate = pyauto.locateOnScreen(imgGate, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgAttackMobs + unit)
+        do_select(0.1)
+      gate = pyauto.locateOnScreen(IMG_GATE, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_ATTACK_MOBS + unit)
 
-      doAttack(0.3)
-      doAttack(0.3)
+      do_attack(0.3)
+      do_attack(0.3)
     except pyauto.ImageNotFoundException:
       combo = False
-      logAction(msgMobsCleared)
+      log_action(MSG_MOBS_CLEARED)
       break
 
-def focusMobs(unit=unitBlank, aura=1, select=1, sidestep=1):
+def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
   combo = True
-  fadeCount = 0
+  fade_count = 0
 
   if select == 1:
-    doSelect(0.1)
+    do_select(0.1)
 
   while combo:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       combo = False
       sys.exit()
-      break
 
     if aura == 1:
-      doAura()
+      do_aura()
 
     if sidestep == 1:
-      if (fadeCount == 20):
-        fadeCount = 0
-        moveClick(700, 440, 0.2)
-        doFade(0.1)
+      if (fade_count == 20):
+        fade_count = 0
+        move_click(700, 440, 0.2)
+        do_fade(0.1)
       else:
-        fadeCount += 1
+        fade_count += 1
 
     try:
       if select == 1:
-        doSelect(0.1)
-      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgAttackMobs + unit)
+        do_select(0.1)
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_ATTACK_MOBS + unit)
 
-      doAttack(0.1)
-      doAttack(0.1)
+      do_attack(0.1)
+      do_attack(0.1)
 
       if select == 1:
-        doDeselectPack()
+        do_deselect_pack()
     except pyauto.ImageNotFoundException:
-      logAction(msgMobsCleared)
+      log_action(MSG_MOBS_CLEARED)
       combo = False
       break
 
-def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
+def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
   combo = True
-  fadeCount = 0
+  fade_count = 0
 
-  doDeselectPack()
-  doSelect(0.1)
+  do_deselect_pack()
+  do_select(0.1)
   while combo:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       combo = False
       sys.exit()
-      break
 
     try:
-      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=getHpBar())
-      doDeselect()
-      logAction(msgBossFound)
+      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region_hp())
+      do_deselect()
+      log_action(MSG_BOSS_FOUND)
       combo = False
       break
     except pyauto.ImageNotFoundException:
-      logAction(msgAttackMobs + unit)
+      log_action(MSG_ATTACK_MOBS + unit)
 
     if aura == 1:
-      doAura()
+      do_aura()
 
     if sidestep == 1:
-      if (fadeCount == 20):
-        fadeCount = 0
-        moveClick(700, 440, 0.2)
-        doFade(0.1)
+      if (fade_count == 20):
+        fade_count = 0
+        move_click(700, 440, 0.2)
+        do_fade(0.1)
       else:
-        fadeCount += 1
+        fade_count += 1
 
     try:
-      doSelect(0.1)
-      mobs = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgAttackMobs + unit)
+      do_select(0.1)
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_ATTACK_MOBS + unit)
 
       if interval > 0.3:
-        doAttack(interval)
-        doAttackStrict(0.3)
-        doAttack(interval)
-        doAttackStrict(0.3)
+        do_attack(interval)
+        do_attack_strict(0.3)
+        do_attack(interval)
+        do_attack_strict(0.3)
       else:
-        doAttack(interval)
-        doAttack(interval)
+        do_attack(interval)
+        do_attack(interval)
 
     except pyauto.ImageNotFoundException:
-      logAction(msgMobsCleared)
+      log_action(MSG_MOBS_CLEARED)
       combo = False
       break
 
-def attackBoss(select=1, aura=1):
+def attack_boss(select=1, aura=1):
   combo = True
 
-  if select == 1:
-    doSelect(0.1)
+  if is_battle_mode and atk_type == 1:
+    do_select(0.1)
+    do_select(0.1)
+  elif select == 1:
+    do_select(0.1)
 
   while combo:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       combo = False
       break
 
-    if isBattleMode == False:
+    if is_battle_mode == False:
       if aura == 1:
-        doAura()
+        do_aura()
 
     try:
-      boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgAttackBoss)
-      doAttack(0.1)
-      doAttack(0.1)
+      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_ATTACK_BOSS)
+      do_attack(0.1)
+      do_attack(0.1)
     except pyauto.ImageNotFoundException:
-      logAction(msgBossKilled)
+      log_action(MSG_BOSS_KILLED)
       combo = False
       break
 
-def attackSemiBoss(select=1):
+def attack_semi_boss(select=1):
   combo = True
 
   if select == 1:
-    doSelect(0.1)
+    do_select(0.1)
 
   while combo:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       combo = False
       break
 
-    if isBattleMode == False:
-      doAura()
+    if is_battle_mode == False:
+      do_aura()
 
     try:
-      boss = pyauto.locateOnScreen(imgSemiBoss, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgAttackBoss)
-      doAttack()
+      boss = pyauto.locateOnScreen(IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_ATTACK_BOSS)
+      do_attack()
       time.sleep(0.1)
-      doAttack()
+      do_attack()
       time.sleep(0.1)
     except pyauto.ImageNotFoundException:
-      logAction(msgBossKilled)
+      log_action(MSG_BOSS_KILLED)
       combo = False
       break
 
-def attackLavaGate(select=1):
+def attack_lava_gate(select=1):
   combo = True
 
   if select == 1:
-    doSelect(0.1)
+    do_select(0.1)
 
   while combo:
     if not macro:
-      logAction(msgTerminate)
+      log_action(MSG_TERMINATE)
       combo = False
       break
 
-    if isBattleMode == False:
-      doAura()
+    if is_battle_mode == False:
+      do_aura()
 
     try:
-      gate = pyauto.locateOnScreen(imgMobs, grayscale=False, confidence=.9, region=getHpBar())
-      logAction(msgAttackBoss)
-      doAttack()
+      gate = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region_hp())
+      log_action(MSG_ATTACK_BOSS)
+      do_attack()
       time.sleep(0.1)
-      doAttack()
+      do_attack()
       time.sleep(0.1)
     except pyauto.ImageNotFoundException:
-      logAction(msgBossKilled)
+      log_action(MSG_BOSS_KILLED)
       combo = False
       break

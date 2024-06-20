@@ -12,133 +12,139 @@ import util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
-rootFrame = []
-startButton = []
+frame_root = []
+btn_start = []
 
 # UNIQUE VARIABLES
-sidestep = 0
+val_sidestep = 0
 
 def initialize(frame, btn, runs=1):
-  global rootFrame
-  rootFrame = frame
+  global frame_root
+  frame_root = frame
 
-  global startButton
-  startButton = btn
+  global btn_start
+  btn_start = btn
 
-  startButton.config(state="disabled")
-  rootFrame.update()
-  runDungeon(int(runs))
-  startButton.config(state="active")
-  rootFrame.update()
+  btn_start.config(state="disabled")
+  frame_root.update()
+  run_dungeon(int(runs))
+  btn_start.config(state="active")
+  frame_root.update()
 
-def positionSecondBoss():
+def position_second_boss():
   util.move(700, 350)
-  util.doFade(0.5)
+  util.do_fade(0.5)
 
   util.move(200, 320)
-  util.doDash(1.2)
+  util.do_dash(1.2)
   util.move(200, 520)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(600, 520)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(200, 320)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(200, 420)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(620, 280)
-  util.doFade(0.5)
+  util.do_fade(0.5)
 
-def positionFinalBoss():
+def position_final_boss():
   util.move(250, 520)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(550, 600)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(350, 520)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(350, 520)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(350, 520)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(620, 650)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(350, 620)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(350, 560)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
   util.move(350, 560)
-  util.doDash(1.2)
+  util.do_dash(1.2)
 
-def runDungeon(runs=1):
-  runCounter = 0
-  while runCounter < runs:
-    runCounter += 1
+def run_dungeon(runs=1):
+  run_counter = 0
+  trigger_continue = False
+  while run_counter < runs:
+    run_counter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
-    util.logAction(util.msgStartDg)
-    util.logRun(runCounter)
+    util.log_action(util.MSG_START_DG)
+    util.log_run(run_counter)
 
     # Click Cabal Window
-    util.goCabalWindow()
-    util.releaseKeys()
-    util.goSkillSlot(0.5)
+    util.go_cabal_window()
+    util.release_keys()
+    util.go_skill_slot(0.5)
 
-    util.doBuffs()
+    util.do_buffs()
 
     util.move(500, 500)
-    util.doDash(1)
+    util.do_dash(1)
     util.move(500, 300)
-    util.doFade(0.5)
+    util.do_fade(0.5)
 
-    util.moveClick(570, 300)
+    util.move_click(570, 300)
 
     # Enter Dungeon
-    util.enterDungeon()
-    util.challengeDungeon()
+    util.enter_dungeon()
+    util.challenge_dungeon()
 
     # First Boss
     util.move(570, 300)
-    util.doDash(1)
+    util.do_dash(1)
 
     time.sleep(1)
-    util.doBattleMode()
-    util.attackBoss()
-    util.setBattleMode(False)
+    util.do_battle_mode()
+    util.attack_boss()
+    util.set_battle_mode(False)
     time.sleep(1)
 
     util.move(400, 600)
-    util.doDash(1)
+    util.do_dash(1)
 
     try:
-      util.moveClick(570, 375)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
-      util.logAction(util.msgCheckDialogFound)
-      util.moveClickRel(10, 10, dialog, 2)
+      util.move_click(570, 375)
+      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+      util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+      util.move_click_rel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoCheckDialogFound)
+      util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+      util.force_exit_dungeon()
+      trigger_continue = True
 
-    positionSecondBoss()
-    util.focusMobs(util.unitIceBlock, 0)
+    if trigger_continue:
+      continue
+
+    position_second_boss()
+    util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
 
     util.move(800, 360)
-    util.doFade(0.5)
+    util.do_fade(0.5)
 
     util.move(1000, 200)
-    util.doDash(1)
-    util.doFade(0.8)
+    util.do_dash(1)
+    util.do_fade(0.8)
 
     util.move(810, 345)
-    util.doDash(1)
+    util.do_dash(1)
 
     secondBoss = True
     while secondBoss:
@@ -146,62 +152,72 @@ def runDungeon(runs=1):
          break
 
       try:
-        util.doSelect(0.1)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
+        util.do_select(0.1)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         secondBoss = False
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
-        util.attackMobs(util.unitSpector, 0, 0.3, sidestep)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.attack_mobs(util.UNIT_SPECTOR, 0, 0.3, val_sidestep)
 
     time.sleep(1)
-    util.attackBoss()
-    util.cancelAura(1)
-    util.lootBox(2)
+    util.attack_boss()
+    util.cancel_aura(1)
+    util.loot_box(2)
 
     util.move(720, 385)
-    util.doDash(1)
+    util.do_dash(1)
 
-    checkDialog = True
-    while checkDialog:
-      if checkDialog == False:
+    dialog_check = True
+    while dialog_check:
+      if dialog_check == False:
         break
 
       try:
-        util.moveClick(610, 300)
-        util.moveClick(610, 305)
-        util.moveClick(610, 310)
-        dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
-        util.logAction(util.msgCheckDialogFound)
-        util.moveClickRel(10, 10, dialog, 2)
-        checkDialog = False
+        util.move_click(610, 300)
+        util.move_click(610, 305)
+        util.move_click(610, 310)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_check = False
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoCheckDialogFound)
+        util.force_exit_dungeon()
+        dialog_check = False
+        trigger_continue = True
+
+    if trigger_continue:
+      continue
 
     # Final Boss
-    positionFinalBoss()
-    util.doShortBuffs()
-    util.doBattleMode()
-    util.attackBoss()
-    util.setBattleMode(False)
-    util.lootBox(2)
+    position_final_boss()
+    util.do_short_buffs()
+    util.do_battle_mode()
+    util.attack_boss()
+    util.set_battle_mode(False)
+    util.loot_box(2)
 
     util.move(600, 600)
-    util.doDash(1.2)
+    util.do_dash(1.2)
 
     try:
-      util.moveClick(540, 435)
-      util.moveClick(540, 440)
-      util.moveClick(540, 445)
-      dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
-      util.logAction(util.msgCheckDialogFound)
-      util.moveClickRel(10, 10, dialog, 2)
+      util.move_click(540, 435)
+      util.move_click(540, 440)
+      util.move_click(540, 445)
+      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+      util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+      util.move_click_rel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoCheckDialogFound)
+      util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+      util.force_exit_dungeon()
+      trigger_continue = True
+
+    if trigger_continue:
+      continue
 
     # Start to End Dungeon
-    util.endDungeon()
-    util.diceDungeon()
-    util.logAction(util.msgEndDg)
+    util.end_dungeon()
+    util.dice_dungeon()
+    util.log_action(util.MSG_END_DG)
     time.sleep(3)

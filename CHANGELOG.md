@@ -89,3 +89,13 @@ All notable changes to this project will be documented in this file.
 ## v5.01 Fixes
 
 - Fixes a lot of discrepancy movements in dungeons
+
+# v5.11
+
+## v5.11 Features
+
+## v5.11 Fixes
+
+- Fixed Panic Cave (Awakened) abrupt exits when range classes are in battle mode
+- Fixed Catacomb Frost (Awakened) wrong pathing of dashes
+- Change variable and method cases

@@ -33,3 +33,8 @@
 # util.move(620, 550)
 # util.doFade(0.5)
 #### MELEE
+
+# shorts = ttk.Combobox(values=shortList, state="readonly")
+  # shorts.current(0)
+  # shorts.config(width=5)
+  # shorts.place(x=75, y=135)
