@@ -303,7 +303,7 @@ def doBuffs():
 
     move(430, 670)
     pyauto.click(button="right")
-    time.sleep(0.5)
+    time.sleep(1.5)
 
 def doShortBuffs():
   if shortBuffsAllowed == 1:

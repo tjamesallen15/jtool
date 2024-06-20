@@ -210,8 +210,8 @@ def runDungeon(runs=1):
     # Click Cabal Window
     util.goCabalWindow()
     util.releaseKeys()
-    util.goSkillSlot(0.5)
     util.doBuffs()
+    util.goSkillSlot(0.5)
 
     util.moveClick(720, 360)
 
