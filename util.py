@@ -124,6 +124,7 @@ unitLeo = "Leo of Wind"
 unitEspi = "Espi of Wind"
 unitDraco = "Draco of Wind"
 unitSpector = "Spector"
+unitIceBlock = "Ice Block"
 unitDarkArcher = "Dark Archer"
 unitJason = "Gatekeeper Jason"
 unitLavaGate = "Lava Gate"
@@ -605,7 +606,7 @@ def endDungeon():
   endCheckTrack = 0
   while ending:
     if not macro:
-      logAction(util.msgTerminate)
+      logAction(msgTerminate)
       ending = False
       sys.exit()
       break
