@@ -28,3 +28,8 @@
 # hpBar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
 # im1 = pyauto.screenshot(region=hpBar)
 # im1.save("c:\screenshot.png")
+
+#### MELEE
+# util.move(620, 550)
+# util.doFade(0.5)
+#### MELEE

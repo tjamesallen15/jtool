@@ -1,15 +1,14 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
+
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
 
 import util
-
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -25,7 +24,7 @@ def initialize(frame, btn, runs=1):
 
   global startButton
   startButton = btn
-  
+
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))
@@ -186,7 +185,7 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
@@ -279,7 +278,7 @@ def pathFind(unit=util.unitBlank):
 
       if pathing == False:
         break
-  
+
   if unit == util.unitEspada or unit == util.unitEspadaII or unit == util.unitEspadaIII:
     util.focusMobs(unit, 1, 0, sidestep)
 
@@ -371,7 +370,7 @@ def pathFindGateOnly(unit=util.unitBlank):
       util.logAction(util.msgNoGateFound)
 
     if pathing == False:
-      break
+      breakx
 
     if unit == util.unitGateFour:
       try:
@@ -417,7 +416,7 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
 
       try:
-        util.moveClick(600, 260)
+        util.moveClick(700, 260)
         util.doSelect(0.1)
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgGateFound + unit)
@@ -431,7 +430,7 @@ def pathFindGateOnly(unit=util.unitBlank):
         break
 
       try:
-        util.moveClick(650, 260)
+        util.moveClick(750, 260)
         util.doSelect(0.1)
         gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
         util.logAction(util.msgGateFound + unit)
@@ -626,9 +625,10 @@ def pathFindBoss():
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
+    runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
-    util.logRun(runCounter + 1)
+    util.logRun(runCounter)
 
     # Click Cabal Window
     util.goCabalWindow()
@@ -713,7 +713,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 4:
+      if counter > 6:
         moving = False
         break
 
@@ -738,21 +738,21 @@ def runDungeon(runs=1):
     util.move(350, 200)
     util.doDash(1)
     util.doFade(0.5)
-    
+
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    time.sleep(1)
+    # time.sleep(1)
 
-    util.move(400, 500)
-    util.doFade(0.5)
+    # util.move(400, 500)
+    # util.doFade(0.5)
 
-    util.move(630, 200)
-    util.doDash(1)
-    util.doFade(0.5)
+    # util.move(630, 200)
+    # util.doDash(1)
+    # util.doFade(0.5)
 
     # Gate II
     moving = True
@@ -776,6 +776,10 @@ def runDungeon(runs=1):
         util.logAction(util.msgNoBossFound)
 
     util.focusGate(util.unitGateTwo)
+
+    util.move(660, 260)
+    util.doDash(1)
+    util.doFade(0.5)
 
     util.move(660, 260)
     util.doDash(1)
@@ -806,7 +810,7 @@ def runDungeon(runs=1):
     util.move(320, 550)
     util.doDash(1)
     util.doFade(0.5)
-  
+
     util.focusGate(util.unitPowerSupply)
 
     util.move(375, 150)
@@ -868,7 +872,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 6:
+      if counter > 4:
         moving = False
         break
 
@@ -887,6 +891,10 @@ def runDungeon(runs=1):
     util.doFade(0.5)
 
     util.lootBox()
+
+    util.move(640, 260)
+    util.doDash(1)
+    util.doFade(0.5)
 
     # Poerte Sequence
     moving = True
@@ -934,7 +942,7 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(660, 260)
+    util.move(650, 260)
     util.doDash(1)
     util.doFade(0.5)
 
@@ -981,10 +989,15 @@ def runDungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoBossFound)
-    
+
     # Third Boss
+    util.doBattleMode()
     util.attackBoss()
+    util.setBattleMode(False)
     util.lootBox()
+
+    if util.battleMode == 1:
+      time.sleep(20)
 
     util.move(720, 260)
     util.doDash(1)
@@ -1015,6 +1028,7 @@ def runDungeon(runs=1):
 
     # Final Boss
     util.doBattleMode()
+    util.doAuraStrict()
     util.doShortBuffs()
 
     # Final Boss Sequence
@@ -1051,7 +1065,5 @@ def runDungeon(runs=1):
     # Start to End Dungeon
     util.endDungeon()
     util.diceDungeon()
-  
-    runCounter += 1
     util.logAction(util.msgEndDg)
     time.sleep(3)

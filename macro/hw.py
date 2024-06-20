@@ -1,15 +1,14 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
+
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
 
 import util
-
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -25,7 +24,7 @@ def initialize(frame, btn, runs=1):
 
   global startButton
   startButton = btn
-  
+
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))
@@ -233,7 +232,6 @@ def pathFindGateOnly(unit=util.unitBlank):
         if pathing == False:
           break
 
-
 def pathFindLegrinGate(unit=util.unitBlank):
   pathing = True
   bossFound = 0
@@ -339,7 +337,7 @@ def pathFindLegrinGate(unit=util.unitBlank):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
-  
+
   if bossFound == 0:
     util.focusGate(util.unitLegrin)
 
@@ -569,7 +567,7 @@ def pathFind(unit=util.unitBlank):
 
       if pathing == False:
         break
-      
+
       try:
         util.moveClick(550, 260)
         util.doSelect(0.1)
@@ -666,7 +664,7 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
@@ -759,7 +757,7 @@ def pathFind(unit=util.unitBlank):
 
       if pathing == False:
         break
-  
+
     else:
       try:
         util.moveClick(600, 260)
@@ -798,7 +796,7 @@ def pathFind(unit=util.unitBlank):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
@@ -1092,9 +1090,10 @@ def pathBackTrack(unit):
 def runDungeon(runs=1):
   runCounter = 0
   while runCounter < runs:
+    runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
-    util.logRun(runCounter + 1)
+    util.logRun(runCounter)
 
     # Click Cabal Window
     util.goCabalWindow()
@@ -1107,7 +1106,7 @@ def runDungeon(runs=1):
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
-    
+
     # Click Dungeon
     util.move(500, 300)
     util.doDash(1)
@@ -1232,7 +1231,7 @@ def runDungeon(runs=1):
     util.doDash(1)
 
     util.focusGate(util.unitGateTwo)
-    
+
     util.doDeselectPack()
     util.move(400, 240)
     util.doDash(1)
@@ -1437,7 +1436,7 @@ def runDungeon(runs=1):
     util.move(400, 160)
     util.doDash(1)
     util.doFade(0.5)
-    
+
     util.move(1000, 300)
     util.doDash(1)
     util.doFade(1)
@@ -1488,7 +1487,5 @@ def runDungeon(runs=1):
     # Start to End Dungeon
     util.endDungeon()
     util.diceDungeon()
-
-    runCounter += 1
     util.logAction(util.msgEndDg)
     time.sleep(3)

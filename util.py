@@ -1,13 +1,13 @@
+import time
+import sys
+from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
-import time
-import sys
 
-from tkinter import *
-from pynput import keyboard 
-from pynput.keyboard import Key, Listener
-from pynput.keyboard import Key, Controller
+from pynput.keyboard import Key, Listener, Controller
+from pynput import keyboard
+
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -135,6 +135,9 @@ unitEspadaIII = "Espada III"
 unitPoerte = "Poerte"
 unitRedonno = "Redonno"
 unitPowerSupply = "Power Supply"
+unitShoworaiFear = "Showorai's Fear"
+unitShoworaiResignation = "Showorai's Resign"
+unitShoworaiMadness = "Showorai's Madness"
 unitBox = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -182,7 +185,7 @@ def setCabalWindow(window):
 
 def goCabalWindow():
   moveClick(50, 15)
-  
+
 def move(x, y, sec=0):
   pyauto.moveTo(cabalwindow[0] + x, cabalwindow[1] + y)
 
@@ -222,7 +225,7 @@ def logAction(message):
   print(msgBuilder)
   macroLbl.config(text=msgBuilder)
   rootFrame.update()
-  
+
 def getHpBar():
   if isBattleMode and atkType == 1:
     return hpBarMode
@@ -233,6 +236,14 @@ def terminate():
   logAction(msgExit)
   global macro
   macro = False
+
+def forceExitDungeon():
+  moveClick(830, 710)
+  moveClick(850, 430)
+  moveClick(1030, 485)
+  moveClick(620, 440)
+
+  time.sleep(3)
 
 def goSkillSlot(sec=0):
   pynboard.press(Key.f3)
@@ -312,9 +323,23 @@ def doShortBuffs():
     pyauto.click(button="right")
     time.sleep(0.5)
 
-    # move(640, 670)
-    # pyauto.click(button="right")
-    # time.sleep(0.5)
+def forceShortBuffs():
+    logAction(msgShortBuffs)
+    move(470, 670)
+    pyauto.click(button="right")
+    time.sleep(0.5)
+
+    move(500, 670)
+    pyauto.click(button="right")
+    time.sleep(0.5)
+
+    move(540, 670)
+    pyauto.click(button="right")
+    time.sleep(0.5)
+
+    move(570, 670)
+    pyauto.click(button="right")
+    time.sleep(0.5)    
 
 def cancelAura(sec=0):
   move(175, 100)
@@ -383,7 +408,7 @@ def doLoot():
     pynboard.release(lootSpace)
     time.sleep(0.3)
 
-def lootBox(sec=3):
+def lootBox(sec=3, select=1):
   checking = True
   boxCounter = 0
   while checking:
@@ -394,7 +419,8 @@ def lootBox(sec=3):
       break
 
     try:
-      doSelect(0.1)
+      if select == 1:
+        doSelect(0.1)
       box = pyauto.locateOnScreen(imgBox, grayscale=False, confidence=.9, region=getHpBar())
       logAction(msgBoxFound)
     except pyauto.ImageNotFoundException:
@@ -758,7 +784,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       combo = False
       break
 
-def attackBoss(select=1):
+def attackBoss(select=1, aura=1):
   combo = True
 
   if select == 1:
@@ -771,7 +797,8 @@ def attackBoss(select=1):
       break
 
     if isBattleMode == False:
-      doAura()
+      if aura == 1:
+        doAura()
 
     try:
       boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=getHpBar())
