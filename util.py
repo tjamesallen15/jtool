@@ -243,7 +243,7 @@ def forceExitDungeon():
   moveClick(1030, 485)
   moveClick(620, 440)
 
-  time.sleep(1)
+  time.sleep(3)
 
 def goSkillSlot(sec=0):
   pynboard.press(Key.f3)

@@ -199,7 +199,9 @@ def positionThirdShadow():
 
 def runDungeon(runs=1):
   runCounter = 0
+  triggerContinue = False
   while runCounter < runs:
+    triggerContinue = False
     runCounter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.logAction(util.msgStartDg)
@@ -224,12 +226,11 @@ def runDungeon(runs=1):
     pyauto.scroll(-10000)
 
     positionNualle()
-
     # First Boss Sequence
     util.forceShortBuffs()
     util.attackBoss()
 
-    time.sleep(2)
+    time.sleep(3)
     util.moveClick(590, 460)
     util.doFade(1)
 
@@ -271,7 +272,12 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoCheckDialogFound)
         util.forceExitDungeon()
-        continue
+        checking = False
+        triggerContinue = True
+
+    if triggerContinue:
+      print("continue")
+      continue
 
     positionFirstShadow()
     # First Shadow
@@ -299,9 +305,6 @@ def runDungeon(runs=1):
     time.sleep(3)
     util.doSelect(0.1)
     util.focusMobs(util.unitShoworaiMadness, 0, 0, 0)
-    time.sleep(1)
-    util.doSelect(0.1)
-    util.focusMobs(util.unitShoworaiMadness, 0, 0, 0)
 
     util.moveClick(580, 430)
     checking = True
@@ -317,10 +320,17 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoCheckDialogFound)
         util.forceExitDungeon()
-        continue
+        checking = False
+        triggerContinue = True
+
+    if triggerContinue:
+      print("continue")
+      continue
 
     # Final Boss
+    util.doBattleMode()
     util.attackBoss(1, 0)
+    util.setBattleMode(False)
 
     time.sleep(1)
     util.moveClick(580, 430)
@@ -343,9 +353,15 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoCheckDialogFound)
         util.forceExitDungeon()
-        continue
+        checking = False
+        triggerContinue = True
+
+    if triggerContinue:
+      print("continue")
+      continue
 
     util.moveClick(580, 430)
+    util.moveClick(580, 300)
     checking = True
     while checking:
       if not util.macro:
@@ -365,7 +381,12 @@ def runDungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoCheckDialogFound)
         util.forceExitDungeon()
-        continue
+        checking = False
+        triggerContinue = True
+
+    if triggerContinue:
+      print("continue")
+      continue
 
     # Start to End Dungeon
     util.endDungeon()
