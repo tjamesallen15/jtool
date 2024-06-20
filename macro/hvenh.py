@@ -230,7 +230,7 @@ def pathFind(unit):
         break
 
       try:
-        util.moveClick(100, 260) 
+        util.moveClick(100, 260)
 
         if unit == util.unitWhiteSnake:
           util.doDash(1)
