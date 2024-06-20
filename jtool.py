@@ -39,7 +39,13 @@ dungeonList = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
-  "Hazardous Valley (Easy)"
+  "Hazardous Valley (Easy)",
+  "Steamer Crazy (Awakened)",
+  "Catacomb Frost (Awakened)",
+  "Lava Hellfire (Awakened)",
+  "Holy Windmill",
+  "Terminus Machina",
+  "Panic Cave (Awakened)"
 ]
 runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 40, 50]
 bmList = [1, 0]
