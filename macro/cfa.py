@@ -24,7 +24,7 @@ def initialize(frame, btn, runs=1):
 
   global startButton
   startButton = btn
-  
+
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))

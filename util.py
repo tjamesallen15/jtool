@@ -146,7 +146,7 @@ def initialize(window, frame, mlbl, rlbl):
 
   global rootFrame
   rootFrame = frame
-  
+
   global macroLbl
   macroLbl = mlbl
 
@@ -339,7 +339,7 @@ def forceShortBuffs():
 
     move(570, 670)
     pyauto.click(button="right")
-    time.sleep(0.5)    
+    time.sleep(0.5)
 
 def cancelAura(sec=0):
   move(175, 100)
@@ -351,14 +351,14 @@ def cancelAura(sec=0):
 def doDash(sec=0):
   pynboard.press(dash)
   pynboard.release(dash)
-  
+
   if (sec != 0):
     time.sleep(sec)
 
 def doFade(sec=0):
   pynboard.press(fade)
   pynboard.release(fade)
-  
+
   if (sec != 0):
     time.sleep(sec)
 
@@ -707,7 +707,7 @@ def focusMobs(unit=unitBlank, aura=1, select=1, sidestep=1):
 
     if aura == 1:
       doAura()
-    
+
     if sidestep == 1:
       if (fadeCount == 20):
         fadeCount = 0
@@ -744,7 +744,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       combo = False
       sys.exit()
       break
-    
+
     try:
       boss = pyauto.locateOnScreen(imgBoss, grayscale=False, confidence=.9, region=getHpBar())
       doDeselect()
@@ -756,7 +756,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
 
     if aura == 1:
       doAura()
-    
+
     if sidestep == 1:
       if (fadeCount == 20):
         fadeCount = 0
@@ -778,7 +778,7 @@ def attackMobs(unit=unitBlank, aura=1, interval=0.3, sidestep=1):
       else:
         doAttack(interval)
         doAttack(interval)
-  
+
     except pyauto.ImageNotFoundException:
       logAction(msgMobsCleared)
       combo = False
@@ -812,7 +812,7 @@ def attackBoss(select=1, aura=1):
 
 def attackSemiBoss(select=1):
   combo = True
-  
+
   if select == 1:
     doSelect(0.1)
 
@@ -839,7 +839,7 @@ def attackSemiBoss(select=1):
 
 def attackLavaGate(select=1):
   combo = True
-  
+
   if select == 1:
     doSelect(0.1)
 

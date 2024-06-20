@@ -30,7 +30,7 @@ def initialize(frame, btn, diff, runs=1):
 
   global difficulty
   difficulty = diff
-  
+
   startButton.config(state="disabled")
   rootFrame.update()
   runDungeon(int(runs))
@@ -59,7 +59,7 @@ def pathFind(unit):
     if (backTrackCheck >= 10):
       backTrackCheck = 0
       pathBackTrack(unit)
-    
+
     try:
       util.moveClick(600, 260)
       util.doSelect(0.1)
@@ -97,7 +97,7 @@ def pathFind(unit):
       break
     except pyauto.ImageNotFoundException:
       util.logAction(util.msgNoMobsFound)
-    
+
     try:
       util.doSelect(0.1)
       util.logAction(util.msgCheckBoss)
@@ -125,7 +125,7 @@ def pathFind(unit):
         break
       except pyauto.ImageNotFoundException:
         util.logAction(util.msgNoMobsFound)
-      
+
       try:
         util.doSelect(0.1)
         util.logAction(util.msgCheckBoss)
@@ -230,7 +230,7 @@ def pathFind(unit):
         break
 
       try:
-        util.moveClick(100, 260)    
+        util.moveClick(100, 260) 
 
         if unit == util.unitWhiteSnake:
           util.doDash(1)
