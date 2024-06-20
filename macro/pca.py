@@ -333,7 +333,6 @@ def runDungeon(runs=1):
     util.setBattleMode(False)
 
     time.sleep(1)
-    util.moveClick(580, 430)
     checking = True
     while checking:
       if not util.macro:
@@ -346,6 +345,7 @@ def runDungeon(runs=1):
         break
 
       try:
+        util.moveClick(580, 430)
         dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
         util.logAction(util.msgCheckDialogFound)
         util.moveClickRel(10, 10, dialog, 2)
@@ -360,8 +360,6 @@ def runDungeon(runs=1):
       print("continue")
       continue
 
-    util.moveClick(580, 430)
-    util.moveClick(580, 300)
     checking = True
     while checking:
       if not util.macro:
@@ -374,6 +372,7 @@ def runDungeon(runs=1):
         break
 
       try:
+        util.moveClick(580, 430)
         dialog = pyauto.locateOnScreen(util.imgCheckDialog, grayscale=False, confidence=.9)
         util.logAction(util.msgCheckDialogFound)
         util.moveClickRel(10, 10, dialog, 2)
