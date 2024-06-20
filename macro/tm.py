@@ -713,7 +713,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 4:
+      if counter > 6:
         moving = False
         break
 
@@ -798,7 +798,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 5:
+      if counter > 6:
         moving = False
         break
 
@@ -843,7 +843,7 @@ def runDungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 4:
+      if counter > 6:
         moving = False
         break
 
