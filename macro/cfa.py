@@ -130,7 +130,7 @@ def runDungeon(runs=1):
 
     positionSecondBoss()
 
-    util.focusMobs(util.unitSpector)
+    util.focusMobs(util.unitSpector, 0)
 
     util.move(800, 360)
     util.doFade(0.5)
