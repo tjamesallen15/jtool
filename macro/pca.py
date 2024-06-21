@@ -286,6 +286,7 @@ def run_dungeon(runs=1):
     util.wait(4)
 
     check_showorai = True
+    count_showorai = 0
     while check_showorai:
       if not util.macro:
         util.log_action(util.MSG_TERMINATE)
@@ -295,6 +296,9 @@ def run_dungeon(runs=1):
       if check_showorai == False:
         break
 
+      if count_showorai > 3:
+        check_showorai = False
+
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
@@ -302,6 +306,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_BOSS_FOUND)
         check_showorai = False
       except pyauto.ImageNotFoundException:
+        count_showorai += 1
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # First Shadow
@@ -312,6 +317,7 @@ def run_dungeon(runs=1):
     util.wait(4)
 
     check_showorai = True
+    count_showorai = 0
     while check_showorai:
       if not util.macro:
         util.log_action(util.MSG_TERMINATE)
@@ -321,6 +327,9 @@ def run_dungeon(runs=1):
       if check_showorai == False:
         break
 
+      if count_showorai > 3:
+        check_showorai = False
+
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
@@ -328,6 +337,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_BOSS_FOUND)
         check_showorai = False
       except pyauto.ImageNotFoundException:
+        count_showorai += 1
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # Second Shadow
@@ -338,6 +348,7 @@ def run_dungeon(runs=1):
     util.wait(3)
 
     check_showorai = True
+    count_showorai = 0
     while check_showorai:
       if not util.macro:
         util.log_action(util.MSG_TERMINATE)
@@ -347,6 +358,9 @@ def run_dungeon(runs=1):
       if check_showorai == False:
         break
 
+      if count_showorai > 3:
+        check_showorai = False
+
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
@@ -354,6 +368,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_BOSS_FOUND)
         check_showorai = False
       except pyauto.ImageNotFoundException:
+        count_showorai += 1
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # Third Shadow
