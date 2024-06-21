@@ -764,6 +764,63 @@ def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       combo = False
       break
 
+def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
+  combo = True
+  fade_count = 0
+
+  if select == 1:
+    do_select(0.1)
+
+  while combo:
+    if not macro:
+      log_action(MSG_TERMINATE)
+      combo = False
+      sys.exit()
+
+    if aura == 1:
+      do_aura()
+
+    if sidestep == 1:
+      if (fade_count == 20):
+        fade_count = 0
+        move_click(700, 440, 0.2)
+        do_fade(0.1)
+      else:
+        fade_count += 1
+
+    try:
+      if select == 1:
+        do_select(0.1)
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_ATTACK_MOBS + unit)
+
+      do_attack(0.1)
+      do_attack(0.1)
+
+      if select == 1:
+        do_deselect_pack()
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_MOBS_FOUND)
+
+    try:
+      if select == 1:
+        do_select(0.1)
+      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_BOX_FOUND)
+
+      do_attack(0.1)
+      do_attack(0.1)
+      do_attack(0.1)
+      do_attack(0.1)
+      loot_box(2)
+
+      if select == 1:
+        do_deselect_pack()
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_BOX_FOUND)
+      combo = False
+      break
+
 def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
   combo = True
   fade_count = 0

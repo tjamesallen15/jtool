@@ -479,7 +479,7 @@ def path_backtrack(unit):
     if backtracking == False:
       break
 
-  util.attack_mobs(unit)
+  util.attack_backtrack(unit, 1, 1, 0)
 
 def position_orphidia():
   util.do_deselect_pack()
