@@ -87,6 +87,8 @@ MSG_CHECK_DIALOG_FOUND =  "Check Dialog Found"
 MSG_NO_CHECK_DIALOG_FOUND = "No Check Dialog Found"
 MSG_GATE_FOUND = "Gate Found "
 MSG_NO_GATE_FOUND = "No Gate Found"
+MSG_WAIT = "Waiting"
+MSG_MOVING_POSITION = "Moving to position"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
@@ -106,6 +108,7 @@ IMG_CHECK_DIALOG = "img/checkdialog.jpg"
 IMG_BOX = "img/box.jpg"
 IMG_GATE = "img/gate.jpg"
 IMG_HOLY_BOX = "img/holybox.jpg"
+IMG_SHOWORAI = "img/showorai.jpg"
 
 # CONSTANT UNITS
 UNIT_BLANK = "--"
@@ -134,15 +137,15 @@ UNIT_GATEKEEPER_JASON = "Gatekeeper Jason"
 UNIT_LAVA_GATE = "Lava Gate"
 UNIT_MECH_LION = "Mech Lion"
 UNIT_MECH_LIHONAR = "Mech Lihonar"
-UNIT_ESPADA_I = "Espada"
-UNIT_ESPADA_II = "Espada II"
-UNIT_ESPADA_III = "Espada III"
+UNIT_ESPADA_1 = "Espada"
+UNIT_ESPADA_2 = "Espada II"
+UNIT_ESPADA_3 = "Espada III"
 UNIT_POERTE = "Poerte"
 UNIT_REDONNO = "Redonno"
 UNIT_POWER_SUPPLY = "Power Supply"
-UNIT_SHOWORAI_FEAR = "Showorai's Fear"
-UNIT_SHOWORAI_RESIGN = "Showorai's Resign"
-UNIT_SHOWORAI_MADNESS = "Showorai's Madness"
+UNIT_SHOWORAI_F = "Showorai [F]"
+UNIT_SHOWORAI_R = "Showorai [R]"
+UNIT_SHOWORAI_M = "Showorai [M]"
 UNIT_BOX = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -226,6 +229,10 @@ def move_click_rel(x, y, ref, sec=0):
   if (sec != 0):
     time.sleep(sec)
 
+def wait(sec=1):
+  log_action(MSG_WAIT)
+  time.sleep(sec)
+
 def log_run(runNumber):
   runBuilder = StringVar()
   runBuilder = MSG_RUN_NUMBER + str(runNumber)
@@ -240,16 +247,31 @@ def log_action(message):
   lbl_macro.config(text=msgBuilder)
   frame_root.update()
 
+def terminate():
+  log_action(MSG_EXIT)
+  global macro
+  macro = False
+
 def get_region():
   if is_battle_mode and atk_type == 1:
     return region_mode_bar
   else:
     return region_normal_bar
 
-def terminate():
-  log_action(MSG_EXIT)
-  global macro
-  macro = False
+def get_full_region():
+  if is_battle_mode and atk_type == 1:
+    return region_full_mode_bar
+  else:
+    return region_full_normal_bar
+
+def get_screen_region():
+  return region_screen
+
+def get_atk_type():
+  return atk_type
+
+def get_battle_mode():
+  return battle_mode
 
 def force_exit_dungeon():
   move_click(830, 710)

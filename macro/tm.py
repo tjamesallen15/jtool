@@ -47,9 +47,9 @@ def path_find(unit=util.UNIT_BLANK):
       break
 
     util.log_action(util.MSG_PATH_FIND + unit)
-    if unit == util.UNIT_MECH_LIHONAR or unit == util.UNIT_ESPADA_I or unit == util.UNIT_ESPADA_II or unit == util.UNIT_ESPADA_III:
+    if unit == util.UNIT_MECH_LIHONAR or unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
 
-      if unit != util.UNIT_ESPADA_II:
+      if unit != util.UNIT_ESPADA_2:
         try:
           util.move_click(300, 260)
           util.do_select(0.1)
@@ -278,12 +278,12 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
-  if unit == util.UNIT_ESPADA_I or unit == util.UNIT_ESPADA_II or unit == util.UNIT_ESPADA_III:
+  if unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
     util.focus_mobs(unit, 1, 0, val_sidestep)
 
-  if boss_found == 0 and util.atk_type == 0 and unit == util.UNIT_REDONNO:
+  if boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_REDONNO:
     util.focus_mobs(unit, 1, 0, val_sidestep)
-  elif boss_found == 0 and util.atk_type == 0 and unit == util.UNIT_POERTE:
+  elif boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_POERTE:
     util.focus_mobs(unit, 1, 0, val_sidestep)
   elif boss_found == 0:
     util.attack_mobs(unit, 1, 0.3, val_sidestep)
@@ -739,7 +739,7 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    # time.sleep(1)
+    # util.wait(1)
 
     # util.move(400, 500)
     # util.do_fade(0.5)
@@ -794,7 +794,7 @@ def run_dungeon(runs=1):
         moving = False
         break
 
-      path_find(util.UNIT_ESPADA_I)
+      path_find(util.UNIT_ESPADA_1)
       counter += 1
       print(str(counter))
 
@@ -838,7 +838,7 @@ def run_dungeon(runs=1):
         moving = False
         break
 
-      path_find(util.UNIT_ESPADA_II)
+      path_find(util.UNIT_ESPADA_2)
       counter += 1
       print(str(counter))
 
@@ -866,7 +866,7 @@ def run_dungeon(runs=1):
         moving = False
         break
 
-      path_find(util.UNIT_ESPADA_III)
+      path_find(util.UNIT_ESPADA_3)
       counter += 1
       print(str(counter))
 
@@ -983,8 +983,8 @@ def run_dungeon(runs=1):
     util.set_battle_mode(False)
     util.loot_box()
 
-    if util.battle_mode == 1:
-      time.sleep(20)
+    if util.get_battle_mode() == 1:
+      util.wait(20)
 
     util.move(720, 260)
     util.do_dash(1)
@@ -1051,4 +1051,4 @@ def run_dungeon(runs=1):
     util.end_dungeon()
     util.dice_dungeon()
     util.log_action(util.MSG_END_DG)
-    time.sleep(3)
+    util.wait(3)

@@ -724,4 +724,4 @@ def run_dungeon(runs=1):
     util.end_dungeon()
     util.dice_dungeon()
     util.log_action(util.MSG_END_DG)
-    time.sleep(3)
+    util.wait(3)

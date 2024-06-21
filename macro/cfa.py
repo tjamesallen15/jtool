@@ -136,7 +136,7 @@ def run_dungeon(runs=1):
 
     util.move_click(670, 380)
     util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
-    time.sleep(0.5)
+    util.wait(0.5)
 
     util.move(760, 335)
     # util.do_fade(1.3)
@@ -153,7 +153,7 @@ def run_dungeon(runs=1):
     util.move(740, 360)
     util.do_fade(0.5)
 
-    time.sleep(3)
+    util.wait(3)
     checking = True
     while checking:
       if checking == False:
@@ -168,7 +168,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
         util.attack_mobs(util.UNIT_SPECTOR, 0, 0.3, val_sidestep)
 
-    time.sleep(1)
+    util.wait(1)
     util.attack_boss()
     util.cancel_aura(1)
     util.loot_box(2)
@@ -230,4 +230,4 @@ def run_dungeon(runs=1):
     util.end_dungeon()
     util.dice_dungeon()
     util.log_action(util.MSG_END_DG)
-    time.sleep(3)
+    util.wait(3)

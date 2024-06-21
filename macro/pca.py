@@ -32,6 +32,7 @@ def initialize(frame, btn, runs=1):
   frame_root.update()
 
 def position_nualle():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(610, 150)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -102,7 +103,7 @@ def position_nualle():
 
   util.do_aura_strict(1)
   util.do_aura(1)
-  time.sleep(4)
+  util.wait(4)
 
   util.move(660, 150)
   util.do_dash(1)
@@ -115,6 +116,7 @@ def position_nualle():
   util.do_fade(1)
 
 def position_first_shadow():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(460, 150)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -155,6 +157,7 @@ def position_first_shadow():
   util.do_dash(1)
 
 def position_second_shadow():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(720, 200)
   util.do_fade(1)
 
@@ -182,6 +185,7 @@ def position_second_shadow():
   util.do_fade(0.5)
 
 def position_third_shadow():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(670, 230)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -230,11 +234,11 @@ def run_dungeon(runs=1):
     util.force_short_buffs()
     util.attack_boss()
 
-    time.sleep(3)
+    util.wait(3)
     util.move_click(590, 460)
     util.do_fade(1)
 
-    time.sleep(2)
+    util.wait(2)
     util.move(375, 150)
     pyauto.mouseDown(button="right")
     util.move(1000, 150)
@@ -277,33 +281,85 @@ def run_dungeon(runs=1):
     if trigger_continue:
       continue
 
+    # First Shadow Sequence
     position_first_shadow()
+    util.wait(4)
+
+    check_showorai = True
+    while check_showorai:
+      if not util.macro:
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+        sys.exit()
+
+      if check_showorai == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        dialog = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        check_showorai = False
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+
     # First Shadow
-    time.sleep(3)
-    util.do_select(0.1)
-    util.focus_mobs(util.UNIT_SHOWORAI_FEAR, 0, 0, 0)
-    time.sleep(1)
-    util.do_select(0.1)
-    util.focus_mobs(util.UNIT_SHOWORAI_FEAR, 0, 0, 0)
-    time.sleep(1)
-    util.do_select(0.1)
-    util.focus_mobs(util.UNIT_SHOWORAI_FEAR, 0, 0, 0)
+    util.focus_mobs(util.UNIT_SHOWORAI_F, 0, 0, 0)
 
+    # Second Shadow Sequence
     position_second_shadow()
+    util.wait(4)
+
+    check_showorai = True
+    while check_showorai:
+      if not util.macro:
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+        sys.exit()
+
+      if check_showorai == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        dialog = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        check_showorai = False
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+
     # Second Shadow
-    time.sleep(3)
-    util.do_select(0.1)
-    util.focus_mobs(util.UNIT_SHOWORAI_RESIGN, 0, 0, 0)
-    time.sleep(1)
-    util.do_select(0.1)
-    util.focus_mobs(util.UNIT_SHOWORAI_RESIGN, 0, 0, 0)
+    util.focus_mobs(util.UNIT_SHOWORAI_R, 0, 0, 0)
 
+    # Third Shadow Sequence
     position_third_shadow()
-    # Third Shadow
-    time.sleep(3)
-    util.do_select(0.1)
-    util.focus_mobs(util.UNIT_SHOWORAI_MADNESS, 0, 0, 0)
+    util.wait(3)
 
+    check_showorai = True
+    while check_showorai:
+      if not util.macro:
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+        sys.exit()
+
+      if check_showorai == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        dialog = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        check_showorai = False
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Third Shadow
+    util.focus_mobs(util.UNIT_SHOWORAI_M, 0, 0, 0)
+
+    # Final Boss Sequence
     util.move_click(580, 430)
     checking = True
     while checking:
@@ -335,7 +391,7 @@ def run_dungeon(runs=1):
     util.set_battle_mode(False)
     util.loot_essentials()
 
-    time.sleep(1)
+    util.wait(1)
     checking = True
     while checking:
       if not util.macro:
@@ -390,4 +446,4 @@ def run_dungeon(runs=1):
     util.end_dungeon()
     util.dice_dungeon()
     util.log_action(util.MSG_END_DG)
-    time.sleep(3)
+    util.wait(3)

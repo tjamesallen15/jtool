@@ -53,7 +53,7 @@ def path_find(unit):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
 
-    time.sleep(0.2)
+    util.wait(0.2)
 
     if pathing == False:
       break
@@ -69,7 +69,7 @@ def path_find(unit):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
 
-    time.sleep(0.2)
+    util.wait(0.2)
 
     if pathing == False:
       break
@@ -85,7 +85,7 @@ def path_find(unit):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
 
-    time.sleep(0.2)
+    util.wait(0.2)
 
     if pathing == False:
       break
@@ -101,7 +101,7 @@ def path_find(unit):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
 
-    time.sleep(0.2)
+    util.wait(0.2)
 
     if pathing == False:
       break
@@ -117,7 +117,7 @@ def path_find(unit):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
 
-    time.sleep(0.2)
+    util.wait(0.2)
 
     if pathing == False:
       break
@@ -133,7 +133,7 @@ def path_find(unit):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
 
-    time.sleep(0.2)
+    util.wait(0.2)
 
     if pathing == False:
       break
@@ -324,7 +324,7 @@ def positionBoss():
   pyauto.mouseUp(button="right")
   pyauto.scroll(-10000)
 
-  time.sleep(1)
+  util.wait(1)
 
   util.move(300, 420)
   util.do_dash(1)
@@ -481,4 +481,4 @@ def run_dungeon(runs=1):
     util.end_dungeon()
     util.dice_dungeon()
     util.log_action(util.MSG_END_DG)
-    time.sleep(3)
+    util.wait(3)

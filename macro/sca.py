@@ -344,13 +344,13 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    time.sleep(1)
+    util.wait(1)
 
     # First Boss
     util.do_deselect_pack()
     util.do_deselect_pack()
 
-    time.sleep(1)
+    util.wait(1)
     util.do_battle_mode()
     util.attack_semi_boss()
     util.loot_box(2)
@@ -377,7 +377,7 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    time.sleep(1)
+    util.wait(1)
 
     # Final Boss
     util.do_deselect_pack()
@@ -402,4 +402,4 @@ def run_dungeon(runs=1):
     util.end_dungeon()
     util.dice_dungeon()
     util.log_action(util.MSG_END_DG)
-    time.sleep(3)
+    util.wait(3)
