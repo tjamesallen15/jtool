@@ -42,6 +42,8 @@ atk_type = 0
 region_normal_bar = []
 region_mode_bar = []
 region_screen = []
+region_full_normal_bar = []
+region_full_mode_bar = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
@@ -164,6 +166,12 @@ def initialize(window, frame, mlbl, rlbl):
 
   global region_screen
   region_screen = (int(cabalwindow[0]), int(cabalwindow[1]) + 20, 1265, 720)
+
+  global region_full_normal_bar
+  region_full_normal_bar = (int(cabalwindow[0] + 477), int(cabalwindow[1] + 25), 283, 30)
+
+  global region_full_mode_bar
+  region_full_mode_bar = (int(cabalwindow[0] + 354), int(cabalwindow[1] + 25), 565, 30)
 
 
 def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):

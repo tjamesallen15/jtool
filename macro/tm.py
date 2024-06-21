@@ -983,7 +983,7 @@ def run_dungeon(runs=1):
     util.set_battle_mode(False)
     util.loot_box()
 
-    if util.battleMode == 1:
+    if util.battle_mode == 1:
       time.sleep(20)
 
     util.move(720, 260)
