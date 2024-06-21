@@ -269,7 +269,7 @@ def set_battle_mode(val):
     global is_battle_mode
     is_battle_mode = val
 
-def do_battle_mode():
+def do_battle_mode(sec=5):
   if battle_mode == 1:
     log_action(MSG_BATTLE_MODE)
     cancel_aura(1)
@@ -282,7 +282,7 @@ def do_battle_mode():
 
     global is_battle_mode
     is_battle_mode = True
-    time.sleep(5)
+    time.sleep(sec)
 
     pynboard.press(val_bm_aura)
     pynboard.release(val_bm_aura)

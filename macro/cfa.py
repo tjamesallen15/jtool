@@ -52,7 +52,7 @@ def position_second_boss():
   util.move(620, 280)
   util.do_fade(0.5)
 
-def position_final_boss():
+def pre_position_final_boss():
   util.move(250, 520)
   util.do_dash(1.2)
 
@@ -68,6 +68,7 @@ def position_final_boss():
   util.move(350, 520)
   util.do_dash(1.2)
 
+def position_final_boss():
   util.move(620, 650)
   util.do_dash(1.2)
 
@@ -198,9 +199,11 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss
-    position_final_boss()
+    pre_position_final_boss()
     util.do_short_buffs()
-    util.do_battle_mode()
+    util.do_battle_mode(7)
+
+    position_final_boss()
     util.attack_boss()
     util.set_battle_mode(False)
     util.loot_box(2)

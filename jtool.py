@@ -35,6 +35,7 @@ LIST_MASTER = [
   "Terminus Machina",
   "Panic Cave (Awakened)"
 ]
+
 LIST_DUNGEON = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
@@ -47,15 +48,16 @@ LIST_DUNGEON = [
   "Terminus Machina",
   "Panic Cave (Awakened)"
 ]
-LIST_RUN = [1, 2, 3, 4, 5, 10, 20, 30, 40, 50, 100]
+
+LIST_RUN = [1, 10, 20, 30, 40, 50, 100]
 
 list_dg = []
 btn_start = []
 lbl_macro = []
 lbl_current_run = []
 frame_root = []
-
 val_run_count = []
+
 val_mode = 0
 val_buffs = 1
 val_shorts = 1
