@@ -38,6 +38,7 @@ is_short_buffs_allowed = 1
 is_veradrix_allowed = 0
 aura_counter = 0
 atk_type = 0
+trigger_reset_dungeon = False
 
 region_normal_bar = []
 region_mode_bar = []
@@ -272,6 +273,13 @@ def get_atk_type():
 
 def get_battle_mode():
   return battle_mode
+
+def get_restart_status():
+  return trigger_reset_dungeon
+
+def set_restart_status(val=False):
+  global trigger_reset_dungeon
+  trigger_reset_dungeon = val
 
 def force_exit_dungeon():
   move_click(830, 710)

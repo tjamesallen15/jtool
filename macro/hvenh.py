@@ -525,6 +525,7 @@ def move_to_box():
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
+    util.set_restart_status(False)
     run_counter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.log_action(util.MSG_START_DG)
@@ -639,6 +640,11 @@ def run_dungeon(runs=1):
       util.attack_boss()
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
+      util.force_exit_dungeon()
+      util.set_restart_status(True)
+
+    if util.get_restart_status:
+      continue
 
     util.move(640, 560)
     util.do_fade(0.5)
@@ -668,6 +674,7 @@ def run_dungeon(runs=1):
     # Position for Orphidia II
     position_orphidia()
 
+    util.wait(1)
     # Attack Orphidia II
     try:
       util.do_select(0.1)
@@ -676,6 +683,11 @@ def run_dungeon(runs=1):
       util.attack_boss()
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
+      util.force_exit_dungeon()
+      util.set_restart_status(True)
+
+    if util.get_restart_status:
+      continue
 
     util.move(640, 560)
     util.do_fade(0.5)
@@ -713,6 +725,11 @@ def run_dungeon(runs=1):
       util.attack_boss()
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
+      util.force_exit_dungeon()
+      util.set_restart_status(True)
+
+    if util.get_restart_status:
+      continue
 
     util.move(640, 560)
     util.do_fade(0.5)

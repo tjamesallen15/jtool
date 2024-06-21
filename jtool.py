@@ -49,7 +49,7 @@ LIST_DUNGEON = [
   "Panic Cave (Awakened)"
 ]
 
-LIST_RUN = [1, 10, 20, 30, 40, 50, 100]
+LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
 
 list_dg = []
 btn_start = []

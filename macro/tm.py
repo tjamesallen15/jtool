@@ -388,7 +388,7 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
     if pathing == False:
       break
 
-    if unit == util.UNIT_GATE_FOUR:
+    if unit == util.UNIT_GATE_FOUR or unit == util.UNIT_GATE_TWO:
       try:
         util.move_click(450, 260)
         util.do_select(0.1)
@@ -486,6 +486,35 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
 
       if pathing == False:
         break
+
+      try:
+        util.move_click(900, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_GATE_FOUND)
+
+      if pathing == False:
+        break
+
+      try:
+        util.move_click(1000, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_GATE_FOUND)
+
+      if pathing == False:
+        break
+
 
 def pathFindPowerSupply(unit=util.UNIT_BLANK):
   pathing = True
@@ -783,11 +812,11 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(660, 260)
+    util.move(620, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(570, 260)
+    util.move(520, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -811,6 +840,14 @@ def run_dungeon(runs=1):
       counter += 1
       print(str(counter))
 
+
+    util.move(320, 550)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(320, 550)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(320, 550)
     util.do_dash(1)

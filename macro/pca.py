@@ -203,9 +203,8 @@ def position_third_shadow():
 
 def run_dungeon(runs=1):
   run_counter = 0
-  trigger_continue = False
   while run_counter < runs:
-    trigger_continue = False
+    util.set_restart_status(False)
     run_counter += 1
     shortcut.add_hotkey("ctrl+r", util.terminate)
     util.log_action(util.MSG_START_DG)
@@ -276,9 +275,9 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        trigger_continue = True
+        util.set_restart_status(True)
 
-    if trigger_continue:
+    if util.get_restart_status():
       continue
 
     # First Shadow Sequence
@@ -395,9 +394,9 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        trigger_continue = True
+        util.set_restart_status(True)
 
-    if trigger_continue:
+    if util.get_restart_status():
       continue
 
     # Final Boss
@@ -427,9 +426,9 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        trigger_continue = True
+        util.set_restart_status(True)
 
-    if trigger_continue:
+    if util.get_restart_status():
       continue
 
     checking = True
@@ -452,9 +451,9 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        trigger_continue = True
+        util.set_restart_status(True)
 
-    if trigger_continue:
+    if util.get_restart_status():
       continue
 
     # Start to End Dungeon

@@ -95,11 +95,12 @@ All notable changes to this project will be documented in this file.
 ## v5.11 Features
 
 - Added feature that makes character exit dungeon to restart again
+- Changed variable and method cases
 
 ## v5.11 Fixes
 
 - Fixed Panic Cave (Awakened) abrupt exits when range classes are in battle mode
 - Fixed Catacomb Frost (Awakened) wrong pathing of dashes
-- Change dvariable and method cases
 - Fixed Hazardous Valley (ENH) minor glitches
+- Fixed Terminus Machina glitches in some sequences
 
