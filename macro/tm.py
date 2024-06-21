@@ -281,9 +281,9 @@ def path_find(unit=util.UNIT_BLANK):
   if unit == util.UNIT_ESPADA_I or unit == util.UNIT_ESPADA_II or unit == util.UNIT_ESPADA_III:
     util.focus_mobs(unit, 1, 0, val_sidestep)
 
-  if boss_found == 0 and util.atkType == 0 and unit == util.UNIT_REDONNO:
+  if boss_found == 0 and util.atk_type == 0 and unit == util.UNIT_REDONNO:
     util.focus_mobs(unit, 1, 0, val_sidestep)
-  elif boss_found == 0 and util.atkType == 0 and unit == util.UNIT_POERTE:
+  elif boss_found == 0 and util.atk_type == 0 and unit == util.UNIT_POERTE:
     util.focus_mobs(unit, 1, 0, val_sidestep)
   elif boss_found == 0:
     util.attack_mobs(unit, 1, 0.3, val_sidestep)

@@ -898,7 +898,7 @@ def path_find(unit=util.UNIT_BLANK):
   elif boss_found == 0 and box_found == 0 and unit != util.UNIT_ESPI:
     util.attack_mobs(unit, 1, interval, val_sidestep)
   elif boss_found == 0 and box_found == 0 and unit == util.UNIT_ESPI:
-    if util.atkType == 0:
+    if util.atk_type == 0:
       interval = 0.8
     util.attack_mobs(unit, 1, interval, val_sidestep)
 
