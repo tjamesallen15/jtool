@@ -288,7 +288,7 @@ def do_battle_mode(sec=5):
     pynboard.release(val_bm_aura)
     time.sleep(1)
 
-def do_val_veradrix ():
+def do_veradrix():
   if is_veradrix_allowed == 1:
     pynboard.press(val_veradrix)
     pynboard.release(val_veradrix)
@@ -297,7 +297,7 @@ def do_cont_battle_mode():
   move(790, 670)
   pyauto.click(button="right")
 
-  do_val_veradrix ()
+  do_veradrix()
   global aura_counter
   aura_counter += 1
   if aura_counter > 45:
@@ -474,7 +474,7 @@ def do_essentials():
   pynboard.press(val_loot)
   pynboard.release(val_loot)
 
-  do_val_veradrix ()
+  do_veradrix()
 
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
@@ -488,7 +488,7 @@ def loot_essentials():
   pynboard.press(val_loot)
   pynboard.release(val_loot)
 
-  do_val_veradrix ()
+  do_veradrix()
 
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
@@ -525,7 +525,7 @@ def do_aura_strict(sec=0):
     time.sleep(sec)
 
 def do_attack(sec=0):
-  do_val_veradrix ()
+  do_veradrix()
 
   if is_battle_mode:
     pynboard.press(val_bm3_atk)

@@ -333,6 +333,7 @@ def run_dungeon(runs=1):
     util.do_battle_mode()
     util.attack_boss(1, 0)
     util.set_battle_mode(False)
+    util.loot_essentials()
 
     time.sleep(1)
     checking = True
