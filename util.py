@@ -635,37 +635,37 @@ def do_attack_strict(sec=0):
     time.sleep(sec)
 
 def enter_dungeon():
-  if (is_party == 1 and is_leader == 1) or (is_party == 0 and is_leader == 0):
-    entering = True
-    while entering:
-      if not macro:
-        log_action(MSG_TERMINATE)
-        entering = False
-        sys.exit()
-
-      try:
-        enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
-        move_click_rel(15, 15, enterdg, 1)
-        entering = False
-        break
-      except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_BUTTON_FOUND)
-
-def challenge_dungeon():
-  challenging = True
-  while challenging:
+  entering = True
+  while entering:
     if not macro:
       log_action(MSG_TERMINATE)
-      challenging = False
+      entering = False
       sys.exit()
 
     try:
-      challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
-      move_click_rel(15, 15, challengedg, 1)
-      challenging = False
+      enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
+      move_click_rel(15, 15, enterdg, 1)
+      entering = False
       break
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
+
+def challenge_dungeon():
+  if (is_party == 1 and is_leader == 1) or (is_party == 0 and is_leader == 0):
+    challenging = True
+    while challenging:
+      if not macro:
+        log_action(MSG_TERMINATE)
+        challenging = False
+        sys.exit()
+
+      try:
+        challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+        move_click_rel(15, 15, challengedg, 1)
+        challenging = False
+        break
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_BUTTON_FOUND)
 
 def end_dungeon():
   ending = True
