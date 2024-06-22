@@ -379,6 +379,7 @@ def path_find(unit=util.UNIT_BLANK):
       path_backtrack(unit)
 
     if unit == util.UNIT_BOX:
+      util.move_click(675, 450)
       try:
         util.move(680, 160)
         util.do_select(0.1)
