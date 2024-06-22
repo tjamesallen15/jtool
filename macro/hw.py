@@ -379,7 +379,9 @@ def path_find(unit=util.UNIT_BLANK):
       path_backtrack(unit)
 
     if unit == util.UNIT_BOX:
-      util.move_click(675, 450)
+      if (backtrack_counter >= 5):
+        util.move_click(675, 450)
+
       try:
         util.move(680, 160)
         util.do_select(0.1)
@@ -638,6 +640,11 @@ def path_find(unit=util.UNIT_BLANK):
       util.move(200, 250)
       util.do_dash(1)
       util.do_fade(0.5)
+
+      if (backtrack_counter >= 5):
+        util.wait(1)
+        util.move_click(800, 400)
+        util.do_fade(0.5)
 
       try:
         util.move_click(600, 260)
