@@ -318,6 +318,7 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
 
     util.log_action(util.MSG_PATH_FIND + unit)
     util.move_click(675, 450)
+    util.move_click(675, 250, 1.5)
     try:
       util.move_click(600, 260)
       util.do_select(0.1)
@@ -733,6 +734,10 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.move(700, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     util.move(375, 150)
     pyauto.mouseDown(button="right")
     util.move(700, 150)
@@ -820,6 +825,10 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.move(520, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(600, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1038,6 +1047,10 @@ def run_dungeon(runs=1):
 
     if util.get_battle_mode() == 1:
       util.wait(20)
+
+    util.move(720, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(720, 260)
     util.do_dash(1)
