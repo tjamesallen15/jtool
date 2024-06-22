@@ -730,6 +730,11 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # First Boss
+    util.do_deselect_pack()
+    util.move(700, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     util.do_short_buffs()
     util.do_battle_mode()
     util.attack_boss()
@@ -978,6 +983,11 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # Second Boss
+    util.do_deselect_pack()
+    util.move(660, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     util.do_short_buffs()
     util.do_battle_mode()
     util.attack_boss()
@@ -1052,9 +1062,6 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # Third Boss
-    util.move(600, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
     util.do_battle_mode()
     util.attack_boss()
     util.set_battle_mode(False)
