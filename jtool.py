@@ -167,7 +167,7 @@ def generate_gui():
 
   global val_leader
   val_leader = IntVar(value=0)
-  chkbtn_leader = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_party)
+  chkbtn_leader = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_leader)
   chkbtn_leader.place(x=293, y=76)
 
   lbl_license = Label(frame_root, text="Status: Free")
