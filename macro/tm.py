@@ -819,7 +819,7 @@ def run_dungeon(runs=1):
         break
 
       gate_counter = path_find_gate_strict(util.UNIT_GATE_TWO)
-      if gate_counter > 3:
+      if gate_counter > 3 and util.get_party_status() == 1:
         moving = False
 
       try:
@@ -1029,10 +1029,9 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      if util.get_party_status() == 1:
-        gate_counter = path_find_gate_strict(util.UNIT_GATE_THREE)
-        if gate_counter >= 2:
-          moving = False
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_THREE)
+      if gate_counter > 3 and util.get_party_status() == 1:
+        moving = False
 
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
@@ -1097,10 +1096,9 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      if util.get_party_status() == 1:
-        gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
-        if gate_counter >= 3:
-          moving = False
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
+      if gate_counter > 3 and util.get_party_status() == 1:
+        moving = False
 
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
