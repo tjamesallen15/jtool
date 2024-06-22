@@ -690,6 +690,9 @@ def run_dungeon(runs=1):
     util.enter_dungeon()
     util.challenge_dungeon()
 
+    if util.is_party == 1:
+      util.wait(3)
+
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
