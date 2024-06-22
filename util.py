@@ -36,6 +36,8 @@ is_battle_mode = False
 is_buffs_allowed = 1
 is_short_buffs_allowed = 1
 is_veradrix_allowed = 0
+is_party = 0
+is_leader = 0
 aura_counter = 0
 atk_type = 0
 trigger_reset_dungeon = False
@@ -90,6 +92,8 @@ MSG_GATE_FOUND = "Gate Found "
 MSG_NO_GATE_FOUND = "No Gate Found"
 MSG_WAIT = "Waiting"
 MSG_MOVING_POSITION = "Moving to position"
+MSG_ROLL_EQUIPMENT = "Rolling Equipment"
+MSG_NO_ROLL_EQUIPMENT_FOUND = "No Roll Equipment Found"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
@@ -105,6 +109,7 @@ IMG_SEMI_BOSS = "img/semiboss.jpg"
 IMG_MOBS = "img/mobs.jpg"
 IMG_DICE_ROLL = "img/rolladice.jpg"
 IMG_DICE_OKAY = "img/diceokay.jpg"
+IMG_DICE_EQUIP = "img/rollequip.jpg"
 IMG_CHECK_DIALOG = "img/checkdialog.jpg"
 IMG_BOX = "img/box.jpg"
 IMG_GATE = "img/gate.jpg"
@@ -178,7 +183,7 @@ def initialize(window, frame, mlbl, rlbl):
   region_full_mode_bar = (int(cabalwindow[0] + 354), int(cabalwindow[1] + 25), 565, 30)
 
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0):
   global battle_mode
   battle_mode = int(mode)
 
@@ -196,6 +201,12 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0):
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
+
+  global is_party
+  is_party = party
+
+  global is_leader
+  is_leader = leader
 
 def set_cabal_window(window):
   global cabalwindow
@@ -475,6 +486,16 @@ def loot_box(sec=3, select=1):
       log_action(MSG_NO_BOX_FOUND)
 
     do_loot()
+
+    if is_party == 1:
+      try:
+        roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
+        log_action(MSG_ROLL_EQUIPMENT)
+        move_rel(10, 10, roll)
+        move_click_rel(10, 10, roll)
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+
     boxCounter += 1
     if boxCounter > sec:
       boxCounter = 0
@@ -614,20 +635,21 @@ def do_attack_strict(sec=0):
     time.sleep(sec)
 
 def enter_dungeon():
-  entering = True
-  while entering:
-    if not macro:
-      log_action(MSG_TERMINATE)
-      entering = False
-      sys.exit()
+  if (is_party == 1 and is_leader == 1) or (is_party == 0 and is_leader == 0):
+    entering = True
+    while entering:
+      if not macro:
+        log_action(MSG_TERMINATE)
+        entering = False
+        sys.exit()
 
-    try:
-      enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
-      move_click_rel(15, 15, enterdg, 1)
-      entering = False
-      break
-    except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BUTTON_FOUND)
+      try:
+        enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
+        move_click_rel(15, 15, enterdg, 1)
+        entering = False
+        break
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_BUTTON_FOUND)
 
 def challenge_dungeon():
   challenging = True

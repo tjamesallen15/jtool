@@ -53,6 +53,7 @@ LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
 
 list_dg = []
 btn_start = []
+# btn_pause = []
 lbl_macro = []
 lbl_current_run = []
 frame_root = []
@@ -63,6 +64,8 @@ val_buffs = 1
 val_shorts = 1
 val_atk_type = 0
 val_vera = 0
+val_party = 0
+val_leader = 0
 
 def start():
   cabalwindow = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -73,9 +76,11 @@ def start():
   runs = val_run_count.get()
   atk_type = val_atk_type.get()
   vera = val_vera.get()
+  party = val_party.get()
+  leader = val_leader.get()
 
   util.initialize(cabalwindow, frame_root, lbl_macro, lbl_current_run)
-  util.set_variables(mode, buff, short, atk_type, vera)
+  util.set_variables(mode, buff, short, atk_type, vera, party, leader)
 
   if (choice == LIST_MASTER[0]):
     hva.initialize(frame_root, btn_start, runs)
@@ -132,9 +137,14 @@ def generate_gui():
   btn_start.config(width=10)
   btn_start.place(x=230, y=40)
 
+  # global btn_pause
+  # btn_pause = Button(frame_root, text="Pause", command=start)
+  # btn_pause.config(width=10)
+  # btn_pause.place(x=140, y=40)
+
   global lbl_current_run
   lbl_current_run = Label(frame_root, text="Run #: --")
-  lbl_current_run.place(x=140, y=75)
+  lbl_current_run.place(x=140, y=105)
 
   lbl_mode = Label(frame_root, text="Mode II: ")
   lbl_mode.place(x=10, y=75)
@@ -144,8 +154,24 @@ def generate_gui():
   chkbtn_mode = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_mode)
   chkbtn_mode.place(x=75, y=76)
 
+  lbl_party = Label(frame_root, text="Party: ")
+  lbl_party.place(x=140, y=75)
+
+  global val_party
+  val_party = IntVar(value=0)
+  chkbtn_party = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_party)
+  chkbtn_party.place(x=185, y=76)
+
+  lbl_leader = Label(frame_root, text="Leader: ")
+  lbl_leader.place(x=235, y=75)
+
+  global val_leader
+  val_leader = IntVar(value=0)
+  chkbtn_leader = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_party)
+  chkbtn_leader.place(x=293, y=76)
+
   lbl_license = Label(frame_root, text="Status: Free")
-  lbl_license.place(x=140, y=105)
+  lbl_license.place(x=140, y=135)
 
   lbl_shorts = Label(frame_root, text="Buffs: ")
   lbl_shorts.place(x=10, y=105)
@@ -156,7 +182,7 @@ def generate_gui():
   chkbtn_buffs.place(x=75, y=106)
 
   lbl_expiration = Label(frame_root, text="Expiration: 12/12/2024")
-  lbl_expiration.place(x=140, y=135)
+  lbl_expiration.place(x=140, y=165)
 
   lbl_shorts = Label(frame_root, text="Shorts: ")
   lbl_shorts.place(x=10, y=135)
@@ -168,7 +194,7 @@ def generate_gui():
 
   global lbl_macro
   lbl_macro = Label(frame_root, text="Action: --")
-  lbl_macro.place(x=140, y=165)
+  lbl_macro.place(x=140, y=195)
 
   lbl_atk_type = Label(frame_root, text="Range: ")
   lbl_atk_type.place(x=10, y=165)
@@ -191,3 +217,11 @@ def generate_gui():
 
 # GENERATE MAIN
 generate_gui()
+
+# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# util.setCabalWindow(cabalwindow)
+# util.goCabalWindow()
+
+# roll = pyauto.locateOnScreen("img/rolladice.jpg", grayscale=False, confidence=.9)
+# pyauto.moveTo(roll[0], roll[1])
+# pyauto.click(roll[0] + 10, roll[1] + 10)

@@ -96,6 +96,7 @@ All notable changes to this project will be documented in this file.
 
 - Added feature that makes character exit dungeon to restart again
 - Changed variable and method cases
+- Added Party and Leader Option for Experiment Purposes
 
 ## v5.11 Fixes
 
