@@ -292,6 +292,9 @@ def set_restart_status(val=False):
   global trigger_reset_dungeon
   trigger_reset_dungeon = val
 
+def get_party_status():
+  return is_party
+
 def force_exit_dungeon():
   move_click(830, 710)
   time.sleep(0.5)

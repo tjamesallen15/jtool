@@ -314,15 +314,16 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
       pathing = False
       sys.exit()
 
-    gate_counter += 1
-    if gate_counter > 3:
-      pathing = False
+    if util.get_party_status() == 1:
+      gate_counter += 1
+      if gate_counter >= 2:
+        pathing = False
 
     if pathing == False:
         break
 
     util.log_action(util.MSG_PATH_FIND + unit)
-    util.move_click(675, 450)
+    util.move_click(675, 450, 2)
     util.move_click(675, 250, 1.5)
     try:
       util.move_click(600, 260)
@@ -984,7 +985,7 @@ def run_dungeon(runs=1):
 
     # Second Boss
     util.do_deselect_pack()
-    util.move(660, 260)
+    util.move(770, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1027,9 +1028,10 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      gate_counter = path_find_gate_strict(util.UNIT_GATE_THREE)
-      if gate_counter > 3:
-        moving = False
+      if util.get_party_status() == 1:
+        gate_counter = path_find_gate_strict(util.UNIT_GATE_THREE)
+        if gate_counter >= 2:
+          moving = False
 
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
@@ -1094,9 +1096,10 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
-      if gate_counter > 3:
-        moving = False
+      if util.get_party_status() == 1:
+        gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
+        if gate_counter >= 3:
+          moving = False
 
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
