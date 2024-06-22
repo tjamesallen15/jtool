@@ -630,6 +630,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # Position for Orphidia I
+    util.do_deselect_pack()
     position_orphidia()
 
     # Attack Orphidia I

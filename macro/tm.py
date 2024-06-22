@@ -307,11 +307,16 @@ def path_find(unit=util.UNIT_BLANK):
 
 def path_find_gate_strict(unit=util.UNIT_BLANK):
   pathing = True
+  gate_counter = 0
   while pathing:
     if not util.macro:
       util.log_action(util.MSG_TERMINATE)
       pathing = False
       sys.exit()
+
+    gate_counter += 1
+    if gate_counter > 3:
+      pathing = False
 
     if pathing == False:
         break
@@ -516,6 +521,7 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
+  return gate_counter
 
 def pathFindPowerSupply(unit=util.UNIT_BLANK):
   pathing = True
@@ -805,7 +811,10 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      path_find_gate_strict(util.UNIT_GATE_TWO)
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_TWO)
+      if gate_counter > 3:
+        moving = False
+
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9)
         moving = False
@@ -1008,7 +1017,10 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      path_find_gate_strict(util.UNIT_GATE_THREE)
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_THREE)
+      if gate_counter > 3:
+        moving = False
+
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
         moving = False
@@ -1040,6 +1052,9 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # Third Boss
+    util.move(600, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
     util.do_battle_mode()
     util.attack_boss()
     util.set_battle_mode(False)
@@ -1067,7 +1082,10 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      path_find_gate_strict(util.UNIT_GATE_FOUR)
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
+      if gate_counter > 3:
+        moving = False
+
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
         moving = False

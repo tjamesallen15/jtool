@@ -486,12 +486,11 @@ def loot_box(sec=3, select=1):
       log_action(MSG_NO_BOX_FOUND)
 
     do_loot()
-
     if is_party == 1:
       try:
         roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
         log_action(MSG_ROLL_EQUIPMENT)
-        move_rel(10, 10, roll)
+        move_click_rel(10, 10, roll)
         move_click_rel(10, 10, roll)
       except pyauto.ImageNotFoundException:
         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
@@ -518,6 +517,15 @@ def loot_final_box(sec=4):
       log_action(MSG_NO_BOX_FOUND)
 
     do_loot()
+    if is_party == 1:
+      try:
+        roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
+        log_action(MSG_ROLL_EQUIPMENT)
+        move_click_rel(10, 10, roll)
+        move_click_rel(10, 10, roll)
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+
     boxCounter += 1
     if boxCounter > sec:
       boxCounter = 0
