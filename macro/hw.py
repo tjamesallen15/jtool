@@ -1401,6 +1401,9 @@ def run_dungeon(runs=1):
     util.move(800, 360)
     util.do_fade(0.5)
 
+    util.move(700, 440)
+    util.do_fade(1)
+
     util.do_select(0.1)
     util.focus_gate(util.UNIT_GATE_FOUR)
 
