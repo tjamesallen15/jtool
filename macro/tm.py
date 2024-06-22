@@ -323,8 +323,6 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
         break
 
     util.log_action(util.MSG_PATH_FIND + unit)
-    util.move_click(675, 450, 2)
-    util.move_click(675, 250, 1.5)
     try:
       util.move_click(600, 260)
       util.do_select(0.1)
@@ -521,6 +519,9 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
 
       if pathing == False:
         break
+
+    util.move_click(675, 450, 2)
+    util.move_click(675, 250, 1.5)
 
   return gate_counter
 
@@ -985,7 +986,7 @@ def run_dungeon(runs=1):
 
     # Second Boss
     util.do_deselect_pack()
-    util.move(770, 260)
+    util.move(720, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
