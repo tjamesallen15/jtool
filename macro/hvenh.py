@@ -643,7 +643,7 @@ def run_dungeon(runs=1):
       util.force_exit_dungeon()
       util.set_restart_status(True)
 
-    if util.get_restart_status:
+    if util.get_restart_status():
       continue
 
     util.move(640, 560)
@@ -686,7 +686,7 @@ def run_dungeon(runs=1):
       util.force_exit_dungeon()
       util.set_restart_status(True)
 
-    if util.get_restart_status:
+    if util.get_restart_status():
       continue
 
     util.move(640, 560)
@@ -728,7 +728,7 @@ def run_dungeon(runs=1):
       util.force_exit_dungeon()
       util.set_restart_status(True)
 
-    if util.get_restart_status:
+    if util.get_restart_status():
       continue
 
     util.move(640, 560)

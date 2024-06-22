@@ -231,6 +231,22 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
         if pathing == False:
           break
 
+    if unit == util.UNIT_GATE_FOUR:
+      util.move_click(675, 450)
+      try:
+        util.move_click(800, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_GATE_FOUND)
+
+      if pathing == False:
+        break
+
 def path_find_legrin_gate(unit=util.UNIT_BLANK):
   pathing = True
   boss_found = 0
