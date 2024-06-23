@@ -99,6 +99,7 @@ All notable changes to this project will be documented in this file.
 - Added Party and Leader Option for Experiment Purposes
 - Added Terminus Machina for Party and Leader Option for Experiment Purposes
 - Made the Terminate Function more function faster than before
+- Added Check Notifications
 
 ## v5.11 Fixes
 

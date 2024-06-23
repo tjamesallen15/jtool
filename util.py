@@ -722,12 +722,16 @@ def check_notifications():
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
 
+  wait(0.5)
+
   try:
     check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
     move_click_rel(10, 10, check_notify, 1)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
+
+  wait(0.5)
 
 def end_dungeon():
   ending = True
@@ -777,7 +781,7 @@ def dice_dungeon():
     if not get_macro_state():
       log_action(MSG_TERMINATE)
       confirming = False
-      
+
     if confirming == False:
         break
 

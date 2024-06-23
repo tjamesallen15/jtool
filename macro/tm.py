@@ -164,7 +164,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       try:
@@ -177,7 +176,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
@@ -192,7 +190,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       try:
@@ -205,7 +202,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
@@ -220,7 +216,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       try:
@@ -233,7 +228,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
@@ -248,7 +242,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       try:
@@ -261,7 +254,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
@@ -276,7 +268,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       try:
@@ -289,7 +280,6 @@ def path_find(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
@@ -961,6 +951,10 @@ def run_dungeon(runs=1):
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
+
+    util.move(550, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     # Espada III Sequence
     moving = True
