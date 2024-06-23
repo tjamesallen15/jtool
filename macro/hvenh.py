@@ -597,7 +597,7 @@ def run_dungeon(runs=1):
     util.do_deselect_pack()
     util.move(630, 520)
     util.do_fade(0.5)
-    util.move(620, 250)
+    util.move(550, 250)
     util.do_dash(0.5)
 
     checking = True
