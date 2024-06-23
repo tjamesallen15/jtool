@@ -25,6 +25,7 @@ def initialize(frame, btn, runs=1):
   global btn_start
   btn_start = btn
 
+  shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state="disabled")
   frame_root.update()
   run_dungeon(int(runs))
@@ -84,9 +85,8 @@ def position_final_boss():
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    util.set_restart_status(False)
+    util.set_reset_status(False)
     run_counter += 1
-    shortcut.add_hotkey("ctrl+r", util.terminate)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
@@ -94,8 +94,12 @@ def run_dungeon(runs=1):
     util.go_cabal_window()
     util.release_keys()
     util.go_skill_slot(0.5)
-
     util.do_buffs()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(500, 500)
     util.do_dash(1)
@@ -115,6 +119,11 @@ def run_dungeon(runs=1):
     util.attack_boss()
     util.set_battle_mode(False)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.move(400, 600)
     util.do_dash(1)
 
@@ -126,9 +135,14 @@ def run_dungeon(runs=1):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
       util.force_exit_dungeon()
-      util.set_restart_status(True)
+      util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     position_second_boss()
@@ -155,6 +169,10 @@ def run_dungeon(runs=1):
     util.wait(3)
     checking = True
     while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
       if checking == False:
          break
 
@@ -167,16 +185,30 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
         util.attack_mobs(util.UNIT_SPECTOR, 0, 0.3, val_sidestep)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.wait(1)
     util.attack_boss()
     util.cancel_aura(1)
     util.loot_box(2)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(730, 390)
     util.do_fade(1)
 
     dialog_check = True
     while dialog_check:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        dialog_check = False
+
       if dialog_check == False:
         break
 
@@ -192,9 +224,14 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.force_exit_dungeon()
         dialog_check = False
-        util.set_restart_status(True)
+        util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     # Final Boss
@@ -206,6 +243,11 @@ def run_dungeon(runs=1):
     util.attack_boss()
     util.set_battle_mode(False)
     util.loot_box(2)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(600, 600)
     util.do_dash(1.2)
@@ -220,9 +262,14 @@ def run_dungeon(runs=1):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
       util.force_exit_dungeon()
-      util.set_restart_status(True)
+      util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     # Start to End Dungeon

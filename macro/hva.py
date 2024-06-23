@@ -22,6 +22,7 @@ def initialize(frame, btn, runs=1):
   global btn_start
   btn_start = btn
 
+  shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state="disabled")
   frame_root.update()
   run_dungeon(int(runs))
@@ -33,10 +34,9 @@ def path_find(unit):
   boss_found = 0
   backtrack_counter = 0
   while pathing:
-    if not util.macro:
+    if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
       pathing = False
-      sys.exit()
 
     if pathing == False:
       break
@@ -271,10 +271,9 @@ def path_backtrack(unit):
   boss_found = 0
   backtrack_counter = 0
   while backtracking:
-    if not util.macro:
+    if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
       backtracking = False
-      sys.exit()
 
     if backtracking == False:
       break
@@ -367,13 +366,19 @@ def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
     run_counter += 1
-    shortcut.add_hotkey("ctrl+r", util.terminate)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
     # Click Cabal Window
     util.go_cabal_window()
     util.release_keys()
+    util.go_skill_slot(0.5)
+    util.do_buffs()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Click Dungeon
     util.move(677, 361)
@@ -390,20 +395,21 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.go_skill_slot(0.5)
-    util.do_buffs()
-
     # Initial Position
     util.move(850, 600)
     util.do_dash(0.1)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Mush and Flower Sequence
     moving = True
     while moving:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
 
       if moving == False:
         break
@@ -417,6 +423,11 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.do_deselect_pack()
     util.move(850, 600)
     util.do_dash(0.1)
@@ -429,16 +440,20 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
     util.loot_box()
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.move_click(400, 260)
     util.do_dash(0.5)
 
     # Mossite and Toad Sequence
     moving = True
     while moving:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
 
       if moving == False:
         break
@@ -452,6 +467,11 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Second Boss
     util.do_deselect_pack()
     util.move(800, 360)
@@ -459,23 +479,27 @@ def run_dungeon(runs=1):
     util.move(500, 300)
     util.do_fade(0.1)
 
-    secondBoss = True
-    while secondBoss:
-      if not util.macro:
+    checking = True
+    while checking:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        secondBoss = False
-        sys.exit()
+        checking = False
 
-      if secondBoss == False:
+      if checking == False:
         break
 
       try:
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-        secondBoss = False
+        checking = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.attack_boss()
     util.do_deselect_pack()
@@ -483,13 +507,17 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
     util.loot_box()
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Lumber and Dorigo Sequence
     moving = True
     while moving:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
 
       if moving == False:
         break
@@ -502,6 +530,11 @@ def run_dungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Position for First Orphidia
     util.do_deselect_pack()
@@ -529,6 +562,11 @@ def run_dungeon(runs=1):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.move(675, 600)
     util.do_dash(0.5)
 
@@ -539,10 +577,12 @@ def run_dungeon(runs=1):
     bossCount = 0
     shortBuffsCounter = 0
     while bossCount < 2:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
+
+      if moving == False:
+        break
 
       bossTracker += 1
       if bossTracker >= 60:
@@ -565,13 +605,20 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Pathfind Treasure Boxes
     boxing = True
     while boxing:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         boxing = False
-        sys.exit()
+
+      if boxing == False:
+        break
 
       util.log_action(util.MSG_PATH_FIND + util.UNIT_BOX)
       util.move_click(550, 160)
@@ -596,13 +643,17 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOX_FOUND)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Loot Treasure Boxes
     boxCounter = 0
     while boxCounter < 10:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        boxCounter = False
-        sys.exit()
+        boxCounter += 10
 
       if boxCounter > 10:
         break
@@ -624,6 +675,11 @@ def run_dungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_CHECK_END_DG)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.set_battle_mode(False)
 

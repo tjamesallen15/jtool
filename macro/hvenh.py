@@ -31,6 +31,7 @@ def initialize(frame, btn, diff, runs=1):
   global difficulty
   difficulty = diff
 
+  shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state="disabled")
   frame_root.update()
   run_dungeon(int(runs))
@@ -42,10 +43,9 @@ def path_find(unit):
   boss_found = 0
   backtrack_counter = 0
   while pathing:
-    if not util.macro:
+    if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
       pathing = False
-      sys.exit()
 
     if pathing == False:
       break
@@ -271,10 +271,9 @@ def path_find_boss(unit):
   pathing = True
   boss_found = 0
   while pathing:
-    if not util.macro:
+    if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
       pathing = False
-      sys.exit()
 
     if pathing == False:
       break
@@ -339,10 +338,9 @@ def path_backtrack(unit):
   boss_found = 0
   backtrack_counter = 0
   while backtracking:
-    if not util.macro:
+    if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
-      combo = False
-      sys.exit()
+      backtracking = False
 
     if backtracking == False:
       break
@@ -525,15 +523,21 @@ def move_to_box():
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    util.set_restart_status(False)
+    util.set_reset_status(False)
     run_counter += 1
-    shortcut.add_hotkey("ctrl+r", util.terminate)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
     # Click Cabal Window
     util.go_cabal_window()
     util.release_keys()
+    util.go_skill_slot(0.5)
+    util.do_buffs()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Click Dungeon
     util.move(677, 361)
@@ -557,19 +561,20 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.go_skill_slot(0.5)
-    util.do_buffs()
-
     util.move(440, 260, 0.3)
     util.do_dash(0.5)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Cutter and Toad Sequence
     moving = True
     while moving:
-      if not util.macro:
+      if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
           moving = False
-          sys.exit()
 
       if moving == False:
         break
@@ -583,25 +588,42 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # First Boss
     util.do_deselect_pack()
     util.move(630, 520)
-    util.do_fade(0.1)
+    util.do_fade(0.5)
+    util.move(620, 250)
+    util.do_dash(0.5)
 
-    firstBoss = True
-    while firstBoss:
-      if firstBoss == False:
+    checking = True
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
          break
 
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-        firstBoss = False
+        checking = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     util.attack_boss()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.do_deselect_pack()
     util.move_click(570, 260)
     util.do_fade(1.5)
@@ -609,13 +631,17 @@ def run_dungeon(runs=1):
 
     util.loot_box()
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Boars and Snakes Sequence (Orphidia I)
     moving = True
     while moving:
-      if not util.macro:
+      if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
           moving = False
-          sys.exit()
 
       if moving == False:
         break
@@ -628,6 +654,11 @@ def run_dungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Position for Orphidia I
     util.do_deselect_pack()
@@ -642,9 +673,14 @@ def run_dungeon(runs=1):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
       util.force_exit_dungeon()
-      util.set_restart_status(True)
+      util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     util.move(640, 560)
@@ -655,10 +691,9 @@ def run_dungeon(runs=1):
     path_find_white_snake()
     moving = True
     while moving:
-      if not util.macro:
+      if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
           moving = False
-          sys.exit()
 
       if moving == False:
         break
@@ -671,6 +706,11 @@ def run_dungeon(runs=1):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Position for Orphidia II
     position_orphidia()
@@ -685,9 +725,14 @@ def run_dungeon(runs=1):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
       util.force_exit_dungeon()
-      util.set_restart_status(True)
+      util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     util.move(640, 560)
@@ -698,10 +743,9 @@ def run_dungeon(runs=1):
     path_find_white_snake()
     moving = True
     while moving:
-      if not util.macro:
+      if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
           moving = False
-          sys.exit()
 
       if moving == False:
         break
@@ -715,6 +759,11 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Position for Orphidia III
     position_orphidia()
 
@@ -727,14 +776,24 @@ def run_dungeon(runs=1):
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
       util.force_exit_dungeon()
-      util.set_restart_status(True)
+      util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     util.move(640, 560)
     util.do_fade(0.5)
     util.loot_final_box()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.set_battle_mode(False)
 

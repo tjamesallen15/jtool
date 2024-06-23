@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-##v1.00
+## v1.00
 
 ## v1.00 Features
 
@@ -98,6 +98,7 @@ All notable changes to this project will be documented in this file.
 - Changed variable and method cases
 - Added Party and Leader Option for Experiment Purposes
 - Added Terminus Machina for Party and Leader Option for Experiment Purposes
+- Made the Terminate Function more function faster than before
 
 ## v5.11 Fixes
 
@@ -106,3 +107,4 @@ All notable changes to this project will be documented in this file.
 - Fixed Hazardous Valley (ENH) minor glitches
 - Fixed Terminus Machina glitches in some sequences
 - Fixed Terminus Machina Glitches
+- Fixed Terminate Function that exits the whole software

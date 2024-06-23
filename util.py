@@ -54,11 +54,14 @@ APP_FRAME_SIZE = "330x230"
 APP_NAME = "Cabal JTool "
 APP_VERSION = "v5.01"
 APP_FULL_NAME = APP_NAME + APP_VERSION
+HOTKEY_TERMINATE = "ctrl+r"
+HOTKEY_PAUSE = "ctrl+p"
 
 # CONSTANT MESSAGES
 MSG_START_DG = "Starting Dungeon"
 MSG_END_DG = "End Dungeon"
 MSG_EXIT = "Macro Exit"
+MSG_PAUSE = "Pause for 10 seconds"
 MSG_TERMINATE ="Macro Terminate"
 MSG_PATH_FIND = "Pathfind, "
 MSG_ATTACK_MOBS = "Attack, "
@@ -155,6 +158,9 @@ UNIT_SHOWORAI_M = "Showorai [M]"
 UNIT_BOX = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
+  global macro
+  macro = True
+
   global cabalwindow
   cabalwindow = window
 
@@ -264,6 +270,10 @@ def terminate():
   global macro
   macro = False
 
+def pause():
+  log_action(MSG_PAUSE)
+  wait(10)
+
 def get_region():
   if is_battle_mode and atk_type == 1:
     return region_mode_bar
@@ -285,28 +295,35 @@ def get_atk_type():
 def get_battle_mode():
   return battle_mode
 
-def get_restart_status():
+def get_reset_status():
   return trigger_reset_dungeon
 
-def set_restart_status(val=False):
+def set_reset_status(val=False):
   global trigger_reset_dungeon
   trigger_reset_dungeon = val
 
 def get_party_status():
   return is_party
 
+def get_party_leader_status():
+  return is_leader
+
+def get_macro_state():
+  return macro
+
 def force_exit_dungeon():
+  wait(3)
   move_click(830, 710)
-  time.sleep(0.5)
+  wait(0.5)
 
   move_click(850, 430)
-  time.sleep(0.5)
+  wait(0.5)
 
   move_click(1030, 485)
-  time.sleep(1)
+  wait(1)
 
   move_click(620, 440)
-  time.sleep(3)
+  wait(3)
 
 def go_skill_slot(sec=0):
   pynboard.press(Key.f3)
@@ -365,7 +382,7 @@ def do_buffs():
 
     move(430, 670)
     pyauto.click(button="right")
-    time.sleep(1.5)
+    time.sleep(2)
 
 def do_short_buffs():
   if is_short_buffs_allowed == 1:
@@ -475,10 +492,12 @@ def loot_box(sec=3, select=1):
   checking = True
   boxCounter = 0
   while checking:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       checking = False
-      sys.exit()
+
+    if checking == False:
+      break
 
     try:
       if select == 1:
@@ -507,10 +526,12 @@ def loot_final_box(sec=4):
   checking = True
   boxCounter = 0
   while checking:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       checking = False
-      sys.exit()
+
+    if checking == False:
+      break
 
     try:
       do_select(0.1)
@@ -648,10 +669,12 @@ def do_attack_strict(sec=0):
 def enter_dungeon():
   entering = True
   while entering:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       entering = False
-      sys.exit()
+      
+    if entering == False:
+      break
 
     try:
       enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
@@ -665,10 +688,12 @@ def challenge_dungeon():
   if (is_party == 1 and is_leader == 1) or (is_party == 0 and is_leader == 0):
     challenging = True
     while challenging:
-      if not macro:
+      if not get_macro_state():
         log_action(MSG_TERMINATE)
         challenging = False
-        sys.exit()
+      
+      if challenging == False:
+        break
 
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
@@ -682,10 +707,9 @@ def end_dungeon():
   ending = True
   endCheckTrack = 0
   while ending:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       ending = False
-      sys.exit()
 
     if ending == False:
       break
@@ -706,10 +730,12 @@ def end_dungeon():
 def dice_dungeon():
   dicing = True
   while dicing:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       dicing = False
-      sys.exit()
+
+    if dicing == False:
+        break
 
     try:
       rolladice = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
@@ -722,10 +748,12 @@ def dice_dungeon():
 
   confirming = True
   while confirming:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       confirming = False
-      sys.exit()
+      
+    if confirming == False:
+        break
 
     try:
       diceconfirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
@@ -744,10 +772,9 @@ def focus_gate(unit=UNIT_BLANK, select=1):
     do_select(0.1)
 
   while combo:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
-      sys.exit()
 
     if combo == False:
       break
@@ -773,10 +800,12 @@ def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
     do_select(0.1)
 
   while combo:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
-      sys.exit()
+
+    if combo == False:
+        break
 
     if aura == 1:
       do_aura()
@@ -813,7 +842,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
     do_select(0.1)
 
   while combo:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
       sys.exit()
@@ -869,10 +898,12 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
   do_deselect_pack()
   do_select(0.1)
   while combo:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
-      sys.exit()
+
+    if combo == False:
+      break
 
     try:
       boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
@@ -923,9 +954,12 @@ def attack_boss(select=1, aura=1):
     do_select(0.1)
 
   while combo:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
+      break
+
+    if combo == False:
       break
 
     if is_battle_mode == False:
@@ -949,9 +983,12 @@ def attack_semi_boss(select=1):
     do_select(0.1)
 
   while combo:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
+      break
+
+    if combo == False:
       break
 
     if is_battle_mode == False:
@@ -976,9 +1013,12 @@ def attack_lava_gate(select=1):
     do_select(0.1)
 
   while combo:
-    if not macro:
+    if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
+      break
+
+    if combo == False:
       break
 
     if is_battle_mode == False:

@@ -25,6 +25,7 @@ def initialize(frame, btn, runs=1):
   global btn_start
   btn_start = btn
 
+  shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state="disabled")
   frame_root.update()
   run_dungeon(int(runs))
@@ -204,9 +205,8 @@ def position_third_shadow():
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    util.set_restart_status(False)
+    util.set_reset_status(False)
     run_counter += 1
-    shortcut.add_hotkey("ctrl+r", util.terminate)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
@@ -215,6 +215,11 @@ def run_dungeon(runs=1):
     util.release_keys()
     util.do_buffs()
     util.go_skill_slot(0.5)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move_click(720, 360)
 
@@ -227,6 +232,11 @@ def run_dungeon(runs=1):
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     position_nualle()
     # First Boss Sequence
@@ -245,6 +255,12 @@ def run_dungeon(runs=1):
     pyauto.scroll(-10000)
 
     util.loot_box(1)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.cancel_aura(2)
 
     util.move(1000, 520)
@@ -254,10 +270,9 @@ def run_dungeon(runs=1):
     checking = True
     dialog_count = 0
     while checking:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         checking = False
-        sys.exit()
 
       if checking == False:
         break
@@ -275,9 +290,14 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        util.set_restart_status(True)
+        util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     # First Shadow Sequence
@@ -287,10 +307,9 @@ def run_dungeon(runs=1):
     check_showorai = True
     count_showorai = 0
     while check_showorai:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        checking = False
-        sys.exit()
+        check_showorai = False
 
       if check_showorai == False:
         break
@@ -311,6 +330,11 @@ def run_dungeon(runs=1):
     # First Shadow
     util.focus_mobs(util.UNIT_SHOWORAI_F, 0, 0, 0)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Second Shadow Sequence
     position_second_shadow()
     util.wait(4)
@@ -318,10 +342,9 @@ def run_dungeon(runs=1):
     check_showorai = True
     count_showorai = 0
     while check_showorai:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        checking = False
-        sys.exit()
+        check_showorai = False
 
       if check_showorai == False:
         break
@@ -342,6 +365,11 @@ def run_dungeon(runs=1):
     # Second Shadow
     util.focus_mobs(util.UNIT_SHOWORAI_R, 0, 0, 0)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Third Shadow Sequence
     position_third_shadow()
     util.wait(3)
@@ -349,10 +377,9 @@ def run_dungeon(runs=1):
     check_showorai = True
     count_showorai = 0
     while check_showorai:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        checking = False
-        sys.exit()
+        check_showorai = False
 
       if check_showorai == False:
         break
@@ -373,14 +400,18 @@ def run_dungeon(runs=1):
     # Third Shadow
     util.focus_mobs(util.UNIT_SHOWORAI_M, 0, 0, 0)
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     # Final Boss Sequence
     util.move_click(580, 430)
     checking = True
     while checking:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         checking = False
-        sys.exit()
 
       if checking == False:
         break
@@ -394,9 +425,14 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        util.set_restart_status(True)
+        util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     # Final Boss
@@ -408,10 +444,9 @@ def run_dungeon(runs=1):
     util.wait(1)
     checking = True
     while checking:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         checking = False
-        sys.exit()
 
       if checking == False:
         break
@@ -426,17 +461,21 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        util.set_restart_status(True)
+        util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     checking = True
     while checking:
-      if not util.macro:
+      if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
         checking = False
-        sys.exit()
 
       if checking == False:
         break
@@ -451,9 +490,14 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
         checking = False
-        util.set_restart_status(True)
+        util.set_reset_status(True)
 
-    if util.get_restart_status():
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
       continue
 
     # Start to End Dungeon
