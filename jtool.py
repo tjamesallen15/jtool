@@ -219,9 +219,15 @@ def generate_gui():
 generate_gui()
 
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.setCabalWindow(cabalwindow)
-# util.goCabalWindow()
+# # util.setCabalWindow(cabalwindow)
+# # util.goCabalWindow()
 
-# roll = pyauto.locateOnScreen("img/rolladice.jpg", grayscale=False, confidence=.9)
+# # roll = pyauto.locateOnScreen("img/rolladice.jpg", grayscale=False, confidence=.9)
+# # pyauto.moveTo(roll[0], roll[1])
+# # pyauto.click(roll[0] + 10, roll[1] + 10)
+
+# region_screen = (int(cabalwindow[0]) + 1235, int(cabalwindow[1]) + 270, 30, 400)
+
+# roll = pyauto.locateOnScreen("img/checknotif.jpg", grayscale=False, confidence=.9, region=region_screen)
 # pyauto.moveTo(roll[0], roll[1])
 # pyauto.click(roll[0] + 10, roll[1] + 10)

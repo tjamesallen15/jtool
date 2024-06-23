@@ -501,6 +501,7 @@ def run_dungeon(runs=1):
       continue
 
     # Start to End Dungeon
+    util.check_notifications()
     util.end_dungeon()
     util.dice_dungeon()
     util.log_action(util.MSG_END_DG)

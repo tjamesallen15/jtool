@@ -47,6 +47,7 @@ region_mode_bar = []
 region_screen = []
 region_full_normal_bar = []
 region_full_mode_bar = []
+region_notification = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
@@ -78,6 +79,8 @@ MSG_NO_BOX_FOUND = "No Box Found"
 MSG_PATH_STOP = "Pathing stop, attacking"
 MSG_MOVE_STOP = "Moving stop, proceeding"
 MSG_CHECK_END_DG = "Check End Dungeon"
+MSG_NOTIFICATION_FOUND = "Notification Found"
+MSG_NO_NOTIFICATION_FOUND = "No Notification Found"
 MSG_ACTION = ""
 MSG_RUN_NUMBER =  "Run #: "
 MSG_BACKTRACK = "Backtrack #: "
@@ -113,6 +116,8 @@ IMG_MOBS = "img/mobs.jpg"
 IMG_DICE_ROLL = "img/rolladice.jpg"
 IMG_DICE_OKAY = "img/diceokay.jpg"
 IMG_DICE_EQUIP = "img/rollequip.jpg"
+IMG_CHECK_NOTIF = "img/checknotif.jpg"
+IMG_CLOSE_NOTIF = "img/closenotif.jpg"
 IMG_CHECK_DIALOG = "img/checkdialog.jpg"
 IMG_BOX = "img/box.jpg"
 IMG_GATE = "img/gate.jpg"
@@ -187,6 +192,9 @@ def initialize(window, frame, mlbl, rlbl):
 
   global region_full_mode_bar
   region_full_mode_bar = (int(cabalwindow[0] + 354), int(cabalwindow[1] + 25), 565, 30)
+
+  global region_notification
+  region_notification = (int(cabalwindow[0]) + 1235, int(cabalwindow[1]) + 270, 30, 400)
 
 
 def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0):
@@ -288,6 +296,9 @@ def get_full_region():
 
 def get_screen_region():
   return region_screen
+
+def get_notification_region():
+  return region_notification
 
 def get_atk_type():
   return atk_type
@@ -691,7 +702,7 @@ def challenge_dungeon():
       if not get_macro_state():
         log_action(MSG_TERMINATE)
         challenging = False
-      
+
       if challenging == False:
         break
 
@@ -702,6 +713,21 @@ def challenge_dungeon():
         break
       except pyauto.ImageNotFoundException:
         log_action(MSG_NO_BUTTON_FOUND)
+
+def check_notifications():
+  try:
+    check_notify = pyauto.locateOnScreen(IMG_CHECK_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
+    move_click_rel(10, 10, check_notify, 1)
+    log_action(MSG_NOTIFICATION_FOUND)
+  except pyauto.ImageNotFoundException:
+    log_action(MSG_NO_NOTIFICATION_FOUND)
+
+  try:
+    check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
+    move_click_rel(10, 10, check_notify, 1)
+    log_action(MSG_NOTIFICATION_FOUND)
+  except pyauto.ImageNotFoundException:
+    log_action(MSG_NO_NOTIFICATION_FOUND)
 
 def end_dungeon():
   ending = True
