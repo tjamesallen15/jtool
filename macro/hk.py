@@ -323,7 +323,7 @@ def find_mobs(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_NO_MOBS_FOUND)
         find_count += 1
 
-      if find_count >= 15:
+      if find_count >= 20:
         finding = False
 
       if finding == False:
@@ -463,7 +463,7 @@ def run_dungeon(runs=1):
       continue
 
     # Attack First Boss
-    util.wait(5)
+    util.wait(7)
     util.attack_mobs(util.UNIT_AREIHORN_GROUP, 1, 0.3, 0)
 
     # Check Macro State
@@ -621,7 +621,8 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.focus_gate(util.UNIT_GATE_FOUR)
+    util.do_select(0.1)
+    util.focus_mobs(util.UNIT_GATE_FOUR, 0, 0, val_sidestep)
     util.wait(2)
 
     # Check Macro State
@@ -673,9 +674,9 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(620, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    # util.move(620, 150)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
 
     util.move(620, 150)
     util.do_dash(1)
