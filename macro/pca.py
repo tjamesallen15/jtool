@@ -320,7 +320,7 @@ def run_dungeon(runs=1):
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
-        dialog = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
+        mobs = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
         check_showorai = False
       except pyauto.ImageNotFoundException:
@@ -355,7 +355,7 @@ def run_dungeon(runs=1):
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
-        dialog = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
+        mobs = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
         check_showorai = False
       except pyauto.ImageNotFoundException:
@@ -390,7 +390,7 @@ def run_dungeon(runs=1):
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
-        dialog = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
+        mobs = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
         check_showorai = False
       except pyauto.ImageNotFoundException:

@@ -56,13 +56,13 @@ APP_NAME = "Cabal JTool "
 APP_VERSION = "v5.01"
 APP_FULL_NAME = APP_NAME + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
-HOTKEY_PAUSE = "ctrl+p"
+HOTKEY_PAUSE = "ctrl+g"
 
 # CONSTANT MESSAGES
 MSG_START_DG = "Starting Dungeon"
 MSG_END_DG = "End Dungeon"
 MSG_EXIT = "Macro Exit"
-MSG_PAUSE = "Pause for 10 seconds"
+MSG_PAUSE = "Pause for 15 seconds"
 MSG_TERMINATE ="Macro Terminate"
 MSG_PATH_FIND = "Pathfind, "
 MSG_ATTACK_MOBS = "Attack, "
@@ -123,6 +123,8 @@ IMG_BOX = "img/box.jpg"
 IMG_GATE = "img/gate.jpg"
 IMG_HOLY_BOX = "img/holybox.jpg"
 IMG_SHOWORAI = "img/showorai.jpg"
+IMG_OWLBEAR = "img/owlbear.jpg"
+IMG_VAOUR = "img/vaour.jpg"
 
 # CONSTANT UNITS
 UNIT_BLANK = "--"
@@ -160,6 +162,13 @@ UNIT_POWER_SUPPLY = "Power Supply"
 UNIT_SHOWORAI_F = "Showorai [F]"
 UNIT_SHOWORAI_R = "Showorai [R]"
 UNIT_SHOWORAI_M = "Showorai [M]"
+UNIT_AREIHORN_GROUP = "Arehorn's Group"
+UNIT_HATCHLING = "Hatchling"
+UNIT_PHIXIA = "Phixia"
+UNIT_VAOUR_GROUP = "Vaour's Group"
+UNIT_VAOUR = "Vaour"
+UNIT_KNIGHT = "Knight of Wind"
+UNIT_SHIRDRAHN = "Shirdrahn"
 UNIT_BOX = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -280,7 +289,7 @@ def terminate():
 
 def pause():
   log_action(MSG_PAUSE)
-  wait(10)
+  wait(15)
 
 def get_region():
   if is_battle_mode and atk_type == 1:

@@ -21,6 +21,7 @@ import macro.cfa as cfa
 import macro.lha as lha
 import macro.tm as tm
 import macro.pca as pca
+import macro.hk as hk
 pynboard = Controller()
 
 LIST_MASTER = [
@@ -33,7 +34,8 @@ LIST_MASTER = [
   "Lava Hellfire (Awakened)",
   "Holy Windmill",
   "Terminus Machina",
-  "Panic Cave (Awakened)"
+  "Panic Cave (Awakened)",
+  "Holy Keldrasil"
 ]
 
 LIST_DUNGEON = [
@@ -46,7 +48,8 @@ LIST_DUNGEON = [
   "Lava Hellfire (Awakened)",
   "Holy Windmill",
   "Terminus Machina",
-  "Panic Cave (Awakened)"
+  "Panic Cave (Awakened)",
+  "Holy Keldrasil"
 ]
 
 LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
@@ -98,6 +101,8 @@ def start():
     tm.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[9]):
     pca.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[10]):
+    hk.initialize(frame_root, btn_start, runs)
 
 def generate_gui():
   # CREATE FRAME
@@ -219,15 +224,5 @@ def generate_gui():
 generate_gui()
 
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# # util.setCabalWindow(cabalwindow)
-# # util.goCabalWindow()
-
-# # roll = pyauto.locateOnScreen("img/rolladice.jpg", grayscale=False, confidence=.9)
-# # pyauto.moveTo(roll[0], roll[1])
-# # pyauto.click(roll[0] + 10, roll[1] + 10)
-
-# region_screen = (int(cabalwindow[0]) + 1235, int(cabalwindow[1]) + 270, 30, 400)
-
-# roll = pyauto.locateOnScreen("img/checknotif.jpg", grayscale=False, confidence=.9, region=region_screen)
-# pyauto.moveTo(roll[0], roll[1])
-# pyauto.click(roll[0] + 10, roll[1] + 10)
+# util.set_cabal_window(cabalwindow)
+# util.go_cabal_window()
