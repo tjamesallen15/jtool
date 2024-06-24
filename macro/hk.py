@@ -310,32 +310,61 @@ def find_mobs(unit=util.UNIT_BLANK):
   finding = True
   find_count = 0
   while finding:
-    try:
-      util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
-      boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.8, region=util.get_full_region())
-      util.log_action(util.MSG_BOSS_FOUND)
-      find_count += 15
-      finding = False
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_MOBS_FOUND)
-      find_count += 1
+    if unit == util.UNIT_OWL_BEAR:
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        find_count += 15
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+        find_count += 1
 
-    if find_count >= 15:
-      finding = False
+      if find_count >= 15:
+        finding = False
 
-    if finding == False:
-      break
+      if finding == False:
+        break
 
-    try:
-      util.do_select(0.1)
-      mobs = pyauto.locateOnScreen(util.IMG_OWLBEAR, grayscale=False, confidence=.8, region=util.get_full_region())
-      util.log_action(util.MSG_MOBS_FOUND + unit)
-      util.focus_mobs(unit, 1, 0, val_sidestep)
-    except pyauto.ImageNotFoundException:
-      util.do_deselect_pack()
-      util.log_action(util.MSG_NO_MOBS_FOUND)
+      try:
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_OWLBEAR, grayscale=False, confidence=.7, region=util.get_full_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
+        util.focus_mobs(unit, 1, 0, val_sidestep)
+      except pyauto.ImageNotFoundException:
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+    elif unit == util.UNIT_HATCHLING:
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        find_count += 15
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+        find_count += 1
+
+      if find_count >= 15:
+        finding = False
+
+      if finding == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_HATCHLING, grayscale=False, confidence=.7, region=util.get_full_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
+        util.focus_mobs(unit, 1, 0, val_sidestep)
+      except pyauto.ImageNotFoundException:
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
 def run_dungeon(runs=1):
   run_counter = 0
@@ -463,12 +492,16 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    # Attack Second Boss
-    util.wait(2)
-    util.do_short_buffs()
-    util.do_battle_mode()
-    util.attack_mobs(util.UNIT_PHIXIA, 1, 0.3, 0)
-    util.set_battle_mode(False)
+    util.wait(4)
+    find_mobs(util.UNIT_HATCHLING)
+    try:
+      boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
+      # Attack Second Boss
+      util.do_battle_mode()
+      util.focus_mobs(util.UNIT_PHIXIA, 1, 0, val_sidestep)
+      util.set_battle_mode(False)
+    except pyauto.ImageNotFoundException:
+      util.log_action(util.MSG_NO_BOSS_FOUND)
 
     util.move(540, 150)
     util.do_dash(1)
@@ -508,9 +541,9 @@ def run_dungeon(runs=1):
     # Third Group Sequence
     util.wait(5)
     # util.attack_mobs(util.UNIT_VAOUR_GROUP, 1, 0.3, 0)
-    find_mobs(util.UNIT_VAOUR_GROUP)
+    find_mobs(util.UNIT_OWL_BEAR)
     try:
-      boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.8, region=util.get_full_region())
+      boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
       util.force_exit_dungeon()
@@ -570,8 +603,8 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.focus_gate(util.UNIT_BLANK)
-    util.wait(1)
+    util.focus_gate(util.UNIT_GATE_FOUR)
+    util.wait(2)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -592,26 +625,45 @@ def run_dungeon(runs=1):
 
     # Attack Fourth Group
     util.wait(12)
+    util.attack_mobs(util.UNIT_KNIGHT, 1, 0.3, 0)
+
+    util.wait(1)
     util.move(620, 550)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(620, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.attack_mobs(util.UNIT_KNIGHT, 1, 0.3, 0)
-
-    util.move(620, 150)
+    util.move(620, 550)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(620, 150)
+    util.move(620, 550)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    # Attack Final Boss
     util.do_short_buffs()
     util.do_battle_mode()
+
+    util.move(620, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(620, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(620, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(620, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(620, 150)
+    util.do_dash(1)
+    # util.do_fade(0.5)
+
+    # Attack Final Boss
     util.attack_mobs(util.UNIT_SHIRDRAHN, 1, 0.3, 0)
     util.loot_final_box(3)
     util.set_battle_mode(False)
