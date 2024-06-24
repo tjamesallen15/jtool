@@ -124,8 +124,10 @@ IMG_GATE = "img/gate.jpg"
 IMG_HOLY_BOX = "img/holybox.jpg"
 IMG_SHOWORAI = "img/showorai.jpg"
 IMG_OWLBEAR = "img/owlbear.jpg"
+IMG_OWLBEAR_L = "img/owlbear-2.jpg"
 IMG_VAOUR = "img/vaour.jpg"
 IMG_HATCHLING = "img/hatchling.jpg"
+IMG_HATCHLING_L = "img/hatchling-2.jpg"
 IMG_PHIXIA = "img/phixia.jpg"
 
 # CONSTANT UNITS
