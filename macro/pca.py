@@ -502,6 +502,15 @@ def run_dungeon(runs=1):
       try:
         util.move_click(580, 430)
         util.move_click(580, 430)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
+        util.do_select(0.1)
+        util.focus_mobs(util.UNIT_GHOST, 0, 0, val_sidestep)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      try:
+        util.move_click(580, 430)
+        util.move_click(580, 430)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -528,15 +537,6 @@ def run_dungeon(runs=1):
 
       if checking == False:
         break
-
-      try:
-        util.move_click(580, 430)
-        util.move_click(580, 430)
-        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
-        util.do_select(0.1)
-        util.focus_mobs(util.UNIT_GHOST, 0, 0, val_sidestep)
-      except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       try:
         util.move_click(580, 430)

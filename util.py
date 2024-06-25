@@ -280,7 +280,7 @@ def wait(sec=1):
 
 def log_run(runNumber):
   runBuilder = StringVar()
-  runBuilder = MSG_RUN_NUMBER + str(runNumber) + "/" + get_total_run_count()
+  runBuilder = MSG_RUN_NUMBER + str(runNumber) + " | " + get_total_run_count()
   print(runBuilder)
   lbl_current_run.config(text=runBuilder)
   frame_root.update()
