@@ -38,6 +38,7 @@ is_short_buffs_allowed = 1
 is_veradrix_allowed = 0
 is_party = 0
 is_leader = 0
+val_runs = 1
 aura_counter = 0
 atk_type = 0
 trigger_reset_dungeon = False
@@ -212,7 +213,7 @@ def initialize(window, frame, mlbl, rlbl):
   region_notification = (int(cabalwindow[0]) + 1235, int(cabalwindow[1]) + 270, 30, 400)
 
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1):
   global battle_mode
   battle_mode = int(mode)
 
@@ -236,6 +237,9 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0):
 
   global is_leader
   is_leader = leader
+
+  global val_runs
+  val_runs = runs
 
 def set_cabal_window(window):
   global cabalwindow
@@ -276,7 +280,7 @@ def wait(sec=1):
 
 def log_run(runNumber):
   runBuilder = StringVar()
-  runBuilder = MSG_RUN_NUMBER + str(runNumber)
+  runBuilder = MSG_RUN_NUMBER + str(runNumber) + "/" + get_total_run_count()
   print(runBuilder)
   lbl_current_run.config(text=runBuilder)
   frame_root.update()
@@ -336,6 +340,9 @@ def get_party_leader_status():
 
 def get_macro_state():
   return macro
+
+def get_total_run_count():
+  return val_runs
 
 def force_exit_dungeon():
   wait(3)

@@ -83,7 +83,7 @@ def start():
   leader = val_leader.get()
 
   util.initialize(cabalwindow, frame_root, lbl_macro, lbl_current_run)
-  util.set_variables(mode, buff, short, atk_type, vera, party, leader)
+  util.set_variables(mode, buff, short, atk_type, vera, party, leader, runs)
 
   if (choice == LIST_MASTER[0]):
     hva.initialize(frame_root, btn_start, runs)
