@@ -206,6 +206,7 @@ def position_third_shadow():
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
+    util.set_battle_mode(False)
     util.set_reset_status(False)
     run_counter += 1
     util.log_action(util.MSG_START_DG)
@@ -419,9 +420,6 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.do_battle_mode()
-    util.wait(2)
-
     # Final Boss Sequence
     util.move_click(580, 430)
     checking = True
@@ -453,6 +451,8 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss
+    util.do_battle_mode()
+    util.wait(2)
     if util.get_atk_type() == 0:
       util.move(520, 400)
       util.do_dash(0.5)
@@ -533,6 +533,7 @@ def run_dungeon(runs=1):
         util.move_click(580, 430)
         util.move_click(580, 430)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
+        util.do_select(0.1)
         util.focus_mobs(util.UNIT_GHOST, 0, 0, val_sidestep)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
