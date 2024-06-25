@@ -436,7 +436,7 @@ def run_dungeon(runs=1):
     util.do_short_buffs()
 
     util.attack_boss()
-    util.move(450, 450)
+    util.move(450, 550)
     util.do_fade(0.5)
     util.loot_box()
 
@@ -573,34 +573,36 @@ def run_dungeon(runs=1):
     util.do_battle_mode()
 
     # Second and Third Orphidia
-    bossTracker = 0
-    bossCount = 0
-    shortBuffsCounter = 0
-    while bossCount < 2:
+    boss_tracker = 0
+    boss_count = 0
+    short_buffs_counter = 0
+    while boss_count < 2:
       if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        moving = False
+        boss_count += 10
 
-      if moving == False:
+      if boss_count > 2:
         break
 
-      bossTracker += 1
-      if bossTracker >= 60:
-        bossTracker = 0
-        bossCount += 10
+      boss_tracker += 1
+      if boss_tracker >= 200:
+        boss_tracker = 0
+        boss_count += 10
         break
 
-      if (bossCount == 1 and shortBuffsCounter == 0 and util.shortBuffsAllowed == 1):
-        shortBuffsCounter = 1
+      if (boss_count == 1 and short_buffs_counter == 0 and util.is_short_buffs_allowed == 1):
+        short_buffs_counter = 1
         util.do_short_buffs()
 
       try:
         util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-        bossCount += 1
+        util.log_action(util.MSG_BOSS_FOUND)
+        boss_count += 1
         util.attack_boss()
         util.do_deselect_pack()
-        if (bossCount == 1):
+        if boss_count == 1:
           util.wait(5)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)

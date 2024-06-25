@@ -247,6 +247,7 @@ def run_dungeon(runs=1):
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
+        check_dialog = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
@@ -321,6 +322,7 @@ def run_dungeon(runs=1):
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
+        check_dialog = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
@@ -392,6 +394,7 @@ def run_dungeon(runs=1):
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
+        check_dialog = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
@@ -453,40 +456,39 @@ def run_dungeon(runs=1):
       continue
 
     util.wait(1)
-    util.move(620, 550)
-    util.do_dash(1)
-    util.do_fade(0.5)
 
-    util.move(620, 550)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    if util.get_battle_mode() == 1:
+      util.move(620, 550)
+      util.do_dash(1)
+      util.do_fade(0.5)
 
-    util.move(620, 550)
-    util.do_dash(1)
-    util.do_fade(0.5)
+      util.move(620, 550)
+      util.do_dash(1)
+      util.do_fade(0.5)
+
+      util.move(620, 550)
+      util.do_dash(1)
+      util.do_fade(0.5)
 
     util.do_short_buffs()
     util.do_battle_mode()
 
-    util.move(620, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    if util.get_battle_mode() == 1:
+      util.move(620, 150)
+      util.do_dash(1)
+      util.do_fade(0.5)
+
+      util.move(620, 150)
+      util.do_dash(1)
+      util.do_fade(0.5)
+
+      util.move(620, 150)
+      util.do_dash(1)
+      util.do_fade(0.5)
 
     util.move(620, 150)
     util.do_dash(1)
     util.do_fade(0.5)
-
-    util.move(620, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
-    # util.move(620, 150)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
-    util.move(620, 150)
-    util.do_dash(1)
-    # util.do_fade(0.5)
 
     # Attack Final Boss
     util.attack_mobs(util.UNIT_SHIRDRAHN, 1, 0.3, 0)

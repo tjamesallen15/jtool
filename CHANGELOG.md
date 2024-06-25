@@ -110,3 +110,4 @@ All notable changes to this project will be documented in this file.
 - Fixed Terminus Machina glitches in some sequences
 - Fixed Terminus Machina Glitches
 - Fixed Terminate Function that exits the whole software
+- Fixed Hazardoud Valley (Awakened) not holding up with the Orphidia timers

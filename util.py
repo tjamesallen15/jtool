@@ -167,6 +167,7 @@ UNIT_POWER_SUPPLY = "Power Supply"
 UNIT_SHOWORAI_F = "Showorai [F]"
 UNIT_SHOWORAI_R = "Showorai [R]"
 UNIT_SHOWORAI_M = "Showorai [M]"
+UNIT_GHOST = "Ghost"
 UNIT_AREIHORN_GROUP = "Arehorn's Group"
 UNIT_HATCHLING = "Hatchling"
 UNIT_PHIXIA = "Phixia"
@@ -991,7 +992,7 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
 def attack_boss(select=1, aura=1):
   combo = True
 
-  if is_battle_mode and atk_type == 1:
+  if is_battle_mode and atk_type == 1 and select == 1:
     do_select(0.1)
     do_select(0.1)
   elif select == 1:

@@ -110,11 +110,12 @@ def position_nualle():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(610, 440)
-  util.do_fade(1)
+  if util.get_atk_type() == 1:
+    util.move(610, 440)
+    util.do_fade(1)
 
-  util.move(680, 380)
-  util.do_fade(1)
+    util.move(680, 380)
+    util.do_fade(1)
 
 def position_first_shadow():
   util.log_action(util.MSG_MOVING_POSITION)
@@ -243,9 +244,13 @@ def run_dungeon(runs=1):
     util.force_short_buffs()
     util.attack_boss()
 
-    util.wait(3)
-    util.move_click(590, 460)
-    util.do_fade(1)
+    if util.get_atk_type() == 1:
+      util.wait(3)
+      util.move_click(590, 460)
+      util.do_fade(1)
+    else:
+      util.move(630, 330)
+      util.do_fade(0.5)
 
     util.wait(2)
     util.move(375, 150)
@@ -302,7 +307,10 @@ def run_dungeon(runs=1):
 
     # First Shadow Sequence
     position_first_shadow()
-    util.wait(4)
+    if util.get_atk_type() == 1:
+      util.wait(4)
+    else:
+      util.wait(6)
 
     check_showorai = True
     count_showorai = 0
@@ -337,7 +345,10 @@ def run_dungeon(runs=1):
 
     # Second Shadow Sequence
     position_second_shadow()
-    util.wait(4)
+    if util.get_atk_type() == 1:
+      util.wait(4)
+    else:
+      util.wait(6)
 
     check_showorai = True
     count_showorai = 0
@@ -372,7 +383,10 @@ def run_dungeon(runs=1):
 
     # Third Shadow Sequence
     position_third_shadow()
-    util.wait(3)
+    if util.get_atk_type() == 1:
+      util.wait(3)
+    else:
+      util.wait(5)
 
     check_showorai = True
     count_showorai = 0
@@ -405,6 +419,9 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.do_battle_mode()
+    util.wait(2)
+
     # Final Boss Sequence
     util.move_click(580, 430)
     checking = True
@@ -436,10 +453,41 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss
-    util.do_battle_mode()
-    util.attack_boss(1, 0)
+    if util.get_atk_type() == 0:
+      util.move(520, 400)
+      util.do_dash(0.5)
+
+    check_count = 0
+    checking = True
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+        break
+
+      if check_count > 3:
+        checking = False
+
+      if checking == False:
+        break
+
+      try:
+        check_count += 1
+        util.do_select(0.1)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        checking = False
+        util.log_action(util.MSG_BOSS_FOUND)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    util.attack_boss(0, 0)
     util.set_battle_mode(False)
+    util.wait(1)
+
     util.loot_essentials()
+
+    if util.get_atk_type() == 0:
+      util.move_click(710, 360, 1)
 
     util.wait(1)
     checking = True
@@ -452,6 +500,7 @@ def run_dungeon(runs=1):
         break
 
       try:
+        util.move_click(580, 430)
         util.move_click(580, 430)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -481,6 +530,15 @@ def run_dungeon(runs=1):
         break
 
       try:
+        util.move_click(580, 430)
+        util.move_click(580, 430)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
+        util.focus_mobs(util.UNIT_GHOST, 0, 0, val_sidestep)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      try:
+        util.move_click(580, 430)
         util.move_click(580, 430)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)

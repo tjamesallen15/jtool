@@ -997,9 +997,9 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(640, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    # util.move(640, 260)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
 
     # Poerte Sequence
     moving = True
