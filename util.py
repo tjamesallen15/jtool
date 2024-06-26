@@ -344,6 +344,9 @@ def get_macro_state():
 def get_total_run_count():
   return val_runs
 
+def get_veradrix_status():
+  return is_veradrix_allowed
+
 def force_exit_dungeon():
   wait(3)
   move_click(830, 710)
@@ -384,14 +387,22 @@ def do_battle_mode(sec=5):
 
     global is_battle_mode
     is_battle_mode = True
-    time.sleep(sec)
+
+    if get_veradrix_status() == 1:
+      for x in range(sec):
+        do_veradrix()
+        time.sleep(0.5)
+        do_essentials()
+        time.sleep(0.5)
+    else:
+      time.sleep(sec)
 
     pynboard.press(val_bm_aura)
     pynboard.release(val_bm_aura)
     time.sleep(1)
 
 def do_veradrix():
-  if is_veradrix_allowed == 1:
+  if get_veradrix_status() == 1:
     pynboard.press(val_veradrix)
     pynboard.release(val_veradrix)
 
