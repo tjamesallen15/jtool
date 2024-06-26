@@ -215,8 +215,8 @@ def run_dungeon(runs=1):
     # Click Cabal Window
     util.go_cabal_window()
     util.release_keys()
-    util.do_buffs()
     util.go_skill_slot(0.5)
+    util.do_buffs()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -421,7 +421,6 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss Sequence
-    util.move_click(580, 430)
     checking = True
     while checking:
       if not util.get_macro_state():
@@ -432,6 +431,17 @@ def run_dungeon(runs=1):
         break
 
       try:
+        util.move_click(580, 430)
+        util.move_click(580, 430)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
+        util.do_select(0.1)
+        util.focus_mobs(util.UNIT_GHOST, 0, 0, val_sidestep)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      try:
+        util.move_click(580, 430)
+        util.move_click(580, 430)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
