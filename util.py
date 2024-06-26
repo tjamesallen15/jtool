@@ -347,6 +347,12 @@ def get_total_run_count():
 def get_veradrix_status():
   return is_veradrix_allowed
 
+def get_buffs_status():
+  return is_buffs_allowed
+
+def get_shorts_status():
+  return is_short_buffs_allowed
+
 def force_exit_dungeon():
   wait(3)
   move_click(830, 710)
@@ -418,7 +424,7 @@ def do_cont_battle_mode():
     aura_counter = 0
 
 def do_buffs():
-  if is_buffs_allowed == 1:
+  if get_buffs_status() == 1:
     log_action(MSG_BUFFS)
     move(400, 670)
     pyauto.click(button="right")
@@ -429,7 +435,7 @@ def do_buffs():
     time.sleep(2)
 
 def do_short_buffs():
-  if is_short_buffs_allowed == 1:
+  if get_shorts_status() == 1:
     log_action(MSG_SHORT_BUFFS)
     move(470, 670)
     pyauto.click(button="right")
