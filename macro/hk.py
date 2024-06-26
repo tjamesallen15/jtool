@@ -56,6 +56,12 @@ def find_mobs(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_NO_MOBS_FOUND)
         find_count += 1
 
+      if find_count >= 20:
+        finding = False
+
+      if finding == False:
+        break
+
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
@@ -133,6 +139,7 @@ def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
     run_counter += 1
+    util.set_battle_mode(False)
     util.set_reset_status(False)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
@@ -319,6 +326,7 @@ def run_dungeon(runs=1):
 
       try:
         util.move_click(600, 320)
+        util.move_click(600, 320)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -341,10 +349,11 @@ def run_dungeon(runs=1):
 
     # Third Group Sequence
     util.wait(5)
-    # util.attack_mobs(util.UNIT_VAOUR_GROUP, 1, 0.3, 0)
     find_mobs(util.UNIT_OWL_BEAR)
     try:
       boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
+      # Attack Third Boss
+      util.focus_mobs(util.UNIT_VAOUR, 1, 0, val_sidestep)
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
       util.force_exit_dungeon()
@@ -352,9 +361,6 @@ def run_dungeon(runs=1):
 
     if util.get_reset_status():
       continue
-
-    # Attack Third Boss
-    util.focus_mobs(util.UNIT_VAOUR, 1, 0, val_sidestep)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -366,6 +372,11 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.loot_box()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Going to Portal
     util.move(600, 150)
@@ -390,6 +401,7 @@ def run_dungeon(runs=1):
         break
 
       try:
+        util.move_click(600, 320)
         util.move_click(600, 320)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)

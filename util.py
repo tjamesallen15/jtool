@@ -354,7 +354,9 @@ def get_shorts_status():
   return is_short_buffs_allowed
 
 def force_exit_dungeon():
+  check_notifications()
   wait(3)
+
   move_click(830, 710)
   wait(0.5)
 
