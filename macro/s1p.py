@@ -72,11 +72,35 @@ def run_dungeon(runs=1):
     # First Sibling Dialog
     util.move_click(600, 380, 0.8)
     util.move_click(15, 525, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 4:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+
     util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -153,11 +177,43 @@ def run_dungeon(runs=1):
 
     # Second Sibling Dialog
     util.move_click(600, 380, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 5:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(630, 600)
     util.do_dash(1)
@@ -184,10 +240,37 @@ def run_dungeon(runs=1):
 
     # Box Dialog
     util.move_click(430, 340, 1.5)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 4:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -223,7 +306,34 @@ def run_dungeon(runs=1):
 
     # Altar Dialog
     util.move_click(760, 450, 1.5)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 1:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -236,8 +346,40 @@ def run_dungeon(runs=1):
     # Second Sibling Sequence II
     util.move_click(575, 300, 1.5)
     util.move_click(600, 380, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 1:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
     util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(600, 650)
     util.do_dash(1)
@@ -388,12 +530,44 @@ def run_dungeon(runs=1):
 
     # Third Sibling
     util.move_click(705, 390, 1.5)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 5:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
     util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(700, 550)
     util.do_dash(1)
@@ -437,8 +611,35 @@ def run_dungeon(runs=1):
 
     # Egg Dialog
     util.move_click(360, 350, 1.5)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 2:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -467,7 +668,34 @@ def run_dungeon(runs=1):
 
     # Wall Dialog
     util.move_click(1100, 400, 2)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 1:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -513,7 +741,35 @@ def run_dungeon(runs=1):
 
     # Fire Dialog
     util.move_click(570, 320, 1.5)
-    util.move_click(15, 535, 0.8)
+    # util.move_click(1100, 400, 2)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 1:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -553,9 +809,36 @@ def run_dungeon(runs=1):
 
     # Egg Dialog II
     util.move_click(360, 450, 1.5)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 3:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -670,7 +953,39 @@ def run_dungeon(runs=1):
     # Portal II
     util.move_click(420, 450, 1.5)
     util.move_click(500, 500, 1.5)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 1:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
@@ -713,7 +1028,9 @@ def run_dungeon(runs=1):
         break
 
       if count_umpra > 10:
+        util.force_exit_dungeon()
         checking = False
+        util.set_reset_status(True)
 
       try:
         util.do_select(0.1)
@@ -730,14 +1047,49 @@ def run_dungeon(runs=1):
         count_umpra += 1
         util.log_action(util.MSG_NO_UMPRA_WEAK_FOUND)
 
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
     util.move(750, 150)
     util.do_dash(1.5)
 
     # Altar Dialog
     util.move_click(700, 300, 1.5)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 3:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+    # util.move_click(15, 535, 0.8)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():
@@ -766,7 +1118,31 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.move_click(500, 300, 1.5)
-    util.move_click(15, 535, 0.8)
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == 1:
+        checking = False
+        break
+
+      try:
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 2)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+    # util.move_click(15, 535, 0.8)
 
     # Siena Box Sequence
     checking = True
@@ -791,6 +1167,12 @@ def run_dungeon(runs=1):
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_SIENA_BOX_FOUND)
+        util.force_exit_dungeon()
+        checking = False
+        util.set_reset_status(True)
+
+    if util.get_reset_status():
+      continue
 
     # Check Macro State
     if not util.get_macro_state():

@@ -49,6 +49,7 @@ region_screen = []
 region_full_normal_bar = []
 region_full_mode_bar = []
 region_notification = []
+region_dialog = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
@@ -222,6 +223,9 @@ def initialize(window, frame, mlbl, rlbl):
   global region_notification
   region_notification = (int(cabalwindow[0]) + 1235, int(cabalwindow[1]) + 270, 30, 400)
 
+  global region_dialog
+  region_dialog = (int(cabalwindow[0]) + 5, int(cabalwindow[1]) + 270, 30, 400)
+
 
 def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1):
   global battle_mode
@@ -328,6 +332,9 @@ def get_screen_region():
 
 def get_notification_region():
   return region_notification
+
+def get_dialog_region():
+  return region_dialog
 
 def get_atk_type():
   return atk_type
