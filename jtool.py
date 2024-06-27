@@ -22,7 +22,7 @@ import macro.lha as lha
 import macro.tm as tm
 import macro.pca as pca
 import macro.hk as hk
-import macro.sb1fp as sb1fp
+import macro.s1p as s1p
 pynboard = Controller()
 
 LIST_MASTER = [
@@ -107,7 +107,7 @@ def start():
   elif (choice == LIST_MASTER[10]):
     hk.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[11]):
-    sb1fp.initialize(frame_root, btn_start, runs)
+    s1p.initialize(frame_root, btn_start, runs)
 
 def generate_gui():
   # CREATE FRAME

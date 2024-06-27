@@ -92,8 +92,10 @@ def run_dungeon(runs=1):
     util.do_dash(0.5)
 
     # First Boss
+    util.do_essentials()
     util.attack_boss()
     util.set_battle_mode(False)
+    util.do_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -290,7 +292,9 @@ def run_dungeon(runs=1):
     util.do_dash(1)
 
     # Second Boss
+    util.do_essentials()
     util.attack_boss()
+    util.do_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -352,12 +356,13 @@ def run_dungeon(runs=1):
     util.move(800, 250)
     util.do_dash(1.5)
 
-    util.move(100, 350)
+    util.move(80, 350)
     util.do_dash(1)
 
     util.move(500, 300)
     util.do_fade(0.5)
     util.do_dash(1.5)
+    # util.do_fade(0.5)
 
     util.move(770, 300)
     util.do_dash(1)
@@ -408,8 +413,10 @@ def run_dungeon(runs=1):
     util.do_dash(1)
 
     # Third Boss
+    util.do_essentials()
     util.attack_boss()
     util.set_battle_mode(False)
+    util.do_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -634,6 +641,7 @@ def run_dungeon(runs=1):
     util.move(270, 400)
     util.do_dash(1)
 
+    util.do_essentials()
     util.attack_boss()
 
     # Check Macro State
@@ -645,8 +653,10 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.do_essentials()
     util.attack_boss()
     util.set_battle_mode(False)
+    util.do_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -721,7 +731,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_UMPRA_WEAK_FOUND)
 
     util.move(750, 150)
-    util.do_dash(0.5)
+    util.do_dash(1.5)
 
     # Altar Dialog
     util.move_click(700, 300, 1.5)
