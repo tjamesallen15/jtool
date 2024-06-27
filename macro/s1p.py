@@ -927,6 +927,8 @@ def run_dungeon(runs=1):
     util.do_essentials()
     util.attack_boss()
 
+    util.wait(1)
+
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
@@ -1167,9 +1169,6 @@ def run_dungeon(runs=1):
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_SIENA_BOX_FOUND)
-        util.force_exit_dungeon()
-        checking = False
-        util.set_reset_status(True)
 
     if util.get_reset_status():
       continue

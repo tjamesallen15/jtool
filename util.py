@@ -672,7 +672,7 @@ def do_aura(sec=1):
   pynboard.press(val_bm3)
   pynboard.release(val_bm3)
 
-  wait(sec)
+  time.sleep(sec)
 
 def do_aura_strict(sec=0):
   pynboard.press(val_bm_aura)
