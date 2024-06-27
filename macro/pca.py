@@ -288,9 +288,9 @@ def run_dungeon(runs=1):
         break
 
       try:
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.5)
         dialog_count += 1
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -442,9 +442,9 @@ def run_dungeon(runs=1):
       try:
         util.move_click(580, 430)
         util.move_click(580, 430)
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.5)
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -521,9 +521,9 @@ def run_dungeon(runs=1):
       try:
         util.move_click(580, 430)
         util.move_click(580, 430)
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.5)
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -551,9 +551,9 @@ def run_dungeon(runs=1):
       try:
         util.move_click(580, 430)
         util.move_click(580, 430)
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.5)
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
