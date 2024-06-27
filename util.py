@@ -54,7 +54,7 @@ region_notification = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x230"
 APP_NAME = "Cabal JTool "
-APP_VERSION = "v5.01"
+APP_VERSION = "v5.11"
 APP_FULL_NAME = APP_NAME + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -101,6 +101,12 @@ MSG_WAIT = "Waiting"
 MSG_MOVING_POSITION = "Moving to position"
 MSG_ROLL_EQUIPMENT = "Rolling Equipment"
 MSG_NO_ROLL_EQUIPMENT_FOUND = "No Roll Equipment Found"
+MSG_CHECK_UMPRA_WEAK = "Checking Umpra The Weak"
+MSG_UMPRA_WEAK_FOUND = "Umpra The Weak Found"
+MSG_NO_UMPRA_WEAK_FOUND = "No Umpra The Weak Found"
+MSG_CHECK_SIENA_BOX = "Checking Siena Box"
+MSG_SIENA_BOX_FOUND = "Found Siena Box"
+MSG_NO_SIENA_BOX_FOUND = "No Siena Box Found"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
@@ -131,6 +137,8 @@ IMG_VAOUR_L = "img/vaour-2.jpg"
 IMG_HATCHLING = "img/hatchling.jpg"
 IMG_HATCHLING_L = "img/hatchling-2.jpg"
 IMG_PHIXIA = "img/phixia.jpg"
+IMG_SIENA = "img/siena.jpg"
+IMG_UMPRA_WEAK = "img/umpra-w.jpg"
 
 # CONSTANT UNITS
 UNIT_BLANK = "--"
@@ -176,6 +184,8 @@ UNIT_OWL_BEAR = "Owl Bear"
 UNIT_VAOUR = "Vaour"
 UNIT_KNIGHT = "Knight of Wind"
 UNIT_SHIRDRAHN = "Shirdrahn"
+UNIT_UMPRA_WEAK = "Umpra The Weak"
+UNIT_SIENA_BOX = "Siena Box"
 UNIT_BOX = "Box"
 
 def initialize(window, frame, mlbl, rlbl):
@@ -377,7 +387,7 @@ def go_skill_slot(sec=0):
     time.sleep(sec)
 
 def set_battle_mode(val):
-  cancel_aura(1)
+  cancel_aura(2)
   if battle_mode == 1:
     global is_battle_mode
     is_battle_mode = val
@@ -645,7 +655,7 @@ def release_keys(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def do_aura(sec=0):
+def do_aura(sec=1):
   pynboard.press(val_bm3)
   pynboard.release(val_bm3)
   do_essentials()
@@ -655,8 +665,7 @@ def do_aura(sec=0):
   pynboard.press(val_bm3)
   pynboard.release(val_bm3)
 
-  if (sec != 0):
-    time.sleep(sec)
+  wait(sec)
 
 def do_aura_strict(sec=0):
   pynboard.press(val_bm_aura)

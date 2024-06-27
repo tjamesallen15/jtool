@@ -22,6 +22,7 @@ import macro.lha as lha
 import macro.tm as tm
 import macro.pca as pca
 import macro.hk as hk
+import macro.sb1fp as sb1fp
 pynboard = Controller()
 
 LIST_MASTER = [
@@ -35,7 +36,8 @@ LIST_MASTER = [
   "Holy Windmill",
   "Terminus Machina",
   "Panic Cave (Awakened)",
-  "Holy Keldrasil"
+  "Holy Keldrasil",
+  "Altar of Siena B1F (Prideus)"
 ]
 
 LIST_DUNGEON = [
@@ -49,7 +51,8 @@ LIST_DUNGEON = [
   "Holy Windmill",
   "Terminus Machina",
   "Panic Cave (Awakened)",
-  "Holy Keldrasil"
+  "Holy Keldrasil",
+  "Altar of Siena B1F (Prideus)"
 ]
 
 LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
@@ -103,6 +106,8 @@ def start():
     pca.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[10]):
     hk.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[11]):
+    sb1fp.initialize(frame_root, btn_start, runs)
 
 def generate_gui():
   # CREATE FRAME
@@ -124,7 +129,7 @@ def generate_gui():
 
   global list_dg
   list_dg = ttk.Combobox(values=LIST_DUNGEON, state="readonly")
-  list_dg.current(7)
+  list_dg.current(11)
   list_dg.config(width=30)
   list_dg.place(x=75, y=10)
 

@@ -991,13 +991,18 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.loot_box()
+    util.do_deselect_pack()
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move(770, 260)
+    util.move(970, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(970, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1166,6 +1171,8 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    util.move(800, 400)
+    util.do_fade(0.5)
     util.focus_gate(util.UNIT_GATE_FOUR)
 
     # Check Macro State
