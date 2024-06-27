@@ -584,40 +584,40 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Four Altars Dialog
-    util.move_click(520, 300, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
+    util.move_click(520, 300, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move_click(900, 330, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
+    util.move_click(900, 330, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move_click(420, 260, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
+    util.move_click(420, 260, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move_click(900, 320, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
-    util.move_click(15, 535, 2)
+    util.move_click(900, 320, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
+    util.move_click(15, 535, 1.5)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -721,7 +721,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_UMPRA_WEAK_FOUND)
 
     util.move(750, 150)
-    util.do_dash(1)
+    util.do_dash(0.5)
 
     # Altar Dialog
     util.move_click(700, 300, 1.5)
