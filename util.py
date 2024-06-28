@@ -530,9 +530,11 @@ def do_deselect_pack():
   do_deselect(0.1)
   do_deselect(0.1)
 
-def do_loot():
-  do_select(0.1)
-  do_select(0.1)
+def do_loot(select=1):
+  if select == 1:
+    do_select(0.1)
+    do_select(0.1)
+
   if is_battle_mode:
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
@@ -585,6 +587,32 @@ def loot_box(sec=3, select=1):
         move_click_rel(10, 10, roll)
       except pyauto.ImageNotFoundException:
         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+
+    boxCounter += 1
+    if boxCounter > sec:
+      boxCounter = 0
+      break
+
+def loot_ref_box(sec=3, select=1, target=IMG_BOX):
+  checking = True
+  boxCounter = 0
+  while checking:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      checking = False
+
+    if checking == False:
+      break
+
+    try:
+      if select == 1:
+        do_select(0.1)
+      box = pyauto.locateOnScreen(target, grayscale=False, confidence=.9, region=get_full_region())
+      log_action(MSG_BOX_FOUND)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_BOX_FOUND)
+
+    do_loot(select)
 
     boxCounter += 1
     if boxCounter > sec:

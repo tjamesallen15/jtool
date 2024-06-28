@@ -32,32 +32,6 @@ def initialize(frame, btn, runs=1):
   btn_start.config(state="active")
   frame_root.update()
 
-def loot_siena_box(sec=3, select=1):
-  checking = True
-  boxCounter = 0
-  while checking:
-    if not util.get_macro_state():
-      util.log_action(util.MSG_TERMINATE)
-      checking = False
-
-    if checking == False:
-      break
-
-    try:
-      if select == 1:
-        util.do_select(0.1)
-      box = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
-      util.log_action(util.MSG_SIENA_BOX_FOUND)
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_BOX_FOUND)
-
-    util.do_loot()
-
-    boxCounter += 1
-    if boxCounter > sec:
-      boxCounter = 0
-      break
-
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
@@ -1084,7 +1058,7 @@ def run_dungeon(runs=1):
       continue
 
     util.wait(1)
-    for x in range(20):
+    for x in range(10):
       util.loot_essentials()
       util.loot_essentials()
       util.loot_essentials()
@@ -1191,18 +1165,16 @@ def run_dungeon(runs=1):
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_SIENA_BOX)
-        umpra = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
+        siena = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_SIENA_BOX_FOUND)
-        util.focus_mobs(util.UNIT_SIENA_BOX, 0, 0, val_sidestep)
+        util.wait(1)
+        util.loot_ref_box(4, 0, util.IMG_SIENA)
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_SIENA_BOX_FOUND)
 
     if util.get_reset_status():
       continue
-
-    util.wait(1)
-    loot_siena_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1212,4 +1184,3 @@ def run_dungeon(runs=1):
     util.force_exit_dungeon()
     util.log_action(util.MSG_END_DG)
     util.wait(3)
-  
