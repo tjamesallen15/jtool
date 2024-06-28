@@ -49,11 +49,11 @@ def find_mobs(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
-        find_count += 15
+        find_count += 25
         finding = False
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
         find_count += 1
 
       if find_count >= 20:
@@ -67,11 +67,11 @@ def find_mobs(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_VAOUR_L, grayscale=False, confidence=.7, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
-        find_count += 15
+        find_count += 25
         finding = False
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
         find_count += 1
 
       if find_count >= 20:
@@ -108,7 +108,7 @@ def find_mobs(unit=util.UNIT_BLANK):
         finding = False
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
         find_count += 1
 
       if find_count >= 15:
@@ -349,8 +349,11 @@ def run_dungeon(runs=1):
 
     # Third Group Sequence
     util.wait(5)
+    util.move(500, 400)
+    util.do_dash(1)
     find_mobs(util.UNIT_OWL_BEAR)
     try:
+      print("THIS THIS THIS")
       boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
       # Attack Third Boss
       util.focus_mobs(util.UNIT_VAOUR, 1, 0, val_sidestep)
