@@ -47,7 +47,7 @@ def find_mobs(unit=util.UNIT_BLANK):
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
-        boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
+        boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.6, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
         find_count += 25
         finding = False
@@ -251,7 +251,8 @@ def run_dungeon(runs=1):
       try:
         util.move_click(600, 320)
         util.move_click(600, 320)
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        util.move_click(600, 320)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
         check_dialog = False
@@ -327,7 +328,8 @@ def run_dungeon(runs=1):
       try:
         util.move_click(600, 320)
         util.move_click(600, 320)
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        util.move_click(600, 320)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
         check_dialog = False
@@ -353,7 +355,6 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     find_mobs(util.UNIT_OWL_BEAR)
     try:
-      print("THIS THIS THIS")
       boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
       # Attack Third Boss
       util.focus_mobs(util.UNIT_VAOUR, 1, 0, val_sidestep)
@@ -406,7 +407,8 @@ def run_dungeon(runs=1):
       try:
         util.move_click(600, 320)
         util.move_click(600, 320)
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        util.move_click(600, 320)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
         check_dialog = False

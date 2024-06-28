@@ -593,7 +593,7 @@ def loot_box(sec=3, select=1):
       boxCounter = 0
       break
 
-def loot_ref_box(sec=3, select=1, target=IMG_BOX):
+def loot_ref_box(sec=3, select=1, ref=IMG_BOX):
   checking = True
   boxCounter = 0
   while checking:
@@ -607,7 +607,7 @@ def loot_ref_box(sec=3, select=1, target=IMG_BOX):
     try:
       if select == 1:
         do_select(0.1)
-      box = pyauto.locateOnScreen(target, grayscale=False, confidence=.9, region=get_full_region())
+      box = pyauto.locateOnScreen(ref, grayscale=False, confidence=.8, region=get_full_region())
       log_action(MSG_BOX_FOUND)
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BOX_FOUND)
@@ -1027,6 +1027,9 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
       break
     except pyauto.ImageNotFoundException:
       log_action(MSG_ATTACK_MOBS + unit)
+
+    if combo == False:
+      break
 
     if aura == 1:
       do_aura()

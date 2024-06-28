@@ -129,7 +129,7 @@ def run_dungeon(runs=1):
 
     try:
       util.move_click(570, 375)
-      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:
@@ -216,7 +216,7 @@ def run_dungeon(runs=1):
         util.move_click(610, 300)
         util.move_click(610, 305)
         util.move_click(610, 310)
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
         dialog_check = False
@@ -256,7 +256,7 @@ def run_dungeon(runs=1):
       util.move_click(540, 435)
       util.move_click(540, 440)
       util.move_click(540, 445)
-      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
     except pyauto.ImageNotFoundException:

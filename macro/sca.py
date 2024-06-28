@@ -68,7 +68,7 @@ def path_find(unit):
 
     try:
       util.move_click(620, 250)
-      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       portal_counter += 1
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
@@ -123,7 +123,7 @@ def path_find(unit):
 
     try:
       util.move_click(590, 250)
-      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       portal_counter += 1
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
@@ -178,7 +178,7 @@ def path_find(unit):
 
     try:
       util.move_click(650, 250)
-      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9)
+      dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       portal_counter += 1
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
