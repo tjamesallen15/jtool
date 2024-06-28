@@ -240,7 +240,7 @@ def run_dungeon(runs=1):
 
     util.move(800, 250)
     util.do_dash(1)
-    util.do_fade(2)
+    util.do_fade(3)
 
     # Box Dialog
     util.move_click(430, 340, 1.5)
