@@ -661,7 +661,6 @@ def do_essentials():
   pynboard.release(val_pots)
   pynboard.press(val_loot)
   pynboard.release(val_loot)
-
   do_veradrix()
 
   pynboard.release(Key.shift)
@@ -675,7 +674,6 @@ def loot_essentials():
   pynboard.release(val_pots)
   pynboard.press(val_loot)
   pynboard.release(val_loot)
-
   do_veradrix()
 
   pynboard.release(Key.shift)
@@ -690,7 +688,7 @@ def release_keys(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def do_aura(sec=1):
+def do_aura(sec=0):
   pynboard.press(val_bm3)
   pynboard.release(val_bm3)
   do_essentials()
@@ -700,7 +698,8 @@ def do_aura(sec=1):
   pynboard.press(val_bm3)
   pynboard.release(val_bm3)
 
-  time.sleep(sec)
+  if (sec != 0):
+    time.sleep(sec)
 
 def do_aura_strict(sec=0):
   pynboard.press(val_bm_aura)
@@ -802,7 +801,7 @@ def challenge_dungeon():
 def check_notifications():
   try:
     check_notify = pyauto.locateOnScreen(IMG_CHECK_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
-    move_click_rel(10, 10, check_notify, 1)
+    move_click_rel(10, 10, check_notify, 0.5)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
@@ -811,7 +810,7 @@ def check_notifications():
 
   try:
     check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
-    move_click_rel(10, 10, check_notify, 1)
+    move_click_rel(10, 10, check_notify, 0.5)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)

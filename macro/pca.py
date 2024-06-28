@@ -250,8 +250,10 @@ def run_dungeon(runs=1):
       util.move_click(590, 460)
       util.do_fade(1)
     else:
-      util.move(630, 285)
-      util.do_dash(0.5)
+      # util.move(630, 285)
+      # util.move(630, 330)
+      util.move_click(630, 325)
+      # util.do_fade(0.5)
 
     util.wait(2)
     util.move(375, 150)
@@ -309,9 +311,9 @@ def run_dungeon(runs=1):
     # First Shadow Sequence
     position_first_shadow()
     if util.get_atk_type() == 1:
-      util.wait(4)
-    else:
       util.wait(6)
+    else:
+      util.wait(8)
 
     check_showorai = True
     count_showorai = 0
