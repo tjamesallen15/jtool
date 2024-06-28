@@ -747,11 +747,11 @@ def run_dungeon(runs=1):
 
     util.set_battle_mode(False)
 
-    util.move(700, 260)
+    util.move(710, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(700, 260)
+    util.move(710, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
