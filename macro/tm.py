@@ -799,7 +799,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(700, 440)
+    util.move(500, 440)
     util.do_dash(1)
     util.do_fade(0.5)
 
