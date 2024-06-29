@@ -65,6 +65,7 @@ def path_find(unit=util.UNIT_BLANK):
         if pathing == False:
           break
 
+      if unit == util.UNIT_ESPADA_3:
         try:
           util.move_click(500, 260)
           util.do_select(0.1)
@@ -140,20 +141,22 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
-      try:
-        util.move_click(640, 260)
-        util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-        util.log_action(util.MSG_MOBS_FOUND + unit)
-        pathing = False
-        util.log_action(util.MSG_PATH_STOP)
-        break
-      except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+      if unit != util.UNIT_ESPADA_3:
+        try:
+          util.move_click(640, 260)
+          util.do_select(0.1)
+          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+          util.log_action(util.MSG_MOBS_FOUND + unit)
+          pathing = False
+          util.log_action(util.MSG_PATH_STOP)
+          break
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+          util.log_action(util.MSG_NO_MOBS_FOUND)
 
       pathing = False
       break
+
     else:
       try:
         util.move_click(600, 260)
@@ -796,7 +799,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(600, 400)
+    util.move(700, 440)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -848,6 +851,10 @@ def run_dungeon(runs=1):
     if not util.get_macro_state():
       run_counter += 1000
       continue
+
+    util.move(620, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(660, 260)
     util.do_dash(1)
@@ -916,7 +923,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(550, 260)
+    util.move(540, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -998,13 +1005,13 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(970, 260)
+    util.move(770, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(970, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    # util.move(770, 260)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
 
     # Poerte Sequence
     moving = True
@@ -1065,7 +1072,7 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(655, 260)
+    util.move(675, 260)
     util.do_dash(1)
     # util.do_fade(0.5)
 

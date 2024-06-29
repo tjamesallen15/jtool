@@ -352,6 +352,9 @@ def path_backtrack(unit):
       backtracking = False
 
     util.log_action(util.MSG_BACKTRACK + unit)
+    if unit == util.UNIT_WHITE_SNAKE:
+      path_find_white_snake()
+
     try:
       util.move_click(650, 560)
       util.do_dash()
