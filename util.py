@@ -767,7 +767,7 @@ def enter_dungeon():
     if not get_macro_state():
       log_action(MSG_TERMINATE)
       entering = False
-      
+
     if entering == False:
       break
 

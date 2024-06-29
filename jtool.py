@@ -59,7 +59,7 @@ LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
 
 list_dg = []
 btn_start = []
-# btn_pause = []
+btn_pause = []
 lbl_macro = []
 lbl_current_run = []
 frame_root = []
@@ -109,6 +109,22 @@ def start():
   elif (choice == LIST_MASTER[11]):
     s1p.initialize(frame_root, btn_start, runs)
 
+def buy_fury():
+  btn_start.config(state="disabled")
+  btn_pause.config(state="disabled")
+  frame_root.update()
+  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+  util.set_cabal_window(cabalwindow)
+  util.go_cabal_window()
+
+  for x in range(150):
+    util.move_click(125, 205)
+    print(str(x))
+
+  btn_start.config(state="active")
+  btn_pause.config(state="active")
+  frame_root.update()
+
 def generate_gui():
   # CREATE FRAME
   global frame_root
@@ -147,10 +163,10 @@ def generate_gui():
   btn_start.config(width=10)
   btn_start.place(x=230, y=40)
 
-  # global btn_pause
-  # btn_pause = Button(frame_root, text="Pause", command=start)
-  # btn_pause.config(width=10)
-  # btn_pause.place(x=140, y=40)
+  global btn_pause
+  btn_pause = Button(frame_root, text="Fury", command=buy_fury)
+  btn_pause.config(width=10)
+  btn_pause.place(x=145, y=40)
 
   global lbl_current_run
   lbl_current_run = Label(frame_root, text="Run #: --")

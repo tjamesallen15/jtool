@@ -620,6 +620,7 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    util.do_short_buffs()
     util.attack_boss()
 
     # Check Macro State

@@ -720,7 +720,7 @@ def run_dungeon(runs=1):
 
       path_find(util.UNIT_MECH_LION)
       try:
-        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         moving = False
         util.log_action(util.MSG_MOVE_STOP)
         break
@@ -838,7 +838,7 @@ def run_dungeon(runs=1):
         moving = False
 
       try:
-        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_full_region())
         moving = False
         util.log_action(util.MSG_MOVE_STOP)
         break
