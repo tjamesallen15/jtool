@@ -117,7 +117,7 @@ def buy_fury():
   util.set_cabal_window(cabalwindow)
   util.go_cabal_window()
 
-  for x in range(150):
+  for x in range(170):
     util.move_click(125, 205)
     print(str(x))
 

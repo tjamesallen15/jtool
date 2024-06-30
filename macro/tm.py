@@ -1094,6 +1094,9 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+    if util.get_atk_type == 1:
+      util.move_click(650, 450, 1.5)
+
     util.focus_gate(util.UNIT_GATE_THREE)
 
     # Check Macro State
