@@ -1054,7 +1054,11 @@ def run_dungeon(runs=1):
       continue
     util.set_battle_mode(False)
 
-    util.move(580, 260)
+    util.move(640, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(1040, 400)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1072,8 +1076,30 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(675, 260)
+    util.move(640, 260)
     util.do_dash(1)
+    util.do_fade(0.5)
+
+    # util.move(580, 260)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
+
+    # util.move(570, 550)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
+
+    # util.move(580, 550)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
+
+    # util.move(700, 150)
+    # pyauto.mouseDown(button="right")
+    # util.move(375, 150)
+    # pyauto.mouseUp(button="right")
+    # pyauto.scroll(-10000)
+
+    # util.move(675, 260)
+    # util.do_dash(1)
     # util.do_fade(0.5)
 
     # Gate III
