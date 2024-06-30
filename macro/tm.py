@@ -959,10 +959,6 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    # util.move(590, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
     # Espada III Sequence
     moving = True
     counter = 0
@@ -1008,10 +1004,6 @@ def run_dungeon(runs=1):
     util.move(770, 260)
     util.do_dash(1)
     util.do_fade(0.5)
-
-    # util.move(770, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
 
     # Poerte Sequence
     moving = True
@@ -1080,28 +1072,6 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    # util.move(580, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
-    # util.move(570, 550)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
-    # util.move(580, 550)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
-    # util.move(700, 150)
-    # pyauto.mouseDown(button="right")
-    # util.move(375, 150)
-    # pyauto.mouseUp(button="right")
-    # pyauto.scroll(-10000)
-
-    # util.move(675, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
     # Gate III
     moving = True
     while moving:
@@ -1159,7 +1129,6 @@ def run_dungeon(runs=1):
     util.do_deselect_pack()
     util.move(720, 260)
     util.do_dash(1)
-    util.do_fade(0.5)
 
     util.do_battle_mode()
     util.attack_boss()
