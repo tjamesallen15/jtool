@@ -65,17 +65,18 @@ def path_find(unit=util.UNIT_BLANK):
         if pathing == False:
           break
 
+        # Power Supply
         if unit == util.UNIT_ESPADA_3:
-          # Power Supply
           try:
             util.do_select(0.1)
             supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
             util.move(500, 440)
             util.do_dash(1)
+            util.do_fade(0.5)
+            pathing = False
           except pyauto.ImageNotFoundException:
             util.do_deselect_pack()
 
-      if unit == util.UNIT_ESPADA_3:
         try:
           util.move_click(500, 260)
           util.do_select(0.1)
@@ -91,14 +92,16 @@ def path_find(unit=util.UNIT_BLANK):
         if pathing == False:
           break
 
-        # Power Supply
-        try:
-          util.do_select(0.1)
-          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
-          util.move(500, 440)
-          util.do_dash(1)
-        except pyauto.ImageNotFoundException:
-          util.do_deselect_pack()
+        if unit == util.UNIT_ESPADA_3:
+          # Power Supply
+          try:
+            util.do_select(0.1)
+            util.move(500, 440)
+            util.do_dash(1)
+            util.do_fade(0.5)
+            pathing = False
+          except pyauto.ImageNotFoundException:
+            util.do_deselect_pack()
 
       try:
         util.move_click(600, 260)
@@ -115,13 +118,15 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
+      # Power Supply
       if unit == util.UNIT_ESPADA_3:
-        # Power Supply
         try:
           util.do_select(0.1)
           supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.move(500, 440)
           util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
 
@@ -147,6 +152,8 @@ def path_find(unit=util.UNIT_BLANK):
           supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.move(500, 440)
           util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
 
@@ -165,13 +172,15 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
+      # Power Supply
       if unit == util.UNIT_ESPADA_3:
-        # Power Supply
         try:
           util.do_select(0.1)
           supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.move(500, 440)
           util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
 
@@ -197,21 +206,34 @@ def path_find(unit=util.UNIT_BLANK):
           supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.move(500, 440)
           util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
 
-      if unit != util.UNIT_ESPADA_3:
+      try:
+        util.move_click(640, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      # Power Supply
+      if unit == util.UNIT_ESPADA_3:
         try:
-          util.move_click(640, 260)
           util.do_select(0.1)
-          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_MOBS_FOUND + unit)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+          util.do_fade(0.5)
           pathing = False
-          util.log_action(util.MSG_PATH_STOP)
-          break
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
-          util.log_action(util.MSG_NO_MOBS_FOUND)
 
       pathing = False
       break
@@ -876,6 +898,10 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.move(350, 200)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
@@ -904,7 +930,7 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.focus_gate(util.UNIT_GATE_TWO)
+    util.focus_gate(util.UNIT_GATE_TWO, 1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -919,17 +945,13 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(620, 260)
+    util.move(580, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
     util.move(520, 260)
     util.do_dash(1)
     util.do_fade(0.5)
-
-    # util.move(600, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
 
     # Espada Sequence
     moving = True
@@ -1045,14 +1067,18 @@ def run_dungeon(runs=1):
       counter += 1
       print(str(counter))
 
-    util.focus_gate(util.UNIT_POWER_SUPPLY)
+    util.do_deselect_pack()
+    util.move(640, 450)
+    util.do_dash(1)
+    util.do_select(0.1)
+    util.focus_gate(util.UNIT_POWER_SUPPLY, 0)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move(580, 260)
+    util.move(620, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1061,7 +1087,6 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.loot_box()
-    util.do_deselect_pack()
 
     # Check Macro State
     if not util.get_macro_state():
