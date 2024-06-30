@@ -65,6 +65,16 @@ def path_find(unit=util.UNIT_BLANK):
         if pathing == False:
           break
 
+        if unit == util.UNIT_ESPADA_3:
+          # Power Supply
+          try:
+            util.do_select(0.1)
+            supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+            util.move(500, 440)
+            util.do_dash(1)
+          except pyauto.ImageNotFoundException:
+            util.do_deselect_pack()
+
       if unit == util.UNIT_ESPADA_3:
         try:
           util.move_click(500, 260)
@@ -81,6 +91,15 @@ def path_find(unit=util.UNIT_BLANK):
         if pathing == False:
           break
 
+        # Power Supply
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
       try:
         util.move_click(600, 260)
         util.do_select(0.1)
@@ -95,6 +114,16 @@ def path_find(unit=util.UNIT_BLANK):
 
       if pathing == False:
         break
+
+      if unit == util.UNIT_ESPADA_3:
+        # Power Supply
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
 
       try:
         util.move_click(580, 260)
@@ -111,6 +140,16 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
+      if unit == util.UNIT_ESPADA_3:
+        # Power Supply
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
       try:
         util.move_click(620, 260)
         util.do_select(0.1)
@@ -126,6 +165,16 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
+      if unit == util.UNIT_ESPADA_3:
+        # Power Supply
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
       try:
         util.move_click(560, 260)
         util.do_select(0.1)
@@ -140,6 +189,16 @@ def path_find(unit=util.UNIT_BLANK):
 
       if pathing == False:
         break
+
+      if unit == util.UNIT_ESPADA_3:
+        # Power Supply
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
 
       if unit != util.UNIT_ESPADA_3:
         try:
@@ -927,6 +986,10 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.move(560, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     # Espada II Sequence
     moving = True
     counter = 0
@@ -958,6 +1021,10 @@ def run_dungeon(runs=1):
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
+
+    util.move(530, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     # Espada III Sequence
     moving = True

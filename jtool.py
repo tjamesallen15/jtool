@@ -243,3 +243,7 @@ def generate_gui():
 
 # GENERATE MAIN
 generate_gui()
+
+# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# util.set_cabal_window(cabalwindow)
+# util.go_cabal_window()
