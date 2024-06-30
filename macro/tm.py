@@ -96,6 +96,7 @@ def path_find(unit=util.UNIT_BLANK):
           # Power Supply
           try:
             util.do_select(0.1)
+            supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
             util.move(500, 440)
             util.do_dash(1)
             util.do_fade(0.5)
