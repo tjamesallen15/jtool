@@ -1045,7 +1045,7 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(530, 150)
+    util.move(510, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
