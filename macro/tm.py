@@ -92,8 +92,8 @@ def path_find(unit=util.UNIT_BLANK):
         if pathing == False:
           break
 
+        # Power Supply
         if unit == util.UNIT_ESPADA_3:
-          # Power Supply
           try:
             util.do_select(0.1)
             supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
@@ -146,8 +146,8 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
+      # Power Supply
       if unit == util.UNIT_ESPADA_3:
-        # Power Supply
         try:
           util.do_select(0.1)
           supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
@@ -200,8 +200,8 @@ def path_find(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
+      # Power Supply
       if unit == util.UNIT_ESPADA_3:
-        # Power Supply
         try:
           util.do_select(0.1)
           supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
@@ -1009,7 +1009,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(560, 260)
+    util.move(540, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1024,7 +1024,7 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 6:
+      if counter > 5:
         moving = False
         break
 
@@ -1039,13 +1039,20 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.move(680, 400)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     util.move(600, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(510, 150)
+    util.move(520, 360)
+    util.do_dash(1.5)
+
+    util.move(630, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
