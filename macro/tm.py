@@ -390,7 +390,7 @@ def path_find(unit=util.UNIT_BLANK):
 
 def path_backtrack(unit):
   util.log_action(util.MSG_BACKTRACK + unit)
-  util.move(615, 600)
+  util.move(800, 400)
   util.do_dash(1)
   util.do_fade(0.5)
 
@@ -403,6 +403,14 @@ def path_backtrack(unit):
   util.do_fade(0.5)
 
   util.move(615, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(615, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(450, 400)
   util.do_dash(1)
   util.do_fade(0.5)
 
@@ -436,6 +444,7 @@ def path_backtrack(unit):
       util.log_action(util.MSG_MOBS_FOUND + unit)
       util.log_action(util.MSG_PATH_STOP)
       util.focus_gate(unit, 0)
+      util.loot_box()
       backtrack_counter += 5
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
