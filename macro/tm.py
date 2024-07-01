@@ -47,6 +47,14 @@ def path_find(unit=util.UNIT_BLANK):
       break
 
     util.log_action(util.MSG_PATH_FIND + unit)
+
+    if unit == util.UNIT_POERTE:
+      backtrack_counter += 1
+      util.log_action(util.MSG_BACKTRACK + str(backtrack_counter))
+      if (backtrack_counter >= 10):
+        backtrack_counter = 0
+        path_backtrack(unit)
+
     if unit == util.UNIT_MECH_LIHONAR or unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
 
       if unit != util.UNIT_ESPADA_2:
@@ -379,6 +387,24 @@ def path_find(unit=util.UNIT_BLANK):
     util.focus_mobs(unit, 1, 0, val_sidestep)
   elif boss_found == 0:
     util.attack_mobs(unit, 1, 0.3, val_sidestep)
+
+def path_backtrack(unit):
+  util.log_action(util.MSG_BACKTRACK + unit)
+  util.move(600, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(600, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(600, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  # util.move(600, 600)
+  # util.do_dash(1)
+  # util.do_fade(0.5)
 
 def path_find_gate_strict(unit=util.UNIT_BLANK):
   pathing = True
@@ -942,17 +968,9 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(600, 260)
+    util.move(580, 260)
     util.do_dash(1)
     util.do_fade(0.5)
-
-    # util.move(600, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
-    # util.move(520, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
 
     # Espada Sequence
     moving = True
@@ -1008,10 +1026,6 @@ def run_dungeon(runs=1):
     util.move(540, 260)
     util.do_dash(1)
     util.do_fade(0.5)
-
-    # util.move(560, 260)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
 
     # Espada II Sequence
     moving = True
