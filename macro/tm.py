@@ -942,17 +942,17 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(620, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
     util.move(600, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(520, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    # util.move(600, 260)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
+
+    # util.move(520, 260)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
 
     # Espada Sequence
     moving = True
@@ -1009,9 +1009,9 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(580, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    # util.move(560, 260)
+    # util.do_dash(1)
+    # util.do_fade(0.5)
 
     # Espada II Sequence
     moving = True
