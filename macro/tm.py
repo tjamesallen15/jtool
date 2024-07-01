@@ -390,21 +390,62 @@ def path_find(unit=util.UNIT_BLANK):
 
 def path_backtrack(unit):
   util.log_action(util.MSG_BACKTRACK + unit)
-  util.move(600, 600)
+  util.move(615, 600)
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(600, 600)
+  util.move(615, 600)
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(600, 600)
+  util.move(615, 600)
   util.do_dash(1)
   util.do_fade(0.5)
 
-  # util.move(600, 600)
-  # util.do_dash(1)
-  # util.do_fade(0.5)
+  util.move(615, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  backtracking = True
+  backtrack_counter = 0
+  while backtracking:
+    backtrack_counter += 1
+    util.log_action(util.MSG_BACKTRACK + str(backtrack_counter))
+    if (backtrack_counter >= 10):
+      backtrack_counter = 0
+      backtracking = False
+
+    if backtracking == False:
+      break
+
+    try:
+      util.move_click(620, 250)
+      util.do_select(0.1)
+      box = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_MOBS_FOUND + unit)
+      util.log_action(util.MSG_PATH_STOP)
+      util.focus_gate(unit, 0)
+      backtrack_counter += 5
+    except pyauto.ImageNotFoundException:
+      util.log_action(util.MSG_NO_MOBS_FOUND)
+
+    try:
+      util.move_click(620, 250)
+      util.do_select(0.1)
+      box = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_MOBS_FOUND + unit)
+      util.log_action(util.MSG_PATH_STOP)
+      util.focus_gate(unit, 0)
+      backtrack_counter += 5
+    except pyauto.ImageNotFoundException:
+      util.log_action(util.MSG_NO_MOBS_FOUND)
+
+    if backtracking == False:
+      break
+
+  util.move(770, 260)
+  util.do_dash(1)
+  util.do_fade(0.5)
 
 def path_find_gate_strict(unit=util.UNIT_BLANK):
   pathing = True
@@ -620,8 +661,8 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
       if pathing == False:
         break
 
-    util.move_click(675, 450, 2)
-    util.move_click(675, 250, 1.5)
+    util.move_click(705, 450, 2)
+    util.move_click(705, 250, 1.5)
 
   return gate_counter
 
@@ -877,6 +918,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.focus_gate(util.UNIT_GATE_ONE)
+    util.loot_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -958,6 +1000,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     util.focus_gate(util.UNIT_GATE_TWO, 1)
+    util.loot_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1009,6 +1052,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.focus_gate(util.UNIT_POWER_SUPPLY)
+    util.loot_essentials()
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
@@ -1047,6 +1091,7 @@ def run_dungeon(runs=1):
       print(str(counter))
 
     util.focus_gate(util.UNIT_POWER_SUPPLY)
+    util.loot_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1094,6 +1139,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_select(0.1)
     util.focus_gate(util.UNIT_POWER_SUPPLY, 0)
+    util.loot_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1164,6 +1210,10 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.move(640, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     util.move(1040, 400)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -1212,6 +1262,7 @@ def run_dungeon(runs=1):
       util.move_click(650, 450, 1.5)
 
     util.focus_gate(util.UNIT_GATE_THREE)
+    util.loot_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1293,6 +1344,7 @@ def run_dungeon(runs=1):
     util.move(800, 400)
     util.do_fade(0.5)
     util.focus_gate(util.UNIT_GATE_FOUR)
+    util.loot_essentials()
 
     # Check Macro State
     if not util.get_macro_state():
