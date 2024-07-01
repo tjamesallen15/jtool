@@ -938,15 +938,15 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.move(610, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     util.move(620, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(660, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
-    util.move(580, 260)
+    util.move(600, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1009,7 +1009,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(540, 260)
+    util.move(580, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1049,7 +1049,7 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(520, 360)
+    util.move(520, 400)
     util.do_dash(1.5)
 
     util.move(630, 150)
