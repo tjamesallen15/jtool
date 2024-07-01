@@ -666,62 +666,6 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
 
   return gate_counter
 
-def pathFindPowerSupply(unit=util.UNIT_BLANK):
-  pathing = True
-  boss_found = 0
-  while pathing:
-    if not util.get_macro_state():
-      util.log_action(util.MSG_TERMINATE)
-      pathing = False
-
-    if pathing == False:
-        break
-
-    util.log_action(util.MSG_PATH_FIND + unit)
-    try:
-      util.move_click(600, 260)
-      util.do_select(0.1)
-      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_GATE_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_GATE_FOUND)
-
-    try:
-      util.move_click(580, 260)
-      util.do_select(0.1)
-      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_GATE_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_GATE_FOUND)
-
-    try:
-      util.move_click(620, 260)
-      util.do_select(0.1)
-      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_GATE_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_GATE_FOUND)
-
-    try:
-      util.move_click(300, 260)
-      util.do_select(0.1)
-      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_GATE_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_GATE_FOUND)
-
 def path_find_boss():
   pathing = True
   boss_found = 0
