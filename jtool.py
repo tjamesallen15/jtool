@@ -119,7 +119,7 @@ def buy_fury():
 
   for x in range(170):
     util.move_click(125, 205)
-    print(str(x))
+    print("Click #: " + str(x))
 
   btn_start.config(state="active")
   btn_pause.config(state="active")
