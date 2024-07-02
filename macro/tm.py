@@ -1106,8 +1106,11 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.move(500, 300)
-    util.do_dash(1)
-    util.do_fade(4)
+    if util.get_atk_type() == 1:
+      util.do_dash(4)
+    else:
+      util.do_dash(1)
+      util.do_fade(4)
 
     # Espada III Sequence
     moving = True
@@ -1290,8 +1293,12 @@ def run_dungeon(runs=1):
 
     # Third Boss
     util.do_deselect_pack()
-    util.move(720, 260)
-    util.do_dash(1)
+    if util.get_atk_type() == 1:
+      util.move(580, 260)
+      util.do_dash(1)
+    else:
+      util.move(720, 260)
+      util.do_dash(1)
 
     util.do_battle_mode()
     util.attack_boss()
