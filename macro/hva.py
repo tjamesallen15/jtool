@@ -609,11 +609,11 @@ def run_dungeon(runs=1):
       if boss_count > 2:
         break
 
-      boss_tracker += 1
-      if boss_tracker >= 200:
-        boss_tracker = 0
-        boss_count += 10
-        break
+      # boss_tracker += 1
+      # if boss_tracker >= 200:
+      #   boss_tracker = 0
+      #   boss_count += 10
+      #   break
 
       if (boss_count == 1 and short_buffs_counter == 0 and util.is_short_buffs_allowed == 1):
         short_buffs_counter = 1
@@ -625,7 +625,7 @@ def run_dungeon(runs=1):
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         boss_count += 1
-        util.attack_boss()
+        util.attack_boss(0, 1)
         util.do_deselect_pack()
         if boss_count == 1:
           util.wait(5)
