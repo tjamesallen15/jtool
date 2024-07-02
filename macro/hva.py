@@ -362,6 +362,28 @@ def path_backtrack(unit):
 
   util.attack_mobs(unit)
 
+def position_orphidia():
+  util.do_deselect_pack()
+  util.move(400, 260)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.do_deselect_pack()
+  util.move(320, 540)
+  util.do_dash(1)
+
+  util.do_deselect_pack()
+  util.move(400, 260)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.do_deselect_pack()
+  util.move(320, 540)
+  util.do_dash(1)
+
+  util.move(400, 400)
+  util.do_fade(0.5)
+
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
@@ -538,21 +560,24 @@ def run_dungeon(runs=1):
 
     # Position for First Orphidia
     util.do_deselect_pack()
-    util.move(800, 260)
-    util.do_dash(0.5)
+    position_orphidia()
 
-    util.move_click(500, 260)
-    util.move_click(400, 320)
-    util.do_dash(1)
-    util.do_dash(1)
-    util.do_fade(0.1)
+    # OLD POSITION
+    # util.move(800, 260)
+    # util.do_dash(0.5)
 
-    util.move(320, 540)
-    util.do_deselect_pack()
-    util.do_dash(0.5)
+    # util.move_click(500, 260)
+    # util.move_click(400, 320)
+    # util.do_dash(1)
+    # util.do_dash(1)
+    # util.do_fade(0.1)
 
-    util.move(400, 400)
-    util.do_fade(0.5)
+    # util.move(320, 540)
+    # util.do_deselect_pack()
+    # util.do_dash(0.5)
+
+    # util.move(400, 400)
+    # util.do_fade(0.5)
 
     # First Orphidia
     try:
@@ -567,9 +592,9 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.wait(1)
     util.move(675, 600)
     util.do_dash(0.5)
-
     util.do_battle_mode()
 
     # Second and Third Orphidia

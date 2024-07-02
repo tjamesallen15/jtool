@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.21
+
+## v5.21 Features
+
+## v5.21 Fixes
+
+- [Hazardous Valley Awakened] - Fixed some stuck ups on final orphidia boss.
+
 # v5.11
 
 ## v5.11 Features
