@@ -492,9 +492,17 @@ def position_orphidia():
   util.move(320, 540)
   util.do_dash(1)
 
-  util.move(400, 400)
+  util.do_deselect_pack()
+  util.move(400, 260)
+  util.do_dash(1)
   util.do_fade(0.5)
 
+  util.do_deselect_pack()
+  util.move(320, 540)
+  util.do_dash(1)
+
+  util.move(400, 400)
+  util.do_fade(0.5)
 
 def path_find_white_snake():
   util.log_action(util.MSG_PATH_FIND + util.UNIT_WHITE_SNAKE)

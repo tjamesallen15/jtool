@@ -85,6 +85,9 @@ def path_find(unit=util.UNIT_BLANK):
           except pyauto.ImageNotFoundException:
             util.do_deselect_pack()
 
+        if pathing == False:
+          break
+
         try:
           util.move_click(500, 260)
           util.do_select(0.1)
@@ -111,6 +114,9 @@ def path_find(unit=util.UNIT_BLANK):
             pathing = False
           except pyauto.ImageNotFoundException:
             util.do_deselect_pack()
+
+        if pathing == False:
+          break
 
       try:
         util.move_click(600, 260)
@@ -139,6 +145,9 @@ def path_find(unit=util.UNIT_BLANK):
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
 
+      if pathing == False:
+          break
+
       try:
         util.move_click(580, 260)
         util.do_select(0.1)
@@ -165,6 +174,9 @@ def path_find(unit=util.UNIT_BLANK):
           pathing = False
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
+
+      if pathing == False:
+          break
 
       try:
         util.move_click(620, 260)
@@ -193,6 +205,9 @@ def path_find(unit=util.UNIT_BLANK):
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
 
+      if pathing == False:
+          break
+
       try:
         util.move_click(560, 260)
         util.do_select(0.1)
@@ -219,6 +234,9 @@ def path_find(unit=util.UNIT_BLANK):
           pathing = False
         except pyauto.ImageNotFoundException:
           util.do_deselect_pack()
+
+      if pathing == False:
+          break
 
       try:
         util.move_click(640, 260)
@@ -259,6 +277,9 @@ def path_find(unit=util.UNIT_BLANK):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
+      if pathing == False:
+        break
+
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
@@ -284,6 +305,9 @@ def path_find(unit=util.UNIT_BLANK):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      if pathing == False:
+        break
 
       try:
         util.do_select(0.1)
@@ -311,6 +335,9 @@ def path_find(unit=util.UNIT_BLANK):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
+      if pathing == False:
+        break
+
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
@@ -337,6 +364,9 @@ def path_find(unit=util.UNIT_BLANK):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
+      if pathing == False:
+        break
+
       try:
         util.do_select(0.1)
         util.log_action(util.MSG_CHECK_BOSS)
@@ -362,6 +392,9 @@ def path_find(unit=util.UNIT_BLANK):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      if pathing == False:
+        break
 
       try:
         util.do_select(0.1)
@@ -992,15 +1025,19 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(320, 550)
+    util.move(1000, 400)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(320, 550)
+    util.move(320, 500)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(320, 550)
+    util.move(320, 500)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(320, 500)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1022,7 +1059,7 @@ def run_dungeon(runs=1):
 
     util.move(540, 260)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(1)
 
     # Espada II Sequence
     moving = True
@@ -1035,7 +1072,7 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      if counter > 5:
+      if counter > 3:
         moving = False
         break
 
@@ -1064,9 +1101,13 @@ def run_dungeon(runs=1):
     util.move(520, 400)
     util.do_dash(1.5)
 
-    util.move(630, 150)
+    util.move(650, 150)
     util.do_dash(1)
     util.do_fade(0.5)
+
+    util.move(500, 300)
+    util.do_dash(1)
+    util.do_fade(3.5)
 
     # Espada III Sequence
     moving = True
@@ -1088,7 +1129,7 @@ def run_dungeon(runs=1):
       print(str(counter))
 
     util.do_deselect_pack()
-    util.move(640, 450)
+    util.move(640, 550)
     util.do_dash(1)
     util.do_select(0.1)
     util.focus_gate(util.UNIT_POWER_SUPPLY, 0)
@@ -1116,7 +1157,7 @@ def run_dungeon(runs=1):
 
     util.move(770, 260)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(2)
 
     # Poerte Sequence
     moving = True
@@ -1167,7 +1208,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(1040, 400)
+    util.move(1040, 410)
     util.do_dash(1)
     util.do_fade(0.5)
 
