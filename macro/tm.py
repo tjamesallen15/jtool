@@ -12,628 +12,810 @@ import util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
-rootFrame = []
-startButton = []
+frame_root = []
+btn_start = []
 
 # UNIQUE VARIABLES
-sidestep = 0
+val_sidestep = 0
 
 def initialize(frame, btn, runs=1):
-  global rootFrame
-  rootFrame = frame
+  global frame_root
+  frame_root = frame
 
-  global startButton
-  startButton = btn
+  global btn_start
+  btn_start = btn
 
-  startButton.config(state="disabled")
-  rootFrame.update()
-  runDungeon(int(runs))
-  startButton.config(state="active")
-  rootFrame.update()
+  shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
+  btn_start.config(state="disabled")
+  frame_root.update()
+  run_dungeon(int(runs))
+  btn_start.config(state="active")
+  frame_root.update()
 
-def pathFind(unit=util.unitBlank):
+def path_find(unit=util.UNIT_BLANK):
   pathing = True
-  bossFound = 0
-  bossCheck = 0
-  boxFound = 0
-  backTrackCheck = 0
+  boss_found = 0
+  boss_check = 0
+  box_found = 0
+  backtrack_counter = 0
   while pathing:
-    if not util.macro:
-      util.logAction(util.msgTerminate)
+    if not util.get_macro_state():
+      util.log_action(util.MSG_TERMINATE)
       pathing = False
-      sys.exit()
-      break
 
     if pathing == False:
       break
 
-    util.logAction(util.msgPathFind + unit)
-    if unit == util.unitLihonar or unit == util.unitEspada or unit == util.unitEspadaII or unit == util.unitEspadaIII:
+    util.log_action(util.MSG_PATH_FIND + unit)
 
-      if unit != util.unitEspadaII:
+    if unit == util.UNIT_POERTE:
+      backtrack_counter += 1
+      util.log_action(util.MSG_BACKTRACK + str(backtrack_counter))
+      if (backtrack_counter >= 10):
+        backtrack_counter = 0
+        path_backtrack(unit)
+
+    if unit == util.UNIT_MECH_LIHONAR or unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
+
+      if unit != util.UNIT_ESPADA_2:
         try:
-          util.moveClick(300, 260)
-          util.doSelect(0.1)
-          mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-          util.logAction(util.msgMobsFound + unit)
+          util.move_click(300, 260)
+          util.do_select(0.1)
+          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+          util.log_action(util.MSG_MOBS_FOUND + unit)
           pathing = False
-          util.logAction(util.msgPathStop)
+          util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.logAction(util.msgNoMobsFound)
+          util.do_deselect_pack()
+          util.log_action(util.MSG_NO_MOBS_FOUND)
+
+        if pathing == False:
+          break
+
+        # Power Supply
+        if unit == util.UNIT_ESPADA_3:
+          try:
+            util.do_select(0.1)
+            supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+            util.move(500, 440)
+            util.do_dash(1)
+            util.do_fade(0.5)
+            pathing = False
+          except pyauto.ImageNotFoundException:
+            util.do_deselect_pack()
 
         if pathing == False:
           break
 
         try:
-          util.moveClick(500, 260)
-          util.doSelect(0.1)
-          mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-          util.logAction(util.msgMobsFound + unit)
+          util.move_click(500, 260)
+          util.do_select(0.1)
+          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+          util.log_action(util.MSG_MOBS_FOUND + unit)
           pathing = False
-          util.logAction(util.msgPathStop)
+          util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.logAction(util.msgNoMobsFound)
+          util.do_deselect_pack()
+          util.log_action(util.MSG_NO_MOBS_FOUND)
+
+        if pathing == False:
+          break
+
+        # Power Supply
+        if unit == util.UNIT_ESPADA_3:
+          try:
+            util.do_select(0.1)
+            supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+            util.move(500, 440)
+            util.do_dash(1)
+            util.do_fade(0.5)
+            pathing = False
+          except pyauto.ImageNotFoundException:
+            util.do_deselect_pack()
 
         if pathing == False:
           break
 
       try:
-        util.moveClick(600, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(600, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
+      # Power Supply
+      if unit == util.UNIT_ESPADA_3:
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
+      if pathing == False:
+          break
+
       try:
-        util.moveClick(580, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(580, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
+      # Power Supply
+      if unit == util.UNIT_ESPADA_3:
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
+      if pathing == False:
+          break
+
       try:
-        util.moveClick(620, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(620, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
+      # Power Supply
+      if unit == util.UNIT_ESPADA_3:
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
+      if pathing == False:
+          break
+
       try:
-        util.moveClick(560, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(560, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
+      # Power Supply
+      if unit == util.UNIT_ESPADA_3:
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
+      if pathing == False:
+          break
+
       try:
-        util.moveClick(640, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(640, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.do_deselect_pack()
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
-      pathing == False
+      # Power Supply
+      if unit == util.UNIT_ESPADA_3:
+        try:
+          util.do_select(0.1)
+          supply = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          util.move(500, 440)
+          util.do_dash(1)
+          util.do_fade(0.5)
+          pathing = False
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+
+      pathing = False
       break
+
     else:
       try:
-        util.moveClick(600, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(600, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
-
-      try:
-        util.doSelect(0.1)
-        util.logAction(util.msgCheckBoss)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgBossFound)
-        pathing = False
-        bossFound = 1
-        util.logAction(util.msgPathStop)
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(580, 260, 0.5)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOSS_FOUND)
         pathing = False
-        util.logAction(util.msgPathStop)
+        boss_found = 1
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
-
-      try:
-        util.doSelect(0.1)
-        util.logAction(util.msgCheckBoss)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgBossFound)
-        pathing = False
-        bossFound = 1
-        util.logAction(util.msgPathStop)
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(620, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(580, 260, 0.5)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
-
-      try:
-        util.doSelect(0.1)
-        util.logAction(util.msgCheckBoss)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgBossFound)
-        pathing = False
-        bossFound = 1
-        util.logAction(util.msgPathStop)
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(560, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOSS_FOUND)
         pathing = False
-        util.logAction(util.msgPathStop)
+        boss_found = 1
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
-
-      try:
-        util.doSelect(0.1)
-        util.logAction(util.msgCheckBoss)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgBossFound)
-        pathing = False
-        bossFound = 1
-        util.logAction(util.msgPathStop)
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(640, 260)
-        util.doSelect(0.1)
-        mobs = pyauto.locateOnScreen(util.imgMobs, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgMobsFound + unit)
+        util.move_click(620, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
-
-      try:
-        util.doSelect(0.1)
-        util.logAction(util.msgCheckBoss)
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgBossFound)
-        pathing = False
-        bossFound = 1
-        util.logAction(util.msgPathStop)
-        break
-      except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoMobsFound)
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
       if pathing == False:
         break
 
-  if unit == util.unitEspada or unit == util.unitEspadaII or unit == util.unitEspadaIII:
-    util.focusMobs(unit, 1, 0, sidestep)
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        pathing = False
+        boss_found = 1
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
 
-  if bossFound == 0 and util.atkType == 0 and unit == util.unitRedonno:
-    util.focusMobs(unit, 1, 0, sidestep)
-  elif bossFound == 0 and util.atkType == 0 and unit == util.unitPoerte:
-    util.focusMobs(unit, 1, 0, sidestep)
-  elif bossFound == 0:
-    util.attackMobs(unit, 1, 0.3, sidestep)
+      if pathing == False:
+        break
 
-def pathFindGateOnly(unit=util.unitBlank):
+      try:
+        util.move_click(560, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      if pathing == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        pathing = False
+        boss_found = 1
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      if pathing == False:
+        break
+
+      try:
+        util.move_click(640, 260)
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      if pathing == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        util.log_action(util.MSG_CHECK_BOSS)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOSS_FOUND)
+        pathing = False
+        boss_found = 1
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      if pathing == False:
+        break
+
+  if unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
+    util.focus_mobs(unit, 1, 0, val_sidestep)
+
+  if boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_REDONNO:
+    util.focus_mobs(unit, 1, 0, val_sidestep)
+  elif boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_POERTE:
+    util.focus_mobs(unit, 1, 0, val_sidestep)
+  elif boss_found == 0:
+    util.attack_mobs(unit, 1, 0.3, val_sidestep)
+
+def path_backtrack(unit):
+  util.log_action(util.MSG_BACKTRACK + unit)
+  util.move(800, 400)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(615, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(615, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(615, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(615, 600)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  util.move(450, 400)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+  backtracking = True
+  backtrack_counter = 0
+  while backtracking:
+    backtrack_counter += 1
+    util.log_action(util.MSG_BACKTRACK + str(backtrack_counter))
+    if (backtrack_counter >= 10):
+      backtrack_counter = 0
+      backtracking = False
+
+    if backtracking == False:
+      break
+
+    try:
+      util.move_click(620, 250)
+      util.do_select(0.1)
+      box = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_MOBS_FOUND + unit)
+      util.log_action(util.MSG_PATH_STOP)
+      util.focus_gate(unit, 0)
+      backtrack_counter += 5
+    except pyauto.ImageNotFoundException:
+      util.log_action(util.MSG_NO_MOBS_FOUND)
+
+    try:
+      util.move_click(620, 250)
+      util.do_select(0.1)
+      box = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_MOBS_FOUND + unit)
+      util.log_action(util.MSG_PATH_STOP)
+      util.focus_gate(unit, 0)
+      util.loot_box()
+      backtrack_counter += 5
+    except pyauto.ImageNotFoundException:
+      util.log_action(util.MSG_NO_MOBS_FOUND)
+
+    if backtracking == False:
+      break
+
+  util.move(770, 260)
+  util.do_dash(1)
+  util.do_fade(0.5)
+
+def path_find_gate_strict(unit=util.UNIT_BLANK):
   pathing = True
+  gate_counter = 0
   while pathing:
-    if not util.macro:
-      util.logAction(util.msgTerminate)
+    if not util.get_macro_state():
+      util.log_action(util.MSG_TERMINATE)
       pathing = False
-      sys.exit()
-      break
+
+    if util.get_party_status() == 1:
+      gate_counter += 1
+      if gate_counter >= 2:
+        pathing = False
 
     if pathing == False:
         break
 
-    util.logAction(util.msgPathFind + unit)
+    util.log_action(util.MSG_PATH_FIND + unit)
     try:
-      util.moveClick(600, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound + unit)
+      util.move_click(600, 260)
+      util.do_select(0.1)
+      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_GATE_FOUND + unit)
       pathing = False
-      util.logAction(util.msgPathStop)
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
-
-    if pathing == False:
-      break
-
-    try:
-      util.moveClick(580, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound + unit)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
+      util.log_action(util.MSG_NO_GATE_FOUND)
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(620, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound + unit)
+      util.move_click(580, 260)
+      util.do_select(0.1)
+      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_GATE_FOUND + unit)
       pathing = False
-      util.logAction(util.msgPathStop)
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
+      util.log_action(util.MSG_NO_GATE_FOUND)
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(540, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound + unit)
+      util.move_click(620, 260)
+      util.do_select(0.1)
+      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_GATE_FOUND + unit)
       pathing = False
-      util.logAction(util.msgPathStop)
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
+      util.log_action(util.MSG_NO_GATE_FOUND)
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(660, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound + unit)
+      util.move_click(540, 260)
+      util.do_select(0.1)
+      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_GATE_FOUND + unit)
       pathing = False
-      util.logAction(util.msgPathStop)
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
+      util.log_action(util.MSG_NO_GATE_FOUND)
 
     if pathing == False:
-      breakx
+      break
 
-    if unit == util.unitGateFour:
+    try:
+      util.move_click(660, 260)
+      util.do_select(0.1)
+      gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_GATE_FOUND + unit)
+      pathing = False
+      util.log_action(util.MSG_PATH_STOP)
+      break
+    except pyauto.ImageNotFoundException:
+      util.log_action(util.MSG_NO_GATE_FOUND)
+
+    if pathing == False:
+      break
+
+    if unit == util.UNIT_GATE_FOUR or unit == util.UNIT_GATE_TWO:
       try:
-        util.moveClick(450, 260)
-        util.doSelect(0.1)
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgGateFound + unit)
+        util.move_click(450, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoGateFound)
+        util.log_action(util.MSG_NO_GATE_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(500, 260)
-        util.doSelect(0.1)
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgGateFound + unit)
+        util.move_click(500, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoGateFound)
+        util.log_action(util.MSG_NO_GATE_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(550, 260)
-        util.doSelect(0.1)
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgGateFound + unit)
+        util.move_click(550, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoGateFound)
+        util.log_action(util.MSG_NO_GATE_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(700, 260)
-        util.doSelect(0.1)
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgGateFound + unit)
+        util.move_click(700, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoGateFound)
+        util.log_action(util.MSG_NO_GATE_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(750, 260)
-        util.doSelect(0.1)
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgGateFound + unit)
+        util.move_click(750, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoGateFound)
+        util.log_action(util.MSG_NO_GATE_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(800, 260)
-        util.doSelect(0.1)
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgGateFound + unit)
+        util.move_click(800, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoGateFound)
+        util.log_action(util.MSG_NO_GATE_FOUND)
 
       if pathing == False:
         break
 
       try:
-        util.moveClick(850, 260)
-        util.doSelect(0.1)
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-        util.logAction(util.msgGateFound + unit)
+        util.move_click(850, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
         pathing = False
-        util.logAction(util.msgPathStop)
+        util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoGateFound)
+        util.log_action(util.MSG_NO_GATE_FOUND)
 
       if pathing == False:
         break
 
-def pathFindPowerSupply(unit=util.unitBlank):
+      try:
+        util.move_click(900, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_GATE_FOUND)
+
+      if pathing == False:
+        break
+
+      try:
+        util.move_click(1000, 260)
+        util.do_select(0.1)
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_GATE_FOUND + unit)
+        pathing = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_GATE_FOUND)
+
+      if pathing == False:
+        break
+
+    util.move_click(705, 450, 2)
+    util.move_click(705, 250, 1.5)
+
+  return gate_counter
+
+def path_find_boss():
   pathing = True
-  bossFound = 0
+  boss_found = 0
   while pathing:
-    if not util.macro:
-      util.logAction(util.msgTerminate)
+    if not util.get_macro_state():
+      util.log_action(util.MSG_TERMINATE)
       pathing = False
-      sys.exit()
-      break
-
-    if pathing == False:
-        break
-
-    util.logAction(util.msgPathFind + unit)
-    try:
-      util.moveClick(600, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
-
-    try:
-      util.moveClick(580, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
-
-    try:
-      util.moveClick(620, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
-
-    try:
-      util.moveClick(300, 260)
-      util.doSelect(0.1)
-      gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgGateFound)
-      pathing = False
-      util.logAction(util.msgPathStop)
-      break
-    except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoGateFound)
-
-def pathFindBoss():
-  pathing = True
-  bossFound = 0
-  while pathing:
-    if not util.macro:
-      util.logAction(util.msgTerminate)
-      pathing = False
-      sys.exit()
-      break
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(600, 260)
-      util.doSelect(0.1)
-      util.logAction(util.msgCheckBoss)
-      mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgBossFound)
+      util.move_click(600, 260)
+      util.do_select(0.1)
+      util.log_action(util.MSG_CHECK_BOSS)
+      mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
-      bossFound = 1
-      util.logAction(util.msgPathStop)
+      boss_found = 1
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+      util.log_action(util.MSG_NO_BOSS_FOUND)
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(620, 260)
-      util.doSelect(0.1)
-      util.logAction(util.msgCheckBoss)
-      mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgBossFound)
+      util.move_click(620, 260)
+      util.do_select(0.1)
+      util.log_action(util.MSG_CHECK_BOSS)
+      mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
-      bossFound = 1
-      util.logAction(util.msgPathStop)
+      boss_found = 1
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+      util.log_action(util.MSG_NO_BOSS_FOUND)
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(580, 160)
-      util.doSelect(0.1)
-      util.logAction(util.msgCheckBoss)
-      mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgBossFound)
+      util.move_click(580, 160)
+      util.do_select(0.1)
+      util.log_action(util.MSG_CHECK_BOSS)
+      mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
-      bossFound = 1
-      util.logAction(util.msgPathStop)
+      boss_found = 1
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+      util.log_action(util.MSG_NO_BOSS_FOUND)
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(660, 160)
-      util.doSelect(0.1)
-      util.logAction(util.msgCheckBoss)
-      mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgBossFound)
+      util.move_click(660, 160)
+      util.do_select(0.1)
+      util.log_action(util.MSG_CHECK_BOSS)
+      mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
-      bossFound = 1
-      util.logAction(util.msgPathStop)
+      boss_found = 1
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+      util.log_action(util.MSG_NO_BOSS_FOUND)
 
     if pathing == False:
       break
 
     try:
-      util.moveClick(540, 160)
-      util.doSelect(0.1)
-      util.logAction(util.msgCheckBoss)
-      mobs = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
-      util.logAction(util.msgBossFound)
+      util.move_click(540, 160)
+      util.do_select(0.1)
+      util.log_action(util.MSG_CHECK_BOSS)
+      mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
-      bossFound = 1
-      util.logAction(util.msgPathStop)
+      boss_found = 1
+      util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.logAction(util.msgNoBossFound)
+      util.log_action(util.MSG_NO_BOSS_FOUND)
 
     if pathing == False:
       break
 
-def runDungeon(runs=1):
-  runCounter = 0
-  while runCounter < runs:
-    runCounter += 1
-    shortcut.add_hotkey("ctrl+r", util.terminate)
-    util.logAction(util.msgStartDg)
-    util.logRun(runCounter)
+def run_dungeon(runs=1):
+  run_counter = 0
+  while run_counter < runs:
+    run_counter += 1
+    util.log_action(util.MSG_START_DG)
+    util.log_run(run_counter)
 
     # Click Cabal Window
-    util.goCabalWindow()
-    util.releaseKeys()
-    util.goSkillSlot(0.5)
+    util.go_cabal_window()
+    util.release_keys()
+    util.go_skill_slot(0.5)
+    util.do_buffs()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
@@ -642,10 +824,13 @@ def runDungeon(runs=1):
     pyauto.scroll(-10000)
 
     # Click Dungeon
-    util.moveClick(600, 240)
+    util.move_click(600, 240)
 
-    util.enterDungeon()
-    util.challengeDungeon()
+    util.enter_dungeon()
+    util.challenge_dungeon()
+
+    if util.is_party == 1:
+      util.wait(3)
 
     util.move(700, 150)
     pyauto.mouseDown(button="right")
@@ -653,40 +838,60 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.goSkillSlot(0.5)
-    util.doBuffs()
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Mech Lion Sequence
     moving = True
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      pathFind(util.unitMechLion)
+      path_find(util.UNIT_MECH_LION)
       try:
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9)
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         moving = False
-        util.logAction(util.msgMoveStop)
+        util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # First Boss
-    util.doShortBuffs()
-    util.doBattleMode()
-    util.attackBoss()
-    util.lootBox()
-    util.setBattleMode(False)
-
+    util.do_deselect_pack()
     util.move(700, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.do_short_buffs()
+    util.do_battle_mode()
+    util.attack_boss()
+    util.loot_box()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    util.set_battle_mode(False)
+
+    util.move(710, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(710, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
@@ -694,21 +899,25 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(670, 200)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.move(680, 200)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
-    util.focusGate(util.unitGateOne)
+    util.focus_gate(util.UNIT_GATE_ONE)
+    util.loot_essentials()
 
-    # Lihonar Sequence
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    # Mech Lihonar Sequence
     moving = True
     counter = 0
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
@@ -717,13 +926,18 @@ def runDungeon(runs=1):
         moving = False
         break
 
-      pathFind(util.unitLihonar)
+      path_find(util.UNIT_MECH_LIHONAR)
       counter += 1
       print(str(counter))
 
-    util.move(600, 400)
-    util.doDash(1)
-    util.doFade(0.5)
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    util.move(500, 440)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(700, 150)
     pyauto.mouseDown(button="right")
@@ -732,68 +946,68 @@ def runDungeon(runs=1):
     pyauto.scroll(-10000)
 
     util.move(350, 200)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(350, 200)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(350, 200)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
-
-    # time.sleep(1)
-
-    # util.move(400, 500)
-    # util.doFade(0.5)
-
-    # util.move(630, 200)
-    # util.doDash(1)
-    # util.doFade(0.5)
 
     # Gate II
     moving = True
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      pathFindGateOnly(util.unitGateTwo)
-      try:
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9)
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_TWO)
+      if gate_counter > 3 and util.get_party_status() == 1:
         moving = False
-        util.logAction(util.msgMoveStop)
+
+      try:
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_full_region())
+        moving = False
+        util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.focusGate(util.unitGateTwo)
+    util.focus_gate(util.UNIT_GATE_TWO, 1)
+    util.loot_essentials()
 
-    util.move(660, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
-    util.move(660, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.move(610, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(590, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     # Espada Sequence
     moving = True
     counter = 0
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
@@ -802,16 +1016,33 @@ def runDungeon(runs=1):
         moving = False
         break
 
-      pathFind(util.unitEspada)
+      path_find(util.UNIT_ESPADA_1)
       counter += 1
       print(str(counter))
 
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
-    util.move(320, 550)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.move(1000, 400)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
-    util.focusGate(util.unitPowerSupply)
+    util.move(320, 500)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(320, 500)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(320, 500)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.focus_gate(util.UNIT_POWER_SUPPLY)
+    util.loot_essentials()
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
@@ -820,38 +1051,46 @@ def runDungeon(runs=1):
     pyauto.scroll(-10000)
 
     util.move(400, 360)
-    util.doFade(0.5)
+    util.do_fade(0.5)
 
     util.move(550, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
-    util.move(550, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.move(540, 260)
+    util.do_dash(1)
+    util.do_fade(1)
 
     # Espada II Sequence
     moving = True
     counter = 0
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      if counter > 6:
+      if counter > 3:
         moving = False
         break
 
-      pathFind(util.unitEspadaII)
+      path_find(util.UNIT_ESPADA_2)
       counter += 1
       print(str(counter))
 
-    util.focusGate(util.unitPowerSupply)
+    util.focus_gate(util.UNIT_POWER_SUPPLY)
+    util.loot_essentials()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    util.move(680, 400)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(600, 150)
     pyauto.mouseDown(button="right")
@@ -859,15 +1098,27 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
+    util.move(520, 400)
+    util.do_dash(1.5)
+
+    util.move(650, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(500, 300)
+    if util.get_atk_type() == 1:
+      util.do_dash(4)
+    else:
+      util.do_dash(1)
+      util.do_fade(4)
+
     # Espada III Sequence
     moving = True
     counter = 0
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
@@ -876,65 +1127,102 @@ def runDungeon(runs=1):
         moving = False
         break
 
-      pathFind(util.unitEspadaIII)
+      path_find(util.UNIT_ESPADA_3)
       counter += 1
       print(str(counter))
 
-    util.focusGate(util.unitPowerSupply)
+    util.do_deselect_pack()
+    util.wait(1.5)
+    util.move(600, 600)
+    util.do_dash(1)
+    util.do_select(0.1)
+    util.focus_gate(util.UNIT_POWER_SUPPLY, 0)
+    util.loot_essentials()
 
-    util.move(580, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    util.move(620, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(900, 300)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
-    util.lootBox()
+    util.loot_box()
 
-    util.move(640, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    util.move(770, 260)
+    util.do_dash(1)
+    util.do_fade(2)
 
     # Poerte Sequence
     moving = True
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      pathFind(util.unitPoerte)
+      path_find(util.UNIT_POERTE)
       try:
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         moving = False
-        util.logAction(util.msgMoveStop)
+        util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Second Boss
-    util.doShortBuffs()
-    util.doBattleMode()
-    util.attackBoss()
-    util.lootBox()
-    util.setBattleMode(False)
+    util.do_deselect_pack()
+    util.move(720, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
-    util.move(580, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_short_buffs()
+    util.do_battle_mode()
+    util.attack_boss()
+    util.loot_box()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+    util.set_battle_mode(False)
+
+    util.move(640, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(640, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(1040, 410)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(570, 550)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(580, 550)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     util.move(700, 150)
     pyauto.mouseDown(button="right")
@@ -942,128 +1230,177 @@ def runDungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.move(650, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.move(640, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     # Gate III
     moving = True
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      pathFindGateOnly(util.unitGateThree)
-      try:
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_THREE)
+      if gate_counter > 3 and util.get_party_status() == 1:
         moving = False
-        util.logAction(util.msgMoveStop)
+
+      try:
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        moving = False
+        util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.focusGate(util.unitGateThree)
+    if util.get_atk_type == 1:
+      util.move_click(650, 450, 1.5)
+
+    util.focus_gate(util.UNIT_GATE_THREE)
+    util.loot_essentials()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Redonno Sequence
     moving = True
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      pathFind(util.unitRedonno)
+      path_find(util.UNIT_REDONNO)
       try:
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         moving = False
-        util.logAction(util.msgMoveStop)
+        util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Third Boss
-    util.doBattleMode()
-    util.attackBoss()
-    util.setBattleMode(False)
-    util.lootBox()
+    util.do_deselect_pack()
+    if util.get_atk_type() == 1:
+      util.move(580, 260)
+      util.do_dash(1)
+    else:
+      util.move(720, 260)
+      util.do_dash(1)
 
-    if util.battleMode == 1:
-      time.sleep(20)
+    util.do_battle_mode()
+    util.attack_boss()
+    util.set_battle_mode(False)
+    util.loot_box()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    if util.get_battle_mode() == 1:
+      util.wait(20)
 
     util.move(720, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(720, 260)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     # Gate IV
     moving = True
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      pathFindGateOnly(util.unitGateFour)
-      try:
-        gate = pyauto.locateOnScreen(util.imgGate, grayscale=False, confidence=.9, region=util.getHpBar())
+      gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
+      if gate_counter > 3 and util.get_party_status() == 1:
         moving = False
-        util.logAction(util.msgMoveStop)
+
+      try:
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        moving = False
+        util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.focusGate(util.unitGateFour)
+    util.move(800, 400)
+    util.do_fade(0.5)
+    util.focus_gate(util.UNIT_GATE_FOUR)
+    util.loot_essentials()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Final Boss
-    util.doBattleMode()
-    util.doAuraStrict()
-    util.doShortBuffs()
+    util.do_battle_mode()
+    util.do_aura_strict()
+    util.do_short_buffs()
 
     # Final Boss Sequence
     moving = True
     while moving:
-      if not util.macro:
-        util.logAction(util.msgTerminate)
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
         moving = False
-        sys.exit()
-        break
 
       if moving == False:
         break
 
-      pathFindBoss()
+      path_find_boss()
       try:
-        boss = pyauto.locateOnScreen(util.imgBoss, grayscale=False, confidence=.9, region=util.getHpBar())
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         moving = False
-        util.logAction(util.msgMoveStop)
+        util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.logAction(util.msgNoBossFound)
+        util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.doDeselectPack()
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    util.do_deselect_pack()
     util.move(560, 260)
-    util.doDash(1)
-    util.doFade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     # Final Boss
-    util.attackBoss()
-    util.finalLootBox()
-    util.setBattleMode(False)
+    util.attack_boss()
+    util.loot_final_box()
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    util.set_battle_mode(False)
 
     # Start to End Dungeon
-    util.endDungeon()
-    util.diceDungeon()
-    util.logAction(util.msgEndDg)
-    time.sleep(3)
+    util.check_notifications()
+    util.end_dungeon()
+    util.dice_dungeon()
+    util.log_action(util.MSG_END_DG)
+    util.wait(3)

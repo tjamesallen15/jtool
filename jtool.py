@@ -21,9 +21,11 @@ import macro.cfa as cfa
 import macro.lha as lha
 import macro.tm as tm
 import macro.pca as pca
+import macro.hk as hk
+import macro.s1p as s1p
 pynboard = Controller()
 
-masterList = [
+LIST_MASTER = [
   "Hazardous Valley (Awakened)",
   "Hazardous Valley (Hard)",
   "Hazardous Valley (Medium)",
@@ -33,191 +35,211 @@ masterList = [
   "Lava Hellfire (Awakened)",
   "Holy Windmill",
   "Terminus Machina",
-  "Panic Cave (Awakened)"
+  "Panic Cave (Awakened)",
+  "Holy Keldrasil",
+  "Altar of Siena B1F (Prideus)"
 ]
-dungeonList = [
-  "Hazardous Valley (Awakened)",
-  "Hazardous Valley (Hard)",
-  "Hazardous Valley (Medium)",
-  "Hazardous Valley (Easy)",
-  "Steamer Crazy (Awakened)",
-  "Catacomb Frost (Awakened)",
-  "Lava Hellfire (Awakened)",
-  "Holy Windmill",
-  "Terminus Machina",
-  "Panic Cave (Awakened)"
-]
-runList = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 40, 50]
-bmList = [1, 0]
-buffList = [1, 0]
-shortList = [1, 0]
-appFont = "Tahoma 10"
 
-frameSize = "330x230"
-appName = "Cabal JTool "
-version = "v5.01"
-appFullName = appName + version
-dgList = []
-runCount = []
-startButton = []
-macroLbl = []
-runNumberLbl = []
-rootFrame = []
-battlemode = 0
-buffs = 1
-shorts = 1
-atk = 0
-veras = 0
+LIST_DUNGEON = [
+  "Hazardous Valley (Awakened)",
+  "Hazardous Valley (Hard)",
+  "Hazardous Valley (Medium)",
+  "Hazardous Valley (Easy)",
+  "Steamer Crazy (Awakened)",
+  "Catacomb Frost (Awakened)",
+  "Lava Hellfire (Awakened)",
+  "Holy Windmill",
+  "Terminus Machina",
+  "Panic Cave (Awakened)",
+  "Holy Keldrasil",
+  "Altar of Siena B1F (Prideus)"
+]
+
+LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
+
+list_dg = []
+btn_start = []
+btn_pause = []
+lbl_macro = []
+lbl_current_run = []
+frame_root = []
+val_run_count = []
+
+val_mode = 0
+val_buffs = 1
+val_shorts = 1
+val_atk_type = 0
+val_vera = 0
+val_party = 0
+val_leader = 0
 
 def start():
-  cabalwindow = pyauto.locateOnScreen(util.imgCabalWindow, grayscale=False, confidence=.9)
-  choice = dgList.get()
-  mode = battlemode.get()
-  buff = buffs.get()
-  short = shorts.get()
-  runs = runCount.get()
-  atktype = atk.get()
-  vera = veras.get()
+  cabalwindow = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  choice = list_dg.get()
+  mode = val_mode.get()
+  buff = val_buffs.get()
+  short = val_shorts.get()
+  runs = val_run_count.get()
+  atk_type = val_atk_type.get()
+  vera = val_vera.get()
+  party = val_party.get()
+  leader = val_leader.get()
 
-  util.initialize(cabalwindow, rootFrame, macroLbl, runNumberLbl)
-  util.setVariables(mode, buff, short, atktype, vera)
+  util.initialize(cabalwindow, frame_root, lbl_macro, lbl_current_run)
+  util.set_variables(mode, buff, short, atk_type, vera, party, leader, runs)
 
-  if (choice == masterList[0]):
-    hva.initialize(rootFrame, startButton, runs)
-  elif (choice == masterList[1] or choice == masterList[2] or choice == masterList[3]):
-    hvenh.initialize(rootFrame, startButton, choice, runs)
-  elif (choice == masterList[4]):
-    sca.initialize(rootFrame, startButton, runs)
-  elif (choice == masterList[5]):
-    cfa.initialize(rootFrame, startButton, runs)
-  elif (choice == masterList[6]):
-    lha.initialize(rootFrame, startButton, runs)
-  elif (choice == masterList[7]):
-    hw.initialize(rootFrame, startButton, runs)
-  elif (choice == masterList[8]):
-    tm.initialize(rootFrame, startButton, runs)
-  elif (choice == masterList[9]):
-    pca.initialize(rootFrame, startButton, runs)
+  if (choice == LIST_MASTER[0]):
+    hva.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[1] or choice == LIST_MASTER[2] or choice == LIST_MASTER[3]):
+    hvenh.initialize(frame_root, btn_start, choice, runs)
+  elif (choice == LIST_MASTER[4]):
+    sca.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[5]):
+    cfa.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[6]):
+    lha.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[7]):
+    hw.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[8]):
+    tm.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[9]):
+    pca.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[10]):
+    hk.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[11]):
+    s1p.initialize(frame_root, btn_start, runs)
 
-def generateGui():
+def buy_fury():
+  btn_start.config(state="disabled")
+  btn_pause.config(state="disabled")
+  frame_root.update()
+  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+  util.set_cabal_window(cabalwindow)
+  util.go_cabal_window()
+
+  for x in range(170):
+    util.move_click(125, 205)
+    print("Click #: " + str(x))
+
+  btn_start.config(state="active")
+  btn_pause.config(state="active")
+  frame_root.update()
+
+def generate_gui():
   # CREATE FRAME
-  global rootFrame
-  rootFrame = Tk()
-  rootFrame.title(appFullName)
-  rootFrame.resizable(0, 0)
-  rootFrame.geometry(frameSize)
+  global frame_root
+  frame_root = Tk()
+  frame_root.title(util.APP_FULL_NAME)
+  frame_root.resizable(0, 0)
+  frame_root.geometry(util.APP_FRAME_SIZE)
 
-  photo = PhotoImage(file = util.imgAppIcon)
-  rootFrame.iconphoto(False, photo)
+  img_photo = PhotoImage(file = util.IMG_APP_ICON)
+  frame_root.iconphoto(False, img_photo)
 
-  rootFrame.option_add("*TCombobox*Listbox.font", appFont)
-  rootFrame.option_add("*Font", appFont)
-  # rootFrame.eval('tk::PlaceWindow . right')
+  frame_root.option_add("*TCombobox*Listbox.font", util.APP_FONT)
+  frame_root.option_add("*Font", util.APP_FONT)
+  # frame_root.eval('tk::PlaceWindow . right')
 
-  dungeon = Label(rootFrame, text="Dungeon: ")
-  dungeon.place(x=10, y=10)
+  lbl_dungeon_list = Label(frame_root, text="Dungeon: ")
+  lbl_dungeon_list.place(x=10, y=10)
 
-  global dgList
-  dgList = ttk.Combobox(values=dungeonList, state="readonly")
-  dgList.current(0)
-  dgList.config(width=30)
-  dgList.place(x=75, y=10)
+  global list_dg
+  list_dg = ttk.Combobox(values=LIST_DUNGEON, state="readonly")
+  list_dg.current(11)
+  list_dg.config(width=30)
+  list_dg.place(x=75, y=10)
 
-  runsLbl = Label(rootFrame, text="Runs: ")
-  runsLbl.place(x=10, y=43)
+  lbl_runs = Label(frame_root, text="Runs: ")
+  lbl_runs.place(x=10, y=43)
 
-  global runCount
-  runCount = ttk.Combobox(values=runList, state="readonly")
-  runCount.current(0)
-  runCount.config(width=5)
-  runCount.place(x=75, y=43)
+  global val_run_count
+  val_run_count = ttk.Combobox(values=LIST_RUN, state="")
+  val_run_count.current(0)
+  val_run_count.config(width=5)
+  val_run_count.place(x=75, y=43)
 
-  global startButton
-  startButton = Button(rootFrame, text="Start", command=start)
-  startButton.config(width=10)
-  startButton.place(x=230, y=40)
+  global btn_start
+  btn_start = Button(frame_root, text="Start", command=start)
+  btn_start.config(width=10)
+  btn_start.place(x=230, y=40)
 
-  # var = IntVar(value=1)
-  # checkbutton = ttk.Checkbutton(rootFrame, text="",
-  #   onvalue=1, offvalue=0, variable=var)
-  # checkbutton.place(x=230, y=75)
-  # print("TEST: " + str(var.get()))
-  # startButton.place(x=140, y=40)
+  global btn_pause
+  btn_pause = Button(frame_root, text="Fury", command=buy_fury)
+  btn_pause.config(width=10)
+  btn_pause.place(x=145, y=40)
 
-  global runNumberLbl
-  runNumberLbl = Label(rootFrame, text="Run #: --")
-  runNumberLbl.place(x=140, y=75)
+  global lbl_current_run
+  lbl_current_run = Label(frame_root, text="Run #: --")
+  lbl_current_run.place(x=140, y=105)
 
-  # stopButton = Button(rootFrame, text="Stop", state="disabled")
-  # stopButton.config(width=10)
-  # stopButton.place(x=230, y=40)
+  lbl_mode = Label(frame_root, text="Mode II: ")
+  lbl_mode.place(x=10, y=75)
 
-  askBmLbl = Label(rootFrame, text="Mode II: ")
-  askBmLbl.place(x=10, y=75)
+  global val_mode
+  val_mode = IntVar(value=0)
+  chkbtn_mode = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_mode)
+  chkbtn_mode.place(x=75, y=76)
 
-  # global bmTwo
-  # bmTwo = ttk.Combobox(values=bmList, state="readonly")
-  # bmTwo.current(1)
-  # bmTwo.config(width=5)
-  # bmTwo.place(x=75, y=75)
+  lbl_party = Label(frame_root, text="Party: ")
+  lbl_party.place(x=140, y=75)
 
-  global battlemode
-  battlemode = IntVar(value=0)
-  chkBtnMode = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=battlemode)
-  chkBtnMode.place(x=75, y=76)
+  global val_party
+  val_party = IntVar(value=0)
+  chkbtn_party = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_party)
+  chkbtn_party.place(x=185, y=76)
 
-  licenseLbl = Label(rootFrame, text="Status: Free")
-  licenseLbl.place(x=140, y=105)
+  lbl_leader = Label(frame_root, text="Leader: ")
+  lbl_leader.place(x=235, y=75)
 
-  shortsLbl = Label(rootFrame, text="Buffs: ")
-  shortsLbl.place(x=10, y=105)
+  global val_leader
+  val_leader = IntVar(value=0)
+  chkbtn_leader = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_leader)
+  chkbtn_leader.place(x=293, y=76)
 
-  global buffs
-  buffs = IntVar(value=1)
-  chkBtnBuffs = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=buffs)
-  chkBtnBuffs.place(x=75, y=106)
-  # buffs = ttk.Combobox(values=buffList, state="readonly")
-  # buffs.current(0)
-  # buffs.config(width=5)
-  # buffs.place(x=75, y=105)
+  lbl_license = Label(frame_root, text="Status: Free")
+  lbl_license.place(x=140, y=135)
 
-  expirationLbl = Label(rootFrame, text="Expiration: 12/12/2024")
-  expirationLbl.place(x=140, y=135)
+  lbl_shorts = Label(frame_root, text="Buffs: ")
+  lbl_shorts.place(x=10, y=105)
 
-  askShorts = Label(rootFrame, text="Shorts: ")
-  askShorts.place(x=10, y=135)
+  global val_buffs
+  val_buffs = IntVar(value=1)
+  chkbtn_buffs = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_buffs)
+  chkbtn_buffs.place(x=75, y=106)
 
-  global shorts
-  shorts = IntVar(value=1)
-  chkBtnShorts = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=shorts)
-  chkBtnShorts.place(x=75, y=136)
-  # shorts = ttk.Combobox(values=shortList, state="readonly")
-  # shorts.current(0)
-  # shorts.config(width=5)
-  # shorts.place(x=75, y=135)
+  lbl_expiration = Label(frame_root, text="Expiration: 12/12/2024")
+  lbl_expiration.place(x=140, y=165)
 
-  global macroLbl
-  macroLbl = Label(rootFrame, text="Action: --")
-  macroLbl.place(x=140, y=165)
+  lbl_shorts = Label(frame_root, text="Shorts: ")
+  lbl_shorts.place(x=10, y=135)
 
-  atkLbl = Label(rootFrame, text="Range: ")
-  atkLbl.place(x=10, y=165)
+  global val_shorts
+  val_shorts = IntVar(value=1)
+  chkbtn_shorts = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_shorts)
+  chkbtn_shorts.place(x=75, y=136)
 
-  global atk
-  atk = IntVar(value=0)
-  checkBtnAtk = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=atk)
-  checkBtnAtk.place(x=75, y=166)
+  global lbl_macro
+  lbl_macro = Label(frame_root, text="Action: --")
+  lbl_macro.place(x=140, y=195)
 
-  global veraLbl
-  veraLbl = Label(rootFrame, text="Veradrix:")
-  veraLbl.place(x=10, y=195)
+  lbl_atk_type = Label(frame_root, text="Range: ")
+  lbl_atk_type.place(x=10, y=165)
 
-  global veras
-  veras = IntVar(value=0)
-  checkBtnVera = ttk.Checkbutton(rootFrame, text="", onvalue=1, offvalue=0, variable=veras)
-  checkBtnVera.place(x=75, y=196)
+  global val_atk_type
+  val_atk_type = IntVar(value=0)
+  chkbtn_atk_type = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0,
+    variable=val_atk_type)
+  chkbtn_atk_type.place(x=75, y=166)
 
-  rootFrame.mainloop()
+  lbl_vera = Label(frame_root, text="Veradrix:")
+  lbl_vera.place(x=10, y=195)
+
+  global val_vera
+  val_vera = IntVar(value=0)
+  chkbtn_vera = ttk.Checkbutton(frame_root, text="", onvalue=1, offvalue=0, variable=val_vera)
+  chkbtn_vera.place(x=75, y=196)
+
+  frame_root.mainloop()
 
 # GENERATE MAIN
-generateGui()
+generate_gui()

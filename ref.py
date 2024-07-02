@@ -2,6 +2,10 @@
 # pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
 # pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
 
+# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# util.set_cabal_window(cabalwindow)
+# util.go_cabal_window()
+
 # 1 pyautogui.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
 # 2 pyautogui.moveTo(cabalwindow[0] + 430, cabalwindow[1] + 670)
 # 3 pyautogui.moveTo(cabalwindow[0] + 470, cabalwindow[1] + 670)
@@ -15,9 +19,6 @@
 # - pyautogui.moveTo(cabalwindow[0] + 750, cabalwindow[1] + 670)
 # = pyautogui.moveTo(cabalwindow[0] + 790, cabalwindow[1] + 670)
 
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.setCabalWindow(cabalwindow)
-# util.goCabalWindow()
 
 # util.move(375, 150)
 # pyauto.mouseDown(button="right")
@@ -33,3 +34,8 @@
 # util.move(620, 550)
 # util.doFade(0.5)
 #### MELEE
+
+# shorts = ttk.Combobox(values=shortList, state="readonly")
+  # shorts.current(0)
+  # shorts.config(width=5)
+  # shorts.place(x=75, y=135)
