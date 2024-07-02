@@ -997,7 +997,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(580, 260)
+    util.move(590, 260)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1107,7 +1107,7 @@ def run_dungeon(runs=1):
 
     util.move(500, 300)
     util.do_dash(1)
-    util.do_fade(3.5)
+    util.do_fade(4)
 
     # Espada III Sequence
     moving = True
@@ -1129,7 +1129,8 @@ def run_dungeon(runs=1):
       print(str(counter))
 
     util.do_deselect_pack()
-    util.move(640, 550)
+    util.wait(1.5)
+    util.move(600, 600)
     util.do_dash(1)
     util.do_select(0.1)
     util.focus_gate(util.UNIT_POWER_SUPPLY, 0)
