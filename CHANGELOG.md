@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 # Dungeons Available
 - [HVA] Hazardous Valley (Awakened) [v1.00]
-- [HVENH] Hazaroud Valley (Easy | Medium | Hard) [v3.40]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
 - [SCA] Steamer Crazy (Awakened) [v4.51]
 - [CFA] Catacomb Frost (Awakened) [v4.61]
 - [LFA] Lava Hellfire (Awakened) [v4.95]
