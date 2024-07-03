@@ -627,8 +627,7 @@ def run_dungeon(runs=1):
         boss_count += 1
         util.attack_boss(0, 1)
         util.do_deselect_pack()
-        if boss_count == 1:
-          util.wait(5)
+        util.wait(5)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
