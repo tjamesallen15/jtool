@@ -6,9 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ## v5.21 Features
 
+- [Application] - Update the changelog to a more specific readable way.
+
 ## v5.21 Fixes
 
 - [Hazardous Valley Awakened] - Fixed some stuck ups on final orphidia boss.
+- [Hazardous Valley Awakened] - Fixed first loot box not properly opened on certain situations.
 
 # v5.11
 

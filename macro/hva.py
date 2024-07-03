@@ -460,7 +460,9 @@ def run_dungeon(runs=1):
     util.attack_boss()
     util.move(450, 550)
     util.do_fade(0.5)
-    util.loot_box()
+
+    util.do_select(0.1)
+    util.loot_box(3, 0)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -621,7 +623,7 @@ def run_dungeon(runs=1):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
+        # util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         boss_count += 1

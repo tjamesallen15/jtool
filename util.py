@@ -578,7 +578,7 @@ def loot_box(sec=3, select=1):
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BOX_FOUND)
 
-    do_loot()
+    do_loot(select)
     if is_party == 1:
       try:
         roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
