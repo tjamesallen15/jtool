@@ -653,19 +653,17 @@ def run_dungeon(runs=1):
       continue
 
     # Loot Treasure Boxes
-    boxCounter = 0
-    looting = True
-    while looting:
+    plundering = True
+    while plundering:
       if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        looting = False
+        plundering = False
 
-      if looting == False:
+      if plundering == False:
         break
 
       try:
         util.do_select(0.1)
-        boxCounter += 1
         box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOX_FOUND)
         util.log_action(util.MSG_PATH_STOP)
@@ -675,7 +673,7 @@ def run_dungeon(runs=1):
 
       try:
         checkenddg = pyauto.locateOnScreen(util.IMG_END_DG, grayscale=False, confidence=.9)
-        looting = False
+        plundering = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_CHECK_END_DG)

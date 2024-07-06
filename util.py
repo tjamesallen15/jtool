@@ -441,7 +441,7 @@ def do_cont_battle_mode():
   global aura_counter
   aura_counter += 1
   if aura_counter > 45:
-    do_aura_strict()
+    do_aura(0, 1)
     aura_counter = 0
 
 def do_buffs():
@@ -532,35 +532,6 @@ def do_deselect_pack():
   do_deselect(0.1)
   do_deselect(0.1)
 
-def do_loot(select=1):
-  if select == 1:
-    do_select(0.1)
-    do_select(0.1)
-
-  if is_battle_mode:
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
-    do_essentials()
-  else:
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
-    pynboard.press(val_attack[0])
-    pynboard.release(val_attack[0])
-    pynboard.press(val_attack[1])
-    pynboard.release(val_attack[1])
-    pynboard.press(val_attack[2])
-    pynboard.release(val_attack[2])
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
-
-  for x in range(4):
-    pynboard.press(val_loot)
-    pynboard.release(val_loot)
-    time.sleep(0.3)
-    pynboard.press(loot_space)
-    pynboard.release(loot_space)
-    time.sleep(0.3)
-
 def plunder_box(select=1, reps=4):
   log_action(MSG_CHECK_BOX)
   wait(1)
@@ -649,6 +620,15 @@ def do_plunder(reps=4):
     pynboard.release(loot_space)
     time.sleep(0.3)
 
+    if get_party_status() == 1:
+      try:
+        roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
+        log_action(MSG_ROLL_EQUIPMENT)
+        move_rel(10, 10, roll)
+        move_click_rel(10, 10, roll)
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+
 def do_essentials():
   pynboard.press(loot_space)
   pynboard.release(loot_space)
@@ -672,24 +652,27 @@ def release_keys(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def do_aura(sec=0):
-  pynboard.press(val_bm3)
-  pynboard.release(val_bm3)
-  do_essentials()
-  pynboard.press(val_bm_aura)
-  pynboard.release(val_bm_aura)
-  do_essentials()
-  pynboard.press(val_bm3)
-  pynboard.release(val_bm3)
+def do_aura(sec=0, strict=0):
+  if strict == 0:
+    pynboard.press(val_bm3)
+    pynboard.release(val_bm3)
 
-  if (sec != 0):
-    time.sleep(sec)
+  if strict == 0:
+    do_essentials()
 
-def do_aura_strict(sec=0):
   pynboard.press(val_bm_aura)
   pynboard.release(val_bm_aura)
-  pynboard.press(val_bm_aura)
-  pynboard.release(val_bm_aura)
+
+  if strict == 1:
+    pynboard.press(val_bm_aura)
+    pynboard.release(val_bm_aura)
+
+  if strict == 0:
+    do_essentials()
+
+  if strict == 0:
+    pynboard.press(val_bm3)
+    pynboard.release(val_bm3)
 
   if (sec != 0):
     time.sleep(sec)

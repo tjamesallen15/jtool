@@ -1355,7 +1355,7 @@ def run_dungeon(runs=1):
 
     # Final Boss
     util.do_battle_mode()
-    util.do_aura_strict()
+    util.do_aura(0, 1)
     util.do_short_buffs()
 
     # Final Boss Sequence

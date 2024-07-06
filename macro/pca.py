@@ -102,7 +102,7 @@ def position_nualle():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.do_aura_strict(1)
+  util.do_aura(1, 1)
   util.do_aura(1)
   util.wait(4)
 

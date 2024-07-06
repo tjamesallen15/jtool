@@ -23,6 +23,8 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Added new method plunder_box() to deprecate the old method loot_box()
 - [Dungeon] Added new method plunder_final_box() to deprecate the old method loot_final_box()
 - [Dungeon] Added new method plunder_ref_box() to deprecate the old method loot_ref_box()
+- [Dungeon] Removed method loot_essentials() and do_loot()
+- [Dungeon] Refactored do_aura() and removed do_aura_strict()
 
 ## v5.21 Fixes
 
