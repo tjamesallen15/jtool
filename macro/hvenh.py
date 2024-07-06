@@ -641,7 +641,7 @@ def run_dungeon(runs=1):
     util.do_fade(1.5)
     util.do_fade(0.5)
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -697,7 +697,7 @@ def run_dungeon(runs=1):
 
     util.move(640, 560)
     util.do_fade(0.5)
-    util.loot_box()
+    util.plunder_box()
 
     # Orphidia Sequence II
     path_find_white_snake()
@@ -749,7 +749,7 @@ def run_dungeon(runs=1):
 
     util.move(640, 560)
     util.do_fade(0.5)
-    util.loot_box()
+    util.plunder_box()
 
     # Orphidia Sequence III
     path_find_white_snake()
@@ -800,7 +800,7 @@ def run_dungeon(runs=1):
 
     util.move(640, 560)
     util.do_fade(0.5)
-    util.loot_final_box()
+    util.plunder_final_box()
 
     # Check Macro State
     if not util.get_macro_state():

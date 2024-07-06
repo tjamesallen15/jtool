@@ -262,7 +262,7 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.loot_box(1)
+    util.plunder_box(1, 3)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -495,8 +495,7 @@ def run_dungeon(runs=1):
     util.attack_boss(0, 0)
     util.set_battle_mode(False)
     util.wait(1)
-
-    util.loot_essentials()
+    util.do_plunder(3)
 
     if util.get_atk_type() == 0:
       util.move_click(710, 360, 1)

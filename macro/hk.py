@@ -223,7 +223,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -300,7 +300,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -375,7 +375,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -509,7 +509,7 @@ def run_dungeon(runs=1):
 
     # Attack Final Boss
     util.attack_mobs(util.UNIT_SHIRDRAHN, 1, 0.3, 0)
-    util.loot_final_box(3)
+    util.plunder_final_box()
     util.set_battle_mode(False)
 
     # Check Macro State

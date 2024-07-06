@@ -145,7 +145,7 @@ def generate_gui():
 
   global list_dg
   list_dg = ttk.Combobox(values=LIST_DUNGEON, state="readonly")
-  list_dg.current(11)
+  list_dg.current(0)
   list_dg.config(width=30)
   list_dg.place(x=75, y=10)
 

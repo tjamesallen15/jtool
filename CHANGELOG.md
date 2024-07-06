@@ -18,13 +18,26 @@ All notable changes to this project will be documented in this file.
 
 ## v5.21 Features
 
-- [Application] Update the changelog to a more specific readable way.
-- [Application] Added dungeons available in changelog.
+- [Application] Update the changelog to a more specific readable way
+- [Application] Added dungeons available in changelog
+- [Dungeon] Added new method plunder_box() to deprecate the old method loot_box()
+- [Dungeon] Added new method plunder_final_box() to deprecate the old method loot_final_box()
+- [Dungeon] Added new method plunder_ref_box() to deprecate the old method loot_ref_box()
 
 ## v5.21 Fixes
 
-- [HVA] Fixed some stuck ups on final orphidia boss.
-- [HVA] Fixed first loot box not properly opened on certain situations.
+- [CFA] Updated loot_box() to plunder_box()
+- [HVA] Fixed some stuck ups on final orphidia boss
+- [HVA] Fixed first loot box not properly opened on certain situations
+- [HVA] Updated loot_box() to plunder_box()
+- [HVENH] Updated loot_box() to plunder_box()
+- [HK] Updated loot_box() to plunder_box()
+- [HW] Updated loot_box() to plunder_box()
+- [LFA] Updated loot_box() to plunder_box()
+- [PCA] Updated loot_box() to plunder_box()
+- [SCA] Updated loot_box() to plunder_box()
+- [S1P] Updated loot_ref_box() to plunder_ref_box()
+- [TM] Updated loot_box() to plunder_box()
 
 # v5.11
 
@@ -34,7 +47,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added Check Notifications
 - [Application] Changed variable and method cases
 - [Application] Added Party and Leader Option for Experiment Purposes
-- [Dungeons] Added feature that makes character exit dungeon to restart again.
+- [Dungeons] Added feature that makes character exit dungeon to restart again
 - [HK] Added Holia Keldrasil for dungeon automation (Development Phase)
 - [TM] Added Backtrack for Terminus Machina
 - [TM] Added Terminus Machina for Party and Leader Option for Experiment Purposes

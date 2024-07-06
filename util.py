@@ -76,8 +76,10 @@ MSG_NO_MOBS_FOUND = "No Mobs Found"
 MSG_NO_BOSS_FOUND = "No Boss Found"
 MSG_MOBS_CLEARED = "Mobs Cleared"
 MSG_CHECK_BOSS = "Checking Boss"
+MSG_CHECK_BOX = "Checking Box"
 MSG_BOX_FOUND = "Box Found"
 MSG_NO_BOX_FOUND = "No Box Found"
+MSG_LOOTING_DROP = "Looting Drops"
 MSG_PATH_STOP = "Pathing stop, attacking"
 MSG_MOVE_STOP = "Moving stop, proceeding"
 MSG_CHECK_END_DG = "Check End Dungeon"
@@ -559,9 +561,13 @@ def do_loot(select=1):
     pynboard.release(loot_space)
     time.sleep(0.3)
 
-def loot_box(sec=3, select=1):
+def plunder_box(select=1, reps=4):
+  log_action(MSG_CHECK_BOX)
+  wait(1)
+  if select == 1:
+    do_select(0.1)
+
   checking = True
-  boxCounter = 0
   while checking:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -571,31 +577,23 @@ def loot_box(sec=3, select=1):
       break
 
     try:
-      if select == 1:
-        do_select(0.1)
       box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BOX_FOUND)
+      do_attack(0.1)
     except pyauto.ImageNotFoundException:
+      checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-    do_loot(select)
-    if is_party == 1:
-      try:
-        roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
-        log_action(MSG_ROLL_EQUIPMENT)
-        move_click_rel(10, 10, roll)
-        move_click_rel(10, 10, roll)
-      except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+  do_deselect_pack()
+  do_plunder(reps)
 
-    boxCounter += 1
-    if boxCounter > sec:
-      boxCounter = 0
-      break
+def plunder_final_box(select=1, reps=5):
+  log_action(MSG_CHECK_BOX)
+  wait(1)
+  if select == 1:
+    do_select(0.1)
 
-def loot_ref_box(sec=3, select=1, ref=IMG_BOX):
   checking = True
-  boxCounter = 0
   while checking:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -605,71 +603,57 @@ def loot_ref_box(sec=3, select=1, ref=IMG_BOX):
       break
 
     try:
-      if select == 1:
-        do_select(0.1)
+      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_BOX_FOUND)
+      do_attack(0.1)
+    except pyauto.ImageNotFoundException:
+      checking = False
+      log_action(MSG_NO_BOX_FOUND)
+
+  do_deselect_pack()
+  do_plunder(reps)
+
+def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
+  log_action(MSG_CHECK_BOX)
+  wait(1)
+  if select == 1:
+    do_select(0.1)
+
+  checking = True
+  while checking:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      checking = False
+
+    if checking == False:
+      break
+
+    try:
       box = pyauto.locateOnScreen(ref, grayscale=False, confidence=.8, region=get_full_region())
       log_action(MSG_BOX_FOUND)
+      do_attack(0.1)
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BOX_FOUND)
-
-    do_loot(select)
-
-    boxCounter += 1
-    if boxCounter > sec:
-      boxCounter = 0
-      break
-
-def loot_final_box(sec=4):
-  checking = True
-  boxCounter = 0
-  while checking:
-    if not get_macro_state():
-      log_action(MSG_TERMINATE)
       checking = False
-
-    if checking == False:
-      break
-
-    try:
-      do_select(0.1)
-      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
-      log_action(MSG_BOX_FOUND)
-    except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BOX_FOUND)
 
-    do_loot()
-    if is_party == 1:
-      try:
-        roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
-        log_action(MSG_ROLL_EQUIPMENT)
-        move_click_rel(10, 10, roll)
-        move_click_rel(10, 10, roll)
-      except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+  do_deselect_pack()
+  do_plunder(reps)
 
-    boxCounter += 1
-    if boxCounter > sec:
-      boxCounter = 0
-      break
+def do_plunder(reps=4):
+  for x in range(reps):
+    log_action(MSG_LOOTING_DROP)
+    pynboard.press(val_loot)
+    pynboard.release(val_loot)
+    time.sleep(0.3)
+    pynboard.press(loot_space)
+    pynboard.release(loot_space)
+    time.sleep(0.3)
 
 def do_essentials():
   pynboard.press(loot_space)
   pynboard.release(loot_space)
   pynboard.press(val_fury)
   pynboard.release(val_fury)
-  pynboard.press(val_pots)
-  pynboard.release(val_pots)
-  pynboard.press(val_loot)
-  pynboard.release(val_loot)
-  do_veradrix()
-
-  pynboard.release(Key.shift)
-  pynboard.release(Key.alt)
-  pynboard.release(Key.ctrl)
-
-def loot_essentials():
-  pynboard.press(loot_space)
-  pynboard.release(loot_space)
   pynboard.press(val_pots)
   pynboard.release(val_pots)
   pynboard.press(val_loot)
@@ -996,7 +980,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       do_attack(0.1)
       do_attack(0.1)
       do_attack(0.1)
-      loot_box(2)
+      plunder_box(0, 3)
 
       if select == 1:
         do_deselect_pack()

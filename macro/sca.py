@@ -364,7 +364,7 @@ def run_dungeon(runs=1):
     util.wait(1)
     util.do_battle_mode()
     util.attack_semi_boss()
-    util.loot_box(2)
+    util.plunder_box(1, 3)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -405,7 +405,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_short_buffs()
     util.attack_boss()
-    util.do_loot()
+    util.do_plunder(2)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -418,7 +418,7 @@ def run_dungeon(runs=1):
     util.move(640, 350)
     util.do_fade(0.5)
 
-    util.loot_box(2)
+    util.plunder_box(1, 3)
 
     # Check Macro State
     if not util.get_macro_state():

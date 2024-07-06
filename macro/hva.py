@@ -461,8 +461,7 @@ def run_dungeon(runs=1):
     util.move(450, 550)
     util.do_fade(0.5)
 
-    util.do_select(0.1)
-    util.loot_box(3, 0)
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -525,11 +524,12 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    # Second Boss Cont
     util.attack_boss()
     util.do_deselect_pack()
     util.move(500, 100)
     util.do_fade(0.5)
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -564,23 +564,6 @@ def run_dungeon(runs=1):
     util.do_deselect_pack()
     position_orphidia()
 
-    # OLD POSITION
-    # util.move(800, 260)
-    # util.do_dash(0.5)
-
-    # util.move_click(500, 260)
-    # util.move_click(400, 320)
-    # util.do_dash(1)
-    # util.do_dash(1)
-    # util.do_fade(0.1)
-
-    # util.move(320, 540)
-    # util.do_deselect_pack()
-    # util.do_dash(0.5)
-
-    # util.move(400, 400)
-    # util.do_fade(0.5)
-
     # First Orphidia
     try:
       util.do_select(0.1)
@@ -611,19 +594,12 @@ def run_dungeon(runs=1):
       if boss_count > 2:
         break
 
-      # boss_tracker += 1
-      # if boss_tracker >= 200:
-      #   boss_tracker = 0
-      #   boss_count += 10
-      #   break
-
       if (boss_count == 1 and short_buffs_counter == 0 and util.is_short_buffs_allowed == 1):
         short_buffs_counter = 1
         util.do_short_buffs()
 
       try:
         util.do_select(0.1)
-        # util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         boss_count += 1
@@ -678,12 +654,13 @@ def run_dungeon(runs=1):
 
     # Loot Treasure Boxes
     boxCounter = 0
-    while boxCounter < 10:
+    looting = True
+    while looting:
       if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
-        boxCounter += 10
+        looting = False
 
-      if boxCounter > 10:
+      if looting == False:
         break
 
       try:
@@ -692,14 +669,13 @@ def run_dungeon(runs=1):
         box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOX_FOUND)
         util.log_action(util.MSG_PATH_STOP)
-        boxCounter += 2
-        util.loot_final_box()
+        util.plunder_final_box(0)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOX_FOUND)
 
       try:
         checkenddg = pyauto.locateOnScreen(util.IMG_END_DG, grayscale=False, confidence=.9)
-        boxCounter += 10
+        looting = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_CHECK_END_DG)

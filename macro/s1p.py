@@ -1057,10 +1057,7 @@ def run_dungeon(runs=1):
       continue
 
     util.wait(1)
-    for x in range(10):
-      util.loot_essentials()
-      util.loot_essentials()
-      util.loot_essentials()
+    util.do_plunder(10)
 
     util.move(750, 150)
     util.do_dash(1.5)
@@ -1167,7 +1164,7 @@ def run_dungeon(runs=1):
         siena = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_SIENA_BOX_FOUND)
         util.wait(1)
-        util.loot_ref_box(4, 0, util.IMG_SIENA)
+        util.plunder_ref_box(0, 4, util.IMG_SIENA)
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_SIENA_BOX_FOUND)
