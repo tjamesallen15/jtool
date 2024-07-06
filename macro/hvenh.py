@@ -602,7 +602,6 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    # First Boss
     util.do_deselect_pack()
     util.move(630, 520)
     util.do_fade(0.5)
@@ -626,7 +625,7 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.do_short_buffs()
+    # First Boss
     util.attack_boss()
 
     # Check Macro State

@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Removed method loot_essentials() and do_loot()
 - [Dungeon] Refactored do_aura() and removed do_aura_strict()
 - [Dungeon] Refactored do_attack() and removed do_attack_strict()
+- [Dungeon] Changed image of box similar to holy box
 
 ## v5.21 Fixes
 
@@ -39,8 +40,10 @@ All notable changes to this project will be documented in this file.
 - [HK] Updated loot_box() to plunder_box()
 - [HW] Updated loot_box() to plunder_box()
 - [LFA] Updated loot_box() to plunder_box()
+- [LFA] Fixed stuck up situations on going to lava gate
 - [PCA] Updated loot_box() to plunder_box()
 - [SCA] Updated loot_box() to plunder_box()
+- [SCA] Fixed minor glitches on path_find()
 - [S1P] Updated loot_ref_box() to plunder_ref_box()
 - [TM] Updated loot_box() to plunder_box()
 

@@ -244,7 +244,7 @@ def path_find_lava_gate(unit=util.UNIT_BLANK):
       util.move_click(650, 250)
       util.move_click(700, 250)
 
-def positionDarkArcher():
+def position_dark_archer():
   util.move(620, 100)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -269,7 +269,7 @@ def positionDarkArcher():
   util.do_dash(1)
   util.do_fade(0.5)
 
-def positionGateKeeper():
+def position_gate_keeper():
   util.move(620, 550)
   util.do_fade(0.5)
 
@@ -305,14 +305,14 @@ def positionGateKeeper():
   util.do_dash(1)
   util.do_fade(0.5)
 
-def positionLavaGate():
+def position_lava_gate():
   util.move_click(450, 600)
   util.move_click(450, 600)
   util.move_click(450, 600)
   util.move_click(450, 600)
   util.move_click(250, 500)
 
-def positionBoss():
+def position_boss():
   util.move(720, 400)
   util.do_fade(0.5)
 
@@ -386,7 +386,7 @@ def run_dungeon(runs=1):
       continue
 
     # First Semi Boss Sequence
-    positionDarkArcher()
+    position_dark_archer()
     moving = True
     while moving:
       if not util.get_macro_state():
@@ -414,7 +414,7 @@ def run_dungeon(runs=1):
     util.attack_semi_boss(0)
 
     # Second Semi Boss Sequence
-    positionGateKeeper()
+    position_gate_keeper()
     moving = True
     while moving:
       if not util.get_macro_state():
@@ -440,9 +440,10 @@ def run_dungeon(runs=1):
 
     # Second Semi Boss
     util.attack_semi_boss(0)
+    util.set_battle_mode(False)
 
     # Gate Sequence
-    positionLavaGate()
+    position_lava_gate()
     path_find_lava_gate(util.UNIT_LAVA_GATE)
     util.focus_mobs(util.UNIT_LAVA_GATE, 1, 0)
 
@@ -477,7 +478,7 @@ def run_dungeon(runs=1):
       continue
 
     # Boss Sequence
-    positionBoss()
+    position_boss()
     moving = True
     while moving:
       if not util.get_macro_state():

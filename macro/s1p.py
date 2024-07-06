@@ -36,7 +36,6 @@ def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
     run_counter += 1
-    # util.set_battle_mode(False)
     util.set_reset_status(False)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
