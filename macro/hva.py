@@ -620,6 +620,7 @@ def run_dungeon(runs=1):
       continue
 
     # Pathfind Treasure Boxes
+    util.check_notifications()
     boxing = True
     while boxing:
       if not util.get_macro_state():

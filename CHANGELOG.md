@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 ## v5.21 Fixes
 
 - [CFA] Updated loot_box() to plunder_box()
+- [HVA] Added check notifications before loot boxes
 - [HVA] Fixed positioning on first boss
 - [HVA] Fixed some stuck ups on final orphidia boss
 - [HVA] Fixed first loot box not properly opened on certain situations
