@@ -35,6 +35,7 @@ All notable changes to this project will be documented in this file.
 - [HVA] Fixed first loot box not properly opened on certain situations
 - [HVA] Updated loot_box() to plunder_box()
 - [HVENH] Updated loot_box() to plunder_box()
+- [HVENH] Tweaked backtrack mechanics
 - [HK] Updated loot_box() to plunder_box()
 - [HW] Updated loot_box() to plunder_box()
 - [LFA] Updated loot_box() to plunder_box()

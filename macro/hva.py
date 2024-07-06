@@ -280,7 +280,7 @@ def path_backtrack(unit):
 
     backtrack_counter += 1
     util.log_action(util.MSG_BACKTRACK + str(backtrack_counter))
-    if (backtrack_counter >= 10):
+    if (backtrack_counter >= 20):
       backtrack_counter = 0
       backtracking = False
 

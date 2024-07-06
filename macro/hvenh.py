@@ -204,7 +204,6 @@ def path_find(unit):
           util.do_fade(0.5)
 
         util.do_select(0.1)
-        util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
@@ -235,7 +234,6 @@ def path_find(unit):
           util.do_dash(1)
           util.do_fade(0.5)
 
-        util.do_select(0.1)
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)

@@ -55,7 +55,7 @@ region_dialog = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x230"
 APP_NAME = "Cabal JTool "
-APP_VERSION = "v5.11"
+APP_VERSION = "v5.21"
 APP_FULL_NAME = APP_NAME + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -954,12 +954,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
         do_select(0.1)
       box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BOX_FOUND)
-
-      do_attack(0.1)
-      do_attack(0.1)
-      do_attack(0.1)
-      do_attack(0.1)
-      plunder_box(0, 3)
+      plunder_box(select, 3)
 
       if select == 1:
         do_deselect_pack()
