@@ -451,8 +451,13 @@ def run_dungeon(runs=1):
       continue
 
     util.do_deselect_pack()
-    util.move(850, 600)
+    util.move(700, 600)
     util.do_dash(0.1)
+    util.do_fade(0.5)
+
+    util.move(700, 600)
+    util.do_dash(0.1)
+    util.do_fade(0.5)
 
     # First Boss
     util.do_short_buffs()

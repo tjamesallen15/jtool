@@ -677,53 +677,49 @@ def do_aura(sec=0, strict=0):
   if (sec != 0):
     time.sleep(sec)
 
-def do_attack(sec=0):
+def do_attack(sec=0, strict=0):
   do_veradrix()
 
   if is_battle_mode:
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
-    do_essentials()
-    do_cont_battle_mode()
+    if strict == 0:
+      do_essentials()
+      do_cont_battle_mode()
   else:
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
-    do_essentials()
+
+    if strict == 0:
+      do_essentials()
+
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
-    do_essentials()
+    if strict == 0:
+      do_essentials()
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
+
+    if strict == 0:
+      do_essentials()
+
     pynboard.press(val_attack[0])
     pynboard.release(val_attack[0])
-    do_essentials()
+
+    if strict == 0:
+      do_essentials()
+
     pynboard.press(val_attack[1])
     pynboard.release(val_attack[1])
-    do_essentials()
+
+    if strict == 0:
+      do_essentials()
+
     pynboard.press(val_attack[2])
     pynboard.release(val_attack[2])
-    do_essentials()
 
-  if (sec != 0):
-    time.sleep(sec)
-
-def do_attack_strict(sec=0):
-  if is_battle_mode:
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
-  else:
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
-    pynboard.press(val_attack[0])
-    pynboard.release(val_attack[0])
-    pynboard.press(val_attack[1])
-    pynboard.release(val_attack[1])
-    pynboard.press(val_attack[2])
-    pynboard.release(val_attack[2])
+    if strict == 0:
+      do_essentials()
 
   if (sec != 0):
     time.sleep(sec)
@@ -1016,9 +1012,9 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
 
       if interval > 0.3:
         do_attack(interval)
-        do_attack_strict(0.3)
+        do_attack(0.3, 1)
         do_attack(interval)
-        do_attack_strict(0.3)
+        do_attack(0.3, 1)
       else:
         do_attack(interval)
         do_attack(interval)

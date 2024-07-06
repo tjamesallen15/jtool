@@ -25,10 +25,12 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Added new method plunder_ref_box() to deprecate the old method loot_ref_box()
 - [Dungeon] Removed method loot_essentials() and do_loot()
 - [Dungeon] Refactored do_aura() and removed do_aura_strict()
+- [Dungeon] Refactored do_attack() and removed do_attack_strict()
 
 ## v5.21 Fixes
 
 - [CFA] Updated loot_box() to plunder_box()
+- [HVA] Fixed positioning on first boss
 - [HVA] Fixed some stuck ups on final orphidia boss
 - [HVA] Fixed first loot box not properly opened on certain situations
 - [HVA] Updated loot_box() to plunder_box()
