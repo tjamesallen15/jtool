@@ -53,7 +53,7 @@ region_dialog = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
-APP_FRAME_SIZE = "330x230"
+APP_FRAME_SIZE = "330x250"
 APP_NAME = "Cabal JTool "
 APP_VERSION = "v5.21"
 APP_FULL_NAME = APP_NAME + APP_VERSION
@@ -87,6 +87,7 @@ MSG_NOTIFICATION_FOUND = "Notification Found"
 MSG_NO_NOTIFICATION_FOUND = "No Notification Found"
 MSG_ACTION = ""
 MSG_RUN_NUMBER =  "Run #: "
+MSG_CLICK = "Click #: "
 MSG_BACKTRACK = "Backtrack #: "
 MSG_CHALLENGE_DG = "Challenge Dungeon"
 MSG_ENTER_DG = "Enter Dungeon"

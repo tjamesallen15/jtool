@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Update the changelog to a more specific readable way
 - [Application] Added dungeons available in changelog
+- [Application] Added tab controls, dungeon and misc tabs
 - [Dungeon] Added new method plunder_box() to deprecate the old method loot_box()
 - [Dungeon] Added new method plunder_final_box() to deprecate the old method loot_final_box()
 - [Dungeon] Added new method plunder_ref_box() to deprecate the old method loot_ref_box()
