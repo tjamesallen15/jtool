@@ -228,6 +228,7 @@ def run_dungeon(runs=1):
         util.move_click(610, 300)
         util.move_click(610, 305)
         util.move_click(610, 310)
+        util.move_click(700, 380)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
