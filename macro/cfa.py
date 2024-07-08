@@ -253,8 +253,8 @@ def run_dungeon(runs=1):
 
     position_final_boss()
     util.attack_boss()
-    util.set_battle_mode(False)
     util.plunder_box(1, 3)
+    util.set_battle_mode(False)
 
     # Check Macro State
     if not util.get_macro_state():

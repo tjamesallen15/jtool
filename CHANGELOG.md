@@ -33,6 +33,7 @@ All notable changes to this project will be documented in this file.
 
 - [CFA] Updated loot_box() to plunder_box()
 - [CFA] Fixed stuck up on second gate after being destroyed
+- [CFA] Fixed box not being plundered after boss fight
 - [HVA] Added check notifications before loot boxes
 - [HVA] Fixed positioning on first boss
 - [HVA] Fixed some stuck ups on final orphidia boss
