@@ -173,11 +173,10 @@ def run_dungeon(runs=1):
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
-    util.wait(1)
+    util.wait(2)
 
     util.move(530, 420)
-    util.do_dash(0.5)
-    util.wait(1)
+    util.do_dash(1)
 
     checking = True
     while checking:
@@ -206,14 +205,19 @@ def run_dungeon(runs=1):
     util.attack_boss()
     util.cancel_aura(1)
     util.plunder_box(1, 3)
-
+  
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
     util.move(730, 390)
-    util.do_fade(1)
+    util.do_fade(0.5)
+
+    util.move(720, 430)
+    util.do_fade(0.5)
+
+    util.wait(1)
 
     dialog_check = True
     while dialog_check:
@@ -228,7 +232,6 @@ def run_dungeon(runs=1):
         util.move_click(610, 300)
         util.move_click(610, 305)
         util.move_click(610, 310)
-        util.move_click(700, 380)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
