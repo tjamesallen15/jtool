@@ -205,7 +205,7 @@ def run_dungeon(runs=1):
     util.attack_boss()
     util.cancel_aura(1)
     util.plunder_box(1, 3)
-  
+
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
