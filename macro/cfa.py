@@ -147,26 +147,37 @@ def run_dungeon(runs=1):
 
     position_second_boss()
 
-    util.move_click(670, 380)
-    util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
+    util.move_click(670, 380, 0.5)
+
+    util.move(375, 150)
+    pyauto.mouseDown(button="right")
+    util.move(1000, 150)
+    pyauto.mouseUp(button="right")
+    pyauto.scroll(-10000)
     util.wait(1)
 
-    util.move(760, 335)
-    # util.do_fade(1.3)
-    util.do_dash(1.2)
+    util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
+    util.wait(2)
+    util.move_click(450, 520, 1)
 
-    util.move(850, 250)
-    util.do_fade(0.8)
-    # util.do_fade(1.3)
-
-    util.move(810, 320)
-    util.do_dash(1.2)
-    # util.do_dash(1.3)
-
-    util.move(740, 360)
+    util.move(450, 520)
+    util.do_dash(1)
     util.do_fade(0.5)
 
-    util.wait(3)
+    util.move(450, 520)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(1000, 150)
+    pyauto.mouseDown(button="right")
+    util.move(375, 150)
+    pyauto.mouseUp(button="right")
+    pyauto.scroll(-10000)
+    util.wait(1)
+
+    util.move(530, 420)
+    util.do_dash(0.5)
+    util.wait(1)
     checking = True
     while checking:
       if not util.get_macro_state():
