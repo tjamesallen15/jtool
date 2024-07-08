@@ -146,7 +146,6 @@ def run_dungeon(runs=1):
       continue
 
     position_second_boss()
-
     util.move_click(670, 380, 0.5)
 
     util.move(375, 150)
@@ -157,7 +156,8 @@ def run_dungeon(runs=1):
     util.wait(1)
 
     util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
-    util.wait(2)
+    util.wait(2.5)
+
     util.move_click(450, 520, 1)
 
     util.move(450, 520)
@@ -178,6 +178,7 @@ def run_dungeon(runs=1):
     util.move(530, 420)
     util.do_dash(0.5)
     util.wait(1)
+
     checking = True
     while checking:
       if not util.get_macro_state():
@@ -247,8 +248,8 @@ def run_dungeon(runs=1):
 
     # Final Boss
     pre_position_final_boss()
-    util.do_short_buffs()
     util.do_battle_mode(7)
+    util.do_short_buffs()
 
     position_final_boss()
     util.attack_boss()
