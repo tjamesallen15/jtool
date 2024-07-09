@@ -133,7 +133,7 @@ IMG_CHECK_DIALOG = "img/checkdialog.jpg"
 IMG_BOX = "img/box.jpg"
 IMG_GATE = "img/gate.jpg"
 IMG_HOLY_BOX = "img/holybox.jpg"
-IMG_LAVA_GATE = "img/lava.jpg"
+IMG_LAVA_GATE = "img/lava-gate.jpg"
 IMG_SHOWORAI = "img/showorai.jpg"
 IMG_OWLBEAR = "img/owlbear.jpg"
 IMG_OWLBEAR_L = "img/owlbear-2.jpg"
@@ -1073,36 +1073,6 @@ def attack_semi_boss(select=1):
 
     try:
       boss = pyauto.locateOnScreen(IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=get_region())
-      log_action(MSG_ATTACK_BOSS)
-      do_attack()
-      time.sleep(0.1)
-      do_attack()
-      time.sleep(0.1)
-    except pyauto.ImageNotFoundException:
-      log_action(MSG_BOSS_KILLED)
-      combo = False
-      break
-
-def attack_lava_gate(select=1):
-  combo = True
-
-  if select == 1:
-    do_select(0.1)
-
-  while combo:
-    if not get_macro_state():
-      log_action(MSG_TERMINATE)
-      combo = False
-      break
-
-    if combo == False:
-      break
-
-    if is_battle_mode == False:
-      do_aura()
-
-    try:
-      gate = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
       do_attack()
       time.sleep(0.1)
