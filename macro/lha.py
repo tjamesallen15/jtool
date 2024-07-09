@@ -206,6 +206,9 @@ def position_boss():
   util.do_dash(1)
   util.do_fade(0.5)
 
+  util.move(480, 160)
+  util.do_dash(1)
+
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
