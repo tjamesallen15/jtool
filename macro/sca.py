@@ -46,9 +46,10 @@ def path_find(unit):
     util.move_click(620, 460)
 
     try:
-      util.move_click(620, 250)
+      util.move_click(630, 250)
 
       if portal_counter % 2 == 0:
+        util.move(630, 250)
         util.do_dash(0.5)
 
       util.do_select(0.1)
@@ -71,9 +72,10 @@ def path_find(unit):
       util.move_click_rel(10, 10, dialog, 2)
 
       if portal_counter % 2 == 0:
+        util.move(630, 250)
         util.do_dash(0.1)
       else:
-        util.move(620, 460)
+        util.move(630, 460, 1)
         util.do_fade(0.5)
 
       break
@@ -131,8 +133,11 @@ def path_find(unit):
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
-      if portal_counter % 2 != 0:
-        util.move(620, 460)
+      if portal_counter % 2 == 0:
+        util.move(630, 250)
+        util.do_dash(0.1)
+      else:
+        util.move(630, 460, 1)
         util.do_fade(0.5)
 
       break
@@ -190,8 +195,11 @@ def path_find(unit):
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
-      if portal_counter % 2 != 0:
-        util.move(620, 460)
+      if portal_counter % 2 == 0:
+        util.move(630, 250)
+        util.do_dash(0.1)
+      else:
+        util.move(630, 460, 1)
         util.do_fade(0.5)
 
       break

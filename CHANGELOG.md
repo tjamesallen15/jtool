@@ -49,6 +49,7 @@ All notable changes to this project will be documented in this file.
 - [PCA] Updated loot_box() to plunder_box()
 - [SCA] Updated loot_box() to plunder_box()
 - [SCA] Fixed minor glitches on path_find()
+- [SCA] Fixed pathing to make it smooth on dialog transition
 - [S1P] Updated loot_ref_box() to plunder_ref_box()
 - [TM] Updated loot_box() to plunder_box()
 
