@@ -360,11 +360,13 @@ def run_dungeon(runs=1):
     util.enter_dungeon()
     util.challenge_dungeon()
 
+    util.wait(1)
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
+    util.wait(2)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -376,6 +378,8 @@ def run_dungeon(runs=1):
 
     # First Boss
     util.attack_boss()
+
+    util.wait(1)
     util.move(580, 260)
     util.do_fade(0.5)
     util.plunder_box(1, 3)
