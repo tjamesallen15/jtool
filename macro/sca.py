@@ -32,6 +32,7 @@ def initialize(frame, btn, runs=1):
 
 def path_find(unit):
   global portal_counter
+  portal_counter = 0
   pathing = True
   boss_found = 0
   while pathing:
