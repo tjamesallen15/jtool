@@ -2,7 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-# Dungeons Available
+# v5.21
+
+## v5.21 Dungeons Available
 - [HVA] Hazardous Valley (Awakened) [v1.00]
 - [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
 - [SCA] Steamer Crazy (Awakened) [v4.51]
@@ -14,11 +16,9 @@ All notable changes to this project will be documented in this file.
 - [HK] Holy Keldrasil [v5.11]
 - [S1P] Altar of Siena B1F (Prideus) [v5.11]
 
-# v5.21
-
 ## v5.21 Features
 
-- [Application] Update the changelog to a more specific readable way
+- [Application] Updated the changelog to a more specific readable way
 - [Application] Added dungeons available in changelog
 - [Application] Added tab controls, dungeon and misc tabs
 - [Dungeon] Added new method plunder_box() to deprecate the old method loot_box()
