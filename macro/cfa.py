@@ -217,6 +217,7 @@ def run_dungeon(runs=1):
     util.move(720, 430)
     util.do_fade(0.5)
 
+    util.move_click(720, 430, 1)
     util.wait(1)
 
     dialog_check = True

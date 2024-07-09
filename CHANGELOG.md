@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
 - [SCA] Steamer Crazy (Awakened) [v4.51]
 - [CFA] Catacomb Frost (Awakened) [v4.61]
-- [LFA] Lava Hellfire (Awakened) [v4.95]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
 - [HW] Holy Windmill [v4.95]
 - [TM] Terminus Machina [v4.95]
 - [PCA] Panic Cave (Awakened) [v5.01]
@@ -43,8 +43,9 @@ All notable changes to this project will be documented in this file.
 - [HVENH] Tweaked backtrack mechanics
 - [HK] Updated loot_box() to plunder_box()
 - [HW] Updated loot_box() to plunder_box()
-- [LFA] Updated loot_box() to plunder_box()
-- [LFA] Fixed stuck up situations on going to lava gate
+- [LHA] Updated loot_box() to plunder_box()
+- [LHA] Fixed stuck up situations on going to lava gate
+- [LHA] Fixed pathing for semi bosses and bosses
 - [PCA] Updated loot_box() to plunder_box()
 - [SCA] Updated loot_box() to plunder_box()
 - [SCA] Fixed minor glitches on path_find()
@@ -97,7 +98,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added Veradrix Check
 - [Application] Change Combobox UI to Checkbox
 - [HW] Added Holy Windmill for Development Phase
-- [LFA] Added Lava Hellfire (Awakened) for Development Phase
+- [LHA] Added Lava Hellfire (Awakened) for Development Phase
 - [TM] Added Terminus Machina for Development Phase
 
 ## v4.95 Fixes

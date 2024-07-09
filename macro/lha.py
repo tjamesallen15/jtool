@@ -31,7 +31,6 @@ def initialize(frame, btn, runs=1):
 
 def path_find(unit):
   pathing = True
-  boss_found = 0
   while pathing:
     if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
@@ -43,7 +42,6 @@ def path_find(unit):
     util.log_action(util.MSG_PATH_FIND + unit)
 
     try:
-      util.move_click(600, 250)
       util.do_select(0.1)
       boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -51,87 +49,7 @@ def path_find(unit):
       util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_MOBS_FOUND)
-
-    util.wait(0.2)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(700, 250)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_MOBS_FOUND + unit)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_MOBS_FOUND)
-
-    util.wait(0.2)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(750, 250)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_MOBS_FOUND + unit)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_MOBS_FOUND)
-
-    util.wait(0.2)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(800, 250)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_MOBS_FOUND + unit)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_MOBS_FOUND)
-
-    util.wait(0.2)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(850, 250)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_MOBS_FOUND + unit)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_MOBS_FOUND)
-
-    util.wait(0.2)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(900, 250)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_MOBS_FOUND + unit)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_MOBS_FOUND)
+      util.log_action(util.MSG_NO_BOSS_FOUND)
 
     util.wait(0.2)
 
@@ -140,7 +58,6 @@ def path_find(unit):
 
 def path_find_boss():
   pathing = True
-  boss_found = 0
   while pathing:
     if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
@@ -150,53 +67,6 @@ def path_find_boss():
       break
 
     try:
-      util.move_click(600, 250)
-      util.do_dash(1)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_BOSS_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_BOSS_FOUND)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(650, 250)
-      util.do_fade(0.5)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_BOSS_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_BOSS_FOUND)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(700, 250)
-      util.do_dash(0.5)
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_BOSS_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_BOSS_FOUND)
-
-    if pathing == False:
-      break
-
-    try:
-      util.move_click(900, 250)
-      util.do_fade(0.5)
       util.do_select(0.1)
       boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
@@ -221,10 +91,10 @@ def path_find_lava_gate(unit=util.UNIT_BLANK):
       break
 
     util.log_action(util.MSG_PATH_FIND + unit)
-    if gate_counter >= 10:
+    if gate_counter >= 12:
       try:
         util.do_select(0.1)
-        gate = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
         util.log_action(util.MSG_PATH_STOP)
@@ -456,32 +326,10 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    moving = True
-    while moving:
-      if not util.get_macro_state():
-        util.log_action(util.MSG_TERMINATE)
-        moving = False
-
-      if moving == False:
-        break
-
-      try:
-        util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-        moving = False
-        util.log_action(util.MSG_MOVE_STOP)
-        break
-      except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
-
-    util.focus_mobs(util.UNIT_LAVA_GATE, 1, 0)
-
-    # Check Macro State
-    if not util.get_macro_state():
-      run_counter += 1000
-      continue
-
     # Boss Sequence
+    util.do_battle_mode()
+    util.do_short_buffs()
+
     position_boss()
     moving = True
     while moving:
@@ -507,8 +355,6 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss
-    util.do_battle_mode()
-    util.do_short_buffs()
     util.attack_boss()
     util.plunder_box(1, 3)
 
