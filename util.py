@@ -762,6 +762,9 @@ def enter_dungeon():
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
 
+    if entering == False:
+      break
+
 def challenge_dungeon():
   if (is_party == 1 and is_leader == 1) or (is_party == 0 and is_leader == 0):
     challenging = True
