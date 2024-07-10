@@ -29,57 +29,7 @@ def initialize(frame, btn, runs=1):
   btn_start.config(state="active")
   frame_root.update()
 
-def path_find(unit):
-  pathing = True
-  while pathing:
-    if not util.get_macro_state():
-      util.log_action(util.MSG_TERMINATE)
-      pathing = False
-
-    if pathing == False:
-      break
-
-    util.log_action(util.MSG_PATH_FIND + unit)
-
-    try:
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_MOBS_FOUND + unit)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_BOSS_FOUND)
-
-    util.wait(0.2)
-
-    if pathing == False:
-      break
-
-def path_find_boss():
-  pathing = True
-  while pathing:
-    if not util.get_macro_state():
-      util.log_action(util.MSG_TERMINATE)
-      pathing = False
-
-    if pathing == False:
-      break
-
-    try:
-      util.do_select(0.1)
-      boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(util.MSG_BOSS_FOUND)
-      pathing = False
-      util.log_action(util.MSG_PATH_STOP)
-      break
-    except pyauto.ImageNotFoundException:
-      util.log_action(util.MSG_NO_BOSS_FOUND)
-
-    if pathing == False:
-      break
-
-def path_find_lava_gate(unit=util.UNIT_BLANK):
+def path_find_gate(unit=util.UNIT_BLANK):
   pathing = True
   gate_counter = 0
   while pathing:
@@ -91,6 +41,7 @@ def path_find_lava_gate(unit=util.UNIT_BLANK):
       break
 
     util.log_action(util.MSG_PATH_FIND + unit)
+    gate_counter += 1
     if gate_counter >= 12:
       try:
         util.do_select(0.1)
@@ -101,11 +52,7 @@ def path_find_lava_gate(unit=util.UNIT_BLANK):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
-
-      if pathing == False:
-        break
     else:
-      gate_counter += 1
       util.move_click(350, 250)
       util.move_click(450, 250)
       util.move_click(500, 250)
@@ -114,7 +61,7 @@ def path_find_lava_gate(unit=util.UNIT_BLANK):
       util.move_click(650, 250)
       util.move_click(700, 250)
 
-def position_dark_archer():
+def position_fire_guard():
   util.move(620, 100)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -182,6 +129,12 @@ def position_lava_gate():
   util.move_click(450, 600)
   util.move_click(250, 500)
 
+  util.move_click(450, 600)
+  util.move_click(450, 600)
+  util.move_click(450, 600)
+  util.move_click(450, 600)
+  util.move_click(250, 500)
+
 def position_boss():
   util.move(720, 400)
   util.do_fade(0.5)
@@ -201,6 +154,11 @@ def position_boss():
   util.move(300, 420)
   util.do_dash(1)
   util.do_fade(0.5)
+
+  if util.get_atk_type() == 1:
+    util.move(300, 420)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
   util.move(480, 160)
   util.do_dash(1)
@@ -227,9 +185,8 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move_click(650, 260)
-
     # Enter Dungeon
+    util.click_portal(650, 260)
     util.enter_dungeon()
     util.challenge_dungeon()
 
@@ -263,7 +220,7 @@ def run_dungeon(runs=1):
       continue
 
     # First Semi Boss Sequence
-    position_dark_archer()
+    position_fire_guard()
     moving = True
     while moving:
       if not util.get_macro_state():
@@ -273,9 +230,9 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      path_find(util.UNIT_DARK_ARCHER)
       try:
-        boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        util.do_select(0.1)
+        boss = pyauto.locateOnScreen(util.IMG_FIRE_GUARD, grayscale=False, confidence=.8, region=util.get_full_region())
         moving = False
         util.log_action(util.MSG_MOVE_STOP)
         break
@@ -303,7 +260,7 @@ def run_dungeon(runs=1):
 
       try:
         util.do_select(0.1)
-        boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        boss = pyauto.locateOnScreen(util.IMG_GATEKEEPER, grayscale=False, confidence=.8, region=util.get_full_region())
         moving = False
         util.log_action(util.MSG_MOVE_STOP)
         break
@@ -321,7 +278,7 @@ def run_dungeon(runs=1):
 
     # Gate Sequence
     position_lava_gate()
-    path_find_lava_gate(util.UNIT_LAVA_GATE)
+    path_find_gate(util.UNIT_LAVA_GATE)
     util.focus_mobs(util.UNIT_LAVA_GATE, 1, 0)
 
     # Check Macro State
@@ -343,9 +300,10 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      path_find_boss()
       try:
+        util.do_select(0.1)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOSS_FOUND)
         moving = False
         util.log_action(util.MSG_MOVE_STOP)
         break

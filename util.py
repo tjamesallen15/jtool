@@ -91,6 +91,7 @@ MSG_CLICK = "Click #: "
 MSG_BACKTRACK = "Backtrack #: "
 MSG_CHALLENGE_DG = "Challenge Dungeon"
 MSG_ENTER_DG = "Enter Dungeon"
+MSG_BUTTON_FOUND = "Button Found"
 MSG_NO_BUTTON_FOUND = "No Button Found"
 MSG_BUFFS = "Buffing"
 MSG_SHORT_BUFFS = "Buffing Shorts"
@@ -134,6 +135,8 @@ IMG_BOX = "img/box.jpg"
 IMG_GATE = "img/gate.jpg"
 IMG_HOLY_BOX = "img/holybox.jpg"
 IMG_LAVA_GATE = "img/lava-gate.jpg"
+IMG_FIRE_GUARD = "img/fire-guard.jpg"
+IMG_GATEKEEPER = "img/gatekeeper.jpg"
 IMG_SHOWORAI = "img/showorai.jpg"
 IMG_OWLBEAR = "img/owlbear.jpg"
 IMG_OWLBEAR_L = "img/owlbear-2.jpg"
@@ -147,6 +150,7 @@ IMG_UMPRA_WEAK = "img/umpra-w.jpg"
 
 # CONSTANT UNITS
 UNIT_BLANK = "--"
+UNIT_BLOCKER = "Blocker"
 UNIT_MUSH_FLOWER = "Mushed and Ectoflower"
 UNIT_MOSS_TOAD = "Mossite and Toad"
 UNIT_LUMBER_DORIGO = "Lumber and Dorigo"
@@ -167,7 +171,7 @@ UNIT_ESPI = "Espi of Wind"
 UNIT_DRACO = "Draco of Wind"
 UNIT_SPECTOR = "Spector"
 UNIT_ICE_BLOCK = "Ice Block"
-UNIT_DARK_ARCHER = "Dark Archer"
+UNIT_FIRE_GUARD = "Fire Guard"
 UNIT_GATEKEEPER_JASON = "Gatekeeper Jason"
 UNIT_LAVA_GATE = "Lava Gate"
 UNIT_MECH_LION = "Mech Lion"
@@ -726,6 +730,19 @@ def do_attack(sec=0, strict=0):
   if (sec != 0):
     time.sleep(sec)
 
+def click_portal(x, y):
+  move_click(x, y)
+  try:
+    mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+    focus_mobs(UNIT_BLOCKER, 0, 0, 0)
+    wait(1)
+    move_click(x, y, 1.5)
+    log_action(MSG_MOVE_STOP)
+  except pyauto.ImageNotFoundException:
+    log_action(MSG_NO_MOBS_FOUND)
+
+  wait(1)
+
 def enter_dungeon():
   entering = True
   while entering:
@@ -738,6 +755,7 @@ def enter_dungeon():
 
     try:
       enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
+      log_action(MSG_BUTTON_FOUND)
       move_click_rel(15, 15, enterdg, 1)
       entering = False
       break
@@ -757,6 +775,7 @@ def challenge_dungeon():
 
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+        log_action(MSG_BUTTON_FOUND)
         move_click_rel(15, 15, challengedg, 1)
         challenging = False
         break
@@ -1074,10 +1093,8 @@ def attack_semi_boss(select=1):
     try:
       boss = pyauto.locateOnScreen(IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
-      do_attack()
-      time.sleep(0.1)
-      do_attack()
-      time.sleep(0.1)
+      do_attack(0.1)
+      do_attack(0.1)
     except pyauto.ImageNotFoundException:
       log_action(MSG_BOSS_KILLED)
       combo = False

@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Refactored do_aura() and removed do_aura_strict()
 - [Dungeon] Refactored do_attack() and removed do_attack_strict()
 - [Dungeon] Changed image of box similar to holy box
+- [Dungeon] Added check validation for click dungeon portal when there is a monster blocking it
 
 ## v5.21 Fixes
 
@@ -43,6 +44,7 @@ All notable changes to this project will be documented in this file.
 - [HVENH] Tweaked backtrack mechanics
 - [HK] Updated loot_box() to plunder_box()
 - [HW] Updated loot_box() to plunder_box()
+- [LHA] Overhauled pathing for semi bosses
 - [LHA] Updated loot_box() to plunder_box()
 - [LHA] Fixed stuck up situations on going to lava gate
 - [LHA] Fixed pathing for semi bosses and bosses
