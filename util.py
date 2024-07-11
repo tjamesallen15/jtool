@@ -74,6 +74,8 @@ MSG_BOSS_FOUND = "Boss Found"
 MSG_BOSS_KILLED = "Boss Killed"
 MSG_NO_MOBS_FOUND = "No Mobs Found"
 MSG_NO_BOSS_FOUND = "No Boss Found"
+MSG_BLOCKER_FOUND = "Blocker Found"
+MSG_NO_BLOCKER_FOUND = "No Blocker Found"
 MSG_MOBS_CLEARED = "Mobs Cleared"
 MSG_CHECK_BOSS = "Checking Boss"
 MSG_CHECK_BOX = "Checking Box"
@@ -734,14 +736,12 @@ def click_portal(x, y):
   move_click(x, y)
   try:
     mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+    log_action(MSG_BLOCKER_FOUND)
     focus_mobs(UNIT_BLOCKER, 0, 0, 0)
     wait(1)
     move_click(x, y, 1.5)
-    log_action(MSG_MOVE_STOP)
   except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_MOBS_FOUND)
-
-  wait(1)
+    log_action(MSG_NO_BLOCKER_FOUND)
 
 def enter_dungeon():
   entering = True
@@ -762,8 +762,7 @@ def enter_dungeon():
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
 
-    if entering == False:
-      break
+  wait(1)
 
 def challenge_dungeon():
   if (is_party == 1 and is_leader == 1) or (is_party == 0 and is_leader == 0):

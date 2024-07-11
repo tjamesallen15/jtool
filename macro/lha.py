@@ -189,8 +189,8 @@ def run_dungeon(runs=1):
     util.click_portal(650, 260)
     util.enter_dungeon()
     util.challenge_dungeon()
-
     util.wait(1)
+
     util.move(700, 150)
     pyauto.mouseDown(button="right")
     util.move(375, 150)
@@ -221,6 +221,7 @@ def run_dungeon(runs=1):
 
     # First Semi Boss Sequence
     position_fire_guard()
+    util.wait(2)
     moving = True
     while moving:
       if not util.get_macro_state():
@@ -239,6 +240,11 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
+      util.wait(0.2)
+
+      if moving == False:
+        break
+
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
@@ -249,6 +255,7 @@ def run_dungeon(runs=1):
 
     # Second Semi Boss Sequence
     position_gate_keeper()
+    util.wait(2)
     moving = True
     while moving:
       if not util.get_macro_state():
