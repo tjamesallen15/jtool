@@ -45,10 +45,18 @@ def path_find(unit):
     util.log_action(util.MSG_PATH_FIND + unit)
     util.move_click(620, 460)
 
+    if portal_counter == 9:
+      util.move(630, 250)
+      util.do_dash(1)
+      util.do_fade(0.5)
+
+      util.do_dash(1)
+      util.do_fade(0.5)
+
     try:
       util.move_click(630, 250)
       if portal_counter % 2 == 0:
-        util.do_dash(0.5)
+        util.do_dash(0.1)
 
       util.do_select(0.1)
       mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
@@ -78,7 +86,6 @@ def path_find(unit):
 
     try:
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -93,7 +100,6 @@ def path_find(unit):
 
     try:
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -136,7 +142,6 @@ def path_find(unit):
 
     try:
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -151,7 +156,6 @@ def path_find(unit):
 
     try:
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -194,7 +198,6 @@ def path_find(unit):
 
     try:
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -209,7 +212,6 @@ def path_find(unit):
 
     try:
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       boss = pyauto.locateOnScreen(util.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -305,6 +307,13 @@ def run_dungeon(runs=1):
       continue
 
     util.set_battle_mode(False)
+
+    util.move(630, 250)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.do_dash(1)
+    util.do_fade(0.5)
 
     # Tricus Sequence
     moving = True
