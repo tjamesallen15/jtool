@@ -47,11 +47,7 @@ def path_find(unit):
 
     try:
       util.move_click(630, 250)
-
-      print(str(portal_counter))
-      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
-        util.move(630, 250)
         util.do_dash(0.5)
 
       util.do_select(0.1)
@@ -73,12 +69,9 @@ def path_find(unit):
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
-      print(str(portal_counter))
-      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
         util.move(630, 250)
         util.do_dash(0.1)
-
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -134,12 +127,9 @@ def path_find(unit):
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
-      print(str(portal_counter))
-      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
         util.move(630, 250)
         util.do_dash(0.1)
-
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -195,12 +185,9 @@ def path_find(unit):
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
-      print(str(portal_counter))
-      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
         util.move(630, 250)
         util.do_dash(0.1)
-
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
