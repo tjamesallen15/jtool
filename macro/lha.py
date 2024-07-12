@@ -185,8 +185,10 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    # Enter Dungeon
+    # Click Dungeon
     util.click_portal(650, 260)
+
+    # Enter Dungeon
     util.enter_dungeon()
     util.challenge_dungeon()
     util.wait(1)
