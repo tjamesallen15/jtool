@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Changed image of box similar to holy box
 - [Dungeon] Added check validation for click dungeon portal when there is a monster blocking it
 - [Dungeon] Implement click_portal() method to all dungeons
+- [SCA] Improved overall dungeon automation
 
 ## v5.21 Fixes
 
