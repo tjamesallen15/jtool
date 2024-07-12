@@ -34,6 +34,7 @@ def path_find(unit):
   global portal_counter
   pathing = True
   boss_found = 0
+  mobs_found = 0
   while pathing:
     if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
@@ -54,6 +55,7 @@ def path_find(unit):
       mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_MOBS_FOUND + unit)
       pathing = False
+      mobs_found = 1
       util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
@@ -67,19 +69,21 @@ def path_find(unit):
       dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       portal_counter += 1
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-      util.move_click_rel(10, 10, dialog, 2)
 
       if portal_counter % 2 == 0:
+        util.move_click_rel(10, 10, dialog, 0.5)
         util.move(630, 250)
         util.do_dash(0.1)
-
-      if portal_counter == 9:
+      elif portal_counter == 9:
+        util.move_click_rel(10, 10, dialog, 0.5)
         util.move(630, 250)
         util.do_dash(1)
         util.do_fade(0.5)
 
         util.do_dash(1)
         util.do_fade(0.5)
+      else:
+        util.move_click_rel(10, 10, dialog, 3)
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -118,6 +122,7 @@ def path_find(unit):
       mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_MOBS_FOUND + unit)
       pathing = False
+      mobs_found = 1
       util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
@@ -131,19 +136,21 @@ def path_find(unit):
       dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       portal_counter += 1
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-      util.move_click_rel(10, 10, dialog, 2)
 
       if portal_counter % 2 == 0:
+        util.move_click_rel(10, 10, dialog, 0.5)
         util.move(630, 250)
         util.do_dash(0.1)
-
-      if portal_counter == 9:
+      elif portal_counter == 9:
+        util.move_click_rel(10, 10, dialog, 0.5)
         util.move(630, 250)
         util.do_dash(1)
         util.do_fade(0.5)
 
         util.do_dash(1)
         util.do_fade(0.5)
+      else:
+        util.move_click_rel(10, 10, dialog, 3)
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -182,6 +189,7 @@ def path_find(unit):
       mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_MOBS_FOUND + unit)
       pathing = False
+      mobs_found = 1
       util.log_action(util.MSG_PATH_STOP)
       break
     except pyauto.ImageNotFoundException:
@@ -195,19 +203,21 @@ def path_find(unit):
       dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       portal_counter += 1
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-      util.move_click_rel(10, 10, dialog, 2)
 
       if portal_counter % 2 == 0:
+        util.move_click_rel(10, 10, dialog, 0.5)
         util.move(630, 250)
         util.do_dash(0.1)
-
-      if portal_counter == 9:
+      elif portal_counter == 9:
+        util.move_click_rel(10, 10, dialog, 0.5)
         util.move(630, 250)
         util.do_dash(1)
         util.do_fade(0.5)
 
         util.do_dash(1)
         util.do_fade(0.5)
+      else:
+        util.move_click_rel(10, 10, dialog, 3)
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -240,8 +250,15 @@ def path_find(unit):
     if pathing == False:
       break
 
-  if boss_found == 0:
+  if boss_found == 0 and mobs_found == 1:
     util.attack_mobs(unit)
+
+    util.move(630, 250)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.do_dash(1)
+    util.do_fade(0.1)
 
 def run_dungeon(runs=1):
   global portal_counter
@@ -270,7 +287,7 @@ def run_dungeon(runs=1):
     pyauto.scroll(-10000)
 
     # Click Dungeon
-    util.click_portal(600, 240)
+    util.click_portal(600, 250)
 
     # Enter Dungeon
     util.enter_dungeon()
@@ -330,6 +347,8 @@ def run_dungeon(runs=1):
 
     util.do_dash(1)
     util.do_fade(0.5)
+
+    util.do_dash(0.1)
 
     # Tricus Sequence
     moving = True
