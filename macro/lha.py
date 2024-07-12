@@ -286,7 +286,12 @@ def run_dungeon(runs=1):
     # Gate Sequence
     position_lava_gate()
     path_find_gate(util.UNIT_LAVA_GATE)
-    util.focus_mobs(util.UNIT_LAVA_GATE, 1, 0)
+
+    util.move(720, 400)
+    util.do_fade(0.5)
+
+    util.focus_mobs(util.UNIT_LAVA_GATE, 0, 0)
+    util.wait(1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -295,9 +300,9 @@ def run_dungeon(runs=1):
 
     # Boss Sequence
     util.do_battle_mode()
-    util.do_short_buffs()
 
     position_boss()
+    util.do_short_buffs()
     moving = True
     while moving:
       if not util.get_macro_state():
