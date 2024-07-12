@@ -356,6 +356,9 @@ def get_reset_status():
   return trigger_reset_dungeon
 
 def set_reset_status(val=False):
+  if val != False:
+    set_battle_mode(False)
+
   global trigger_reset_dungeon
   trigger_reset_dungeon = val
 
@@ -382,7 +385,7 @@ def get_shorts_status():
 
 def force_exit_dungeon():
   check_notifications()
-  wait(3)
+  wait(2)
 
   move_click(830, 710)
   wait(0.5)

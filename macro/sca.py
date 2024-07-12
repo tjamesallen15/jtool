@@ -32,7 +32,6 @@ def initialize(frame, btn, runs=1):
 
 def path_find(unit):
   global portal_counter
-  portal_counter = 0
   pathing = True
   boss_found = 0
   while pathing:
@@ -49,6 +48,8 @@ def path_find(unit):
     try:
       util.move_click(630, 250)
 
+      print(str(portal_counter))
+      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
         util.move(630, 250)
         util.do_dash(0.5)
@@ -72,12 +73,11 @@ def path_find(unit):
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
+      print(str(portal_counter))
+      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
         util.move(630, 250)
         util.do_dash(0.1)
-      else:
-        util.move(630, 460, 1)
-        util.do_fade(0.5)
 
       break
     except pyauto.ImageNotFoundException:
@@ -114,7 +114,7 @@ def path_find(unit):
       break
 
     try:
-      util.move_click(590, 250)
+      util.move_click(600, 250)
       util.do_select(0.1)
       mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -128,18 +128,17 @@ def path_find(unit):
       break
 
     try:
-      util.move_click(590, 250)
+      util.move_click(600, 250)
       dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
       portal_counter += 1
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
+      print(str(portal_counter))
+      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
         util.move(630, 250)
         util.do_dash(0.1)
-      else:
-        util.move(630, 460, 1)
-        util.do_fade(0.5)
 
       break
     except pyauto.ImageNotFoundException:
@@ -196,12 +195,11 @@ def path_find(unit):
       util.log_action(util.MSG_CHECK_DIALOG_FOUND)
       util.move_click_rel(10, 10, dialog, 2)
 
+      print(str(portal_counter))
+      print(str(portal_counter % 2))
       if portal_counter % 2 == 0:
         util.move(630, 250)
         util.do_dash(0.1)
-      else:
-        util.move(630, 460, 1)
-        util.do_fade(0.5)
 
       break
     except pyauto.ImageNotFoundException:
@@ -241,10 +239,11 @@ def path_find(unit):
     util.attack_mobs(unit)
 
 def run_dungeon(runs=1):
+  global portal_counter
   run_counter = 0
   while run_counter < runs:
     run_counter += 1
-    util.set_battle_mode(False)
+    portal_counter = 0
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
@@ -266,7 +265,6 @@ def run_dungeon(runs=1):
     pyauto.scroll(-10000)
 
     # Click Dungeon
-    # util.move_click(600, 240)
     util.click_portal(600, 240)
 
     # Enter Dungeon
@@ -308,8 +306,6 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.wait(1)
-
     # First Boss
     util.do_deselect_pack()
     util.do_battle_mode()
@@ -347,12 +343,9 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.wait(1)
-
     # Final Boss
     util.do_deselect_pack()
-    util.do_deselect_pack()
-    util.do_dash(0.5)
+    util.do_dash(0.1)
     util.do_short_buffs()
     util.attack_boss()
     util.do_plunder(2)
@@ -362,11 +355,9 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(620, 350)
-    util.do_dash(0.5)
-
-    util.move(640, 350)
-    util.do_fade(0.5)
+    if util.get_atk_type() == 1:
+      util.move(620, 350)
+      util.do_dash(0.5)
 
     util.plunder_box(1, 3)
 

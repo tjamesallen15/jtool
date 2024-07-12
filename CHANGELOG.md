@@ -29,6 +29,7 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Refactored do_attack() and removed do_attack_strict()
 - [Dungeon] Changed image of box similar to holy box
 - [Dungeon] Added check validation for click dungeon portal when there is a monster blocking it
+- [Dungeon] Implement click_portal() method to all dungeons
 
 ## v5.21 Fixes
 

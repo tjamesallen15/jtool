@@ -405,7 +405,7 @@ def run_dungeon(runs=1):
     # Click Dungeon
     util.move(677, 361)
     util.move(735, 361, 0.5)
-    util.move_click(735, 361, 0.5)
+    util.click_portal(735, 361)
 
     # Enter Dungeon
     util.enter_dungeon()

@@ -52,11 +52,11 @@ def run_dungeon(runs=1):
       continue
 
     # Click Dungeon
-    # util.move_click(450, 600, 1.5)
     util.move(450, 600)
     util.do_dash(1)
-    util.move_click(680, 420, 1)
+    util.click_portal(680, 420)
 
+    # Enter Dungeon
     util.enter_dungeon()
     util.challenge_dungeon()
 

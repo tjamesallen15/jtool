@@ -1130,8 +1130,7 @@ def run_dungeon(runs=1):
     # Click Dungeon
     util.move(500, 300)
     util.do_dash(1)
-    util.move_click(595, 335, 0.5)
-    util.move_click(595, 335, 0.5)
+    util.click_portal(595, 335)
 
     # Enter Dungeon
     util.enter_dungeon()

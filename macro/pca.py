@@ -206,7 +206,6 @@ def position_third_shadow():
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    util.set_battle_mode(False)
     util.set_reset_status(False)
     run_counter += 1
     util.log_action(util.MSG_START_DG)
@@ -223,7 +222,8 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move_click(720, 360)
+    # Click Dungeon
+    util.click_portal(720, 360)
 
     # Enter Dungeon
     util.enter_dungeon()

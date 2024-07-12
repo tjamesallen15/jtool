@@ -106,7 +106,8 @@ def run_dungeon(runs=1):
     util.move(500, 300)
     util.do_fade(0.5)
 
-    util.move_click(570, 300)
+    # Click Dungeon
+    util.click_portal(570, 300)
 
     # Enter Dungeon
     util.enter_dungeon()

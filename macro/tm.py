@@ -824,7 +824,7 @@ def run_dungeon(runs=1):
     pyauto.scroll(-10000)
 
     # Click Dungeon
-    util.move_click(600, 240)
+    util.click_portal(600, 240)
 
     util.enter_dungeon()
     util.challenge_dungeon()
