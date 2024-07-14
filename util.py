@@ -30,9 +30,12 @@ cabalwindow = []
 frame_root = []
 lbl_current_run = []
 lbl_macro = []
+
 macro = True
-battle_mode = 0
 is_battle_mode = False
+trigger_reset_dungeon = False
+
+battle_mode = 0
 is_buffs_allowed = 1
 is_short_buffs_allowed = 1
 is_veradrix_allowed = 0
@@ -41,7 +44,7 @@ is_leader = 0
 val_runs = 1
 aura_counter = 0
 atk_type = 0
-trigger_reset_dungeon = False
+
 
 region_normal_bar = []
 region_mode_bar = []

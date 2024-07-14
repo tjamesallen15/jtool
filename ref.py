@@ -6,6 +6,11 @@
 # util.set_cabal_window(cabalwindow)
 # util.go_cabal_window()
 
+# test_var = True if val_mode.get() == 1 else False
+# print(test_var)
+
+# sys.exit()
+
 # 1 pyautogui.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)
 # 2 pyautogui.moveTo(cabalwindow[0] + 430, cabalwindow[1] + 670)
 # 3 pyautogui.moveTo(cabalwindow[0] + 470, cabalwindow[1] + 670)

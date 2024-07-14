@@ -56,6 +56,7 @@ LIST_DUNGEON = [
 ]
 
 LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
+LIST_CLICKS = [10, 20, 30, 40, 50, 100, 200, 500]
 
 list_dg = []
 btn_start = []
@@ -68,6 +69,7 @@ lbl_misc = []
 lbl_current_run = []
 frame_root = []
 val_run_count = []
+val_click_count = []
 
 val_mode = 0
 val_buffs = 1
@@ -120,7 +122,7 @@ def buy_fury():
   util.set_cabal_window(cabalwindow)
   util.go_cabal_window()
 
-  for x in range(200):
+  for x in range(int(val_click_count.get())):
     util.move_click(125, 205)
     log_misc_action(util.MSG_CLICK + str(x+1))
 
@@ -134,7 +136,7 @@ def buy_upgrade():
   util.set_cabal_window(cabalwindow)
   util.go_cabal_window()
 
-  for x in range(50):
+  for x in range(int(val_click_count.get())):
     util.move_click(15, 180)
     log_misc_action(util.MSG_CLICK + str(x+1))
 
@@ -148,7 +150,7 @@ def buy_force():
   util.set_cabal_window(cabalwindow)
   util.go_cabal_window()
 
-  for x in range(50):
+  for x in range(int(val_click_count.get())):
     util.move_click(45, 180)
     log_misc_action(util.MSG_CLICK + str(x+1))
 
@@ -302,9 +304,18 @@ def generate_gui():
   btn_force.config(width=12)
   btn_force.place(x=205, y=40)
 
+  lbl_misc_clicks = Label(tab_misc, text="Clicks: ")
+  lbl_misc_clicks.place(x=10, y=80)
+
+  global val_click_count
+  val_click_count = ttk.Combobox(tab_misc, values=LIST_CLICKS, state="")
+  val_click_count.current(0)
+  val_click_count.config(width=5)
+  val_click_count.place(x=75, y=80)
+
   global lbl_misc
   lbl_misc = Label(tab_misc, text="Action: --")
-  lbl_misc.place(x=10, y=80)
+  lbl_misc.place(x=10, y=110)
 
   frame_root.mainloop()
 

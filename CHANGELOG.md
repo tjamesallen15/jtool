@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Changed image of box similar to holy box
 - [Dungeon] Added check validation for click dungeon portal when there is a monster blocking it
 - [Dungeon] Implement click_portal() method to all dungeons
+- [LHA] Added fail safe reset dungeon
 - [SCA] Improved overall dungeon automation
 
 ## v5.21 Fixes
@@ -49,6 +50,7 @@ All notable changes to this project will be documented in this file.
 - [LHA] Overhauled pathing for semi bosses
 - [LHA] Updated loot_box() to plunder_box()
 - [LHA] Fixed stuck up situations on going to lava gate
+- [LHA] Fixed optimizations on pathing
 - [LHA] Fixed pathing for semi bosses and bosses
 - [PCA] Updated loot_box() to plunder_box()
 - [SCA] Updated loot_box() to plunder_box()
