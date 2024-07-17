@@ -204,7 +204,6 @@ def path_find(unit):
           util.do_fade(0.5)
 
         util.do_select(0.1)
-        util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
         pathing = False
@@ -235,7 +234,6 @@ def path_find(unit):
           util.do_dash(1)
           util.do_fade(0.5)
 
-        util.do_select(0.1)
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -553,7 +551,7 @@ def run_dungeon(runs=1):
     # Click Dungeon
     util.move(677, 361)
     util.move(735, 361, 0.5)
-    util.move_click(735, 361, 0.5)
+    util.click_portal(735, 361)
 
     if difficulty == dungeonList[0]:
       util.move_click(440, 300, 1)
@@ -604,7 +602,6 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    # First Boss
     util.do_deselect_pack()
     util.move(630, 520)
     util.do_fade(0.5)
@@ -628,7 +625,7 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.do_short_buffs()
+    # First Boss
     util.attack_boss()
 
     # Check Macro State
@@ -641,7 +638,7 @@ def run_dungeon(runs=1):
     util.do_fade(1.5)
     util.do_fade(0.5)
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -697,7 +694,7 @@ def run_dungeon(runs=1):
 
     util.move(640, 560)
     util.do_fade(0.5)
-    util.loot_box()
+    util.plunder_box()
 
     # Orphidia Sequence II
     path_find_white_snake()
@@ -749,7 +746,7 @@ def run_dungeon(runs=1):
 
     util.move(640, 560)
     util.do_fade(0.5)
-    util.loot_box()
+    util.plunder_box()
 
     # Orphidia Sequence III
     path_find_white_snake()
@@ -800,7 +797,7 @@ def run_dungeon(runs=1):
 
     util.move(640, 560)
     util.do_fade(0.5)
-    util.loot_final_box()
+    util.plunder_final_box()
 
     # Check Macro State
     if not util.get_macro_state():

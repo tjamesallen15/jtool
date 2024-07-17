@@ -106,7 +106,8 @@ def run_dungeon(runs=1):
     util.move(500, 300)
     util.do_fade(0.5)
 
-    util.move_click(570, 300)
+    # Click Dungeon
+    util.click_portal(570, 300)
 
     # Enter Dungeon
     util.enter_dungeon()
@@ -146,27 +147,38 @@ def run_dungeon(runs=1):
       continue
 
     position_second_boss()
+    util.move_click(670, 380, 0.5)
 
-    util.move_click(670, 380)
+    util.move(375, 150)
+    pyauto.mouseDown(button="right")
+    util.move(1000, 150)
+    pyauto.mouseUp(button="right")
+    pyauto.scroll(-10000)
+    util.wait(1)
+
     util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
-    util.wait(0.5)
+    util.wait(2.5)
 
-    util.move(760, 335)
-    # util.do_fade(1.3)
-    util.do_dash(1.2)
+    util.move_click(450, 520, 1)
 
-    util.move(850, 250)
-    util.do_fade(0.8)
-    # util.do_fade(1.3)
-
-    util.move(810, 320)
-    util.do_dash(1.2)
-    # util.do_dash(1.3)
-
-    util.move(740, 360)
+    util.move(450, 520)
+    util.do_dash(1)
     util.do_fade(0.5)
 
-    util.wait(3)
+    util.move(450, 520)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(1000, 150)
+    pyauto.mouseDown(button="right")
+    util.move(375, 150)
+    pyauto.mouseUp(button="right")
+    pyauto.scroll(-10000)
+    util.wait(2)
+
+    util.move(530, 420)
+    util.do_dash(1)
+
     checking = True
     while checking:
       if not util.get_macro_state():
@@ -193,7 +205,7 @@ def run_dungeon(runs=1):
     util.wait(1)
     util.attack_boss()
     util.cancel_aura(1)
-    util.loot_box(2)
+    util.plunder_box(1, 3)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -201,7 +213,13 @@ def run_dungeon(runs=1):
       continue
 
     util.move(730, 390)
-    util.do_fade(1)
+    util.do_fade(0.5)
+
+    util.move(720, 430)
+    util.do_fade(0.5)
+
+    util.move_click(720, 430, 1)
+    util.wait(1)
 
     dialog_check = True
     while dialog_check:
@@ -236,13 +254,13 @@ def run_dungeon(runs=1):
 
     # Final Boss
     pre_position_final_boss()
-    util.do_short_buffs()
     util.do_battle_mode(7)
+    util.do_short_buffs()
 
     position_final_boss()
     util.attack_boss()
+    util.plunder_box(1, 3)
     util.set_battle_mode(False)
-    util.loot_box(2)
 
     # Check Macro State
     if not util.get_macro_state():

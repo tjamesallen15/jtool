@@ -139,7 +139,6 @@ def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
     run_counter += 1
-    util.set_battle_mode(False)
     util.set_reset_status(False)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
@@ -164,8 +163,7 @@ def run_dungeon(runs=1):
     # Click Dungeon
     util.move(500, 300)
     util.do_dash(1)
-    util.move_click(595, 335, 0.5)
-    util.move_click(595, 335, 0.5)
+    util.click_portal(595, 335)
 
     # Enter Dungeon
     util.enter_dungeon()
@@ -223,7 +221,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -300,7 +298,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -375,7 +373,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -509,7 +507,7 @@ def run_dungeon(runs=1):
 
     # Attack Final Boss
     util.attack_mobs(util.UNIT_SHIRDRAHN, 1, 0.3, 0)
-    util.loot_final_box(3)
+    util.plunder_final_box()
     util.set_battle_mode(False)
 
     # Check Macro State

@@ -477,7 +477,7 @@ def path_backtrack(unit):
       util.log_action(util.MSG_MOBS_FOUND + unit)
       util.log_action(util.MSG_PATH_STOP)
       util.focus_gate(unit, 0)
-      util.loot_box()
+      util.plunder_box()
       backtrack_counter += 5
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_MOBS_FOUND)
@@ -824,7 +824,7 @@ def run_dungeon(runs=1):
     pyauto.scroll(-10000)
 
     # Click Dungeon
-    util.move_click(600, 240)
+    util.click_portal(600, 240)
 
     util.enter_dungeon()
     util.challenge_dungeon()
@@ -876,7 +876,7 @@ def run_dungeon(runs=1):
     util.do_short_buffs()
     util.do_battle_mode()
     util.attack_boss()
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -904,7 +904,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.focus_gate(util.UNIT_GATE_ONE)
-    util.loot_essentials()
+    util.do_plunder(1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -986,7 +986,7 @@ def run_dungeon(runs=1):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
     util.focus_gate(util.UNIT_GATE_TWO, 1)
-    util.loot_essentials()
+    util.do_plunder(1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1042,7 +1042,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.focus_gate(util.UNIT_POWER_SUPPLY)
-    util.loot_essentials()
+    util.do_plunder(1)
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
@@ -1081,7 +1081,7 @@ def run_dungeon(runs=1):
       print(str(counter))
 
     util.focus_gate(util.UNIT_POWER_SUPPLY)
-    util.loot_essentials()
+    util.do_plunder(1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1137,7 +1137,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_select(0.1)
     util.focus_gate(util.UNIT_POWER_SUPPLY, 0)
-    util.loot_essentials()
+    util.do_plunder(1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1152,7 +1152,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1196,7 +1196,7 @@ def run_dungeon(runs=1):
     util.do_short_buffs()
     util.do_battle_mode()
     util.attack_boss()
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1260,7 +1260,7 @@ def run_dungeon(runs=1):
       util.move_click(650, 450, 1.5)
 
     util.focus_gate(util.UNIT_GATE_THREE)
-    util.loot_essentials()
+    util.do_plunder(1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1303,7 +1303,7 @@ def run_dungeon(runs=1):
     util.do_battle_mode()
     util.attack_boss()
     util.set_battle_mode(False)
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1346,7 +1346,7 @@ def run_dungeon(runs=1):
     util.move(800, 400)
     util.do_fade(0.5)
     util.focus_gate(util.UNIT_GATE_FOUR)
-    util.loot_essentials()
+    util.do_plunder(1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1355,7 +1355,7 @@ def run_dungeon(runs=1):
 
     # Final Boss
     util.do_battle_mode()
-    util.do_aura_strict()
+    util.do_aura(0, 1)
     util.do_short_buffs()
 
     # Final Boss Sequence
@@ -1389,7 +1389,7 @@ def run_dungeon(runs=1):
 
     # Final Boss
     util.attack_boss()
-    util.loot_final_box()
+    util.plunder_final_box()
 
     # Check Macro State
     if not util.get_macro_state():

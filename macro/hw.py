@@ -1130,8 +1130,7 @@ def run_dungeon(runs=1):
     # Click Dungeon
     util.move(500, 300)
     util.do_dash(1)
-    util.move_click(595, 335, 0.5)
-    util.move_click(595, 335, 0.5)
+    util.click_portal(595, 335)
 
     # Enter Dungeon
     util.enter_dungeon()
@@ -1224,7 +1223,7 @@ def run_dungeon(runs=1):
     util.do_deselect_pack()
     util.do_short_buffs()
     util.attack_boss()
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1314,7 +1313,7 @@ def run_dungeon(runs=1):
     util.do_battle_mode()
     util.attack_boss()
     util.set_battle_mode(False)
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1410,7 +1409,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     util.attack_boss()
-    util.loot_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1551,7 +1550,7 @@ def run_dungeon(runs=1):
 
     util.move(700, 250)
     util.move_click(700, 360)
-    util.loot_final_box()
+    util.plunder_box()
 
     # Check Macro State
     if not util.get_macro_state():
