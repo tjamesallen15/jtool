@@ -109,6 +109,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move_click(490, 400, 1.5)
 
     util.do_aura(3)
@@ -128,6 +129,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(580, 150)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -217,6 +219,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(630, 600)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -279,6 +282,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(750, 600)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -383,6 +387,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(600, 650)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -445,6 +450,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(330, 300)
     util.do_dash(1.3)
 
@@ -571,6 +577,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(700, 550)
     util.do_dash(1)
 
@@ -648,6 +655,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(700, 160)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -704,6 +712,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(350, 400)
     util.do_dash(1.3)
 
@@ -778,6 +787,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(680, 625)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -847,6 +857,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(680, 150)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -991,6 +1002,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(375, 150)
     pyauto.mouseDown(button="right")
     util.move(1000, 150)
@@ -1100,6 +1112,7 @@ def run_dungeon(runs=1):
       continue
 
     # Going to the Siena Secret Room
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(200, 425)
     util.do_dash(1)
     util.do_fade(0.5)

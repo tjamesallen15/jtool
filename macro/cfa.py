@@ -33,6 +33,7 @@ def initialize(frame, btn, runs=1):
   frame_root.update()
 
 def position_second_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(700, 350)
   util.do_fade(0.5)
 
@@ -54,6 +55,7 @@ def position_second_boss():
   util.do_fade(0.5)
 
 def pre_position_final_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(250, 520)
   util.do_dash(1.2)
 
@@ -70,6 +72,7 @@ def pre_position_final_boss():
   util.do_dash(1.2)
 
 def position_final_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(620, 650)
   util.do_dash(1.2)
 

@@ -2,9 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.31
+
+## v5.31 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+
+## v5.31 Features
+
+- [Dungeons] Added necessary log actions when moving to positions
+
+## v5.31 Fixes
+
+- [HK] Increased count threshold from 20 to 50 when waiting for the third boss
+- [HK] Changed slightly dashing position when coming back for final after doing battle mode
+
 # v5.21
 
 ## v5.21 Dungeons Available
+
 - [HVA] Hazardous Valley (Awakened) [v1.00]
 - [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
 - [SCA] Steamer Crazy (Awakened) [v4.51]
@@ -167,7 +192,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added GUI.
 - [Application] Added Trial Program.
 
-## v1.00
+# v1.00
 
 ## v1.00 Features
 

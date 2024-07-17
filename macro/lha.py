@@ -62,6 +62,7 @@ def path_find_gate(unit=util.UNIT_BLANK):
       util.move_click(700, 250)
 
 def position_fire_guard():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(620, 100)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -87,6 +88,7 @@ def position_fire_guard():
   util.do_fade(0.5)
 
 def position_gate_keeper():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(850, 200)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -142,6 +144,7 @@ def position_gate_keeper():
   util.do_fade(0.5)
 
 def position_lava_gate():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move_click(450, 600)
   util.move_click(450, 600)
   util.move_click(450, 600)
@@ -155,6 +158,7 @@ def position_lava_gate():
   util.move_click(250, 500)
 
 def position_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(720, 400)
   util.do_fade(0.5)
 

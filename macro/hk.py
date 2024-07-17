@@ -49,14 +49,14 @@ def find_mobs(unit=util.UNIT_BLANK):
         util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.6, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
-        find_count += 25
+        find_count += 55
         finding = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
         find_count += 1
 
-      if find_count >= 20:
+      if find_count >= 50:
         finding = False
 
       if finding == False:
@@ -381,6 +381,7 @@ def run_dungeon(runs=1):
       continue
 
     # Going to Portal
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(600, 150)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -432,6 +433,7 @@ def run_dungeon(runs=1):
     pyauto.scroll(-10000)
 
     # Position Last Sequence
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(630, 150)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -449,6 +451,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(620, 150)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -472,6 +475,7 @@ def run_dungeon(runs=1):
 
     util.wait(1)
 
+    util.log_action(util.MSG_MOVING_POSITION)
     if util.get_battle_mode() == 1:
       util.move(620, 550)
       util.do_dash(1)
@@ -488,20 +492,21 @@ def run_dungeon(runs=1):
     util.do_short_buffs()
     util.do_battle_mode()
 
+    util.log_action(util.MSG_MOVING_POSITION)
     if util.get_battle_mode() == 1:
-      util.move(620, 150)
+      util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(620, 150)
+      util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(620, 150)
+      util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
-    util.move(620, 150)
+    util.move(610, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
