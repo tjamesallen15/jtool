@@ -494,11 +494,11 @@ def run_dungeon(runs=1):
 
     util.log_action(util.MSG_MOVING_POSITION)
     if util.get_battle_mode() == 1:
-      util.move(600, 150)
+      util.move(580, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(600, 150)
+      util.move(580, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
