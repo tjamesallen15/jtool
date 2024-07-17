@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 
 ## v5.31 Features
 
+- [Application] Added get mail feature
 - [Dungeons] Added necessary log actions when moving to positions
 
 ## v5.31 Fixes

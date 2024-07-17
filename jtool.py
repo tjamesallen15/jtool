@@ -64,6 +64,7 @@ btn_pause = []
 btn_fury = []
 btn_force = []
 btn_upgrade = []
+btn_mails = []
 lbl_macro = []
 lbl_misc = []
 lbl_current_run = []
@@ -155,6 +156,21 @@ def buy_force():
     log_misc_action(util.MSG_CLICK + str(x+1))
 
   btn_force.config(state="active")
+  frame_root.update()
+
+def get_mails():
+  btn_mails.config(state="disabled")
+  frame_root.update()
+  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+  util.set_cabal_window(cabalwindow)
+  util.go_cabal_window()
+
+  for x in range(int(val_click_count.get())):
+    util.move_click(510, 310, 0.5)
+    util.move_click(510, 525, 0.5)
+    log_misc_action(util.MSG_CLICK + str(x+1))
+
+  btn_mails.config(state="active")
   frame_root.update()
 
 def log_misc_action(message):
@@ -304,20 +320,26 @@ def generate_gui():
   btn_force.config(width=12)
   btn_force.place(x=205, y=40)
 
+  global btn_mails
+  btn_mails = Button(tab_misc, text="Get Mails", command=get_mails)
+  btn_mails.config(width=10)
+  btn_mails.place(x=10, y=75)
+
   lbl_misc_clicks = Label(tab_misc, text="Clicks: ")
-  lbl_misc_clicks.place(x=10, y=80)
+  lbl_misc_clicks.place(x=10, y=115)
 
   global val_click_count
   val_click_count = ttk.Combobox(tab_misc, values=LIST_CLICKS, state="")
   val_click_count.current(0)
   val_click_count.config(width=5)
-  val_click_count.place(x=75, y=80)
+  val_click_count.place(x=75, y=115)
 
   global lbl_misc
   lbl_misc = Label(tab_misc, text="Action: --")
-  lbl_misc.place(x=10, y=110)
+  lbl_misc.place(x=10, y=145)
 
   frame_root.mainloop()
 
 # GENERATE MAIN
 generate_gui()
+

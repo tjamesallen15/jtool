@@ -493,7 +493,7 @@ def run_dungeon(runs=1):
     util.do_battle_mode()
 
     util.log_action(util.MSG_MOVING_POSITION)
-    if util.get_battle_mode() == 1 and util.get_atk_type == 0:
+    if util.get_battle_mode() == 1 and util.get_atk_type() == 0:
       util.move(580, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -505,16 +505,16 @@ def run_dungeon(runs=1):
       util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
-    elif util.get_battle_mode() == 1 and util.get_atk_type == 1:
-      util.move(610, 150)
+    elif util.get_battle_mode() == 1 and util.get_atk_type() == 1:
+      util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(610, 150)
+      util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(610, 150)
+      util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
 
