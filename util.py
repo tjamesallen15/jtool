@@ -22,6 +22,8 @@ val_pots = '9'
 val_bm_aura = '0'
 val_bm3_atk = '-'
 val_bm3 = '='
+val_interval_range = 0.3
+val_interval_melee = 0.8
 val_deselect = Key.esc
 loot_space = Key.space
 
@@ -385,6 +387,12 @@ def get_buffs_status():
 
 def get_shorts_status():
   return is_short_buffs_allowed
+
+def get_interval_melee():
+  return val_interval_melee
+
+def get_interval_range():
+  return val_interval_range
 
 def force_exit_dungeon():
   check_notifications()

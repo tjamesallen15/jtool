@@ -46,7 +46,6 @@ def find_mobs(unit=util.UNIT_BLANK):
     if unit == util.UNIT_OWL_BEAR:
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.6, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
         find_count += 55
@@ -64,7 +63,6 @@ def find_mobs(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_VAOUR_L, grayscale=False, confidence=.7, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
         find_count += 25
@@ -101,7 +99,6 @@ def find_mobs(unit=util.UNIT_BLANK):
     elif unit == util.UNIT_HATCHLING:
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
         find_count += 15
@@ -274,16 +271,13 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    # Attack Second Group
-    util.wait(5)
-    util.attack_mobs(util.UNIT_HATCHLING, 1, 0.3, 0)
-
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.wait(4)
+    # Attack Second Group
+    util.wait(5)
     find_mobs(util.UNIT_HATCHLING)
     try:
       boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
