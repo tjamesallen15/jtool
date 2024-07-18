@@ -65,14 +65,14 @@ def find_mobs(unit=util.UNIT_BLANK):
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(util.IMG_VAOUR_L, grayscale=False, confidence=.7, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
-        find_count += 25
+        find_count += 55
         finding = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
         find_count += 1
 
-      if find_count >= 20:
+      if find_count >= 50:
         finding = False
 
       if finding == False:
@@ -80,35 +80,35 @@ def find_mobs(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(util.IMG_OWLBEAR, grayscale=False, confidence=.7, region=util.get_full_region())
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
         util.focus_mobs(unit, 1, 0, val_sidestep)
       except pyauto.ImageNotFoundException:
         util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
-      try:
-        util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(util.IMG_OWLBEAR_L, grayscale=False, confidence=.7, region=util.get_full_region())
-        util.log_action(util.MSG_MOBS_FOUND + unit)
-        util.focus_mobs(unit, 1, 0, val_sidestep)
-      except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+      # try:
+      #   util.do_select(0.1)
+      #   mobs = pyauto.locateOnScreen(util.IMG_OWLBEAR_L, grayscale=False, confidence=.7, region=util.get_full_region())
+      #   util.log_action(util.MSG_MOBS_FOUND + unit)
+      #   util.focus_mobs(unit, 1, 0, val_sidestep)
+      # except pyauto.ImageNotFoundException:
+      #   util.do_deselect_pack()
+      #   util.log_action(util.MSG_NO_MOBS_FOUND)
 
     elif unit == util.UNIT_HATCHLING:
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
         util.log_action(util.MSG_BOSS_FOUND)
-        find_count += 15
+        find_count += 55
         finding = False
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
         find_count += 1
 
-      if find_count >= 15:
+      if find_count >= 50:
         finding = False
 
       if finding == False:
@@ -116,21 +116,21 @@ def find_mobs(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(util.IMG_HATCHLING, grayscale=False, confidence=.7, region=util.get_full_region())
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
         util.focus_mobs(unit, 1, 0, val_sidestep)
       except pyauto.ImageNotFoundException:
         util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
-      try:
-        util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(util.IMG_HATCHLING_L, grayscale=False, confidence=.7, region=util.get_full_region())
-        util.log_action(util.MSG_MOBS_FOUND + unit)
-        util.focus_mobs(unit, 1, 0, val_sidestep)
-      except pyauto.ImageNotFoundException:
-        util.do_deselect_pack()
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+      # try:
+      #   util.do_select(0.1)
+      #   mobs = pyauto.locateOnScreen(util.IMG_HATCHLING_L, grayscale=False, confidence=.7, region=util.get_full_region())
+      #   util.log_action(util.MSG_MOBS_FOUND + unit)
+      #   util.focus_mobs(unit, 1, 0, val_sidestep)
+      # except pyauto.ImageNotFoundException:
+      #   util.do_deselect_pack()
+      #   util.log_action(util.MSG_NO_MOBS_FOUND)
 
 def run_dungeon(runs=1):
   run_counter = 0

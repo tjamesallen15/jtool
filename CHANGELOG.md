@@ -27,6 +27,8 @@ All notable changes to this project will be documented in this file.
 - [HK] Increased count threshold from 20 to 50 when waiting for the third boss
 - [HK] Changed slightly dashing position when coming back for final after doing battle mode
 - [HK] Fixed second boss sequence
+- [HK] Increased count threshold from 20 to 50 when waiting for the second boss
+- [HK] Changed image reading for second and third group
 
 # v5.21
 
