@@ -151,16 +151,10 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(700, 150)
-    pyauto.mouseDown(button="right")
-    util.move(375, 150)
-    pyauto.mouseUp(button="right")
-    pyauto.scroll(-10000)
-
     # Click Dungeon
-    util.move(500, 300)
-    util.do_dash(1)
-    util.click_portal(595, 335)
+    util.move(400, 500)
+    util.do_dash(0.8)
+    util.click_portal(590, 400)
 
     # Enter Dungeon
     util.enter_dungeon()
@@ -247,6 +241,10 @@ def run_dungeon(runs=1):
         util.move_click(600, 320)
         util.move_click(600, 320)
         util.move_click(600, 320)
+        if util.get_atk_type() == 1:
+          util.move_click(550, 320)
+          util.move_click(550, 320)
+          util.move_click(550, 320)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -321,6 +319,10 @@ def run_dungeon(runs=1):
         util.move_click(600, 320)
         util.move_click(600, 320)
         util.move_click(600, 320)
+        if util.get_atk_type() == 1:
+          util.move_click(550, 320)
+          util.move_click(550, 320)
+          util.move_click(550, 320)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -401,6 +403,10 @@ def run_dungeon(runs=1):
         util.move_click(600, 320)
         util.move_click(600, 320)
         util.move_click(600, 320)
+        if util.get_atk_type() == 1:
+          util.move_click(550, 320)
+          util.move_click(550, 320)
+          util.move_click(550, 320)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)

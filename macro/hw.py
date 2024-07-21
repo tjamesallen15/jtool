@@ -1121,16 +1121,10 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(700, 150)
-    pyauto.mouseDown(button="right")
-    util.move(375, 150)
-    pyauto.mouseUp(button="right")
-    pyauto.scroll(-10000)
-
     # Click Dungeon
-    util.move(500, 300)
-    util.do_dash(1)
-    util.click_portal(595, 335)
+    util.move(400, 500)
+    util.do_dash(0.8)
+    util.click_portal(590, 400)
 
     # Enter Dungeon
     util.enter_dungeon()
