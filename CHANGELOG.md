@@ -29,6 +29,7 @@ All notable changes to this project will be documented in this file.
 - [HK] Fixed second boss sequence
 - [HK] Increased count threshold from 20 to 50 when waiting for the second boss
 - [HK] Changed image reading for second and third group
+- [PCA] Fixed melee adjustments on position for final boss
 
 # v5.21
 

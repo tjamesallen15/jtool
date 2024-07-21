@@ -465,9 +465,10 @@ def run_dungeon(runs=1):
     # Final Boss
     util.do_battle_mode()
     util.wait(2)
+
     if util.get_atk_type() == 0:
-      util.move(520, 400)
-      util.do_dash(0.5)
+      util.move(620, 520)
+      util.do_fade(0.5)
 
     check_count = 0
     checking = True
@@ -498,7 +499,8 @@ def run_dungeon(runs=1):
     util.do_plunder(3)
 
     if util.get_atk_type() == 0:
-      util.move_click(710, 360, 1)
+      util.move(650, 350)
+      util.do_fade(0.5)
 
     util.wait(1)
     checking = True
