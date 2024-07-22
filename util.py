@@ -128,6 +128,8 @@ MSG_NO_SIENA_BOX_FOUND = "No Siena Box Found"
 MSG_CHECKING_SUB_PASS = "Checking Sub Pass"
 MSG_CABAL_WINDOW_FOUND = "Cabal Window Found"
 MSG_NO_CABAL_WINDOW_FOUND = "No Cabal Window Found"
+MSG_LAUNCHER_LOAD = "Launcher Loading"
+MSG_NO_LAUNCHER_LOAD = "Fail Launcher Loading"
 MSG_PLAY_BTN_FOUND = "Play Button Found"
 MSG_NO_PLAY_BTN_FOUND = "No Play Button Found"
 MSG_SUB_PASS_FOUND = "Sub Password Found"
@@ -139,6 +141,10 @@ MSG_TYPE_PASSWORD = "Typing password"
 MSG_TYPE_PIN = "Typing pin"
 MSG_CHECK_RECONNECT = "Check reconnecting"
 MSG_CLEARING_WINDOWS = "Clearing windows"
+MSG_ENTER_WORLD = "Entering world"
+MSG_MOVE_BEAD = "Moving bead window"
+MSG_MOVE_APPLICATION = "Moving application window"
+MSG_SELECT_TASK_BAR = "Selecting taskbar"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
@@ -159,7 +165,8 @@ IMG_DUNGEON = "img/dungeon.jpg"
 IMG_ENTER_DG = "img/enterdg.jpg"
 IMG_END_DG = "img/enddg.jpg"
 IMG_EXIT_DG = "img/exitdg.jpg"
-IMG_CABAL_PLAY = "img/cabalplay.jpg"
+IMG_LAUCHER_LOAD = "img/launcherloading.jpg"
+IMG_LAUNCHER_PLAY = "img/launcherplay.jpg"
 IMG_SUB_PASS = "img/subpass.jpg"
 IMG_DUAL_BOSS = "img/dualboss.jpg"
 IMG_BOSS = "img/boss.jpg"
@@ -388,44 +395,47 @@ def countdown_timer(sec):
 
 def open_cabal_application():
   log_action(MSG_OPEN_APPLICATION)
-  windows_start = pyauto.locateOnScreen(IMG_START_WINDOWS, grayscale=True, confidence=.8)
-  pyauto.moveTo(windows_start[0] + 10, windows_start[1] + 15)
-  pyauto.click(windows_start[0] + 10, windows_start[1] + 15)
-
-  wait(1)
-  pynboard.press("C")
-  pynboard.release("C")
-  time.sleep(0.1)
-  pynboard.press("A")
-  pynboard.release("A")
-  time.sleep(0.1)
-  pynboard.press("B")
-  pynboard.release("B")
-  time.sleep(0.1)
-
-  wait(1)
-  pynboard.press(Key.enter)
-  pynboard.release(Key.enter)
-
-  check_play = True
   check_window = True
   while check_window:
     if check_window == False:
       break
 
-    while check_play:
-      if check_play == False:
-        break
+    windows_start = pyauto.locateOnScreen(IMG_START_WINDOWS, grayscale=True, confidence=.8)
+    pyauto.moveTo(windows_start[0] + 10, windows_start[1] + 15)
+    pyauto.click(windows_start[0] + 10, windows_start[1] + 15)
 
-      try:
-        countdown_timer(10)
-        cabal_play = pyauto.locateOnScreen(IMG_CABAL_PLAY, grayscale=False, confidence=.9)
-        log_action(MSG_PLAY_BTN_FOUND)
-        pyauto.moveTo(cabal_play[0] + 20, cabal_play[1] + 15)
-        pyauto.click(cabal_play[0] + 20, cabal_play[1] + 15)
-        check_play = False
-      except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_PLAY_BTN_FOUND)
+    wait(1)
+    pynboard.press("C")
+    pynboard.release("C")
+    time.sleep(0.1)
+    pynboard.press("A")
+    pynboard.release("A")
+    time.sleep(0.1)
+    pynboard.press("B")
+    pynboard.release("B")
+    time.sleep(0.1)
+
+    wait(1)
+    pynboard.press(Key.enter)
+    pynboard.release(Key.enter)
+    countdown_timer(10)
+
+    try:
+      launcher_loading = pyauto.locateOnScreen(IMG_LAUCHER_LOAD, grayscale=False, confidence=.9)
+      log_action(MSG_NO_LAUNCHER_LOAD)
+      pyauto.moveTo(launcher_loading[0] + 20, launcher_loading[1] + 15)
+      continue
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_LAUNCHER_LOAD)
+
+    try:
+      launcher_play = pyauto.locateOnScreen(IMG_LAUNCHER_PLAY, grayscale=False, confidence=.9)
+      log_action(MSG_PLAY_BTN_FOUND)
+      pyauto.moveTo(launcher_play[0] + 20, launcher_play[1] + 15)
+      pyauto.click(launcher_play[0] + 20, launcher_play[1] + 15)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_PLAY_BTN_FOUND)
+      continue
 
     try:
       countdown_timer(val_load_time)
@@ -433,12 +443,22 @@ def open_cabal_application():
       log_action(MSG_CABAL_WINDOW_FOUND)
       set_cabal_window(window)
       initialize_region()
-
-      wait(1)
-      go_cabal_window()
       check_window = False
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_CABAL_WINDOW_FOUND)
+
+  countdown_timer(2)
+
+def move_cabal_application():
+  log_action(MSG_MOVE_APPLICATION)
+  go_cabal_window()
+
+  application = pyauto.getActiveWindow()
+
+  if val_resolution == "2560x1440":
+    application.moveTo(1260, 360)
+  elif val_resolution == "1920x1080":
+    application.moveTo(630, 150)
 
   countdown_timer(2)
 
@@ -482,27 +502,28 @@ def type_pin():
   move_click(580, 530)
 
 def enter_cabal_world():
+  log_action(MSG_ENTER_WORLD)
   pynboard.press(Key.enter)
   pynboard.release(Key.enter)
   wait(5)
 
   pynboard.press(Key.right)
   pynboard.release(Key.right)
-  wait(0.5)
+  time.sleep(0.5)
 
   pynboard.press(Key.down)
   pynboard.release(Key.down)
   pynboard.press(Key.down)
   pynboard.release(Key.down)
-  wait(3)
+  time.sleep(3)
 
   pynboard.press(Key.enter)
   pynboard.release(Key.enter)
-  wait(2)
+  time.sleep(2)
 
   pynboard.press(Key.enter)
   pynboard.release(Key.enter)
-  wait(5)
+  countdown_timer(5)
   log_action(MSG_CHECKING_SUB_PASS)
 
   try:
@@ -529,7 +550,7 @@ def enter_cabal_world():
   wait(1)
 
 def move_bead_window():
-  print(get_screen_region())
+  log_action(MSG_MOVE_BEAD)
   bead_window = pyauto.locateOnScreen("img/bead.jpg", grayscale=False, confidence=.8, region=get_screen_region())
   pyauto.moveTo(bead_window[0] + 10, bead_window[1] + 10)
 
@@ -538,6 +559,7 @@ def move_bead_window():
   pyauto.mouseUp(button="left")
 
 def select_task_bar():
+  log_action(MSG_SELECT_TASK_BAR)
   coords = val_resolution.split('x')
   x = int(coords[0]) / 2
   y = int(coords[1]) - 20
@@ -565,6 +587,7 @@ def check_reconnect(run_count):
       exit_cabal_application()
       select_task_bar()
       open_cabal_application()
+      move_cabal_application()
       type_pword()
       enter_cabal_world()
       move_bead_window()

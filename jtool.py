@@ -8,7 +8,6 @@ from tkinter import ttk
 from pynput import keyboard
 from pynput.keyboard import Key, Listener, Controller
 import pyautogui as pyauto
-import pygetwindow as pywin
 import pyscreeze
 import keyboard as shortcut
 

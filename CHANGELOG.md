@@ -27,7 +27,9 @@ All notable changes to this project will be documented in this file.
 
 ## v5.31 Fixes
 
-- [Application] Disabled party and leader feature temporarily
+- [Application] Disabled party and leader feature
+ temporarily
+- [Application] Improved functionality of reconnect
 - [HK] Increased count threshold from 20 to 50 when waiting for the third boss
 - [HK] Changed slightly dashing position when coming back for final after doing battle mode
 - [HK] Fixed second boss sequence
