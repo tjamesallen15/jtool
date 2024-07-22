@@ -21,8 +21,9 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Added get mail feature
 - [Application] Added reconnect feature in Developmental Phase
+- [Application] Added move bead window
 - [Dungeons] Added necessary log actions when moving to positions
-- [Application] Added reconnect check in Developmental Phase
+- [Dungeon] Added reconnect check in Developmental Phase
 
 ## v5.31 Fixes
 

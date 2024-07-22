@@ -526,6 +526,16 @@ def enter_cabal_world():
 
   pynboard.press(Key.esc)
   pynboard.release(Key.esc)
+  wait(1)
+
+def move_bead_window():
+  print(get_screen_region())
+  bead_window = pyauto.locateOnScreen("img/bead.jpg", grayscale=False, confidence=.8, region=get_screen_region())
+  pyauto.moveTo(bead_window[0] + 10, bead_window[1] + 10)
+
+  pyauto.mouseDown(button="left")
+  move(100, 700)
+  pyauto.mouseUp(button="left")
 
 def select_task_bar():
   coords = val_resolution.split('x')
@@ -557,6 +567,7 @@ def check_reconnect(run_count):
       open_cabal_application()
       type_pword()
       enter_cabal_world()
+      move_bead_window()
       val_run_recon_stack += run_count
 
 def get_region():
