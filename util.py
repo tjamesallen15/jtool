@@ -28,7 +28,7 @@ val_deselect = Key.esc
 loot_space = Key.space
 
 # GLOBAL VARIABLES
-cabalwindow = []
+cabal_window = []
 frame_root = []
 lbl_current_run = []
 lbl_macro = []
@@ -43,10 +43,15 @@ is_short_buffs_allowed = 1
 is_veradrix_allowed = 0
 is_party = 0
 is_leader = 0
-val_runs = 1
 aura_counter = 0
 atk_type = 0
-
+val_runs = 1
+val_run_recon = 0
+val_run_recon_stack = 0
+val_pword = 'default'
+val_pin = '123'
+val_resolution = '0'
+val_load_time = 0
 
 region_normal_bar = []
 region_mode_bar = []
@@ -55,12 +60,13 @@ region_full_normal_bar = []
 region_full_mode_bar = []
 region_notification = []
 region_dialog = []
+region_sub_screen = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x250"
 APP_NAME = "Cabal JTool "
-APP_VERSION = "v5.21"
+APP_VERSION = "v5.31"
 APP_FULL_NAME = APP_NAME + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -119,15 +125,42 @@ MSG_NO_UMPRA_WEAK_FOUND = "No Umpra The Weak Found"
 MSG_CHECK_SIENA_BOX = "Checking Siena Box"
 MSG_SIENA_BOX_FOUND = "Found Siena Box"
 MSG_NO_SIENA_BOX_FOUND = "No Siena Box Found"
+MSG_CHECKING_SUB_PASS = "Checking Sub Pass"
+MSG_CABAL_WINDOW_FOUND = "Cabal Window Found"
+MSG_NO_CABAL_WINDOW_FOUND = "No Cabal Window Found"
+MSG_PLAY_BTN_FOUND = "Play Button Found"
+MSG_NO_PLAY_BTN_FOUND = "No Play Button Found"
+MSG_SUB_PASS_FOUND = "Sub Password Found"
+MSG_NO_SUB_PASS_FOUND = "No Sub Password Found"
+MSG_COUNTDOWN = "Countdown, "
+MSG_OPEN_APPLICATION = "Opening application"
+MSG_CLOSE_APPLICATION = "Closing application"
+MSG_TYPE_PASSWORD = "Typing password"
+MSG_TYPE_PIN = "Typing pin"
+MSG_CHECK_RECONNECT = "Check reconnecting"
+MSG_CLEARING_WINDOWS = "Clearing windows"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
+IMG_ZERO = "img/0.jpg"
+IMG_ONE = "img/1.jpg"
+IMG_TWO = "img/2.jpg"
+IMG_THREE = "img/3.jpg"
+IMG_FOUR = "img/4.jpg"
+IMG_FIVE = "img/5.jpg"
+IMG_SIX = "img/6.jpg"
+IMG_SEVEN = "img/7.jpg"
+IMG_EIGHT = "img/8.jpg"
+IMG_NINE = "img/9.jpg"
+IMG_START_WINDOWS = "img/startwindows.jpg"
 IMG_CABAL_WINDOW = "img/cabalwindow.jpg"
 IMG_CHALLENGE_DG = "img/challengedg.jpg"
 IMG_DUNGEON = "img/dungeon.jpg"
 IMG_ENTER_DG = "img/enterdg.jpg"
 IMG_END_DG = "img/enddg.jpg"
 IMG_EXIT_DG = "img/exitdg.jpg"
+IMG_CABAL_PLAY = "img/cabalplay.jpg"
+IMG_SUB_PASS = "img/subpass.jpg"
 IMG_DUAL_BOSS = "img/dualboss.jpg"
 IMG_BOSS = "img/boss.jpg"
 IMG_SEMI_BOSS = "img/semiboss.jpg"
@@ -208,8 +241,8 @@ def initialize(window, frame, mlbl, rlbl):
   global macro
   macro = True
 
-  global cabalwindow
-  cabalwindow = window
+  global cabal_window
+  cabal_window = window
 
   global frame_root
   frame_root = frame
@@ -220,29 +253,7 @@ def initialize(window, frame, mlbl, rlbl):
   global lbl_current_run
   lbl_current_run = rlbl
 
-  global region_normal_bar
-  region_normal_bar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
-
-  global region_mode_bar
-  region_mode_bar = (int(cabalwindow[0] + 350), int(cabalwindow[1] + 25), 325, 30)
-
-  global region_screen
-  region_screen = (int(cabalwindow[0]), int(cabalwindow[1]) + 20, 1265, 720)
-
-  global region_full_normal_bar
-  region_full_normal_bar = (int(cabalwindow[0] + 477), int(cabalwindow[1] + 25), 283, 30)
-
-  global region_full_mode_bar
-  region_full_mode_bar = (int(cabalwindow[0] + 354), int(cabalwindow[1] + 25), 565, 30)
-
-  global region_notification
-  region_notification = (int(cabalwindow[0]) + 1235, int(cabalwindow[1]) + 270, 30, 400)
-
-  global region_dialog
-  region_dialog = (int(cabalwindow[0]) + 5, int(cabalwindow[1]) + 270, 30, 400)
-
-
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1, run_recon=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
@@ -270,15 +281,55 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, ru
   global val_runs
   val_runs = runs
 
+  global val_run_recon
+  val_run_recon = int(run_recon)
+
+  global val_pword
+  val_pword = pword
+
+  global val_pin
+  val_pin = pin
+
+  global val_resolution
+  val_resolution = resolution
+
+  global val_load_time
+  val_load_time = load_time
+
+def initialize_region():
+  global region_normal_bar
+  region_normal_bar = (int(cabal_window[0] + 475), int(cabal_window[1] + 25), 45, 30)
+
+  global region_mode_bar
+  region_mode_bar = (int(cabal_window[0] + 350), int(cabal_window[1] + 25), 325, 30)
+
+  global region_screen
+  region_screen = (int(cabal_window[0]), int(cabal_window[1]) + 20, 1265, 720)
+
+  global region_full_normal_bar
+  region_full_normal_bar = (int(cabal_window[0] + 477), int(cabal_window[1] + 25), 283, 30)
+
+  global region_full_mode_bar
+  region_full_mode_bar = (int(cabal_window[0] + 354), int(cabal_window[1] + 25), 565, 30)
+
+  global region_notification
+  region_notification = (int(cabal_window[0]) + 1235, int(cabal_window[1]) + 270, 30, 400)
+
+  global region_dialog
+  region_dialog = (int(cabal_window[0]) + 5, int(cabal_window[1]) + 270, 30, 400)
+
+  global region_sub_screen
+  region_sub_screen = (int(cabal_window[0]) + 475, int(cabal_window[1] + 280), 300, 300)
+
 def set_cabal_window(window):
-  global cabalwindow
-  cabalwindow = window
+  global cabal_window
+  cabal_window = window
 
 def go_cabal_window():
   move_click(50, 15)
 
 def move(x, y, sec=0):
-  pyauto.moveTo(cabalwindow[0] + x, cabalwindow[1] + y)
+  pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
 
   if (sec != 0):
     time.sleep(sec)
@@ -290,8 +341,8 @@ def move_rel(x, y, ref, sec=0):
     time.sleep(sec)
 
 def move_click(x, y, sec=0):
-  pyauto.moveTo(cabalwindow[0] + x, cabalwindow[1] + y)
-  pyauto.click(cabalwindow[0] + x, cabalwindow[1] + y)
+  pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
+  pyauto.click(cabal_window[0] + x, cabal_window[1] + y)
 
   if (sec != 0):
     time.sleep(sec)
@@ -307,11 +358,11 @@ def wait(sec=1):
   log_action(MSG_WAIT)
   time.sleep(sec)
 
-def log_run(runNumber):
-  runBuilder = StringVar()
-  runBuilder = MSG_RUN_NUMBER + str(runNumber) + " | " + get_total_run_count()
-  print(runBuilder)
-  lbl_current_run.config(text=runBuilder)
+def log_run(run_number):
+  run_builder = StringVar()
+  run_builder = MSG_RUN_NUMBER + str(run_number) + " | " + str(get_total_run_count())
+  print(run_builder)
+  lbl_current_run.config(text=run_builder)
   frame_root.update()
 
 def log_action(message):
@@ -329,6 +380,184 @@ def terminate():
 def pause():
   log_action(MSG_PAUSE)
   wait(15)
+
+def countdown_timer(sec):
+  for x in range(sec):
+    log_action(MSG_COUNTDOWN + str(x+1))
+    time.sleep(1)
+
+def open_cabal_application():
+  log_action(MSG_OPEN_APPLICATION)
+  windows_start = pyauto.locateOnScreen(IMG_START_WINDOWS, grayscale=True, confidence=.8)
+  pyauto.moveTo(windows_start[0] + 10, windows_start[1] + 15)
+  pyauto.click(windows_start[0] + 10, windows_start[1] + 15)
+
+  wait(1)
+  pynboard.press("C")
+  pynboard.release("C")
+  time.sleep(0.1)
+  pynboard.press("A")
+  pynboard.release("A")
+  time.sleep(0.1)
+  pynboard.press("B")
+  pynboard.release("B")
+  time.sleep(0.1)
+
+  wait(1)
+  pynboard.press(Key.enter)
+  pynboard.release(Key.enter)
+
+  check_play = True
+  check_window = True
+  while check_window:
+    if check_window == False:
+      break
+
+    while check_play:
+      if check_play == False:
+        break
+
+      try:
+        countdown_timer(10)
+        cabal_play = pyauto.locateOnScreen(IMG_CABAL_PLAY, grayscale=False, confidence=.9)
+        log_action(MSG_PLAY_BTN_FOUND)
+        pyauto.moveTo(cabal_play[0] + 20, cabal_play[1] + 15)
+        pyauto.click(cabal_play[0] + 20, cabal_play[1] + 15)
+        check_play = False
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_PLAY_BTN_FOUND)
+
+    try:
+      countdown_timer(val_load_time)
+      window = pyauto.locateOnScreen(IMG_CABAL_WINDOW, grayscale=False, confidence=.8)
+      log_action(MSG_CABAL_WINDOW_FOUND)
+      set_cabal_window(window)
+      initialize_region()
+
+      wait(1)
+      go_cabal_window()
+      check_window = False
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_CABAL_WINDOW_FOUND)
+
+  countdown_timer(2)
+
+def type_pword():
+  log_action(MSG_TYPE_PASSWORD)
+  for x in val_pword:
+    pynboard.press(x)
+    pynboard.release(x)
+    time.sleep(0.1)
+
+def type_pin():
+  log_action(MSG_TYPE_PIN)
+  for x in val_pin:
+    if x == "1":
+      pin_number = pyauto.locateOnScreen(IMG_ONE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "2":
+      pin_number = pyauto.locateOnScreen(IMG_TWO, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "3":
+      pin_number = pyauto.locateOnScreen(IMG_THREE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "4":
+      pin_number = pyauto.locateOnScreen(IMG_FOUR, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "5":
+      pin_number = pyauto.locateOnScreen(IMG_FIVE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "6":
+      pin_number = pyauto.locateOnScreen(IMG_SIX, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "7":
+      pin_number = pyauto.locateOnScreen(IMG_SEVEN, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "8":
+      pin_number = pyauto.locateOnScreen(IMG_EIGHT, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    elif x == "9":
+      pin_number = pyauto.locateOnScreen(IMG_NINE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    else:
+      pin_number = pyauto.locateOnScreen(IMG_ZERO, grayscale=False, confidence=.8, region=get_sub_screen_region())
+
+    pyauto.moveTo(pin_number[0] + 10, pin_number[1] + 15)
+    time.sleep(0.5)
+    pyauto.click(pin_number[0] + 10, pin_number[1] + 15)
+    time.sleep(0.5)
+
+  move(580, 530)
+  move_click(580, 530)
+
+def enter_cabal_world():
+  pynboard.press(Key.enter)
+  pynboard.release(Key.enter)
+  wait(5)
+
+  pynboard.press(Key.right)
+  pynboard.release(Key.right)
+  wait(0.5)
+
+  pynboard.press(Key.down)
+  pynboard.release(Key.down)
+  pynboard.press(Key.down)
+  pynboard.release(Key.down)
+  wait(3)
+
+  pynboard.press(Key.enter)
+  pynboard.release(Key.enter)
+  wait(2)
+
+  pynboard.press(Key.enter)
+  pynboard.release(Key.enter)
+  wait(5)
+  log_action(MSG_CHECKING_SUB_PASS)
+
+  try:
+    sub_pass = pyauto.locateOnScreen(IMG_SUB_PASS, grayscale=False, confidence=.8, region=get_sub_screen_region())
+    log_action(MSG_SUB_PASS_FOUND)
+    type_pin()
+    wait(2)
+
+    pynboard.press(Key.enter)
+    pynboard.release(Key.enter)
+  except pyauto.ImageNotFoundException:
+    log_action(MSG_NO_SUB_PASS_FOUND)
+
+  wait(10)
+  log_action(MSG_CLEARING_WINDOWS)
+  pynboard.press(Key.esc)
+  pynboard.release(Key.esc)
+
+  pynboard.press(Key.esc)
+  pynboard.release(Key.esc)
+
+  pynboard.press(Key.esc)
+  pynboard.release(Key.esc)
+
+def select_task_bar():
+  coords = val_resolution.split('x')
+  x = int(coords[0]) / 2
+  y = int(coords[1]) - 20
+
+  for i in range(3):
+    pyauto.moveTo(x, y)
+    pyauto.click(x, y)
+
+def exit_cabal_application():
+  log_action(MSG_CLOSE_APPLICATION)
+  go_cabal_window()
+
+  move(1260, 15)
+  move_click(1260, 15)
+
+  pynboard.press(Key.enter)
+  pynboard.release(Key.enter)
+  countdown_timer(5)
+
+def check_reconnect(run_count):
+  log_action(MSG_CHECK_RECONNECT)
+  global val_run_recon_stack
+  if val_run_recon > 0:
+    if val_run_recon == (run_count - val_run_recon_stack):
+      exit_cabal_application()
+      select_task_bar()
+      open_cabal_application()
+      type_pword()
+      enter_cabal_world()
+      val_run_recon_stack += run_count
 
 def get_region():
   if is_battle_mode and atk_type == 1:
@@ -350,6 +579,9 @@ def get_notification_region():
 
 def get_dialog_region():
   return region_dialog
+
+def get_sub_screen_region():
+  return region_sub_screen
 
 def get_atk_type():
   return atk_type

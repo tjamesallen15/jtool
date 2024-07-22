@@ -56,7 +56,10 @@ LIST_DUNGEON = [
 ]
 
 LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
+LIST_RUN_RECON = [0, 30, 40, 50, 100]
 LIST_CLICKS = [10, 20, 30, 40, 50, 100, 200, 500]
+LIST_RESOLUTION = ["2560x1440", "1920x1080"]
+LIST_LOAD_TIME = [30, 45, 60, 75, 90, 105, 120]
 
 list_dg = []
 btn_start = []
@@ -70,7 +73,10 @@ lbl_misc = []
 lbl_current_run = []
 frame_root = []
 val_run_count = []
+val_run_recon = []
 val_click_count = []
+val_pword = []
+val_pin = []
 
 val_mode = 0
 val_buffs = 1
@@ -79,21 +85,29 @@ val_atk_type = 0
 val_vera = 0
 val_party = 0
 val_leader = 0
+val_resolution = 0
+val_load_time = 0
 
 def start():
-  cabalwindow = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
   choice = list_dg.get()
   mode = val_mode.get()
   buff = val_buffs.get()
   short = val_shorts.get()
-  runs = val_run_count.get()
+  runs = int(val_run_count.get())
   atk_type = val_atk_type.get()
   vera = val_vera.get()
   party = val_party.get()
   leader = val_leader.get()
+  run_recon = val_run_recon.get()
+  pword = val_pword.get()
+  pin = val_pin.get()
+  reso = val_resolution.get()
+  load_time = int(val_load_time.get())
 
-  util.initialize(cabalwindow, frame_root, lbl_macro, lbl_current_run)
-  util.set_variables(mode, buff, short, atk_type, vera, party, leader, runs)
+  util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run)
+  util.initialize_region()
+  util.set_variables(mode, buff, short, atk_type, vera, party, leader, runs, run_recon, pword, pin, reso, load_time)
 
   if (choice == LIST_MASTER[0]):
     hva.initialize(frame_root, btn_start, runs)
@@ -119,8 +133,8 @@ def start():
 def buy_fury():
   btn_fury.config(state="disabled")
   frame_root.update()
-  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-  util.set_cabal_window(cabalwindow)
+  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -133,8 +147,8 @@ def buy_fury():
 def buy_upgrade():
   btn_upgrade.config(state="disabled")
   frame_root.update()
-  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-  util.set_cabal_window(cabalwindow)
+  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -147,8 +161,8 @@ def buy_upgrade():
 def buy_force():
   btn_force.config(state="disabled")
   frame_root.update()
-  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-  util.set_cabal_window(cabalwindow)
+  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -161,8 +175,8 @@ def buy_force():
 def get_mails():
   btn_mails.config(state="disabled")
   frame_root.update()
-  cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-  util.set_cabal_window(cabalwindow)
+  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -196,8 +210,10 @@ def generate_gui():
 
   tab_control = ttk.Notebook(frame_root)
   tab_dungeon = ttk.Frame(tab_control)
+  tab_premium = ttk.Frame(tab_control)
   tab_misc = ttk.Frame(tab_control)
   tab_control.add(tab_dungeon, text ='Dungeon')
+  tab_control.add(tab_premium, text ='Premium')
   tab_control.add(tab_misc, text ='Misc')
   tab_control.pack(expand = 1, fill ="both")
 
@@ -225,11 +241,6 @@ def generate_gui():
   btn_start.config(width=10)
   btn_start.place(x=230, y=40)
 
-  # global btn_fury
-  # btn_fury = Button(tab_dungeon, text="Fury", command=buy_fury)
-  # btn_fury.config(width=10)
-  # btn_fury.place(x=145, y=40)
-
   global lbl_current_run
   lbl_current_run = Label(tab_dungeon, text="Run #: --")
   lbl_current_run.place(x=140, y=105)
@@ -242,20 +253,20 @@ def generate_gui():
   chkbtn_mode = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_mode)
   chkbtn_mode.place(x=75, y=76)
 
-  lbl_party = Label(tab_dungeon, text="Party: ")
+  lbl_party = Label(tab_dungeon, text="Party: ", state="disabled")
   lbl_party.place(x=140, y=75)
 
   global val_party
   val_party = IntVar(value=0)
-  chkbtn_party = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_party)
+  chkbtn_party = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_party, state="disabled")
   chkbtn_party.place(x=185, y=76)
 
-  lbl_leader = Label(tab_dungeon, text="Leader: ")
+  lbl_leader = Label(tab_dungeon, text="Leader: ", state="disabled")
   lbl_leader.place(x=235, y=75)
 
   global val_leader
   val_leader = IntVar(value=0)
-  chkbtn_leader = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_leader)
+  chkbtn_leader = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_leader, state="disabled")
   chkbtn_leader.place(x=293, y=76)
 
   lbl_license = Label(tab_dungeon, text="Status: Free")
@@ -301,6 +312,53 @@ def generate_gui():
   chkbtn_vera = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_vera)
   chkbtn_vera.place(x=75, y=196)
 
+  # Tab Premium
+  lbl_run_recon = Label(tab_premium, text="Reconnect every run(s): ")
+  lbl_run_recon.place(x=10, y=10)
+
+  global val_run_recon
+  val_run_recon = ttk.Combobox(tab_premium, values=LIST_RUN_RECON, state="")
+  val_run_recon.current(0)
+  val_run_recon.config(width=5)
+  val_run_recon.place(x=165, y=10)
+
+  lbl_recon_note = Label(tab_premium, text="0 means off.")
+  lbl_recon_note.place(x=237, y=10)
+
+  lbl_pword = Label(tab_premium, text="Password: ")
+  lbl_pword.place(x=10, y=43)
+
+  global val_pword
+  val_pword = StringVar()
+  entry_pword = Entry(tab_premium, show="*", textvariable=val_pword, width=15)
+  entry_pword.place(x=85, y=43)
+
+  lbl_pin = Label(tab_premium, text="PIN: ")
+  lbl_pin.place(x=205, y=43)
+
+  global val_pin
+  val_pin = StringVar()
+  entry_pin = Entry(tab_premium, show="*", textvariable=val_pin, width=10)
+  entry_pin.place(x=240, y=43)
+
+  lbl_resolution = Label(tab_premium, text="Resolution: ")
+  lbl_resolution.place(x=10, y=75)
+
+  global val_resolution
+  val_resolution = ttk.Combobox(tab_premium, values=LIST_RESOLUTION, state="readonly")
+  val_resolution.current(0)
+  val_resolution.config(width=12)
+  val_resolution.place(x=85, y=75)
+
+  lbl_load_time = Label(tab_premium, text="Load Time: ")
+  lbl_load_time.place(x=10, y=105)
+
+  global val_load_time
+  val_load_time = ttk.Combobox(tab_premium, values=LIST_LOAD_TIME, state="readonly")
+  val_load_time.current(0)
+  val_load_time.config(width=12)
+  val_load_time.place(x=85, y=105)
+
   # Tab Misc
   lbl_step = Label(tab_misc, text="Open NPC Store before clicking the buy buttons.")
   lbl_step.place(x=10, y=10)
@@ -342,4 +400,3 @@ def generate_gui():
 
 # GENERATE MAIN
 generate_gui()
-

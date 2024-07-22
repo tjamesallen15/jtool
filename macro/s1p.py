@@ -28,15 +28,16 @@ def initialize(frame, btn, runs=1):
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state="disabled")
   frame_root.update()
-  run_dungeon(int(runs))
+  run_dungeon(runs)
   btn_start.config(state="active")
   frame_root.update()
 
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    run_counter += 1
+    util.check_reconnect(run_counter)
     util.set_reset_status(False)
+    run_counter += 1
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
