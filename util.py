@@ -460,6 +460,10 @@ def move_cabal_application():
   elif val_resolution == "1920x1080":
     application.moveTo(630, 150)
 
+  window = pyauto.locateOnScreen(IMG_CABAL_WINDOW, grayscale=False, confidence=.8)
+  set_cabal_window(window)
+  initialize_region()
+
   countdown_timer(2)
 
 def type_pword():
@@ -509,24 +513,24 @@ def enter_cabal_world():
 
   pynboard.press(Key.right)
   pynboard.release(Key.right)
-  time.sleep(0.5)
+  time.sleep(0.1)
 
   pynboard.press(Key.down)
   pynboard.release(Key.down)
+  time.sleep(0.1)
   pynboard.press(Key.down)
   pynboard.release(Key.down)
-  time.sleep(3)
+  time.sleep(0.1)
 
   pynboard.press(Key.enter)
   pynboard.release(Key.enter)
-  time.sleep(2)
-
-  pynboard.press(Key.enter)
-  pynboard.release(Key.enter)
-  countdown_timer(5)
-  log_action(MSG_CHECKING_SUB_PASS)
+  time.sleep(5)
 
   try:
+    pynboard.press(Key.enter)
+    pynboard.release(Key.enter)
+    countdown_timer(5)
+    log_action(MSG_CHECKING_SUB_PASS)
     sub_pass = pyauto.locateOnScreen(IMG_SUB_PASS, grayscale=False, confidence=.8, region=get_sub_screen_region())
     log_action(MSG_SUB_PASS_FOUND)
     type_pin()
@@ -547,7 +551,7 @@ def enter_cabal_world():
 
   pynboard.press(Key.esc)
   pynboard.release(Key.esc)
-  wait(1)
+  wait(3)
 
 def move_bead_window():
   log_action(MSG_MOVE_BEAD)
