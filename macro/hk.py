@@ -135,7 +135,6 @@ def find_mobs(unit=util.UNIT_BLANK):
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    util.check_reconnect(run_counter)
     run_counter += 1
     util.set_reset_status(False)
     util.check_reconnect(run_counter)

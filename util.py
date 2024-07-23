@@ -139,7 +139,7 @@ MSG_OPEN_APPLICATION = "Opening application"
 MSG_CLOSE_APPLICATION = "Closing application"
 MSG_TYPE_PASSWORD = "Typing password"
 MSG_TYPE_PIN = "Typing pin"
-MSG_CHECK_RECONNECT = "Check reconnecting"
+MSG_CHECK_RECONNECT = "Check reconnecting status"
 MSG_CLEARING_WINDOWS = "Clearing windows"
 MSG_ENTER_WORLD = "Entering world"
 MSG_MOVE_BEAD = "Moving bead window"
@@ -580,9 +580,9 @@ def exit_cabal_application():
   countdown_timer(5)
 
 def check_reconnect(run_count):
-  log_action(MSG_CHECK_RECONNECT)
   global val_run_recon_stack
   if val_run_recon > 0:
+    log_action(MSG_CHECK_RECONNECT)
     if val_run_recon == (run_count - val_run_recon_stack):
       exit_cabal_application()
       select_task_bar()
