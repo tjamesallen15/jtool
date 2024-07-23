@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 - [HK] Changed positioning when entering portal
 - [HW] Changed positioning when entering portal
 - [PCA] Fixed melee adjustments on position for final boss
+- [S1P] Fixed a bug where characters would not get into portal after dashing
 
 # v5.21
 
