@@ -53,9 +53,10 @@ def run_dungeon(runs=1):
       continue
 
     # Click Dungeon
-    util.move(450, 600)
+    # util.move(470, 590)
+    util.move(500, 610)
     util.do_dash(1)
-    util.click_portal(640, 380)
+    util.click_portal(620, 380)
 
     # Enter Dungeon
     util.enter_dungeon()
