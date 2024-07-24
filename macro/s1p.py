@@ -1035,6 +1035,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Umpra The Weak Sequence
+    util.log_action(util.MSG_CHECK_UMPRA_WEAK)
     checking = True
     count_umpra = 0
     while checking:
@@ -1052,7 +1053,6 @@ def run_dungeon(runs=1):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_UMPRA_WEAK)
         umpra = pyauto.locateOnScreen(util.IMG_UMPRA_WEAK, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_UMPRA_WEAK_FOUND)
         util.focus_mobs(util.UNIT_UMPRA_WEAK, 0, 0, val_sidestep)
@@ -1163,6 +1163,7 @@ def run_dungeon(runs=1):
     # util.move_click(15, 535, 0.8)
 
     # Siena Box Sequence
+    util.log_action(util.MSG_CHECK_SIENA_BOX)
     checking = True
     while checking:
       if not util.get_macro_state():
@@ -1174,7 +1175,6 @@ def run_dungeon(runs=1):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_SIENA_BOX)
         siena = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_SIENA_BOX_FOUND)
         util.wait(1)
