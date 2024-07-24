@@ -1178,7 +1178,7 @@ def run_dungeon(runs=1):
         siena = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_SIENA_BOX_FOUND)
         util.wait(1)
-        util.plunder_ref_box(0, 4, util.IMG_SIENA)
+        util.plunder_ref_box(0, 10, util.IMG_SIENA)
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_SIENA_BOX_FOUND)

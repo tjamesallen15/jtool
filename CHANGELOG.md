@@ -39,6 +39,7 @@ All notable changes to this project will be documented in this file.
 - [HW] Changed positioning when entering portal
 - [PCA] Fixed melee adjustments on position for final boss
 - [S1P] Fixed a bug where characters would not get into portal after dashing
+- [S1P] Adjustments on siena box plunder from 4 to 10
 
 # v5.21
 
