@@ -44,8 +44,7 @@ def run_dungeon(runs=1):
     # Click Cabal Window
     util.go_cabal_window()
     util.release_keys()
-    util.go_skill_slot(0.5)
-    util.do_buffs()
+    util.go_skill_slot(0.1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -55,12 +54,13 @@ def run_dungeon(runs=1):
     # Click Dungeon
     # util.move(470, 590)
     util.move(500, 610)
-    util.do_dash(1)
+    util.do_dash(0.1)
     util.click_portal(620, 380)
 
     # Enter Dungeon
     util.enter_dungeon()
     util.challenge_dungeon()
+    util.do_buffs()
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
