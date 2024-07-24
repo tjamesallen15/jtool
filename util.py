@@ -132,6 +132,9 @@ MSG_LAUNCHER_LOAD = "Launcher Loading"
 MSG_NO_LAUNCHER_LOAD = "Fail Launcher Loading"
 MSG_PLAY_BTN_FOUND = "Play Button Found"
 MSG_NO_PLAY_BTN_FOUND = "No Play Button Found"
+MSG_CHECK_BEAD_WINDOW = "Checking Bead Window"
+MSG_BEAD_WINDOW_FOUND = "Bead Window Found"
+MSG_NO_BEAD_WINDOW_FOUND = "No Bead Window Found"
 MSG_SUB_PASS_FOUND = "Sub Password Found"
 MSG_NO_SUB_PASS_FOUND = "No Sub Password Found"
 MSG_COUNTDOWN = "Countdown, "
@@ -554,13 +557,17 @@ def enter_cabal_world():
   wait(3)
 
 def move_bead_window():
-  log_action(MSG_MOVE_BEAD)
-  bead_window = pyauto.locateOnScreen("img/bead.jpg", grayscale=False, confidence=.8, region=get_screen_region())
-  pyauto.moveTo(bead_window[0] + 10, bead_window[1] + 10)
+  try:
+    log_action(MSG_MOVE_BEAD)
+    bead_window = pyauto.locateOnScreen("img/bead.jpg", grayscale=False, confidence=.8, region=get_screen_region())
+    pyauto.moveTo(bead_window[0] + 10, bead_window[1] + 10)
 
-  pyauto.mouseDown(button="left")
-  move(100, 700)
-  pyauto.mouseUp(button="left")
+    pyauto.mouseDown(button="left")
+    move(100, 700)
+    pyauto.mouseUp(button="left")
+    countdown_timer(2)
+  except pyauto.ImageNotFoundException:
+    log_action(MSG_NO_BEAD_WINDOW_FOUND)
 
 def select_task_bar():
   log_action(MSG_SELECT_TASK_BAR)
