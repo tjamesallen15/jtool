@@ -41,6 +41,8 @@
 #### MELEE
 
 # shorts = ttk.Combobox(values=shortList, state="readonly")
-  # shorts.current(0)
-  # shorts.config(width=5)
-  # shorts.place(x=75, y=135)
+# shorts.current(0)
+# shorts.config(width=5)
+# shorts.place(x=75, y=135)
+
+# util.move_click(15, 535, 0.8)

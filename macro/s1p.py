@@ -101,10 +101,10 @@ def run_dungeon(runs=1):
         checking = False
         util.set_reset_status(True)
 
-    util.move_click(15, 535, 0.8)
-
     if util.get_reset_status():
       continue
+
+    util.move_click(15, 535, 0.8)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -207,11 +207,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -271,10 +266,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -338,7 +329,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -378,11 +368,11 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
+
+    util.move_click(15, 535, 0.8)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -564,15 +554,11 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
+
+    util.move_click(15, 535, 0.8)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -646,8 +632,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -704,7 +688,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -779,7 +762,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -847,9 +829,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -994,7 +973,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -1101,9 +1079,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -1160,7 +1135,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     # Siena Box Sequence
     util.log_action(util.MSG_CHECK_SIENA_BOX)
