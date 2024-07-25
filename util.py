@@ -417,6 +417,12 @@ def open_cabal_application():
     pynboard.press("B")
     pynboard.release("B")
     time.sleep(0.1)
+    pynboard.press("A")
+    pynboard.release("A")
+    time.sleep(0.1)
+    pynboard.press("L")
+    pynboard.release("L")
+    time.sleep(0.1)
 
     wait(1)
     pynboard.press(Key.enter)
