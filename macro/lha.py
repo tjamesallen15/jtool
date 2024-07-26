@@ -101,23 +101,8 @@ def position_gate_keeper():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  # util.move(850, 200)
-  # util.do_dash(1)
-  # util.do_fade(1.5)
-
   util.move(750, 420)
   util.do_fade(0.5)
-
-  # util.move(620, 550)
-  # util.do_fade(0.5)
-
-  # util.move(820, 200)
-  # util.do_dash(1)
-  # util.do_fade(0.5)
-
-  # util.move(820, 200)
-  # util.do_dash(1)
-  # util.do_fade(0.5)
 
   util.move(840, 200)
   util.do_dash(1)

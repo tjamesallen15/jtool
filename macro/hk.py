@@ -87,15 +87,6 @@ def find_mobs(unit=util.UNIT_BLANK):
         util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
-      # try:
-      #   util.do_select(0.1)
-      #   mobs = pyauto.locateOnScreen(util.IMG_OWLBEAR_L, grayscale=False, confidence=.7, region=util.get_full_region())
-      #   util.log_action(util.MSG_MOBS_FOUND + unit)
-      #   util.focus_mobs(unit, 1, 0, val_sidestep)
-      # except pyauto.ImageNotFoundException:
-      #   util.do_deselect_pack()
-      #   util.log_action(util.MSG_NO_MOBS_FOUND)
-
     elif unit == util.UNIT_HATCHLING:
       try:
         util.do_select(0.1)
@@ -122,15 +113,6 @@ def find_mobs(unit=util.UNIT_BLANK):
       except pyauto.ImageNotFoundException:
         util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
-
-      # try:
-      #   util.do_select(0.1)
-      #   mobs = pyauto.locateOnScreen(util.IMG_HATCHLING_L, grayscale=False, confidence=.7, region=util.get_full_region())
-      #   util.log_action(util.MSG_MOBS_FOUND + unit)
-      #   util.focus_mobs(unit, 1, 0, val_sidestep)
-      # except pyauto.ImageNotFoundException:
-      #   util.do_deselect_pack()
-      #   util.log_action(util.MSG_NO_MOBS_FOUND)
 
 def run_dungeon(runs=1):
   run_counter = 0

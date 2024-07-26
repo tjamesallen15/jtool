@@ -52,7 +52,6 @@ def run_dungeon(runs=1):
       continue
 
     # Click Dungeon
-    # util.move(470, 590)
     util.move(500, 610)
     util.do_dash(0.8)
     util.click_portal(620, 380)
@@ -162,7 +161,6 @@ def run_dungeon(runs=1):
     util.wait(0.8)
 
     util.move(550, 175)
-    # util.do_dash(1)
     util.do_fade(0.5)
 
     # Portal
@@ -504,7 +502,6 @@ def run_dungeon(runs=1):
     util.move(500, 300)
     util.do_fade(0.5)
     util.do_dash(1.5)
-    # util.do_fade(0.5)
 
     util.move(770, 300)
     util.do_dash(1)
@@ -526,7 +523,6 @@ def run_dungeon(runs=1):
 
     util.move(680, 150)
     util.do_dash(1)
-    # util.do_fade(0.5)
 
     # Third Sibling
     util.move_click(705, 390, 1.5)
@@ -737,7 +733,6 @@ def run_dungeon(runs=1):
 
     # Fire Dialog
     util.move_click(570, 320, 1.5)
-    # util.move_click(1100, 400, 2)
     checking = True
     dialog_count = 0
     while checking:
