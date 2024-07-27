@@ -55,10 +55,10 @@ LIST_DUNGEON = [
 ]
 
 LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100]
-LIST_RUN_RECON = [0, 30, 40, 50, 100]
+LIST_RUN_RESTART = [0, 30, 40, 50, 100]
 LIST_CLICKS = [10, 20, 30, 40, 50, 100, 200, 500]
 LIST_RESOLUTION = ["2560x1440", "1920x1080"]
-LIST_LOAD_TIME = [30, 45, 60, 75, 90, 105, 120]
+LIST_LOAD_TIME = ["30 seconds", "45 seconds", "60 seconds", "75 seconds", "90 seconds", "105 seconds", "120 seconds"]
 
 list_dg = []
 btn_start = []
@@ -72,7 +72,7 @@ lbl_misc = []
 lbl_current_run = []
 frame_root = []
 val_run_count = []
-val_run_recon = []
+val_run_restart = []
 val_click_count = []
 val_pword = []
 val_pin = []
@@ -86,6 +86,7 @@ val_party = 0
 val_leader = 0
 val_resolution = 0
 val_load_time = 0
+val_dungeon_restart = 0
 
 def start():
   cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -98,15 +99,19 @@ def start():
   vera = val_vera.get()
   party = val_party.get()
   leader = val_leader.get()
-  run_recon = val_run_recon.get()
+  run_restart = val_run_restart.get()
   pword = val_pword.get()
   pin = val_pin.get()
   reso = val_resolution.get()
-  load_time = int(val_load_time.get())
+  load_time = int(val_load_time.get().split(' ')[0])
+  dungeon_restart = val_dungeon_restart.get()
 
   util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run)
   util.initialize_region()
-  util.set_variables(mode, buff, short, atk_type, vera, party, leader, runs, run_recon, pword, pin, reso, load_time)
+  util.set_variables(mode, buff, short, atk_type, vera, party, leader, runs, run_restart, pword, pin, reso, load_time)
+
+  if dungeon_restart == 1:
+    restart_cabal_application()
 
   if (choice == LIST_MASTER[0]):
     hva.initialize(frame_root, btn_start, runs)
@@ -128,6 +133,16 @@ def start():
     hk.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[11]):
     s1p.initialize(frame_root, btn_start, runs)
+
+def restart_cabal_application():
+  util.log_action(util.MSG_DUNGEON_RESTART)
+  util.exit_cabal_application()
+  util.select_task_bar()
+  util.open_cabal_application()
+  util.move_cabal_application()
+  util.type_pword()
+  util.enter_cabal_world()
+  util.move_bead_window()
 
 def buy_fury():
   btn_fury.config(state="disabled")
@@ -271,8 +286,8 @@ def generate_gui():
   lbl_license = Label(tab_dungeon, text="Status: Free")
   lbl_license.place(x=140, y=135)
 
-  lbl_shorts = Label(tab_dungeon, text="Buffs: ")
-  lbl_shorts.place(x=10, y=105)
+  lbl_buffs = Label(tab_dungeon, text="Buffs: ")
+  lbl_buffs.place(x=10, y=105)
 
   global val_buffs
   val_buffs = IntVar(value=1)
@@ -312,51 +327,68 @@ def generate_gui():
   chkbtn_vera.place(x=75, y=196)
 
   # Tab Premium
-  lbl_run_recon = Label(tab_premium, text="Reconnect every run(s): ")
-  lbl_run_recon.place(x=10, y=10)
+  lbl_run_restart = Label(tab_premium, text="Run Restart: ")
+  lbl_run_restart.place(x=10, y=10)
 
-  global val_run_recon
-  val_run_recon = ttk.Combobox(tab_premium, values=LIST_RUN_RECON, state="")
-  val_run_recon.current(0)
-  val_run_recon.config(width=5)
-  val_run_recon.place(x=165, y=10)
+  global val_run_restart
+  val_run_restart = ttk.Combobox(tab_premium, values=LIST_RUN_RESTART, state="")
+  val_run_restart.current(0)
+  val_run_restart.config(width=5)
+  val_run_restart.place(x=92, y=10)
 
-  lbl_recon_note = Label(tab_premium, text="0 means off.")
-  lbl_recon_note.place(x=237, y=10)
+  lbl_run_restart_note = Label(tab_premium, text="Restart every run specified.")
+  lbl_run_restart_note.place(x=155, y=10)
+
+  lbl_dungeon_restart = Label(tab_premium, text="DG Restart: ")
+  lbl_dungeon_restart.place(x=10, y=43)
+
+  global val_dungeon_restart
+  val_dungeon_restart = IntVar(value=0)
+  chkbtn_dungeon_restart = ttk.Checkbutton(tab_premium, text="", onvalue=1, offvalue=0, variable=val_dungeon_restart)
+  chkbtn_dungeon_restart.place(x=90, y=43)
+
+  lbl_dungeon_restart_note = Label(tab_premium, text="Restart first before macro.")
+  lbl_dungeon_restart_note.place(x=155, y=43)
 
   lbl_pword = Label(tab_premium, text="Password: ")
-  lbl_pword.place(x=10, y=43)
+  lbl_pword.place(x=10, y=75)
 
   global val_pword
   val_pword = StringVar()
   entry_pword = Entry(tab_premium, show="*", textvariable=val_pword, width=15)
-  entry_pword.place(x=85, y=43)
+  entry_pword.place(x=85, y=75)
 
   lbl_pin = Label(tab_premium, text="PIN: ")
-  lbl_pin.place(x=205, y=43)
+  lbl_pin.place(x=205, y=75)
 
   global val_pin
   val_pin = StringVar()
   entry_pin = Entry(tab_premium, show="*", textvariable=val_pin, width=10)
-  entry_pin.place(x=240, y=43)
+  entry_pin.place(x=240, y=75)
 
   lbl_resolution = Label(tab_premium, text="Resolution: ")
-  lbl_resolution.place(x=10, y=75)
+  lbl_resolution.place(x=10, y=105)
 
   global val_resolution
   val_resolution = ttk.Combobox(tab_premium, values=LIST_RESOLUTION, state="readonly")
   val_resolution.current(0)
   val_resolution.config(width=12)
-  val_resolution.place(x=85, y=75)
+  val_resolution.place(x=85, y=105)
+
+  lbl_resolution_note = Label(tab_premium, text="Only listed resolution above are supported. ")
+  lbl_resolution_note.place(x=10, y=135)
 
   lbl_load_time = Label(tab_premium, text="Load Time: ")
-  lbl_load_time.place(x=10, y=105)
+  lbl_load_time.place(x=10, y=165)
 
   global val_load_time
   val_load_time = ttk.Combobox(tab_premium, values=LIST_LOAD_TIME, state="readonly")
   val_load_time.current(0)
   val_load_time.config(width=12)
-  val_load_time.place(x=85, y=105)
+  val_load_time.place(x=85, y=165)
+
+  lbl_load_time_note = Label(tab_premium, text="Adjust based on application load in login. ")
+  lbl_load_time_note.place(x=10, y=195)
 
   # Tab Misc
   lbl_step = Label(tab_misc, text="Open NPC Store before clicking the buy buttons.")

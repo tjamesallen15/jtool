@@ -46,8 +46,8 @@ is_leader = 0
 aura_counter = 0
 atk_type = 0
 val_runs = 1
-val_run_recon = 0
-val_run_recon_stack = 0
+val_run_restart = 0
+val_run_restart_stack = 0
 val_pword = 'default'
 val_pin = '123'
 val_resolution = '0'
@@ -148,6 +148,7 @@ MSG_ENTER_WORLD = "Entering world"
 MSG_MOVE_BEAD = "Moving bead window"
 MSG_MOVE_APPLICATION = "Moving application window"
 MSG_SELECT_TASK_BAR = "Selecting taskbar"
+MSG_DUNGEON_RESTART = "Restarting before automation"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
@@ -263,7 +264,7 @@ def initialize(window, frame, mlbl, rlbl):
   global lbl_current_run
   lbl_current_run = rlbl
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1, run_recon=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
@@ -291,8 +292,8 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, ru
   global val_runs
   val_runs = runs
 
-  global val_run_recon
-  val_run_recon = int(run_recon)
+  global val_run_restart
+  val_run_restart = int(run_restart)
 
   global val_pword
   val_pword = pword
@@ -602,11 +603,11 @@ def exit_cabal_application():
   pynboard.release(Key.enter)
   countdown_timer(5)
 
-def check_reconnect(run_count):
-  global val_run_recon_stack
-  if val_run_recon > 0:
+def check_run_restart(run_count):
+  global val_run_restart_stack
+  if val_run_restart > 0:
     log_action(MSG_CHECK_RECONNECT)
-    if val_run_recon == (run_count - val_run_recon_stack):
+    if val_run_restart == (run_count - val_run_restart_stack):
       exit_cabal_application()
       select_task_bar()
       open_cabal_application()
@@ -614,7 +615,7 @@ def check_reconnect(run_count):
       type_pword()
       enter_cabal_world()
       move_bead_window()
-      val_run_recon_stack += run_count
+      val_run_restart_stack += run_count
 
 def get_region():
   if is_battle_mode and atk_type == 1:
@@ -726,14 +727,9 @@ def do_battle_mode(sec=5):
     global is_battle_mode
     is_battle_mode = True
 
-    if get_veradrix_status() == 1:
-      for x in range(sec):
-        do_veradrix()
-        time.sleep(0.5)
-        do_essentials()
-        time.sleep(0.5)
-    else:
-      time.sleep(sec)
+    for x in range(sec):
+      do_essentials()
+      time.sleep(1.2)
 
     pynboard.press(val_bm_aura)
     pynboard.release(val_bm_aura)

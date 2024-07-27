@@ -35,7 +35,7 @@ def initialize(frame, btn, runs=1):
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    util.check_reconnect(run_counter)
+    util.check_run_restart(run_counter)
     util.set_reset_status(False)
     run_counter += 1
     util.log_action(util.MSG_START_DG)

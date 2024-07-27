@@ -20,7 +20,8 @@ All notable changes to this project will be documented in this file.
 ## v5.31 Features
 
 - [Application] Added get mail feature
-- [Application] Added reconnect feature in Developmental Phase
+- [Application] Added restart feature in Developmental Phase
+- [Application] Added dungeon restart in Developmental Phase
 - [Application] Added move bead window
 - [Dungeons] Added necessary log actions when moving to positions
 - [Dungeon] Added reconnect check in Developmental Phase
@@ -31,6 +32,8 @@ All notable changes to this project will be documented in this file.
  temporarily
 - [Application] Improved functionality of reconnect
 - [Application] Added catch exception in moving bead window
+- [Dungeon] Fixed not using health potion while doing battle mode
+- [HK] Optimized run through of the final boss
 - [HK] Increased count threshold from 20 to 50 when waiting for the third boss
 - [HK] Changed slightly dashing position when coming back for final after doing battle mode
 - [HK] Fixed second boss sequence

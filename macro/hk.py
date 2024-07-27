@@ -119,7 +119,7 @@ def run_dungeon(runs=1):
   while run_counter < runs:
     run_counter += 1
     util.set_reset_status(False)
-    util.check_reconnect(run_counter)
+    util.check_run_restart(run_counter)
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
@@ -456,54 +456,20 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.wait(1)
-
-    util.log_action(util.MSG_MOVING_POSITION)
-    if util.get_battle_mode() == 1:
-      util.move(620, 550)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
-      util.move(620, 550)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
-      util.move(620, 550)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
-    util.do_short_buffs()
+    util.wait(0.5)
     util.do_battle_mode()
+    util.do_short_buffs()
+    util.wait(0.5)
 
     util.log_action(util.MSG_MOVING_POSITION)
-    if util.get_battle_mode() == 1 and util.get_atk_type() == 0:
-      util.move(580, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
-      util.move(580, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
+    if util.get_atk_type() == 1:
       util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)
-    elif util.get_battle_mode() == 1 and util.get_atk_type() == 1:
-      util.move(600, 150)
+    else:
+      util.move(570, 150)
       util.do_dash(1)
       util.do_fade(0.5)
-
-      util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
-      util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
-    util.move(610, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
 
     # Attack Final Boss
     util.attack_mobs(util.UNIT_SHIRDRAHN, 1, 0.3, 0)
