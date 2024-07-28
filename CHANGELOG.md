@@ -45,6 +45,7 @@ All notable changes to this project will be documented in this file.
 - [S1P] Fixed a bug where characters would not get into portal after dashing
 - [S1P] Adjustments on siena box plunder from 4 to 10
 - [S1P] Fixed misclicks after force exit dungeon when having a dash error to checkpoints
+- [TM] Overhauled dungeon automation for faster run clearance
 
 # v5.21
 

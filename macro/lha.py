@@ -252,6 +252,9 @@ def run_dungeon(runs=1):
         moving = False
         util.set_reset_status(True)
 
+      if moving == False:
+        break
+
       try:
         util.do_select(0.1)
         check_count += 1
@@ -295,6 +298,9 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         moving = False
         util.set_reset_status(True)
+
+      if moving == False:
+        break
 
       try:
         util.do_select(0.1)
