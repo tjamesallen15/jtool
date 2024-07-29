@@ -707,6 +707,7 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
 def path_find_boss():
   pathing = True
   boss_found = 0
+  util.log_action(util.MSG_CHECK_BOSS)
   while pathing:
     if not util.get_macro_state():
       util.log_action(util.MSG_TERMINATE)
@@ -718,7 +719,6 @@ def path_find_boss():
     try:
       util.move_click(600, 260)
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -734,7 +734,6 @@ def path_find_boss():
     try:
       util.move_click(620, 260)
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -750,7 +749,6 @@ def path_find_boss():
     try:
       util.move_click(580, 160)
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -766,7 +764,6 @@ def path_find_boss():
     try:
       util.move_click(660, 160)
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
@@ -782,7 +779,6 @@ def path_find_boss():
     try:
       util.move_click(540, 160)
       util.do_select(0.1)
-      util.log_action(util.MSG_CHECK_BOSS)
       mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(util.MSG_BOSS_FOUND)
       pathing = False
