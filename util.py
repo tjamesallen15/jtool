@@ -1297,8 +1297,6 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
   combo = True
   fade_count = 0
 
-  do_deselect_pack()
-  do_select(0.1)
   while combo:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -1341,6 +1339,8 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
         do_attack(interval)
         do_attack(0.3, 1)
       else:
+        do_attack(interval)
+        do_attack(interval)
         do_attack(interval)
         do_attack(interval)
 
