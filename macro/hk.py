@@ -456,6 +456,9 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    if util.get_veradrix_needed() == 1:
+      util.do_veradrix(1)
+
     util.wait(0.5)
     util.do_battle_mode()
     util.do_short_buffs()

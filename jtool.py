@@ -82,6 +82,7 @@ val_buffs = 1
 val_shorts = 1
 val_atk_type = 0
 val_vera = 0
+val_vera_force = 0
 val_party = 0
 val_leader = 0
 val_resolution = 0
@@ -97,6 +98,7 @@ def start():
   runs = int(val_run_count.get())
   atk_type = val_atk_type.get()
   vera = val_vera.get()
+  vera_force = val_vera_force.get()
   party = val_party.get()
   leader = val_leader.get()
   run_restart = val_run_restart.get()
@@ -108,7 +110,7 @@ def start():
 
   util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run)
   util.initialize_region()
-  util.set_variables(mode, buff, short, atk_type, vera, party, leader, runs, run_restart, pword, pin, reso, load_time)
+  util.set_variables(mode, buff, short, atk_type, vera, vera_force, party, leader, runs, run_restart, pword, pin, reso, load_time)
 
   if dungeon_restart == 1:
     restart_cabal_application()
@@ -325,6 +327,11 @@ def generate_gui():
   val_vera = IntVar(value=0)
   chkbtn_vera = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_vera)
   chkbtn_vera.place(x=75, y=196)
+
+  global val_vera_force
+  val_vera_force = IntVar(value=0)
+  chkbtn_vera_force = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_vera_force)
+  chkbtn_vera_force.place(x=95, y=196)
 
   # Tab Premium
   lbl_run_restart = Label(tab_premium, text="Run Restart: ")

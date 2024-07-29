@@ -41,6 +41,7 @@ battle_mode = 0
 is_buffs_allowed = 1
 is_short_buffs_allowed = 1
 is_veradrix_allowed = 0
+is_veradrix_needed = 0
 is_party = 0
 is_leader = 0
 aura_counter = 0
@@ -264,7 +265,7 @@ def initialize(window, frame, mlbl, rlbl):
   global lbl_current_run
   lbl_current_run = rlbl
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, vera_force=0, party=0, leader=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
@@ -282,6 +283,9 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, ru
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
+
+  global is_veradrix_needed
+  is_veradrix_needed = vera_force
 
   global is_party
   is_party = party
@@ -672,6 +676,9 @@ def get_total_run_count():
 def get_veradrix_status():
   return is_veradrix_allowed
 
+def get_veradrix_needed():
+  return is_veradrix_needed
+
 def get_buffs_status():
   return is_buffs_allowed
 
@@ -735,10 +742,11 @@ def do_battle_mode(sec=5):
     pynboard.release(val_bm_aura)
     time.sleep(1)
 
-def do_veradrix():
-  if get_veradrix_status() == 1:
+def do_veradrix(force=0):
+  if get_veradrix_status() == 1 or force == 1:
     pynboard.press(val_veradrix)
     pynboard.release(val_veradrix)
+    time.sleep(0.3)
 
 def do_cont_battle_mode():
   move(790, 670)
