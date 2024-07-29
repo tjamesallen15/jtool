@@ -414,8 +414,7 @@ def path_find(unit=util.UNIT_BLANK):
   elif boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_POERTE:
     util.focus_mobs(unit, 1, 0, val_sidestep)
   elif boss_found == 0:
-    # util.attack_mobs(unit, 1, 0.3, val_sidestep)
-    util.focus_mobs(unit, 1, 0 , val_sidestep)
+    util.attack_mobs(unit, 1, 0.3, val_sidestep)
 
 def path_backtrack(unit):
   util.log_action(util.MSG_BACKTRACK + unit)
@@ -926,7 +925,7 @@ def run_dungeon(runs=1):
     util.move(500, 420)
     util.do_fade(1)
     util.wait(5)
-    util.attack_mobs(util.UNIT_MECH_LIHONAR, 1, 0.3, 0)
+    util.attack_mobs(util.UNIT_MECH_LIHONAR, 1, 0.1, 0)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1003,28 +1002,28 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(770, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
-    util.move(770, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
-    util.move(800, 400)
+    util.move(900, 380)
     util.do_dash(1)
     util.do_fade(0.5)
     util.wait(10)
 
+    util.move(600, 380)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     # Espada I Sequence
-    util.attack_mobs(util.UNIT_ESPADA_1, 1, 0.3, 0)
+    util.attack_mobs(util.UNIT_ESPADA_1, 1, 0.1, 0)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move(620, 150)
+    util.move(550, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(550, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1073,7 +1072,7 @@ def run_dungeon(runs=1):
     util.wait(5)
 
     # Espada II Sequence
-    util.attack_mobs(util.UNIT_ESPADA_2, 1, 0.3, 0)
+    util.attack_mobs(util.UNIT_ESPADA_2, 1, 0.1, 0)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1186,14 +1185,6 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    # util.move(800, 400)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
-    # util.move(400, 400)
-    # util.do_dash(1)
-    # util.do_fade(0.5)
-
     util.do_deselect_pack()
     util.move(620, 260)
     util.do_dash(1)
@@ -1270,9 +1261,10 @@ def run_dungeon(runs=1):
     util.move(620, 150)
     util.do_dash(1)
     util.do_fade(0.5)
+    util.wait(2)
 
     if util.get_atk_type() == 0:
-      util.move(640, 600)
+      util.move(640, 500)
       util.do_dash(1)
       util.do_fade(0.5)
 

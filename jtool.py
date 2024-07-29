@@ -230,7 +230,7 @@ def generate_gui():
   tab_misc = ttk.Frame(tab_control)
   tab_control.add(tab_dungeon, text ='Dungeon')
   tab_control.add(tab_premium, text ='Premium')
-  tab_control.add(tab_misc, text ='Misc')
+  tab_control.add(tab_misc, text ='Others')
   tab_control.pack(expand = 1, fill ="both")
 
   # Tab Dungeon
@@ -402,37 +402,37 @@ def generate_gui():
   lbl_step.place(x=10, y=10)
 
   global btn_fury
-  btn_fury = Button(tab_misc, text="Buy Fury", command=buy_fury)
-  btn_fury.config(width=10)
+  btn_fury = Button(tab_misc, text="Fury", command=buy_fury)
+  btn_fury.config(width=8)
   btn_fury.place(x=10, y=40)
 
   global btn_upgrade
-  btn_upgrade = Button(tab_misc, text="Buy Upgrade", command=buy_upgrade)
-  btn_upgrade.config(width=12)
-  btn_upgrade.place(x=100, y=40)
+  btn_upgrade = Button(tab_misc, text="Upgrade", command=buy_upgrade)
+  btn_upgrade.config(width=8)
+  btn_upgrade.place(x=85, y=40)
 
   global btn_force
-  btn_force = Button(tab_misc, text="Buy Force", command=buy_force)
-  btn_force.config(width=12)
-  btn_force.place(x=205, y=40)
+  btn_force = Button(tab_misc, text="Force", command=buy_force)
+  btn_force.config(width=8)
+  btn_force.place(x=160, y=40)
 
   global btn_mails
-  btn_mails = Button(tab_misc, text="Get Mails", command=get_mails)
-  btn_mails.config(width=10)
-  btn_mails.place(x=10, y=75)
+  btn_mails = Button(tab_misc, text="Mails", command=get_mails)
+  btn_mails.config(width=8)
+  btn_mails.place(x=235, y=40)
 
   lbl_misc_clicks = Label(tab_misc, text="Clicks: ")
-  lbl_misc_clicks.place(x=10, y=115)
+  lbl_misc_clicks.place(x=10, y=80)
 
   global val_click_count
   val_click_count = ttk.Combobox(tab_misc, values=LIST_CLICKS, state="")
   val_click_count.current(0)
   val_click_count.config(width=5)
-  val_click_count.place(x=75, y=115)
+  val_click_count.place(x=75, y=80)
 
   global lbl_misc
   lbl_misc = Label(tab_misc, text="Action: --")
-  lbl_misc.place(x=10, y=145)
+  lbl_misc.place(x=160, y=80)
 
   frame_root.mainloop()
 
