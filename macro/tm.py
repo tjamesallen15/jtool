@@ -282,7 +282,6 @@ def path_find(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         pathing = False
@@ -311,7 +310,6 @@ def path_find(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         pathing = False
@@ -340,7 +338,6 @@ def path_find(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         pathing = False
@@ -369,7 +366,6 @@ def path_find(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         pathing = False
@@ -398,7 +394,6 @@ def path_find(unit=util.UNIT_BLANK):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_BOSS_FOUND)
         pathing = False
@@ -419,7 +414,8 @@ def path_find(unit=util.UNIT_BLANK):
   elif boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_POERTE:
     util.focus_mobs(unit, 1, 0, val_sidestep)
   elif boss_found == 0:
-    util.attack_mobs(unit, 1, 0.3, val_sidestep)
+    # util.attack_mobs(unit, 1, 0.3, val_sidestep)
+    util.focus_mobs(unit, 1, 0 , val_sidestep)
 
 def path_backtrack(unit):
   util.log_action(util.MSG_BACKTRACK + unit)
@@ -1025,7 +1021,7 @@ def run_dungeon(runs=1):
     util.wait(10)
 
     # Espada I Sequence
-    util.attack_mobs(util.UNIT_ESPADA_1, 1, 0.8, 0)
+    util.attack_mobs(util.UNIT_ESPADA_1, 1, 0.3, 0)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1081,7 +1077,7 @@ def run_dungeon(runs=1):
     util.wait(5)
 
     # Espada II Sequence
-    util.attack_mobs(util.UNIT_ESPADA_2, 1, 0.8, 0)
+    util.attack_mobs(util.UNIT_ESPADA_2, 1, 0.3, 0)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1135,7 +1131,7 @@ def run_dungeon(runs=1):
     util.do_fade(1)
 
     # Espada III Sequence
-    util.attack_mobs(util.UNIT_ESPADA_3, 1, 0.8, 0)
+    util.attack_mobs(util.UNIT_ESPADA_3, 1, 0.3, 0)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -1187,7 +1183,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
 
     # Poerte Sequence
-    util.attack_mobs(util.UNIT_POERTE, 1, 0.8, 0)
+    util.attack_mobs(util.UNIT_POERTE, 1, 0.3, 0)
 
     # Check Macro State
     if not util.get_macro_state():
