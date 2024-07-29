@@ -1340,9 +1340,9 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
         do_attack(0.3, 1)
       else:
         do_attack(interval)
+        do_attack(interval, 1)
         do_attack(interval)
-        do_attack(interval)
-        do_attack(interval)
+        do_attack(interval, 1)
 
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOBS_CLEARED)
