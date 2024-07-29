@@ -1,8 +1,4 @@
 # cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# pyauto.moveTo(cabalwindow[0] + 50, cabalwindow[1] + 15)
-# pyauto.click(cabalwindow[0] + 50, cabalwindow[1] + 15)
-
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 # util.set_cabal_window(cabalwindow)
 # util.go_cabal_window()
 
@@ -46,60 +42,3 @@
 # shorts.place(x=75, y=135)
 
 # util.move_click(15, 535, 0.8)
-
-# util.log_action(util.MSG_MOVING_POSITION)
-# if util.get_battle_mode() == 1:
-#   util.move(620, 550)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-#   util.move(620, 550)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-#   util.move(620, 550)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-# util.do_battle_mode()
-# util.do_short_buffs()
-# util.wait(0.5)
-
-# if util.get_atk_type() == 1:
-#   util.move(600, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-# else:
-#   util.move(570, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-# util.log_action(util.MSG_MOVING_POSITION)
-# if util.get_battle_mode() == 1 and util.get_atk_type() == 0:
-#   util.move(580, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-#   util.move(580, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-#   util.move(600, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-# elif util.get_battle_mode() == 1 and util.get_atk_type() == 1:
-#   util.move(600, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-#   util.move(600, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-#   util.move(600, 150)
-#   util.do_dash(1)
-#   util.do_fade(0.5)
-
-# util.move(610, 150)
-# util.do_dash(1)
-# util.do_fade(0.5)

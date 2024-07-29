@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added dungeon restart in Developmental Phase
 - [Application] Added move bead window
 - [Application] Added veradrix second checkbox to only use if necessary
-- [Dungeons] Added necessary log actions when moving to positions
+- [Dungeon] Added necessary log actions when moving to positions
 - [Dungeon] Added reconnect check in Developmental Phase
 
 ## v5.31 Fixes

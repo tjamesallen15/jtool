@@ -89,6 +89,7 @@ MSG_NO_BOSS_FOUND = "No Boss Found"
 MSG_BLOCKER_FOUND = "Blocker Found"
 MSG_NO_BLOCKER_FOUND = "No Blocker Found"
 MSG_MOBS_CLEARED = "Mobs Cleared"
+MSG_MOB_CLEARED = "Mob Cleared"
 MSG_CHECK_BOSS = "Checking Boss"
 MSG_CHECK_BOX = "Checking Box"
 MSG_BOX_FOUND = "Box Found"
@@ -196,6 +197,7 @@ IMG_VAOUR = "img/vaour.jpg"
 IMG_VAOUR_L = "img/vaour-2.jpg"
 IMG_HATCHLING = "img/hatchling.jpg"
 IMG_HATCHLING_L = "img/hatchling-2.jpg"
+IMG_AREIHORN = "img/areihorn.jpg"
 IMG_PHIXIA = "img/phixia.jpg"
 IMG_SIENA = "img/siena.jpg"
 IMG_UMPRA_WEAK = "img/umpra-w.jpg"
@@ -239,8 +241,10 @@ UNIT_SHOWORAI_R = "Showorai [R]"
 UNIT_SHOWORAI_M = "Showorai [M]"
 UNIT_GHOST = "Ghost"
 UNIT_AREIHORN_GROUP = "Arehorn's Group"
+UNIT_HUMMING_BIRD = "Hummingbird"
 UNIT_HATCHLING = "Hatchling"
 UNIT_PHIXIA = "Phixia"
+UNIT_AREIHORN = "Areihorn"
 UNIT_OWL_BEAR = "Owl Bear"
 UNIT_VAOUR = "Vaour"
 UNIT_KNIGHT = "Knight of Wind"
@@ -756,7 +760,7 @@ def do_cont_battle_mode():
   global aura_counter
   aura_counter += 1
   if aura_counter > 45:
-    do_aura(0, 1)
+    force_aura()
     aura_counter = 0
 
 def do_buffs():
@@ -968,26 +972,26 @@ def release_keys(sec=0):
     time.sleep(sec)
 
 def do_aura(sec=0, strict=0):
-  if strict == 0:
-    pynboard.press(val_bm3)
-    pynboard.release(val_bm3)
+  if is_battle_mode == False:
 
-  if strict == 0:
-    do_essentials()
+    if strict == 0:
+      pynboard.press(val_bm3)
+      pynboard.release(val_bm3)
+      do_essentials()
 
-  pynboard.press(val_bm_aura)
-  pynboard.release(val_bm_aura)
-
-  if strict == 1:
     pynboard.press(val_bm_aura)
     pynboard.release(val_bm_aura)
 
-  if strict == 0:
-    do_essentials()
+    if strict == 1:
+      pynboard.press(val_bm_aura)
+      pynboard.release(val_bm_aura)
 
-  if strict == 0:
-    pynboard.press(val_bm3)
-    pynboard.release(val_bm3)
+  if (sec != 0):
+    time.sleep(sec)
+
+def force_aura(sec= 0):
+  pynboard.press(val_bm_aura)
+  pynboard.release(val_bm_aura)
 
   if (sec != 0):
     time.sleep(sec)
@@ -1232,14 +1236,9 @@ def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       log_action(MSG_ATTACK_MOBS + unit)
 
       do_attack(0.1)
-      do_attack(0.1)
-
-      if select == 1:
-        do_deselect_pack()
     except pyauto.ImageNotFoundException:
-      log_action(MSG_MOBS_CLEARED)
+      log_action(MSG_MOB_CLEARED)
       combo = False
-      break
 
 def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
   combo = True
@@ -1336,11 +1335,7 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
       if interval > 0.3:
         do_attack(interval)
         do_attack(0.3, 1)
-        do_attack(interval)
-        do_attack(0.3, 1)
       else:
-        do_attack(interval)
-        do_attack(interval, 1)
         do_attack(interval)
         do_attack(interval, 1)
 
