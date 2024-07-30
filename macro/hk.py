@@ -321,7 +321,7 @@ def run_dungeon(runs=1):
     # Third Group Sequence
     util.wait(10)
     # util.move(500, 400)
-    util.move(630, 300)
+    util.move(630, 320)
     util.do_dash(1)
     find_mobs(util.UNIT_OWL_BEAR)
     try:
@@ -330,7 +330,7 @@ def run_dungeon(runs=1):
       # Attack Third Boss
       util.do_deselect_pack()
       # util.move(700, 400)
-      util.move(630, 480)
+      util.move(620, 480)
       util.do_dash(1)
       util.do_select(0.1)
       util.focus_mobs(util.UNIT_VAOUR, 1, 0, val_sidestep)
@@ -348,6 +348,10 @@ def run_dungeon(runs=1):
       continue
 
     util.move(570, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(570, 250)
     util.do_dash(1)
     util.do_fade(0.5)
     util.plunder_box()

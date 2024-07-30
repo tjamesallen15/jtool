@@ -896,7 +896,7 @@ def run_dungeon(runs=1):
     util.do_battle_mode()
 
     # Second Boss
-    util.attack_boss()
+    util.attack_boss(1, 1, 0, 0)
     util.plunder_box()
 
     # Check Macro State
@@ -1067,7 +1067,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Final Boss
-    util.attack_boss()
+    util.attack_boss(1, 1, 0, 0)
     util.plunder_final_box()
 
     # Check Macro State
