@@ -723,11 +723,11 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(640, 150)
+    util.move(680, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(640, 150)
+    util.move(680, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -782,7 +782,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(580, 150)
+    util.move(540, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -805,7 +805,7 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
-    util.wait(0.1)
+    util.wait(0.4)
     util.move(420, 400)
     util.do_fade(0.5)
 
@@ -825,8 +825,11 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
     util.wait(10)
 
+    util.do_fade(0.5)
+    util.wait(3)
+
     util.move(630, 250)
-    util.do_fade(1)
+    util.do_dash(1)
 
     # Espada III Sequence
     util.attack_mobs(util.UNIT_ESPADA_3, 1, 0.3, 0)
@@ -863,11 +866,11 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(770, 150)
+    util.move(750, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(770, 150)
+    util.move(750, 150)
     util.do_dash(1)
     util.do_fade(0.5)
     util.wait(1)
@@ -888,9 +891,11 @@ def run_dungeon(runs=1):
       continue
 
     util.do_deselect_pack()
-    util.move(620, 260)
+    util.move(580, 260)
     util.do_dash(1)
-    util.do_fade(0.5)
+
+    if util.get_atk_type() == 1:
+      util.do_fade(0.5)
 
     util.do_short_buffs()
     util.do_battle_mode()
@@ -918,11 +923,11 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(570, 550)
+    util.move(620, 550)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(580, 550)
+    util.move(610, 575)
     util.do_dash(1)
     util.do_fade(0.5)
 
