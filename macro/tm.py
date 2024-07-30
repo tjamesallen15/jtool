@@ -180,7 +180,7 @@ def path_find(unit=util.UNIT_BLANK):
       break
 
   if boss_found == 0:
-    util.attack_mobs(unit, 1, 0.3, val_sidestep)
+    util.focus_mobs(unit, 1, 0, val_sidestep)
 
 def path_find_gate_strict(unit=util.UNIT_BLANK):
   pathing = True
@@ -528,6 +528,11 @@ def run_dungeon(runs=1):
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
 
+    util.wait(0.5)
+    util.move(630, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
@@ -816,34 +821,25 @@ def run_dungeon(runs=1):
     util.move(620, 150)
     util.do_dash(1)
 
-    util.move(620, 550)
-    util.do_fade(1.2)
-
-    util.move(620, 550)
-    util.do_dash(1.2)
-
+    util.move(1000, 700)
     util.do_fade(0.5)
-    util.wait(10)
-
-    util.do_fade(0.5)
-    util.wait(3)
-
-    util.move(630, 250)
     util.do_dash(1)
+    util.wait(14)
 
     # Espada III Sequence
-    util.attack_mobs(util.UNIT_ESPADA_3, 1, 0.3, 0)
+    util.cancel_aura(1)
+    util.attack_mobs(util.UNIT_ESPADA_3, 0, 0.3, 0)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move(640, 150)
+    util.move(350, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(500, 350)
+    util.move(450, 200)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -882,8 +878,18 @@ def run_dungeon(runs=1):
     util.move(400, 400)
     util.do_dash(1)
 
+    util.move(640, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.wait(1)
+
+    util.move(620, 600)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
     # Poerte Sequence
-    util.attack_mobs(util.UNIT_POERTE, 1, 0.6, 0)
+    util.attack_mobs(util.UNIT_POERTE, 1, 0.8, 0)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -893,9 +899,7 @@ def run_dungeon(runs=1):
     util.do_deselect_pack()
     util.move(580, 260)
     util.do_dash(1)
-
-    if util.get_atk_type() == 1:
-      util.do_fade(0.5)
+    util.do_fade(0.5)
 
     util.do_short_buffs()
     util.do_battle_mode()
@@ -964,31 +968,31 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(620, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.wait(2)
-
-    if util.get_atk_type() == 0:
-      util.move(640, 500)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
     # Redonno Sequence
-    for x in range(5):
-      util.do_select(0.1)
-      util.focus_mobs(util.UNIT_REDONNO, 1, 0, 0)
+    moving = True
+    while moving:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        moving = False
+
+      if moving == False:
+        break
+
+      path_find(util.UNIT_REDONNO)
+      try:
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        moving = False
+        util.log_action(util.MSG_MOVE_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOSS_FOUND)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move(670, 150)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
-    util.move(670, 150)
+    util.move(750, 150)
     util.do_dash(1)
     util.do_fade(0.5)
 
