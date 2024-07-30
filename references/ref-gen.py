@@ -1,5 +1,5 @@
-# cabalwindow = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.set_cabal_window(cabalwindow)
+# cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# util.set_cabal_window(cabal_window)
 # util.go_cabal_window()
 
 # test_var = True if val_mode.get() == 1 else False

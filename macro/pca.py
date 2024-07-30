@@ -102,8 +102,8 @@ def position_nualle():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.do_aura(1, 1)
-  util.do_aura(1)
+  util.do_final_mode(1)
+  util.do_aura()
   util.wait(4)
 
   util.move(660, 150)

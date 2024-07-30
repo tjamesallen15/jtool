@@ -33,6 +33,8 @@ All notable changes to this project will be documented in this file.
  temporarily
 - [Application] Improved functionality of reconnect
 - [Application] Added catch exception in moving bead window
+- [CFA] Fixed stuck up in ice block because of sidestep
+- [Dungeon] Overhauled attack functions for faster action response
 - [Dungeon] Fixed not using health potion while doing battle mode
 - [HK] Optimized run through of the final boss
 - [HK] Increased count threshold from 20 to 50 when waiting for the third boss

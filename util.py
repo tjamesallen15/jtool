@@ -53,6 +53,7 @@ val_pword = 'default'
 val_pin = '123'
 val_resolution = '0'
 val_load_time = 0
+val_default_interval = 0.3
 
 region_normal_bar = []
 region_mode_bar = []
@@ -269,7 +270,7 @@ def initialize(window, frame, mlbl, rlbl):
   global lbl_current_run
   lbl_current_run = rlbl
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, vera_force=0, party=0, leader=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
@@ -287,9 +288,6 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, vera_force=0, party=0
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
-
-  global is_veradrix_needed
-  is_veradrix_needed = vera_force
 
   global is_party
   is_party = party
@@ -655,6 +653,9 @@ def get_atk_type():
 def get_battle_mode():
   return battle_mode
 
+def get_battle_mode_status():
+  return is_battle_mode
+
 def get_reset_status():
   return trigger_reset_dungeon
 
@@ -679,9 +680,6 @@ def get_total_run_count():
 
 def get_veradrix_status():
   return is_veradrix_allowed
-
-def get_veradrix_needed():
-  return is_veradrix_needed
 
 def get_buffs_status():
   return is_buffs_allowed
@@ -720,23 +718,20 @@ def go_skill_slot(sec=0):
 
 def set_battle_mode(val):
   cancel_aura(2)
-  if battle_mode == 1:
+  if get_battle_mode() == 1:
     global is_battle_mode
     is_battle_mode = val
 
 def do_battle_mode(sec=5):
-  if battle_mode == 1:
+  if get_battle_mode() == 1:
     log_action(MSG_BATTLE_MODE)
-    cancel_aura(1)
+    set_battle_mode(True)
 
     move(790, 670)
     pyauto.click(button="right")
 
     move(790, 670)
     pyauto.click(button="right")
-
-    global is_battle_mode
-    is_battle_mode = True
 
     for x in range(sec):
       do_essentials()
@@ -746,11 +741,10 @@ def do_battle_mode(sec=5):
     pynboard.release(val_bm_aura)
     time.sleep(1)
 
-def do_veradrix(force=0):
-  if get_veradrix_status() == 1 or force == 1:
+def do_veradrix():
+  if get_veradrix_status() == 1:
     pynboard.press(val_veradrix)
     pynboard.release(val_veradrix)
-    time.sleep(0.3)
 
 def do_cont_battle_mode():
   move(790, 670)
@@ -760,7 +754,7 @@ def do_cont_battle_mode():
   global aura_counter
   aura_counter += 1
   if aura_counter > 45:
-    force_aura()
+    do_aura()
     aura_counter = 0
 
 def do_buffs():
@@ -971,39 +965,31 @@ def release_keys(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def do_aura(sec=0, strict=0):
-  if is_battle_mode == False:
-
-    if strict == 0:
-      pynboard.press(val_bm3)
-      pynboard.release(val_bm3)
-      do_essentials()
-
-    pynboard.press(val_bm_aura)
-    pynboard.release(val_bm_aura)
-
-    if strict == 1:
-      pynboard.press(val_bm_aura)
-      pynboard.release(val_bm_aura)
-
-  if (sec != 0):
-    time.sleep(sec)
-
-def force_aura(sec= 0):
+def do_aura(sec=0):
   pynboard.press(val_bm_aura)
   pynboard.release(val_bm_aura)
 
   if (sec != 0):
     time.sleep(sec)
 
-def do_attack(sec=0, strict=0):
+def do_final_mode(sec=0):
+  if get_battle_mode_status() == False:
+    pynboard.press(val_bm3)
+    pynboard.release(val_bm3)
+
+    if (sec != 0):
+      time.sleep(sec)
+
+def do_attack(sec=0, strict=0, cont=1):
   do_veradrix()
 
-  if is_battle_mode:
+  if get_battle_mode_status():
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
     if strict == 0:
       do_essentials()
+
+    if cont == 1:
       do_cont_battle_mode()
   else:
     pynboard.press(val_bm3_atk)
@@ -1014,8 +1000,10 @@ def do_attack(sec=0, strict=0):
 
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
+
     if strict == 0:
       do_essentials()
+
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
 
@@ -1219,6 +1207,7 @@ def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
         break
 
     if aura == 1:
+      do_final_mode()
       do_aura()
 
     if sidestep == 1:
@@ -1254,6 +1243,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       sys.exit()
 
     if aura == 1:
+      do_final_mode()
       do_aura()
 
     if sidestep == 1:
@@ -1292,7 +1282,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       combo = False
       break
 
-def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
+def attack_mobs(unit=UNIT_BLANK, aura=1, interval=val_default_interval, sidestep=1):
   combo = True
   fade_count = 0
 
@@ -1304,19 +1294,8 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
     if combo == False:
       break
 
-    try:
-      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
-      do_deselect()
-      log_action(MSG_BOSS_FOUND)
-      combo = False
-      break
-    except pyauto.ImageNotFoundException:
-      log_action(MSG_ATTACK_MOBS + unit)
-
-    if combo == False:
-      break
-
     if aura == 1:
+      do_final_mode()
       do_aura()
 
     if sidestep == 1:
@@ -1327,27 +1306,33 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=0.3, sidestep=1):
       else:
         fade_count += 1
 
+    do_select(0.1)
     try:
-      do_select(0.1)
-      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
+      do_deselect_pack()
+      log_action(MSG_BOSS_FOUND)
+      combo = False
+      break
+    except pyauto.ImageNotFoundException:
       log_action(MSG_ATTACK_MOBS + unit)
 
-      if interval > 0.3:
-        do_attack(interval)
-        do_attack(0.3, 1)
-      else:
-        do_attack(interval)
-        do_attack(interval, 1)
+    if combo == False:
+      break
 
+    try:
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_ATTACK_MOBS + unit)
+      do_attack(interval)
+      do_attack(interval, 1)
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOBS_CLEARED)
       combo = False
       break
 
-def attack_boss(select=1, aura=1):
+def attack_boss(select=1, aura=1, strict=0, cont=1):
   combo = True
 
-  if is_battle_mode and atk_type == 1 and select == 1:
+  if get_battle_mode_status() and get_atk_type() == 1 and select == 1:
     do_select(0.1)
     do_select(0.1)
   elif select == 1:
@@ -1362,21 +1347,21 @@ def attack_boss(select=1, aura=1):
     if combo == False:
       break
 
-    if is_battle_mode == False:
-      if aura == 1:
-        do_aura()
+    if aura == 1:
+      do_final_mode()
+      do_aura()
 
     try:
       boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
-      do_attack(0.1)
-      do_attack(0.1)
+      do_attack(0.1, strict, cont)
+      do_attack(0.1, strict, cont)
     except pyauto.ImageNotFoundException:
       log_action(MSG_BOSS_KILLED)
       combo = False
       break
 
-def attack_semi_boss(select=1):
+def attack_semi_boss(select=1, aura=1):
   combo = True
 
   if select == 1:
@@ -1391,7 +1376,8 @@ def attack_semi_boss(select=1):
     if combo == False:
       break
 
-    if is_battle_mode == False:
+    if aura == 1:
+      do_final_mode()
       do_aura()
 
     try:

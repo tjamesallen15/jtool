@@ -113,6 +113,7 @@ def run_dungeon(runs=1):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move_click(490, 400, 1.5)
 
+    util.do_final_mode(1)
     util.do_aura(3)
     util.move(660, 150)
     util.do_dash(1.5)
@@ -420,6 +421,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.do_final_mode(1)
     util.do_aura(3)
     util.do_short_buffs()
 

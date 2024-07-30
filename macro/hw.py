@@ -1172,6 +1172,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.do_final_mode(1)
     util.do_aura()
 
     util.move(500, 150)
