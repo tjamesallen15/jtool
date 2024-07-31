@@ -162,7 +162,7 @@ def run_dungeon(runs=1):
 
     util.do_select(0.1)
     util.focus_mobs(util.UNIT_ICE_BLOCK, 0, 0, 0)
-    util.wait(3)
+    util.wait(2.5)
 
     util.move_click(450, 520, 1)
 
