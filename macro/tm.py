@@ -182,7 +182,7 @@ def path_find(unit=util.UNIT_BLANK):
   if boss_found == 0:
     util.focus_mobs(unit, 1, 0, val_sidestep)
 
-def path_find_gate_strict(unit=util.UNIT_BLANK):
+def find_gate(unit=util.UNIT_BLANK):
   pathing = True
   gate_counter = 0
   while pathing:
@@ -401,7 +401,7 @@ def path_find_gate_strict(unit=util.UNIT_BLANK):
 
   return gate_counter
 
-def path_find_boss():
+def find_boss():
   pathing = True
   boss_found = 0
   util.log_action(util.MSG_CHECK_BOSS)
@@ -821,25 +821,58 @@ def run_dungeon(runs=1):
     util.move(620, 150)
     util.do_dash(1)
 
-    util.move(1000, 700)
+    util.move(800, 500)
     util.do_fade(0.5)
     util.do_dash(1)
     util.wait(14)
 
     # Espada III Sequence
     util.cancel_aura(1)
-    util.attack_mobs(util.UNIT_ESPADA_3, 0, 0.3, 0)
+    power_ticks = 0
+    checking = True
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      util.do_select(0.1)
+      try:
+        mobs = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        power_ticks += 1
+        util.do_select(0.1)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_MOBS_FOUND)
+
+      if power_ticks > 10:
+        checking = False
+
+      if checking == False:
+        break
+
+      try:
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND)
+        util.focus_mobs(util.UNIT_ESPADA_3, 0, 0, val_sidestep)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_MOBS_CLEARED)
+        power_ticks += 1
+
+      if power_ticks > 10:
+        checking = False
+
+      if checking == False:
+        break
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
-    util.move(350, 150)
+    util.move(350, 250)
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(450, 200)
+    util.move(450, 250)
     util.do_dash(1)
     util.do_fade(0.5)
 
@@ -1020,7 +1053,7 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
+      gate_counter = find_gate(util.UNIT_GATE_FOUR)
       if gate_counter > 3 and util.get_party_status() == 1:
         moving = False
 
@@ -1056,7 +1089,7 @@ def run_dungeon(runs=1):
       if moving == False:
         break
 
-      path_find_boss()
+      find_boss()
       try:
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         moving = False
