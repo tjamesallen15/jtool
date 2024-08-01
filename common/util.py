@@ -67,9 +67,9 @@ region_sub_screen = []
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x250"
-APP_NAME = "Cabal JTool "
+APP_NAME = "Cabal JTool"
 APP_VERSION = "v5.31"
-APP_FULL_NAME = APP_NAME + APP_VERSION
+APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
 
