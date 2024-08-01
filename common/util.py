@@ -1100,9 +1100,9 @@ def click_portal(x, y):
   while checking:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
-      entering = False
+      checking = False
 
-    if entering == False:
+    if checking == False:
       break
 
     move_click(x, y)
@@ -1112,7 +1112,7 @@ def click_portal(x, y):
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
 
-    if entering == False:
+    if checking == False:
       break
 
     try:
