@@ -24,6 +24,8 @@ All notable changes to this project will be documented in this file.
 - [Application] Added dungeon restart in Developmental Phase
 - [Application] Added move bead window
 - [Application] Added veradrix second checkbox to only use if necessary
+- [Application] Added config and database for user access level and data retention
+- [Application] Updated constant values throughout the UI
 - [Dungeon] Added necessary log actions when moving to positions
 - [Dungeon] Added reconnect check in Developmental Phase
 
@@ -33,9 +35,10 @@ All notable changes to this project will be documented in this file.
  temporarily
 - [Application] Improved functionality of reconnect
 - [Application] Added catch exception in moving bead window
-- [CFA] Fixed stuck up in ice block because of sidestep
 - [Dungeon] Overhauled attack functions for faster action response
 - [Dungeon] Fixed not using health potion while doing battle mode
+- [CFA] Fixed stuck up in ice block because of sidestep
+- [CFA] Added node click for second ice dialog
 - [HK] Optimized run through of the final boss
 - [HK] Increased count threshold from 20 to 50 when waiting for the third boss
 - [HK] Changed slightly dashing position when coming back for final after doing battle mode

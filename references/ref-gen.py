@@ -5,6 +5,22 @@
 # test_var = True if val_mode.get() == 1 else False
 # print(test_var)
 
+# lbl_party = Label(tab_dungeon, text="Party: ", state="disabled")
+# lbl_party.place(x=140, y=75)
+
+# global val_party
+# val_party = IntVar(value=0)
+# chkbtn_party = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_party, state="disabled")
+# chkbtn_party.place(x=185, y=76)
+
+# lbl_leader = Label(tab_dungeon, text="Leader: ", state="disabled")
+# lbl_leader.place(x=235, y=75)
+
+# global val_leader
+# val_leader = IntVar(value=0)
+# chkbtn_leader = ttk.Checkbutton(tab_dungeon, text="", onvalue=1, offvalue=0, variable=val_leader, state="disabled")
+# chkbtn_leader.place(x=293, y=76)
+
 # sys.exit()
 
 # 1 pyautogui.moveTo(cabalwindow[0] + 400, cabalwindow[1] + 670)

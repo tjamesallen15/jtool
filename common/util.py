@@ -254,6 +254,76 @@ UNIT_UMPRA_WEAK = "Umpra The Weak"
 UNIT_SIENA_BOX = "Siena Box"
 UNIT_BOX = "Box"
 
+# JSON DATA
+DATA_JSON = "data/config.json"
+DATA_DUNGEON = "dungeon"
+DATA_RUNS = "runs"
+DATA_MODE = "mode"
+DATA_BUFFS = "buffs"
+DATA_SHORTS = "shorts"
+DATA_RANGE = "range"
+DATA_VERADRIX = "veradrix"
+DATA_PWORD = "pword"
+DATA_PIN = "pin"
+DATA_RESOLUTION = "resolution"
+DATA_LOAD = "load"
+DATA_CONNECTION = "connection"
+DATA_OTHERS = "others"
+
+# ACCESS LEVEL
+ACCESS_FREE = "FREE"
+ACCESS_PRO = "PRO"
+ACCESS_PREMIUM = "PREMIUM"
+ACCESS_SUPER = "SUPER"
+
+# STATES
+STATE_ZERO = 0
+STATE_DISABLED = "disabled"
+STATE_NORMAL = "normal"
+STATE_READONLY = "readonly"
+
+# STATE LABEL
+LBL_STATUS = "Status: "
+LBL_EXPIRATION_NA = "Expiration: N/A"
+LBL_EXPIRATION = "Expiration: "
+
+# LABELS
+BTN_START = "Start"
+LBL_EMPTY = ""
+LBL_DUNGEON = "Dungeon: "
+LBL_RUNS = "Runs: "
+LBL_MODE = "Mode II: "
+LBL_BUFFS = "Buffs: "
+LBL_SHORTS = "Shorts: "
+LBL_RANGE = "Range: "
+LBL_VERADRIX = "Veradrix: "
+LBL_ACTION = "Action: --"
+LBL_CURRENT_RUN = "Run #: --"
+
+LBL_RUN_RESTART = "Run Restart: "
+LBL_RUN_RESTART_NOTE = "Restart every run specified."
+LBL_DG_RESTART = "DG Restart"
+LBL_DG_RESTART_NOTE = "Restart first before auto."
+LBL_PWORD = "Password: "
+LBL_PIN = "PIN: "
+LBL_RESOLUTION = "Resolution: "
+LBL_RESOLUTION_NOTE = "Only listed resolution above are supported."
+LBL_LOAD_TIME = "Load Time: "
+LBL_LOAD_TIME_NOTE = "Adjust based on application load for login screen."
+
+LBL_STORE_NOTE = "Open UI first before clicking the buttons."
+BTN_FURY = "Fury"
+BTN_UPGRADE = "Upgrade"
+BTN_FORCE = "Force"
+BTN_MAILS = "Mails"
+
+LBL_CLICKS = "Clicks: "
+
+TAB_DUNGEON = "Dungeon"
+TAB_CONNECTION = "Connection"
+TAB_OTHERS = "Others"
+
+
 def initialize(window, frame, mlbl, rlbl):
   global macro
   macro = True
@@ -270,7 +340,7 @@ def initialize(window, frame, mlbl, rlbl):
   global lbl_current_run
   lbl_current_run = rlbl
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
@@ -288,12 +358,6 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, party=0, leader=0, ru
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
-
-  global is_party
-  is_party = party
-
-  global is_leader
-  is_leader = leader
 
   global val_runs
   val_runs = runs
@@ -717,7 +781,7 @@ def go_skill_slot(sec=0):
     time.sleep(sec)
 
 def set_battle_mode(val):
-  cancel_aura(2)
+  cancel_aura(2.5)
   if get_battle_mode() == 1:
     global is_battle_mode
     is_battle_mode = val
@@ -1165,7 +1229,6 @@ def dice_dungeon():
 
 def focus_gate(unit=UNIT_BLANK, select=1):
   combo = True
-  fade_count = 0
 
   if select == 1:
     do_select(0.1)
@@ -1179,8 +1242,6 @@ def focus_gate(unit=UNIT_BLANK, select=1):
       break
 
     try:
-      if select == 1:
-        do_select(0.1)
       gate = pyauto.locateOnScreen(IMG_GATE, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
 
@@ -1219,8 +1280,6 @@ def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
         fade_count += 1
 
     try:
-      if select == 1:
-        do_select(0.1)
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
 

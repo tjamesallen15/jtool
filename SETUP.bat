@@ -6,3 +6,6 @@ pip install tk
 pip install pyinstaller
 pip install Pillow
 pip install opencv-python
+pip install rsa
+pip install psycopg2
+pip install psycopg2-binary

@@ -8,7 +8,7 @@ import keyboard as shortcut
 from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 
-import util
+import common.util as util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -26,10 +26,10 @@ def initialize(frame, btn, runs=1):
   btn_start = btn
 
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-  btn_start.config(state="disabled")
+  btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
   run_dungeon(runs)
-  btn_start.config(state="active")
+  btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
 def position_second_boss():
@@ -239,6 +239,8 @@ def run_dungeon(runs=1):
         util.move_click(610, 300)
         util.move_click(610, 305)
         util.move_click(610, 310)
+        util.move_click(750, 350)
+        util.move_click(750, 340)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
