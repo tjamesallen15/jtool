@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added veradrix second checkbox to only use if necessary
 - [Application] Added config and database for user access level and data retention
 - [Application] Updated constant values throughout the UI
+- [Application] Added Setup Files and Manual Instructions
 - [Dungeon] Added necessary log actions when moving to positions
 - [Dungeon] Added reconnect check in Developmental Phase
 

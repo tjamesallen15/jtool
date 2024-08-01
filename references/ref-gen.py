@@ -58,3 +58,16 @@
 # shorts.place(x=75, y=135)
 
 # util.move_click(15, 535, 0.8)
+
+# {
+#     "dungeon": 0,
+#     "mode": 0,
+#     "buffs": 1,
+#     "shorts": 0,
+#     "range": 0,
+#     "veradrix": 0,
+#     "pword": "",
+#     "pin": "",
+#     "resolution": 0,
+#     "load": 2
+# }

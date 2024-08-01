@@ -245,7 +245,6 @@ def get_data(name):
 
 def save_data():
   val_config_data[util.DATA_DUNGEON] = LIST_DUNGEON.index(list_dg.get())
-  val_config_data[util.DATA_RUNS] = LIST_RUN.index(int(val_run_count.get()))
   val_config_data[util.DATA_MODE] = val_mode.get()
   val_config_data[util.DATA_BUFFS] = val_buffs.get()
   val_config_data[util.DATA_SHORTS] = val_shorts.get()
@@ -369,7 +368,7 @@ def generate_gui():
 
   global val_run_count
   val_run_count = ttk.Combobox(tab_dungeon, values=LIST_RUN, state=util.STATE_NORMAL)
-  val_run_count.current(get_data(util.DATA_RUNS))
+  val_run_count.current(0)
   val_run_count.config(width=5)
   val_run_count.place(x=75, y=43)
 
