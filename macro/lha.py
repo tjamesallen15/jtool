@@ -8,7 +8,7 @@ import keyboard as shortcut
 from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 
-import util
+import common.util as util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -23,10 +23,10 @@ def initialize(frame, btn, runs=1):
   btn_start = btn
 
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-  btn_start.config(state="disabled")
+  btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
-  run_dungeon(int(runs))
-  btn_start.config(state="active")
+  run_dungeon(runs)
+  btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
 def path_find_gate(unit=util.UNIT_BLANK):
@@ -62,6 +62,7 @@ def path_find_gate(unit=util.UNIT_BLANK):
       util.move_click(700, 250)
 
 def position_fire_guard():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(620, 100)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -87,6 +88,7 @@ def position_fire_guard():
   util.do_fade(0.5)
 
 def position_gate_keeper():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(850, 200)
   util.do_dash(1)
   util.do_fade(0.5)
@@ -98,24 +100,9 @@ def position_gate_keeper():
   util.move(850, 200)
   util.do_dash(1)
   util.do_fade(0.5)
-
-  # util.move(850, 200)
-  # util.do_dash(1)
-  # util.do_fade(1.5)
 
   util.move(750, 420)
   util.do_fade(0.5)
-
-  # util.move(620, 550)
-  # util.do_fade(0.5)
-
-  # util.move(820, 200)
-  # util.do_dash(1)
-  # util.do_fade(0.5)
-
-  # util.move(820, 200)
-  # util.do_dash(1)
-  # util.do_fade(0.5)
 
   util.move(840, 200)
   util.do_dash(1)
@@ -142,6 +129,7 @@ def position_gate_keeper():
   util.do_fade(0.5)
 
 def position_lava_gate():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move_click(450, 600)
   util.move_click(450, 600)
   util.move_click(450, 600)
@@ -155,6 +143,7 @@ def position_lava_gate():
   util.move_click(250, 500)
 
 def position_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(720, 400)
   util.do_fade(0.5)
 
@@ -190,6 +179,7 @@ def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
     util.set_reset_status(False)
+    util.check_run_restart(run_counter)
     run_counter += 1
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
@@ -262,6 +252,9 @@ def run_dungeon(runs=1):
         moving = False
         util.set_reset_status(True)
 
+      if moving == False:
+        break
+
       try:
         util.do_select(0.1)
         check_count += 1
@@ -305,6 +298,9 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         moving = False
         util.set_reset_status(True)
+
+      if moving == False:
+        break
 
       try:
         util.do_select(0.1)

@@ -8,7 +8,7 @@ import keyboard as shortcut
 from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 
-import util
+import common.util as util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -26,10 +26,10 @@ def initialize(frame, btn, runs=1):
   btn_start = btn
 
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-  btn_start.config(state="disabled")
+  btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
-  run_dungeon(int(runs))
-  btn_start.config(state="active")
+  run_dungeon(runs)
+  btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
 def path_find_gate_strict(unit=util.UNIT_BLANK):
@@ -1106,6 +1106,7 @@ def path_backtrack(unit):
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
+    util.check_run_restart(run_counter)
     run_counter += 1
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
@@ -1121,16 +1122,10 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(700, 150)
-    pyauto.mouseDown(button="right")
-    util.move(375, 150)
-    pyauto.mouseUp(button="right")
-    pyauto.scroll(-10000)
-
     # Click Dungeon
-    util.move(500, 300)
-    util.do_dash(1)
-    util.click_portal(595, 335)
+    util.move(400, 500)
+    util.do_dash(0.8)
+    util.click_portal(590, 400)
 
     # Enter Dungeon
     util.enter_dungeon()
@@ -1177,6 +1172,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.do_final_mode(1)
     util.do_aura()
 
     util.move(500, 150)

@@ -2,9 +2,62 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.31
+
+## v5.31 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+
+## v5.31 Features
+
+- [Application] Added get mail feature
+- [Application] Added restart feature in Developmental Phase
+- [Application] Added dungeon restart in Developmental Phase
+- [Application] Added move bead window
+- [Application] Added veradrix second checkbox to only use if necessary
+- [Application] Added config and database for user access level and data retention
+- [Application] Updated constant values throughout the UI
+- [Application] Added Setup Files and Manual Instructions
+- [Dungeon] Added necessary log actions when moving to positions
+- [Dungeon] Added reconnect check in Developmental Phase
+
+## v5.31 Fixes
+
+- [Application] Disabled party and leader feature
+ temporarily
+- [Application] Improved functionality of reconnect
+- [Application] Added catch exception in moving bead window
+- [Dungeon] Overhauled attack functions for faster action response
+- [Dungeon] Fixed not using health potion while doing battle mode
+- [CFA] Fixed stuck up in ice block because of sidestep
+- [CFA] Added node click for second ice dialog
+- [HK] Optimized run through of the final boss
+- [HK] Increased count threshold from 20 to 50 when waiting for the third boss
+- [HK] Changed slightly dashing position when coming back for final after doing battle mode
+- [HK] Fixed second boss sequence
+- [HK] Increased count threshold from 20 to 50 when waiting for the second boss
+- [HK] Changed image reading for second and third group
+- [HK] Changed positioning when entering portal
+- [HW] Changed positioning when entering portal
+- [PCA] Fixed melee adjustments on position for final boss
+- [S1P] Fixed a bug where characters would not get into portal after dashing
+- [S1P] Adjustments on siena box plunder from 4 to 10
+- [S1P] Fixed misclicks after force exit dungeon when having a dash error to checkpoints
+- [TM] Overhauled dungeon automation for faster run clearance
+
 # v5.21
 
 ## v5.21 Dungeons Available
+
 - [HVA] Hazardous Valley (Awakened) [v1.00]
 - [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
 - [SCA] Steamer Crazy (Awakened) [v4.51]
@@ -167,7 +220,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added GUI.
 - [Application] Added Trial Program.
 
-## v1.00
+# v1.00
 
 ## v1.00 Features
 

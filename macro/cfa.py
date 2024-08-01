@@ -8,7 +8,7 @@ import keyboard as shortcut
 from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 
-import util
+import common.util as util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -26,13 +26,14 @@ def initialize(frame, btn, runs=1):
   btn_start = btn
 
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-  btn_start.config(state="disabled")
+  btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
-  run_dungeon(int(runs))
-  btn_start.config(state="active")
+  run_dungeon(runs)
+  btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
 def position_second_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(700, 350)
   util.do_fade(0.5)
 
@@ -54,6 +55,7 @@ def position_second_boss():
   util.do_fade(0.5)
 
 def pre_position_final_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(250, 520)
   util.do_dash(1.2)
 
@@ -70,6 +72,7 @@ def pre_position_final_boss():
   util.do_dash(1.2)
 
 def position_final_boss():
+  util.log_action(util.MSG_MOVING_POSITION)
   util.move(620, 650)
   util.do_dash(1.2)
 
@@ -86,6 +89,7 @@ def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
     util.set_reset_status(False)
+    util.check_run_restart(run_counter)
     run_counter += 1
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
@@ -156,7 +160,8 @@ def run_dungeon(runs=1):
     pyauto.scroll(-10000)
     util.wait(1)
 
-    util.focus_mobs(util.UNIT_ICE_BLOCK, 0)
+    util.do_select(0.1)
+    util.focus_mobs(util.UNIT_ICE_BLOCK, 0, 0, 0)
     util.wait(2.5)
 
     util.move_click(450, 520, 1)
@@ -234,6 +239,8 @@ def run_dungeon(runs=1):
         util.move_click(610, 300)
         util.move_click(610, 305)
         util.move_click(610, 310)
+        util.move_click(750, 350)
+        util.move_click(750, 340)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -267,8 +274,8 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(600, 600)
-    util.do_dash(1.2)
+    util.move_click(600, 600, 1)
+    # util.do_dash(1.2)
 
     try:
       util.move_click(540, 435)

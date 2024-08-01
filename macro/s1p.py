@@ -8,7 +8,7 @@ import keyboard as shortcut
 from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 
-import util
+import common.util as util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -26,25 +26,25 @@ def initialize(frame, btn, runs=1):
   btn_start = btn
 
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-  btn_start.config(state="disabled")
+  btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
-  run_dungeon(int(runs))
-  btn_start.config(state="active")
+  run_dungeon(runs)
+  btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    run_counter += 1
+    util.check_run_restart(run_counter)
     util.set_reset_status(False)
+    run_counter += 1
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
     # Click Cabal Window
     util.go_cabal_window()
     util.release_keys()
-    util.go_skill_slot(0.5)
-    util.do_buffs()
+    util.go_skill_slot(0.1)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -52,13 +52,14 @@ def run_dungeon(runs=1):
       continue
 
     # Click Dungeon
-    util.move(450, 600)
-    util.do_dash(1)
-    util.click_portal(680, 420)
+    util.move(500, 610)
+    util.do_dash(0.8)
+    util.click_portal(620, 380)
 
     # Enter Dungeon
     util.enter_dungeon()
     util.challenge_dungeon()
+    util.do_buffs()
 
     util.move(375, 150)
     pyauto.mouseDown(button="right")
@@ -99,18 +100,20 @@ def run_dungeon(runs=1):
         checking = False
         util.set_reset_status(True)
 
-    util.move_click(15, 535, 0.8)
-
     if util.get_reset_status():
       continue
+
+    util.move_click(15, 535, 0.8)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move_click(490, 400, 1.5)
 
+    util.do_final_mode(1)
     util.do_aura(3)
     util.move(660, 150)
     util.do_dash(1.5)
@@ -128,6 +131,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(580, 150)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -158,7 +162,6 @@ def run_dungeon(runs=1):
     util.wait(0.8)
 
     util.move(550, 175)
-    # util.do_dash(1)
     util.do_fade(0.5)
 
     # Portal
@@ -203,11 +206,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -217,6 +215,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(630, 600)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -266,10 +265,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -279,6 +274,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(750, 600)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -332,7 +328,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -372,17 +367,18 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
+
+    util.move_click(15, 535, 0.8)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(600, 650)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -425,6 +421,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    util.do_final_mode(1)
     util.do_aura(3)
     util.do_short_buffs()
 
@@ -445,6 +442,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(330, 300)
     util.do_dash(1.3)
 
@@ -506,7 +504,6 @@ def run_dungeon(runs=1):
     util.move(500, 300)
     util.do_fade(0.5)
     util.do_dash(1.5)
-    # util.do_fade(0.5)
 
     util.move(770, 300)
     util.do_dash(1)
@@ -528,7 +525,6 @@ def run_dungeon(runs=1):
 
     util.move(680, 150)
     util.do_dash(1)
-    # util.do_fade(0.5)
 
     # Third Sibling
     util.move_click(705, 390, 1.5)
@@ -556,21 +552,18 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
+
+    util.move_click(15, 535, 0.8)
 
     # Check Macro State
     if not util.get_macro_state():
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(700, 550)
     util.do_dash(1)
 
@@ -637,8 +630,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -648,6 +639,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(700, 160)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -694,7 +686,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -704,6 +695,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(350, 400)
     util.do_dash(1.3)
 
@@ -743,7 +735,6 @@ def run_dungeon(runs=1):
 
     # Fire Dialog
     util.move_click(570, 320, 1.5)
-    # util.move_click(1100, 400, 2)
     checking = True
     dialog_count = 0
     while checking:
@@ -768,7 +759,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -778,6 +768,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(680, 625)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -835,9 +826,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -847,6 +835,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(680, 150)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -981,7 +970,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -991,6 +979,7 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(375, 150)
     pyauto.mouseDown(button="right")
     util.move(1000, 150)
@@ -1021,6 +1010,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Umpra The Weak Sequence
+    util.log_action(util.MSG_CHECK_UMPRA_WEAK)
     checking = True
     count_umpra = 0
     while checking:
@@ -1038,7 +1028,6 @@ def run_dungeon(runs=1):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_UMPRA_WEAK)
         umpra = pyauto.locateOnScreen(util.IMG_UMPRA_WEAK, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_UMPRA_WEAK_FOUND)
         util.focus_mobs(util.UNIT_UMPRA_WEAK, 0, 0, val_sidestep)
@@ -1087,9 +1076,6 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
-    # util.move_click(15, 535, 0.8)
 
     if util.get_reset_status():
       continue
@@ -1100,6 +1086,7 @@ def run_dungeon(runs=1):
       continue
 
     # Going to the Siena Secret Room
+    util.log_action(util.MSG_MOVING_POSITION)
     util.move(200, 425)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -1145,9 +1132,9 @@ def run_dungeon(runs=1):
         util.force_exit_dungeon()
         checking = False
         util.set_reset_status(True)
-    # util.move_click(15, 535, 0.8)
 
     # Siena Box Sequence
+    util.log_action(util.MSG_CHECK_SIENA_BOX)
     checking = True
     while checking:
       if not util.get_macro_state():
@@ -1159,11 +1146,10 @@ def run_dungeon(runs=1):
 
       try:
         util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_SIENA_BOX)
         siena = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_SIENA_BOX_FOUND)
         util.wait(1)
-        util.plunder_ref_box(0, 4, util.IMG_SIENA)
+        util.plunder_ref_box(0, 10, util.IMG_SIENA)
         checking = False
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_SIENA_BOX_FOUND)

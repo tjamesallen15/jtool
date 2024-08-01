@@ -8,7 +8,7 @@ import keyboard as shortcut
 from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 
-import util
+import common.util as util
 pynboard = Controller()
 
 # GLOBAL VARIABLES
@@ -26,10 +26,10 @@ def initialize(frame, btn, runs=1):
   btn_start = btn
 
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-  btn_start.config(state="disabled")
+  btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
-  run_dungeon(int(runs))
-  btn_start.config(state="active")
+  run_dungeon(runs)
+  btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
 def position_nualle():
@@ -102,8 +102,8 @@ def position_nualle():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.do_aura(1, 1)
-  util.do_aura(1)
+  util.do_final_mode(1)
+  util.do_aura()
   util.wait(4)
 
   util.move(660, 150)
@@ -207,6 +207,7 @@ def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
     util.set_reset_status(False)
+    util.check_run_restart(run_counter)
     run_counter += 1
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
@@ -250,10 +251,7 @@ def run_dungeon(runs=1):
       util.move_click(590, 460)
       util.do_fade(1)
     else:
-      # util.move(630, 285)
-      # util.move(630, 330)
       util.move_click(630, 325)
-      # util.do_fade(0.5)
 
     util.wait(2)
     util.move(375, 150)
@@ -465,9 +463,10 @@ def run_dungeon(runs=1):
     # Final Boss
     util.do_battle_mode()
     util.wait(2)
+
     if util.get_atk_type() == 0:
-      util.move(520, 400)
-      util.do_dash(0.5)
+      util.move(620, 520)
+      util.do_fade(0.5)
 
     check_count = 0
     checking = True
@@ -498,7 +497,8 @@ def run_dungeon(runs=1):
     util.do_plunder(3)
 
     if util.get_atk_type() == 0:
-      util.move_click(710, 360, 1)
+      util.move(650, 350)
+      util.do_fade(0.5)
 
     util.wait(1)
     checking = True
