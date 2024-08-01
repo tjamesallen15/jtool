@@ -1096,15 +1096,32 @@ def do_attack(sec=0, strict=0, cont=1):
     time.sleep(sec)
 
 def click_portal(x, y):
-  move_click(x, y)
-  try:
-    mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
-    log_action(MSG_BLOCKER_FOUND)
-    focus_mobs(UNIT_BLOCKER, 0, 0, 0)
-    wait(1)
-    move_click(x, y, 1.5)
-  except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_BLOCKER_FOUND)
+  checking = True
+  while checking:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      entering = False
+
+    if entering == False:
+      break
+
+    move_click(x, y)
+    try:
+      enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
+      checking = False
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_BUTTON_FOUND)
+
+    if entering == False:
+      break
+
+    try:
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_BLOCKER_FOUND)
+      focus_mobs(UNIT_BLOCKER, 0, 0, 0)
+      wait(1)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_BLOCKER_FOUND)
 
 def enter_dungeon():
   entering = True
