@@ -6,7 +6,7 @@ APP_DESCRIPTION = "A Cabal Online Macro and Automation."
 
 # Dependencies are automatically detected, but it might need
 # fine tuning.
-build_options = {'packages': [], 'excludes': [], 'includes': ['pynput.keyboard._win32', 'pynput.mouse._win32'], 'include_files': ['setup/', 'data/', 'img/']}
+build_options = {'packages': [], 'excludes': [], 'includes': ['pynput.keyboard._win32', 'pynput.mouse._win32'], 'include_files': ['setup/', 'data/', 'img/', 'LICENSE']}
 
 base = 'gui'
 

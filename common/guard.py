@@ -98,4 +98,3 @@ def update_user_free(id):
 
   cur.close()
   close_connection()
-  
