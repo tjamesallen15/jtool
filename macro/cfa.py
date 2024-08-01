@@ -274,8 +274,8 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(600, 600)
-    util.do_dash(1.2)
+    util.move_click(600, 600, 1)
+    # util.do_dash(1.2)
 
     try:
       util.move_click(540, 435)

@@ -781,7 +781,7 @@ def go_skill_slot(sec=0):
     time.sleep(sec)
 
 def set_battle_mode(val):
-  cancel_aura(2.5)
+  cancel_aura(2)
   if get_battle_mode() == 1:
     global is_battle_mode
     is_battle_mode = val
