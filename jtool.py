@@ -150,10 +150,8 @@ def get_dungeon_list():
       "Steamer Crazy (Awakened)",
       "Catacomb Frost (Awakened)",
       "Lava Hellfire (Awakened)",
-      "Panic Cave (Awakened)",
       "Holy Windmill",
       "Holy Keldrasil",
-      "Terminus Machina"
     ]
   elif get_level() == 'SUPER':
     LIST_DUNGEON = [
