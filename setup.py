@@ -1,7 +1,7 @@
 from cx_Freeze import setup, Executable
 
 APP_NAME = "Cabal JTool"
-APP_VERSION = "v5.35"
+APP_VERSION = "v5.40"
 APP_DESCRIPTION = "A Cabal Online Macro and Automation."
 
 # Dependencies are automatically detected, but it might need
