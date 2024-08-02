@@ -284,9 +284,11 @@ STATE_NORMAL = "normal"
 STATE_READONLY = "readonly"
 
 # STATE LABEL
-LBL_STATUS = "Status: "
+LBL_LICENSE = "License: "
 LBL_EXPIRATION_NA = "Expiration: N/A"
 LBL_EXPIRATION = "Expiration: "
+LBL_OPEN_SECTION = " ("
+LBL_CLOSE_SECTION = ")"
 
 # LABELS
 BTN_START = "Start"

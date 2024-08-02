@@ -225,8 +225,17 @@ def load_node():
 def get_level():
   return val_node_data[0]
 
-def get_level_status():
-  return util.LBL_STATUS + str(get_level())
+def get_account():
+  val_account = str(get_level())
+  if val_node_data[2] != None:
+    val_account += util.LBL_OPEN_SECTION
+    val_account += val_node_data[2]
+    val_account += util.LBL_CLOSE_SECTION
+
+  return val_account
+
+def get_license():
+  return util.LBL_LICENSE + str(get_account())
 
 def get_expiration():
   return val_node_data[1]
@@ -424,7 +433,7 @@ def generate_gui():
   chkbtn_mode = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_mode, state=get_access(util.DATA_MODE))
   chkbtn_mode.place(x=75, y=76)
 
-  lbl_license = Label(tab_dungeon, text=get_level_status())
+  lbl_license = Label(tab_dungeon, text=get_license())
   lbl_license.place(x=140, y=135)
 
   lbl_buffs = Label(tab_dungeon, text=util.LBL_BUFFS, state=get_access(util.DATA_BUFFS))

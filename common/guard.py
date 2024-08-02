@@ -49,7 +49,7 @@ def get_user_data():
   val_uuid = get_node()
 
   cur = conn.cursor()
-  sql = "SELECT level, expiration FROM jtool WHERE uuid=%(val)s;"
+  sql = "SELECT level, expiration, account FROM jtool WHERE uuid=%(val)s;"
   cur.execute(sql, {"val": val_uuid})
 
   rows = cur.fetchall()
