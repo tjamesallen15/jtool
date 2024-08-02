@@ -9,6 +9,7 @@ import keyboard as shortcut
 
 import common.guard as guard
 import common.config as config
+import common.features as features
 import common.util as util
 
 import macro.hva as hva
@@ -56,6 +57,7 @@ btn_mails = []
 lbl_macro = []
 lbl_misc = []
 lbl_current_run = []
+text_features = []
 frame_root = []
 val_run_count = []
 val_run_restart = []
@@ -124,14 +126,14 @@ def start():
 
 def get_dungeon_list():
   global LIST_DUNGEON
-  if get_level() == 'FREE':
+  if get_level() == util.ACCESS_FREE:
     LIST_DUNGEON = [
       "Hazardous Valley (Awakened)",
       "Hazardous Valley (Hard)",
       "Hazardous Valley (Medium)",
       "Hazardous Valley (Easy)"
     ]
-  elif get_level() == 'PRO':
+  elif get_level() == util.ACCESS_PRO:
     LIST_DUNGEON = [
       "Hazardous Valley (Awakened)",
       "Hazardous Valley (Hard)",
@@ -141,7 +143,7 @@ def get_dungeon_list():
       "Catacomb Frost (Awakened)",
       "Lava Hellfire (Awakened)"
     ]
-  elif get_level() == 'PREMIUM':
+  elif get_level() == util.ACCESS_PREMIUM:
     LIST_DUNGEON = [
       "Hazardous Valley (Awakened)",
       "Hazardous Valley (Hard)",
@@ -153,7 +155,20 @@ def get_dungeon_list():
       "Holy Windmill",
       "Holy Keldrasil",
     ]
-  elif get_level() == 'SUPER':
+  elif get_level() == util.ACCESS_TESTER:
+    LIST_DUNGEON = [
+      "Hazardous Valley (Awakened)",
+      "Hazardous Valley (Hard)",
+      "Hazardous Valley (Medium)",
+      "Hazardous Valley (Easy)",
+      "Steamer Crazy (Awakened)",
+      "Catacomb Frost (Awakened)",
+      "Lava Hellfire (Awakened)",
+      "Holy Windmill",
+      "Holy Keldrasil",
+      "Terminus Machina",
+    ]
+  elif get_level() == util.ACCESS_SUPER:
     LIST_DUNGEON = [
       "Hazardous Valley (Awakened)",
       "Hazardous Valley (Hard)",
@@ -174,7 +189,7 @@ def get_access(feature):
     case util.DATA_DUNGEON:
       return util.STATE_NORMAL
     case util.DATA_CONNECTION:
-      if get_level() == util.ACCESS_FREE or get_level() == util.ACCESS_PRO:
+      if get_level() == util.ACCESS_FREE or get_level() == util.ACCESS_PRO or get_level() == util.ACCESS_TESTER:
         return util.STATE_DISABLED
       else:
         return util.STATE_NORMAL
@@ -323,6 +338,24 @@ def get_mails():
   btn_mails.config(state=util.STATE_NORMAL)
   frame_root.update()
 
+def get_features_free():
+  text_features.configure(state=util.STATE_NORMAL)
+  text_features.delete('1.0', END)
+  text_features.insert(END, features.get_features(util.ACCESS_FREE))
+  text_features.configure(state=util.STATE_DISABLED)
+
+def get_features_pro():
+  text_features.configure(state=util.STATE_NORMAL)
+  text_features.delete('1.0', END)
+  text_features.insert(END, features.get_features(util.ACCESS_PRO))
+  text_features.configure(state=util.STATE_DISABLED)
+
+def get_features_premium():
+  text_features.configure(state=util.STATE_NORMAL)
+  text_features.delete('1.0', END)
+  text_features.insert(END, features.get_features(util.ACCESS_PREMIUM))
+  text_features.configure(state=util.STATE_DISABLED)
+
 def log_misc_action(message):
   msgBuilder = StringVar()
   msgBuilder = util.MSG_ACTION + message
@@ -348,9 +381,11 @@ def generate_gui():
   tab_dungeon = ttk.Frame(tab_control)
   tab_connection = ttk.Frame(tab_control)
   tab_misc = ttk.Frame(tab_control)
+  tab_pricing = ttk.Frame(tab_control)
   tab_control.add(tab_dungeon, text=util.TAB_DUNGEON, state=get_access(util.DATA_DUNGEON))
   tab_control.add(tab_connection, text=util.TAB_CONNECTION, state=get_access(util.DATA_CONNECTION))
   tab_control.add(tab_misc, text=util.TAB_OTHERS, state=get_access(util.DATA_OTHERS))
+  tab_control.add(tab_pricing, text=util.TAB_PRICING)
   tab_control.pack(expand=1, fill="both")
 
   # Tab Dungeon
@@ -534,6 +569,27 @@ def generate_gui():
   global lbl_misc
   lbl_misc = Label(tab_misc, text=util.LBL_ACTION)
   lbl_misc.place(x=160, y=80)
+
+  # Tab Pricing
+  frame_btn = Frame(tab_pricing)
+  frame_btn.pack(anchor="w")
+
+  scroll_features = Scrollbar(tab_pricing)
+  scroll_features.pack(side=RIGHT, fill=Y)
+
+  global text_features
+  text_features = Text(tab_pricing, yscrollcommand=scroll_features.set)
+  text_features.pack()
+  get_features_free()
+
+  btn_free = Button(frame_btn, text=util.BTN_FREE, command=get_features_free)
+  btn_free.pack(side=LEFT)
+
+  btn_pro = Button(frame_btn, text=util.BTN_PRO, command=get_features_pro)
+  btn_pro.pack(side=LEFT)
+
+  btn_premium = Button(frame_btn, text=util.BTN_PREMIUM, command=get_features_premium)
+  btn_premium.pack(side=LEFT)
 
   frame_root.mainloop()
 

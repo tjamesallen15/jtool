@@ -68,7 +68,7 @@ region_sub_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x250"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "v5.31"
+APP_VERSION = "v5.35"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -271,10 +271,11 @@ DATA_CONNECTION = "connection"
 DATA_OTHERS = "others"
 
 # ACCESS LEVEL
-ACCESS_FREE = "FREE"
-ACCESS_PRO = "PRO"
-ACCESS_PREMIUM = "PREMIUM"
-ACCESS_SUPER = "SUPER"
+ACCESS_FREE = "Free"
+ACCESS_PRO = "Pro"
+ACCESS_PREMIUM = "Premium"
+ACCESS_TESTER = "Tester"
+ACCESS_SUPER = "Super"
 
 # STATES
 STATE_ZERO = 0
@@ -319,9 +320,14 @@ BTN_MAILS = "Mails"
 
 LBL_CLICKS = "Clicks: "
 
+BTN_FREE = "Free"
+BTN_PRO = "Pro"
+BTN_PREMIUM = "Premium"
+
 TAB_DUNGEON = "Dungeon"
 TAB_CONNECTION = "Connection"
 TAB_OTHERS = "Others"
+TAB_PRICING = "Pricing"
 
 
 def initialize(window, frame, mlbl, rlbl):

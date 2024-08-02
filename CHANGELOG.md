@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
-# v5.45
+# v5.35
 
-## v5.45 Dungeons Available
+## v5.35 Dungeons Available
 
 - [HVA] Hazardous Valley (Awakened) [v1.00]
 - [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
@@ -17,9 +17,14 @@ All notable changes to this project will be documented in this file.
 - [HK] Holy Keldrasil [v5.11]
 - [S1P] Altar of Siena B1F (Prideus) [v5.11]
 
-## v5.45 Features
+## v5.35 Features
 
-## v5.45 Fixes
+- [Application] Updated instruction manual for better readability
+- [Application] Added pricing tab
+- [Application] Added Tester Access Level
+
+## v5.35 Fixes
+
 - [Dungeon] Fixed click portal for blockers with more than one
 
 # v5.31
