@@ -717,8 +717,6 @@ def run_dungeon(runs=1):
     util.do_dash(1)
 
     # Espada I Sequence
-    # util.attack_mobs(util.UNIT_ESPADA_1, 1, 0.3, 0)
-    util.cancel_aura(1)
     power_ticks = 0
     checking = True
     while checking:
@@ -743,7 +741,7 @@ def run_dungeon(runs=1):
       try:
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND)
-        util.focus_mobs(util.UNIT_ESPADA_1, 0, 0, val_sidestep)
+        util.focus_mobs(util.UNIT_ESPADA_1, 1, 0, val_sidestep)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_MOBS_CLEARED)
         power_ticks += 1
