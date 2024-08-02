@@ -1,0 +1,20 @@
+Cabal JTool Setup Installation (in order):
+1. Install setup/python-3.12.4-amd64.exe as Administrator (If you have older version of python, please uninstall first)
+2. Run setup/setup.bat as Administrator
+3. Click on the JTool installer
+4. Open Cabal Online
+5. Setup the option/config settings of Cabal Online
+6. Please follow option-1.jpg up to option-4.jpg
+7. Go to Key Bindings, Set to default
+8. Go to Macro, Set to Default
+9. Run the jtool.exe as Administrator
+
+Dungeon Setup:
+1. Configure the macro and what dungeon you will use
+2. Go to the dungeon
+3. Enter then exit dungeon
+4. Press start button on JTool (Note: Cabal Application must not be hidden)
+
+Notes:
+Check the prices and features under Pricing Tab.
+For license upgrade, please contact the page. https://www.facebook.com/TheTeamAei.

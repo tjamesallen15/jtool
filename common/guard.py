@@ -93,7 +93,7 @@ def update_user_free(id):
   open_connection()
 
   cur = conn.cursor()
-  sql = "UPDATE jtool SET level='FREE' WHERE uuid=%(val)s;"
+  sql = "UPDATE jtool SET level='Free' WHERE uuid=%(val)s;"
   cur.execute(sql, {"val": id})
 
   cur.close()
