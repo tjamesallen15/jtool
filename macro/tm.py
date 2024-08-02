@@ -708,16 +708,49 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    util.move(900, 380)
+    util.move(800, 380)
     util.do_dash(1)
     util.do_fade(0.5)
     util.wait(8)
 
-    util.move(400, 380)
+    util.move(500, 380)
     util.do_dash(1)
 
     # Espada I Sequence
-    util.attack_mobs(util.UNIT_ESPADA_1, 1, 0.3, 0)
+    power_ticks = 0
+    checking = True
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(util.MSG_TERMINATE)
+        checking = False
+
+      util.do_select(0.1)
+      try:
+        mobs = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        power_ticks += 1
+        util.do_select(0.1)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_MOBS_FOUND)
+
+      if power_ticks > 10:
+        checking = False
+
+      if checking == False:
+        break
+
+      try:
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND)
+        util.focus_mobs(util.UNIT_ESPADA_1, 1, 0, val_sidestep)
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_MOBS_CLEARED)
+        power_ticks += 1
+
+      if power_ticks > 10:
+        checking = False
+
+      if checking == False:
+        break
 
     # Check Macro State
     if not util.get_macro_state():

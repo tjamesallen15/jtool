@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.40
+
+## v5.40 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+
+## v5.40 Features
+
+- [Application] Changed status to license
+- [Application] Added account name beside the license
+
+## v5.40 Fixes
+
+- [Dungeon] Optimized action on attack and select
+- [TM] Fixed first espada encounter stuck on power supply
+
 # v5.35
 
 ## v5.35 Dungeons Available

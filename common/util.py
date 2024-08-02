@@ -68,7 +68,7 @@ region_sub_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x250"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "v5.35"
+APP_VERSION = "v5.40"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -284,9 +284,11 @@ STATE_NORMAL = "normal"
 STATE_READONLY = "readonly"
 
 # STATE LABEL
-LBL_STATUS = "Status: "
+LBL_LICENSE = "License: "
 LBL_EXPIRATION_NA = "Expiration: N/A"
 LBL_EXPIRATION = "Expiration: "
+LBL_OPEN_SECTION = " ("
+LBL_CLOSE_SECTION = ")"
 
 # LABELS
 BTN_START = "Start"
