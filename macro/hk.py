@@ -506,24 +506,6 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    # if util.get_veradrix_needed() == 1:
-    #   util.do_veradrix(1)
-
-    # util.wait(0.5)
-    # util.do_battle_mode()
-    # util.do_short_buffs()
-    # util.wait(0.5)
-
-    # util.log_action(util.MSG_MOVING_POSITION)
-    # if util.get_atk_type() == 1:
-    #   util.move(600, 150)
-    #   util.do_dash(1)
-    #   util.do_fade(0.5)
-    # else:
-    #   util.move(570, 150)
-    #   util.do_dash(1)
-    #   util.do_fade(0.5)
-
     # Attack Final Boss
     util.attack_mobs(util.UNIT_SHIRDRAHN, 1, 0.3, 0)
     util.plunder_final_box()
