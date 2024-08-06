@@ -507,7 +507,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Attack Final Boss
-    util.focus_mob_boss(util.UNIT_SHIRDRAHN, 0, 1, 0, 0)
+    util.focus_mob_boss(util.UNIT_SHIRDRAHN, 1, 1, 0, 0)
     util.plunder_final_box()
     util.set_battle_mode(False)
 
