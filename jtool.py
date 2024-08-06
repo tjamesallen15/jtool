@@ -42,7 +42,7 @@ LIST_MASTER = [
 LIST_DUNGEON = []
 
 LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100, 150, 200]
-LIST_RUN_RESTART = [0, 30, 40, 50, 75, 100]
+LIST_RUN_RESTART = [0, 10, 20, 30, 40, 50, 75, 100]
 LIST_CLICKS = [10, 20, 30, 40, 50, 100, 200, 300, 500]
 LIST_RESOLUTION = ["2560x1440", "1920x1080"]
 LIST_LOAD_TIME = ["30 seconds", "45 seconds", "60 seconds", "75 seconds", "90 seconds", "105 seconds", "120 seconds"]
