@@ -310,6 +310,7 @@ def run_dungeon(runs=1):
       continue
 
     if corpse_found == False:
+      util.wait(1)
       util.move(630, 150)
       util.do_dash(2)
 
@@ -319,7 +320,7 @@ def run_dungeon(runs=1):
       util.move(660, 500)
       util.do_fade(0.5)
 
-      util.move_click(580, 440)
+      util.move_click(580, 440, 0.5)
 
       checking = True
       dialog_count = 0
