@@ -1305,7 +1305,7 @@ def focus_gate(unit=UNIT_BLANK, select=1):
       log_action(MSG_MOBS_CLEARED)
       break
 
-def focus_mobs(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
+def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
   combo = True
   fade_count = 0
 
@@ -1438,6 +1438,35 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=val_default_interval, sidestep
       do_attack(interval, 1)
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOBS_CLEARED)
+      combo = False
+      break
+
+def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
+  combo = True
+
+  if select == 1:
+    do_select(0.1)
+
+  while combo:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      combo = False
+
+    if combo == False:
+        break
+
+    if aura == 1:
+      do_final_mode()
+      do_aura()
+
+    try:
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_ATTACK_MOBS + unit)
+
+      do_attack(0.1, strict, cont)
+      do_attack(0.1, strict, cont)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_MOB_CLEARED)
       combo = False
       break
 

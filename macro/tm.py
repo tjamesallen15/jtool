@@ -180,7 +180,7 @@ def path_find(unit=util.UNIT_BLANK):
       break
 
   if boss_found == 0:
-    util.focus_mobs(unit, 1, 0, val_sidestep)
+    util.focus_mobs(unit, 0, 1, val_sidestep)
 
 def find_gate(unit=util.UNIT_BLANK):
   pathing = True
@@ -701,7 +701,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
 
     util.do_select(0.1)
-    util.focus_mobs(util.UNIT_ESPADA_1, 1, 0, 0)
+    util.focus_mobs(util.UNIT_ESPADA_1, 0, 1, val_sidestep)
 
     # Check Macro State
     if not util.get_macro_state():
@@ -741,7 +741,7 @@ def run_dungeon(runs=1):
       try:
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND)
-        util.focus_mobs(util.UNIT_ESPADA_1, 1, 0, val_sidestep)
+        util.focus_mobs(util.UNIT_ESPADA_1, 0, 1, val_sidestep)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_MOBS_CLEARED)
         power_ticks += 1

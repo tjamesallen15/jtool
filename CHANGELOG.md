@@ -19,11 +19,14 @@ All notable changes to this project will be documented in this file.
 
 ## v5.50 Features
 
+- [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
+- [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
 - [LHA] Updated gatekeeper sprite for better accuracy on image reading
 
 ## v5.50 Fixes
 
 - [CFA] Added a fail check on second checkpoint to reduced failed dungeon instance
+- [HK] Reduced time waiting on final group of mobs before the last boss
 - [LHA] Improved pathfinding towards bosses to greatly reduced failed dungeon instance
 - [PCA] Added a fail check on first checkpoint after nualle to reduced failed dungeon instance
 - [PCA] Fixed position on first shadow that results to failed dungeon instance

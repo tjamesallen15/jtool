@@ -373,12 +373,12 @@
 #         break
 
 #   if unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
-#     util.focus_mobs(unit, 1, 0, val_sidestep)
+#     util.focus_mobs(unit, 0, 1, val_sidestep)
 
 #   if boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_REDONNO:
-#     util.focus_mobs(unit, 1, 0, val_sidestep)
+#     util.focus_mobs(unit, 0, 1, val_sidestep)
 #   elif boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_POERTE:
-#     util.focus_mobs(unit, 1, 0, val_sidestep)
+#     util.focus_mobs(unit, 0, 1, val_sidestep)
 #   elif boss_found == 0:
 #     util.attack_mobs(unit, 1, 0.3, val_sidestep)
 

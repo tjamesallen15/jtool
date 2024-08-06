@@ -85,7 +85,7 @@ def find_mobs(unit=util.UNIT_BLANK):
     try:
       mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.8, region=util.get_full_region())
       util.log_action(util.MSG_MOBS_FOUND + unit)
-      util.focus_mobs(unit, 1, 0, val_sidestep)
+      util.focus_mobs(unit, 0, 1, val_sidestep)
     except pyauto.ImageNotFoundException:
       util.do_deselect_pack()
       util.log_action(util.MSG_NO_MOBS_FOUND)
@@ -169,7 +169,7 @@ def run_dungeon(runs=1):
       boss = pyauto.locateOnScreen(util.IMG_AREIHORN, grayscale=False, confidence=.6, region=util.get_full_region())
 
       # Attack First Boss
-      util.focus_mobs(util.UNIT_AREIHORN, 1, 0, val_sidestep)
+      util.focus_mob_boss(util.UNIT_AREIHORN, 0, 1, 0, 0)
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
 
@@ -256,7 +256,7 @@ def run_dungeon(runs=1):
       boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
       # Attack Second Boss
       util.do_battle_mode()
-      util.focus_mobs(util.UNIT_PHIXIA, 1, 0, val_sidestep)
+      util.focus_mob_boss(util.UNIT_PHIXIA, 0, 1, 0, 0)
       util.set_battle_mode(False)
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
@@ -333,7 +333,7 @@ def run_dungeon(runs=1):
       util.move(620, 480)
       util.do_dash(1)
       util.do_select(0.1)
-      util.focus_mobs(util.UNIT_VAOUR, 1, 0, val_sidestep)
+      util.focus_mob_boss(util.UNIT_VAOUR, 0, 1, 0, 0)
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_BOSS_FOUND)
       util.force_exit_dungeon()
@@ -450,7 +450,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Attack Fourth Group
-    util.wait(12)
+    util.wait(8)
     util.attack_mobs(util.UNIT_KNIGHT, 1, 0.3, 0)
 
     # Check Macro State
@@ -507,7 +507,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Attack Final Boss
-    util.attack_mobs(util.UNIT_SHIRDRAHN, 1, 0.3, 0)
+    util.focus_mob_boss(util.UNIT_SHIRDRAHN, 0, 1, 0, 0)
     util.plunder_final_box()
     util.set_battle_mode(False)
 
