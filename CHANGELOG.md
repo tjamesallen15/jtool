@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.50
+
+## v5.50 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+
+## v5.50 Features
+
+- [LHA] Updated gatekeeper sprite for better accuracy on image reading
+
+## v5.50 Fixes
+
+- [CFA] Added a fail check on second checkpoint to reduced failed dungeon instance
+- [LHA] Improved pathfinding towards bosses to greatly reduced failed dungeon instance
+- [PCA] Added a fail check on first checkpoint after nualle to reduced failed dungeon instance
+- [PCA] Fixed position on first shadow that results to failed dungeon instance
+- [TM] Slightly improved third espada and poerte sequence to reduced time spent on run
+
 # v5.40
 
 ## v5.40 Dungeons Available

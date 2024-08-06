@@ -121,6 +121,7 @@ def run_dungeon(runs=1):
     util.move(570, 300)
     util.do_dash(1)
 
+    util.do_final_mode(1)
     util.attack_boss()
     util.set_battle_mode(False)
 
@@ -220,7 +221,10 @@ def run_dungeon(runs=1):
     util.move(730, 390)
     util.do_fade(0.5)
 
-    util.move(720, 430)
+    util.move(770, 470)
+    util.do_fade(0.5)
+
+    util.move(770, 480)
     util.do_fade(0.5)
 
     util.move_click(720, 430, 1)
@@ -239,8 +243,6 @@ def run_dungeon(runs=1):
         util.move_click(610, 300)
         util.move_click(610, 305)
         util.move_click(610, 310)
-        util.move_click(750, 350)
-        util.move_click(750, 340)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -265,7 +267,7 @@ def run_dungeon(runs=1):
     util.do_short_buffs()
 
     position_final_boss()
-    util.attack_boss()
+    util.attack_boss(1, 1, 0, 0)
     util.plunder_box(1, 3)
     util.set_battle_mode(False)
 

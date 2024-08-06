@@ -47,6 +47,8 @@ def path_find_gate(unit=util.UNIT_BLANK):
         util.do_select(0.1)
         gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
+        util.move(660, 400)
+        util.do_fade(0.5)
         pathing = False
         util.log_action(util.MSG_PATH_STOP)
         break
@@ -83,10 +85,6 @@ def position_fire_guard():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(920, 200)
-  util.do_dash(1)
-  util.do_fade(0.5)
-
 def position_gate_keeper():
   util.log_action(util.MSG_MOVING_POSITION)
   util.move(850, 200)
@@ -108,25 +106,24 @@ def position_gate_keeper():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(615, 200)
+  util.move(640, 200)
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(615, 200)
+  util.move(650, 200)
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(615, 200)
-  util.do_dash(1)
-  util.do_fade(0.5)
-
-  util.move(615, 200)
+  util.move(640, 200)
   util.do_dash(1)
   util.do_fade(0.5)
 
   util.move(350, 420)
   util.do_dash(1)
   util.do_fade(0.5)
+
+  util.move(400, 300)
+  util.do_dash(1)
 
 def position_lava_gate():
   util.log_action(util.MSG_MOVING_POSITION)
@@ -219,6 +216,7 @@ def run_dungeon(runs=1):
     util.do_dash(0.5)
 
     # First Boss
+    util.do_final_mode(1)
     util.attack_boss()
 
     util.wait(1)
@@ -234,9 +232,7 @@ def run_dungeon(runs=1):
     # First Semi Boss Sequence
     position_fire_guard()
     util.wait(2)
-
-    util.move(680, 400)
-    util.do_fade(0.5)
+    guard_found = False
     moving = True
     check_count = 0
     while moving:
@@ -248,9 +244,7 @@ def run_dungeon(runs=1):
         break
 
       if check_count >= 15:
-        util.force_exit_dungeon()
         moving = False
-        util.set_reset_status(True)
 
       if moving == False:
         break
@@ -259,13 +253,15 @@ def run_dungeon(runs=1):
         util.do_select(0.1)
         check_count += 1
         boss = pyauto.locateOnScreen(util.IMG_FIRE_GUARD, grayscale=False, confidence=.8, region=util.get_full_region())
+        guard_found = True
         moving = False
+        util.attack_semi_boss(0)
         util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-      util.wait(0.2)
+      time.sleep(0.2)
 
       if moving == False:
         break
@@ -278,12 +274,61 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    # First Semi Boss
-    util.attack_semi_boss(0)
+    util.move(920, 200)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(680, 400)
+    util.do_fade(0.5)
+
+    # First Semi Boss Sequence (Fail Check)
+    if guard_found == False:
+      util.wait(2)
+      moving = True
+      check_count = 0
+      while moving:
+        if not util.get_macro_state():
+          util.log_action(util.MSG_TERMINATE)
+          moving = False
+
+        if moving == False:
+          break
+
+        if check_count >= 15:
+          util.force_exit_dungeon()
+          moving = False
+          util.set_reset_status(True)
+
+        if moving == False:
+          break
+
+        try:
+          util.do_select(0.1)
+          check_count += 1
+          boss = pyauto.locateOnScreen(util.IMG_FIRE_GUARD, grayscale=False, confidence=.8, region=util.get_full_region())
+          util.log_action(util.MSG_MOVE_STOP)
+          moving = False
+          util.attack_semi_boss(0)
+          break
+        except pyauto.ImageNotFoundException:
+          util.log_action(util.MSG_NO_BOSS_FOUND)
+
+        time.sleep(0.2)
+
+        if moving == False:
+          break
+
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
 
     # Second Semi Boss Sequence
     position_gate_keeper()
-    util.wait(3)
+    util.wait(2)
     moving = True
     check_count = 0
     while moving:
@@ -305,12 +350,15 @@ def run_dungeon(runs=1):
       try:
         util.do_select(0.1)
         check_count += 1
-        boss = pyauto.locateOnScreen(util.IMG_GATEKEEPER, grayscale=False, confidence=.8, region=util.get_full_region())
+        boss = pyauto.locateOnScreen(util.IMG_GATEKEEPER, grayscale=False, confidence=.7, region=util.get_full_region())
         moving = False
+        util.attack_semi_boss(0)
         util.log_action(util.MSG_MOVE_STOP)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
+
+      time.sleep(0.2)
 
     if util.get_reset_status():
       continue
@@ -320,11 +368,8 @@ def run_dungeon(runs=1):
       run_counter += 1000
       continue
 
-    # Second Semi Boss
-    util.attack_semi_boss(0)
-    util.set_battle_mode(False)
-
     # Gate Sequence
+    util.set_battle_mode(False)
     position_lava_gate()
     path_find_gate(util.UNIT_LAVA_GATE)
 
@@ -341,7 +386,6 @@ def run_dungeon(runs=1):
 
     # Boss Sequence
     util.do_battle_mode()
-
     position_boss()
     util.do_short_buffs()
     moving = True
@@ -369,7 +413,7 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss
-    util.attack_boss()
+    util.attack_boss(1, 1, 0, 0)
     util.plunder_box(1, 3)
 
     # Check Macro State

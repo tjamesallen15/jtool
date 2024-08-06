@@ -103,8 +103,8 @@ def position_nualle():
   util.do_fade(0.5)
 
   util.do_final_mode(1)
-  util.do_aura()
-  util.wait(4)
+  util.do_aura(1)
+  util.wait(3)
 
   util.move(660, 150)
   util.do_dash(1)
@@ -151,12 +151,15 @@ def position_first_shadow():
 
   util.move_click(580, 350, 2)
 
-  util.move(760, 300)
+  util.move(770, 280)
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move(720, 200)
+  util.move(770, 280)
   util.do_dash(1)
+
+  util.move(550, 370)
+  util.do_fade(0.5)
 
 def position_second_shadow():
   util.log_action(util.MSG_MOVING_POSITION)
@@ -273,6 +276,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
 
     util.move_click(580, 440)
+    corpse_found = False
     checking = True
     dialog_count = 0
     while checking:
@@ -291,12 +295,46 @@ def run_dungeon(runs=1):
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.5)
+        corpse_found = True
         dialog_count += 1
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
-        util.force_exit_dungeon()
         checking = False
-        util.set_reset_status(True)
+
+    if util.get_reset_status():
+      continue
+
+    # Check Macro State
+    if not util.get_macro_state():
+      run_counter += 1000
+      continue
+
+    if corpse_found == False:
+      checking = True
+      dialog_count = 0
+      while checking:
+        if not util.get_macro_state():
+          util.log_action(util.MSG_TERMINATE)
+          checking = False
+
+        if checking == False:
+          break
+
+        if dialog_count == 3:
+          checking = False
+          break
+
+        try:
+          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          util.move_click_rel(10, 10, dialog, 0.5)
+          corpse_found = True
+          dialog_count += 1
+        except pyauto.ImageNotFoundException:
+          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.force_exit_dungeon()
+          checking = False
+          util.set_reset_status(True)
 
     if util.get_reset_status():
       continue

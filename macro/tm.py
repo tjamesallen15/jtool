@@ -857,7 +857,7 @@ def run_dungeon(runs=1):
     util.move(800, 500)
     util.do_fade(0.5)
     util.do_dash(1)
-    util.wait(14)
+    util.wait(8)
 
     # Espada III Sequence
     util.cancel_aura(1)
@@ -955,7 +955,7 @@ def run_dungeon(runs=1):
     util.do_fade(0.5)
 
     # Poerte Sequence
-    util.attack_mobs(util.UNIT_POERTE, 1, 0.8, 0)
+    util.attack_mobs(util.UNIT_POERTE, 0, 0.3, val_sidestep)
 
     # Check Macro State
     if not util.get_macro_state():
