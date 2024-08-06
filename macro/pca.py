@@ -310,6 +310,17 @@ def run_dungeon(runs=1):
       continue
 
     if corpse_found == False:
+      util.move(630, 150)
+      util.do_dash(2)
+
+      util.move(670, 600)
+      util.do_dash(1)
+
+      util.move(660, 500)
+      util.do_fade(0.5)
+
+      util.move_click(580, 440)
+
       checking = True
       dialog_count = 0
       while checking:
@@ -529,7 +540,7 @@ def run_dungeon(runs=1):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-    util.attack_boss(0, 0)
+    util.attack_boss(0, 0, 0, 0)
     util.set_battle_mode(False)
     util.wait(1)
     util.do_plunder(3)
