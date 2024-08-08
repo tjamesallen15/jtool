@@ -93,9 +93,9 @@ def find_mobs(unit=util.UNIT_BLANK):
 def run_dungeon(runs=1):
   run_counter = 0
   while run_counter < runs:
-    run_counter += 1
     util.set_reset_status(False)
     util.check_run_restart(run_counter)
+    run_counter += 1
     util.log_action(util.MSG_START_DG)
     util.log_run(run_counter)
 
