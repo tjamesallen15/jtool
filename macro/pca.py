@@ -149,7 +149,9 @@ def position_first_shadow():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  util.move_click(580, 350, 2)
+  # util.move_click(580, 350, 2)
+  util.move(580, 350)
+  util.do_dash(2)
 
   util.move(770, 280)
   util.do_dash(1)

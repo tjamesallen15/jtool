@@ -19,6 +19,8 @@ All notable changes to this project will be documented in this file.
 
 ## v5.50 Features
 
+- [Application] Extended list of choice in dungeon restarts
+- [Application] Extended list of choice in click stores
 - [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
 - [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
 - [LHA] Updated gatekeeper sprite for better accuracy on image reading
