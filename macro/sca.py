@@ -84,6 +84,8 @@ def path_find(unit):
         util.do_fade(0.5)
       else:
         util.move_click_rel(10, 10, dialog, 3)
+        util.move(630, 500)
+        util.do_fade(0.5)
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -151,6 +153,8 @@ def path_find(unit):
         util.do_fade(0.5)
       else:
         util.move_click_rel(10, 10, dialog, 3)
+        util.move(630, 500)
+        util.do_fade(0.5)
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -218,6 +222,8 @@ def path_find(unit):
         util.do_fade(0.5)
       else:
         util.move_click_rel(10, 10, dialog, 3)
+        util.move(630, 500)
+        util.do_fade(0.5)
       break
     except pyauto.ImageNotFoundException:
       util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -332,7 +338,7 @@ def run_dungeon(runs=1):
     # First Boss
     util.do_deselect_pack()
     util.do_battle_mode()
-    util.attack_semi_boss()
+    util.attack_semi_boss(1, 1, 0, 0)
     util.plunder_box(1, 3)
 
     # Check Macro State

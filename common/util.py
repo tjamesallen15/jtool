@@ -788,16 +788,18 @@ def go_skill_slot(sec=0):
   if (sec != 0):
     time.sleep(sec)
 
-def set_battle_mode(val):
-  cancel_aura(2)
+def set_battle_mode(val, cancel=1):
+  if cancel == 1:
+    cancel_aura(2)
+
   if get_battle_mode() == 1:
     global is_battle_mode
     is_battle_mode = val
 
-def do_battle_mode(sec=5):
+def do_battle_mode(sec=5, cancel=1):
   if get_battle_mode() == 1:
     log_action(MSG_BATTLE_MODE)
-    set_battle_mode(True)
+    set_battle_mode(True, cancel)
 
     move(790, 670)
     pyauto.click(button="right")
@@ -1502,7 +1504,7 @@ def attack_boss(select=1, aura=1, strict=0, cont=1):
       combo = False
       break
 
-def attack_semi_boss(select=1, aura=1):
+def attack_semi_boss(select=1, aura=1, strict=0, cont=1):
   combo = True
 
   if select == 1:

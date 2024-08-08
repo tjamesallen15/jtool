@@ -149,7 +149,6 @@ def position_first_shadow():
   util.do_dash(1)
   util.do_fade(0.5)
 
-  # util.move_click(580, 350, 2)
   util.move(580, 350)
   util.do_dash(2)
 
@@ -513,12 +512,12 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss
-    util.do_battle_mode()
-    util.wait(2)
-
     if util.get_atk_type() == 0:
       util.move(620, 520)
       util.do_fade(0.5)
+
+    util.do_battle_mode(5, 0)
+    util.wait(2)
 
     check_count = 0
     checking = True

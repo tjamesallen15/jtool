@@ -30,8 +30,10 @@ All notable changes to this project will be documented in this file.
 - [CFA] Added a fail check on second checkpoint to reduced failed dungeon instance
 - [HK] Reduced time waiting on final group of mobs before the last boss
 - [LHA] Improved pathfinding towards bosses to greatly reduced failed dungeon instance
+- [PCA] Slightly increased combat ready on the final boss
 - [PCA] Added a fail check on first checkpoint after nualle to reduced failed dungeon instance
 - [PCA] Fixed position on first shadow that results to failed dungeon instance
+- [SCA] Fixed some scenarios where character will stuck up on second boss
 - [TM] Slightly improved third espada and poerte sequence to reduced time spent on run
 
 # v5.40
