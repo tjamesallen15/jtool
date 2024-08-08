@@ -508,6 +508,9 @@ def open_cabal_application():
     pynboard.press("W")
     pynboard.release("W")
     time.sleep(0.1)
+    pynboard.press("O")
+    pynboard.release("O")
+    time.sleep(0.1)
 
     wait(1)
     pynboard.press(Key.enter)
