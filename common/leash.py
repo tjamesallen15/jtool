@@ -32,7 +32,7 @@ def get_inventory_matrix():
 def close_window():
   pynboard.press(val_escape)
   pynboard.release(val_escape)
-  util.wait(0.5)
+  time.sleep(0.5)
 
 def open_inventory():
   pynboard.press(val_inventory)
@@ -77,6 +77,8 @@ def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0):
     pet_training = True
     skill_found = False
     while pet_training:
+      if not util.get_macro_state():
+        pet_training = False
 
       if index >= 64:
         pet_training = False
@@ -120,6 +122,7 @@ def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0):
       if skill_found == True:
         pet_training =  False
       else:
+        close_window()
         click_untrain()
 
       if pet_training == False:
