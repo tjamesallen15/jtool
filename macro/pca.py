@@ -251,7 +251,7 @@ def run_dungeon(runs=1):
     util.attack_boss()
 
     if util.get_atk_type() == 1:
-      util.wait(3)
+      util.wait(5)
       util.move_click(590, 460)
       util.do_fade(1)
     else:
@@ -512,9 +512,8 @@ def run_dungeon(runs=1):
       continue
 
     # Final Boss
-    if util.get_atk_type() == 0:
-      util.move(620, 520)
-      util.do_fade(0.5)
+    util.move(620, 520)
+    util.do_fade(0.5)
 
     util.do_battle_mode(5, 0)
     util.wait(2)
@@ -547,9 +546,8 @@ def run_dungeon(runs=1):
     util.wait(1)
     util.do_plunder(3)
 
-    if util.get_atk_type() == 0:
-      util.move(650, 350)
-      util.do_fade(0.5)
+    util.move(650, 350)
+    util.do_fade(0.5)
 
     util.wait(1)
     checking = True

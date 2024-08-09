@@ -63,6 +63,7 @@ region_full_mode_bar = []
 region_notification = []
 region_dialog = []
 region_sub_screen = []
+region_train_screen = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
@@ -152,6 +153,8 @@ MSG_MOVE_BEAD = "Moving bead window"
 MSG_MOVE_APPLICATION = "Moving application window"
 MSG_SELECT_TASK_BAR = "Selecting taskbar"
 MSG_DUNGEON_RESTART = "Restarting before automation"
+MSG_PET_SKILL_FOUND = "Pet Skill Found"
+MSG_PET_SKILL_FOUND = "Pet Skill Not Found"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
@@ -202,6 +205,10 @@ IMG_AREIHORN = "img/areihorn.jpg"
 IMG_PHIXIA = "img/phixia.jpg"
 IMG_SIENA = "img/siena.jpg"
 IMG_UMPRA_WEAK = "img/umpra-w.jpg"
+IMG_MAX_CRIT_RATE = "img/max-crit-rate.jpg"
+IMG_CRIT_RATE = "img/crit-rate.jpg"
+IMG_CRIT_DAMAGE = "img/crit-dmg.jpg"
+IMG_CRIT_RESIST = "img/resist-rate.jpg"
 
 # CONSTANT UNITS
 UNIT_BLANK = "--"
@@ -268,6 +275,7 @@ DATA_PIN = "pin"
 DATA_RESOLUTION = "resolution"
 DATA_LOAD = "load"
 DATA_CONNECTION = "connection"
+DATA_PET = "pet"
 DATA_OTHERS = "others"
 
 # ACCESS LEVEL
@@ -292,6 +300,8 @@ LBL_CLOSE_SECTION = ")"
 
 # LABELS
 BTN_START = "Start"
+BTN_TRAIN = "Train"
+BTN_TEST = "Test"
 LBL_EMPTY = ""
 LBL_DUNGEON = "Dungeon: "
 LBL_RUNS = "Runs: "
@@ -314,6 +324,19 @@ LBL_RESOLUTION_NOTE = "Only listed resolution above are supported."
 LBL_LOAD_TIME = "Load Time: "
 LBL_LOAD_TIME_NOTE = "Adjust based on application load for login screen."
 
+LBL_PET_NOTE_1 = "Inventory Tab must only have pet, kit and cores."
+LBL_PET_NOTE_2 = "Pet in Slot 1, Kit in Slot 2 and rest cores."
+LBL_PET_NOTE_3 = "Pet should have remove one skill before start."
+LBL_PET_NOTE_4 = "NPC should be beside of player, camera zoomed in."
+LBL_PET_NOTE_5 = "Auto train will check the skills marked above."
+
+LBL_NPC_X = "NPC X: "
+LBL_NPC_Y = "NPC Y: "
+LBL_MCR = "MCR: "
+LBL_CRT = "CRT: "
+LBL_CDI = "CDI: "
+LBL_CRR = "CRR: "
+
 LBL_STORE_NOTE = "Open UI first before clicking the buttons."
 BTN_FURY = "Fury"
 BTN_UPGRADE = "Upgrade"
@@ -328,6 +351,7 @@ BTN_PREMIUM = "Premium"
 
 TAB_DUNGEON = "Dungeon"
 TAB_CONNECTION = "Connection"
+TAB_PET = "Pet"
 TAB_OTHERS = "Others"
 TAB_PRICING = "Pricing"
 
@@ -410,6 +434,9 @@ def initialize_region():
   global region_sub_screen
   region_sub_screen = (int(cabal_window[0]) + 475, int(cabal_window[1] + 280), 300, 300)
 
+  global region_train_screen
+  region_train_screen = (int(cabal_window[0]) + 5, int(cabal_window[1]) + 280, 50, 55)
+
 def set_cabal_window(window):
   global cabal_window
   cabal_window = window
@@ -432,6 +459,16 @@ def move_rel(x, y, ref, sec=0):
 def move_click(x, y, sec=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
   pyauto.click(cabal_window[0] + x, cabal_window[1] + y)
+
+  if (sec != 0):
+    time.sleep(sec)
+
+def move_right_click(x, y, sec=0):
+  pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
+  pyauto.click(cabal_window[0] + x, cabal_window[1] + y, button="RIGHT")
+
+  if (sec != 0):
+    time.sleep(sec)
 
   if (sec != 0):
     time.sleep(sec)
@@ -721,6 +758,9 @@ def get_dialog_region():
 
 def get_sub_screen_region():
   return region_sub_screen
+
+def get_train_region():
+  return region_train_screen
 
 def get_atk_type():
   return atk_type

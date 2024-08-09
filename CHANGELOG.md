@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Extended list of choice in dungeon restarts
 - [Application] Extended list of choice in click stores
+- [Application] Added pet training feature available only for super license
 - [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
 - [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
 - [LHA] Updated gatekeeper sprite for better accuracy on image reading
@@ -33,6 +34,7 @@ All notable changes to this project will be documented in this file.
 - [PCA] Slightly increased combat ready on the final boss
 - [PCA] Added a fail check on first checkpoint after nualle to reduced failed dungeon instance
 - [PCA] Fixed position on first shadow that results to failed dungeon instance
+- [PCA] Fixed position of range characters on final boss
 - [SCA] Fixed some scenarios where character will stuck up on second boss
 - [TM] Slightly improved third espada and poerte sequence to reduced time spent on run
 

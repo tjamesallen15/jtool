@@ -1,3 +1,5 @@
+import time
+import sys
 import tkinter.font as tkFont
 from tkinter import *
 from tkinter import ttk
@@ -10,6 +12,7 @@ import keyboard as shortcut
 import common.guard as guard
 import common.config as config
 import common.features as features
+import common.leash as leash
 import common.util as util
 
 import macro.hva as hva
@@ -54,6 +57,8 @@ btn_fury = []
 btn_force = []
 btn_upgrade = []
 btn_mails = []
+btn_test = []
+btn_train = []
 lbl_macro = []
 lbl_misc = []
 lbl_current_run = []
@@ -75,6 +80,16 @@ val_leader = 0
 val_resolution = 0
 val_load_time = 0
 val_dungeon_restart = 0
+
+val_def_x = "230"
+val_def_y = "250"
+val_mcr = 0
+val_crt = 0
+val_cdi = 0
+val_crr = 0
+
+val_x_coords = []
+val_y_coords = []
 
 val_config_data = {}
 val_node_data = []
@@ -193,6 +208,11 @@ def get_access(feature):
         return util.STATE_DISABLED
       else:
         return util.STATE_NORMAL
+    case util.DATA_PET:
+      if get_level() == util.ACCESS_FREE or get_level() == util.ACCESS_PRO or get_level() == util.ACCESS_PREMIUM or get_level() == util.ACCESS_TESTER:
+        return util.STATE_DISABLED
+      else:
+        return util.STATE_NORMAL
     case util.DATA_OTHERS:
       if get_level() == util.ACCESS_FREE:
         return util.STATE_DISABLED
@@ -290,11 +310,53 @@ def restart_cabal_application():
   util.enter_cabal_world()
   util.move_bead_window()
 
+def generate_matrix():
+  leash.generate_matrix()
+
+def pet_test():
+  btn_train.config(state=util.STATE_DISABLED)
+  btn_test.config(state=util.STATE_DISABLED)
+  frame_root.update()
+
+  cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(cabal_window)
+  util.go_cabal_window()
+
+  coor_x = int(val_x_coords.get())
+  coor_y = int(val_y_coords.get())
+  leash.click_test_npc(coor_x, coor_y)
+
+  btn_train.config(state=util.STATE_NORMAL)
+  btn_test.config(state=util.STATE_NORMAL)
+  frame_root.update()
+
+def pet_train():
+  btn_train.config(state=util.STATE_DISABLED)
+  btn_test.config(state=util.STATE_DISABLED)
+  frame_root.update()
+
+  cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(cabal_window)
+  util.go_cabal_window()
+
+  coor_x = int(val_x_coords.get())
+  coor_y = int(val_y_coords.get())
+  mcr = val_mcr.get()
+  crt = val_crt.get()
+  cdi = val_cdi.get()
+  crr = val_crr.get()
+  leash.pet_train(coor_x, coor_y, mcr, crt, cdi, crr)
+
+  btn_train.config(state=util.STATE_NORMAL)
+  btn_test.config(state=util.STATE_NORMAL)
+  frame_root.update()
+
 def buy_fury():
   btn_fury.config(state=util.STATE_DISABLED)
   frame_root.update()
-  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
-  util.set_cabal_window(window)
+
+  cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(cabal_window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -307,8 +369,9 @@ def buy_fury():
 def buy_upgrade():
   btn_upgrade.config(state=util.STATE_DISABLED)
   frame_root.update()
-  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
-  util.set_cabal_window(window)
+
+  cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(cabal_window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -321,8 +384,9 @@ def buy_upgrade():
 def buy_force():
   btn_force.config(state=util.STATE_DISABLED)
   frame_root.update()
-  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
-  util.set_cabal_window(window)
+
+  cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(cabal_window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -335,8 +399,9 @@ def buy_force():
 def get_mails():
   btn_mails.config(state=util.STATE_DISABLED)
   frame_root.update()
-  window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
-  util.set_cabal_window(window)
+
+  cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+  util.set_cabal_window(cabal_window)
   util.go_cabal_window()
 
   for x in range(int(val_click_count.get())):
@@ -389,10 +454,12 @@ def generate_gui():
   tab_control = ttk.Notebook(frame_root)
   tab_dungeon = ttk.Frame(tab_control)
   tab_connection = ttk.Frame(tab_control)
+  tab_pet = ttk.Frame(tab_control)
   tab_misc = ttk.Frame(tab_control)
   tab_pricing = ttk.Frame(tab_control)
   tab_control.add(tab_dungeon, text=util.TAB_DUNGEON, state=get_access(util.DATA_DUNGEON))
   tab_control.add(tab_connection, text=util.TAB_CONNECTION, state=get_access(util.DATA_CONNECTION))
+  tab_control.add(tab_pet, text=util.TAB_PET, state=get_access(util.DATA_CONNECTION))
   tab_control.add(tab_misc, text=util.TAB_OTHERS, state=get_access(util.DATA_OTHERS))
   tab_control.add(tab_pricing, text=util.TAB_PRICING)
   tab_control.pack(expand=1, fill="both")
@@ -476,7 +543,7 @@ def generate_gui():
   chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_vera, state=get_access(util.DATA_VERADRIX))
   chkbtn_vera.place(x=75, y=196)
 
-  # Tab Premium
+  # Tab Connection
   lbl_run_restart = Label(tab_connection, text=util.LBL_RUN_RESTART)
   lbl_run_restart.place(x=10, y=10)
 
@@ -542,6 +609,82 @@ def generate_gui():
   lbl_load_time_note = Label(tab_connection, text=util.LBL_LOAD_TIME_NOTE)
   lbl_load_time_note.place(x=10, y=195)
 
+  # Tab Pet
+  lbl_pet_note_1 = Label(tab_pet, text=util.LBL_PET_NOTE_1)
+  lbl_pet_note_1.place(x=10, y=10)
+
+  lbl_pet_note_2 = Label(tab_pet, text=util.LBL_PET_NOTE_2)
+  lbl_pet_note_2.place(x=10, y=40)
+
+  lbl_pet_note_3 = Label(tab_pet, text=util.LBL_PET_NOTE_3)
+  lbl_pet_note_3.place(x=10, y=70)
+
+  lbl_x_coords = Label(tab_pet, text=util.LBL_NPC_X)
+  lbl_x_coords.place(x=10, y=103)
+
+  global val_x_coords
+  val_x_coords = StringVar()
+  val_x_coords.set(val_def_x)
+  entry_x_coords = Entry(tab_pet, textvariable=val_x_coords, width=5)
+  entry_x_coords.place(x=62, y=105)
+
+  lbl_y_coords = Label(tab_pet, text=util.LBL_NPC_Y)
+  lbl_y_coords.place(x=110, y=103)
+
+  global val_y_coords
+  val_y_coords = StringVar()
+  val_y_coords.set(val_def_y)
+  entry_y_coords = Entry(tab_pet, textvariable=val_y_coords, width=5)
+  entry_y_coords.place(x=162, y=105)
+
+  global btn_test
+  btn_test = Button(tab_pet, text=util.BTN_TEST, command=pet_test)
+  btn_test.config(width=5)
+  btn_test.place(x=210, y=100)
+
+  global btn_train
+  btn_train = Button(tab_pet, text=util.BTN_TRAIN, command=pet_train)
+  btn_train.config(width=6)
+  btn_train.place(x=260, y=100)
+
+  lbl_pet_note_4 = Label(tab_pet, text=util.LBL_PET_NOTE_4)
+  lbl_pet_note_4.place(x=10, y=135)
+
+  lbl_mcr = Label(tab_pet, text=util.LBL_MCR)
+  lbl_mcr.place(x=10, y=165)
+
+  global val_mcr
+  val_mcr = IntVar(value=0)
+  chkbtn_mcr = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_mcr, state=util.NORMAL)
+  chkbtn_mcr.place(x=50, y=167)
+
+  lbl_crt = Label(tab_pet, text=util.LBL_CRT)
+  lbl_crt.place(x=80, y=165)
+
+  global val_crt
+  val_crt = IntVar(value=0)
+  chkbtn_crt = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_crt, state=util.NORMAL)
+  chkbtn_crt.place(x=120, y=167)
+
+  lbl_cdi = Label(tab_pet, text=util.LBL_CDI)
+  lbl_cdi.place(x=150, y=165)
+
+  global val_cdi
+  val_cdi = IntVar(value=0)
+  chkbtn_cdi = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_cdi, state=util.NORMAL)
+  chkbtn_cdi.place(x=190, y=167)
+
+  lbl_crr = Label(tab_pet, text=util.LBL_CRR)
+  lbl_crr.place(x=220, y=165)
+
+  global val_crr
+  val_crr = IntVar(value=0)
+  chkbtn_crr = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_crr, state=util.NORMAL)
+  chkbtn_crr.place(x=260, y=167)
+
+  lbl_pet_note_5 = Label(tab_pet, text=util.LBL_PET_NOTE_5)
+  lbl_pet_note_5.place(x=10, y=195)
+
   # Tab Misc
   lbl_store_note = Label(tab_misc, text=util.LBL_STORE_NOTE)
   lbl_store_note.place(x=10, y=10)
@@ -606,4 +749,5 @@ def generate_gui():
 load_node()
 get_dungeon_list()
 load_data()
+generate_matrix()
 generate_gui()
