@@ -25,6 +25,7 @@ import macro.tm as tm
 import macro.pca as pca
 import macro.hk as hk
 import macro.s1p as s1p
+import macro.ci as ci
 pynboard = Controller()
 
 LIST_MASTER = [
@@ -39,7 +40,8 @@ LIST_MASTER = [
   "Terminus Machina",
   "Panic Cave (Awakened)",
   "Holy Keldrasil",
-  "Altar of Siena B1F (Prideus)"
+  "Altar of Siena B1F (Prideus)",
+  "Chaos Infinity"
 ]
 
 LIST_DUNGEON = []
@@ -138,6 +140,8 @@ def start():
     hk.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[11]):
     s1p.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[12]):
+    ci.initialize(frame_root, btn_start, runs)
 
 def get_dungeon_list():
   global LIST_DUNGEON
@@ -196,7 +200,8 @@ def get_dungeon_list():
       "Holy Windmill",
       "Holy Keldrasil",
       "Terminus Machina",
-      "Altar of Siena B1F (Prideus)"
+      "Altar of Siena B1F (Prideus)",
+      "Chaos Infinity"
     ]
 
 def get_access(feature):
@@ -751,3 +756,11 @@ get_dungeon_list()
 load_data()
 generate_matrix()
 generate_gui()
+
+# cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# util.set_cabal_window(cabal_window)
+# util.go_cabal_window()
+
+
+
+

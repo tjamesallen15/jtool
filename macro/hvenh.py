@@ -14,6 +14,9 @@ pynboard = Controller()
 # GLOBAL VARIABLES
 frame_root = []
 btn_start = []
+val_sidestep = 0
+
+
 difficulty = "Hazardous Valley (Easy)"
 dungeonList = [
   "Hazardous Valley (Hard)",
@@ -570,9 +573,38 @@ def run_dungeon(runs=1):
     util.move(700, 150)
     pyauto.mouseUp(button="right")
     pyauto.scroll(-10000)
+    util.wait(0.3)
 
-    util.move(440, 260, 0.3)
+    util.move(500, 300)
     util.do_dash(0.5)
+    util.wait(3)
+    util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, val_sidestep)
+
+    util.move(375, 150)
+    util.do_dash(1)
+    util.do_fade(1.5)
+    util.do_fade(0.5)
+    util.wait(4)
+    util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, val_sidestep)
+
+    util.move(375, 175)
+    util.do_dash(1)
+    util.do_fade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(250, 350)
+    util.do_dash(3)
+    util.do_fade(2)
+    util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, val_sidestep)
+
+    util.move(535, 150)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(400, 200)
+    util.do_dash(1)
+    util.do_fade(1.5)
 
     # Check Macro State
     if not util.get_macro_state():

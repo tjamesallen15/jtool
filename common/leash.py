@@ -15,6 +15,7 @@ y_start_point = 375
 
 val_inventory = "i"
 val_escape = Key.esc
+train_macro = True
 
 def generate_matrix():
   global inventory_matrix
@@ -28,6 +29,16 @@ def generate_matrix():
 
 def get_inventory_matrix():
   return inventory_matrix
+
+def terminate():
+  set_train_state(False)
+
+def get_train_state():
+  return train_macro
+
+def set_train_state(val):
+  global train_macro
+  train_macro = val
 
 def close_window():
   pynboard.press(val_escape)
@@ -72,12 +83,14 @@ def click_test_npc(x, y):
   util.move_click(x, y)
 
 def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0):
+  shortcut.add_hotkey(util.HOTKEY_TERMINATE, terminate)
+  set_train_state(True)
   if mcr != 0 or crt != 0 or cdi != 0 or crr != 0:
     index = 2
     pet_training = True
     skill_found = False
     while pet_training:
-      if not util.get_macro_state():
+      if not get_train_state():
         pet_training = False
 
       if index >= 64:

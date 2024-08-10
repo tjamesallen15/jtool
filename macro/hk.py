@@ -49,7 +49,7 @@ def find_mobs(unit=util.UNIT_BLANK):
         try:
           boss = pyauto.locateOnScreen(util.IMG_AREIHORN, grayscale=False, confidence=.6, region=util.get_full_region())
           util.log_action(util.MSG_BOSS_FOUND)
-          find_count += 55
+          find_count += 35
           finding = False
           break
         except pyauto.ImageNotFoundException:
@@ -59,7 +59,7 @@ def find_mobs(unit=util.UNIT_BLANK):
         try:
           boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
           util.log_action(util.MSG_BOSS_FOUND)
-          find_count += 55
+          find_count += 35
           finding = False
           break
         except pyauto.ImageNotFoundException:
@@ -69,14 +69,14 @@ def find_mobs(unit=util.UNIT_BLANK):
         try:
           boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.6, region=util.get_full_region())
           util.log_action(util.MSG_BOSS_FOUND)
-          find_count += 55
+          find_count += 35
           finding = False
           break
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_BOSS_FOUND)
           find_count += 1
 
-    if find_count >= 50:
+    if find_count >= 30:
       finding = False
 
     if finding == False:
@@ -214,6 +214,7 @@ def run_dungeon(runs=1):
         util.move_click(550, 320)
         util.move_click(550, 320)
         util.move_click(550, 320)
+        util.wait(1)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -298,6 +299,7 @@ def run_dungeon(runs=1):
         util.move_click(550, 320)
         util.move_click(550, 320)
         util.move_click(550, 320)
+        util.wait(1)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
@@ -391,7 +393,7 @@ def run_dungeon(runs=1):
         util.move_click(550, 320)
         util.move_click(550, 320)
         util.move_click(550, 320)
-
+        util.wait(1)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 2)
