@@ -584,7 +584,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(1.5)
     util.do_fade(0.5)
-    util.wait(4)
+    util.wait(6)
     util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, val_sidestep)
 
     util.move(375, 175)
