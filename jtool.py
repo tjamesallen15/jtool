@@ -756,11 +756,3 @@ get_dungeon_list()
 load_data()
 generate_matrix()
 generate_gui()
-
-# cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.set_cabal_window(cabal_window)
-# util.go_cabal_window()
-
-
-
-
