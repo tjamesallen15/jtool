@@ -591,7 +591,7 @@ def run_dungeon(runs=1):
     util.do_dash(1)
     util.do_fade(0.5)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(1)
 
     util.move(250, 350)
     util.do_dash(3)
