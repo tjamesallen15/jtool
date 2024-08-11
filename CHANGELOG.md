@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - [HK] Holy Keldrasil [v5.11]
 - [S1P] Altar of Siena B1F (Prideus) [v5.11]
 - [CI] Chaos Infinity [v5.50]
+- [HVHV] Hazardous Valley (Veradrix) [v5.50]
 
 ## v5.50 Features
 
@@ -28,6 +29,9 @@ All notable changes to this project will be documented in this file.
 - [Application] Extended list of choice in click stores
 - [Application] Added pet training feature available only for super license
 - [Application] Added Chaos Infinity in Development and Beta Phase
+- [Application] Added Hazardous Valley (Veradrix) in Development and Beta Phase
+- [Application] Added interface for inheritance and preparation for object oriented approach
+- [Dungeon] Changed thread sleep on some areas during end dungeon cycle
 - [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
 - [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
 - [LHA] Updated gatekeeper sprite for better accuracy on image reading

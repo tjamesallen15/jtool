@@ -840,19 +840,19 @@ def get_interval_range():
 
 def force_exit_dungeon():
   check_notifications()
-  wait(2)
+  time.sleep(2)
 
   move_click(830, 710)
-  wait(0.5)
+  time.sleep(0.5)
 
   move_click(850, 430)
-  wait(0.5)
+  time.sleep(0.5)
 
   move_click(1030, 485)
-  wait(1)
+  time.sleep(1)
 
   move_click(620, 440)
-  wait(3)
+  time.sleep(3)
 
 def go_skill_slot(sec=0):
   pynboard.press(Key.f3)
@@ -1273,7 +1273,7 @@ def check_notifications():
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
 
-  wait(0.5)
+  time.sleep(0.5)
 
   try:
     check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
@@ -1282,7 +1282,7 @@ def check_notifications():
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
 
-  wait(0.5)
+  time.sleep(0.5)
 
 def end_dungeon():
   ending = True

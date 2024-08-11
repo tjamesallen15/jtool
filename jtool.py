@@ -25,6 +25,8 @@ import macro.hk as hk
 import macro.s1p as s1p
 import macro.ci as ci
 
+from macro.hvhv import HVHV
+
 pynboard = Controller()
 
 LIST_MASTER = [
@@ -40,7 +42,8 @@ LIST_MASTER = [
   "Panic Cave (Awakened)",
   "Holy Keldrasil",
   "Altar of Siena B1F (Prideus)",
-  "Chaos Infinity"
+  "Chaos Infinity",
+  "Hazardous Valley (Veradrix)"
 ]
 
 LIST_DUNGEON = []
@@ -142,6 +145,8 @@ def start():
     s1p.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[12]):
     ci.initialize(frame_root, btn_start, runs)
+  elif (choice == LIST_MASTER[13]):
+    HVHV().initialize(frame_root, btn_start, runs)
 
 def get_dungeon_list():
   global LIST_DUNGEON
@@ -200,8 +205,9 @@ def get_dungeon_list():
       "Holy Windmill",
       "Holy Keldrasil",
       "Terminus Machina",
+      "Chaos Infinity",
       "Altar of Siena B1F (Prideus)",
-      "Chaos Infinity"
+      "Hazardous Valley (Veradrix)"
     ]
 
 def get_access(feature):
@@ -780,3 +786,6 @@ get_dungeon_list()
 load_data()
 generate_matrix()
 generate_gui()
+
+# dg_hvenvh = HVENHV()
+# dg_hvenvh.run_dungeon(1)
