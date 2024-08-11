@@ -1,5 +1,4 @@
 import time
-import sys
 from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
@@ -15,7 +14,7 @@ pynboard = Controller()
 frame_root = []
 btn_start = []
 
-def initialize(frame, btn, runs=1):
+def initialize(frame, btn, runs):
   global frame_root
   frame_root = frame
 
@@ -25,7 +24,9 @@ def initialize(frame, btn, runs=1):
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
+
   run_dungeon(runs)
+
   btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
@@ -43,12 +44,13 @@ def path_find_gate(unit=util.UNIT_BLANK):
     util.log_action(util.MSG_PATH_FIND + unit)
     gate_counter += 1
     if gate_counter >= 12:
+      util.move(660, 400)
+      util.do_fade(0.5)
+
       try:
         util.do_select(0.1)
         gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
-        util.move(660, 400)
-        util.do_fade(0.5)
         pathing = False
         util.log_action(util.MSG_PATH_STOP)
         break
@@ -172,7 +174,7 @@ def position_boss():
   util.move(480, 160)
   util.do_dash(1)
 
-def run_dungeon(runs=1):
+def run_dungeon(runs):
   run_counter = 0
   while run_counter < runs:
     util.set_reset_status(False)

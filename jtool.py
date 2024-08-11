@@ -1,10 +1,8 @@
-import time
-import sys
-import tkinter.font as tkFont
 from tkinter import *
 from tkinter import ttk
 from pynput import keyboard
 from pynput.keyboard import Key, Listener, Controller
+
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
@@ -26,6 +24,7 @@ import macro.pca as pca
 import macro.hk as hk
 import macro.s1p as s1p
 import macro.ci as ci
+
 pynboard = Controller()
 
 LIST_MASTER = [
@@ -64,6 +63,8 @@ btn_train = []
 lbl_macro = []
 lbl_misc = []
 lbl_current_run = []
+lbl_run_time = []
+lbl_pet_action = []
 text_features = []
 frame_root = []
 val_run_count = []
@@ -77,8 +78,7 @@ val_buffs = 1
 val_shorts = 1
 val_atk_type = 0
 val_vera = 0
-val_party = 0
-val_leader = 0
+val_archer = 0
 val_resolution = 0
 val_load_time = 0
 val_dungeon_restart = 0
@@ -113,7 +113,7 @@ def start():
   dungeon_restart = val_dungeon_restart.get()
 
   save_data()
-  util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run)
+  util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run, lbl_run_time)
   util.initialize_region()
   util.set_variables(mode, buff, short, atk_type, vera, runs, run_restart, pword, pin, reso, load_time)
 
@@ -123,7 +123,7 @@ def start():
   if (choice == LIST_MASTER[0]):
     hva.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[1] or choice == LIST_MASTER[2] or choice == LIST_MASTER[3]):
-    hvenh.initialize(frame_root, btn_start, choice, runs)
+    hvenh.initialize(frame_root, btn_start, runs, choice)
   elif (choice == LIST_MASTER[4]):
     sca.initialize(frame_root, btn_start, runs)
   elif (choice == LIST_MASTER[5]):
@@ -338,6 +338,7 @@ def pet_test():
 def pet_train():
   btn_train.config(state=util.STATE_DISABLED)
   btn_test.config(state=util.STATE_DISABLED)
+  lbl_pet_action.config(text=util.LBL_STATUS_TRAINING)
   frame_root.update()
 
   cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -354,6 +355,7 @@ def pet_train():
 
   btn_train.config(state=util.STATE_NORMAL)
   btn_test.config(state=util.STATE_NORMAL)
+  lbl_pet_action.config(text=util.LBL_STATUS_IDLE)
   frame_root.update()
 
 def buy_fury():
@@ -479,7 +481,7 @@ def generate_gui():
   list_dg.config(width=30)
   list_dg.place(x=75, y=10)
 
-  lbl_runs = Label(tab_dungeon, text="Runs: ")
+  lbl_runs = Label(tab_dungeon, text=util.LBL_RUNS)
   lbl_runs.place(x=10, y=43)
 
   global val_run_count
@@ -500,13 +502,17 @@ def generate_gui():
   lbl_mode = Label(tab_dungeon, text=util.LBL_MODE, state=get_access(util.DATA_MODE))
   lbl_mode.place(x=10, y=75)
 
+  global lbl_run_time
+  lbl_run_time = Label(tab_dungeon, text=util.LBL_RUN_TIME)
+  lbl_run_time.place(x=140, y=135)
+
   global val_mode
   val_mode = IntVar(value=get_data(util.DATA_MODE))
   chkbtn_mode = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_mode, state=get_access(util.DATA_MODE))
   chkbtn_mode.place(x=75, y=76)
 
   lbl_license = Label(tab_dungeon, text=get_license())
-  lbl_license.place(x=140, y=135)
+  lbl_license.place(x=140, y=165)
 
   lbl_buffs = Label(tab_dungeon, text=util.LBL_BUFFS, state=get_access(util.DATA_BUFFS))
   lbl_buffs.place(x=10, y=105)
@@ -517,7 +523,7 @@ def generate_gui():
   chkbtn_buffs.place(x=75, y=106)
 
   lbl_expiration = Label(tab_dungeon, text=get_expiration_status())
-  lbl_expiration.place(x=140, y=165)
+  lbl_expiration.place(x=140, y=195)
 
   lbl_shorts = Label(tab_dungeon, text=util.LBL_SHORTS, state=get_access(util.DATA_SHORTS))
   lbl_shorts.place(x=10, y=135)
@@ -528,8 +534,8 @@ def generate_gui():
   chkbtn_shorts.place(x=75, y=136)
 
   global lbl_macro
-  lbl_macro = Label(tab_dungeon, text=util.LBL_ACTION)
-  lbl_macro.place(x=140, y=195)
+  lbl_macro = Label(tab_dungeon, text=util.LBL_MACRO)
+  lbl_macro.place(x=140, y=225)
 
   lbl_atk_type = Label(tab_dungeon, text=util.LBL_RANGE)
   lbl_atk_type.place(x=10, y=165)
@@ -540,13 +546,21 @@ def generate_gui():
     variable=val_atk_type)
   chkbtn_atk_type.place(x=75, y=166)
 
+  lbl_archer = Label(tab_dungeon, text=util.LBL_ARCHER, state=get_access(util.DATA_VERADRIX))
+  lbl_archer.place(x=10, y=195)
+
+  global val_archer
+  val_archer = IntVar(value=0)
+  chkbtn_archer = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_archer, state=get_access(util.DATA_VERADRIX))
+  chkbtn_archer.place(x=75, y=196)
+
   lbl_vera = Label(tab_dungeon, text=util.LBL_VERADRIX, state=get_access(util.DATA_VERADRIX))
-  lbl_vera.place(x=10, y=195)
+  lbl_vera.place(x=10, y=225)
 
   global val_vera
   val_vera = IntVar(value=get_data(util.DATA_VERADRIX))
   chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_vera, state=get_access(util.DATA_VERADRIX))
-  chkbtn_vera.place(x=75, y=196)
+  chkbtn_vera.place(x=75, y=226)
 
   # Tab Connection
   lbl_run_restart = Label(tab_connection, text=util.LBL_RUN_RESTART)
@@ -614,6 +628,9 @@ def generate_gui():
   lbl_load_time_note = Label(tab_connection, text=util.LBL_LOAD_TIME_NOTE)
   lbl_load_time_note.place(x=10, y=195)
 
+  lbl_cabal_note = Label(tab_connection, text=util.LBL_CABAL_NOTE)
+  lbl_cabal_note.place(x=10, y=225)
+
   # Tab Pet
   lbl_pet_note_1 = Label(tab_pet, text=util.LBL_PET_NOTE_1)
   lbl_pet_note_1.place(x=10, y=10)
@@ -659,7 +676,7 @@ def generate_gui():
   lbl_mcr.place(x=10, y=165)
 
   global val_mcr
-  val_mcr = IntVar(value=0)
+  val_mcr = IntVar(value=1)
   chkbtn_mcr = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_mcr, state=util.NORMAL)
   chkbtn_mcr.place(x=50, y=167)
 
@@ -690,6 +707,10 @@ def generate_gui():
   lbl_pet_note_5 = Label(tab_pet, text=util.LBL_PET_NOTE_5)
   lbl_pet_note_5.place(x=10, y=195)
 
+  global lbl_pet_action
+  lbl_pet_action = Label(tab_pet, text=util.LBL_STATUS_IDLE)
+  lbl_pet_action.place(x=10, y=225)
+
   # Tab Misc
   lbl_store_note = Label(tab_misc, text=util.LBL_STORE_NOTE)
   lbl_store_note.place(x=10, y=10)
@@ -709,23 +730,26 @@ def generate_gui():
   btn_force.config(width=8)
   btn_force.place(x=160, y=40)
 
+  lbl_mail_note = Label(tab_misc, text=util.LBL_MAIL_NOTE)
+  lbl_mail_note.place(x=10, y=80)
+
   global btn_mails
   btn_mails = Button(tab_misc, text=util.BTN_MAILS, command=get_mails)
   btn_mails.config(width=8)
-  btn_mails.place(x=235, y=40)
+  btn_mails.place(x=10, y=110)
 
   lbl_misc_clicks = Label(tab_misc, text=util.LBL_CLICKS)
-  lbl_misc_clicks.place(x=10, y=80)
+  lbl_misc_clicks.place(x=10, y=150)
 
   global val_click_count
   val_click_count = ttk.Combobox(tab_misc, values=LIST_CLICKS, state=util.STATE_NORMAL)
   val_click_count.current(0)
   val_click_count.config(width=5)
-  val_click_count.place(x=75, y=80)
+  val_click_count.place(x=75, y=150)
 
   global lbl_misc
-  lbl_misc = Label(tab_misc, text=util.LBL_ACTION)
-  lbl_misc.place(x=160, y=80)
+  lbl_misc = Label(tab_misc, text=util.LBL_CLICK)
+  lbl_misc.place(x=160, y=150)
 
   # Tab Pricing
   frame_btn = Frame(tab_pricing)

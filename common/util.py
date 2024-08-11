@@ -1,3 +1,4 @@
+import math
 import time
 import sys
 from tkinter import *
@@ -32,6 +33,7 @@ cabal_window = []
 frame_root = []
 lbl_current_run = []
 lbl_macro = []
+lbl_run_time = []
 
 macro = True
 is_battle_mode = False
@@ -42,8 +44,6 @@ is_buffs_allowed = 1
 is_short_buffs_allowed = 1
 is_veradrix_allowed = 0
 is_veradrix_needed = 0
-is_party = 0
-is_leader = 0
 aura_counter = 0
 atk_type = 0
 val_runs = 1
@@ -54,6 +54,7 @@ val_pin = '123'
 val_resolution = '0'
 val_load_time = 0
 val_default_interval = 0.3
+val_time = 0
 
 region_normal_bar = []
 region_mode_bar = []
@@ -67,7 +68,7 @@ region_train_screen = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
-APP_FRAME_SIZE = "330x250"
+APP_FRAME_SIZE = "330x280"
 APP_NAME = "Cabal JTool"
 APP_VERSION = "5.50"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
@@ -288,6 +289,10 @@ ACCESS_TESTER = "Tester"
 ACCESS_SUPER = "Super"
 
 # STATES
+STATE_EMPTY = ""
+STRING_HOUR = "h "
+STRING_MIN = "m "
+STRING_SEC = "s"
 STATE_ZERO = 0
 STATE_DISABLED = "disabled"
 STATE_NORMAL = "normal"
@@ -311,9 +316,14 @@ LBL_MODE = "Mode II: "
 LBL_BUFFS = "Buffs: "
 LBL_SHORTS = "Shorts: "
 LBL_RANGE = "Range: "
+LBL_ARCHER = "Archer: "
 LBL_VERADRIX = "Veradrix: "
-LBL_ACTION = "Action: --"
+LBL_CLICK = "Click #: N/A"
+LBL_MACRO = "Idle"
 LBL_CURRENT_RUN = "Run #: --"
+LBL_RUN_TIME = "Run Time: "
+LBL_STATUS_TRAINING = "Status: Training"
+LBL_STATUS_IDLE = "Status: Idle"
 
 LBL_RUN_RESTART = "Run Restart: "
 LBL_RUN_RESTART_NOTE = "Restart every run specified."
@@ -325,6 +335,7 @@ LBL_RESOLUTION = "Resolution: "
 LBL_RESOLUTION_NOTE = "Only listed resolution above are supported."
 LBL_LOAD_TIME = "Load Time: "
 LBL_LOAD_TIME_NOTE = "Adjust based on application load for login screen."
+LBL_CABAL_NOTE = "Make sure Cabal World is available in start menu."
 
 LBL_PET_NOTE_1 = "Inventory Tab must only have pet, kit and cores."
 LBL_PET_NOTE_2 = "Pet in Slot 1, Kit in Slot 2 and rest cores."
@@ -339,7 +350,8 @@ LBL_CRT = "CRT: "
 LBL_CDI = "CDI: "
 LBL_CRR = "CRR: "
 
-LBL_STORE_NOTE = "Open UI first before clicking the buttons."
+LBL_STORE_NOTE = "Open NPC store first before clicking the buttons."
+LBL_MAIL_NOTE = "Open first mail before clicking the button."
 BTN_FURY = "Fury"
 BTN_UPGRADE = "Upgrade"
 BTN_FORCE = "Force"
@@ -357,8 +369,7 @@ TAB_PET = "Pet"
 TAB_OTHERS = "Others"
 TAB_PRICING = "Pricing"
 
-
-def initialize(window, frame, mlbl, rlbl):
+def initialize(window, frame, mlbl, rlbl, lrt):
   global macro
   macro = True
 
@@ -373,6 +384,12 @@ def initialize(window, frame, mlbl, rlbl):
 
   global lbl_current_run
   lbl_current_run = rlbl
+
+  global lbl_run_time
+  lbl_run_time = lrt
+
+  global val_time
+  val_time = time.time()
 
 def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
@@ -487,17 +504,34 @@ def wait(sec=1):
   time.sleep(sec)
 
 def log_run(run_number):
-  run_builder = StringVar()
   run_builder = MSG_RUN_NUMBER + str(run_number) + " | " + str(get_total_run_count())
   print(run_builder)
   lbl_current_run.config(text=run_builder)
+
   frame_root.update()
 
 def log_action(message):
-  msgBuilder = StringVar()
-  msgBuilder = MSG_ACTION + message
-  print(msgBuilder)
-  lbl_macro.config(text=msgBuilder)
+  msg_builder = MSG_ACTION + message
+  lbl_macro.config(text=msg_builder)
+
+  check_time = time.time()
+  sec_difference = math.ceil(check_time - val_time)
+  min_difference = math.floor(sec_difference / 60)
+  hour_difference = math.floor(min_difference / 60)
+  time_difference = STATE_EMPTY
+
+  if hour_difference > 0:
+    time_difference += str(hour_difference) + STRING_HOUR
+
+  if min_difference > 0:
+    time_difference += str(min_difference - (hour_difference * 60)) + STRING_MIN
+
+  time_difference += str(sec_difference - (min_difference * 60)) + STRING_SEC
+
+  val_time_difference = LBL_RUN_TIME + time_difference
+  lbl_run_time.config(text=val_time_difference)
+
+  print(msg_builder)
   frame_root.update()
 
 def terminate():
@@ -783,12 +817,6 @@ def set_reset_status(val=False):
   global trigger_reset_dungeon
   trigger_reset_dungeon = val
 
-def get_party_status():
-  return is_party
-
-def get_party_leader_status():
-  return is_leader
-
 def get_macro_state():
   return macro
 
@@ -1052,15 +1080,6 @@ def do_plunder(reps=4):
     pynboard.release(loot_space)
     time.sleep(0.3)
 
-    if get_party_status() == 1:
-      try:
-        roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
-        log_action(MSG_ROLL_EQUIPMENT)
-        move_rel(10, 10, roll)
-        move_click_rel(10, 10, roll)
-      except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
-
 def do_essentials():
   pynboard.press(loot_space)
   pynboard.release(loot_space)
@@ -1228,24 +1247,23 @@ def enter_dungeon():
   wait(1)
 
 def challenge_dungeon():
-  if (is_party == 1 and is_leader == 1) or (is_party == 0 and is_leader == 0):
-    challenging = True
-    while challenging:
-      if not get_macro_state():
-        log_action(MSG_TERMINATE)
-        challenging = False
+  challenging = True
+  while challenging:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      challenging = False
 
-      if challenging == False:
-        break
+    if challenging == False:
+      break
 
-      try:
-        challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
-        log_action(MSG_BUTTON_FOUND)
-        move_click_rel(15, 15, challengedg, 1)
-        challenging = False
-        break
-      except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_BUTTON_FOUND)
+    try:
+      challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+      log_action(MSG_BUTTON_FOUND)
+      move_click_rel(15, 15, challengedg, 1)
+      challenging = False
+      break
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_BUTTON_FOUND)
 
 def check_notifications():
   try:

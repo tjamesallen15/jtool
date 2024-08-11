@@ -1,5 +1,3 @@
-import time
-import sys
 from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
@@ -18,7 +16,7 @@ btn_start = []
 # UNIQUE VARIABLES
 val_sidestep = 0
 
-def initialize(frame, btn, runs=1):
+def initialize(frame, btn, runs):
   global frame_root
   frame_root = frame
 
@@ -28,7 +26,9 @@ def initialize(frame, btn, runs=1):
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
+
   run_dungeon(runs)
+
   btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
@@ -85,7 +85,7 @@ def position_final_boss():
   util.move(350, 560)
   util.do_dash(1.2)
 
-def run_dungeon(runs=1):
+def run_dungeon(runs):
   run_counter = 0
   while run_counter < runs:
     util.set_reset_status(False)

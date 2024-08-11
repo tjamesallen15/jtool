@@ -1,5 +1,3 @@
-import time
-import sys
 from tkinter import *
 import pyautogui as pyauto
 import pyscreeze
@@ -15,7 +13,7 @@ pynboard = Controller()
 frame_root = []
 btn_start = []
 
-def initialize(frame, btn, runs=1):
+def initialize(frame, btn, runs):
   global frame_root
   frame_root = frame
 
@@ -25,7 +23,9 @@ def initialize(frame, btn, runs=1):
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
   btn_start.config(state=util.STATE_DISABLED)
   frame_root.update()
+
   run_dungeon(runs)
+
   btn_start.config(state=util.STATE_NORMAL)
   frame_root.update()
 
@@ -384,7 +384,7 @@ def position_orphidia():
   util.move(400, 400)
   util.do_fade(0.5)
 
-def run_dungeon(runs=1):
+def run_dungeon(runs):
   run_counter = 0
   while run_counter < runs:
     util.check_run_restart(run_counter)

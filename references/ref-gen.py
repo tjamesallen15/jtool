@@ -71,3 +71,12 @@
 #     "resolution": 0,
 #     "load": 2
 # }
+
+# if get_party_status() == 1:
+#       try:
+#         roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
+#         log_action(MSG_ROLL_EQUIPMENT)
+#         move_rel(10, 10, roll)
+#         move_click_rel(10, 10, roll)
+#       except pyauto.ImageNotFoundException:
+#         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)

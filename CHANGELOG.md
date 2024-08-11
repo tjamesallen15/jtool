@@ -20,6 +20,10 @@ All notable changes to this project will be documented in this file.
 
 ## v5.50 Features
 
+- [Application] Increased application window size for other features
+- [Application] Added timer for dungeon automation
+- [Application] Added additional notes for features
+- [Application] Added Status for pet training
 - [Application] Extended list of choice in dungeon restarts
 - [Application] Extended list of choice in click stores
 - [Application] Added pet training feature available only for super license
