@@ -786,6 +786,3 @@ get_dungeon_list()
 load_data()
 generate_matrix()
 generate_gui()
-
-# dg_hvenvh = HVENHV()
-# dg_hvenvh.run_dungeon(1)
