@@ -851,7 +851,6 @@ class TerminusMachina(Dungeon):
 
       util.move(800, 500)
       util.do_fade(0.5)
-      util.do_dash(1)
       util.wait(12)
 
       # Espada III Sequence
@@ -871,7 +870,7 @@ class TerminusMachina(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_FOUND)
 
-        if power_ticks > 10:
+        if power_ticks > 30:
           checking = False
 
         if checking == False:

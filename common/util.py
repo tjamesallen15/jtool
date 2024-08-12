@@ -508,16 +508,6 @@ def wait(sec=1):
   time.sleep(sec)
 
 def log_run(run_number):
-  run_builder = MSG_RUN_NUMBER + str(run_number) + " | " + str(get_total_run_count())
-  print(run_builder)
-  lbl_current_run.config(text=run_builder)
-
-  frame_root.update()
-
-def log_action(message):
-  msg_builder = MSG_ACTION + message
-  lbl_macro.config(text=msg_builder)
-
   check_time = time.time()
   sec_difference = math.ceil(check_time - val_time)
   min_difference = math.floor(sec_difference / 60)
@@ -534,6 +524,16 @@ def log_action(message):
 
   val_time_difference = LBL_RUN_TIME + time_difference
   lbl_run_time.config(text=val_time_difference)
+
+  run_builder = MSG_RUN_NUMBER + str(run_number) + " | " + str(get_total_run_count())
+  print(run_builder)
+  lbl_current_run.config(text=run_builder)
+
+  frame_root.update()
+
+def log_action(message):
+  msg_builder = MSG_ACTION + message
+  lbl_macro.config(text=msg_builder)
 
   print(msg_builder)
   frame_root.update()
