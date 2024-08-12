@@ -535,7 +535,7 @@ class HazardousValleyVeradrix(Dungeon):
         continue
 
       util.do_deselect_pack()
-      util.move_click(620, 260)
+      util.move_click(570, 260)
       util.do_fade(1.5)
       util.do_fade(0.5)
 

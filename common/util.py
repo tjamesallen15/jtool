@@ -1022,7 +1022,6 @@ def plunder_box(select=1, reps=4):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  do_deselect_pack()
   do_plunder(reps)
 
 def plunder_final_box(select=1, reps=5):
@@ -1048,7 +1047,6 @@ def plunder_final_box(select=1, reps=5):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  do_deselect_pack()
   do_plunder(reps)
 
 def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
@@ -1074,7 +1072,6 @@ def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  do_deselect_pack()
   do_plunder(reps)
 
 def do_plunder(reps=4):
