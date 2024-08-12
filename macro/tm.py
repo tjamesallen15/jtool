@@ -870,7 +870,7 @@ class TerminusMachina(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_FOUND)
 
-        if power_ticks > 30:
+        if power_ticks > 20:
           checking = False
 
         if checking == False:
@@ -884,7 +884,7 @@ class TerminusMachina(Dungeon):
           util.log_action(util.MSG_MOBS_CLEARED)
           power_ticks += 1
 
-        if power_ticks > 10:
+        if power_ticks > 20:
           checking = False
 
         if checking == False:
