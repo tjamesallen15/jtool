@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 - [HK] Holy Keldrasil [v5.11]
 - [S1P] Altar of Siena B1F (Prideus) [v5.11]
 - [CI] Chaos Infinity [v5.50]
-- [HVHV] Hazardous Valley (Veradrix) [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
 
 ## v5.50 Features
 
@@ -34,6 +34,7 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Changed thread sleep on some areas during end dungeon cycle
 - [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
 - [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
+- [Dungeon] Updated all existing dungeon macro to class oriented
 - [LHA] Updated gatekeeper sprite for better accuracy on image reading
 
 ## v5.50 Fixes

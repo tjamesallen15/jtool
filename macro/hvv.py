@@ -8,10 +8,10 @@ from pynput import keyboard
 from tkinter import *
 
 import common.util as util
-
 pynboard = Controller()
 
-class HVHV(Dungeon):
+class HazardousValleyVeradrix(Dungeon):
+
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []

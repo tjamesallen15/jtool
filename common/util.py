@@ -289,7 +289,9 @@ ACCESS_TESTER = "Tester"
 ACCESS_SUPER = "Super"
 
 # STATES
+STATE_SPACE = " "
 STATE_EMPTY = ""
+STATE_NA = "N/A"
 STRING_HOUR = "h "
 STRING_MIN = "m "
 STRING_SEC = "s"
@@ -324,6 +326,8 @@ LBL_CURRENT_RUN = "Run #: --"
 LBL_RUN_TIME = "Run Time: "
 LBL_STATUS_TRAINING = "Status: Training"
 LBL_STATUS_IDLE = "Status: Idle"
+LBL_RESTART_NOTE_PREFIX = "Every "
+LBL_RESTART_NOTE_SUFFIX = " runs"
 
 LBL_RUN_RESTART = "Run Restart: "
 LBL_RUN_RESTART_NOTE = "Restart every run specified."
