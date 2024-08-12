@@ -193,11 +193,6 @@ class TerminusMachina(Dungeon):
         util.log_action(util.MSG_TERMINATE)
         pathing = False
 
-      if util.get_party_status() == 1:
-        gate_counter += 1
-        if gate_counter >= 2:
-          pathing = False
-
       if pathing == False:
           break
 
@@ -857,7 +852,7 @@ class TerminusMachina(Dungeon):
       util.move(800, 500)
       util.do_fade(0.5)
       util.do_dash(1)
-      util.wait(8)
+      util.wait(12)
 
       # Espada III Sequence
       util.cancel_aura(1)
@@ -1087,8 +1082,6 @@ class TerminusMachina(Dungeon):
           break
 
         gate_counter = self.find_gate(util.UNIT_GATE_FOUR)
-        if gate_counter > 3 and util.get_party_status() == 1:
-          moving = False
 
         try:
           gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
