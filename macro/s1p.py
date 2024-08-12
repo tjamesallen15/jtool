@@ -1167,4 +1167,5 @@ class SienaB1FPrideus(Dungeon):
 
       util.force_exit_dungeon()
       util.log_action(util.MSG_END_DG)
+      util.log_time()
       util.wait(3)
