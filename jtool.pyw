@@ -524,7 +524,7 @@ class JTool():
     lbl_mode.place(x=10, y=75)
 
     global lbl_run_time
-    lbl_run_time = Label(tab_dungeon, text=util.LBL_RUN_TIME)
+    lbl_run_time = Label(tab_dungeon, text=util.LBL_RUN_TIME_EMPTY)
     lbl_run_time.place(x=140, y=105)
 
     global val_mode
