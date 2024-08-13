@@ -123,6 +123,7 @@ class JTool():
     load_time = int(val_load_time.get().split(' ')[0])
     dungeon_restart = val_dungeon_restart.get()
 
+    lbl_run_time.config(text=util.LBL_RUN_TIME_EMPTY)
     if int(run_restart) > 0:
       val_restart_note = util.LBL_RUN_RESTART + util.LBL_RESTART_NOTE_PREFIX + str(run_restart) + util.LBL_RESTART_NOTE_SUFFIX
       lbl_restart_note.config(text=val_restart_note)

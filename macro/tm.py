@@ -735,7 +735,7 @@ class TerminusMachina(Dungeon):
 
         try:
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ESPADA_1)
           util.focus_mobs(util.UNIT_ESPADA_1, 0, 1, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_CLEARED)
@@ -878,7 +878,7 @@ class TerminusMachina(Dungeon):
 
         try:
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ESPADA_3)
           util.focus_mobs(util.UNIT_ESPADA_3, 0, 0, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_CLEARED)
