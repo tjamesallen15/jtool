@@ -446,14 +446,14 @@ class HazardousValleyVeradrix(Dungeon):
       util.move(500, 300)
       util.do_dash(0.5)
       util.wait(3)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
 
       util.move(375, 150)
       util.do_dash(1)
       util.do_fade(1.5)
       util.do_fade(0.5)
       util.wait(6)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
 
       util.move(375, 175)
       util.do_dash(1)
@@ -464,7 +464,7 @@ class HazardousValleyVeradrix(Dungeon):
       util.move(250, 350)
       util.do_dash(3)
       util.do_fade(2)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
 
       util.move(535, 150)
       util.do_dash(1)

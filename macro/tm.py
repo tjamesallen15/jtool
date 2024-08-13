@@ -809,6 +809,7 @@ class TerminusMachina(Dungeon):
 
       # Espada II Sequence
       util.attack_mobs(util.UNIT_ESPADA_2, 1, 0.3, 0)
+      util.cancel_aura(2)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -854,7 +855,6 @@ class TerminusMachina(Dungeon):
       util.wait(12)
 
       # Espada III Sequence
-      util.cancel_aura(1)
       power_ticks = 0
       checking = True
       while checking:
@@ -906,6 +906,7 @@ class TerminusMachina(Dungeon):
       # Power Supply III
       util.do_select(0.1)
       util.focus_gate(util.UNIT_POWER_SUPPLY)
+      util.wait(0.4)
 
       # Check Macro State
       if not util.get_macro_state():
