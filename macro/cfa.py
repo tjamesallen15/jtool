@@ -188,6 +188,18 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(530, 420)
       util.do_dash(1)
 
+      # Check Spector is Available
+      try:
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.force_exit_dungeon()
+        util.set_reset_status(True)
+
+      if util.get_reset_status():
+        continue
+
       checking = True
       while checking:
         if not util.get_macro_state():
