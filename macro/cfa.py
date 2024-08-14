@@ -86,7 +86,7 @@ class CatacombsFrostAwakened(Dungeon):
     util.do_dash(1.2)
 
     util.move(350, 560)
-    util.do_dash(1.2)
+    util.do_dash(0.5)
 
   def run_dungeon(self, runs):
     run_counter = 0

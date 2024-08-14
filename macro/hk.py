@@ -266,10 +266,13 @@ class HolyKeldrasil(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-      util.move(540, 150)
+      util.move(500, 400)
+      util.do_fade(0.5)
+
+      util.move(550, 150)
       util.do_dash(1)
 
-      util.move(540, 250)
+      util.move(580, 250)
       util.do_fade(0.5)
       util.plunder_box()
 
@@ -474,9 +477,9 @@ class HolyKeldrasil(Dungeon):
         util.do_dash(1)
         util.do_fade(0.5)
 
-        util.move(620, 550)
-        util.do_dash(1)
-        util.do_fade(0.5)
+        # util.move(620, 550)
+        # util.do_dash(1)
+        # util.do_fade(0.5)
 
       util.do_battle_mode()
       util.do_short_buffs()
@@ -494,7 +497,7 @@ class HolyKeldrasil(Dungeon):
 
         util.move(600, 150)
         util.do_dash(1)
-        util.do_fade(0.5)
+        # util.do_fade(0.5)
       elif util.get_battle_mode() == 1 and util.get_atk_type() == 1:
         util.move(600, 150)
         util.do_dash(1)
@@ -509,8 +512,8 @@ class HolyKeldrasil(Dungeon):
         util.do_fade(0.5)
 
       util.move(610, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash(0.5)
+      # util.do_fade(0.5)
 
       # Attack Final Boss
       util.focus_mob_boss(util.UNIT_SHIRDRAHN, 1, 1, 0, 0)
