@@ -255,8 +255,9 @@ class HolyKeldrasil(Dungeon):
       util.do_dash(1)
       util.wait(7)
 
-      util.move(1100, 400)
+      util.move(900, 400)
       util.do_dash(1)
+      util.do_fade(0.5)
       util.wait(5)
       self.find_mobs(util.UNIT_HATCHLING)
       try:
