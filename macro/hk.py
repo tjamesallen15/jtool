@@ -275,7 +275,7 @@ class HolyKeldrasil(Dungeon):
       util.move(550, 150)
       util.do_dash(1)
 
-      util.move(580, 250)
+      util.move(550, 250)
       util.do_fade(0.5)
       util.plunder_box()
 
