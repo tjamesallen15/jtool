@@ -268,7 +268,7 @@ class HolyKeldrasil(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-      util.move(550, 400)
+      util.move(525, 400)
       util.do_fade(0.5)
 
       util.move(550, 150)
