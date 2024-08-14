@@ -95,13 +95,14 @@ class HolyKeldrasil(Dungeon):
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
   def run_dungeon(self, runs):
+    fail_run_counter = 0
     run_counter = 0
     while run_counter < runs:
       util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
       util.log_action(util.MSG_START_DG)
-      util.log_run(run_counter)
+      util.log_run(run_counter, fail_run_counter)
 
       # Click Cabal Window
       util.go_cabal_window()
@@ -226,6 +227,7 @@ class HolyKeldrasil(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
           util.force_exit_dungeon()
+          fail_run_counter += 1
           check_dialog = False
           util.set_reset_status(True)
 
@@ -266,7 +268,7 @@ class HolyKeldrasil(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-      util.move(500, 400)
+      util.move(550, 400)
       util.do_fade(0.5)
 
       util.move(550, 150)
@@ -314,6 +316,7 @@ class HolyKeldrasil(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
           util.force_exit_dungeon()
+          fail_run_counter += 1
           check_dialog = False
           util.set_reset_status(True)
 
@@ -329,7 +332,6 @@ class HolyKeldrasil(Dungeon):
 
       # Third Group Sequence
       util.wait(10)
-      # util.move(500, 400)
       util.move(630, 320)
       util.do_dash(1)
       self.find_mobs(util.UNIT_OWL_BEAR)
@@ -346,6 +348,7 @@ class HolyKeldrasil(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_BOSS_FOUND)
         util.force_exit_dungeon()
+        fail_run_counter += 1
         util.set_reset_status(True)
 
       if util.get_reset_status():
@@ -408,6 +411,7 @@ class HolyKeldrasil(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
           util.force_exit_dungeon()
+          fail_run_counter += 1
           check_dialog = False
           util.set_reset_status(True)
 
@@ -477,10 +481,6 @@ class HolyKeldrasil(Dungeon):
         util.do_dash(1)
         util.do_fade(0.5)
 
-        # util.move(620, 550)
-        # util.do_dash(1)
-        # util.do_fade(0.5)
-
       util.do_battle_mode()
       util.do_short_buffs()
       util.wait(0.5)
@@ -497,7 +497,6 @@ class HolyKeldrasil(Dungeon):
 
         util.move(600, 150)
         util.do_dash(1)
-        # util.do_fade(0.5)
       elif util.get_battle_mode() == 1 and util.get_atk_type() == 1:
         util.move(600, 150)
         util.do_dash(1)
@@ -509,11 +508,9 @@ class HolyKeldrasil(Dungeon):
 
         util.move(600, 150)
         util.do_dash(1)
-        util.do_fade(0.5)
 
       util.move(610, 150)
       util.do_dash(0.5)
-      # util.do_fade(0.5)
 
       # Attack Final Boss
       util.focus_mob_boss(util.UNIT_SHIRDRAHN, 1, 1, 0, 0)

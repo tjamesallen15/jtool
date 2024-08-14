@@ -306,6 +306,7 @@ LBL_EXPIRATION_NA = "Expiration: N/A"
 LBL_EXPIRATION = "Expiration: "
 LBL_OPEN_SECTION = " ("
 LBL_CLOSE_SECTION = ")"
+LBL_HYPHEN = " | "
 
 # LABELS
 BTN_START = "Start"
@@ -508,8 +509,12 @@ def wait(sec=1):
   log_action(MSG_WAIT)
   time.sleep(sec)
 
-def log_run(run_number):
-  run_builder = MSG_RUN_NUMBER + str(run_number) + " | " + str(get_total_run_count())
+def log_run(run_number, fail_run_count=0):
+  if fail_run_count == 0:
+    run_builder = MSG_RUN_NUMBER + str(run_number) + LBL_HYPHEN + str(get_total_run_count())
+  else:
+    run_builder = MSG_RUN_NUMBER + str(run_number) + LBL_HYPHEN + str(get_total_run_count()) + LBL_OPEN_SECTION + str(fail_run_count) + LBL_CLOSE_SECTION
+
   lbl_current_run.config(text=run_builder)
 
   print(run_builder)
