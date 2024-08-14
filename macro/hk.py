@@ -253,11 +253,11 @@ class HolyKeldrasil(Dungeon):
       # Attack Second Group
       util.move(300, 250)
       util.do_dash(1)
-      util.wait(3)
+      util.wait(7)
 
       util.move(900, 400)
       util.do_dash(1)
-      util.wait(5)
+      util.wait(3)
       self.find_mobs(util.UNIT_HATCHLING)
       try:
         boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
