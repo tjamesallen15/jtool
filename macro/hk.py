@@ -57,7 +57,6 @@ class HolyKeldrasil(Dungeon):
             finding = False
             break
           except pyauto.ImageNotFoundException:
-            util.log_action(util.MSG_NO_BOSS_FOUND)
             find_count += 1
         case util.UNIT_HATCHLING:
           try:
@@ -67,7 +66,6 @@ class HolyKeldrasil(Dungeon):
             finding = False
             break
           except pyauto.ImageNotFoundException:
-            util.log_action(util.MSG_NO_BOSS_FOUND)
             find_count += 1
         case util.UNIT_OWL_BEAR:
           try:
@@ -77,7 +75,6 @@ class HolyKeldrasil(Dungeon):
             finding = False
             break
           except pyauto.ImageNotFoundException:
-            util.log_action(util.MSG_NO_BOSS_FOUND)
             find_count += 1
 
       if find_count >= 30:
@@ -93,6 +90,15 @@ class HolyKeldrasil(Dungeon):
       except pyauto.ImageNotFoundException:
         util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      try:
+        box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.8, region=util.get_full_region())
+        util.log_action(util.MSG_BOX_FOUND)
+        finding = False
+        find_count += 35
+        util.do_deselect_pack()
+      except pyauto.ImageNotFoundException:
+        pass
 
   def run_dungeon(self, runs):
     fail_run_counter = 0
