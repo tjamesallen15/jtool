@@ -212,12 +212,13 @@ class PanicCaveAwakened(Dungeon):
 
   def run_dungeon(self, runs):
     run_counter = 0
+    fail_run_counter = 0
     while run_counter < runs:
       util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
       util.log_action(util.MSG_START_DG)
-      util.log_run(run_counter)
+      util.log_run(run_counter, fail_run_counter)
 
       # Click Cabal Window
       util.go_cabal_window()
@@ -349,6 +350,7 @@ class PanicCaveAwakened(Dungeon):
           except pyauto.ImageNotFoundException:
             util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
             util.force_exit_dungeon()
+            fail_run_counter += 1
             checking = False
             util.set_reset_status(True)
 
@@ -500,6 +502,7 @@ class PanicCaveAwakened(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
           util.force_exit_dungeon()
+          fail_run_counter += 1
           checking = False
           util.set_reset_status(True)
 
@@ -578,6 +581,7 @@ class PanicCaveAwakened(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
           util.force_exit_dungeon()
+          fail_run_counter += 1
           checking = False
           util.set_reset_status(True)
 
@@ -608,6 +612,7 @@ class PanicCaveAwakened(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
           util.force_exit_dungeon()
+          fail_run_counter += 1
           checking = False
           util.set_reset_status(True)
 

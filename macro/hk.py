@@ -92,8 +92,8 @@ class HolyKeldrasil(Dungeon):
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
   def run_dungeon(self, runs):
-    fail_run_counter = 0
     run_counter = 0
+    fail_run_counter = 0
     while run_counter < runs:
       util.set_reset_status(False)
       util.check_run_restart(run_counter)

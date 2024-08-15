@@ -90,12 +90,13 @@ class CatacombsFrostAwakened(Dungeon):
 
   def run_dungeon(self, runs):
     run_counter = 0
+    fail_run_counter = 0
     while run_counter < runs:
       util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
       util.log_action(util.MSG_START_DG)
-      util.log_run(run_counter)
+      util.log_run(run_counter, fail_run_counter)
 
       # Click Cabal Window
       util.go_cabal_window()
@@ -144,6 +145,7 @@ class CatacombsFrostAwakened(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
+        fail_run_counter += 1
         util.set_reset_status(True)
 
       if util.get_reset_status():
@@ -195,6 +197,7 @@ class CatacombsFrostAwakened(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
         util.force_exit_dungeon()
+        fail_run_counter += 1
         util.set_reset_status(True)
 
       if util.get_reset_status():
@@ -265,6 +268,7 @@ class CatacombsFrostAwakened(Dungeon):
           break
         except pyauto.ImageNotFoundException:
           util.force_exit_dungeon()
+          fail_run_counter += 1
           dialog_check = False
           util.set_reset_status(True)
 
@@ -292,7 +296,6 @@ class CatacombsFrostAwakened(Dungeon):
         continue
 
       util.move_click(600, 600, 1)
-      # util.do_dash(1.2)
 
       try:
         util.move_click(540, 435)
@@ -304,6 +307,7 @@ class CatacombsFrostAwakened(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
+        fail_run_counter += 1
         util.set_reset_status(True)
 
       if util.get_reset_status():
