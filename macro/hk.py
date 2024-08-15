@@ -91,6 +91,15 @@ class HolyKeldrasil(Dungeon):
         util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
+      # try:
+      #   box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.8, region=util.get_full_region())
+      #   util.log_action(util.MSG_BOX_FOUND)
+      #   finding = False
+      #   find_count += 35
+      #   util.do_deselect_pack()
+      # except pyauto.ImageNotFoundException:
+      #   pass
+
   def run_dungeon(self, runs):
     fail_run_counter = 0
     run_counter = 0
@@ -169,7 +178,6 @@ class HolyKeldrasil(Dungeon):
       self.find_mobs(util.UNIT_HUMMING_BIRD)
       try:
         boss = pyauto.locateOnScreen(util.IMG_AREIHORN, grayscale=False, confidence=.6, region=util.get_full_region())
-
         # Attack First Boss
         util.focus_mob_boss(util.UNIT_AREIHORN, 0, 1, 0, 0)
       except pyauto.ImageNotFoundException:
