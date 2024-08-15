@@ -91,15 +91,6 @@ class HolyKeldrasil(Dungeon):
         util.do_deselect_pack()
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
-      # try:
-      #   box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.8, region=util.get_full_region())
-      #   util.log_action(util.MSG_BOX_FOUND)
-      #   finding = False
-      #   find_count += 35
-      #   util.do_deselect_pack()
-      # except pyauto.ImageNotFoundException:
-      #   pass
-
   def run_dungeon(self, runs):
     fail_run_counter = 0
     run_counter = 0
@@ -276,6 +267,10 @@ class HolyKeldrasil(Dungeon):
 
       util.move(525, 400)
       util.do_fade(0.5)
+
+      if util.get_atk_type() == 1:
+        util.wait(1.5)
+        util.do_fade(0.5)
 
       util.move(550, 150)
       util.do_dash(1)

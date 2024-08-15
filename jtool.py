@@ -275,9 +275,8 @@ class JTool():
   def get_account(self):
     val_account = str(self.get_level())
     if val_node_data[2] != None:
-      val_account += util.LBL_OPEN_SECTION
+      val_account += util.LBL_HYPHEN
       val_account += val_node_data[2]
-      val_account += util.LBL_CLOSE_SECTION
 
     return val_account
 
