@@ -269,8 +269,7 @@ class HolyKeldrasil(Dungeon):
       util.do_fade(0.5)
 
       if util.get_atk_type() == 1:
-        util.wait(1.5)
-        util.do_fade(0.5)
+        util.do_dash(1.5)
 
       util.move(550, 150)
       util.do_dash(1)
