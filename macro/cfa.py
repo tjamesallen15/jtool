@@ -41,20 +41,18 @@ class CatacombsFrostAwakened(Dungeon):
     util.do_fade(0.5)
 
     util.move(200, 320)
-    util.do_dash(1.2)
-    util.move(200, 520)
-    util.do_dash(1.2)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
-    util.move(600, 520)
-    util.do_dash(1.2)
+    util.move(300, 650)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
-    util.move(200, 320)
-    util.do_dash(1.2)
+    util.move(200, 350)
+    util.do_dash(1)
+    util.do_fade(1.2)
 
-    util.move(200, 420)
-    util.do_dash(1.2)
-
-    util.move(620, 280)
+    util.move(620, 260)
     util.do_fade(0.5)
 
   def pre_position_final_boss(self):
