@@ -16,6 +16,7 @@ class LavaHellfireAwakened(Dungeon):
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []
+  val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
     global frame_root
@@ -47,9 +48,6 @@ class LavaHellfireAwakened(Dungeon):
       util.log_action(util.MSG_PATH_FIND + unit)
       gate_counter += 1
       if gate_counter >= 12:
-        util.move(660, 400)
-        util.do_fade(0.5)
-
         try:
           util.do_select(0.1)
           gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
@@ -127,7 +125,7 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash(1)
     util.do_fade(0.5)
 
-    util.move(400, 300)
+    util.move(400, 200)
     util.do_dash(1)
 
   def position_lava_gate(self):
@@ -381,10 +379,10 @@ class LavaHellfireAwakened(Dungeon):
       self.position_lava_gate()
       self.path_find_gate(util.UNIT_LAVA_GATE)
 
-      util.move(720, 400)
+      util.move(660, 400)
       util.do_fade(0.5)
 
-      util.focus_mobs(util.UNIT_LAVA_GATE, 0, 0)
+      util.focus_mobs(util.UNIT_LAVA_GATE, 0, 0, self.val_sidestep)
       util.wait(1)
 
       # Check Macro State
