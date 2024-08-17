@@ -1,4 +1,3 @@
-
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
@@ -269,6 +268,7 @@ class HolyKeldrasil(Dungeon):
       util.do_fade(0.5)
 
       if util.get_atk_type() == 1:
+        util.move(500, 400)
         util.do_dash(1.5)
 
       util.move(550, 150)
@@ -335,21 +335,41 @@ class HolyKeldrasil(Dungeon):
       util.move(630, 320)
       util.do_dash(1)
       self.find_mobs(util.UNIT_OWL_BEAR)
-      try:
-        boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
 
-        # Attack Third Boss
-        util.do_deselect_pack()
-        # util.move(700, 400)
-        util.move(620, 480)
-        util.do_dash(1)
-        util.do_select(0.1)
-        util.focus_mob_boss(util.UNIT_VAOUR, 0, 1, 0, 0)
-      except pyauto.ImageNotFoundException:
+      util.do_deselect_pack()
+      util.move(620, 550)
+      util.do_dash(2)
+
+      select_counter = 0
+      selecting = True
+      vaour_found = False
+      while selecting:
+
+        if select_counter > 2:
+          selecting = False
+          break
+
+        if selecting == False:
+          break
+
+        select_counter += 1
+        try:
+          util.do_select(0.1)
+          boss = pyauto.locateOnScreen(util.IMG_VAOUR, grayscale=False, confidence=.7, region=util.get_full_region())
+          selecting = False
+          vaour_found = True
+          break
+        except pyauto.ImageNotFoundException:
+          pass
+
+      if vaour_found == False:
         util.log_action(util.MSG_NO_BOSS_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
+      else:
+        # Attack Third Boss
+        util.focus_mob_boss(util.UNIT_VAOUR, 0, 1, 0, 0)
 
       if util.get_reset_status():
         continue
@@ -454,16 +474,9 @@ class HolyKeldrasil(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
-      util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
-
       # Attack Fourth Group
-      util.wait(8)
+      util.wait(12)
+      util.move(620, 600)
       util.attack_mobs(util.UNIT_KNIGHT, 1, 0.3, 0)
 
       # Check Macro State
@@ -471,46 +484,22 @@ class HolyKeldrasil(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
-      if util.get_battle_mode() == 1:
-        util.move(620, 550)
-        util.do_dash(1)
-        util.do_fade(0.5)
-
-        util.move(620, 550)
-        util.do_dash(1)
-        util.do_fade(0.5)
-
       util.do_battle_mode()
       util.do_short_buffs()
       util.wait(0.5)
 
       util.log_action(util.MSG_MOVING_POSITION)
-      if util.get_battle_mode() == 1 and util.get_atk_type() == 0:
-        util.move(580, 150)
-        util.do_dash(1)
-        util.do_fade(0.5)
+      util.move(600, 150)
+      util.do_dash(1)
+      util.do_fade(0.5)
 
-        util.move(580, 150)
-        util.do_dash(1)
-        util.do_fade(0.5)
+      util.move(600, 150)
+      util.do_dash(1)
+      util.do_fade(0.5)
 
-        util.move(600, 150)
-        util.do_dash(1)
-      elif util.get_battle_mode() == 1 and util.get_atk_type() == 1:
-        util.move(600, 150)
-        util.do_dash(1)
-        util.do_fade(0.5)
-
-        util.move(600, 150)
-        util.do_dash(1)
-        util.do_fade(0.5)
-
-        util.move(600, 150)
-        util.do_dash(1)
-
-      util.move(610, 150)
-      util.do_dash(0.5)
+      util.move(600, 150)
+      util.do_dash(1)
+      util.do_fade(0.5)
 
       # Attack Final Boss
       util.focus_mob_boss(util.UNIT_SHIRDRAHN, 1, 1, 0, 0)
