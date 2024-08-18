@@ -42,15 +42,18 @@ All notable changes to this project will be documented in this file.
 
 - [CFA] Added a fail check on second checkpoint to reduced failed dungeon instance
 - [CFA] Changed approach on position to the second checkpoint location to avoid stuck up
+- [CFA] Added fail run count
 - [HK] Inverted the approach on the final mobs and boss
 - [HK] Reduced the amount of tick counts from 50 to 30 on waiting time for bosses
 - [HK] Increased wait time for portal dialogs
 - [HK] Added fail run count
 - [HK] Reduced time waiting on final group of mobs before the last boss
 - [HVENH] Reworked first sequence of movements up to the bridge
+- [LHA] Added fail run count
 - [LHA] Improved pathfinding towards bosses to greatly reduced failed dungeon instance
 - [PCA] Slightly increased combat ready on the final boss
-- [PCA] Added a fail check on first checkpoint after nualle to reduced failed dungeon instance
+- [PCA] Added a fail check on first checkpoint after nualle to reduced failed dungeon 
+- [PCA] Added fail run countinstance
 - [PCA] Fixed position on first shadow that results to failed dungeon instance
 - [PCA] Fixed position of range characters on final boss
 - [SCA] Fixed some scenarios where character will stuck up on second boss
