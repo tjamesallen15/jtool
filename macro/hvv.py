@@ -10,11 +10,12 @@ from tkinter import *
 import common.util as util
 pynboard = Controller()
 
-class HazardousValleyAwakened(Dungeon):
+class HazardousValleyVeradrix(Dungeon):
 
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []
+  val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
     global frame_root
@@ -106,34 +107,7 @@ class HazardousValleyAwakened(Dungeon):
       if pathing == False:
         break
 
-      if unit == util.UNIT_MOSS_TOAD:
-        try:
-          util.move_click(475, 260)
-          util.do_fade()
-          util.do_select(0.1)
-          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_MOBS_FOUND + unit)
-          pathing = False
-          util.log_action(util.MSG_PATH_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
-
-        try:
-          util.do_select(0.1)
-          util.log_action(util.MSG_CHECK_BOSS)
-          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_BOSS_FOUND)
-          pathing = False
-          boss_found = 1
-          util.log_action(util.MSG_PATH_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
-
-        if pathing == False:
-          break
-
+      if unit == util.UNIT_CUTTER_TOAD:
         try:
           util.move_click(450, 260)
           util.do_fade()
@@ -189,6 +163,9 @@ class HazardousValleyAwakened(Dungeon):
 
       try:
         util.move_click(300, 260)
+        if unit == util.UNIT_WHITE_SNAKE:
+          util.do_dash(1)
+          util.do_fade(0.5)
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -213,35 +190,14 @@ class HazardousValleyAwakened(Dungeon):
       if pathing == False:
         break
 
-      try:
-        util.move_click(200, 260)
-        util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-        util.log_action(util.MSG_MOBS_FOUND + unit)
-        pathing = False
-        util.log_action(util.MSG_PATH_STOP)
-        break
-      except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
-
-      try:
-        util.do_select(0.1)
-        util.log_action(util.MSG_CHECK_BOSS)
-        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-        util.log_action(util.MSG_BOSS_FOUND)
-        pathing = False
-        boss_found = 1
-        util.log_action(util.MSG_PATH_STOP)
-        break
-      except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
-
-      if pathing == False:
-        break
-
-      if unit == util.UNIT_LUMBER_DORIGO:
+      if unit == util.UNIT_WHITE_SNAKE or unit == util.UNIT_BOAR_SNAKE:
         try:
-          util.move_click(200, 360)
+          util.move_click(200, 260)
+
+          if unit == util.UNIT_WHITE_SNAKE:
+            util.do_dash(1)
+            util.do_fade(0.5)
+
           util.do_select(0.1)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -254,7 +210,7 @@ class HazardousValleyAwakened(Dungeon):
         try:
           util.do_select(0.1)
           util.log_action(util.MSG_CHECK_BOSS)
-          mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOSS_FOUND)
           pathing = False
           boss_found = 1
@@ -266,12 +222,46 @@ class HazardousValleyAwakened(Dungeon):
         if pathing == False:
           break
 
+        try:
+          util.move_click(100, 260)
+
+          if unit == util.UNIT_WHITE_SNAKE:
+            util.do_dash(1)
+            util.do_fade(0.5)
+
+          util.do_select(0.1)
+          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+          util.log_action(util.MSG_MOBS_FOUND + unit)
+          pathing = False
+          util.log_action(util.MSG_PATH_STOP)
+          break
+        except pyauto.ImageNotFoundException:
+          util.log_action(util.MSG_NO_MOBS_FOUND)
+
+        try:
+          util.do_select(0.1)
+          util.log_action(util.MSG_CHECK_BOSS)
+          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+          util.log_action(util.MSG_BOSS_FOUND)
+          pathing = False
+          boss_found = 1
+          util.log_action(util.MSG_PATH_STOP)
+          break
+        except pyauto.ImageNotFoundException:
+          util.log_action(util.MSG_NO_MOBS_FOUND)
+
+        if pathing == False:
+          break
+
+    interval = 0.3
+    if unit == util.UNIT_CUTTER_TOAD:
+      interval = 0.5
+
     if boss_found == 0:
-      util.attack_mobs(unit)
+      util.attack_mobs(unit, 1, interval)
 
   def path_backtrack(self, unit):
     backtracking = True
-    boss_found = 0
     backtrack_counter = 0
     while backtracking:
       if not util.get_macro_state():
@@ -283,11 +273,12 @@ class HazardousValleyAwakened(Dungeon):
 
       backtrack_counter += 1
       util.log_action(util.MSG_BACKTRACK + str(backtrack_counter))
-      if (backtrack_counter >= 20):
+      if (backtrack_counter >= 10):
         backtrack_counter = 0
         backtracking = False
 
       util.log_action(util.MSG_BACKTRACK + unit)
+
       try:
         util.move_click(650, 560)
         util.do_dash()
@@ -299,6 +290,16 @@ class HazardousValleyAwakened(Dungeon):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOX_FOUND)
+        backtracking = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOX_FOUND)
 
       if backtracking == False:
         break
@@ -315,6 +316,16 @@ class HazardousValleyAwakened(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOX_FOUND)
+        backtracking = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOX_FOUND)
+
       if backtracking == False:
         break
 
@@ -329,6 +340,16 @@ class HazardousValleyAwakened(Dungeon):
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
+
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOX_FOUND)
+        backtracking = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOX_FOUND)
 
       if backtracking == False:
         break
@@ -345,6 +366,16 @@ class HazardousValleyAwakened(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOX_FOUND)
+        backtracking = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOX_FOUND)
+
       if backtracking == False:
         break
 
@@ -360,36 +391,25 @@ class HazardousValleyAwakened(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_BOX_FOUND)
+        backtracking = False
+        util.log_action(util.MSG_PATH_STOP)
+        break
+      except pyauto.ImageNotFoundException:
+        util.log_action(util.MSG_NO_BOX_FOUND)
+
       if backtracking == False:
         break
 
-    util.attack_mobs(unit)
-
-  def position_orphidia(self):
-    util.do_deselect_pack()
-    util.move(400, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
-    util.do_deselect_pack()
-    util.move(320, 540)
-    util.do_dash(1)
-
-    util.do_deselect_pack()
-    util.move(400, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
-
-    util.do_deselect_pack()
-    util.move(320, 540)
-    util.do_dash(1)
-
-    util.move(400, 400)
-    util.do_fade(0.5)
+    util.attack_backtrack(unit, 1, 1, 0)
 
   def run_dungeon(self, runs):
     run_counter = 0
     while run_counter < runs:
+      util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
       util.log_action(util.MSG_START_DG)
@@ -410,6 +430,7 @@ class HazardousValleyAwakened(Dungeon):
       util.move(677, 361)
       util.move(735, 361, 0.5)
       util.click_portal(735, 361)
+      util.move_click(440, 300, 0.5)
 
       # Enter Dungeon
       util.enter_dungeon()
@@ -420,96 +441,73 @@ class HazardousValleyAwakened(Dungeon):
       util.move(700, 150)
       pyauto.mouseUp(button="right")
       pyauto.scroll(-10000)
+      util.wait(0.3)
 
-      # Initial Position
-      util.move(850, 600)
-      util.do_dash(0.1)
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      # Mush and Flower Sequence
-      moving = True
-      while moving:
-        if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
-          moving = False
-
-        if moving == False:
-          break
-
-        self.path_find(util.UNIT_MUSH_FLOWER)
-        try:
-          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-          moving = False
-          util.log_action(util.MSG_MOVE_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      util.do_deselect_pack()
-      util.move(700, 600)
-      util.do_dash(0.1)
-      util.do_fade(0.5)
-
-      util.move(700, 600)
-      util.do_dash(0.1)
-      util.do_fade(0.5)
-
-      # First Boss
-      util.do_short_buffs()
-
-      util.attack_boss()
-      util.move(450, 550)
-      util.do_fade(0.5)
-
-      util.plunder_box()
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      util.move_click(400, 260)
-      util.do_dash(0.5)
-
-      # Mossite and Toad Sequence
-      moving = True
-      while moving:
-        if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
-          moving = False
-
-        if moving == False:
-          break
-
-        self.path_find(util.UNIT_MOSS_TOAD)
-        try:
-          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-          moving = False
-          util.log_action(util.MSG_MOVE_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      # Second Boss
-      util.do_deselect_pack()
-      util.move(800, 360)
-      util.do_dash(1)
       util.move(500, 300)
-      util.do_fade(0.1)
+      util.do_dash(0.5)
+      util.wait(3)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
+
+      util.move(375, 150)
+      util.do_dash(1)
+      util.do_fade(1.5)
+      util.do_fade(0.5)
+      util.wait(6)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
+
+      util.move(375, 175)
+      util.do_dash(1)
+      util.do_fade(0.5)
+      util.do_dash(1)
+      util.do_fade(1)
+
+      util.move(250, 350)
+      util.do_dash(3)
+      util.do_fade(2)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
+
+      util.move(535, 150)
+      util.do_dash(1)
+      util.do_fade(0.5)
+
+      util.move(400, 200)
+      util.do_dash(1)
+      util.do_fade(1.5)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
+      # Cutter and Toad Sequence
+      moving = True
+      while moving:
+        if not util.get_macro_state():
+            util.log_action(util.MSG_TERMINATE)
+            moving = False
+
+        if moving == False:
+          break
+
+        self.path_find(util.UNIT_CUTTER_TOAD)
+        try:
+          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+          moving = False
+          util.log_action(util.MSG_MOVE_STOP)
+          break
+        except pyauto.ImageNotFoundException:
+          util.log_action(util.MSG_NO_BOSS_FOUND)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
+      util.do_deselect_pack()
+      util.move(630, 520)
+      util.do_fade(0.5)
+      util.move(550, 250)
+      util.do_dash(0.5)
 
       checking = True
       while checking:
@@ -522,171 +520,26 @@ class HazardousValleyAwakened(Dungeon):
 
         try:
           util.do_select(0.1)
-          mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
           checking = False
           break
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_BOSS_FOUND)
 
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      # Second Boss Cont
+      # First Boss
       util.attack_boss()
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       util.do_deselect_pack()
-      util.move(500, 100)
+      util.move_click(570, 260)
+      util.do_fade(1.5)
       util.do_fade(0.5)
+
       util.plunder_box()
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      # Lumber and Dorigo Sequence
-      moving = True
-      while moving:
-        if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
-          moving = False
-
-        if moving == False:
-          break
-
-        self.path_find(util.UNIT_LUMBER_DORIGO)
-        try:
-          mobs = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-          moving = False
-          util.log_action(util.MSG_MOVE_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      # Position for First Orphidia
-      util.do_deselect_pack()
-      self.position_orphidia()
-
-      # First Orphidia
-      try:
-        util.do_select(0.1)
-        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-        util.attack_boss()
-      except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      util.wait(1)
-      util.move(675, 600)
-      util.do_dash(0.5)
-      util.do_battle_mode()
-
-      # Second and Third Orphidia
-      boss_tracker = 0
-      boss_count = 0
-      short_buffs_counter = 0
-      while boss_count < 2:
-        if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
-          boss_count += 10
-
-        if boss_count > 2:
-          break
-
-        if (boss_count == 1 and short_buffs_counter == 0 and util.is_short_buffs_allowed == 1):
-          short_buffs_counter = 1
-          util.do_short_buffs()
-
-        try:
-          util.do_select(0.1)
-          boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_BOSS_FOUND)
-          boss_count += 1
-          util.attack_boss(0, 1)
-          util.do_deselect_pack()
-          util.wait(5)
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      # Pathfind Treasure Boxes
-      util.check_notifications()
-      boxing = True
-      while boxing:
-        if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
-          boxing = False
-
-        if boxing == False:
-          break
-
-        util.log_action(util.MSG_PATH_FIND + util.UNIT_BOX)
-        util.move_click(550, 160)
-        util.wait(1)
-
-        util.do_dash(0.5)
-        util.move_click(650, 160, 0.3)
-        util.move_click(750, 160, 0.3)
-        util.move_click(850, 160, 0.3)
-        util.move_click(950, 160, 0.3)
-        util.move_click(950, 480)
-        util.do_dash(1)
-        util.do_fade(0.5)
-
-        try:
-          util.do_select(0.1)
-          box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_BOX_FOUND)
-          boxing = False
-          util.log_action(util.MSG_PATH_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
-
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
-
-      # Loot Treasure Boxes
-      plundering = True
-      while plundering:
-        if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
-          plundering = False
-
-        if plundering == False:
-          break
-
-        try:
-          util.do_select(0.1)
-          box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
-          util.log_action(util.MSG_BOX_FOUND)
-          util.log_action(util.MSG_PATH_STOP)
-          util.plunder_final_box(0)
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
-
-        try:
-          checkenddg = pyauto.locateOnScreen(util.IMG_END_DG, grayscale=False, confidence=.9)
-          plundering = False
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_END_DG)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -696,9 +549,7 @@ class HazardousValleyAwakened(Dungeon):
       util.set_battle_mode(False)
 
       # Start to End Dungeon
-      util.check_notifications()
-      util.end_dungeon()
-      util.dice_dungeon()
+      util.force_exit_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
       util.wait(3)

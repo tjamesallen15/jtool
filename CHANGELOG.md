@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.50
+
+## v5.50 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+
+## v5.50 Features
+
+- [Application] Increased application window size for other features
+- [Application] Added timer for dungeon automation
+- [Application] Added additional notes for features
+- [Application] Added Status for pet training
+- [Application] Extended list of choice in dungeon restarts
+- [Application] Extended list of choice in click stores
+- [Application] Added pet training feature available only for super license
+- [Application] Added Chaos Infinity in Development and Beta Phase
+- [Application] Added Hazardous Valley (Veradrix) in Development and Beta Phase
+- [Application] Added interface for inheritance and preparation for object oriented approach
+- [Application] Added new button in pricing for changelogs
+- [Dungeon] Added fail counter for dungeons that has fail reset instance
+- [Dungeon] Changed thread sleep on some areas during end dungeon cycle
+- [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
+- [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
+- [Dungeon] Updated all existing dungeon macro to class oriented
+- [LHA] Updated gatekeeper sprite for better accuracy on image reading
+
+## v5.50 Fixes
+
+- [CFA] Added a fail check on second checkpoint to reduced failed dungeon instance
+- [CFA] Changed approach on position to the second checkpoint location to avoid stuck up
+- [CFA] Added fail run count
+- [HK] Inverted the approach on the final mobs and boss
+- [HK] Reduced the amount of tick counts from 50 to 30 on waiting time for bosses
+- [HK] Increased wait time for portal dialogs
+- [HK] Added fail run count
+- [HK] Reduced time waiting on final group of mobs before the last boss
+- [HVENH] Reworked first sequence of movements up to the bridge
+- [LHA] Added fail run count
+- [LHA] Improved pathfinding towards bosses to greatly reduced failed dungeon instance
+- [PCA] Slightly increased combat ready on the final boss
+- [PCA] Added a fail check on first checkpoint after nualle to reduced failed dungeon 
+- [PCA] Added fail run countinstance
+- [PCA] Fixed position on first shadow that results to failed dungeon instance
+- [PCA] Fixed position of range characters on final boss
+- [SCA] Fixed some scenarios where character will stuck up on second boss
+- [TM] Slightly improved third espada and poerte sequence to reduced time spent on run
+
 # v5.40
 
 ## v5.40 Dungeons Available
