@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added Chaos Infinity in Development and Beta Phase
 - [Application] Added Hazardous Valley (Veradrix) in Development and Beta Phase
 - [Application] Added interface for inheritance and preparation for object oriented approach
+- [Application] Added new button in pricing for changelogs
 - [Dungeon] Added fail counter for dungeons that has fail reset instance
 - [Dungeon] Changed thread sleep on some areas during end dungeon cycle
 - [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()

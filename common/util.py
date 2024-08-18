@@ -211,6 +211,10 @@ IMG_CRIT_RATE = "img/crit-rate.jpg"
 IMG_CRIT_DAMAGE = "img/crit-dmg.jpg"
 IMG_CRIT_RESIST = "img/resist-rate.jpg"
 
+# FILE
+FILE_CHANGELOG = "CHANGELOG.md"
+FILE_READ = "r"
+
 # CONSTANT UNITS
 UNIT_BLANK = "--"
 UNIT_BLOCKER = "Blocker"
@@ -368,6 +372,7 @@ LBL_CLICKS = "Clicks: "
 BTN_FREE = "Free"
 BTN_PRO = "Pro"
 BTN_PREMIUM = "Premium"
+BTN_CHANGELOG = "Changelog"
 
 TAB_DUNGEON = "Dungeon"
 TAB_CONNECTION = "Connection"
