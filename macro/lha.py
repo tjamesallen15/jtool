@@ -175,6 +175,9 @@ class LavaHellfireAwakened(Dungeon):
     util.move(480, 160)
     util.do_dash(1)
 
+    util.move(600, 250)
+    util.do_fade(0.5)
+
   def run_dungeon(self, runs):
     run_counter = 0
     fail_run_counter = 0
