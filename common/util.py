@@ -70,7 +70,7 @@ region_train_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x280"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "5.50"
+APP_VERSION = "5.60"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -315,6 +315,7 @@ LBL_HYPHEN = " | "
 # LABELS
 BTN_START = "Start"
 BTN_TRAIN = "Train"
+BTN_CLICK = "Click"
 BTN_TEST = "Test"
 LBL_EMPTY = ""
 LBL_DUNGEON = "Dungeon: "
@@ -366,6 +367,7 @@ BTN_FURY = "Fury"
 BTN_UPGRADE = "Upgrade"
 BTN_FORCE = "Force"
 BTN_MAILS = "Mails"
+LBL_CUSTON_CLICK_NOTE = "Use custom x and y for other items in store."
 
 LBL_CLICKS = "Clicks: "
 
@@ -1603,8 +1605,8 @@ def attack_semi_boss(select=1, aura=1, strict=0, cont=1):
     try:
       boss = pyauto.locateOnScreen(IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
-      do_attack(0.1)
-      do_attack(0.1)
+      do_attack(0.1, strict, cont)
+      do_attack(0.1, strict, cont)
     except pyauto.ImageNotFoundException:
       log_action(MSG_BOSS_KILLED)
       combo = False

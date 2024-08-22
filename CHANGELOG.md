@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.60
+
+## v5.60 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+
+## v5.60 Features
+
+- [Application] Added custom click x and y for other store items.
+- [Application] Added cont and strict mode in attack_semi_boss
+
+## v5.60 Fixes
+
+- [LHA] Fixed occasional stuck up in final boss in certain scenarios when shorts are turned off
+- [SCA] Disabled sidestep to avoid stuck up
+- [SCA] Adjusted wait time for mob spawn
+- [TM] Minor adjustments for stuck up scenarios when some mobs are not been lured to you
+
 # v5.50
 
 ## v5.50 Dungeons Available

@@ -64,6 +64,8 @@ class JTool():
   btn_mails = []
   btn_test = []
   btn_train = []
+  btn_misc_test = []
+  btn_misc_click = []
   lbl_macro = []
   lbl_misc = []
   lbl_current_run = []
@@ -97,6 +99,8 @@ class JTool():
 
   val_x_coords = []
   val_y_coords = []
+  val_misc_x_coords = []
+  val_misc_y_coords = []
 
   val_config_data = {}
   val_node_data = []
@@ -441,6 +445,44 @@ class JTool():
     btn_mails.config(state=util.STATE_NORMAL)
     frame_root.update()
 
+  def test_custom_clicks(self):
+    btn_misc_test.config(state=util.STATE_DISABLED)
+    btn_misc_click.config(state=util.STATE_DISABLED)
+    frame_root.update()
+
+    cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+
+    coor_x = int(val_misc_x_coords.get())
+    coor_y = int(val_misc_y_coords.get())
+
+    util.move(coor_x, coor_y)
+
+    btn_misc_test.config(state=util.STATE_NORMAL)
+    btn_misc_click.config(state=util.STATE_NORMAL)
+    frame_root.update()
+
+  def custom_clicks(self):
+    btn_misc_test.config(state=util.STATE_DISABLED)
+    btn_misc_click.config(state=util.STATE_DISABLED)
+    frame_root.update()
+
+    cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+
+    coor_x = int(val_misc_x_coords.get())
+    coor_y = int(val_misc_y_coords.get())
+
+    for x in range(int(val_click_count.get())):
+      util.move_click(coor_x, coor_y)
+      self.log_misc_action(util.MSG_CLICK + str(x+1))
+
+    btn_misc_test.config(state=util.STATE_NORMAL)
+    btn_misc_click.config(state=util.STATE_NORMAL)
+    frame_root.update()
+
   def get_features_free(self):
     text_features.configure(state=util.STATE_NORMAL)
     text_features.delete('1.0', END)
@@ -773,18 +815,49 @@ class JTool():
     btn_mails.config(width=8)
     btn_mails.place(x=10, y=110)
 
+    lbl_misc_x_coords = Label(tab_misc, text=util.LBL_NPC_X)
+    lbl_misc_x_coords.place(x=10, y=153)
+
+    global val_misc_x_coords
+    val_misc_x_coords = StringVar()
+    val_misc_x_coords.set('0')
+    entry_x_coords = Entry(tab_misc, textvariable=val_misc_x_coords, width=5)
+    entry_x_coords.place(x=62, y=155)
+
+    lbl_misc_y_coords = Label(tab_misc, text=util.LBL_NPC_Y)
+    lbl_misc_y_coords.place(x=110, y=153)
+
+    global val_misc_y_coords
+    val_misc_y_coords = StringVar()
+    val_misc_y_coords.set('0')
+    entry_y_coords = Entry(tab_misc, textvariable=val_misc_y_coords, width=5)
+    entry_y_coords.place(x=162, y=155)
+
+    global btn_misc_test
+    btn_misc_test = Button(tab_misc, text=util.BTN_TEST, command=self.test_custom_clicks)
+    btn_misc_test.config(width=5)
+    btn_misc_test.place(x=210, y=150)
+
+    global btn_misc_click
+    btn_misc_click = Button(tab_misc, text=util.BTN_CLICK, command=self.custom_clicks)
+    btn_misc_click.config(width=6)
+    btn_misc_click.place(x=260, y=150)
+
+    lbl_misc_custom_note = Label(tab_misc, text=util.LBL_CUSTON_CLICK_NOTE)
+    lbl_misc_custom_note.place(x=10, y=190)
+
     lbl_misc_clicks = Label(tab_misc, text=util.LBL_CLICKS)
-    lbl_misc_clicks.place(x=10, y=150)
+    lbl_misc_clicks.place(x=10, y=220)
 
     global val_click_count
     val_click_count = ttk.Combobox(tab_misc, values=self.LIST_CLICKS, state=util.STATE_NORMAL)
     val_click_count.current(0)
     val_click_count.config(width=5)
-    val_click_count.place(x=75, y=150)
+    val_click_count.place(x=75, y=220)
 
     global lbl_misc
     lbl_misc = Label(tab_misc, text=util.LBL_CLICK)
-    lbl_misc.place(x=160, y=150)
+    lbl_misc.place(x=160, y=220)
 
     # Tab Pricing
     frame_btn = Frame(tab_pricing)

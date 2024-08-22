@@ -16,6 +16,7 @@ class SteamerCrazyAwakened(Dungeon):
   frame_root = []
   btn_start = []
   portal_counter = 0
+  val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
     global frame_root
@@ -86,9 +87,9 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_dash(1)
           util.do_fade(0.5)
         else:
-          util.move_click_rel(10, 10, dialog, 3)
+          util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
-          util.do_fade(0.5)
+          util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -155,9 +156,9 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_dash(1)
           util.do_fade(0.5)
         else:
-          util.move_click_rel(10, 10, dialog, 3)
+          util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
-          util.do_fade(0.5)
+          util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -224,9 +225,9 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_dash(1)
           util.do_fade(0.5)
         else:
-          util.move_click_rel(10, 10, dialog, 3)
+          util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
-          util.do_fade(0.5)
+          util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -260,7 +261,7 @@ class SteamerCrazyAwakened(Dungeon):
         break
 
     if boss_found == 0 and mobs_found == 1:
-      util.attack_mobs(unit)
+      util.attack_mobs(unit, 1, util.val_default_interval, self.val_sidestep)
 
       util.move(630, 250)
       util.do_dash(1)

@@ -624,7 +624,7 @@ class TerminusMachina(Dungeon):
       util.move(500, 420)
       util.do_fade(1)
 
-      util.wait(5)
+      util.wait(7)
       util.attack_mobs(util.UNIT_MECH_LIHONAR, 1, 0.3, 0)
 
       # Check Macro State
@@ -725,7 +725,7 @@ class TerminusMachina(Dungeon):
           power_ticks += 1
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_MOBS_FOUND)
+          pass
 
         if power_ticks > 10:
           checking = False
@@ -868,7 +868,7 @@ class TerminusMachina(Dungeon):
           power_ticks += 1
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_MOBS_FOUND)
+          pass
 
         if power_ticks > 20:
           checking = False
@@ -947,7 +947,6 @@ class TerminusMachina(Dungeon):
 
       util.move(620, 600)
       util.do_dash(1)
-      util.do_fade(0.5)
 
       # Poerte Sequence
       util.attack_mobs(util.UNIT_POERTE, 0, 0.3, self.val_sidestep)
