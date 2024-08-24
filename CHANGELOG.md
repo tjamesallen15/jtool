@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 - [SCA] Disabled sidestep to avoid stuck up
 - [SCA] Adjusted wait time for mob spawn
 - [TM] Minor adjustments for stuck up scenarios when some mobs are not been lured to you
+- [TM] Added backtrack checking on redonno sequence
 
 # v5.50
 

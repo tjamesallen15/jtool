@@ -38,6 +38,7 @@ class TerminusMachina(Dungeon):
   def path_find(self, unit=util.UNIT_BLANK):
     pathing = True
     boss_found = 0
+    backtrack_counter = 0
     while pathing:
       if not util.get_macro_state():
         util.log_action(util.MSG_TERMINATE)
@@ -47,6 +48,14 @@ class TerminusMachina(Dungeon):
         break
 
       util.log_action(util.MSG_PATH_FIND + unit)
+
+      if unit == util.UNIT_REDONNO:
+        backtrack_counter += 1
+        util.log_action(util.MSG_BACKTRACK + str(backtrack_counter))
+        if (backtrack_counter >= 10):
+          backtrack_counter = 0
+          self.path_backtrack(unit)
+
       try:
         util.move_click(600, 260)
         util.do_select(0.1)
@@ -184,6 +193,16 @@ class TerminusMachina(Dungeon):
 
     if boss_found == 0:
       util.focus_mobs(unit, 0, 1, self.val_sidestep)
+
+  def path_backtrack(self, unit):
+    util.log_action(util.MSG_BACKTRACK + unit)
+    util.move(630, 600)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(630, 600)
+    util.do_dash(1)
+    util.do_fade(0.5)
 
   def find_gate(self, unit=util.UNIT_BLANK):
     pathing = True
@@ -1027,6 +1046,8 @@ class TerminusMachina(Dungeon):
       util.move(590, 150)
       util.do_dash(1)
       util.do_fade(0.5)
+
+      util.wait(5)
 
       # Redonno Sequence
       moving = True
