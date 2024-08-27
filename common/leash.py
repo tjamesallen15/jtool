@@ -82,10 +82,10 @@ def click_test_npc(x, y):
   util.move(x, y)
   util.move_click(x, y)
 
-def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0):
+def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0, eva=0):
   shortcut.add_hotkey(util.HOTKEY_TERMINATE, terminate)
   set_train_state(True)
-  if mcr != 0 or crt != 0 or cdi != 0 or crr != 0:
+  if mcr != 0 or crt != 0 or cdi != 0 or crr != 0 or eva != 0:
     index = 2
     pet_training = True
     skill_found = False
@@ -128,6 +128,13 @@ def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0):
       if crr == 1 and skill_found == False:
         try:
           skill_icon = pyauto.locateOnScreen(util.IMG_CRIT_RESIST, grayscale=False, confidence=.9, region=util.get_train_region())
+          skill_found = True
+        except pyauto.ImageNotFoundException:
+          pass
+
+      if eva == 1 and skill_found == False:
+        try:
+          skill_icon = pyauto.locateOnScreen(util.IMG_EVA, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass

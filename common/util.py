@@ -210,6 +210,7 @@ IMG_MAX_CRIT_RATE = "img/max-crit-rate.jpg"
 IMG_CRIT_RATE = "img/crit-rate.jpg"
 IMG_CRIT_DAMAGE = "img/crit-dmg.jpg"
 IMG_CRIT_RESIST = "img/resist-rate.jpg"
+IMG_EVA = "img/evasion.jpg"
 
 # FILE
 FILE_CHANGELOG = "CHANGELOG.md"
@@ -360,6 +361,7 @@ LBL_MCR = "MCR: "
 LBL_CRT = "CRT: "
 LBL_CDI = "CDI: "
 LBL_CRR = "CRR: "
+LBL_EVA = "EVA: "
 
 LBL_STORE_NOTE = "Open NPC store first before clicking the buttons."
 LBL_MAIL_NOTE = "Open first mail before clicking the button."

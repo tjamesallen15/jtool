@@ -96,6 +96,7 @@ class JTool():
   val_crt = 0
   val_cdi = 0
   val_crr = 0
+  val_eva = 0
 
   val_x_coords = []
   val_y_coords = []
@@ -377,7 +378,8 @@ class JTool():
     crt = val_crt.get()
     cdi = val_cdi.get()
     crr = val_crr.get()
-    leash.pet_train(coor_x, coor_y, mcr, crt, cdi, crr)
+    eva = val_eva.get()
+    leash.pet_train(coor_x, coor_y, mcr, crt, cdi, crr, eva)
 
     btn_train.config(state=util.STATE_NORMAL)
     btn_test.config(state=util.STATE_NORMAL)
@@ -755,31 +757,39 @@ class JTool():
     global val_mcr
     val_mcr = IntVar(value=1)
     chkbtn_mcr = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_mcr, state=util.NORMAL)
-    chkbtn_mcr.place(x=50, y=167)
+    chkbtn_mcr.place(x=45, y=166)
 
     lbl_crt = Label(tab_pet, text=util.LBL_CRT)
-    lbl_crt.place(x=80, y=165)
+    lbl_crt.place(x=70, y=165)
 
     global val_crt
     val_crt = IntVar(value=0)
     chkbtn_crt = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_crt, state=util.NORMAL)
-    chkbtn_crt.place(x=120, y=167)
+    chkbtn_crt.place(x=105, y=166)
 
     lbl_cdi = Label(tab_pet, text=util.LBL_CDI)
-    lbl_cdi.place(x=150, y=165)
+    lbl_cdi.place(x=130, y=165)
 
     global val_cdi
     val_cdi = IntVar(value=0)
     chkbtn_cdi = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_cdi, state=util.NORMAL)
-    chkbtn_cdi.place(x=190, y=167)
+    chkbtn_cdi.place(x=165, y=166)
 
     lbl_crr = Label(tab_pet, text=util.LBL_CRR)
-    lbl_crr.place(x=220, y=165)
+    lbl_crr.place(x=190, y=165)
 
     global val_crr
     val_crr = IntVar(value=0)
     chkbtn_crr = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_crr, state=util.NORMAL)
-    chkbtn_crr.place(x=260, y=167)
+    chkbtn_crr.place(x=225, y=166)
+
+    lbl_eva = Label(tab_pet, text=util.LBL_EVA)
+    lbl_eva.place(x=250, y=165)
+
+    global val_eva
+    val_eva = IntVar(value=0)
+    chkbtn_eva = ttk.Checkbutton(tab_pet, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_eva, state=util.NORMAL)
+    chkbtn_eva.place(x=285, y=166)
 
     lbl_pet_note_5 = Label(tab_pet, text=util.LBL_PET_NOTE_5)
     lbl_pet_note_5.place(x=10, y=195)

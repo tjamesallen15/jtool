@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Added custom click x and y for other store items.
 - [Application] Added cont and strict mode in attack_semi_boss
+- [Application] Added evasion on pet train
 
 ## v5.60 Fixes
 
