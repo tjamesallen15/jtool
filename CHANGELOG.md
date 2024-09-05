@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 - [LHA] Fixed occasional stuck up in final boss in certain scenarios when shorts are turned off
 - [SCA] Disabled sidestep to avoid stuck up
 - [SCA] Adjusted wait time for mob spawn
+- [S1P] Fixed discrepancy in calling of methods
 - [TM] Minor adjustments for stuck up scenarios when some mobs are not been lured to you
 - [TM] Added backtrack checking on redonno sequence
 

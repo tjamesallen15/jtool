@@ -1013,7 +1013,7 @@ def do_deselect_pack():
   do_deselect(0.1)
   do_deselect(0.1)
 
-def plunder_box(select=1, reps=4):
+def plunder_box(select=1, reps=4, loot=1):
   log_action(MSG_CHECK_BOX)
   wait(1)
   if select == 1:
@@ -1036,9 +1036,10 @@ def plunder_box(select=1, reps=4):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  do_plunder(reps)
+  if loot == 1:
+    do_plunder(reps)
 
-def plunder_final_box(select=1, reps=5):
+def plunder_final_box(select=1, reps=5, loot=1):
   log_action(MSG_CHECK_BOX)
   wait(1)
   if select == 1:
@@ -1061,7 +1062,8 @@ def plunder_final_box(select=1, reps=5):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  do_plunder(reps)
+  if loot == 1:
+    do_plunder(reps)
 
 def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
   log_action(MSG_CHECK_BOX)
