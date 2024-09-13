@@ -244,7 +244,6 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_fade(0.5)
 
       util.move_click(720, 430, 1)
-      util.wait(1)
 
       dialog_check = True
       while dialog_check:
@@ -280,7 +279,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       # Final Boss
       self.pre_position_final_boss()
-      util.do_battle_mode(7)
+      util.do_battle_mode(7, 0)
       util.do_short_buffs()
 
       self.position_final_boss()
