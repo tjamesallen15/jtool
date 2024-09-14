@@ -1,12 +1,12 @@
 {
-    "dungeon": 4,
-    "mode": 1,
+    "dungeon": 0,
+    "mode": 0,
     "buffs": 0,
     "shorts": 0,
     "range": 0,
     "veradrix": 0,
-    "pword": "tjng141511",
-    "pin": "1211",
+    "pword": "",
+    "pin": "",
     "resolution": 0,
     "load": 2
 }
