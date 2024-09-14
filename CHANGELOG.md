@@ -28,7 +28,9 @@ All notable changes to this project will be documented in this file.
 ## v5.60 Fixes
 
 - [CFA] Fixed battle mode transitions
+- [CFA] Improved dialog sequence
 - [CI] Fixed stuck up scenarios when mobs are not present in the middle
+- [CI] Improved sequence per fight
 - [LHA] Fixed occasional stuck up in final boss in certain scenarios when shorts are turned off
 - [LHA] Fixed battle mode transitions
 - [SCA] Disabled sidestep to avoid stuck up

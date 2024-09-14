@@ -113,7 +113,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_fade(0.5)
 
       # Click Dungeon
-      util.click_portal(570, 300)
+      util.click_portal(560, 330)
 
       # Enter Dungeon
       util.enter_dungeon()
@@ -139,7 +139,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.move_click(570, 375)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
@@ -166,7 +166,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       util.do_select(0.1)
       util.focus_mobs(util.UNIT_ICE_BLOCK, 0, 0, 0)
-      util.wait(2.5)
+      util.wait(1.5)
 
       util.move_click(450, 520, 1)
 
@@ -243,8 +243,6 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(770, 480)
       util.do_fade(0.5)
 
-      util.move_click(720, 430, 1)
-
       dialog_check = True
       while dialog_check:
         if not util.get_macro_state():
@@ -255,12 +253,13 @@ class CatacombsFrostAwakened(Dungeon):
           break
 
         try:
+          util.move_click(720, 430)
           util.move_click(610, 300)
           util.move_click(610, 305)
           util.move_click(610, 310)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 2)
+          util.move_click_rel(10, 10, dialog, 0.3)
           dialog_check = False
           break
         except pyauto.ImageNotFoundException:
@@ -300,7 +299,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.move_click(540, 445)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()

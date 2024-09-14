@@ -42,6 +42,7 @@ trigger_reset_dungeon = False
 battle_mode = 0
 is_buffs_allowed = 1
 is_short_buffs_allowed = 1
+archer_status = 0
 is_veradrix_allowed = 0
 is_veradrix_needed = 0
 aura_counter = 0
@@ -406,7 +407,7 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_time
   val_time = time.time()
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(mode=0, buff=1, sbuffs=1, atk=0, archer=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
@@ -421,6 +422,9 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, runs=1, run_restart=0
 
   global atk_type
   atk_type = int(atk)
+
+  global archer_status
+  archer_status = int(archer)
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
@@ -821,6 +825,9 @@ def get_train_region():
 
 def get_atk_type():
   return atk_type
+
+def get_archer_status():
+  return archer_status
 
 def get_battle_mode():
   return battle_mode
@@ -1558,7 +1565,7 @@ def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
 def attack_boss(select=1, aura=1, strict=0, cont=1):
   combo = True
 
-  if get_battle_mode_status() and get_atk_type() == 1 and select == 1:
+  if get_battle_mode_status() and get_atk_type() == 1 and get_archer_status() == 1 and select == 1:
     do_select(0.1)
     do_select(0.1)
   elif select == 1:

@@ -120,6 +120,7 @@ class JTool():
     mode = val_mode.get()
     buff = val_buffs.get()
     short = val_shorts.get()
+    archer_status = val_archer.get()
     atk_type = val_atk_type.get()
     vera = val_vera.get()
     run_restart = val_run_restart.get()
@@ -140,7 +141,7 @@ class JTool():
     self.save_data()
     util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run, lbl_run_time)
     util.initialize_region()
-    util.set_variables(mode, buff, short, atk_type, vera, runs, run_restart, pword, pin, reso, load_time)
+    util.set_variables(mode, buff, short, atk_type, archer_status, vera, runs, run_restart, pword, pin, reso, load_time)
 
     if dungeon_restart == 1:
       self.restart_cabal_application()
