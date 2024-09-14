@@ -70,7 +70,7 @@ class CatacombsFrostAwakened(Dungeon):
     util.do_dash(1.2)
 
     util.move(350, 520)
-    util.do_dash(1.2)
+    util.do_dash(0.5)
 
   def position_final_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -279,7 +279,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       # Final Boss
       self.pre_position_final_boss()
-      util.do_battle_mode(7, 0)
+      util.do_battle_mode(6, 0)
       util.do_short_buffs()
 
       self.position_final_boss()
