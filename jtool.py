@@ -568,8 +568,8 @@ class JTool():
 
     global btn_start
     btn_start = Button(tab_dungeon, text=util.BTN_START, command=self.start)
-    btn_start.config(width=10)
-    btn_start.place(x=230, y=40)
+    btn_start.config(width=6)
+    btn_start.place(x=255, y=40)
 
     global lbl_current_run
     lbl_current_run = Label(tab_dungeon, text=util.LBL_CURRENT_RUN)
