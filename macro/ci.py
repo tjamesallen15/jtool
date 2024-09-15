@@ -223,6 +223,12 @@ class ChaosInfinity(Dungeon):
         except pyauto.ImageNotFoundException:
           pass
 
+        try:
+          end_dungeon = pyauto.locateOnScreen(util.IMG_END_DG, grayscale=False, confidence=.9)
+          bosses += 12
+        except pyauto.ImageNotFoundException:
+          pass
+
         if mob_checker >= 15:
           mob_checker = 0
           self.reposition_center()
