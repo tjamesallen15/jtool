@@ -70,7 +70,7 @@ class CatacombsFrostAwakened(Dungeon):
     util.do_dash(1.2)
 
     util.move(350, 520)
-    util.do_dash(1.2)
+    util.do_dash(0.5)
 
   def position_final_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -99,7 +99,7 @@ class CatacombsFrostAwakened(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys()
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       # Check Macro State
@@ -113,7 +113,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_fade(0.5)
 
       # Click Dungeon
-      util.click_portal(570, 300)
+      util.click_portal(560, 330)
 
       # Enter Dungeon
       util.enter_dungeon()
@@ -139,7 +139,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.move_click(570, 375)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
@@ -156,17 +156,11 @@ class CatacombsFrostAwakened(Dungeon):
 
       self.position_second_boss()
       util.move_click(670, 380, 0.5)
-
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(1000, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(1)
+      util.move_scroll(375, 150, 1000, 150, 1)
 
       util.do_select(0.1)
       util.focus_mobs(util.UNIT_ICE_BLOCK, 0, 0, 0)
-      util.wait(2.5)
+      util.wait(1.5)
 
       util.move_click(450, 520, 1)
 
@@ -178,13 +172,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(1000, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(2)
-
+      util.move_scroll(1000, 150, 375, 150, 2)
       util.move(530, 420)
       util.do_dash(1)
 
@@ -243,9 +231,6 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(770, 480)
       util.do_fade(0.5)
 
-      util.move_click(720, 430, 1)
-      util.wait(1)
-
       dialog_check = True
       while dialog_check:
         if not util.get_macro_state():
@@ -256,12 +241,13 @@ class CatacombsFrostAwakened(Dungeon):
           break
 
         try:
+          util.move_click(720, 430)
           util.move_click(610, 300)
           util.move_click(610, 305)
           util.move_click(610, 310)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 2)
+          util.move_click_rel(10, 10, dialog, 0.3)
           dialog_check = False
           break
         except pyauto.ImageNotFoundException:
@@ -280,7 +266,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       # Final Boss
       self.pre_position_final_boss()
-      util.do_battle_mode(7)
+      util.do_battle_mode(6, 0)
       util.do_short_buffs()
 
       self.position_final_boss()
@@ -293,6 +279,7 @@ class CatacombsFrostAwakened(Dungeon):
         run_counter += 1000
         continue
 
+      util.wait(1)
       util.move_click(600, 600, 1)
 
       try:
@@ -301,7 +288,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.move_click(540, 445)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 2)
+        util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
         util.force_exit_dungeon()
@@ -322,4 +309,4 @@ class CatacombsFrostAwakened(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
-      util.wait(3)
+      util.wait(1)

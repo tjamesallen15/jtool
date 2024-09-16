@@ -147,12 +147,7 @@ class LavaHellfireAwakened(Dungeon):
     util.move(720, 400)
     util.do_fade(0.5)
 
-    util.move(375, 150)
-    pyauto.mouseDown(button="right")
-    util.move(660, 150)
-    pyauto.mouseUp(button="right")
-    pyauto.scroll(-10000)
-
+    util.move_scroll(375, 150, 660, 150)
     util.wait(1)
 
     util.move(300, 420)
@@ -175,6 +170,9 @@ class LavaHellfireAwakened(Dungeon):
     util.move(480, 160)
     util.do_dash(1)
 
+    util.move(600, 250)
+    util.do_fade(0.5)
+
   def run_dungeon(self, runs):
     run_counter = 0
     fail_run_counter = 0
@@ -188,7 +186,7 @@ class LavaHellfireAwakened(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys()
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       # Check Macro State
@@ -204,12 +202,7 @@ class LavaHellfireAwakened(Dungeon):
       util.challenge_dungeon()
       util.wait(1)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(1.5)
+      util.move_scroll(700, 150, 375, 150, 1.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -391,7 +384,7 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Boss Sequence
-      util.do_battle_mode()
+      util.do_battle_mode(5, 0)
       self.position_boss()
       util.do_short_buffs()
       moving = True
@@ -435,4 +428,4 @@ class LavaHellfireAwakened(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
-      util.wait(3)
+      util.wait(1)

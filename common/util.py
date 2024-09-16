@@ -42,6 +42,7 @@ trigger_reset_dungeon = False
 battle_mode = 0
 is_buffs_allowed = 1
 is_short_buffs_allowed = 1
+val_archer = 0
 is_veradrix_allowed = 0
 is_veradrix_needed = 0
 aura_counter = 0
@@ -55,6 +56,7 @@ val_resolution = '0'
 val_load_time = 0
 val_default_interval = 0.3
 val_time = 0
+val_member = 0
 
 region_normal_bar = []
 region_mode_bar = []
@@ -70,7 +72,7 @@ region_train_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x280"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "5.50"
+APP_VERSION = "5.60"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -210,6 +212,7 @@ IMG_MAX_CRIT_RATE = "img/max-crit-rate.jpg"
 IMG_CRIT_RATE = "img/crit-rate.jpg"
 IMG_CRIT_DAMAGE = "img/crit-dmg.jpg"
 IMG_CRIT_RESIST = "img/resist-rate.jpg"
+IMG_EVA = "img/evasion.jpg"
 
 # FILE
 FILE_CHANGELOG = "CHANGELOG.md"
@@ -273,9 +276,11 @@ DATA_JSON = "data/config.json"
 DATA_DUNGEON = "dungeon"
 DATA_RUNS = "runs"
 DATA_MODE = "mode"
+DATA_MEMBER = "member"
 DATA_BUFFS = "buffs"
 DATA_SHORTS = "shorts"
 DATA_RANGE = "range"
+DATA_ARCHER = "archer"
 DATA_VERADRIX = "veradrix"
 DATA_PWORD = "pword"
 DATA_PIN = "pin"
@@ -314,7 +319,11 @@ LBL_HYPHEN = " | "
 
 # LABELS
 BTN_START = "Start"
+BTN_SOLO = "Solo"
+BTN_MEMBER = "Member"
+BTN_LEADER = "Leader"
 BTN_TRAIN = "Train"
+BTN_CLICK = "Click"
 BTN_TEST = "Test"
 LBL_EMPTY = ""
 LBL_DUNGEON = "Dungeon: "
@@ -324,6 +333,7 @@ LBL_BUFFS = "Buffs: "
 LBL_SHORTS = "Shorts: "
 LBL_RANGE = "Range: "
 LBL_ARCHER = "Archer: "
+LBL_MEMBER = "Member: "
 LBL_VERADRIX = "Veradrix: "
 LBL_CLICK = "Click #: N/A"
 LBL_MACRO = "Idle"
@@ -359,6 +369,7 @@ LBL_MCR = "MCR: "
 LBL_CRT = "CRT: "
 LBL_CDI = "CDI: "
 LBL_CRR = "CRR: "
+LBL_EVA = "EVA: "
 
 LBL_STORE_NOTE = "Open NPC store first before clicking the buttons."
 LBL_MAIL_NOTE = "Open first mail before clicking the button."
@@ -366,6 +377,7 @@ BTN_FURY = "Fury"
 BTN_UPGRADE = "Upgrade"
 BTN_FORCE = "Force"
 BTN_MAILS = "Mails"
+LBL_CUSTON_CLICK_NOTE = "Use custom x and y for other items in store."
 
 LBL_CLICKS = "Clicks: "
 
@@ -402,12 +414,15 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_time
   val_time = time.time()
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(mode=0, member=0, buff=1, sbuffs=1, atk=0, archer=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
   global is_battle_mode
   is_battle_mode = False
+
+  global val_member
+  val_member = member
 
   global is_buffs_allowed
   is_buffs_allowed = int(buff)
@@ -417,6 +432,9 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, vera=0, runs=1, run_restart=0
 
   global atk_type
   atk_type = int(atk)
+
+  global val_archer
+  val_archer = int(archer)
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
@@ -506,6 +524,17 @@ def move_right_click(x, y, sec=0):
 def move_click_rel(x, y, ref, sec=0):
   pyauto.moveTo(ref[0] + x, ref[1] + y)
   pyauto.click(ref[0] + x, ref[1] + y)
+
+  if (sec != 0):
+    time.sleep(sec)
+
+def move_scroll(x1, y1, x2, y2, sec=0):
+  move(x1, y1)
+  pyauto.mouseDown(button="right")
+
+  move(x2, y2)
+  pyauto.mouseUp(button="right")
+  pyauto.scroll(-10000)
 
   if (sec != 0):
     time.sleep(sec)
@@ -818,6 +847,12 @@ def get_train_region():
 def get_atk_type():
   return atk_type
 
+def get_archer_status():
+  return val_archer
+
+def get_member_status():
+  return val_member
+
 def get_battle_mode():
   return battle_mode
 
@@ -1009,7 +1044,7 @@ def do_deselect_pack():
   do_deselect(0.1)
   do_deselect(0.1)
 
-def plunder_box(select=1, reps=4):
+def plunder_box(select=1, reps=4, loot=1):
   log_action(MSG_CHECK_BOX)
   wait(1)
   if select == 1:
@@ -1032,9 +1067,10 @@ def plunder_box(select=1, reps=4):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  do_plunder(reps)
+  if loot == 1:
+    do_plunder(reps)
 
-def plunder_final_box(select=1, reps=5):
+def plunder_final_box(select=1, reps=5, loot=1):
   log_action(MSG_CHECK_BOX)
   wait(1)
   if select == 1:
@@ -1057,7 +1093,8 @@ def plunder_final_box(select=1, reps=5):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  do_plunder(reps)
+  if loot == 1:
+    do_plunder(reps)
 
 def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
   log_action(MSG_CHECK_BOX)
@@ -1270,19 +1307,28 @@ def challenge_dungeon():
     if challenging == False:
       break
 
-    try:
-      challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
-      log_action(MSG_BUTTON_FOUND)
-      move_click_rel(15, 15, challengedg, 1)
-      challenging = False
-      break
-    except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BUTTON_FOUND)
+    if get_member_status() == 0:
+      try:
+        challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+        log_action(MSG_BUTTON_FOUND)
+        move_click_rel(15, 15, challengedg, 0.2)
+        challenging = False
+        break
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_BUTTON_FOUND)
+    else:
+      try:
+        challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+        log_action(MSG_BUTTON_FOUND)
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_BUTTON_FOUND)
+        challenging = False
+        break
 
 def check_notifications():
   try:
     check_notify = pyauto.locateOnScreen(IMG_CHECK_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
-    move_click_rel(10, 10, check_notify, 0.5)
+    move_click_rel(10, 10, check_notify, 0.2)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
@@ -1291,7 +1337,7 @@ def check_notifications():
 
   try:
     check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
-    move_click_rel(10, 10, check_notify, 0.5)
+    move_click_rel(10, 10, check_notify, 0.2)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
@@ -1316,7 +1362,7 @@ def end_dungeon():
 
     try:
       enddungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, enddungeon, 0.5)
+      move_click_rel(50, 15, enddungeon, 0.2)
       ending = False
       break
     except pyauto.ImageNotFoundException:
@@ -1334,8 +1380,7 @@ def dice_dungeon():
 
     try:
       rolladice = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, rolladice, 0.8)
-      # move_click_rel(50, 15, rolladice)
+      move_click_rel(50, 15, rolladice, 0.2)
       dicing = False
       break
     except pyauto.ImageNotFoundException:
@@ -1352,8 +1397,7 @@ def dice_dungeon():
 
     try:
       diceconfirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
-      # move_click_rel(10, 15, rolladice, 0.8)
-      move_click_rel(10, 5, diceconfirm)
+      move_click_rel(10, 5, diceconfirm, 0.2)
       confirming = False
       break
     except pyauto.ImageNotFoundException:
@@ -1552,7 +1596,7 @@ def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
 def attack_boss(select=1, aura=1, strict=0, cont=1):
   combo = True
 
-  if get_battle_mode_status() and get_atk_type() == 1 and select == 1:
+  if get_battle_mode_status() and get_atk_type() == 1 and get_archer_status() == 1 and select == 1:
     do_select(0.1)
     do_select(0.1)
   elif select == 1:
@@ -1603,8 +1647,8 @@ def attack_semi_boss(select=1, aura=1, strict=0, cont=1):
     try:
       boss = pyauto.locateOnScreen(IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_BOSS)
-      do_attack(0.1)
-      do_attack(0.1)
+      do_attack(0.1, strict, cont)
+      do_attack(0.1, strict, cont)
     except pyauto.ImageNotFoundException:
       log_action(MSG_BOSS_KILLED)
       combo = False

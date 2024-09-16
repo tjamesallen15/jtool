@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.60
+
+## v5.60 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+
+## v5.60 Features
+
+- [Application] Added custom click x and y for other store items.
+- [Application] Added cont and strict mode in attack_semi_boss
+- [Application] Added evasion on pet train
+- [Application] Added back member status for party type automations (Beta Phase)
+- [Applicaiton] Added Pet Train on beta phase, available now for testers
+- [Application] Added Chaos Infinity on beta phase, available now for testers
+- [Application] Added Panic Cave on beta phase, available now for testers
+- [Dungeon] Changed wait time before starting dungeon from 3 to 1
+
+## v5.60 Fixes
+
+- [CFA] Fixed battle mode transitions
+- [CFA] Improved dialog sequence
+- [CI] Fixed stuck up scenarios when mobs are not present in the middle
+- [CI] Improved sequence per fight
+- [LHA] Fixed occasional stuck up in final boss in certain scenarios when shorts are turned off
+- [LHA] Fixed battle mode transitions
+- [SCA] Disabled sidestep to avoid stuck up
+- [SCA] Adjusted wait time for mob spawn
+- [S1P] Fixed discrepancy in calling of methods
+- [TM] Minor adjustments for stuck up scenarios when some mobs are not been lured to you
+- [TM] Added backtrack checking on redonno sequence
+
 # v5.50
 
 ## v5.50 Dungeons Available

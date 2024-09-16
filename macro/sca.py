@@ -16,6 +16,7 @@ class SteamerCrazyAwakened(Dungeon):
   frame_root = []
   btn_start = []
   portal_counter = 0
+  val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
     global frame_root
@@ -86,9 +87,9 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_dash(1)
           util.do_fade(0.5)
         else:
-          util.move_click_rel(10, 10, dialog, 3)
+          util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
-          util.do_fade(0.5)
+          util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -155,9 +156,9 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_dash(1)
           util.do_fade(0.5)
         else:
-          util.move_click_rel(10, 10, dialog, 3)
+          util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
-          util.do_fade(0.5)
+          util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -224,9 +225,9 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_dash(1)
           util.do_fade(0.5)
         else:
-          util.move_click_rel(10, 10, dialog, 3)
+          util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
-          util.do_fade(0.5)
+          util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -260,7 +261,7 @@ class SteamerCrazyAwakened(Dungeon):
         break
 
     if boss_found == 0 and mobs_found == 1:
-      util.attack_mobs(unit)
+      util.attack_mobs(unit, 1, util.val_default_interval, self.val_sidestep)
 
       util.move(630, 250)
       util.do_dash(1)
@@ -282,7 +283,7 @@ class SteamerCrazyAwakened(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys()
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       # Check Macro State
@@ -290,11 +291,7 @@ class SteamerCrazyAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
+      util.move_scroll(375, 150, 700, 150)
 
       # Click Dungeon
       util.click_portal(600, 250)
@@ -302,12 +299,7 @@ class SteamerCrazyAwakened(Dungeon):
       # Enter Dungeon
       util.enter_dungeon()
       util.challenge_dungeon()
-
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
+      util.move_scroll(700, 150, 375, 150)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -415,4 +407,4 @@ class SteamerCrazyAwakened(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
-      util.wait(3)
+      util.wait(1)
