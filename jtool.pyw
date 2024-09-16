@@ -66,6 +66,7 @@ class JTool():
   btn_train = []
   btn_misc_test = []
   btn_misc_click = []
+  chkbtn_archer = []
   lbl_macro = []
   lbl_misc = []
   lbl_current_run = []
@@ -530,6 +531,13 @@ class JTool():
     lbl_misc.config(text=msgBuilder)
     frame_root.update()
 
+  def enable_archer(self):
+    if val_atk_type.get() == 1:
+      chkbtn_archer.config(state=util.STATE_NORMAL)
+    else:
+      val_archer.set(0)
+      chkbtn_archer.config(state=util.STATE_DISABLED)
+
   def generate_gui(self):
     # CREATE FRAME
     global frame_root
@@ -635,22 +643,25 @@ class JTool():
     lbl_macro = Label(tab_dungeon, text=util.LBL_MACRO)
     lbl_macro.place(x=145, y=225)
 
-    lbl_atk_type = Label(tab_dungeon, text=util.LBL_RANGE)
+    lbl_atk_type = Label(tab_dungeon, text=util.LBL_RANGE,)
     lbl_atk_type.place(x=10, y=165)
 
     global val_atk_type
     val_atk_type = IntVar(value=self.get_data(util.DATA_RANGE))
-    chkbtn_atk_type = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0,
-      variable=val_atk_type)
+    chkbtn_atk_type = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_atk_type, command=self.enable_archer)
     chkbtn_atk_type.place(x=75, y=166)
 
     lbl_archer = Label(tab_dungeon, text=util.LBL_ARCHER)
     lbl_archer.place(x=10, y=195)
 
     global val_archer
+    global chkbtn_archer
     val_archer = IntVar(value=self.get_data(util.DATA_ARCHER))
     chkbtn_archer = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_archer)
     chkbtn_archer.place(x=75, y=196)
+
+    if val_atk_type.get() == 0:
+      chkbtn_archer.config(state=util.STATE_DISABLED)
 
     lbl_vera = Label(tab_dungeon, text=util.LBL_VERADRIX, state=self.get_access(util.DATA_VERADRIX))
     lbl_vera.place(x=10, y=225)
