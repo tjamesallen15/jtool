@@ -642,12 +642,12 @@ class JTool():
       variable=val_atk_type)
     chkbtn_atk_type.place(x=75, y=166)
 
-    lbl_archer = Label(tab_dungeon, text=util.LBL_ARCHER, state=self.get_access(util.DATA_VERADRIX))
+    lbl_archer = Label(tab_dungeon, text=util.LBL_ARCHER)
     lbl_archer.place(x=10, y=195)
 
     global val_archer
-    val_archer = IntVar(value=0)
-    chkbtn_archer = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_archer, state=self.get_access(util.DATA_VERADRIX))
+    val_archer = IntVar(value=self.get_data(util.DATA_ARCHER))
+    chkbtn_archer = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_archer)
     chkbtn_archer.place(x=75, y=196)
 
     lbl_vera = Label(tab_dungeon, text=util.LBL_VERADRIX, state=self.get_access(util.DATA_VERADRIX))
