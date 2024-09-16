@@ -173,6 +173,7 @@ class ChaosInfinity(Dungeon):
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
           except pyauto.ImageNotFoundException:
+            util.wait(1)
             has_gate = False
             break
 
@@ -193,8 +194,8 @@ class ChaosInfinity(Dungeon):
 
       util.move(620, 600)
       util.do_dash(1)
+      util.do_fade(1.5)
       util.do_fade(0.5)
-      util.do_dash(1)
 
       # Check Macro State
       if not util.get_macro_state():
