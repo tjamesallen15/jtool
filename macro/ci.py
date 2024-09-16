@@ -172,6 +172,7 @@ class ChaosInfinity(Dungeon):
       util.move(620, 600)
       util.do_dash(1)
       util.do_fade(0.5)
+      util.do_dash(1)
 
       # Check Macro State
       if not util.get_macro_state():
