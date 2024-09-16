@@ -150,8 +150,31 @@ class ChaosInfinity(Dungeon):
         run_counter += 1000
         continue
 
-      util.do_select(0.1)
-      util.focus_gate(util.UNIT_GATE, 0)
+      has_gate = True
+      while has_gate:
+        if not util.get_macro_state():
+          util.log_action(util.MSG_TERMINATE)
+          has_gate = False
+
+        if has_gate == False:
+          break
+
+        util.do_select(0.1)
+
+        if util.get_member_status() == 0:
+          try:
+            gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+            util.focus_gate(util.UNIT_GATE, 0)
+            has_gate = False
+            break
+          except pyauto.ImageNotFoundException:
+            pass
+        else:
+          try:
+            gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+          except pyauto.ImageNotFoundException:
+            has_gate = False
+            break
 
       util.move(620, 150)
       util.do_dash(1)
