@@ -80,6 +80,7 @@ class JTool():
   val_pword = []
   val_pin = []
 
+  val_member = 0
   val_mode = 0
   val_buffs = 1
   val_shorts = 1
@@ -118,9 +119,10 @@ class JTool():
     choice = list_dg.get()
     runs = int(val_run_count.get())
     mode = val_mode.get()
+    member = val_member.get()
     buff = val_buffs.get()
     short = val_shorts.get()
-    archer_status = val_archer.get()
+    archer = val_archer.get()
     atk_type = val_atk_type.get()
     vera = val_vera.get()
     run_restart = val_run_restart.get()
@@ -141,7 +143,7 @@ class JTool():
     self.save_data()
     util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run, lbl_run_time)
     util.initialize_region()
-    util.set_variables(mode, buff, short, atk_type, archer_status, vera, runs, run_restart, pword, pin, reso, load_time)
+    util.set_variables(mode, member, buff, short, atk_type, archer, vera, runs, run_restart, pword, pin, reso, load_time)
 
     if dungeon_restart == 1:
       self.restart_cabal_application()
@@ -214,6 +216,7 @@ class JTool():
         "Holy Windmill",
         "Holy Keldrasil",
         "Terminus Machina",
+        "Chaos Infinity"
       ]
     elif self.get_level() == util.ACCESS_SUPER:
       LIST_DUNGEON = [
@@ -243,7 +246,7 @@ class JTool():
         else:
           return util.STATE_NORMAL
       case util.DATA_PET:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -254,6 +257,11 @@ class JTool():
           return util.STATE_NORMAL
       case util.DATA_MODE:
         if self.get_level() == util.ACCESS_FREE:
+          return util.STATE_DISABLED
+        else:
+          return util.STATE_NORMAL
+      case util.DATA_MEMBER:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -571,16 +579,24 @@ class JTool():
     btn_start.config(width=6)
     btn_start.place(x=255, y=40)
 
+    lbl_member = Label(tab_dungeon, text=util.LBL_MEMBER, state=self.get_access(util.DATA_MODE))
+    lbl_member.place(x=145, y=43)
+
+    global val_member
+    val_member = IntVar(value=0)
+    chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_member, state=self.get_access(util.DATA_MEMBER))
+    chkbtn_member.place(x=210, y=44)
+
     global lbl_current_run
     lbl_current_run = Label(tab_dungeon, text=util.LBL_CURRENT_RUN)
-    lbl_current_run.place(x=140, y=75)
+    lbl_current_run.place(x=145, y=75)
 
     lbl_mode = Label(tab_dungeon, text=util.LBL_MODE, state=self.get_access(util.DATA_MODE))
     lbl_mode.place(x=10, y=75)
 
     global lbl_run_time
     lbl_run_time = Label(tab_dungeon, text=util.LBL_RUN_TIME_EMPTY)
-    lbl_run_time.place(x=140, y=105)
+    lbl_run_time.place(x=145, y=105)
 
     global val_mode
     val_mode = IntVar(value=self.get_data(util.DATA_MODE))
@@ -589,10 +605,10 @@ class JTool():
 
     global lbl_restart_note
     lbl_restart_note = Label(tab_dungeon, text=util.LBL_RUN_RESTART)
-    lbl_restart_note.place(x=140, y=135)
+    lbl_restart_note.place(x=145, y=135)
 
     lbl_license = Label(tab_dungeon, text=self.get_license())
-    lbl_license.place(x=140, y=165)
+    lbl_license.place(x=145, y=165)
 
     lbl_buffs = Label(tab_dungeon, text=util.LBL_BUFFS, state=self.get_access(util.DATA_BUFFS))
     lbl_buffs.place(x=10, y=105)
@@ -603,7 +619,7 @@ class JTool():
     chkbtn_buffs.place(x=75, y=106)
 
     lbl_expiration = Label(tab_dungeon, text=self.get_expiration_status())
-    lbl_expiration.place(x=140, y=195)
+    lbl_expiration.place(x=145, y=195)
 
     lbl_shorts = Label(tab_dungeon, text=util.LBL_SHORTS, state=self.get_access(util.DATA_SHORTS))
     lbl_shorts.place(x=10, y=135)
@@ -615,7 +631,7 @@ class JTool():
 
     global lbl_macro
     lbl_macro = Label(tab_dungeon, text=util.LBL_MACRO)
-    lbl_macro.place(x=140, y=225)
+    lbl_macro.place(x=145, y=225)
 
     lbl_atk_type = Label(tab_dungeon, text=util.LBL_RANGE)
     lbl_atk_type.place(x=10, y=165)

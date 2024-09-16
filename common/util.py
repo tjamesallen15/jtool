@@ -42,7 +42,7 @@ trigger_reset_dungeon = False
 battle_mode = 0
 is_buffs_allowed = 1
 is_short_buffs_allowed = 1
-archer_status = 0
+val_archer = 0
 is_veradrix_allowed = 0
 is_veradrix_needed = 0
 aura_counter = 0
@@ -56,6 +56,7 @@ val_resolution = '0'
 val_load_time = 0
 val_default_interval = 0.3
 val_time = 0
+val_member = 0
 
 region_normal_bar = []
 region_mode_bar = []
@@ -275,6 +276,7 @@ DATA_JSON = "data/config.json"
 DATA_DUNGEON = "dungeon"
 DATA_RUNS = "runs"
 DATA_MODE = "mode"
+DATA_MEMBER = "member"
 DATA_BUFFS = "buffs"
 DATA_SHORTS = "shorts"
 DATA_RANGE = "range"
@@ -316,6 +318,9 @@ LBL_HYPHEN = " | "
 
 # LABELS
 BTN_START = "Start"
+BTN_SOLO = "Solo"
+BTN_MEMBER = "Member"
+BTN_LEADER = "Leader"
 BTN_TRAIN = "Train"
 BTN_CLICK = "Click"
 BTN_TEST = "Test"
@@ -327,6 +332,7 @@ LBL_BUFFS = "Buffs: "
 LBL_SHORTS = "Shorts: "
 LBL_RANGE = "Range: "
 LBL_ARCHER = "Archer: "
+LBL_MEMBER = "Member: "
 LBL_VERADRIX = "Veradrix: "
 LBL_CLICK = "Click #: N/A"
 LBL_MACRO = "Idle"
@@ -407,12 +413,15 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_time
   val_time = time.time()
 
-def set_variables(mode=0, buff=1, sbuffs=1, atk=0, archer=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(mode=0, member=0, buff=1, sbuffs=1, atk=0, archer=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global battle_mode
   battle_mode = int(mode)
 
   global is_battle_mode
   is_battle_mode = False
+
+  global val_member
+  val_member = member
 
   global is_buffs_allowed
   is_buffs_allowed = int(buff)
@@ -423,8 +432,8 @@ def set_variables(mode=0, buff=1, sbuffs=1, atk=0, archer=0, vera=0, runs=1, run
   global atk_type
   atk_type = int(atk)
 
-  global archer_status
-  archer_status = int(archer)
+  global val_archer
+  val_archer = int(archer)
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
@@ -827,7 +836,10 @@ def get_atk_type():
   return atk_type
 
 def get_archer_status():
-  return archer_status
+  return val_archer
+
+def get_member_status():
+  return val_member
 
 def get_battle_mode():
   return battle_mode
@@ -1283,14 +1295,23 @@ def challenge_dungeon():
     if challenging == False:
       break
 
-    try:
-      challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
-      log_action(MSG_BUTTON_FOUND)
-      move_click_rel(15, 15, challengedg, 1)
-      challenging = False
-      break
-    except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BUTTON_FOUND)
+    if get_member_status() == 0:
+      try:
+        challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+        log_action(MSG_BUTTON_FOUND)
+        move_click_rel(15, 15, challengedg, 1)
+        challenging = False
+        break
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_BUTTON_FOUND)
+    else:
+      try:
+        challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
+        log_action(MSG_BUTTON_FOUND)
+      except pyauto.ImageNotFoundException:
+        log_action(MSG_NO_BUTTON_FOUND)
+        challenging = False
+        break
 
 def check_notifications():
   try:

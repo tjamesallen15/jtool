@@ -24,6 +24,9 @@ All notable changes to this project will be documented in this file.
 - [Application] Added custom click x and y for other store items.
 - [Application] Added cont and strict mode in attack_semi_boss
 - [Application] Added evasion on pet train
+- [Application] Added back member status for party type automations (Beta Phase)
+- [Applicaiton] Added pet feature on beta phase, available now for testers
+- [Application] Added Chaos Infinity on beta phase, available now for testers
 
 ## v5.60 Fixes
 
