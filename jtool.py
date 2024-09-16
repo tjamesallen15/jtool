@@ -261,7 +261,7 @@ class JTool():
         else:
           return util.STATE_NORMAL
       case util.DATA_MEMBER:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -334,6 +334,7 @@ class JTool():
     val_config_data[util.DATA_BUFFS] = val_buffs.get()
     val_config_data[util.DATA_SHORTS] = val_shorts.get()
     val_config_data[util.DATA_RANGE] = val_atk_type.get()
+    val_config_data[util.DATA_ARCHER] = val_archer.get()
     val_config_data[util.DATA_VERADRIX] = val_vera.get()
     val_config_data[util.DATA_PWORD] = val_pword.get()
     val_config_data[util.DATA_PIN] = val_pin.get()
