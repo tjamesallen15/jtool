@@ -99,7 +99,7 @@ class CatacombsFrostAwakened(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys()
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       # Check Macro State
@@ -156,13 +156,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       self.position_second_boss()
       util.move_click(670, 380, 0.5)
-
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(1000, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(1)
+      util.move_scroll(375, 150, 1000, 150, 1)
 
       util.do_select(0.1)
       util.focus_mobs(util.UNIT_ICE_BLOCK, 0, 0, 0)
@@ -178,13 +172,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(1000, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(2)
-
+      util.move_scroll(1000, 150, 375, 150, 2)
       util.move(530, 420)
       util.do_dash(1)
 

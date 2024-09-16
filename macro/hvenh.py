@@ -546,7 +546,7 @@ class HazardousValley(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys()
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       # Check Macro State
@@ -569,13 +569,7 @@ class HazardousValley(Dungeon):
       # Enter Dungeon
       util.enter_dungeon()
       util.challenge_dungeon()
-
-      util.move(250, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.3)
+      util.move_scroll(250, 150, 700, 150, 0.3)
 
       util.move(500, 300)
       util.do_dash(0.5)

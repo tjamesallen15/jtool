@@ -283,7 +283,7 @@ class SteamerCrazyAwakened(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys()
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       # Check Macro State
@@ -291,11 +291,7 @@ class SteamerCrazyAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
+      util.move_scroll(375, 150, 700, 150)
 
       # Click Dungeon
       util.click_portal(600, 250)
@@ -303,12 +299,7 @@ class SteamerCrazyAwakened(Dungeon):
       # Enter Dungeon
       util.enter_dungeon()
       util.challenge_dungeon()
-
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
+      util.move_scroll(700, 150, 375, 150)
 
       # Check Macro State
       if not util.get_macro_state():

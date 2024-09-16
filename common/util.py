@@ -528,6 +528,17 @@ def move_click_rel(x, y, ref, sec=0):
   if (sec != 0):
     time.sleep(sec)
 
+def move_scroll(x1, y1, x2, y2, sec=0):
+  move(x1, y1)
+  pyauto.mouseDown(button="right")
+
+  move(x2, y2)
+  pyauto.mouseUp(button="right")
+  pyauto.scroll(-10000)
+
+  if (sec != 0):
+    time.sleep(sec)
+
 def wait(sec=1):
   log_action(MSG_WAIT)
   time.sleep(sec)
@@ -1300,7 +1311,7 @@ def challenge_dungeon():
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
         log_action(MSG_BUTTON_FOUND)
-        move_click_rel(15, 15, challengedg, 1)
+        move_click_rel(15, 15, challengedg, 0.2)
         challenging = False
         break
       except pyauto.ImageNotFoundException:
@@ -1317,7 +1328,7 @@ def challenge_dungeon():
 def check_notifications():
   try:
     check_notify = pyauto.locateOnScreen(IMG_CHECK_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
-    move_click_rel(10, 10, check_notify, 0.5)
+    move_click_rel(10, 10, check_notify, 0.2)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
@@ -1326,7 +1337,7 @@ def check_notifications():
 
   try:
     check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
-    move_click_rel(10, 10, check_notify, 0.5)
+    move_click_rel(10, 10, check_notify, 0.2)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
@@ -1351,7 +1362,7 @@ def end_dungeon():
 
     try:
       enddungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, enddungeon, 0.5)
+      move_click_rel(50, 15, enddungeon, 0.2)
       ending = False
       break
     except pyauto.ImageNotFoundException:
@@ -1369,8 +1380,7 @@ def dice_dungeon():
 
     try:
       rolladice = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, rolladice, 0.8)
-      # move_click_rel(50, 15, rolladice)
+      move_click_rel(50, 15, rolladice, 0.2)
       dicing = False
       break
     except pyauto.ImageNotFoundException:
@@ -1387,8 +1397,7 @@ def dice_dungeon():
 
     try:
       diceconfirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
-      # move_click_rel(10, 15, rolladice, 0.8)
-      move_click_rel(10, 5, diceconfirm)
+      move_click_rel(10, 5, diceconfirm, 0.2)
       confirming = False
       break
     except pyauto.ImageNotFoundException:

@@ -10,7 +10,7 @@
 #     # Click Cabal Window
 #     util.go_cabal_window()
 #     util.release_keys()
-#     util.go_skill_slot(0.5)
+#     util.go_skill_slot(0.2)
 #     util.do_buffs()
 
 #     # Check Macro State

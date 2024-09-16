@@ -83,7 +83,7 @@ class ChaosInfinity(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys()
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       util.move(500, 300)
@@ -95,13 +95,7 @@ class ChaosInfinity(Dungeon):
       # Enter Dungeon
       util.enter_dungeon()
       util.challenge_dungeon()
-
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.5)
+      util.move_scroll(700, 150, 375, 150, 0.5)
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(650, 250)
@@ -126,13 +120,7 @@ class ChaosInfinity(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.5)
-
+      util.move_scroll(700, 150, 375, 150, 0.5)
       util.move(600, 150)
       util.do_dash(1)
       util.do_fade(0.5)

@@ -1118,7 +1118,7 @@ class HolyWindmill(Dungeon):
       # Click Cabal Window
       util.go_cabal_window()
       util.release_keys(1)
-      util.go_skill_slot(0.5)
+      util.go_skill_slot(0.2)
       util.do_buffs()
 
       # Check Macro State
@@ -1179,11 +1179,7 @@ class HolyWindmill(Dungeon):
       util.do_final_mode(1)
       util.do_aura()
 
-      util.move(500, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
+      util.move_scroll(500, 150, 375, 150)
 
       # First Sequence
       moving = True
@@ -1230,12 +1226,7 @@ class HolyWindmill(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(660, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-
+      util.move_scroll(660, 150, 375, 150)
       util.move(500, 250)
       util.do_dash(1)
 
@@ -1322,12 +1313,7 @@ class HolyWindmill(Dungeon):
 
       util.move(620, 150)
       util.do_dash(1)
-
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(660, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
+      util.move_scroll(375, 150, 660, 150)
 
       # Gate III
       moving = True
@@ -1361,12 +1347,7 @@ class HolyWindmill(Dungeon):
       util.move(620, 150)
       util.do_dash(1)
       util.do_fade(0.5)
-
-      util.move(600, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
+      util.move_scroll(600, 150, 375, 150)
 
       util.focus_gate(util.UNIT_GATE_THREE)
 

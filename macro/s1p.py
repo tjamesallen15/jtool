@@ -65,13 +65,7 @@ class SienaB1FPrideus(Dungeon):
       util.challenge_dungeon()
       util.do_buffs()
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(500, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 500, 150, 0.8)
       util.move(660, 160)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -159,13 +153,7 @@ class SienaB1FPrideus(Dungeon):
       util.move(620, 600)
       util.do_dash(1)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(550, 175)
       util.do_fade(0.5)
 
@@ -230,13 +218,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(630, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -294,13 +276,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(510, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -392,13 +368,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(640, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -415,13 +385,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(400, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -475,13 +439,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(1200, 350)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -493,13 +451,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(500, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -517,13 +469,7 @@ class SienaB1FPrideus(Dungeon):
       util.move(770, 300)
       util.do_dash(1)
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(650, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -577,13 +523,7 @@ class SienaB1FPrideus(Dungeon):
       util.move(700, 550)
       util.do_dash(1)
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(700, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -730,13 +670,7 @@ class SienaB1FPrideus(Dungeon):
       util.move(575, 600)
       util.do_fade(0.5)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(700, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -796,13 +730,7 @@ class SienaB1FPrideus(Dungeon):
       util.move(850, 625)
       util.do_fade(0.5)
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(620, 625)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -854,26 +782,14 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(800, 150)
       util.do_dash(1.3)
 
       util.move(520, 200)
       util.do_dash(1.3)
 
-      util.move(700, 150)
-      pyauto.mouseDown(button="right")
-      util.move(375, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(680, 150)
       util.do_dash(1)
       util.do_fade(0.5)
@@ -995,12 +911,7 @@ class SienaB1FPrideus(Dungeon):
         continue
 
       util.log_action(util.MSG_MOVING_POSITION)
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(1000, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
+      util.move_scroll(375, 150, 1000, 150, 0.8)
 
       util.move(100, 350)
       util.do_dash(1)
@@ -1010,13 +921,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
 
-      util.move(375, 150)
-      pyauto.mouseDown(button="right")
-      util.move(700, 150)
-      pyauto.mouseUp(button="right")
-      pyauto.scroll(-10000)
-      util.wait(0.8)
-
+      util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(250, 150)
       util.do_dash(1)
       util.do_fade(1.3)
