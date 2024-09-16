@@ -57,8 +57,6 @@ class ChaosInfinity(Dungeon):
     util.move(620, 100)
     util.do_dash(1)
     util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
     util.do_select(0.1)
 
     util.move(620, 600)
@@ -66,12 +64,9 @@ class ChaosInfinity(Dungeon):
     util.do_fade(0.5)
     util.do_dash(1)
     util.do_fade(0.5)
-    util.do_dash(1.5)
     util.do_select(0.1)
 
     util.move(620, 100)
-    util.do_dash(1)
-    util.do_fade(0.5)
     util.do_dash(1)
     util.do_fade(0.5)
     util.do_select(0.1)
@@ -173,7 +168,6 @@ class ChaosInfinity(Dungeon):
       util.do_dash(1)
       util.do_fade(0.5)
       util.do_dash(1)
-      util.do_fade(0.5)
 
       util.move(620, 600)
       util.do_dash(1)
