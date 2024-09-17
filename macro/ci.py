@@ -153,6 +153,7 @@ class ChaosInfinity(Dungeon):
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
             util.focus_gate(util.UNIT_GATE, 0)
+            util.wait(0.5)
             has_gate = False
             break
           except pyauto.ImageNotFoundException:
@@ -161,7 +162,7 @@ class ChaosInfinity(Dungeon):
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
           except pyauto.ImageNotFoundException:
-            util.wait(1)
+            util.wait(1.5)
             has_gate = False
             break
 
