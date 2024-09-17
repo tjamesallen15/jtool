@@ -21,8 +21,11 @@ All notable changes to this project will be documented in this file.
 
 ## v5.70 Features
 
+- [CI] Added Fail Run Count for near impossible recoveries
+
 ## v5.70 Fixes
 
+- [CI] Fixed stuck up scenarios near the gate
 - [LHA] Improved speed of automation on some mob checks
 
 # v5.60

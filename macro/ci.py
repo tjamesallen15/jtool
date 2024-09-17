@@ -36,9 +36,9 @@ class ChaosInfinity(Dungeon):
     frame_root.update()
 
   def reposition_center(self):
-    # HORIZONTAL
     util.log_action(util.MSG_MOVING_POSITION)
-    util.move(100, 360)
+    # HORIZONTAL
+    util.move(100, 400)
     util.do_dash(1)
     util.do_fade(0.5)
     util.do_dash(1)
@@ -46,6 +46,22 @@ class ChaosInfinity(Dungeon):
     util.do_dash(1)
     util.do_fade(0.5)
 
+    # VERTICAL
+    util.move(620, 100)
+    util.do_dash(1)
+    util.do_fade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    util.move(620, 600)
+    util.do_dash(1)
+    util.do_fade(0.5)
+    util.do_dash(1)
+    util.do_fade(0.5)
+
+    # HORIZONTAL
     util.move(1200, 400)
     util.do_dash(1)
     util.do_fade(0.5)
@@ -53,32 +69,36 @@ class ChaosInfinity(Dungeon):
     util.move(900, 400)
     util.do_dash(1.5)
 
-    # VERTICAL
+    # VERTICAL CHECK
     util.move(620, 100)
     util.do_dash(1)
     util.do_fade(0.5)
-    util.do_select(0.1)
 
     util.move(620, 600)
-    util.do_dash(1)
+    util.do_dash(2)
     util.do_fade(0.5)
     util.do_dash(1)
     util.do_fade(0.5)
-    util.do_select(0.1)
+    util.do_dash(1.5)
 
     util.move(620, 100)
-    util.do_dash(1)
+    util.do_dash(2)
     util.do_fade(0.5)
-    util.do_select(0.1)
+
+    util.move(620, 300)
+    util.do_dash(1)
+
+    util.wait(2)
 
   def run_dungeon(self, runs):
     run_counter = 0
+    fail_run_counter = 0
     while run_counter < runs:
       util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
       util.log_action(util.MSG_START_DG)
-      util.log_run(run_counter)
+      util.log_run(run_counter, fail_run_counter)
 
       # Click Cabal Window
       util.go_cabal_window()
@@ -195,6 +215,7 @@ class ChaosInfinity(Dungeon):
       bosses = 0
       arena = True
       mob_checker = 0
+      reposition_count = 0
       while arena:
         if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
@@ -202,6 +223,12 @@ class ChaosInfinity(Dungeon):
 
         if bosses >= 12:
           arena = False
+
+        if reposition_count > 3:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
+          arena = False
+          util.set_reset_status(True)
 
         if arena == False:
           break
@@ -248,14 +275,17 @@ class ChaosInfinity(Dungeon):
         if mob_checker >= 15:
           mob_checker = 0
           self.reposition_center()
+          reposition_count += 1
 
+      util.cancel_aura()
+
+      if util.get_reset_status():
+        continue
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
-
-      util.cancel_aura()
 
       # Start to End Dungeon
       util.check_notifications()
