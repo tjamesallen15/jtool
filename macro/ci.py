@@ -88,7 +88,6 @@ class ChaosInfinity(Dungeon):
 
       util.move(500, 300)
       util.do_dash(1)
-      util.do_fade(0.1)
 
       # Click Dungeon
       util.click_portal(590, 390)
