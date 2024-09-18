@@ -39,79 +39,78 @@ class PanicCaveAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(610, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(610, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(610, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(610, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(560, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(610, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(680, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(640, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(570, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(770, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(640, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(500, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(570, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(500, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(640, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(680, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(640, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
-
-    util.do_final_mode(1)
-    util.do_aura(1)
-    util.wait(3)
+    util.do_fade(0.3)
 
     util.move(660, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
+
+    util.do_final_mode(2)
+    util.do_aura(1)
 
     if util.get_atk_type() == 1:
       util.move(610, 440)
@@ -124,46 +123,46 @@ class PanicCaveAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(460, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(640, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(820, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(750, 300)
     util.do_dash(1)
 
     util.move(600, 350)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(620, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(580, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(580, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(580, 350)
     util.do_dash(2)
 
     util.move(770, 280)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(770, 280)
     util.do_dash(1)
 
     util.move(550, 370)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
   def position_second_shadow(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -171,41 +170,41 @@ class PanicCaveAwakened(Dungeon):
     util.do_fade(1)
 
     util.move(720, 200)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(780, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(730, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(760, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(670, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(620, 200)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
   def position_third_shadow(self):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(670, 230)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(690, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(690, 150)
     util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade(0.3)
 
     util.move(690, 150)
     util.do_dash(1)
@@ -313,7 +312,7 @@ class PanicCaveAwakened(Dungeon):
         util.do_dash(1)
 
         util.move(660, 500)
-        util.do_fade(0.5)
+        util.do_fade(0.3)
 
         util.move_click(580, 440)
 
@@ -506,7 +505,7 @@ class PanicCaveAwakened(Dungeon):
 
       # Final Boss
       util.move(620, 520)
-      util.do_fade(0.5)
+      util.do_fade(0.3)
 
       util.do_battle_mode(5, 0)
       util.wait(2)
@@ -539,7 +538,7 @@ class PanicCaveAwakened(Dungeon):
       util.do_plunder(3)
 
       util.move(650, 350)
-      util.do_fade(0.5)
+      util.do_fade(0.3)
 
       checking = True
       while checking:
