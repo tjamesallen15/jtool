@@ -39,54 +39,54 @@ class ChaosInfinity(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     # HORIZONTAL
     util.move(100, 400)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
 
     # VERTICAL
     util.move(620, 100)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
 
     util.move(620, 600)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
 
     # HORIZONTAL
     util.move(1200, 400)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move(900, 400)
     util.do_dash(1.5)
 
     # VERTICAL CHECK
     util.move(620, 100)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move(620, 600)
     util.do_dash(2)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
     util.do_dash(1.5)
 
     util.move(620, 100)
     util.do_dash(2)
-    util.do_fade(0.5)
+    util.do_fade()
 
     util.move(620, 300)
-    util.do_dash(1)
+    util.do_dash()
 
     util.wait(2)
 
@@ -107,7 +107,7 @@ class ChaosInfinity(Dungeon):
       util.do_buffs()
 
       util.move(500, 300)
-      util.do_dash(1)
+      util.do_dash()
 
       # Click Dungeon
       util.click_portal(590, 390)
@@ -119,21 +119,21 @@ class ChaosInfinity(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(650, 250)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(500, 360)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(500, 360)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(750, 150)
-      util.do_fade(0.5)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_fade()
+      util.do_dash()
+      util.do_fade()
 
       util.move(550, 300)
-      util.do_dash(1)
+      util.do_dash()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -142,16 +142,16 @@ class ChaosInfinity(Dungeon):
 
       util.move_scroll(700, 150, 375, 150, 0.5)
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -187,24 +187,24 @@ class ChaosInfinity(Dungeon):
             break
 
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
       util.do_dash(5)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(620, 250)
       util.do_dash(3)
 
       util.move(620, 100)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 600)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():

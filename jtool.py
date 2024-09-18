@@ -26,6 +26,7 @@ from macro.hk import HolyKeldrasil
 from macro.s1p import SienaB1FPrideus
 from macro.ci import ChaosInfinity
 from macro.hvv import HazardousValleyVeradrix
+from macro.rh import RadiantHall
 
 pynboard = Controller()
 class JTool():
@@ -44,7 +45,8 @@ class JTool():
     "Holy Keldrasil",
     "Altar of Siena B1F (Prideus)",
     "Chaos Infinity",
-    "Hazardous Valley (Veradrix)"
+    "Hazardous Valley (Veradrix)",
+    "Radiant Hall"
   ]
 
   LIST_DUNGEON = []
@@ -173,6 +175,8 @@ class JTool():
       ChaosInfinity().initialize(frame_root, btn_start, runs)
     elif choice == self.LIST_MASTER[13]:
       HazardousValleyVeradrix().initialize(frame_root, btn_start, runs)
+    elif choice == self.LIST_MASTER[14]:
+      RadiantHall().initialize(frame_root, btn_start, runs)
 
   def get_dungeon_list(self):
     global LIST_DUNGEON
@@ -235,7 +239,8 @@ class JTool():
         "Terminus Machina",
         "Chaos Infinity",
         "Altar of Siena B1F (Prideus)",
-        "Hazardous Valley (Veradrix)"
+        "Hazardous Valley (Veradrix)",
+        "Radiant Hall"
       ]
 
   def get_access(self, feature):

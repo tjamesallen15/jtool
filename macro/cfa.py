@@ -38,30 +38,30 @@ class CatacombsFrostAwakened(Dungeon):
   def position_second_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(700, 350)
-    util.do_fade(0.5)
+    util.do_fade()
 
     util.move(200, 320)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move(300, 650)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move(200, 350)
-    util.do_dash(1)
+    util.do_dash()
     util.do_fade(1.2)
 
     util.move(620, 260)
-    util.do_fade(0.5)
+    util.do_fade()
 
   def pre_position_final_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(250, 520)
-    util.do_dash(1.2)
+    util.do_dash(1)
 
     util.move(550, 600)
-    util.do_dash(1.2)
+    util.do_fade()
 
     util.move(350, 520)
     util.do_dash(1.2)
@@ -108,9 +108,9 @@ class CatacombsFrostAwakened(Dungeon):
         continue
 
       util.move(500, 500)
-      util.do_dash(1)
+      util.do_dash()
       util.move(500, 300)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # Click Dungeon
       util.click_portal(560, 330)
@@ -121,7 +121,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       # First Boss
       util.move(570, 300)
-      util.do_dash(1)
+      util.do_dash()
 
       util.do_final_mode(1)
       util.attack_boss()
@@ -133,7 +133,7 @@ class CatacombsFrostAwakened(Dungeon):
         continue
 
       util.move(400, 600)
-      util.do_dash(1)
+      util.do_dash()
 
       try:
         util.move_click(570, 375)
@@ -165,16 +165,16 @@ class CatacombsFrostAwakened(Dungeon):
       util.move_click(450, 520, 1)
 
       util.move(450, 520)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(450, 520)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(1000, 150, 375, 150, 2)
       util.move(530, 420)
-      util.do_dash(1)
+      util.do_dash()
 
       # Check Spector is Available
       try:
@@ -223,13 +223,13 @@ class CatacombsFrostAwakened(Dungeon):
         continue
 
       util.move(730, 390)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(770, 470)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(770, 480)
-      util.do_fade(0.5)
+      util.do_fade()
 
       dialog_check = True
       while dialog_check:

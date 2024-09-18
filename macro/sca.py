@@ -81,11 +81,11 @@ class SteamerCrazyAwakened(Dungeon):
         elif portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
 
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
         else:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
@@ -150,11 +150,11 @@ class SteamerCrazyAwakened(Dungeon):
         elif portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
 
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
         else:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
@@ -219,11 +219,11 @@ class SteamerCrazyAwakened(Dungeon):
         elif portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
 
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
         else:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 500)
@@ -264,10 +264,10 @@ class SteamerCrazyAwakened(Dungeon):
       util.attack_mobs(unit, 1, util.val_default_interval, self.val_sidestep)
 
       util.move(630, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(0.1)
 
   def run_dungeon(self, runs):
@@ -344,11 +344,11 @@ class SteamerCrazyAwakened(Dungeon):
       util.set_battle_mode(False)
 
       util.move(630, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_dash(0.1)
 

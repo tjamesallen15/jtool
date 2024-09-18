@@ -72,7 +72,7 @@ region_train_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x280"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "5.70"
+APP_VERSION = "5.65"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -495,37 +495,37 @@ def go_cabal_window():
 def move(x, y, sec=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def move_rel(x, y, ref, sec=0):
   pyauto.moveTo(ref[0] + x, ref[1] + y)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def move_click(x, y, sec=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
   pyauto.click(cabal_window[0] + x, cabal_window[1] + y)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def move_right_click(x, y, sec=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
   pyauto.click(cabal_window[0] + x, cabal_window[1] + y, button="RIGHT")
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def move_click_rel(x, y, ref, sec=0):
   pyauto.moveTo(ref[0] + x, ref[1] + y)
   pyauto.click(ref[0] + x, ref[1] + y)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def move_scroll(x1, y1, x2, y2, sec=0):
@@ -536,7 +536,7 @@ def move_scroll(x1, y1, x2, y2, sec=0):
   pyauto.mouseUp(button="right")
   pyauto.scroll(-10000)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def wait(sec=1):
@@ -910,7 +910,7 @@ def go_skill_slot(sec=0):
   pynboard.press(Key.f3)
   pynboard.release(Key.f3)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def set_battle_mode(val, cancel=1):
@@ -1008,35 +1008,35 @@ def cancel_aura(sec=0):
   move(175, 100)
   pyauto.click(button="right")
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
-def do_dash(sec=0):
+def do_dash(sec=1.0):
   pynboard.press(val_dash)
   pynboard.release(val_dash)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
-def do_fade(sec=0):
+def do_fade(sec=0.5):
   pynboard.press(val_fade)
   pynboard.release(val_fade)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def do_select(sec=0):
   pynboard.press(val_select)
   pynboard.release(val_select)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def do_deselect(sec=0):
   pynboard.press(val_deselect)
   pynboard.release(val_deselect)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def do_deselect_pack():
@@ -1151,14 +1151,14 @@ def release_keys(sec=0):
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def do_aura(sec=0):
   pynboard.press(val_bm_aura)
   pynboard.release(val_bm_aura)
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def do_final_mode(sec=0):
@@ -1166,7 +1166,7 @@ def do_final_mode(sec=0):
     pynboard.press(val_bm3)
     pynboard.release(val_bm3)
 
-    if (sec != 0):
+    if sec != 0:
       time.sleep(sec)
 
 def do_attack(sec=0, strict=0, cont=1):
@@ -1217,7 +1217,7 @@ def do_attack(sec=0, strict=0, cont=1):
     if strict == 0:
       do_essentials()
 
-  if (sec != 0):
+  if sec != 0:
     time.sleep(sec)
 
 def click_portal(x, y):
@@ -1276,7 +1276,7 @@ def click_portal(x, y):
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
 
-def enter_dungeon():
+def enter_dungeon(sec=1):
   entering = True
   while entering:
     if not get_macro_state():
@@ -1295,9 +1295,9 @@ def enter_dungeon():
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
 
-  wait(1)
+  wait(sec)
 
-def challenge_dungeon():
+def challenge_dungeon(sec=0):
   challenging = True
   while challenging:
     if not get_macro_state():
@@ -1324,6 +1324,9 @@ def challenge_dungeon():
         log_action(MSG_NO_BUTTON_FOUND)
         challenging = False
         break
+
+  if sec != 0:
+    wait(sec)
 
 def check_notifications():
   try:

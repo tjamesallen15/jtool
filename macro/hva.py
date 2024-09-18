@@ -368,24 +368,24 @@ class HazardousValleyAwakened(Dungeon):
   def position_orphidia(self):
     util.do_deselect_pack()
     util.move(400, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.do_deselect_pack()
     util.move(320, 540)
-    util.do_dash(1)
+    util.do_dash()
 
     util.do_deselect_pack()
     util.move(400, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.do_deselect_pack()
     util.move(320, 540)
-    util.do_dash(1)
+    util.do_dash()
 
     util.move(400, 400)
-    util.do_fade(0.5)
+    util.do_fade()
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -452,18 +452,18 @@ class HazardousValleyAwakened(Dungeon):
       util.do_deselect_pack()
       util.move(700, 600)
       util.do_dash(0.1)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(700, 600)
       util.do_dash(0.1)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # First Boss
       util.do_short_buffs()
 
       util.attack_boss()
       util.move(450, 550)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.plunder_box()
 
@@ -502,7 +502,7 @@ class HazardousValleyAwakened(Dungeon):
       # Second Boss
       util.do_deselect_pack()
       util.move(800, 360)
-      util.do_dash(1)
+      util.do_dash()
       util.move(500, 300)
       util.do_fade(0.1)
 
@@ -532,7 +532,7 @@ class HazardousValleyAwakened(Dungeon):
       util.attack_boss()
       util.do_deselect_pack()
       util.move(500, 100)
-      util.do_fade(0.5)
+      util.do_fade()
       util.plunder_box()
 
       # Check Macro State
@@ -639,8 +639,8 @@ class HazardousValleyAwakened(Dungeon):
         util.move_click(850, 160, 0.3)
         util.move_click(950, 160, 0.3)
         util.move_click(950, 480)
-        util.do_dash(1)
-        util.do_fade(0.5)
+        util.do_dash()
+        util.do_fade()
 
         try:
           util.do_select(0.1)

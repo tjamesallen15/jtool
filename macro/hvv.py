@@ -164,8 +164,8 @@ class HazardousValleyVeradrix(Dungeon):
       try:
         util.move_click(300, 260)
         if unit == util.UNIT_WHITE_SNAKE:
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -195,8 +195,8 @@ class HazardousValleyVeradrix(Dungeon):
           util.move_click(200, 260)
 
           if unit == util.UNIT_WHITE_SNAKE:
-            util.do_dash(1)
-            util.do_fade(0.5)
+            util.do_dash()
+            util.do_fade()
 
           util.do_select(0.1)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
@@ -226,8 +226,8 @@ class HazardousValleyVeradrix(Dungeon):
           util.move_click(100, 260)
 
           if unit == util.UNIT_WHITE_SNAKE:
-            util.do_dash(1)
-            util.do_fade(0.5)
+            util.do_dash()
+            util.do_fade()
 
           util.do_select(0.1)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
@@ -443,16 +443,16 @@ class HazardousValleyVeradrix(Dungeon):
       util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
 
       util.move(375, 150)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
-      util.do_fade(0.5)
+      util.do_fade()
       util.wait(6)
       util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
 
       util.move(375, 175)
-      util.do_dash(1)
-      util.do_fade(0.5)
-      util.do_dash(1)
+      util.do_dash()
+      util.do_fade()
+      util.do_dash()
       util.do_fade(1)
 
       util.move(250, 350)
@@ -461,11 +461,11 @@ class HazardousValleyVeradrix(Dungeon):
       util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
 
       util.move(535, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(400, 200)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
 
       # Check Macro State
@@ -499,7 +499,7 @@ class HazardousValleyVeradrix(Dungeon):
 
       util.do_deselect_pack()
       util.move(630, 520)
-      util.do_fade(0.5)
+      util.do_fade()
       util.move(550, 250)
       util.do_dash(0.5)
 
@@ -531,7 +531,7 @@ class HazardousValleyVeradrix(Dungeon):
       util.do_deselect_pack()
       util.move_click(570, 260)
       util.do_fade(1.5)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.plunder_box()
 

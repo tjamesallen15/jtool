@@ -174,8 +174,8 @@ class HazardousValley(Dungeon):
       try:
         util.move_click(300, 260)
         if unit == util.UNIT_WHITE_SNAKE:
-          util.do_dash(1)
-          util.do_fade(0.5)
+          util.do_dash()
+          util.do_fade()
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -205,8 +205,8 @@ class HazardousValley(Dungeon):
           util.move_click(200, 260)
 
           if unit == util.UNIT_WHITE_SNAKE:
-            util.do_dash(1)
-            util.do_fade(0.5)
+            util.do_dash()
+            util.do_fade()
 
           util.do_select(0.1)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
@@ -236,8 +236,8 @@ class HazardousValley(Dungeon):
           util.move_click(100, 260)
 
           if unit == util.UNIT_WHITE_SNAKE:
-            util.do_dash(1)
-            util.do_fade(0.5)
+            util.do_dash()
+            util.do_fade()
 
           util.do_select(0.1)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
@@ -488,51 +488,51 @@ class HazardousValley(Dungeon):
   def position_orphidia(self):
     util.do_deselect_pack()
     util.move(400, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.do_deselect_pack()
     util.move(320, 540)
-    util.do_dash(1)
+    util.do_dash()
 
     util.do_deselect_pack()
     util.move(400, 260)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.do_deselect_pack()
     util.move(320, 540)
-    util.do_dash(1)
+    util.do_dash()
 
     util.move(400, 400)
-    util.do_fade(0.5)
+    util.do_fade()
 
   def path_find_white_snake(self):
     util.log_action(util.MSG_PATH_FIND + util.UNIT_WHITE_SNAKE)
     util.move_click(650, 160, 0.3)
-    util.do_dash(1)
+    util.do_dash()
 
     util.move_click(850, 160, 1)
-    util.do_fade(0.5)
+    util.do_fade()
 
     util.move_click(950, 480)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move_click(850, 570)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move_click(850, 600)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
   def move_to_box(self):
     util.move_click(675, 450)
     util.move_click(500, 260)
 
     util.move(800, 380)
-    util.do_fade(0.5)
+    util.do_fade()
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -577,16 +577,16 @@ class HazardousValley(Dungeon):
       util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
 
       util.move(375, 150)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
-      util.do_fade(0.5)
+      util.do_fade()
       util.wait(6)
       util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
 
       util.move(375, 175)
-      util.do_dash(1)
-      util.do_fade(0.5)
-      util.do_dash(1)
+      util.do_dash()
+      util.do_fade()
+      util.do_dash()
       util.do_fade(1)
 
       util.move(250, 350)
@@ -595,11 +595,11 @@ class HazardousValley(Dungeon):
       util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
 
       util.move(535, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(400, 200)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
 
       # Check Macro State
@@ -633,7 +633,7 @@ class HazardousValley(Dungeon):
 
       util.do_deselect_pack()
       util.move(630, 520)
-      util.do_fade(0.5)
+      util.do_fade()
       util.move(550, 250)
       util.do_dash(0.5)
 
@@ -665,7 +665,7 @@ class HazardousValley(Dungeon):
       util.do_deselect_pack()
       util.move_click(570, 260)
       util.do_fade(1.5)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.plunder_box()
 
@@ -722,7 +722,7 @@ class HazardousValley(Dungeon):
         continue
 
       util.move(640, 560)
-      util.do_fade(0.5)
+      util.do_fade()
       util.plunder_box()
 
       # Orphidia Sequence II
@@ -774,7 +774,7 @@ class HazardousValley(Dungeon):
         continue
 
       util.move(640, 560)
-      util.do_fade(0.5)
+      util.do_fade()
       util.plunder_box()
 
       # Orphidia Sequence III
@@ -825,7 +825,7 @@ class HazardousValley(Dungeon):
         continue
 
       util.move(640, 560)
-      util.do_fade(0.5)
+      util.do_fade()
       util.plunder_final_box()
 
       # Check Macro State
