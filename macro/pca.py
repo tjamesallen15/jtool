@@ -535,7 +535,7 @@ class PanicCaveAwakened(Dungeon):
 
       util.attack_boss(0, 0, 0, 0)
       util.set_battle_mode(False)
-      util.do_plunder(3)
+      util.plunder_box(1, 3)
 
       util.move(650, 350)
       util.do_fade(0.5)
