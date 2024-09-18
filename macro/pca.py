@@ -538,7 +538,7 @@ class PanicCaveAwakened(Dungeon):
       util.do_plunder(3)
 
       util.move(650, 350)
-      util.do_fade(0.3)
+      util.do_fade(0.5)
 
       checking = True
       while checking:
