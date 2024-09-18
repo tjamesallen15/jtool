@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 
 - [CI] Fixed stuck up scenarios near the gate
 - [LHA] Improved speed of automation on some mob checks
+- [PCA] Fixed automation bugs caused by game updates
 
 # v5.60
 
