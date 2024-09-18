@@ -36,49 +36,69 @@ class ChaosInfinity(Dungeon):
     frame_root.update()
 
   def reposition_center(self):
-    # HORIZONTAL
     util.log_action(util.MSG_MOVING_POSITION)
-    util.move(100, 360)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    # HORIZONTAL
+    util.move(100, 400)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
 
+    # VERTICAL
+    util.move(620, 100)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+
+    util.move(620, 600)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+
+    # HORIZONTAL
     util.move(1200, 400)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move(900, 400)
     util.do_dash(1.5)
 
-    # VERTICAL
+    # VERTICAL CHECK
     util.move(620, 100)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_select(0.1)
+    util.do_dash()
+    util.do_fade()
 
     util.move(620, 600)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_select(0.1)
+    util.do_dash(2)
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+    util.do_dash(1.5)
 
     util.move(620, 100)
-    util.do_dash(1)
-    util.do_fade(0.5)
-    util.do_select(0.1)
+    util.do_dash(2)
+    util.do_fade()
+
+    util.move(620, 300)
+    util.do_dash()
+
+    util.wait(2)
 
   def run_dungeon(self, runs):
     run_counter = 0
+    fail_run_counter = 0
     while run_counter < runs:
       util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
       util.log_action(util.MSG_START_DG)
-      util.log_run(run_counter)
+      util.log_run(run_counter, fail_run_counter)
 
       # Click Cabal Window
       util.go_cabal_window()
@@ -87,10 +107,10 @@ class ChaosInfinity(Dungeon):
       util.do_buffs()
 
       util.move(500, 300)
-      util.do_dash(1)
+      util.do_dash()
 
       # Click Dungeon
-      util.click_portal(580, 400)
+      util.click_portal(590, 390)
 
       # Enter Dungeon
       util.enter_dungeon()
@@ -99,21 +119,21 @@ class ChaosInfinity(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(650, 250)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(500, 360)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(500, 360)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(750, 150)
-      util.do_fade(0.5)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_fade()
+      util.do_dash()
+      util.do_fade()
 
       util.move(550, 300)
-      util.do_dash(1)
+      util.do_dash()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -122,16 +142,16 @@ class ChaosInfinity(Dungeon):
 
       util.move_scroll(700, 150, 375, 150, 0.5)
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -153,6 +173,7 @@ class ChaosInfinity(Dungeon):
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
             util.focus_gate(util.UNIT_GATE, 0)
+            util.wait(0.3)
             has_gate = False
             break
           except pyauto.ImageNotFoundException:
@@ -161,29 +182,29 @@ class ChaosInfinity(Dungeon):
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
           except pyauto.ImageNotFoundException:
-            util.wait(1)
+            util.wait(1.3)
             has_gate = False
             break
 
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
       util.do_dash(5)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(620, 250)
       util.do_dash(3)
 
       util.move(620, 100)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 600)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -194,6 +215,7 @@ class ChaosInfinity(Dungeon):
       bosses = 0
       arena = True
       mob_checker = 0
+      reposition_count = 0
       while arena:
         if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
@@ -201,6 +223,12 @@ class ChaosInfinity(Dungeon):
 
         if bosses >= 12:
           arena = False
+
+        if reposition_count > 3:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
+          arena = False
+          util.set_reset_status(True)
 
         if arena == False:
           break
@@ -247,14 +275,17 @@ class ChaosInfinity(Dungeon):
         if mob_checker >= 15:
           mob_checker = 0
           self.reposition_center()
+          reposition_count += 1
 
+      util.cancel_aura()
+
+      if util.get_reset_status():
+        continue
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
-
-      util.cancel_aura()
 
       # Start to End Dungeon
       util.check_notifications()

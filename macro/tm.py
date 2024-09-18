@@ -197,12 +197,12 @@ class TerminusMachina(Dungeon):
   def path_backtrack(self, unit):
     util.log_action(util.MSG_BACKTRACK + unit)
     util.move(630, 600)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
     util.move(630, 600)
-    util.do_dash(1)
-    util.do_fade(0.5)
+    util.do_dash()
+    util.do_fade()
 
   def find_gate(self, unit=util.UNIT_BLANK):
     pathing = True
@@ -535,8 +535,8 @@ class TerminusMachina(Dungeon):
 
       util.wait(0.5)
       util.move(630, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -570,8 +570,8 @@ class TerminusMachina(Dungeon):
       # First Boss
       util.do_deselect_pack()
       util.move(700, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_short_buffs()
       util.do_battle_mode()
@@ -586,21 +586,21 @@ class TerminusMachina(Dungeon):
       util.set_battle_mode(False)
 
       util.move(710, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(710, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.move_scroll(375, 150, 700, 150)
 
       util.move(680, 200)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(530, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Gate One
       util.focus_gate(util.UNIT_GATE_ONE)
@@ -612,19 +612,19 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(530, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(530, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.wait(3)
 
       util.move(500, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       util.wait(2)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(500, 420)
       util.do_fade(1)
@@ -638,41 +638,41 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(530, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(530, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(500, 440)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.move_scroll(700, 150, 375, 150)
 
       util.move(350, 200)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(350, 200)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(350, 200)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.move_scroll(700, 150, 375, 150)
 
       util.move(550, 380)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(630, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(630, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Gate Two
       util.focus_gate(util.UNIT_GATE_TWO)
@@ -684,11 +684,11 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(650, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(590, 260)
-      util.do_dash(1)
+      util.do_dash()
 
       util.do_select(0.1)
       util.focus_mobs(util.UNIT_ESPADA_1, 0, 1, self.val_sidestep)
@@ -699,12 +699,12 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(800, 380)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.wait(8)
 
       util.move(500, 380)
-      util.do_dash(1)
+      util.do_dash()
 
       # Espada I Sequence
       power_ticks = 0
@@ -748,32 +748,32 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(550, 380)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(680, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(680, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(1000, 400)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(320, 500)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(320, 500)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(320, 500)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Power Supply
       util.do_select(0.1)
@@ -786,15 +786,15 @@ class TerminusMachina(Dungeon):
 
       util.move_scroll(375, 150, 900, 150)
       util.move(400, 360)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(550, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(540, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.wait(5)
 
       # Espada II Sequence
@@ -807,12 +807,12 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(540, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(580, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Power Supply II
       util.do_select(0.1)
@@ -825,17 +825,17 @@ class TerminusMachina(Dungeon):
 
       util.move_scroll(600, 150, 375, 150, 0.4)
       util.move(420, 400)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(650, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(800, 500)
-      util.do_fade(0.5)
+      util.do_fade()
       util.wait(12)
 
       # Espada III Sequence
@@ -880,12 +880,12 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(350, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(450, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Power Supply III
       util.do_select(0.1)
@@ -898,8 +898,8 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(900, 300)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.plunder_box()
 
       # Check Macro State
@@ -908,29 +908,29 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(750, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(750, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.wait(1)
 
       util.move(800, 400)
-      util.do_dash(1)
+      util.do_dash()
       util.wait(4)
 
       util.move(400, 400)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(640, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.wait(1)
 
       util.move(620, 600)
-      util.do_dash(1)
+      util.do_dash()
 
       # Poerte Sequence
       util.attack_mobs(util.UNIT_POERTE, 0, 0.3, self.val_sidestep)
@@ -942,8 +942,8 @@ class TerminusMachina(Dungeon):
 
       util.do_deselect_pack()
       util.move(580, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_short_buffs()
       util.do_battle_mode()
@@ -960,33 +960,33 @@ class TerminusMachina(Dungeon):
       util.set_battle_mode(False)
 
       util.move(640, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(640, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(1040, 410)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 550)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(610, 575)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(700, 150, 375, 150)
       util.move(640, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(640, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Gate Three
       util.focus_gate(util.UNIT_GATE_THREE)
@@ -998,14 +998,14 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(640, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(450, 350)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(590, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.wait(5)
 
@@ -1034,8 +1034,8 @@ class TerminusMachina(Dungeon):
         continue
 
       util.move(750, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Third Boss
       util.attack_boss()
@@ -1043,8 +1043,8 @@ class TerminusMachina(Dungeon):
       util.plunder_box()
 
       util.move(670, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1072,7 +1072,7 @@ class TerminusMachina(Dungeon):
           util.log_action(util.MSG_NO_BOSS_FOUND)
 
       util.move(800, 400)
-      util.do_fade(0.5)
+      util.do_fade()
       util.focus_gate(util.UNIT_GATE_FOUR)
       util.wait(1)
 
@@ -1111,8 +1111,8 @@ class TerminusMachina(Dungeon):
 
       util.do_deselect_pack()
       util.move(560, 260)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Final Boss
       util.attack_boss(1, 1, 0, 0)

@@ -67,8 +67,8 @@ class SienaB1FPrideus(Dungeon):
 
       util.move_scroll(375, 150, 500, 150, 0.8)
       util.move(660, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # First Sibling Dialog
       util.move_click(600, 380, 0.8)
@@ -132,46 +132,46 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(580, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(750, 300)
       util.do_dash(1.3)
 
       util.move(1000, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(580, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(580, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 600)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(550, 175)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # Portal
       util.move_click(620, 250, 1.5)
       util.move_click(15, 535, 1)
 
       util.move(630, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(660, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(660, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Second Sibling Dialog
       util.move_click(600, 380, 0.8)
@@ -211,20 +211,20 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(630, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(640, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(630, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(800, 250)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(3)
 
       # Box Dialog
@@ -265,25 +265,25 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(750, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(370, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(720, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(510, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(800, 350)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Altar Dialog
       util.move_click(760, 450, 1.5)
@@ -322,7 +322,7 @@ class SienaB1FPrideus(Dungeon):
         continue
 
       util.move(400, 450)
-      util.do_dash(1)
+      util.do_dash()
 
       # Second Sibling Sequence II
       util.move_click(575, 300, 1.5)
@@ -365,45 +365,45 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(600, 650)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(640, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(200, 400)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(700, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(400, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(820, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_final_mode(1)
       util.do_aura(3)
       util.do_short_buffs()
 
       util.move(640, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(640, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       # Second Boss
       util.do_essentials()
@@ -420,66 +420,66 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1.3)
 
       util.move(660, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(1000, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(1200, 460)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(1200, 350)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(900, 350)
       util.do_dash(1.5)
 
       util.move(600, 275)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(500, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(800, 250)
       util.do_dash(1.5)
 
       util.move(80, 350)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(500, 300)
-      util.do_fade(0.5)
+      util.do_fade()
       util.do_dash(1.5)
 
       util.move(770, 300)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(650, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(680, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(680, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       # Third Sibling
       util.move_click(705, 390, 1.5)
@@ -521,15 +521,15 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(700, 550)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(700, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(700, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       # Third Boss
       util.do_essentials()
@@ -543,15 +543,15 @@ class SienaB1FPrideus(Dungeon):
         continue
 
       util.move(720, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(670, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(100, 350)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(2)
 
       # Egg Dialog
@@ -592,24 +592,24 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(700, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(700, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(700, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(700, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(700, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Wall Dialog
       util.move_click(1100, 400, 2)
@@ -652,32 +652,32 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1.3)
 
       util.move(575, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(575, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(575, 600)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(575, 600)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
 
       util.move(575, 600)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(700, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(680, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Fire Dialog
       util.move_click(570, 320, 1.5)
@@ -717,29 +717,29 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(680, 625)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(630, 625)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(350, 625)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(850, 625)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(620, 625)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(400, 625)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(750, 625)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # Egg Dialog II
       util.move_click(360, 450, 1.5)
@@ -779,8 +779,8 @@ class SienaB1FPrideus(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(680, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(800, 150)
@@ -791,8 +791,8 @@ class SienaB1FPrideus(Dungeon):
 
       util.move_scroll(700, 150, 375, 150, 0.8)
       util.move(680, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Four Altars Dialog
       util.move_click(520, 300, 1.5)
@@ -843,7 +843,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash(1.5)
 
       util.move(270, 400)
-      util.do_dash(1)
+      util.do_dash()
 
       util.do_essentials()
       util.attack_boss()
@@ -856,8 +856,8 @@ class SienaB1FPrideus(Dungeon):
         continue
 
       util.move(1000, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_essentials()
       util.attack_boss()
@@ -870,8 +870,8 @@ class SienaB1FPrideus(Dungeon):
         continue
 
       util.move(820, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Portal II
       util.move_click(420, 450, 1.5)
@@ -914,20 +914,20 @@ class SienaB1FPrideus(Dungeon):
       util.move_scroll(375, 150, 1000, 150, 0.8)
 
       util.move(100, 350)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_scroll(375, 150, 700, 150, 0.8)
       util.move(250, 150)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.3)
 
       util.move(750, 150)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # Umpra The Weak Sequence
       util.log_action(util.MSG_CHECK_UMPRA_WEAK)
@@ -1010,24 +1010,24 @@ class SienaB1FPrideus(Dungeon):
       # Going to the Siena Secret Room
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(200, 425)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 625)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(100, 350)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(500, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move_click(500, 300, 1.5)
       checking = True

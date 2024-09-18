@@ -129,24 +129,24 @@ class HolyKeldrasil(Dungeon):
       util.move_scroll(375, 150, 700, 150)
 
       util.move(500, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(500, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.wait(1)
 
       util.move(500, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.wait(3)
 
       util.move(500, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.move_scroll(375, 150, 700, 150)
 
       # Check Macro State
@@ -171,8 +171,8 @@ class HolyKeldrasil(Dungeon):
 
       if util.get_atk_type() == 1:
         util.move(420, 150)
-        util.do_dash(1)
-        util.do_fade(0.5)
+        util.do_dash()
+        util.do_fade()
       util.plunder_box()
 
       # Check Macro State
@@ -182,12 +182,12 @@ class HolyKeldrasil(Dungeon):
 
       # Going to Portal
       util.move(420, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(420, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       check_dialog = True
       while check_dialog:
@@ -229,12 +229,12 @@ class HolyKeldrasil(Dungeon):
 
       # Attack Second Group
       util.move(300, 250)
-      util.do_dash(1)
+      util.do_dash()
       util.wait(7)
 
       util.move(900, 400)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.wait(5)
       self.find_mobs(util.UNIT_HATCHLING)
       try:
@@ -247,17 +247,17 @@ class HolyKeldrasil(Dungeon):
         util.log_action(util.MSG_NO_BOSS_FOUND)
 
       util.move(525, 400)
-      util.do_fade(0.5)
+      util.do_fade()
 
       if util.get_atk_type() == 1:
         util.move(500, 400)
         util.do_dash(1.5)
 
       util.move(550, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(550, 250)
-      util.do_fade(0.5)
+      util.do_fade()
       util.plunder_box()
 
       # Check Macro State
@@ -267,12 +267,12 @@ class HolyKeldrasil(Dungeon):
 
       # Going to Portal
       util.move(540, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(540, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       check_dialog = True
       while check_dialog:
@@ -311,7 +311,7 @@ class HolyKeldrasil(Dungeon):
       # Third Group Sequence
       util.wait(10)
       util.move(630, 320)
-      util.do_dash(1)
+      util.do_dash()
       self.find_mobs(util.UNIT_OWL_BEAR)
 
       util.do_deselect_pack()
@@ -358,12 +358,12 @@ class HolyKeldrasil(Dungeon):
         continue
 
       util.move(570, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(570, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.plunder_box()
 
       # Check Macro State
@@ -374,16 +374,16 @@ class HolyKeldrasil(Dungeon):
       # Going to Portal
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       check_dialog = True
       while check_dialog:
@@ -427,12 +427,12 @@ class HolyKeldrasil(Dungeon):
       # Position Last Sequence
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(630, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(630, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_select(0.1)
       util.focus_mobs(util.UNIT_GATE_FOUR, 0, 0, self.val_sidestep)
@@ -445,8 +445,8 @@ class HolyKeldrasil(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Attack Fourth Group
       util.wait(12)
@@ -464,16 +464,16 @@ class HolyKeldrasil(Dungeon):
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(600, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Attack Final Boss
       util.focus_mob_boss(util.UNIT_SHIRDRAHN, 1, 1, 0, 0)

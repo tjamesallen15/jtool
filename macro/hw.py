@@ -123,7 +123,7 @@ class HolyWindmill(Dungeon):
         try:
           util.move_click(750, 260)
           util.do_select(0.1)
-          util.do_fade(0.5)
+          util.do_fade()
           gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_GATE_FOUND + unit)
           pathing = False
@@ -640,13 +640,13 @@ class HolyWindmill(Dungeon):
       elif unit == util.UNIT_DRACO:
         util.do_deselect_pack()
         util.move(200, 250)
-        util.do_dash(1)
-        util.do_fade(0.5)
+        util.do_dash()
+        util.do_fade()
 
         if (backtrack_counter >= 5):
           util.wait(1)
           util.move_click(800, 400)
-          util.do_fade(0.5)
+          util.do_fade()
 
         try:
           util.move_click(600, 260)
@@ -677,7 +677,7 @@ class HolyWindmill(Dungeon):
 
         try:
           util.move_click(580, 260, 0.5)
-          util.do_fade(0.5)
+          util.do_fade()
           util.do_select(0.1)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -915,7 +915,7 @@ class HolyWindmill(Dungeon):
       boss_check += 1
       if boss_check >= 3 and unit == util.UNIT_DRACO:
         util.move_click(800, 260)
-        util.do_fade(0.5)
+        util.do_fade()
         boss_check = 0
 
     interval = 0.3
@@ -993,7 +993,7 @@ class HolyWindmill(Dungeon):
 
         try:
           util.move_click(900, 450)
-          util.do_dash(1)
+          util.do_dash()
           util.do_select(0.1)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_MOBS_FOUND + unit)
@@ -1136,7 +1136,7 @@ class HolyWindmill(Dungeon):
       util.challenge_dungeon()
 
       util.move(740, 420)
-      util.do_fade(0.5)
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1169,12 +1169,12 @@ class HolyWindmill(Dungeon):
 
       util.do_deselect_pack()
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(800, 300)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_final_mode(1)
       util.do_aura()
@@ -1209,12 +1209,12 @@ class HolyWindmill(Dungeon):
       # First Boss
       util.do_deselect_pack()
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(440, 560)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.do_deselect_pack()
       util.do_short_buffs()
@@ -1228,7 +1228,7 @@ class HolyWindmill(Dungeon):
 
       util.move_scroll(660, 150, 375, 150)
       util.move(500, 250)
-      util.do_dash(1)
+      util.do_dash()
 
       # Gate II
       moving = True
@@ -1256,14 +1256,14 @@ class HolyWindmill(Dungeon):
 
       util.do_deselect_pack()
       util.move(620, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       util.focus_gate(util.UNIT_GATE_TWO)
 
       util.do_deselect_pack()
       util.move(400, 240)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Second Sequence
       moving = True
@@ -1299,7 +1299,7 @@ class HolyWindmill(Dungeon):
       util.move(620, 150)
       util.do_dash(1.2)
       util.move(820, 550)
-      util.do_dash(1)
+      util.do_dash()
 
       util.do_battle_mode()
       util.attack_boss()
@@ -1312,7 +1312,7 @@ class HolyWindmill(Dungeon):
         continue
 
       util.move(620, 150)
-      util.do_dash(1)
+      util.do_dash()
       util.move_scroll(375, 150, 660, 150)
 
       # Gate III
@@ -1342,22 +1342,22 @@ class HolyWindmill(Dungeon):
       util.do_deselect_pack()
 
       util.move(1000, 360)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.move(620, 150)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
       util.move_scroll(600, 150, 375, 150)
 
       util.focus_gate(util.UNIT_GATE_THREE)
 
       util.do_deselect_pack()
       util.move(620, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(1000, 350)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Third Sequence
       moving = True
@@ -1386,8 +1386,8 @@ class HolyWindmill(Dungeon):
       # Third Boss
       util.do_deselect_pack()
       util.move(620, 500)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.attack_boss()
       util.plunder_box()
@@ -1398,12 +1398,12 @@ class HolyWindmill(Dungeon):
         continue
 
       util.move(520, 100)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(520, 200)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Gate IV
       moving = True
@@ -1431,11 +1431,11 @@ class HolyWindmill(Dungeon):
 
       util.do_deselect_pack()
       util.move(620, 150)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1.5)
 
       util.move(800, 360)
-      util.do_fade(0.5)
+      util.do_fade()
 
       util.move(700, 440)
       util.do_fade(1)
@@ -1445,11 +1445,11 @@ class HolyWindmill(Dungeon):
 
       util.do_deselect_pack()
       util.move(620, 150)
-      util.do_dash(1)
+      util.do_dash()
 
       util.move(200, 250)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       # Fourth Sequence
       moving = True
@@ -1480,11 +1480,11 @@ class HolyWindmill(Dungeon):
       util.do_deselect_pack()
 
       util.move(400, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
 
       util.move(1000, 300)
-      util.do_dash(1)
+      util.do_dash()
       util.do_fade(1)
 
       util.move(610, 160)
@@ -1524,10 +1524,10 @@ class HolyWindmill(Dungeon):
       util.do_deselect_pack()
 
       util.move(660, 160)
-      util.do_dash(1)
-      util.do_fade(0.5)
-      util.do_dash(1)
-      util.do_fade(0.5)
+      util.do_dash()
+      util.do_fade()
+      util.do_dash()
+      util.do_fade()
 
       util.move(700, 250)
       util.move_click(700, 360)
