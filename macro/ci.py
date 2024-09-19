@@ -73,6 +73,7 @@ class ChaosInfinity(Dungeon):
     util.move(620, 100)
     util.do_dash()
     util.do_fade()
+    util.do_select(0.1)
 
     util.move(620, 600)
     util.do_dash(2)
@@ -80,6 +81,7 @@ class ChaosInfinity(Dungeon):
     util.do_dash()
     util.do_fade()
     util.do_dash(1.5)
+    util.do_select(0.1)
 
     util.move(620, 100)
     util.do_dash(2)
@@ -251,10 +253,7 @@ class ChaosInfinity(Dungeon):
           util.log_action(util.MSG_BOX_FOUND)
           mob_checker = 0
           util.plunder_box(1, 3)
-          if util.get_atk_type() == 1:
-            util.wait(1)
-          else:
-            util.wait(5)
+          util.wait(1)
         except pyauto.ImageNotFoundException:
           pass
 
@@ -272,7 +271,7 @@ class ChaosInfinity(Dungeon):
         except pyauto.ImageNotFoundException:
           pass
 
-        if mob_checker >= 15:
+        if mob_checker >= 20:
           mob_checker = 0
           util.cancel_aura(2)
           self.reposition_center()
