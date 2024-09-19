@@ -274,6 +274,7 @@ class ChaosInfinity(Dungeon):
 
         if mob_checker >= 15:
           mob_checker = 0
+          util.cancel_aura(2)
           self.reposition_center()
           reposition_count += 1
 
