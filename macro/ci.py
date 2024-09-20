@@ -184,7 +184,7 @@ class ChaosInfinity(Dungeon):
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
           except pyauto.ImageNotFoundException:
-            util.wait(1.3)
+            util.wait(2)
             has_gate = False
             break
 
