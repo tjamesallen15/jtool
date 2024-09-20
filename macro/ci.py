@@ -243,6 +243,7 @@ class ChaosInfinity(Dungeon):
           util.attack_boss(0, 1)
           bosses += 1
           mob_checker = 0
+          reposition_count = 0
           util.wait(0.2)
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
@@ -252,6 +253,7 @@ class ChaosInfinity(Dungeon):
           boss = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOX_FOUND)
           mob_checker = 0
+          reposition_count = 0
           util.plunder_box(1, 3)
           util.wait(1)
         except pyauto.ImageNotFoundException:
