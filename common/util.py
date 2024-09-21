@@ -72,7 +72,7 @@ region_train_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x280"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "5.65"
+APP_VERSION = "5.70"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -1336,7 +1336,7 @@ def check_notifications():
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
 
-  time.sleep(0.5)
+  time.sleep(0.2)
 
   try:
     check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
@@ -1345,7 +1345,7 @@ def check_notifications():
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
 
-  time.sleep(0.5)
+  time.sleep(0.2)
 
 def end_dungeon():
   ending = True
@@ -1359,7 +1359,7 @@ def end_dungeon():
       break
 
     endCheckTrack += 1
-    if (endCheckTrack >= 60):
+    if (endCheckTrack >= 70):
       ending = False
       break
 

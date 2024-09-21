@@ -24,10 +24,12 @@ All notable changes to this project will be documented in this file.
 
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
+- [LHA] Added another source for second guard
 
 ## v5.70 Fixes
 
 - [CI] Changed reposition threshold from 15 to 20
+- [LHA] Improved movements in relation to the dungeuon updates
 
 # v5.65
 
