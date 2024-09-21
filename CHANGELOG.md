@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
+- [Dungeon] Increase wait time from 1 to 2 before entering dungeon
 - [LHA] Added another source for second guard
 
 ## v5.70 Fixes
