@@ -414,8 +414,23 @@ class LavaHellfireAwakened(Dungeon):
       util.attack_boss(1, 1, 0, 0)
 
       util.move(650, 600)
-      util.do_fade(1)
-      util.do_select(0.1)
+      util.do_fade()
+
+      checking = True
+      while checking:
+        if not util.get_macro_state():
+          util.log_action(util.MSG_TERMINATE)
+          checking = False
+
+        if checking == False:
+          break
+
+        try:
+          util.do_select(0.1)
+          box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          checking = False
+        except pyauto.ImageNotFoundException:
+          pass
 
       util.plunder_box(1, 3)
 

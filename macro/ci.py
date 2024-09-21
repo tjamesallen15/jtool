@@ -250,7 +250,7 @@ class ChaosInfinity(Dungeon):
           util.log_action(util.MSG_NO_BOSS_FOUND)
 
         try:
-          boss = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOX_FOUND)
           mob_checker = 0
           reposition_count = 0
