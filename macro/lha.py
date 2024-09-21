@@ -412,6 +412,11 @@ class LavaHellfireAwakened(Dungeon):
 
       # Final Boss
       util.attack_boss(1, 1, 0, 0)
+
+      util.move(650, 600)
+      util.do_fade(1)
+      util.do_select(0.1)
+
       util.plunder_box(1, 3)
 
       # Check Macro State
