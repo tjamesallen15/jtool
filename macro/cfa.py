@@ -58,7 +58,7 @@ class CatacombsFrostAwakened(Dungeon):
   def pre_position_final_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(250, 520)
-    util.do_dash(1)
+    util.do_dash()
 
     util.move(550, 600)
     util.do_fade()
@@ -117,7 +117,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       # Enter Dungeon
       util.enter_dungeon()
-      util.challenge_dungeon()
+      util.challenge_dungeon(0.4)
 
       # First Boss
       util.move(570, 300)
