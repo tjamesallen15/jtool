@@ -69,26 +69,27 @@ class ChaosInfinity(Dungeon):
     util.move(900, 400)
     util.do_dash(1.5)
 
+  def reposition_mobs(self):
     # VERTICAL CHECK
     util.move(620, 100)
     util.do_dash()
     util.do_fade()
-    util.do_select(0.1)
 
     util.move(620, 600)
-    util.do_dash(2)
+    util.do_dash()
     util.do_fade()
     util.do_dash()
     util.do_fade()
-    util.do_dash(1.5)
-    util.do_select(0.1)
+
+    util.move(620, 500)
+    util.do_dash()
 
     util.move(620, 100)
-    util.do_dash(2)
     util.do_fade()
-
-    util.move(620, 300)
     util.do_dash()
+
+    util.move(620, 350)
+    util.do_fade()
 
     util.wait(2)
 
@@ -273,10 +274,14 @@ class ChaosInfinity(Dungeon):
         except pyauto.ImageNotFoundException:
           pass
 
-        if mob_checker >= 20:
+        if mob_checker >= 30:
           mob_checker = 0
           util.cancel_aura(2)
-          self.reposition_center()
+
+          if reposition_count > 2:
+            self.reposition_center()
+
+          self.reposition_mobs()
           reposition_count += 1
 
       util.cancel_aura()
