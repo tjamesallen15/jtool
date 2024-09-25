@@ -30,8 +30,10 @@ All notable changes to this project will be documented in this file.
 ## v5.70 Fixes
 
 - [CI] Changed reposition threshold from 15 to 20
-- [LHA] Improved movements in relation to the dungeuon updates
+- [LHA] Improved movements in relation to the dungeon updates
 - [LHA] Fixed box not being detected properly on the final boss
+- [LHA] Fixed second boss position
+- [HK] Reduced wait time on some key points
 
 # v5.65
 

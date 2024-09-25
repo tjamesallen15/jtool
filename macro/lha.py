@@ -131,13 +131,15 @@ class LavaHellfireAwakened(Dungeon):
 
     util.move(350, 420)
     util.do_dash()
-    util.do_fade()
+    # util.do_fade()
 
-    util.move(500, 200)
+    # util.move(500, 200)
+    # util.do_dash()
+
+    # util.move(300, 450)
+    util.move(300, 200)
+    util.do_fade()
     util.do_dash()
-
-    util.move(300, 450)
-    util.do_fade()
 
   def position_lava_gate(self):
     util.log_action(util.MSG_MOVING_POSITION)
