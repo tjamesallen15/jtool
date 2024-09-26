@@ -1349,7 +1349,7 @@ def check_notifications():
 
 def end_dungeon():
   ending = True
-  endCheckTrack = 0
+  end_check_track = 0
   while ending:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -1358,14 +1358,14 @@ def end_dungeon():
     if ending == False:
       break
 
-    endCheckTrack += 1
-    if (endCheckTrack >= 70):
+    end_check_track += 1
+    if (end_check_track >= 100):
       ending = False
       break
 
     try:
-      enddungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, enddungeon, 0.2)
+      ending_dungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
+      move_click_rel(50, 15, ending_dungeon, 0.2)
       ending = False
       break
     except pyauto.ImageNotFoundException:
@@ -1382,8 +1382,8 @@ def dice_dungeon():
         break
 
     try:
-      rolladice = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, rolladice, 0.2)
+      dice_roll = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
+      move_click_rel(50, 15, dice_roll, 0.2)
       dicing = False
       break
     except pyauto.ImageNotFoundException:
@@ -1399,8 +1399,8 @@ def dice_dungeon():
         break
 
     try:
-      diceconfirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
-      move_click_rel(10, 5, diceconfirm, 0.2)
+      dice_confirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
+      move_click_rel(10, 5, dice_confirm, 0.2)
       confirming = False
       break
     except pyauto.ImageNotFoundException:
