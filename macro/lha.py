@@ -100,18 +100,18 @@ class LavaHellfireAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(850, 200)
     util.do_dash()
+    util.do_fade(1.5)
+
+    # util.move(850, 200)
+    # util.do_dash()
+    # util.do_fade()
+
+    # util.move(850, 200)
+    # util.do_dash()
+    # util.do_fade()
+
+    util.move(700, 400)
     util.do_fade()
-
-    # util.move(850, 200)
-    # util.do_dash()
-    # util.do_fade()
-
-    # util.move(850, 200)
-    # util.do_dash()
-    # util.do_fade()
-
-    # util.move(750, 420)
-    # util.do_fade()
 
     # util.move(840, 200)
     # util.do_dash()
