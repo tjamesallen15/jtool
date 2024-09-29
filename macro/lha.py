@@ -48,9 +48,9 @@ class LavaHellfireAwakened(Dungeon):
 
       util.log_action(util.MSG_PATH_FIND + unit)
       gate_counter += 1
-      if gate_counter >= 10:
+      if gate_counter >= 2:
         if trigger_fade == 0:
-          util.move(660, 400)
+          util.move(720, 420)
           util.do_fade(0.1)
           trigger_fade = 1
 
@@ -102,19 +102,7 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    # util.move(850, 200)
-    # util.do_dash()
-    # util.do_fade()
-
-    # util.move(850, 200)
-    # util.do_dash()
-    # util.do_fade()
-
     # util.move(700, 400)
-    # util.do_fade()
-
-    # util.move(840, 200)
-    # util.do_dash()
     # util.do_fade()
 
     util.move(640, 200)
@@ -131,12 +119,7 @@ class LavaHellfireAwakened(Dungeon):
 
     util.move(350, 420)
     util.do_dash()
-    # util.do_fade()
 
-    # util.move(500, 200)
-    # util.do_dash()
-
-    # util.move(300, 450)
     util.move(300, 200)
     util.do_fade()
     util.do_dash()
@@ -144,17 +127,23 @@ class LavaHellfireAwakened(Dungeon):
 
   def position_lava_gate(self):
     util.log_action(util.MSG_MOVING_POSITION)
-    util.move_click(450, 600)
-    util.move_click(450, 600)
-    util.move_click(450, 600)
-    util.move_click(450, 600)
-    util.move_click(250, 500)
+    util.move(450, 300)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
 
-    util.move_click(450, 600)
-    util.move_click(450, 600)
-    util.move_click(450, 600)
-    util.move_click(450, 600)
-    util.move_click(250, 500)
+    util.move(550, 100)
+    util.do_dash()
+    util.do_fade()
+
+    util.move(550, 100)
+    util.do_dash()
+    util.do_fade()
+
+    util.move(650, 200)
+    util.do_dash()
+    util.do_fade()
 
   def position_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -163,7 +152,7 @@ class LavaHellfireAwakened(Dungeon):
 
     util.move_scroll(375, 150, 660, 150, 0.8)
 
-    util.move(300, 420)
+    util.move(300, 400)
     util.do_dash()
     util.do_fade()
 
@@ -171,7 +160,7 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    util.move(620, 275)
+    util.move(620, 280)
     util.do_dash()
 
   def run_dungeon(self, runs):
@@ -226,101 +215,52 @@ class LavaHellfireAwakened(Dungeon):
 
       # First Semi Boss Sequence
       self.position_fire_guard()
-      # util.wait(2)
-      guard_found = False
-      # moving = True
-      # check_count = 0
-      # while moving:
-      #   if not util.get_macro_state():
-      #     util.log_action(util.MSG_TERMINATE)
-      #     moving = False
-
-      #   if moving == False:
-      #     break
-
-      #   if check_count >= 15:
-      #     moving = False
-
-      #   if moving == False:
-      #     break
-
-      #   try:
-      #     util.do_select(0.1)
-      #     check_count += 1
-      #     boss = pyauto.locateOnScreen(util.IMG_FIRE_GUARD, grayscale=False, confidence=.8, region=util.get_full_region())
-      #     guard_found = True
-      #     moving = False
-      #     util.attack_semi_boss(0)
-      #     util.log_action(util.MSG_MOVE_STOP)
-      #     break
-      #   except pyauto.ImageNotFoundException:
-      #     util.log_action(util.MSG_NO_BOSS_FOUND)
-
-      #   time.sleep(0.2)
-
-      #   if moving == False:
-      #     break
-
-      # if util.get_reset_status():
-      #   continue
-
-      # # Check Macro State
-      # if not util.get_macro_state():
-      #   run_counter += 1000
-      #   continue
-
-      # util.move(920, 200)
       util.move(1000, 200)
       util.do_dash()
       util.do_fade()
 
-      # util.move(680, 400)
-      # util.do_fade()
-
       util.move(850, 200)
       util.do_dash()
 
-      # First Semi Boss Sequence (Fail Check)
-      if guard_found == False:
-        # util.wait(2)
-        moving = True
-        check_count = 0
-        while moving:
-          if not util.get_macro_state():
-            util.log_action(util.MSG_TERMINATE)
-            moving = False
+      # First Semi Boss Sequence
+      moving = True
+      check_count = 0
+      while moving:
+        if not util.get_macro_state():
+          util.log_action(util.MSG_TERMINATE)
+          moving = False
 
-          if moving == False:
-            break
+        if moving == False:
+          break
 
-          if check_count == 10:
-            util.move(500, 600)
-            util.do_dash()
+        if check_count == 10:
+          util.move(500, 600)
+          util.do_dash()
 
-          if check_count >= 15:
-            util.force_exit_dungeon()
-            fail_run_counter += 1
-            moving = False
-            util.set_reset_status(True)
+        if check_count >= 15:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
+          moving = False
+          util.set_reset_status(True)
 
-          if moving == False:
-            break
+        if moving == False:
+          break
 
-          try:
-            util.do_select(0.1)
-            check_count += 1
-            boss = pyauto.locateOnScreen(util.IMG_FIRE_GUARD, grayscale=False, confidence=.8, region=util.get_full_region())
-            util.log_action(util.MSG_MOVE_STOP)
-            moving = False
-            util.attack_semi_boss(0)
-            break
-          except pyauto.ImageNotFoundException:
-            util.log_action(util.MSG_NO_BOSS_FOUND)
+        try:
+          util.do_select(0.1)
+          check_count += 1
+          boss = pyauto.locateOnScreen(util.IMG_FIRE_GUARD, grayscale=False, confidence=.8, region=util.get_full_region())
+          util.log_action(util.MSG_MOVE_STOP)
+          moving = False
+          util.attack_semi_boss(0)
+          break
+        except pyauto.ImageNotFoundException:
+          util.log_action(util.MSG_NO_BOSS_FOUND)
 
-          time.sleep(0.2)
+        time.sleep(0.2)
 
-          if moving == False:
-            break
+        if moving == False:
+          break
 
       if util.get_reset_status():
         continue
@@ -338,7 +278,6 @@ class LavaHellfireAwakened(Dungeon):
 
       # Second Semi Boss Sequence
       self.position_gate_keeper()
-      # util.wait(2)
       moving = True
       check_count = 0
       while moving:
@@ -381,11 +320,9 @@ class LavaHellfireAwakened(Dungeon):
 
       # Gate Sequence
       util.set_battle_mode(False)
-      # self.position_lava_gate()
+      self.position_lava_gate()
       self.path_find_gate(util.UNIT_LAVA_GATE)
-
       util.focus_mobs(util.UNIT_LAVA_GATE, 0, 0, self.val_sidestep)
-      # util.wait(1)
 
       # Check Macro State
       if not util.get_macro_state():
