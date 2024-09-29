@@ -38,6 +38,8 @@ All notable changes to this project will be documented in this file.
 - [LHA] Improved movements in relation to the dungeon updates
 - [LHA] Fixed box not being detected properly on the final boss
 - [LHA] Fixed second boss position
+- [LHA] Changed the positioning for last boss
+- [LHA] Decreased path finding of lava gate from 12 to 10
 
 # v5.65
 

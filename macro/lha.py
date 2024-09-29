@@ -48,7 +48,7 @@ class LavaHellfireAwakened(Dungeon):
 
       util.log_action(util.MSG_PATH_FIND + unit)
       gate_counter += 1
-      if gate_counter >= 12:
+      if gate_counter >= 10:
         if trigger_fade == 0:
           util.move(660, 400)
           util.do_fade(0.1)
@@ -167,12 +167,12 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    util.move(480, 160)
+    util.move(550, 160)
     util.do_dash()
     util.do_fade()
 
-    util.move(480, 160)
-    util.do_dash(0.5)
+    util.move(620, 275)
+    util.do_dash()
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -415,12 +415,6 @@ class LavaHellfireAwakened(Dungeon):
 
       # Final Boss
       util.attack_boss(1, 1, 0, 0)
-
-      if util.get_atk_type() == 1:
-        util.move(750, 600)
-      else:
-        util.move(650, 600)
-      util.do_fade()
 
       checking = True
       while checking:
