@@ -48,7 +48,7 @@ class LavaHellfireAwakened(Dungeon):
 
       util.log_action(util.MSG_PATH_FIND + unit)
       gate_counter += 1
-      if gate_counter >= 2:
+      if gate_counter >= 10:
         if trigger_fade == 0:
           util.move(720, 420)
           util.do_fade(0.1)
@@ -320,7 +320,7 @@ class LavaHellfireAwakened(Dungeon):
 
       # Gate Sequence
       util.set_battle_mode(False)
-      self.position_lava_gate()
+      # self.position_lava_gate()
       self.path_find_gate(util.UNIT_LAVA_GATE)
       util.focus_mobs(util.UNIT_LAVA_GATE, 0, 0, self.val_sidestep)
 
