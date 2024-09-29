@@ -113,14 +113,17 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    util.move(640, 200)
+    util.move(650, 200)
     util.do_dash()
     util.do_fade()
 
     util.move(350, 420)
     util.do_dash()
 
-    util.move(300, 200)
+    # if util.get_atk_type() == 1:
+    #   util.move(300, 200)
+    # else:
+    util.move(250, 200)
     util.do_fade()
     util.do_dash()
     util.do_fade()
@@ -287,6 +290,9 @@ class LavaHellfireAwakened(Dungeon):
 
         if moving == False:
           break
+
+        if check_count == 10:
+          util.move(800, 600)
 
         if check_count >= 15:
           util.force_exit_dungeon()
