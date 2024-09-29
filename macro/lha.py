@@ -358,7 +358,7 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Final Boss
-      util.attack_boss(1, 1, 0, 0)
+      util.attack_boss(0, 1, 0, 0)
 
       checking = True
       while checking:
