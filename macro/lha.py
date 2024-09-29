@@ -100,18 +100,18 @@ class LavaHellfireAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(850, 200)
     util.do_dash()
-    util.do_fade(1.5)
-
-    # util.move(850, 200)
-    # util.do_dash()
-    # util.do_fade()
-
-    # util.move(850, 200)
-    # util.do_dash()
-    # util.do_fade()
-
-    util.move(700, 400)
     util.do_fade()
+
+    # util.move(850, 200)
+    # util.do_dash()
+    # util.do_fade()
+
+    # util.move(850, 200)
+    # util.do_dash()
+    # util.do_fade()
+
+    # util.move(700, 400)
+    # util.do_fade()
 
     # util.move(840, 200)
     # util.do_dash()
@@ -293,6 +293,10 @@ class LavaHellfireAwakened(Dungeon):
           if moving == False:
             break
 
+          if check_count == 10:
+            util.move(500, 600)
+            util.do_dash()
+
           if check_count >= 15:
             util.force_exit_dungeon()
             fail_run_counter += 1
@@ -326,7 +330,10 @@ class LavaHellfireAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(660, 400)
+      util.move(850, 200)
+      util.do_dash()
+
+      util.move(750, 400)
       util.do_fade()
 
       # Second Semi Boss Sequence
