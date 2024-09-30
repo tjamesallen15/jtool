@@ -40,10 +40,20 @@ class ChaosInfinity(Dungeon):
     # HORIZONTAL
     util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
+
+    util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
+
+    util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
 
     # VERTICAL
@@ -69,47 +79,55 @@ class ChaosInfinity(Dungeon):
     util.move(900, 400)
     util.do_dash(1.5)
 
-  def reposition_ulwaan():
+  def reposition_ulwaan(self):
     # HORIZONTAL
     util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
+
+    util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
+
+    util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
+    util.do_select(0.1)
 
     # HORIZONTAL
     util.move(1200, 400)
     util.do_dash()
     util.do_fade()
 
-    util.move(900, 400)
+    util.move(875, 400)
     util.do_dash(1.5)
+    util.do_select(0.1)
 
   def reposition_mobs(self):
     # VERTICAL CHECK
     util.move(620, 100)
     util.do_dash()
     util.do_fade()
+    util.do_select(0.1)
 
     util.move(620, 600)
     util.do_dash()
     util.do_fade()
     util.do_dash()
     util.do_fade()
+    util.do_select(0.1)
 
-    util.move(620, 500)
+    util.move(620, 250)
     util.do_dash()
 
-    util.move(620, 100)
+    util.move(620, 300)
     util.do_fade()
-    util.do_dash()
-
-    util.move(620, 350)
-    util.do_fade()
-
-    util.wait(2)
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -218,14 +236,14 @@ class ChaosInfinity(Dungeon):
       util.move(620, 250)
       util.do_dash(1.5)
 
-      util.move(620, 100)
-      util.do_dash()
-      util.do_fade()
+      # util.move(620, 100)
+      # util.do_dash()
+      # util.do_fade()
 
-      util.move(620, 600)
-      util.do_dash()
-      util.do_fade(1.5)
-      util.do_fade()
+      # util.move(620, 600)
+      # util.do_dash()
+      # util.do_fade(1.5)
+      # util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
