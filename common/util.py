@@ -72,7 +72,7 @@ region_train_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x280"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "5.65"
+APP_VERSION = "5.70"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -295,6 +295,7 @@ ACCESS_FREE = "Free"
 ACCESS_PRO = "Pro"
 ACCESS_PREMIUM = "Premium"
 ACCESS_TESTER = "Tester"
+ACCESS_TRIAL = "Trial"
 ACCESS_SUPER = "Super"
 
 # STATES
@@ -561,7 +562,7 @@ def log_action(message):
   print(msg_builder)
   frame_root.update()
 
-def log_time():
+def log_time(sec=0):
   check_time = time.time()
   sec_difference = math.ceil(check_time - val_time)
   min_difference = math.floor(sec_difference / 60)
@@ -579,6 +580,9 @@ def log_time():
   val_time_difference = LBL_RUN_TIME + time_difference
   lbl_run_time.config(text=val_time_difference)
   frame_root.update()
+
+  if sec != 0:
+    time.sleep(sec)
 
 def terminate():
   log_action(MSG_EXIT)
@@ -1336,7 +1340,7 @@ def check_notifications():
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
 
-  time.sleep(0.5)
+  time.sleep(0.2)
 
   try:
     check_notify = pyauto.locateOnScreen(IMG_CLOSE_NOTIF, grayscale=False, confidence=.9, region=get_notification_region())
@@ -1345,11 +1349,11 @@ def check_notifications():
   except pyauto.ImageNotFoundException:
     log_action(MSG_NO_NOTIFICATION_FOUND)
 
-  time.sleep(0.5)
+  time.sleep(0.2)
 
 def end_dungeon():
   ending = True
-  endCheckTrack = 0
+  end_check_track = 0
   while ending:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -1358,14 +1362,14 @@ def end_dungeon():
     if ending == False:
       break
 
-    endCheckTrack += 1
-    if (endCheckTrack >= 60):
+    end_check_track += 1
+    if (end_check_track >= 100):
       ending = False
       break
 
     try:
-      enddungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, enddungeon, 0.2)
+      ending_dungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
+      move_click_rel(50, 15, ending_dungeon, 0.2)
       ending = False
       break
     except pyauto.ImageNotFoundException:
@@ -1382,8 +1386,8 @@ def dice_dungeon():
         break
 
     try:
-      rolladice = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
-      move_click_rel(50, 15, rolladice, 0.2)
+      dice_roll = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
+      move_click_rel(50, 15, dice_roll, 0.2)
       dicing = False
       break
     except pyauto.ImageNotFoundException:
@@ -1399,8 +1403,8 @@ def dice_dungeon():
         break
 
     try:
-      diceconfirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
-      move_click_rel(10, 5, diceconfirm, 0.2)
+      dice_confirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
+      move_click_rel(10, 5, dice_confirm, 0.2)
       confirming = False
       break
     except pyauto.ImageNotFoundException:

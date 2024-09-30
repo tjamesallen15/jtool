@@ -40,10 +40,20 @@ class ChaosInfinity(Dungeon):
     # HORIZONTAL
     util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
+
+    util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
+
+    util.move(100, 400)
     util.do_dash()
+
+    util.move(100, 360)
     util.do_fade()
 
     # VERTICAL
@@ -69,26 +79,55 @@ class ChaosInfinity(Dungeon):
     util.move(900, 400)
     util.do_dash(1.5)
 
+  def reposition_ulwaan(self):
+    # HORIZONTAL
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+    util.do_select(0.1)
+
+    # HORIZONTAL
+    util.move(1200, 400)
+    util.do_dash()
+    util.do_fade()
+
+    util.move(875, 400)
+    util.do_dash(1.5)
+    util.do_select(0.1)
+
+  def reposition_mobs(self):
     # VERTICAL CHECK
     util.move(620, 100)
     util.do_dash()
     util.do_fade()
+    util.do_select(0.1)
 
     util.move(620, 600)
-    util.do_dash(2)
+    util.do_dash()
     util.do_fade()
     util.do_dash()
     util.do_fade()
-    util.do_dash(1.5)
+    util.do_select(0.1)
 
-    util.move(620, 100)
-    util.do_dash(2)
-    util.do_fade()
+    util.move(620, 250)
+    util.do_dash()
 
     util.move(620, 300)
-    util.do_dash()
-
-    util.wait(2)
+    util.do_fade()
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -182,29 +221,32 @@ class ChaosInfinity(Dungeon):
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
           except pyauto.ImageNotFoundException:
-            util.wait(1.3)
+            util.wait(2)
             has_gate = False
             break
 
       util.move(620, 150)
       util.do_dash()
-      util.do_fade()
+      util.do_fade(6)
 
       util.move(620, 150)
-      util.do_dash(5)
-      util.do_fade()
-
-      util.move(620, 250)
-      util.do_dash(3)
-
-      util.move(620, 100)
+      # util.do_dash(1.5)
       util.do_dash()
       util.do_fade()
 
-      util.move(620, 600)
+      # util.move(620, 250)
+      # util.do_dash(1.5)
+      util.move(620, 325)
       util.do_dash()
-      util.do_fade(1.5)
-      util.do_fade()
+
+      # util.move(620, 100)
+      # util.do_dash()
+      # util.do_fade()
+
+      # util.move(620, 600)
+      # util.do_dash()
+      # util.do_fade(1.5)
+      # util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -241,20 +283,19 @@ class ChaosInfinity(Dungeon):
           util.attack_boss(0, 1)
           bosses += 1
           mob_checker = 0
+          reposition_count = 0
           util.wait(0.2)
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_BOSS_FOUND)
 
         try:
-          boss = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+          box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOX_FOUND)
           mob_checker = 0
+          reposition_count = 0
           util.plunder_box(1, 3)
-          if util.get_atk_type() == 1:
-            util.wait(1)
-          else:
-            util.wait(5)
+          util.wait(1)
         except pyauto.ImageNotFoundException:
           pass
 
@@ -272,9 +313,17 @@ class ChaosInfinity(Dungeon):
         except pyauto.ImageNotFoundException:
           pass
 
-        if mob_checker >= 15:
+        if mob_checker >= 30:
           mob_checker = 0
-          self.reposition_center()
+          util.cancel_aura(2)
+
+          if reposition_count > 2:
+            self.reposition_center()
+
+          if bosses == 10 and reposition_count < 2:
+            self.reposition_ulwaan()
+          else:
+            self.reposition_mobs()
           reposition_count += 1
 
       util.cancel_aura()
@@ -292,5 +341,4 @@ class ChaosInfinity(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time()
-      util.wait(1)
+      util.log_time(2)

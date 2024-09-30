@@ -205,7 +205,7 @@ class HolyKeldrasil(Dungeon):
           util.move_click(550, 320)
           util.move_click(550, 320)
           util.move_click(550, 320)
-          util.wait(1)
+          util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 2)
@@ -290,7 +290,7 @@ class HolyKeldrasil(Dungeon):
           util.move_click(550, 320)
           util.move_click(550, 320)
           util.move_click(550, 320)
-          util.wait(1)
+          util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 2)
@@ -316,7 +316,7 @@ class HolyKeldrasil(Dungeon):
 
       util.do_deselect_pack()
       util.move(620, 550)
-      util.do_dash(2)
+      util.do_dash(0.5)
 
       select_counter = 0
       selecting = True
@@ -401,7 +401,7 @@ class HolyKeldrasil(Dungeon):
           util.move_click(550, 320)
           util.move_click(550, 320)
           util.move_click(550, 320)
-          util.wait(1)
+          util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 2)
@@ -421,8 +421,7 @@ class HolyKeldrasil(Dungeon):
         run_counter += 1000
         continue
 
-      util.wait(1)
-      util.move_scroll(375, 150, 935, 150)
+      util.move_scroll(375, 150, 935, 150, 0.8)
 
       # Position Last Sequence
       util.log_action(util.MSG_MOVING_POSITION)
@@ -460,7 +459,7 @@ class HolyKeldrasil(Dungeon):
 
       util.do_battle_mode()
       util.do_short_buffs()
-      util.wait(0.5)
+      util.wait(0.3)
 
       util.log_action(util.MSG_MOVING_POSITION)
       util.move(600, 150)
@@ -490,5 +489,4 @@ class HolyKeldrasil(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time()
-      util.wait(1)
+      util.log_time(2)

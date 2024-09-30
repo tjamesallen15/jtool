@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.70
+
+## v5.70 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+- [RH] Radiant Hall [v5.65]
+
+## v5.70 Features
+
+- [Application] Added trial user version
+- [CI] Added Cancel Aura before reposition center
+- [CI] Added mob selection on reposition center
+- [CI] Added double checker for repositions
+- [CI] Added horizontal reposition for Wave 10
+- [Dungeon] Increased wait time from 1 to 2 before entering dungeon
+- [Dungeon] Increased wait time for end dungeon message from 70 to 100
+- [LHA] Added another source for second guard
+
+## v5.70 Fixes
+
+- [Application] Reduced wait time of mail from 0.5 to 0.3
+- [CI] Fixed centering positions
+- [CI] Increased wait time for mobs from 20 to 30
+- [CI] Changed reposition threshold from 15 to 20
+- [HK] Reduced wait time on some key points
+- [LHA] Improved movements in relation to the dungeon updates
+- [LHA] Fixed box not being detected properly on the final boss
+- [LHA] Fixed second boss position
+- [LHA] Changed the positioning for last boss
+- [LHA] Decreased path finding of lava gate from 12 to 10
+- [LHA] Increased wait time for semi bosses from 15 to 20
+
 # v5.65
 
 ## v5.65 Dungeons Available

@@ -224,6 +224,12 @@ class JTool():
         "Terminus Machina",
         "Chaos Infinity"
       ]
+    elif self.get_level() == util.ACCESS_TRIAL:
+      LIST_DUNGEON = [
+        "Hazardous Valley (Awakened)",
+        "Steamer Crazy (Awakened)",
+        "Chaos Infinity"
+      ]
     elif self.get_level() == util.ACCESS_SUPER:
       LIST_DUNGEON = [
         "Hazardous Valley (Awakened)",
@@ -248,12 +254,12 @@ class JTool():
       case util.DATA_DUNGEON:
         return util.STATE_NORMAL
       case util.DATA_CONNECTION:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TRIAL:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
       case util.DATA_PET:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TRIAL:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -282,7 +288,7 @@ class JTool():
       case util.DATA_RANGE:
         return util.STATE_NORMAL
       case util.DATA_VERADRIX:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TRIAL:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -457,8 +463,8 @@ class JTool():
     util.go_cabal_window()
 
     for x in range(int(val_click_count.get())):
-      util.move_click(510, 310, 0.5)
-      util.move_click(510, 525, 0.5)
+      util.move_click(510, 310, 0.3)
+      util.move_click(510, 525, 0.3)
       self.log_misc_action(util.MSG_CLICK + str(x+1))
 
     btn_mails.config(state=util.STATE_NORMAL)
@@ -565,7 +571,7 @@ class JTool():
     tab_pricing = ttk.Frame(tab_control)
     tab_control.add(tab_dungeon, text=util.TAB_DUNGEON, state=self.get_access(util.DATA_DUNGEON))
     tab_control.add(tab_connection, text=util.TAB_CONNECTION, state=self.get_access(util.DATA_CONNECTION))
-    tab_control.add(tab_pet, text=util.TAB_PET, state=self.get_access(util.DATA_CONNECTION))
+    tab_control.add(tab_pet, text=util.TAB_PET, state=self.get_access(util.DATA_PET))
     tab_control.add(tab_misc, text=util.TAB_OTHERS, state=self.get_access(util.DATA_OTHERS))
     tab_control.add(tab_pricing, text=util.TAB_PRICING)
     tab_control.pack(expand=1, fill="both")
