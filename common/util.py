@@ -562,7 +562,7 @@ def log_action(message):
   print(msg_builder)
   frame_root.update()
 
-def log_time():
+def log_time(sec=0):
   check_time = time.time()
   sec_difference = math.ceil(check_time - val_time)
   min_difference = math.floor(sec_difference / 60)
@@ -580,6 +580,9 @@ def log_time():
   val_time_difference = LBL_RUN_TIME + time_difference
   lbl_run_time.config(text=val_time_difference)
   frame_root.update()
+
+  if sec != 0:
+    time.sleep(sec)
 
 def terminate():
   log_action(MSG_EXIT)

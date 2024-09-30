@@ -50,7 +50,7 @@ class LavaHellfireAwakened(Dungeon):
       gate_counter += 1
       if gate_counter >= 10:
         if trigger_fade == 0:
-          util.move(720, 420)
+          util.move(720, 400)
           util.do_fade(0.1)
           trigger_fade = 1
 
@@ -129,21 +129,6 @@ class LavaHellfireAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(450, 300)
     util.do_dash()
-    # util.do_fade()
-    # util.do_dash()
-    # util.do_fade()
-
-    # util.move(550, 100)
-    # util.do_dash()
-    # util.do_fade()
-
-    # util.move(550, 100)
-    # util.do_dash()
-    # util.do_fade()
-
-    # util.move(650, 200)
-    # util.do_dash()
-    # util.do_fade()
 
   def position_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -152,7 +137,7 @@ class LavaHellfireAwakened(Dungeon):
 
     util.move_scroll(375, 150, 660, 150, 0.8)
 
-    util.move(300, 400)
+    util.move(300, 420)
     util.do_dash()
     util.do_fade()
 
@@ -394,5 +379,4 @@ class LavaHellfireAwakened(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time()
-      util.wait(2)
+      util.log_time(2)

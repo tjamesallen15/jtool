@@ -228,7 +228,6 @@ class JTool():
       LIST_DUNGEON = [
         "Hazardous Valley (Awakened)",
         "Steamer Crazy (Awakened)",
-        "Holy Keldrasil",
         "Chaos Infinity"
       ]
     elif self.get_level() == util.ACCESS_SUPER:

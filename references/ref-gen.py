@@ -80,3 +80,8 @@
 #         move_click_rel(10, 10, roll)
 #       except pyauto.ImageNotFoundException:
 #         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+
+
+# util.move(550, 100)
+# util.move(550, 100)
+# util.move(650, 200)
