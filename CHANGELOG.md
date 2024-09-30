@@ -33,6 +33,7 @@ All notable changes to this project will be documented in this file.
 ## v5.70 Fixes
 
 - [Application] Reduced wait time of mail from 0.5 to 0.3
+- [CI] Fixed centering positions
 - [CI] Increased wait time for mobs from 20 to 30
 - [CI] Changed reposition threshold from 15 to 20
 - [HK] Reduced wait time on some key points
