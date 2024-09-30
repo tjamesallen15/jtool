@@ -129,21 +129,21 @@ class LavaHellfireAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(450, 300)
     util.do_dash()
-    util.do_fade()
-    util.do_dash()
-    util.do_fade()
+    # util.do_fade()
+    # util.do_dash()
+    # util.do_fade()
 
-    util.move(550, 100)
-    util.do_dash()
-    util.do_fade()
+    # util.move(550, 100)
+    # util.do_dash()
+    # util.do_fade()
 
-    util.move(550, 100)
-    util.do_dash()
-    util.do_fade()
+    # util.move(550, 100)
+    # util.do_dash()
+    # util.do_fade()
 
-    util.move(650, 200)
-    util.do_dash()
-    util.do_fade()
+    # util.move(650, 200)
+    # util.do_dash()
+    # util.do_fade()
 
   def position_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -325,7 +325,7 @@ class LavaHellfireAwakened(Dungeon):
 
       # Gate Sequence
       util.set_battle_mode(False)
-      # self.position_lava_gate()
+      self.position_lava_gate()
       self.path_find_gate(util.UNIT_LAVA_GATE)
       util.focus_mobs(util.UNIT_LAVA_GATE, 0, 0, self.val_sidestep)
 

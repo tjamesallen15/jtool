@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 
 ## v5.70 Features
 
+- [Application] Added trial user version
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
 - [CI] Added double checker for repositions
