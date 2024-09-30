@@ -69,6 +69,24 @@ class ChaosInfinity(Dungeon):
     util.move(900, 400)
     util.do_dash(1.5)
 
+  def reposition_ulwaan():
+    # HORIZONTAL
+    util.move(100, 400)
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+    util.do_dash()
+    util.do_fade()
+
+    # HORIZONTAL
+    util.move(1200, 400)
+    util.do_dash()
+    util.do_fade()
+
+    util.move(900, 400)
+    util.do_dash(1.5)
+
   def reposition_mobs(self):
     # VERTICAL CHECK
     util.move(620, 100)
@@ -281,7 +299,10 @@ class ChaosInfinity(Dungeon):
           if reposition_count > 2:
             self.reposition_center()
 
-          self.reposition_mobs()
+          if bosses == 10 and reposition_count < 2:
+            self.reposition_ulwaan()
+          else:
+            self.reposition_mobs()
           reposition_count += 1
 
       util.cancel_aura()

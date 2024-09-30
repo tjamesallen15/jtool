@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
 - [CI] Added double checker for repositions
+- [CI] Added horizontal reposition for Wave 10
 - [Dungeon] Increased wait time from 1 to 2 before entering dungeon
 - [Dungeon] Increased wait time for end dungeon message from 70 to 100
 - [LHA] Added another source for second guard
@@ -40,6 +41,7 @@ All notable changes to this project will be documented in this file.
 - [LHA] Fixed second boss position
 - [LHA] Changed the positioning for last boss
 - [LHA] Decreased path finding of lava gate from 12 to 10
+- [LHA] Increased wait time for semi bosses from 15 to 20
 
 # v5.65
 
