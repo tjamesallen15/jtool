@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.75
+
+## v5.75 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+- [RH] Radiant Hall [v5.65]
+
+## v5.75 Features
+
+## v5.75 Fixes
+
+- [CI] Improved retargeting mobs for faster clear time
+
 # v5.70
 
 ## v5.70 Dungeons Available

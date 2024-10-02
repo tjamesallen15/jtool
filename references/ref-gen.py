@@ -81,7 +81,22 @@
 #       except pyauto.ImageNotFoundException:
 #         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
 
-
+# LAVA HELLFIRE AWAKENED
 # util.move(550, 100)
 # util.move(550, 100)
 # util.move(650, 200)
+
+# CHAOS INFINITY
+# util.move(620, 150)
+  # util.do_dash(1.5)
+
+  # util.move(620, 250)
+  # util.do_dash(1.5)
+# util.move(620, 100)
+# util.do_dash()
+# util.do_fade()
+
+# util.move(620, 600)
+# util.do_dash()
+# util.do_fade(1.5)
+# util.do_fade()

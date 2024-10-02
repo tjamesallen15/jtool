@@ -230,23 +230,11 @@ class ChaosInfinity(Dungeon):
       util.do_fade(6)
 
       util.move(620, 150)
-      # util.do_dash(1.5)
       util.do_dash()
       util.do_fade()
 
-      # util.move(620, 250)
-      # util.do_dash(1.5)
       util.move(620, 325)
       util.do_dash()
-
-      # util.move(620, 100)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(620, 600)
-      # util.do_dash()
-      # util.do_fade(1.5)
-      # util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -287,14 +275,14 @@ class ChaosInfinity(Dungeon):
           util.wait(0.2)
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          pass
 
         try:
           box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOX_FOUND)
           mob_checker = 0
           reposition_count = 0
-          util.plunder_box(1, 3)
+          util.plunder_box(1, 3, 1, 0)
           util.wait(1)
         except pyauto.ImageNotFoundException:
           pass
@@ -303,7 +291,11 @@ class ChaosInfinity(Dungeon):
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ARENA_MOBS)
           mob_checker = 0
-          util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
+
+          if util.get_atk_type() == 1:
+            util.do_attack(0.1)
+          else:
+            util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           pass
 

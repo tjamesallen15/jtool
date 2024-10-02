@@ -72,7 +72,7 @@ region_train_screen = []
 APP_FONT = "Tahoma 10"
 APP_FRAME_SIZE = "330x280"
 APP_NAME = "Cabal JTool"
-APP_VERSION = "5.70"
+APP_VERSION = "5.75"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
@@ -1048,9 +1048,12 @@ def do_deselect_pack():
   do_deselect(0.1)
   do_deselect(0.1)
 
-def plunder_box(select=1, reps=4, loot=1):
+def plunder_box(select=1, reps=4, loot=1, sec=1):
   log_action(MSG_CHECK_BOX)
-  wait(1)
+
+  if sec != 0:
+    wait(sec)
+
   if select == 1:
     do_select(0.1)
 
