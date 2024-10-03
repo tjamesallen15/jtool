@@ -129,6 +129,16 @@ class ChaosInfinity(Dungeon):
     util.move(620, 300)
     util.do_fade()
 
+  def chaos_reposition_top(self):
+    util.move(620, 100)
+    util.do_dash()
+    util.do_fade()
+
+  def chaos_reposition_bottom(self):
+    util.move(620, 600)
+    util.do_dash()
+    util.do_fade()
+
   def run_dungeon(self, runs):
     run_counter = 0
     fail_run_counter = 0
@@ -245,6 +255,7 @@ class ChaosInfinity(Dungeon):
       bosses = 0
       arena = True
       mob_checker = 0
+      chaos_move = 0
       reposition_count = 0
       while arena:
         if not util.get_macro_state():
@@ -265,6 +276,22 @@ class ChaosInfinity(Dungeon):
 
         mob_checker += 1
         util.do_select(0.1)
+
+        try:
+          chaos_gate = pyauto.locateOnScreen(util.IMG_CHAOS_GATE, grayscale=False, confidence=.7, region=util.get_full_region())
+
+          if chaos_move == 0:
+            util.do_deselect_pack()
+            self.chaos_reposition_top()
+            chaos_move = 1
+          else:
+            util.do_deselect_pack()
+            self.chaos_reposition_bottom()
+            chaos_move = 0
+
+        except pyauto.ImageNotFoundException:
+          pass
+
         try:
           boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOSS_FOUND)

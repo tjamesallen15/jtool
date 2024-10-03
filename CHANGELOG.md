@@ -18,9 +18,11 @@ All notable changes to this project will be documented in this file.
 - [S1P] Altar of Siena B1F (Prideus) [v5.11]
 - [CI] Chaos Infinity [v5.50]
 - [HVV] Hazardous Valley (Veradrix) [v5.50]
-- [RH] Radiant Hall [v5.65]
+- [RH] Radiant Hall [v5.65] [Development]
 
 ## v5.75 Features
+
+- [CI] Added checker for Gate of Chaos
 
 ## v5.75 Fixes
 

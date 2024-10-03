@@ -213,6 +213,7 @@ IMG_CRIT_RATE = "img/crit-rate.jpg"
 IMG_CRIT_DAMAGE = "img/crit-dmg.jpg"
 IMG_CRIT_RESIST = "img/resist-rate.jpg"
 IMG_EVA = "img/evasion.jpg"
+IMG_CHAOS_GATE = "img/chaosgate.jpg"
 
 # FILE
 FILE_CHANGELOG = "CHANGELOG.md"
