@@ -26,7 +26,10 @@ All notable changes to this project will be documented in this file.
 
 ## v5.75 Fixes
 
+- [Application] Decrease wait time for box checking from 1 to 0.5
 - [CI] Improved retargeting mobs for faster clear time
+- [PCA] Improved response time on dialog queues
+- [PCA] Removed unnecessary wait clauses
 
 # v5.70
 

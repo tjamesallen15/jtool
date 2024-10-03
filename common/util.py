@@ -1049,7 +1049,7 @@ def do_deselect_pack():
   do_deselect(0.1)
   do_deselect(0.1)
 
-def plunder_box(select=1, reps=4, loot=1, sec=1):
+def plunder_box(select=1, reps=4, loot=1, sec=0.5):
   log_action(MSG_CHECK_BOX)
 
   if sec != 0:

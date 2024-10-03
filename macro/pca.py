@@ -251,11 +251,11 @@ class PanicCaveAwakened(Dungeon):
       if util.get_atk_type() == 1:
         util.wait(5)
         util.move_click(590, 460)
-        util.do_fade(1)
+        util.do_fade()
       else:
         util.move_click(630, 325)
+        util.wait(2)
 
-      util.wait(2)
       util.move_scroll(375, 150, 1000, 150)
       util.plunder_box(1, 3)
 
@@ -476,7 +476,6 @@ class PanicCaveAwakened(Dungeon):
           util.move_click(580, 430)
           util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
-          util.do_select(0.1)
           util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_MOBS_FOUND)
@@ -486,7 +485,7 @@ class PanicCaveAwakened(Dungeon):
           util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 0.3)
+          util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -506,9 +505,7 @@ class PanicCaveAwakened(Dungeon):
       # Final Boss
       util.move(620, 520)
       util.do_fade(0.3)
-
       util.do_battle_mode(5, 0)
-      util.wait(2)
 
       check_count = 0
       checking = True
@@ -563,7 +560,7 @@ class PanicCaveAwakened(Dungeon):
           util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 0.3)
+          util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
