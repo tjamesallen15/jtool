@@ -1139,6 +1139,12 @@ def do_plunder(reps=4):
     pynboard.release(loot_space)
     time.sleep(0.3)
 
+def do_fast_plunder():
+    pynboard.press(val_loot)
+    pynboard.release(val_loot)
+    pynboard.press(loot_space)
+    pynboard.release(loot_space)
+
 def do_essentials():
   pynboard.press(loot_space)
   pynboard.release(loot_space)

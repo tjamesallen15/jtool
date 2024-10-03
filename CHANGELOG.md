@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 ## v5.75 Features
 
 - [CI] Added checker for Gate of Chaos
+- [CI] Added fast plunder mechanism
 
 ## v5.75 Fixes
 
