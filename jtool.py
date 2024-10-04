@@ -231,7 +231,6 @@ class JTool():
         "Hazardous Valley (Medium)",
         "Hazardous Valley (Easy)",
         "Steamer Crazy (Awakened)",
-        "Steamer Crazy (Awakened)",
         "Catacomb Frost (Awakened)",
         "Lava Hellfire (Awakened)",
         "Holy Keldrasil",
