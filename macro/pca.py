@@ -249,7 +249,7 @@ class PanicCaveAwakened(Dungeon):
       util.attack_boss()
 
       if util.get_attack_type() == 1:
-        util.wait(5)
+        util.wait(4)
         util.move_click(590, 460)
         util.do_fade()
       else:
@@ -490,14 +490,12 @@ class PanicCaveAwakened(Dungeon):
 
         try:
           util.move_click(580, 430)
-          util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_MOBS_FOUND)
 
         try:
-          util.move_click(580, 430)
           util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -564,7 +562,6 @@ class PanicCaveAwakened(Dungeon):
 
         try:
           util.move_click(580, 430)
-          util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.do_select(0.1)
           util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
@@ -572,7 +569,6 @@ class PanicCaveAwakened(Dungeon):
           util.log_action(util.MSG_NO_MOBS_FOUND)
 
         try:
-          util.move_click(580, 430)
           util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -603,7 +599,6 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(580, 430)
           util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)

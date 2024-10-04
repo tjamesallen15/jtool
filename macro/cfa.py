@@ -64,10 +64,10 @@ class CatacombsFrostAwakened(Dungeon):
     util.do_fade()
 
     util.move(350, 520)
-    util.do_dash(1.2)
+    util.do_dash()
 
     util.move(350, 520)
-    util.do_dash(1.2)
+    util.do_fade()
 
     util.move(350, 520)
     util.do_dash(0.5)
@@ -75,15 +75,18 @@ class CatacombsFrostAwakened(Dungeon):
   def position_final_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(620, 650)
-    util.do_dash(1.2)
+    util.do_dash()
 
     util.move(350, 620)
-    util.do_dash(1.2)
+    util.do_fade()
 
     util.move(350, 560)
-    util.do_dash(1.2)
+    util.do_dash()
 
     util.move(350, 560)
+    util.do_fade()
+
+    util.move(425, 560)
     util.do_dash(0.5)
 
   def run_dungeon(self, runs):
@@ -117,15 +120,18 @@ class CatacombsFrostAwakened(Dungeon):
 
       # Enter Dungeon
       util.enter_dungeon()
-      util.challenge_dungeon(0.4)
+      util.challenge_dungeon(0.5)
 
       # First Boss
       util.move(570, 300)
       util.do_dash()
 
-      util.do_final_mode(1)
-      util.attack_boss()
-      util.set_battle_mode(False)
+      util.do_final_mode(1.2)
+      util.do_aura(1)
+      util.attack_boss(1, 0)
+
+      if util.get_attack_type() == util.STATE_ZERO:
+        util.cancel_aura(1.2)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -212,9 +218,8 @@ class CatacombsFrostAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.wait(1)
       util.attack_boss()
-      util.cancel_aura(1)
+      util.cancel_aura(1.2)
       util.plunder_box(1, 3)
 
       # Check Macro State
@@ -223,13 +228,13 @@ class CatacombsFrostAwakened(Dungeon):
         continue
 
       util.move(730, 390)
-      util.do_fade()
+      util.do_fade(0.3)
 
       util.move(770, 470)
-      util.do_fade()
+      util.do_fade(0.3)
 
       util.move(770, 480)
-      util.do_fade()
+      util.do_fade(0.3)
 
       dialog_check = True
       while dialog_check:
@@ -271,7 +276,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       self.position_final_boss()
       util.attack_boss(1, 1, 0, 0)
-      util.plunder_box(1, 3)
+      util.plunder_box(1, 3, 4, 1)
       util.set_battle_mode(False)
 
       # Check Macro State

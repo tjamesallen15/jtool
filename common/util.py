@@ -983,7 +983,7 @@ def do_buffs():
 
     move(430, 670)
     pyauto.click(button="right")
-    time.sleep(0.6)
+    time.sleep(1)
 
 def do_short_buffs():
   if get_shorts_status() == 1:

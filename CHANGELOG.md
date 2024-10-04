@@ -78,6 +78,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Reduced default log time sec from 2 to 1.5 
 - [Application] Removed archer and range input
 - [Application] Optimized do_buffs(), do_short_buffs() and force_short_buffs()
+- [CFA] Optimized run time
 - [CI] Fixed centering positions
 - [CI] Increased wait time for mobs from 20 to 30
 - [CI] Changed reposition threshold from 15 to 20
@@ -89,6 +90,7 @@ All notable changes to this project will be documented in this file.
 - [LHA] Decreased path finding of lava gate from 12 to 10
 - [LHA] Increased wait time for semi bosses from 15 to 20
 - [PCA] Increased wait time for the last shadow from 3 to 20
+- [PCA] Optimized wait time
 
 # v5.65
 
