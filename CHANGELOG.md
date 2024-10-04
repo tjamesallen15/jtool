@@ -22,8 +22,10 @@ All notable changes to this project will be documented in this file.
 
 ## v5.75 Features
 
+- [Application] Added access for Tester II
 - [CI] Added checker for Gate of Chaos
 - [CI] Added fast plunder mechanism
+- [LHA] Added fade step after dash on second boss position
 
 ## v5.75 Fixes
 

@@ -129,6 +129,7 @@ class LavaHellfireAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(450, 300)
     util.do_dash()
+    util.do_fade()
 
   def position_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
