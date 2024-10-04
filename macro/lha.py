@@ -37,6 +37,7 @@ class LavaHellfireAwakened(Dungeon):
   def path_find_gate(self, unit=util.UNIT_BLANK):
     pathing = True
     gate_counter = 0
+    path_counter = 0
     trigger_fade = 0
     while pathing:
       if not util.get_macro_state():
@@ -58,6 +59,7 @@ class LavaHellfireAwakened(Dungeon):
       try:
         util.do_select(0.1)
         gate_counter += 1
+        path_counter += 1
         gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
 
         if gate_counter >= 1:
@@ -72,6 +74,10 @@ class LavaHellfireAwakened(Dungeon):
           break
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
+        if path_counter >= 10:
+          util.move(720, 400)
+          util.do_dash()
+          util.do_fade()
 
   def position_fire_guard(self):
     util.log_action(util.MSG_MOVING_POSITION)

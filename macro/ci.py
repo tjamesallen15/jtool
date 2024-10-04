@@ -313,7 +313,10 @@ class ChaosInfinity(Dungeon):
           reposition_count = 0
           chaos_move = 0
           util.plunder_box(1, 3, 1, 0)
-          util.wait(1.5)
+
+          if util.get_member_status() == 0:
+            util.wait(1.5)
+
         except pyauto.ImageNotFoundException:
           pass
 
@@ -337,7 +340,7 @@ class ChaosInfinity(Dungeon):
 
         if mob_checker >= 30:
           mob_checker = 0
-          util.cancel_aura(2)
+          util.cancel_aura(1.5)
 
           if reposition_count > 2:
             self.reposition_center()
@@ -348,8 +351,6 @@ class ChaosInfinity(Dungeon):
             self.reposition_mobs()
           reposition_count += 1
 
-      util.cancel_aura()
-
       if util.get_reset_status():
         continue
 
@@ -359,6 +360,7 @@ class ChaosInfinity(Dungeon):
         continue
 
       # Start to End Dungeon
+      util.reset_battle_mode()
       util.check_notifications()
       util.end_dungeon()
       util.dice_dungeon()

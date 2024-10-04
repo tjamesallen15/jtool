@@ -34,6 +34,9 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Decrease wait time for box checking from 1 to 0.5
 - [CI] Improved retargeting mobs for faster clear time
+- [CI] Reduced wait time for member party
+- [CI] Reduced wait time for cancel_aura()
+- [CI] Replaced cancel_aura to reset_battle_mode in the end of dungeon
 - [LHA] Reduced wait time on scene change
 - [PCA] Improved response time on dialog queues
 - [PCA] Removed unnecessary wait clauses
