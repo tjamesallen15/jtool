@@ -234,7 +234,6 @@ class JTool():
         "Steamer Crazy (Awakened)",
         "Catacomb Frost (Awakened)",
         "Lava Hellfire (Awakened)",
-        "Panic Cave (Awakened)",
         "Holy Keldrasil",
         "Chaos Infinity"
       ]
