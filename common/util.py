@@ -296,7 +296,7 @@ ACCESS_FREE = "Free"
 ACCESS_PRO = "Pro"
 ACCESS_PREMIUM = "Premium"
 ACCESS_TESTER = "Tester"
-ACCESS_TRIAL = "Trial"
+ACCESS_TESTER_II = "Tester II"
 ACCESS_SUPER = "Super"
 
 # STATES
