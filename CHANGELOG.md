@@ -23,14 +23,18 @@ All notable changes to this project will be documented in this file.
 ## v5.75 Features
 
 - [Application] Added access for Tester II
+- [Application] Added reset_battle_mode() for faster wait time
+- [Application] Reduced cancel_aura in set_battle_mode from 2 to 1.2
 - [CI] Added checker for Gate of Chaos
 - [CI] Added fast plunder mechanism
 - [LHA] Added fade step after dash on second boss position
+- [LHA] Added dash and fade positioning after second boss
 
 ## v5.75 Fixes
 
 - [Application] Decrease wait time for box checking from 1 to 0.5
 - [CI] Improved retargeting mobs for faster clear time
+- [LHA] Reduced wait time on scene change
 - [PCA] Improved response time on dialog queues
 - [PCA] Removed unnecessary wait clauses
 

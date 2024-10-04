@@ -88,10 +88,10 @@
 
 # CHAOS INFINITY
 # util.move(620, 150)
-  # util.do_dash(1.5)
+# util.do_dash(1.5)
 
-  # util.move(620, 250)
-  # util.do_dash(1.5)
+# util.move(620, 250)
+# util.do_dash(1.5)
 # util.move(620, 100)
 # util.do_dash()
 # util.do_fade()

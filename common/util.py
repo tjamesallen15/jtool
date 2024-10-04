@@ -869,7 +869,7 @@ def get_reset_status():
 
 def set_reset_status(val=False):
   if val != False:
-    set_battle_mode(False)
+    reset_battle_mode(1.2)
 
   global trigger_reset_dungeon
   trigger_reset_dungeon = val
@@ -920,11 +920,18 @@ def go_skill_slot(sec=0):
 
 def set_battle_mode(val, cancel=1):
   if cancel == 1:
-    cancel_aura(2)
+    cancel_aura(1.2)
 
   if get_battle_mode() == 1:
     global is_battle_mode
     is_battle_mode = val
+
+def reset_battle_mode(sec=0):
+  cancel_aura(sec)
+
+  if get_battle_mode() == 1:
+    global is_battle_mode
+    is_battle_mode = False
 
 def do_battle_mode(sec=5, cancel=1):
   if get_battle_mode() == 1:
