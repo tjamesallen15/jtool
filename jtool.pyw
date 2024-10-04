@@ -224,7 +224,7 @@ class JTool():
         "Terminus Machina",
         "Chaos Infinity"
       ]
-    elif self.get_level() == util.ACCESS_TRIAL:
+    elif self.get_level() == util.ACCESS_TESTER_II:
       LIST_DUNGEON = [
         "Hazardous Valley (Awakened)",
         "Hazardous Valley (Hard)",
@@ -261,12 +261,12 @@ class JTool():
       case util.DATA_DUNGEON:
         return util.STATE_NORMAL
       case util.DATA_CONNECTION:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TRIAL:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
       case util.DATA_PET:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TRIAL:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER_II:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -295,7 +295,7 @@ class JTool():
       case util.DATA_RANGE:
         return util.STATE_NORMAL
       case util.DATA_VERADRIX:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TRIAL:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER_II:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
