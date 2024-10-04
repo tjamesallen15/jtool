@@ -112,7 +112,7 @@ class PanicCaveAwakened(Dungeon):
     util.do_final_mode(2)
     util.do_aura(1)
 
-    if util.get_atk_type() == 1:
+    if util.get_attack_type() == 1:
       util.move(610, 440)
       util.do_fade(1)
 
@@ -248,7 +248,7 @@ class PanicCaveAwakened(Dungeon):
       util.force_short_buffs()
       util.attack_boss()
 
-      if util.get_atk_type() == 1:
+      if util.get_attack_type() == 1:
         util.wait(5)
         util.move_click(590, 460)
         util.do_fade()
@@ -264,8 +264,7 @@ class PanicCaveAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.cancel_aura(2)
-
+      util.cancel_aura(1.2)
       util.move(1000, 520)
       util.do_dash()
 
@@ -304,7 +303,6 @@ class PanicCaveAwakened(Dungeon):
         continue
 
       if corpse_found == False:
-        util.wait(1)
         util.move(630, 150)
         util.do_dash(2)
 
@@ -366,7 +364,10 @@ class PanicCaveAwakened(Dungeon):
           break
 
         if count_showorai > 3:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
           check_showorai = False
+          util.set_reset_status(True)
 
         try:
           util.do_select(0.1)
@@ -381,6 +382,9 @@ class PanicCaveAwakened(Dungeon):
       # First Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_F, 0, 0, 0)
 
+      if util.get_reset_status():
+        continue
+
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
@@ -388,7 +392,7 @@ class PanicCaveAwakened(Dungeon):
 
       # Second Shadow Sequence
       self.position_second_shadow()
-      if util.get_atk_type() == 1:
+      if util.get_attack_type() == 1:
         util.wait(4)
       else:
         util.wait(6)
@@ -404,7 +408,10 @@ class PanicCaveAwakened(Dungeon):
           break
 
         if count_showorai > 3:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
           check_showorai = False
+          util.set_reset_status(True)
 
         try:
           util.do_select(0.1)
@@ -419,6 +426,9 @@ class PanicCaveAwakened(Dungeon):
       # Second Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_R, 0, 0, 0)
 
+      if util.get_reset_status():
+        continue
+
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
@@ -426,7 +436,7 @@ class PanicCaveAwakened(Dungeon):
 
       # Third Shadow Sequence
       self.position_third_shadow()
-      if util.get_atk_type() == 1:
+      if util.get_attack_type() == 1:
         util.wait(3)
       else:
         util.wait(5)
@@ -441,8 +451,11 @@ class PanicCaveAwakened(Dungeon):
         if check_showorai == False:
           break
 
-        if count_showorai > 3:
+        if count_showorai > 20:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
           check_showorai = False
+          util.set_reset_status(True)
 
         try:
           util.do_select(0.1)
@@ -456,6 +469,9 @@ class PanicCaveAwakened(Dungeon):
 
       # Third Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_M, 0, 0, 0)
+
+      if util.get_reset_status():
+        continue
 
       # Check Macro State
       if not util.get_macro_state():
@@ -613,4 +629,4 @@ class PanicCaveAwakened(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()

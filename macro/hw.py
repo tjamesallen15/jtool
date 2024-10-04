@@ -924,7 +924,7 @@ class HolyWindmill(Dungeon):
     elif boss_found == 0 and box_found == 0 and unit != util.UNIT_ESPI:
       util.attack_mobs(unit, 1, interval, self.val_sidestep)
     elif boss_found == 0 and box_found == 0 and unit == util.UNIT_ESPI:
-      if util.get_atk_type() == 0:
+      if util.get_attack_type() == 0:
         interval = 0.8
       util.attack_mobs(unit, 1, interval, self.val_sidestep)
 
@@ -1543,4 +1543,4 @@ class HolyWindmill(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()

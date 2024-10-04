@@ -545,4 +545,4 @@ class HazardousValleyVeradrix(Dungeon):
       # Start to End Dungeon
       util.force_exit_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()

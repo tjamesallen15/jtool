@@ -388,7 +388,7 @@ class SteamerCrazyAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_atk_type() == 1:
+      if util.get_attack_type() == 1:
         util.move(620, 350)
         util.do_dash(0.5)
 
@@ -406,4 +406,4 @@ class SteamerCrazyAwakened(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()

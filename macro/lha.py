@@ -73,7 +73,6 @@ class LavaHellfireAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
         if path_counter >= 10:
           util.move(720, 400)
           util.do_dash()

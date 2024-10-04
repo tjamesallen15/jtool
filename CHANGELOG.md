@@ -62,6 +62,7 @@ All notable changes to this project will be documented in this file.
 ## v5.70 Features
 
 - [Application] Added trial user version
+- [Application] Added Class Input
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
 - [CI] Added double checker for repositions
@@ -69,10 +70,14 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Increased wait time from 1 to 2 before entering dungeon
 - [Dungeon] Increased wait time for end dungeon message from 70 to 100
 - [LHA] Added another source for second guard
+- [PCA] Added fail check on the Showorai shadows
 
 ## v5.70 Fixes
 
 - [Application] Reduced wait time of mail from 0.5 to 0.3
+- [Application] Reduced default log time sec from 2 to 1.5 
+- [Application] Removed archer and range input
+- [Application] Optimized do_buffs(), do_short_buffs() and force_short_buffs()
 - [CI] Fixed centering positions
 - [CI] Increased wait time for mobs from 20 to 30
 - [CI] Changed reposition threshold from 15 to 20
@@ -83,6 +88,7 @@ All notable changes to this project will be documented in this file.
 - [LHA] Changed the positioning for last boss
 - [LHA] Decreased path finding of lava gate from 12 to 10
 - [LHA] Increased wait time for semi bosses from 15 to 20
+- [PCA] Increased wait time for the last shadow from 3 to 20
 
 # v5.65
 

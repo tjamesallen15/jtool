@@ -375,9 +375,9 @@
 #   if unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
 #     util.focus_mobs(unit, 0, 1, val_sidestep)
 
-#   if boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_REDONNO:
+#   if boss_found == 0 and util.get_attack_type() == 0 and unit == util.UNIT_REDONNO:
 #     util.focus_mobs(unit, 0, 1, val_sidestep)
-#   elif boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_POERTE:
+#   elif boss_found == 0 and util.get_attack_type() == 0 and unit == util.UNIT_POERTE:
 #     util.focus_mobs(unit, 0, 1, val_sidestep)
 #   elif boss_found == 0:
 #     util.attack_mobs(unit, 1, 0.3, val_sidestep)
@@ -758,7 +758,7 @@
 #     util.do_fade(0.5)
 
 #     util.move(500, 300)
-#     if util.get_atk_type() == 1:
+#     if util.get_attack_type() == 1:
 #       util.do_dash(4)
 #     else:
 #       util.do_dash(1)
@@ -908,7 +908,7 @@
 #       except pyauto.ImageNotFoundException:
 #         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-#     if util.get_atk_type == 1:
+#     if util.get_attack_type == 1:
 #       util.move_click(650, 450, 1.5)
 
 #     util.focus_gate(util.UNIT_GATE_THREE)
@@ -945,7 +945,7 @@
 
 #     # Third Boss
 #     util.do_deselect_pack()
-#     if util.get_atk_type() == 1:
+#     if util.get_attack_type() == 1:
 #       util.move(580, 260)
 #       util.do_dash(1)
 #     else:

@@ -42,11 +42,9 @@ trigger_reset_dungeon = False
 battle_mode = 0
 is_buffs_allowed = 1
 is_short_buffs_allowed = 1
-val_archer = 0
 is_veradrix_allowed = 0
 is_veradrix_needed = 0
 aura_counter = 0
-atk_type = 0
 val_runs = 1
 val_run_restart = 0
 val_run_restart_stack = 0
@@ -57,6 +55,7 @@ val_load_time = 0
 val_default_interval = 0.3
 val_time = 0
 val_member = 0
+val_char_class = 'BL'
 
 region_normal_bar = []
 region_mode_bar = []
@@ -76,6 +75,7 @@ APP_VERSION = "5.75"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
 HOTKEY_TERMINATE = "ctrl+r"
 HOTKEY_PAUSE = "ctrl+g"
+LIST_CLASS = ["BL", "FB", "WA", "GL", "FS", "FA", "FG", "DM"]
 
 # CONSTANT MESSAGES
 MSG_START_DG = "Starting Dungeon"
@@ -280,8 +280,7 @@ DATA_MODE = "mode"
 DATA_MEMBER = "member"
 DATA_BUFFS = "buffs"
 DATA_SHORTS = "shorts"
-DATA_RANGE = "range"
-DATA_ARCHER = "archer"
+DATA_CLASS = "class"
 DATA_VERADRIX = "veradrix"
 DATA_PWORD = "pword"
 DATA_PIN = "pin"
@@ -306,6 +305,7 @@ STATE_NA = "N/A"
 STRING_HOUR = "h "
 STRING_MIN = "m "
 STRING_SEC = "s"
+STATE_ONE = 1
 STATE_ZERO = 0
 STATE_DISABLED = "disabled"
 STATE_NORMAL = "normal"
@@ -330,11 +330,10 @@ BTN_TEST = "Test"
 LBL_EMPTY = ""
 LBL_DUNGEON = "Dungeon: "
 LBL_RUNS = "Runs: "
+LBL_CLASS = "Class: "
 LBL_MODE = "Mode II: "
 LBL_BUFFS = "Buffs: "
 LBL_SHORTS = "Shorts: "
-LBL_RANGE = "Range: "
-LBL_ARCHER = "Archer: "
 LBL_MEMBER = "Member: "
 LBL_VERADRIX = "Veradrix: "
 LBL_CLICK = "Click #: N/A"
@@ -394,6 +393,13 @@ TAB_PET = "Pet"
 TAB_OTHERS = "Others"
 TAB_PRICING = "Pricing"
 
+VAL_MELEE = 0
+VAL_RANGE = 1
+VAL_CLASS_FA = 'FA'
+VAL_CLASS_FG = 'FG'
+VAL_CLASS_DM = 'DM'
+VAL_CLASS_BL = 'BL'
+
 def initialize(window, frame, mlbl, rlbl, lrt):
   global macro
   macro = True
@@ -416,7 +422,10 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_time
   val_time = time.time()
 
-def set_variables(mode=0, member=0, buff=1, sbuffs=1, atk=0, archer=0, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(char_class=0, mode=0, member=0, buff=1, sbuffs=1, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+  global val_char_class
+  val_char_class = char_class
+
   global battle_mode
   battle_mode = int(mode)
 
@@ -431,12 +440,6 @@ def set_variables(mode=0, member=0, buff=1, sbuffs=1, atk=0, archer=0, vera=0, r
 
   global is_short_buffs_allowed
   is_short_buffs_allowed = int(sbuffs)
-
-  global atk_type
-  atk_type = int(atk)
-
-  global val_archer
-  val_archer = int(archer)
 
   global is_veradrix_allowed
   is_veradrix_allowed = vera
@@ -563,7 +566,7 @@ def log_action(message):
   print(msg_builder)
   frame_root.update()
 
-def log_time(sec=0):
+def log_time(sec=1.5):
   check_time = time.time()
   sec_difference = math.ceil(check_time - val_time)
   min_difference = math.floor(sec_difference / 60)
@@ -823,13 +826,13 @@ def check_run_restart(run_count):
       val_run_restart_stack += run_count
 
 def get_region():
-  if is_battle_mode and atk_type == 1:
+  if is_battle_mode and get_attack_type() == 1:
     return region_mode_bar
   else:
     return region_normal_bar
 
 def get_full_region():
-  if is_battle_mode and atk_type == 1:
+  if is_battle_mode and get_attack_type() == 1:
     return region_full_mode_bar
   else:
     return region_full_normal_bar
@@ -849,11 +852,14 @@ def get_sub_screen_region():
 def get_train_region():
   return region_train_screen
 
-def get_atk_type():
-  return atk_type
+def get_char_class():
+  return val_char_class
 
-def get_archer_status():
-  return val_archer
+def get_attack_type():
+  if get_char_class() == VAL_CLASS_FA or get_char_class() == VAL_CLASS_FG or get_char_class() == VAL_CLASS_DM:
+    return VAL_RANGE
+
+  return VAL_MELEE
 
 def get_member_status():
   return val_member
@@ -973,48 +979,50 @@ def do_buffs():
     log_action(MSG_BUFFS)
     move(400, 670)
     pyauto.click(button="right")
-    time.sleep(0.5)
+    time.sleep(0.6)
 
     move(430, 670)
     pyauto.click(button="right")
-    time.sleep(2)
+    time.sleep(0.6)
 
 def do_short_buffs():
   if get_shorts_status() == 1:
     log_action(MSG_SHORT_BUFFS)
     move(470, 670)
     pyauto.click(button="right")
-    time.sleep(0.5)
+    time.sleep(0.2)
 
     move(500, 670)
     pyauto.click(button="right")
-    time.sleep(0.5)
+    time.sleep(0.2)
 
-    move(540, 670)
-    pyauto.click(button="right")
-    time.sleep(0.5)
+    if get_char_class() == VAL_CLASS_BL:
+      move(540, 670)
+      pyauto.click(button="right")
+      time.sleep(0.5)
 
-    move(570, 670)
-    pyauto.click(button="right")
-    time.sleep(0.5)
+      move(570, 670)
+      pyauto.click(button="right")
+      time.sleep(0.5)
 
 def force_short_buffs():
     log_action(MSG_SHORT_BUFFS)
     move(470, 670)
     pyauto.click(button="right")
-    time.sleep(0.5)
+    time.sleep(0.2)
 
     move(500, 670)
     pyauto.click(button="right")
-    time.sleep(0.5)
+    time.sleep(0.2)
 
-    move(540, 670)
-    pyauto.click(button="right")
-    time.sleep(0.5)
+    if get_char_class() == VAL_CLASS_BL:
+      move(540, 670)
+      pyauto.click(button="right")
+      time.sleep(0.5)
 
-    move(570, 670)
-    pyauto.click(button="right")
-    time.sleep(0.5)
+      move(570, 670)
+      pyauto.click(button="right")
+      time.sleep(0.5)
 
 def cancel_aura(sec=0):
   move(175, 100)
@@ -1620,7 +1628,7 @@ def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
 def attack_boss(select=1, aura=1, strict=0, cont=1):
   combo = True
 
-  if get_battle_mode_status() and get_atk_type() == 1 and get_archer_status() == 1 and select == 1:
+  if get_battle_mode_status() and get_char_class() == VAL_CLASS_FA and select == 1:
     do_select(0.1)
     do_select(0.1)
   elif select == 1:

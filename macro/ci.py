@@ -325,7 +325,7 @@ class ChaosInfinity(Dungeon):
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ARENA_MOBS)
           mob_checker = 0
 
-          if util.get_atk_type() == 1:
+          if util.get_attack_type() == 1:
             util.do_attack(0.1)
           else:
             util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
@@ -365,4 +365,4 @@ class ChaosInfinity(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()
