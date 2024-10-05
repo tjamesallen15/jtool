@@ -186,6 +186,7 @@ class CatacombsFrostAwakened(Dungeon):
       try:
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+        util.log_action(util.MSG_MOBS_FOUND + util.UNIT_SPECTOR)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
         util.force_exit_dungeon()
@@ -207,10 +208,10 @@ class CatacombsFrostAwakened(Dungeon):
         try:
           util.do_select(0.1)
           boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+          util.log_action(util.MSG_BOSS_FOUND)
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
           util.attack_mobs(util.UNIT_SPECTOR, 0, 0.3, self.val_sidestep)
 
       # Check Macro State

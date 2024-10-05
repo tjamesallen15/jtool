@@ -237,7 +237,11 @@ class ChaosInfinity(Dungeon):
 
       util.move(620, 150)
       util.do_dash()
-      util.do_fade(6)
+
+      if util.get_member_status() == util.STATE_ZERO:
+        util.do_fade(6)
+      else:
+        util.do_fade()
 
       util.move(620, 150)
       util.do_dash()

@@ -79,6 +79,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Removed archer and range input
 - [Application] Optimized do_buffs(), do_short_buffs() and force_short_buffs()
 - [CFA] Optimized run time
+- [CFA] Simplified some logs
 - [CI] Fixed centering positions
 - [CI] Increased wait time for mobs from 20 to 30
 - [CI] Changed reposition threshold from 15 to 20
