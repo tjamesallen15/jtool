@@ -285,6 +285,7 @@ class CatacombsFrostAwakened(Dungeon):
         run_counter += 1000
         continue
 
+      util.wait(1)
       util.move_click(600, 600, 1)
 
       try:
