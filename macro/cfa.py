@@ -277,7 +277,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       self.position_final_boss()
       util.attack_boss(1, 1, 0, 0)
-      util.plunder_box(1, 3, 4, 1)
+      util.plunder_box(1, 4, 4, 1)
       util.set_battle_mode(False)
 
       # Check Macro State
@@ -285,7 +285,6 @@ class CatacombsFrostAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.wait(1)
       util.move_click(600, 600, 1)
 
       try:
