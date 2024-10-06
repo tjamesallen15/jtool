@@ -104,35 +104,35 @@ def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0, eva=0):
       click_core(index)
       click_train()
 
-      if mcr == 1:
+      if mcr == util.STATE_ONE:
         try:
           skill_icon = pyauto.locateOnScreen(util.IMG_MAX_CRIT_RATE, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if crt == 1 and skill_found == False:
+      if crt == util.STATE_ONE and skill_found == False:
         try:
           skill_icon = pyauto.locateOnScreen(util.IMG_CRIT_RATE, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if cdi == 1 and skill_found == False:
+      if cdi == util.STATE_ONE and skill_found == False:
         try:
           skill_icon = pyauto.locateOnScreen(util.IMG_CRIT_DAMAGE, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if crr == 1 and skill_found == False:
+      if crr == util.STATE_ONE and skill_found == False:
         try:
           skill_icon = pyauto.locateOnScreen(util.IMG_CRIT_RESIST, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if eva == 1 and skill_found == False:
+      if eva == util.STATE_ONE and skill_found == False:
         try:
           skill_icon = pyauto.locateOnScreen(util.IMG_EVA, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True

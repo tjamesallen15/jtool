@@ -2,6 +2,45 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.75
+
+## v5.75 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+- [RH] Radiant Hall [v5.65] [Development]
+
+## v5.75 Features
+
+- [Application] Added access for Tester II
+- [Application] Added reset_battle_mode() for faster wait time
+- [Application] Reduced cancel_aura in set_battle_mode from 2 to 1.2
+- [CI] Added checker for Gate of Chaos
+- [CI] Added fast plunder mechanism
+- [LHA] Added fade step after dash on second boss position
+- [LHA] Added dash and fade positioning after second boss
+
+## v5.75 Fixes
+
+- [Application] Decrease wait time for box checking from 1 to 0.5
+- [CI] Improved retargeting mobs for faster clear time
+- [CI] Reduced wait time for member party
+- [CI] Reduced wait time for cancel_aura()
+- [CI] Replaced cancel_aura to reset_battle_mode in the end of dungeon
+- [LHA] Reduced wait time on scene change
+- [PCA] Improved response time on dialog queues
+- [PCA] Removed unnecessary wait clauses
+
 # v5.70
 
 ## v5.70 Dungeons Available
@@ -22,7 +61,9 @@ All notable changes to this project will be documented in this file.
 
 ## v5.70 Features
 
+- [Application] Refactored some coding structure
 - [Application] Added trial user version
+- [Application] Added Class Input
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
 - [CI] Added double checker for repositions
@@ -30,10 +71,16 @@ All notable changes to this project will be documented in this file.
 - [Dungeon] Increased wait time from 1 to 2 before entering dungeon
 - [Dungeon] Increased wait time for end dungeon message from 70 to 100
 - [LHA] Added another source for second guard
+- [PCA] Added fail check on the Showorai shadows
 
 ## v5.70 Fixes
 
 - [Application] Reduced wait time of mail from 0.5 to 0.3
+- [Application] Reduced default log time sec from 2 to 1.5 
+- [Application] Removed archer and range input
+- [Application] Optimized do_buffs(), do_short_buffs() and force_short_buffs()
+- [CFA] Optimized run time
+- [CFA] Simplified some logs
 - [CI] Fixed centering positions
 - [CI] Increased wait time for mobs from 20 to 30
 - [CI] Changed reposition threshold from 15 to 20
@@ -44,6 +91,8 @@ All notable changes to this project will be documented in this file.
 - [LHA] Changed the positioning for last boss
 - [LHA] Decreased path finding of lava gate from 12 to 10
 - [LHA] Increased wait time for semi bosses from 15 to 20
+- [PCA] Increased wait time for the last shadow from 3 to 20
+- [PCA] Optimized wait time
 
 # v5.65
 

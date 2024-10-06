@@ -50,7 +50,6 @@ class JTool():
   ]
 
   LIST_DUNGEON = []
-
   LIST_RUN = [1, 5, 10, 20, 30, 40, 50, 100, 150, 200]
   LIST_RUN_RESTART = [0, 10, 20, 30, 40, 50, 75, 100]
   LIST_CLICKS = [10, 20, 30, 40, 50, 100, 200, 300, 500]
@@ -78,6 +77,7 @@ class JTool():
   text_features = []
   frame_root = []
   val_run_count = []
+  val_char_class = []
   val_run_restart = []
   val_click_count = []
   val_pword = []
@@ -121,12 +121,12 @@ class JTool():
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
     choice = list_dg.get()
     runs = int(val_run_count.get())
+    access_level = self.get_level()
+    char_class = val_char_class.get()
     mode = val_mode.get()
     member = val_member.get()
     buff = val_buffs.get()
     short = val_shorts.get()
-    archer = val_archer.get()
-    atk_type = val_atk_type.get()
     vera = val_vera.get()
     run_restart = val_run_restart.get()
     pword = val_pword.get()
@@ -146,9 +146,9 @@ class JTool():
     self.save_data()
     util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run, lbl_run_time)
     util.initialize_region()
-    util.set_variables(mode, member, buff, short, atk_type, archer, vera, runs, run_restart, pword, pin, reso, load_time)
+    util.set_variables(access_level, char_class, mode, member, buff, short, vera, runs, run_restart, pword, pin, reso, load_time)
 
-    if dungeon_restart == 1:
+    if dungeon_restart == util.STATE_ONE:
       self.restart_cabal_application()
 
     if choice == self.LIST_MASTER[0]:
@@ -231,7 +231,6 @@ class JTool():
         "Hazardous Valley (Medium)",
         "Hazardous Valley (Easy)",
         "Steamer Crazy (Awakened)",
-        "Steamer Crazy (Awakened)",
         "Catacomb Frost (Awakened)",
         "Lava Hellfire (Awakened)",
         "Holy Keldrasil",
@@ -261,7 +260,7 @@ class JTool():
       case util.DATA_DUNGEON:
         return util.STATE_NORMAL
       case util.DATA_CONNECTION:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -292,8 +291,6 @@ class JTool():
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
-      case util.DATA_RANGE:
-        return util.STATE_NORMAL
       case util.DATA_VERADRIX:
         if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER_II:
           return util.STATE_DISABLED
@@ -350,11 +347,10 @@ class JTool():
 
   def save_data(self):
     val_config_data[util.DATA_DUNGEON] = LIST_DUNGEON.index(list_dg.get())
+    val_config_data[util.DATA_CLASS] = util.LIST_CLASS.index(val_char_class.get())
     val_config_data[util.DATA_MODE] = val_mode.get()
     val_config_data[util.DATA_BUFFS] = val_buffs.get()
     val_config_data[util.DATA_SHORTS] = val_shorts.get()
-    val_config_data[util.DATA_RANGE] = val_atk_type.get()
-    val_config_data[util.DATA_ARCHER] = val_archer.get()
     val_config_data[util.DATA_VERADRIX] = val_vera.get()
     val_config_data[util.DATA_PWORD] = val_pword.get()
     val_config_data[util.DATA_PIN] = val_pin.get()
@@ -549,13 +545,6 @@ class JTool():
     lbl_misc.config(text=msgBuilder)
     frame_root.update()
 
-  def enable_archer(self):
-    if val_atk_type.get() == 1:
-      chkbtn_archer.config(state=util.STATE_NORMAL)
-    else:
-      val_archer.set(0)
-      chkbtn_archer.config(state=util.STATE_DISABLED)
-
   def generate_gui(self):
     # CREATE FRAME
     global frame_root
@@ -619,17 +608,50 @@ class JTool():
     lbl_current_run = Label(tab_dungeon, text=util.LBL_CURRENT_RUN)
     lbl_current_run.place(x=145, y=75)
 
-    lbl_mode = Label(tab_dungeon, text=util.LBL_MODE, state=self.get_access(util.DATA_MODE))
-    lbl_mode.place(x=10, y=75)
-
     global lbl_run_time
     lbl_run_time = Label(tab_dungeon, text=util.LBL_RUN_TIME_EMPTY)
     lbl_run_time.place(x=145, y=105)
 
+    lbl_class = Label(tab_dungeon, text=util.LBL_CLASS, state=self.get_access(util.DATA_MODE))
+    lbl_class.place(x=10, y=73)
+
+    global val_char_class
+    val_char_class = ttk.Combobox(tab_dungeon, values=util.LIST_CLASS, state=util.STATE_NORMAL)
+    val_char_class.current(self.get_data(util.DATA_CLASS))
+    val_char_class.config(width=5)
+    val_char_class.place(x=75, y=73)
+
+    lbl_mode = Label(tab_dungeon, text=util.LBL_MODE, state=self.get_access(util.DATA_MODE))
+    lbl_mode.place(x=10, y=105)
+
     global val_mode
     val_mode = IntVar(value=self.get_data(util.DATA_MODE))
     chkbtn_mode = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_mode, state=self.get_access(util.DATA_MODE))
-    chkbtn_mode.place(x=75, y=76)
+    chkbtn_mode.place(x=75, y=106)
+
+    lbl_buffs = Label(tab_dungeon, text=util.LBL_BUFFS, state=self.get_access(util.DATA_BUFFS))
+    lbl_buffs.place(x=10, y=135)
+
+    global val_buffs
+    val_buffs = IntVar(value=self.get_data(util.DATA_BUFFS))
+    chkbtn_buffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_buffs, state=self.get_access(util.DATA_BUFFS))
+    chkbtn_buffs.place(x=75, y=136)
+
+    lbl_shorts = Label(tab_dungeon, text=util.LBL_SHORTS, state=self.get_access(util.DATA_SHORTS))
+    lbl_shorts.place(x=10, y=165)
+
+    global val_shorts
+    val_shorts = IntVar(value=self.get_data(util.DATA_SHORTS))
+    chkbtn_shorts = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_shorts, state=self.get_access(util.DATA_SHORTS))
+    chkbtn_shorts.place(x=75, y=166)
+
+    lbl_vera = Label(tab_dungeon, text=util.LBL_VERADRIX, state=self.get_access(util.DATA_VERADRIX))
+    lbl_vera.place(x=10, y=195)
+
+    global val_vera
+    val_vera = IntVar(value=self.get_data(util.DATA_VERADRIX))
+    chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_vera, state=self.get_access(util.DATA_VERADRIX))
+    chkbtn_vera.place(x=75, y=196)
 
     global lbl_restart_note
     lbl_restart_note = Label(tab_dungeon, text=util.LBL_RUN_RESTART)
@@ -638,56 +660,12 @@ class JTool():
     lbl_license = Label(tab_dungeon, text=self.get_license())
     lbl_license.place(x=145, y=165)
 
-    lbl_buffs = Label(tab_dungeon, text=util.LBL_BUFFS, state=self.get_access(util.DATA_BUFFS))
-    lbl_buffs.place(x=10, y=105)
-
-    global val_buffs
-    val_buffs = IntVar(value=self.get_data(util.DATA_BUFFS))
-    chkbtn_buffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_buffs, state=self.get_access(util.DATA_BUFFS))
-    chkbtn_buffs.place(x=75, y=106)
-
     lbl_expiration = Label(tab_dungeon, text=self.get_expiration_status())
     lbl_expiration.place(x=145, y=195)
 
-    lbl_shorts = Label(tab_dungeon, text=util.LBL_SHORTS, state=self.get_access(util.DATA_SHORTS))
-    lbl_shorts.place(x=10, y=135)
-
-    global val_shorts
-    val_shorts = IntVar(value=self.get_data(util.DATA_SHORTS))
-    chkbtn_shorts = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_shorts, state=self.get_access(util.DATA_SHORTS))
-    chkbtn_shorts.place(x=75, y=136)
-
     global lbl_macro
     lbl_macro = Label(tab_dungeon, text=util.LBL_MACRO)
-    lbl_macro.place(x=145, y=225)
-
-    lbl_atk_type = Label(tab_dungeon, text=util.LBL_RANGE,)
-    lbl_atk_type.place(x=10, y=165)
-
-    global val_atk_type
-    val_atk_type = IntVar(value=self.get_data(util.DATA_RANGE))
-    chkbtn_atk_type = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_atk_type, command=self.enable_archer)
-    chkbtn_atk_type.place(x=75, y=166)
-
-    lbl_archer = Label(tab_dungeon, text=util.LBL_ARCHER)
-    lbl_archer.place(x=10, y=195)
-
-    global val_archer
-    global chkbtn_archer
-    val_archer = IntVar(value=self.get_data(util.DATA_ARCHER))
-    chkbtn_archer = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_archer)
-    chkbtn_archer.place(x=75, y=196)
-
-    if val_atk_type.get() == 0:
-      chkbtn_archer.config(state=util.STATE_DISABLED)
-
-    lbl_vera = Label(tab_dungeon, text=util.LBL_VERADRIX, state=self.get_access(util.DATA_VERADRIX))
-    lbl_vera.place(x=10, y=225)
-
-    global val_vera
-    val_vera = IntVar(value=self.get_data(util.DATA_VERADRIX))
-    chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_vera, state=self.get_access(util.DATA_VERADRIX))
-    chkbtn_vera.place(x=75, y=226)
+    lbl_macro.place(x=10, y=225)
 
     # Tab Connection
     lbl_run_restart = Label(tab_connection, text=util.LBL_RUN_RESTART)

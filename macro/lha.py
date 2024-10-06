@@ -37,6 +37,7 @@ class LavaHellfireAwakened(Dungeon):
   def path_find_gate(self, unit=util.UNIT_BLANK):
     pathing = True
     gate_counter = 0
+    path_counter = 0
     trigger_fade = 0
     while pathing:
       if not util.get_macro_state():
@@ -47,30 +48,35 @@ class LavaHellfireAwakened(Dungeon):
         break
 
       util.log_action(util.MSG_PATH_FIND + unit)
-      gate_counter += 1
-      if gate_counter >= 10:
-        if trigger_fade == 0:
-          util.move(720, 400)
-          util.do_fade(0.1)
-          trigger_fade = 1
+      util.move_click(350, 250)
+      util.move_click(450, 250)
+      util.move_click(500, 250)
+      util.move_click(550, 250)
+      util.move_click(600, 250)
+      util.move_click(650, 250)
+      util.move_click(700, 250)
 
-        try:
-          util.do_select(0.1)
-          gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
+      try:
+        util.do_select(0.1)
+        gate_counter += 1
+        path_counter += 1
+        gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
+
+        if gate_counter >= 1:
+          if trigger_fade == util.STATE_ZERO:
+            util.move(720, 400)
+            util.do_fade(0.1)
+            trigger_fade = 1
+
           util.log_action(util.MSG_MOBS_FOUND + unit)
           pathing = False
           util.log_action(util.MSG_PATH_STOP)
           break
-        except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
-      else:
-        util.move_click(350, 250)
-        util.move_click(450, 250)
-        util.move_click(500, 250)
-        util.move_click(550, 250)
-        util.move_click(600, 250)
-        util.move_click(650, 250)
-        util.move_click(700, 250)
+      except pyauto.ImageNotFoundException:
+        if path_counter >= 10:
+          util.move(720, 400)
+          util.do_dash()
+          util.do_fade()
 
   def position_fire_guard(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -129,13 +135,26 @@ class LavaHellfireAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(450, 300)
     util.do_dash()
+    util.do_fade()
+
+    util.move(550, 100)
+    util.do_dash()
+    util.do_fade()
+
+    util.move(550, 100)
+    util.do_dash()
+    util.do_fade()
+
+    util.move(650, 200)
+    util.do_dash()
+    util.do_fade()
 
   def position_boss(self):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(720, 400)
     util.do_fade(0.1)
 
-    util.move_scroll(375, 150, 660, 150, 0.8)
+    util.move_scroll(375, 150, 660, 150, 0.5)
 
     util.move(300, 420)
     util.do_dash()
@@ -174,9 +193,9 @@ class LavaHellfireAwakened(Dungeon):
 
       # Enter Dungeon
       util.enter_dungeon()
-      util.challenge_dungeon(1)
+      util.challenge_dungeon(0.5)
 
-      util.move_scroll(700, 150, 375, 150, 1.5)
+      util.move_scroll(700, 150, 375, 150, 0.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -274,7 +293,7 @@ class LavaHellfireAwakened(Dungeon):
           break
 
         if check_count == 10:
-          util.move(750, 500)
+          util.move(720, 500)
           util.do_dash()
           util.do_fade()
 
@@ -372,9 +391,8 @@ class LavaHellfireAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.set_battle_mode(False)
-
       # Start to End Dungeon
+      util.reset_battle_mode()
       util.check_notifications()
       util.end_dungeon()
       util.dice_dungeon()

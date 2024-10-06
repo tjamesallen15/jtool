@@ -52,7 +52,7 @@ class SteamerCrazyAwakened(Dungeon):
 
       try:
         util.move_click(630, 250)
-        if portal_counter % 2 == 0:
+        if portal_counter % 2 == util.STATE_ZERO:
           util.do_dash(0.1)
 
         util.do_select(0.1)
@@ -74,7 +74,7 @@ class SteamerCrazyAwakened(Dungeon):
         portal_counter += 1
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
 
-        if portal_counter % 2 == 0:
+        if portal_counter % 2 == util.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash(0.1)
@@ -143,7 +143,7 @@ class SteamerCrazyAwakened(Dungeon):
         portal_counter += 1
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
 
-        if portal_counter % 2 == 0:
+        if portal_counter % 2 == util.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash(0.1)
@@ -212,7 +212,7 @@ class SteamerCrazyAwakened(Dungeon):
         portal_counter += 1
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
 
-        if portal_counter % 2 == 0:
+        if portal_counter % 2 == util.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash(0.1)
@@ -260,7 +260,7 @@ class SteamerCrazyAwakened(Dungeon):
       if pathing == False:
         break
 
-    if boss_found == 0 and mobs_found == 1:
+    if boss_found == util.STATE_ZERO and mobs_found == util.STATE_ONE:
       util.attack_mobs(unit, 1, util.val_default_interval, self.val_sidestep)
 
       util.move(630, 250)
@@ -388,7 +388,7 @@ class SteamerCrazyAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_atk_type() == 1:
+      if util.get_attack_type() == util.STATE_ONE:
         util.move(620, 350)
         util.do_dash(0.5)
 
@@ -406,4 +406,4 @@ class SteamerCrazyAwakened(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()

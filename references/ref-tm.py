@@ -375,11 +375,11 @@
 #   if unit == util.UNIT_ESPADA_1 or unit == util.UNIT_ESPADA_2 or unit == util.UNIT_ESPADA_3:
 #     util.focus_mobs(unit, 0, 1, val_sidestep)
 
-#   if boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_REDONNO:
+#   if boss_found == util.STATE_ZERO and util.get_attack_type() == util.STATE_ZERO and unit == util.UNIT_REDONNO:
 #     util.focus_mobs(unit, 0, 1, val_sidestep)
-#   elif boss_found == 0 and util.get_atk_type() == 0 and unit == util.UNIT_POERTE:
+#   elif boss_found == util.STATE_ZERO and util.get_attack_type() == util.STATE_ZERO and unit == util.UNIT_POERTE:
 #     util.focus_mobs(unit, 0, 1, val_sidestep)
-#   elif boss_found == 0:
+#   elif boss_found == util.STATE_ZERO:
 #     util.attack_mobs(unit, 1, 0.3, val_sidestep)
 
 # def path_backtrack(unit):
@@ -481,7 +481,7 @@
 #     util.enter_dungeon()
 #     util.challenge_dungeon()
 
-#     if util.is_party == 1:
+#     if util.is_party == util.STATE_ONE:
 #       util.wait(3)
 
 #     util.move(700, 150)
@@ -626,7 +626,7 @@
 #         break
 
 #       gate_counter = path_find_gate_strict(util.UNIT_GATE_TWO)
-#       if gate_counter > 3 and util.get_party_status() == 1:
+#       if gate_counter > 3 and util.get_party_status() == util.STATE_ONE:
 #         moving = False
 
 #       try:
@@ -758,7 +758,7 @@
 #     util.do_fade(0.5)
 
 #     util.move(500, 300)
-#     if util.get_atk_type() == 1:
+#     if util.get_attack_type() == util.STATE_ONE:
 #       util.do_dash(4)
 #     else:
 #       util.do_dash(1)
@@ -897,7 +897,7 @@
 #         break
 
 #       gate_counter = path_find_gate_strict(util.UNIT_GATE_THREE)
-#       if gate_counter > 3 and util.get_party_status() == 1:
+#       if gate_counter > 3 and util.get_party_status() == util.STATE_ONE:
 #         moving = False
 
 #       try:
@@ -908,7 +908,7 @@
 #       except pyauto.ImageNotFoundException:
 #         util.log_action(util.MSG_NO_BOSS_FOUND)
 
-#     if util.get_atk_type == 1:
+#     if util.get_attack_type == util.STATE_ONE:
 #       util.move_click(650, 450, 1.5)
 
 #     util.focus_gate(util.UNIT_GATE_THREE)
@@ -945,7 +945,7 @@
 
 #     # Third Boss
 #     util.do_deselect_pack()
-#     if util.get_atk_type() == 1:
+#     if util.get_attack_type() == util.STATE_ONE:
 #       util.move(580, 260)
 #       util.do_dash(1)
 #     else:
@@ -962,7 +962,7 @@
 #       run_counter += 1000
 #       continue
 
-#     if util.get_battle_mode() == 1:
+#     if util.get_battle_mode() == util.STATE_ONE:
 #       util.wait(20)
 
 #     util.move(720, 260)
@@ -984,7 +984,7 @@
 #         break
 
 #       gate_counter = path_find_gate_strict(util.UNIT_GATE_FOUR)
-#       if gate_counter > 3 and util.get_party_status() == 1:
+#       if gate_counter > 3 and util.get_party_status() == util.STATE_ONE:
 #         moving = False
 
 #       try:

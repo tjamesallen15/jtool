@@ -129,6 +129,16 @@ class ChaosInfinity(Dungeon):
     util.move(620, 300)
     util.do_fade()
 
+  def chaos_reposition_top(self):
+    util.move(620, 100)
+    util.do_dash()
+    util.do_fade()
+
+  def chaos_reposition_bottom(self):
+    util.move(620, 600)
+    util.do_dash()
+    util.do_fade()
+
   def run_dungeon(self, runs):
     run_counter = 0
     fail_run_counter = 0
@@ -208,7 +218,7 @@ class ChaosInfinity(Dungeon):
 
         util.do_select(0.1)
 
-        if util.get_member_status() == 0:
+        if util.get_member_status() == util.STATE_ZERO:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
             util.focus_gate(util.UNIT_GATE, 0)
@@ -227,26 +237,18 @@ class ChaosInfinity(Dungeon):
 
       util.move(620, 150)
       util.do_dash()
-      util.do_fade(6)
+
+      if util.get_member_status() == util.STATE_ZERO:
+        util.do_fade(6)
+      else:
+        util.do_fade()
 
       util.move(620, 150)
-      # util.do_dash(1.5)
       util.do_dash()
       util.do_fade()
 
-      # util.move(620, 250)
-      # util.do_dash(1.5)
       util.move(620, 325)
       util.do_dash()
-
-      # util.move(620, 100)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(620, 600)
-      # util.do_dash()
-      # util.do_fade(1.5)
-      # util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -257,6 +259,7 @@ class ChaosInfinity(Dungeon):
       bosses = 0
       arena = True
       mob_checker = 0
+      chaos_move = 0
       reposition_count = 0
       while arena:
         if not util.get_macro_state():
@@ -277,6 +280,23 @@ class ChaosInfinity(Dungeon):
 
         mob_checker += 1
         util.do_select(0.1)
+        util.do_fast_plunder()
+
+        try:
+          chaos_gate = pyauto.locateOnScreen(util.IMG_CHAOS_GATE, grayscale=False, confidence=.7, region=util.get_full_region())
+
+          if chaos_move == util.STATE_ZERO:
+            util.do_deselect_pack()
+            self.chaos_reposition_top()
+            chaos_move = 1
+          else:
+            util.do_deselect_pack()
+            self.chaos_reposition_bottom()
+            chaos_move = 0
+
+        except pyauto.ImageNotFoundException:
+          pass
+
         try:
           boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOSS_FOUND)
@@ -284,18 +304,23 @@ class ChaosInfinity(Dungeon):
           bosses += 1
           mob_checker = 0
           reposition_count = 0
+          chaos_move = 0
           util.wait(0.2)
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          pass
 
         try:
           box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOX_FOUND)
           mob_checker = 0
           reposition_count = 0
-          util.plunder_box(1, 3)
-          util.wait(1)
+          chaos_move = 0
+          util.plunder_box(1, 3, 1, 0)
+
+          if util.get_member_status() == util.STATE_ZERO:
+            util.wait(1.5)
+
         except pyauto.ImageNotFoundException:
           pass
 
@@ -303,7 +328,11 @@ class ChaosInfinity(Dungeon):
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ARENA_MOBS)
           mob_checker = 0
-          util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
+
+          if util.get_attack_type() == util.STATE_ONE and util.get_access_level() == util.ACCESS_SUPER:
+            util.do_attack(0.1)
+          else:
+            util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           pass
 
@@ -315,7 +344,7 @@ class ChaosInfinity(Dungeon):
 
         if mob_checker >= 30:
           mob_checker = 0
-          util.cancel_aura(2)
+          util.cancel_aura(1.2)
 
           if reposition_count > 2:
             self.reposition_center()
@@ -326,8 +355,6 @@ class ChaosInfinity(Dungeon):
             self.reposition_mobs()
           reposition_count += 1
 
-      util.cancel_aura()
-
       if util.get_reset_status():
         continue
 
@@ -337,8 +364,9 @@ class ChaosInfinity(Dungeon):
         continue
 
       # Start to End Dungeon
+      util.reset_battle_mode()
       util.check_notifications()
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()

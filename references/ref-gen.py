@@ -2,7 +2,7 @@
 # util.set_cabal_window(cabal_window)
 # util.go_cabal_window()
 
-# test_var = True if val_mode.get() == 1 else False
+# test_var = True if val_mode.get() == util.STATE_ONE else False
 # print(test_var)
 
 # lbl_party = Label(tab_dungeon, text="Party: ", state="disabled")
@@ -72,7 +72,7 @@
 #     "load": 2
 # }
 
-# if get_party_status() == 1:
+# if get_party_status() == util.STATE_ONE:
 #       try:
 #         roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
 #         log_action(MSG_ROLL_EQUIPMENT)
@@ -81,7 +81,22 @@
 #       except pyauto.ImageNotFoundException:
 #         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
 
-
+# LAVA HELLFIRE AWAKENED
 # util.move(550, 100)
 # util.move(550, 100)
 # util.move(650, 200)
+
+# CHAOS INFINITY
+# util.move(620, 150)
+# util.do_dash(1.5)
+
+# util.move(620, 250)
+# util.do_dash(1.5)
+# util.move(620, 100)
+# util.do_dash()
+# util.do_fade()
+
+# util.move(620, 600)
+# util.do_dash()
+# util.do_fade(1.5)
+# util.do_fade()

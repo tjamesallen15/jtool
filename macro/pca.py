@@ -18,6 +18,7 @@ class PanicCaveAwakened(Dungeon):
 
   # UNIQUE VARIABLES
   val_sidestep = 0
+  val_fade_speed = 0.5
 
   def initialize(self, frame, btn, runs):
     global frame_root
@@ -25,6 +26,11 @@ class PanicCaveAwakened(Dungeon):
 
     global btn_start
     btn_start = btn
+
+    if util.get_access_level() == util.ACCESS_SUPER:
+      self.val_fade_speed = 0.3
+    else:
+      self.val_fade_speed = 0.5
 
     shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
     btn_start.config(state=util.STATE_DISABLED)
@@ -39,80 +45,80 @@ class PanicCaveAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(610, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(610, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(610, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(610, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(560, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(610, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(680, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(640, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(570, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(770, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(640, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(500, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(570, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(500, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(640, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(680, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(640, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(660, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.do_final_mode(2)
     util.do_aura(1)
 
-    if util.get_atk_type() == 1:
+    if util.get_attack_type() == util.STATE_ONE:
       util.move(610, 440)
       util.do_fade(1)
 
@@ -123,46 +129,46 @@ class PanicCaveAwakened(Dungeon):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(460, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(640, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(820, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(750, 300)
     util.do_dash()
 
     util.move(600, 350)
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(620, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(580, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(580, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(580, 350)
     util.do_dash(2)
 
     util.move(770, 280)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(770, 280)
     util.do_dash()
 
     util.move(550, 370)
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
   def position_second_shadow(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -170,41 +176,41 @@ class PanicCaveAwakened(Dungeon):
     util.do_fade(1)
 
     util.move(720, 200)
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(780, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(730, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(760, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(670, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(620, 200)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
   def position_third_shadow(self):
     util.log_action(util.MSG_MOVING_POSITION)
     util.move(670, 230)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(690, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(690, 150)
     util.do_dash()
-    util.do_fade(0.3)
+    util.do_fade(self.val_fade_speed)
 
     util.move(690, 150)
     util.do_dash()
@@ -248,14 +254,14 @@ class PanicCaveAwakened(Dungeon):
       util.force_short_buffs()
       util.attack_boss()
 
-      if util.get_atk_type() == 1:
-        util.wait(5)
-        util.move_click(590, 460)
-        util.do_fade(1)
+      if util.get_attack_type() == util.STATE_ONE:
+        util.wait(4)
+        util.move(590, 460)
+        util.do_fade()
       else:
         util.move_click(630, 325)
+        util.wait(2)
 
-      util.wait(2)
       util.move_scroll(375, 150, 1000, 150)
       util.plunder_box(1, 3)
 
@@ -264,8 +270,7 @@ class PanicCaveAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      util.cancel_aura(2)
-
+      util.cancel_aura(1.2)
       util.move(1000, 520)
       util.do_dash()
 
@@ -304,7 +309,6 @@ class PanicCaveAwakened(Dungeon):
         continue
 
       if corpse_found == False:
-        util.wait(1)
         util.move(630, 150)
         util.do_dash(2)
 
@@ -312,7 +316,7 @@ class PanicCaveAwakened(Dungeon):
         util.do_dash()
 
         util.move(660, 500)
-        util.do_fade(0.3)
+        util.do_fade(self.val_fade_speed)
 
         util.move_click(580, 440)
 
@@ -366,7 +370,10 @@ class PanicCaveAwakened(Dungeon):
           break
 
         if count_showorai > 3:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
           check_showorai = False
+          util.set_reset_status(True)
 
         try:
           util.do_select(0.1)
@@ -381,6 +388,9 @@ class PanicCaveAwakened(Dungeon):
       # First Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_F, 0, 0, 0)
 
+      if util.get_reset_status():
+        continue
+
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
@@ -388,7 +398,7 @@ class PanicCaveAwakened(Dungeon):
 
       # Second Shadow Sequence
       self.position_second_shadow()
-      if util.get_atk_type() == 1:
+      if util.get_attack_type() == util.STATE_ONE:
         util.wait(4)
       else:
         util.wait(6)
@@ -404,7 +414,10 @@ class PanicCaveAwakened(Dungeon):
           break
 
         if count_showorai > 3:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
           check_showorai = False
+          util.set_reset_status(True)
 
         try:
           util.do_select(0.1)
@@ -419,6 +432,9 @@ class PanicCaveAwakened(Dungeon):
       # Second Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_R, 0, 0, 0)
 
+      if util.get_reset_status():
+        continue
+
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
@@ -426,7 +442,7 @@ class PanicCaveAwakened(Dungeon):
 
       # Third Shadow Sequence
       self.position_third_shadow()
-      if util.get_atk_type() == 1:
+      if util.get_attack_type() == util.STATE_ONE:
         util.wait(3)
       else:
         util.wait(5)
@@ -441,8 +457,11 @@ class PanicCaveAwakened(Dungeon):
         if check_showorai == False:
           break
 
-        if count_showorai > 3:
+        if count_showorai > 20:
+          util.force_exit_dungeon()
+          fail_run_counter += 1
           check_showorai = False
+          util.set_reset_status(True)
 
         try:
           util.do_select(0.1)
@@ -456,6 +475,9 @@ class PanicCaveAwakened(Dungeon):
 
       # Third Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_M, 0, 0, 0)
+
+      if util.get_reset_status():
+        continue
 
       # Check Macro State
       if not util.get_macro_state():
@@ -474,19 +496,16 @@ class PanicCaveAwakened(Dungeon):
 
         try:
           util.move_click(580, 430)
-          util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
-          util.do_select(0.1)
           util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_MOBS_FOUND)
 
         try:
           util.move_click(580, 430)
-          util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 0.3)
+          util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -505,10 +524,8 @@ class PanicCaveAwakened(Dungeon):
 
       # Final Boss
       util.move(620, 520)
-      util.do_fade(0.3)
-
+      util.do_fade(self.val_fade_speed)
       util.do_battle_mode(5, 0)
-      util.wait(2)
 
       check_count = 0
       checking = True
@@ -551,7 +568,6 @@ class PanicCaveAwakened(Dungeon):
 
         try:
           util.move_click(580, 430)
-          util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.do_select(0.1)
           util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
@@ -560,10 +576,9 @@ class PanicCaveAwakened(Dungeon):
 
         try:
           util.move_click(580, 430)
-          util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 0.3)
+          util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
@@ -591,7 +606,6 @@ class PanicCaveAwakened(Dungeon):
 
         try:
           util.move_click(580, 430)
-          util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
@@ -616,4 +630,4 @@ class PanicCaveAwakened(Dungeon):
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time(2)
+      util.log_time()
