@@ -329,7 +329,7 @@ class ChaosInfinity(Dungeon):
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ARENA_MOBS)
           mob_checker = 0
 
-          if util.get_attack_type() == util.STATE_ONE:
+          if util.get_attack_type() == util.STATE_ONE and util.get_access_level() == util.ACCESS_SUPER:
             util.do_attack(0.1)
           else:
             util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
