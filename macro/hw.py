@@ -355,7 +355,7 @@ class HolyWindmill(Dungeon):
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_NO_MOBS_FOUND)
 
-    if boss_found == 0:
+    if boss_found == util.STATE_ZERO:
       util.focus_gate(util.UNIT_LEGRIN)
 
   def path_find(self, unit=util.UNIT_BLANK):
@@ -921,10 +921,10 @@ class HolyWindmill(Dungeon):
     interval = 0.3
     if unit == util.UNIT_BOX:
       util.attack_mobs(unit, 0, interval, self.val_sidestep)
-    elif boss_found == 0 and box_found == 0 and unit != util.UNIT_ESPI:
+    elif boss_found == util.STATE_ZERO and box_found == util.STATE_ZERO and unit != util.UNIT_ESPI:
       util.attack_mobs(unit, 1, interval, self.val_sidestep)
-    elif boss_found == 0 and box_found == 0 and unit == util.UNIT_ESPI:
-      if util.get_attack_type() == 0:
+    elif boss_found == util.STATE_ZERO and box_found == util.STATE_ZERO and unit == util.UNIT_ESPI:
+      if util.get_attack_type() == util.STATE_ZERO:
         interval = 0.8
       util.attack_mobs(unit, 1, interval, self.val_sidestep)
 

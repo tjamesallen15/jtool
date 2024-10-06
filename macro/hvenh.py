@@ -267,7 +267,7 @@ class HazardousValley(Dungeon):
     if unit == util.UNIT_CUTTER_TOAD:
       interval = 0.5
 
-    if boss_found == 0:
+    if boss_found == util.STATE_ZERO:
       util.attack_mobs(unit, 1, interval)
 
   def path_find_boss(self, unit):

@@ -266,7 +266,7 @@ class HazardousValleyAwakened(Dungeon):
         if pathing == False:
           break
 
-    if boss_found == 0:
+    if boss_found == util.STATE_ZERO:
       util.attack_mobs(unit)
 
   def path_backtrack(self, unit):
@@ -598,7 +598,7 @@ class HazardousValleyAwakened(Dungeon):
         if boss_count > 2:
           break
 
-        if (boss_count == 1 and short_buffs_counter == 0 and util.is_short_buffs_allowed == 1):
+        if (boss_count == util.STATE_ONE and short_buffs_counter == util.STATE_ZERO and util.is_short_buffs_allowed == util.STATE_ONE):
           short_buffs_counter = 1
           util.do_short_buffs()
 

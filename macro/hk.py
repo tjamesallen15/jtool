@@ -169,7 +169,7 @@ class HolyKeldrasil(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_attack_type() == 1:
+      if util.get_attack_type() == util.STATE_ONE:
         util.move(420, 150)
         util.do_dash()
         util.do_fade()
@@ -249,7 +249,7 @@ class HolyKeldrasil(Dungeon):
       util.move(525, 400)
       util.do_fade()
 
-      if util.get_attack_type() == 1:
+      if util.get_attack_type() == util.STATE_ONE:
         util.move(500, 400)
         util.do_dash(1.5)
 

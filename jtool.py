@@ -121,6 +121,7 @@ class JTool():
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
     choice = list_dg.get()
     runs = int(val_run_count.get())
+    access_level = self.get_level()
     char_class = val_char_class.get()
     mode = val_mode.get()
     member = val_member.get()
@@ -145,9 +146,9 @@ class JTool():
     self.save_data()
     util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run, lbl_run_time)
     util.initialize_region()
-    util.set_variables(char_class, mode, member, buff, short, vera, runs, run_restart, pword, pin, reso, load_time)
+    util.set_variables(access_level, char_class, mode, member, buff, short, vera, runs, run_restart, pword, pin, reso, load_time)
 
-    if dungeon_restart == 1:
+    if dungeon_restart == util.STATE_ONE:
       self.restart_cabal_application()
 
     if choice == self.LIST_MASTER[0]:

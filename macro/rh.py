@@ -368,7 +368,7 @@ class RadiantHall(Dungeon):
           checking = False
           break
 
-        if dialog_count == 0:
+        if dialog_count == util.STATE_ZERO:
           util.move_click(750, 360)
 
         try:
@@ -498,7 +498,7 @@ class RadiantHall(Dungeon):
           checking = False
           break
 
-        if dialog_count == 0:
+        if dialog_count == util.STATE_ZERO:
           util.move_click(700, 200)
 
         try:

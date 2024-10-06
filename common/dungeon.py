@@ -7,4 +7,4 @@ class Dungeon(ABC):
 
   @abstractmethod
   def run_dungeon(self, runs):
-     pass
+    pass

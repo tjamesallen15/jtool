@@ -191,7 +191,7 @@ class TerminusMachina(Dungeon):
       if pathing == False:
         break
 
-    if boss_found == 0:
+    if boss_found == util.STATE_ZERO:
       util.focus_mobs(unit, 0, 1, self.val_sidestep)
 
   def path_backtrack(self, unit):

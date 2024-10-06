@@ -2,7 +2,7 @@
 # util.set_cabal_window(cabal_window)
 # util.go_cabal_window()
 
-# test_var = True if val_mode.get() == 1 else False
+# test_var = True if val_mode.get() == util.STATE_ONE else False
 # print(test_var)
 
 # lbl_party = Label(tab_dungeon, text="Party: ", state="disabled")
@@ -72,7 +72,7 @@
 #     "load": 2
 # }
 
-# if get_party_status() == 1:
+# if get_party_status() == util.STATE_ONE:
 #       try:
 #         roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
 #         log_action(MSG_ROLL_EQUIPMENT)

@@ -56,6 +56,7 @@ val_default_interval = 0.3
 val_time = 0
 val_member = 0
 val_char_class = 'BL'
+val_access = 'Free'
 
 region_normal_bar = []
 region_mode_bar = []
@@ -422,7 +423,10 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_time
   val_time = time.time()
 
-def set_variables(char_class=0, mode=0, member=0, buff=1, sbuffs=1, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(access_level, char_class=0, mode=0, member=0, buff=1, sbuffs=1, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+  global val_access_level
+  val_access_level = access_level
+
   global val_char_class
   val_char_class = char_class
 
@@ -549,7 +553,7 @@ def wait(sec=1):
   time.sleep(sec)
 
 def log_run(run_number, fail_run_count=0):
-  if fail_run_count == 0:
+  if fail_run_count == STATE_ZERO:
     run_builder = MSG_RUN_NUMBER + str(run_number) + LBL_HYPHEN + str(get_total_run_count())
   else:
     run_builder = MSG_RUN_NUMBER + str(run_number) + LBL_HYPHEN + str(get_total_run_count()) + LBL_OPEN_SECTION + str(fail_run_count) + LBL_CLOSE_SECTION
@@ -826,13 +830,13 @@ def check_run_restart(run_count):
       val_run_restart_stack += run_count
 
 def get_region():
-  if is_battle_mode and get_attack_type() == 1:
+  if is_battle_mode and get_attack_type() == STATE_ONE:
     return region_mode_bar
   else:
     return region_normal_bar
 
 def get_full_region():
-  if is_battle_mode and get_attack_type() == 1:
+  if is_battle_mode and get_attack_type() == STATE_ONE:
     return region_full_mode_bar
   else:
     return region_full_normal_bar
@@ -851,6 +855,9 @@ def get_sub_screen_region():
 
 def get_train_region():
   return region_train_screen
+
+def get_access_level():
+  return val_access_level
 
 def get_char_class():
   return val_char_class
@@ -925,22 +932,22 @@ def go_skill_slot(sec=0):
     time.sleep(sec)
 
 def set_battle_mode(val, cancel=1):
-  if cancel == 1:
+  if cancel == STATE_ONE:
     cancel_aura(1.2)
 
-  if get_battle_mode() == 1:
+  if get_battle_mode() == STATE_ONE:
     global is_battle_mode
     is_battle_mode = val
 
 def reset_battle_mode(sec=0):
   cancel_aura(sec)
 
-  if get_battle_mode() == 1:
+  if get_battle_mode() == STATE_ONE:
     global is_battle_mode
     is_battle_mode = False
 
 def do_battle_mode(sec=5, cancel=1):
-  if get_battle_mode() == 1:
+  if get_battle_mode() == STATE_ONE:
     log_action(MSG_BATTLE_MODE)
     set_battle_mode(True, cancel)
 
@@ -959,7 +966,7 @@ def do_battle_mode(sec=5, cancel=1):
     time.sleep(1)
 
 def do_veradrix():
-  if get_veradrix_status() == 1:
+  if get_veradrix_status() == STATE_ONE:
     pynboard.press(val_veradrix)
     pynboard.release(val_veradrix)
 
@@ -975,7 +982,7 @@ def do_cont_battle_mode():
     aura_counter = 0
 
 def do_buffs():
-  if get_buffs_status() == 1:
+  if get_buffs_status() == STATE_ONE:
     log_action(MSG_BUFFS)
     move(400, 670)
     pyauto.click(button="right")
@@ -986,7 +993,7 @@ def do_buffs():
     time.sleep(1)
 
 def do_short_buffs():
-  if get_shorts_status() == 1:
+  if get_shorts_status() == STATE_ONE:
     log_action(MSG_SHORT_BUFFS)
     move(470, 670)
     pyauto.click(button="right")
@@ -1070,7 +1077,7 @@ def plunder_box(select=1, reps=4, loot=1, sec=0.5):
   if sec != 0:
     wait(sec)
 
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   checking = True
@@ -1090,13 +1097,13 @@ def plunder_box(select=1, reps=4, loot=1, sec=0.5):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  if loot == 1:
+  if loot == STATE_ONE:
     do_plunder(reps)
 
 def plunder_final_box(select=1, reps=5, loot=1):
   log_action(MSG_CHECK_BOX)
   wait(1)
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   checking = True
@@ -1116,13 +1123,13 @@ def plunder_final_box(select=1, reps=5, loot=1):
       checking = False
       log_action(MSG_NO_BOX_FOUND)
 
-  if loot == 1:
+  if loot == STATE_ONE:
     do_plunder(reps)
 
 def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
   log_action(MSG_CHECK_BOX)
   wait(1)
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   checking = True
@@ -1204,46 +1211,46 @@ def do_attack(sec=0, strict=0, cont=1):
   if get_battle_mode_status():
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
-    if strict == 0:
+    if strict == STATE_ZERO:
       do_essentials()
 
-    if cont == 1:
+    if cont == STATE_ONE:
       do_cont_battle_mode()
   else:
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
 
-    if strict == 0:
+    if strict == STATE_ZERO:
       do_essentials()
 
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
 
-    if strict == 0:
+    if strict == STATE_ZERO:
       do_essentials()
 
     pynboard.press(val_bm3_atk)
     pynboard.release(val_bm3_atk)
 
-    if strict == 0:
+    if strict == STATE_ZERO:
       do_essentials()
 
     pynboard.press(val_attack[0])
     pynboard.release(val_attack[0])
 
-    if strict == 0:
+    if strict == STATE_ZERO:
       do_essentials()
 
     pynboard.press(val_attack[1])
     pynboard.release(val_attack[1])
 
-    if strict == 0:
+    if strict == STATE_ZERO:
       do_essentials()
 
     pynboard.press(val_attack[2])
     pynboard.release(val_attack[2])
 
-    if strict == 0:
+    if strict == STATE_ZERO:
       do_essentials()
 
   if sec != 0:
@@ -1336,7 +1343,7 @@ def challenge_dungeon(sec=0):
     if challenging == False:
       break
 
-    if get_member_status() == 0:
+    if get_member_status() == STATE_ZERO:
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
         log_action(MSG_BUTTON_FOUND)
@@ -1438,7 +1445,7 @@ def dice_dungeon():
 def focus_gate(unit=UNIT_BLANK, select=1):
   combo = True
 
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   while combo:
@@ -1464,7 +1471,7 @@ def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
   combo = True
   fade_count = 0
 
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   while combo:
@@ -1475,11 +1482,11 @@ def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
     if combo == False:
         break
 
-    if aura == 1:
+    if aura == STATE_ONE:
       do_final_mode()
       do_aura()
 
-    if sidestep == 1:
+    if sidestep == STATE_ONE:
       if (fade_count == 20):
         fade_count = 0
         move_click(700, 440, 0.2)
@@ -1500,7 +1507,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
   combo = True
   fade_count = 0
 
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   while combo:
@@ -1509,11 +1516,11 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       combo = False
       sys.exit()
 
-    if aura == 1:
+    if aura == STATE_ONE:
       do_final_mode()
       do_aura()
 
-    if sidestep == 1:
+    if sidestep == STATE_ONE:
       if (fade_count == 20):
         fade_count = 0
         move_click(700, 440, 0.2)
@@ -1522,7 +1529,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
         fade_count += 1
 
     try:
-      if select == 1:
+      if select == STATE_ONE:
         do_select(0.1)
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
@@ -1530,19 +1537,19 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       do_attack(0.1)
       do_attack(0.1)
 
-      if select == 1:
+      if select == STATE_ONE:
         do_deselect_pack()
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_MOBS_FOUND)
 
     try:
-      if select == 1:
+      if select == STATE_ONE:
         do_select(0.1)
       box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BOX_FOUND)
       plunder_box(select, 3)
 
-      if select == 1:
+      if select == STATE_ONE:
         do_deselect_pack()
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BOX_FOUND)
@@ -1561,11 +1568,11 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=val_default_interval, sidestep
     if combo == False:
       break
 
-    if aura == 1:
+    if aura == STATE_ONE:
       do_final_mode()
       do_aura()
 
-    if sidestep == 1:
+    if sidestep == STATE_ONE:
       if (fade_count == 20):
         fade_count = 0
         move_click(700, 440, 0.2)
@@ -1599,7 +1606,7 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=val_default_interval, sidestep
 def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
   combo = True
 
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   while combo:
@@ -1610,7 +1617,7 @@ def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
     if combo == False:
         break
 
-    if aura == 1:
+    if aura == STATE_ONE:
       do_final_mode()
       do_aura()
 
@@ -1628,10 +1635,10 @@ def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
 def attack_boss(select=1, aura=1, strict=0, cont=1):
   combo = True
 
-  if get_battle_mode_status() and get_char_class() == VAL_CLASS_FA and select == 1:
+  if get_battle_mode_status() and get_char_class() == VAL_CLASS_FA and select == STATE_ONE:
     do_select(0.1)
     do_select(0.1)
-  elif select == 1:
+  elif select == STATE_ONE:
     do_select(0.1)
 
   while combo:
@@ -1643,7 +1650,7 @@ def attack_boss(select=1, aura=1, strict=0, cont=1):
     if combo == False:
       break
 
-    if aura == 1:
+    if aura == STATE_ONE:
       do_final_mode()
       do_aura()
 
@@ -1660,7 +1667,7 @@ def attack_boss(select=1, aura=1, strict=0, cont=1):
 def attack_semi_boss(select=1, aura=1, strict=0, cont=1):
   combo = True
 
-  if select == 1:
+  if select == STATE_ONE:
     do_select(0.1)
 
   while combo:
@@ -1672,7 +1679,7 @@ def attack_semi_boss(select=1, aura=1, strict=0, cont=1):
     if combo == False:
       break
 
-    if aura == 1:
+    if aura == STATE_ONE:
       do_final_mode()
       do_aura()
 

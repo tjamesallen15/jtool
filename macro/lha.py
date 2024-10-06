@@ -63,7 +63,7 @@ class LavaHellfireAwakened(Dungeon):
         gate = pyauto.locateOnScreen(util.IMG_LAVA_GATE, grayscale=False, confidence=.8, region=util.get_full_region())
 
         if gate_counter >= 1:
-          if trigger_fade == 0:
+          if trigger_fade == util.STATE_ZERO:
             util.move(720, 400)
             util.do_fade(0.1)
             trigger_fade = 1

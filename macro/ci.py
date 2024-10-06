@@ -218,7 +218,7 @@ class ChaosInfinity(Dungeon):
 
         util.do_select(0.1)
 
-        if util.get_member_status() == 0:
+        if util.get_member_status() == util.STATE_ZERO:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
             util.focus_gate(util.UNIT_GATE, 0)
@@ -285,7 +285,7 @@ class ChaosInfinity(Dungeon):
         try:
           chaos_gate = pyauto.locateOnScreen(util.IMG_CHAOS_GATE, grayscale=False, confidence=.7, region=util.get_full_region())
 
-          if chaos_move == 0:
+          if chaos_move == util.STATE_ZERO:
             util.do_deselect_pack()
             self.chaos_reposition_top()
             chaos_move = 1
@@ -318,7 +318,7 @@ class ChaosInfinity(Dungeon):
           chaos_move = 0
           util.plunder_box(1, 3, 1, 0)
 
-          if util.get_member_status() == 0:
+          if util.get_member_status() == util.STATE_ZERO:
             util.wait(1.5)
 
         except pyauto.ImageNotFoundException:
@@ -329,7 +329,7 @@ class ChaosInfinity(Dungeon):
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ARENA_MOBS)
           mob_checker = 0
 
-          if util.get_attack_type() == 1:
+          if util.get_attack_type() == util.STATE_ONE:
             util.do_attack(0.1)
           else:
             util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)

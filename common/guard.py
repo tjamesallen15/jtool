@@ -64,7 +64,7 @@ def get_user_value():
   raw_data_count = len(raw_data)
   val_uuid = get_node()
 
-  if raw_data_count == 0:
+  if raw_data_count == util.STATE_ZERO:
     insert_user_value(val_uuid)
     raw_data = get_user_data()
 

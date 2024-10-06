@@ -297,7 +297,7 @@ class SienaB1FPrideus(Dungeon):
         if checking == False:
           break
 
-        if dialog_count == 1:
+        if dialog_count == util.STATE_ONE:
           checking = False
           break
 
@@ -337,7 +337,7 @@ class SienaB1FPrideus(Dungeon):
         if checking == False:
           break
 
-        if dialog_count == 1:
+        if dialog_count == util.STATE_ONE:
           checking = False
           break
 
@@ -623,7 +623,7 @@ class SienaB1FPrideus(Dungeon):
         if checking == False:
           break
 
-        if dialog_count == 1:
+        if dialog_count == util.STATE_ONE:
           checking = False
           break
 
@@ -691,7 +691,7 @@ class SienaB1FPrideus(Dungeon):
         if checking == False:
           break
 
-        if dialog_count == 1:
+        if dialog_count == util.STATE_ONE:
           checking = False
           break
 
@@ -886,7 +886,7 @@ class SienaB1FPrideus(Dungeon):
         if checking == False:
           break
 
-        if dialog_count == 1:
+        if dialog_count == util.STATE_ONE:
           checking = False
           break
 
@@ -1040,7 +1040,7 @@ class SienaB1FPrideus(Dungeon):
         if checking == False:
           break
 
-        if dialog_count == 1:
+        if dialog_count == util.STATE_ONE:
           checking = False
           break
 
