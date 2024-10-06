@@ -61,6 +61,7 @@ All notable changes to this project will be documented in this file.
 
 ## v5.70 Features
 
+- [Application] Refactored some coding structure
 - [Application] Added trial user version
 - [Application] Added Class Input
 - [CI] Added Cancel Aura before reposition center
