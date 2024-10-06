@@ -466,8 +466,8 @@ class JTool():
     util.go_cabal_window()
 
     for x in range(int(val_click_count.get())):
-      util.move_click(510, 310, 0.3)
-      util.move_click(510, 525, 0.3)
+      util.move_click(510, 310, 0.5)
+      util.move_click(510, 525, 0.5)
       self.log_misc_action(util.MSG_CLICK + str(x+1))
 
     btn_mails.config(state=util.STATE_NORMAL)
