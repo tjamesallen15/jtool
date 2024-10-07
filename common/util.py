@@ -577,6 +577,9 @@ def log_action(message):
   frame_root.update()
 
 def log_time(sec=1.5):
+  if get_member_status() == STATE_ONE:
+    sec = 2
+
   check_time = time.time()
   sec_difference = math.ceil(check_time - val_time)
   min_difference = math.floor(sec_difference / 60)
