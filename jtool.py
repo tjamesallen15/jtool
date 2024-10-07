@@ -83,6 +83,7 @@ class JTool():
   val_pword = []
   val_pin = []
 
+  val_leader = 0
   val_member = 0
   val_mode = 0
   val_buffs = 1
@@ -124,6 +125,7 @@ class JTool():
     access_level = self.get_level()
     char_class = val_char_class.get()
     mode = val_mode.get()
+    leader = val_leader.get()
     member = val_member.get()
     buff = val_buffs.get()
     short = val_shorts.get()
@@ -146,7 +148,7 @@ class JTool():
     self.save_data()
     util.initialize(cabal_window, frame_root, lbl_macro, lbl_current_run, lbl_run_time)
     util.initialize_region()
-    util.set_variables(access_level, char_class, mode, member, buff, short, vera, runs, run_restart, pword, pin, reso, load_time)
+    util.set_variables(access_level, char_class, mode, leader, member, buff, short, vera, runs, run_restart, pword, pin, reso, load_time)
 
     if dungeon_restart == util.STATE_ONE:
       self.restart_cabal_application()
@@ -276,6 +278,11 @@ class JTool():
           return util.STATE_NORMAL
       case util.DATA_MODE:
         if self.get_level() == util.ACCESS_FREE:
+          return util.STATE_DISABLED
+        else:
+          return util.STATE_NORMAL
+      case util.DATA_LEADER:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -591,18 +598,18 @@ class JTool():
     val_run_count.config(width=5)
     val_run_count.place(x=75, y=43)
 
+    lbl_vera = Label(tab_dungeon, text=util.LBL_VERADRIX, state=self.get_access(util.DATA_VERADRIX))
+    lbl_vera.place(x=145, y=43)
+
+    global val_vera
+    val_vera = IntVar(value=self.get_data(util.DATA_VERADRIX))
+    chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_vera, state=self.get_access(util.DATA_VERADRIX))
+    chkbtn_vera.place(x=210, y=44)
+
     global btn_start
     btn_start = Button(tab_dungeon, text=util.BTN_START, command=self.start)
     btn_start.config(width=6)
     btn_start.place(x=255, y=40)
-
-    lbl_member = Label(tab_dungeon, text=util.LBL_MEMBER, state=self.get_access(util.DATA_MODE))
-    lbl_member.place(x=145, y=43)
-
-    global val_member
-    val_member = IntVar(value=0)
-    chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_member, state=self.get_access(util.DATA_MEMBER))
-    chkbtn_member.place(x=210, y=44)
 
     global lbl_current_run
     lbl_current_run = Label(tab_dungeon, text=util.LBL_CURRENT_RUN)
@@ -645,13 +652,21 @@ class JTool():
     chkbtn_shorts = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_shorts, state=self.get_access(util.DATA_SHORTS))
     chkbtn_shorts.place(x=75, y=166)
 
-    lbl_vera = Label(tab_dungeon, text=util.LBL_VERADRIX, state=self.get_access(util.DATA_VERADRIX))
-    lbl_vera.place(x=10, y=195)
+    lbl_leader = Label(tab_dungeon, text=util.LBL_LEADER, state=self.get_access(util.DATA_LEADER))
+    lbl_leader.place(x=10, y=195)
 
-    global val_vera
-    val_vera = IntVar(value=self.get_data(util.DATA_VERADRIX))
-    chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_vera, state=self.get_access(util.DATA_VERADRIX))
-    chkbtn_vera.place(x=75, y=196)
+    global val_leader
+    val_leader = IntVar(value=0)
+    chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_leader, state=self.get_access(util.DATA_LEADER))
+    chkbtn_member.place(x=75, y=196)
+
+    lbl_member = Label(tab_dungeon, text=util.LBL_MEMBER, state=self.get_access(util.DATA_MEMBER))
+    lbl_member.place(x=10, y=225)
+
+    global val_member
+    val_member = IntVar(value=0)
+    chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=val_member, state=self.get_access(util.DATA_MEMBER))
+    chkbtn_member.place(x=75, y=226)
 
     global lbl_restart_note
     lbl_restart_note = Label(tab_dungeon, text=util.LBL_RUN_RESTART)
@@ -665,7 +680,7 @@ class JTool():
 
     global lbl_macro
     lbl_macro = Label(tab_dungeon, text=util.LBL_MACRO)
-    lbl_macro.place(x=10, y=225)
+    lbl_macro.place(x=145, y=225)
 
     # Tab Connection
     lbl_run_restart = Label(tab_connection, text=util.LBL_RUN_RESTART)

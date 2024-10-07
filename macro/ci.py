@@ -263,7 +263,7 @@ class ChaosInfinity(Dungeon):
       reposition_count = 0
       mob_threshold = 30
 
-      if util.get_member_status() == util.STATE_ONE:
+      if util.get_leader_status() == util.STATE_ONE or util.get_member_status() == util.STATE_ONE:
         mob_threshold = 100
 
       while arena:

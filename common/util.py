@@ -54,6 +54,7 @@ val_resolution = '0'
 val_load_time = 0
 val_default_interval = 0.3
 val_time = 0
+val_leader = 0
 val_member = 0
 val_char_class = 'BL'
 val_access = 'Free'
@@ -278,6 +279,7 @@ DATA_JSON = "data/config.json"
 DATA_DUNGEON = "dungeon"
 DATA_RUNS = "runs"
 DATA_MODE = "mode"
+DATA_LEADER = "leader"
 DATA_MEMBER = "member"
 DATA_BUFFS = "buffs"
 DATA_SHORTS = "shorts"
@@ -335,6 +337,7 @@ LBL_CLASS = "Class: "
 LBL_MODE = "Mode II: "
 LBL_BUFFS = "Buffs: "
 LBL_SHORTS = "Shorts: "
+LBL_LEADER = "Leader: "
 LBL_MEMBER = "Member: "
 LBL_VERADRIX = "Veradrix: "
 LBL_CLICK = "Click #: N/A"
@@ -423,7 +426,7 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_time
   val_time = time.time()
 
-def set_variables(access_level, char_class=0, mode=0, member=0, buff=1, sbuffs=1, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
+def set_variables(access_level, char_class=0, mode=0, leader=0, member=0, buff=1, sbuffs=1, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global val_access_level
   val_access_level = access_level
 
@@ -435,6 +438,9 @@ def set_variables(access_level, char_class=0, mode=0, member=0, buff=1, sbuffs=1
 
   global is_battle_mode
   is_battle_mode = False
+
+  global val_leader
+  val_leader - leader
 
   global val_member
   val_member = member
@@ -867,6 +873,9 @@ def get_attack_type():
     return VAL_RANGE
 
   return VAL_MELEE
+
+def get_leader_status():
+  return val_leader
 
 def get_member_status():
   return val_member

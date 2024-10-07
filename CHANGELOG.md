@@ -22,9 +22,13 @@ All notable changes to this project will be documented in this file.
 
 ## v5.80 Features
 
+- [Application] Added party leader feature to correspond with the party member
+
 ## v5.80 Fixes
 
 - [Application] Adjusted mail delay from 0.5 to 0.3
+- [Application] Moved Veradrix feature position
+- [Application] Moved Member feature position
 - [CI] Increased mob_threshold from 30 to 100
 - [HK] Improved run time by reducing wait time for checkpoints
 
