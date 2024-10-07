@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 ## v5.80 Fixes
 
 - [Application] Adjusted mail delay from 0.5 to 0.3
+- [CI] Increased mob_threshold from 30 to 100
 - [HK] Improved run time by reducing wait time for checkpoints
 
 # v5.75

@@ -261,6 +261,11 @@ class ChaosInfinity(Dungeon):
       mob_checker = 0
       chaos_move = 0
       reposition_count = 0
+      mob_threshold = 30
+
+      if util.get_member_status() == util.STATE_ONE:
+        mob_threshold = 100
+
       while arena:
         if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
@@ -342,7 +347,7 @@ class ChaosInfinity(Dungeon):
         except pyauto.ImageNotFoundException:
           pass
 
-        if mob_checker >= 30:
+        if mob_checker >= mob_threshold:
           mob_checker = 0
           util.cancel_aura(1.2)
 
