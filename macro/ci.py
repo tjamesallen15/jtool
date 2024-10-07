@@ -368,10 +368,14 @@ class ChaosInfinity(Dungeon):
         run_counter += 1000
         continue
 
+      wait_time = 1.5
+      if util.get_member_status() == util.STATE_ONE:
+        wait_time = 2
+
       # Start to End Dungeon
       util.reset_battle_mode()
       util.check_notifications()
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time()
+      util.log_time(wait_time)
