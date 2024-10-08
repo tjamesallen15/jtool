@@ -25,23 +25,18 @@ class HazardousValley(Dungeon):
   ]
 
   def initialize(self, frame, btn, runs, diff):
-    global frame_root
-    frame_root = frame
-
-    global btn_start
-    btn_start = btn
-
-    global difficulty
-    difficulty = diff
+    self.frame_root = frame
+    self.btn_start = btn
+    self.difficulty = diff
 
     shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    btn_start.config(state=util.STATE_DISABLED)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
 
     self.run_dungeon(runs)
 
-    btn_start.config(state=util.STATE_NORMAL)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
 
   def path_find(self, unit):
     pathing = True
@@ -559,11 +554,11 @@ class HazardousValley(Dungeon):
       util.move(735, 361, 0.5)
       util.click_portal(735, 361)
 
-      if difficulty == self.dungeon_list[0]:
+      if self.difficulty == self.dungeon_list[0]:
         util.move_click(440, 300, 0.5)
-      elif difficulty == self.dungeon_list[1]:
+      elif self.difficulty == self.dungeon_list[1]:
         util.move_click(440, 280, 0.5)
-      elif difficulty == self.dungeon_list[2]:
+      elif self.difficulty == self.dungeon_list[2]:
         util.move_click(440, 260, 0.5)
 
       # Enter Dungeon

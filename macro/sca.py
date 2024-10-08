@@ -19,23 +19,19 @@ class SteamerCrazyAwakened(Dungeon):
   val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
-    global frame_root
-    frame_root = frame
-
-    global btn_start
-    btn_start = btn
+    self.frame_root = frame
+    self.btn_start = btn
 
     shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    btn_start.config(state=util.STATE_DISABLED)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
 
     self.run_dungeon(runs)
 
-    btn_start.config(state=util.STATE_NORMAL)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
 
   def path_find(self, unit):
-    global portal_counter
     pathing = True
     boss_found = 0
     mobs_found = 0
@@ -52,7 +48,7 @@ class SteamerCrazyAwakened(Dungeon):
 
       try:
         util.move_click(630, 250)
-        if portal_counter % 2 == util.STATE_ZERO:
+        if self.portal_counter % 2 == util.STATE_ZERO:
           util.do_dash(0.1)
 
         util.do_select(0.1)
@@ -71,14 +67,14 @@ class SteamerCrazyAwakened(Dungeon):
       try:
         util.move_click(620, 250)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        portal_counter += 1
+        self.portal_counter += 1
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
 
-        if portal_counter % 2 == util.STATE_ZERO:
+        if self.portal_counter % 2 == util.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash(0.1)
-        elif portal_counter == 9:
+        elif self.portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash()
@@ -140,14 +136,14 @@ class SteamerCrazyAwakened(Dungeon):
       try:
         util.move_click(600, 250)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        portal_counter += 1
+        self.portal_counter += 1
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
 
-        if portal_counter % 2 == util.STATE_ZERO:
+        if self.portal_counter % 2 == util.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash(0.1)
-        elif portal_counter == 9:
+        elif self.portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash()
@@ -209,14 +205,14 @@ class SteamerCrazyAwakened(Dungeon):
       try:
         util.move_click(650, 250)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        portal_counter += 1
+        self.portal_counter += 1
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
 
-        if portal_counter % 2 == util.STATE_ZERO:
+        if self.portal_counter % 2 == util.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash(0.1)
-        elif portal_counter == 9:
+        elif self.portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
           util.do_dash()
@@ -271,12 +267,11 @@ class SteamerCrazyAwakened(Dungeon):
       util.do_fade(0.1)
 
   def run_dungeon(self, runs):
-    global portal_counter
     run_counter = 0
     while run_counter < runs:
       util.check_run_restart(run_counter)
       run_counter += 1
-      portal_counter = 0
+      self.portal_counter = 0
       util.log_action(util.MSG_START_DG)
       util.log_run(run_counter)
 

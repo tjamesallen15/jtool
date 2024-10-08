@@ -20,20 +20,17 @@ class SienaB1FPrideus(Dungeon):
   val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
-    global frame_root
-    frame_root = frame
-
-    global btn_start
-    btn_start = btn
+    self.frame_root = frame
+    self.btn_start = btn
 
     shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    btn_start.config(state=util.STATE_DISABLED)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
 
     self.run_dungeon(runs)
 
-    btn_start.config(state=util.STATE_NORMAL)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
 
   def run_dungeon(self, runs):
     run_counter = 0

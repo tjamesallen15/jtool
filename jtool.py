@@ -374,6 +374,12 @@ class JTool():
       self.chkbtn_leader.config(state=util.STATE_DISABLED)
       self.chkbtn_member.config(state=util.STATE_DISABLED)
 
+  def check_party_leader_state(self):
+    self.val_member.set(0)
+
+  def check_party_member_state(self):
+    self.val_leader.set(0)
+
   def restart_cabal_application(self):
     util.log_action(util.MSG_DUNGEON_RESTART)
     util.exit_cabal_application()
@@ -655,14 +661,14 @@ class JTool():
     lbl_leader.place(x=10, y=195)
 
     self.val_leader = IntVar(value=0)
-    self.chkbtn_leader = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_leader, state=self.get_access(util.DATA_LEADER))
+    self.chkbtn_leader = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_leader, command=self.check_party_leader_state, state=self.get_access(util.DATA_LEADER))
     self.chkbtn_leader.place(x=75, y=196)
 
     lbl_member = Label(tab_dungeon, text=util.LBL_MEMBER, state=self.get_access(util.DATA_MEMBER))
     lbl_member.place(x=10, y=225)
 
     self.val_member = IntVar(value=0)
-    self.chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_member, state=self.get_access(util.DATA_MEMBER))
+    self.chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_member, command=self.check_party_member_state, state=self.get_access(util.DATA_MEMBER))
     self.chkbtn_member.place(x=75, y=226)
 
     self.lbl_restart_note = Label(tab_dungeon, text=util.LBL_RUN_RESTART_EMPTY)
