@@ -31,8 +31,9 @@ All notable changes to this project will be documented in this file.
 - [Application] Adjusted mail delay from 0.5 to 0.3
 - [Application] Moved Veradrix feature position
 - [Application] Moved Member feature position
-- [CI] Increased mob_threshold from 30 to 100
+- [CI] Increased mob_threshold from 30 to 100 for party state
 - [HK] Improved run time by reducing wait time for checkpoints
+- [PCA] Fixed melee stuck on nualle boss
 
 # v5.75
 

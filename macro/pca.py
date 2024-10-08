@@ -121,6 +121,8 @@ class PanicCaveAwakened(Dungeon):
 
       util.move(680, 380)
       util.do_fade(1)
+    else:
+      util.wait(2)
 
   def position_first_shadow(self):
     util.log_action(util.MSG_MOVING_POSITION)
