@@ -218,7 +218,7 @@ class ChaosInfinity(Dungeon):
 
         util.do_select(0.1)
 
-        if util.get_member_status() == util.STATE_ZERO:
+        if util.get_party_member_status() == util.STATE_ZERO:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
             util.focus_gate(util.UNIT_GATE, 0)
@@ -238,7 +238,7 @@ class ChaosInfinity(Dungeon):
       util.move(620, 150)
       util.do_dash()
 
-      if util.get_member_status() == util.STATE_ZERO:
+      if util.get_party_member_status() == util.STATE_ZERO:
         util.do_fade(6)
       else:
         util.do_fade()
@@ -263,7 +263,7 @@ class ChaosInfinity(Dungeon):
       reposition_count = 0
       mob_threshold = 30
 
-      if util.get_leader_status() == util.STATE_ONE or util.get_member_status() == util.STATE_ONE:
+      if util.get_party_leader_status() == util.STATE_ONE or util.get_party_member_status() == util.STATE_ONE:
         mob_threshold = 100
 
       while arena:
@@ -323,7 +323,7 @@ class ChaosInfinity(Dungeon):
           chaos_move = 0
           util.plunder_box(1, 3, 1, 0)
 
-          if util.get_member_status() == util.STATE_ZERO:
+          if util.get_party_status() == util.STATE_ZERO:
             util.wait(1.5)
 
         except pyauto.ImageNotFoundException:
@@ -369,7 +369,7 @@ class ChaosInfinity(Dungeon):
         continue
 
       wait_time = 1.5
-      if util.get_member_status() == util.STATE_ONE:
+      if util.get_party_member_status() == util.STATE_ONE:
         wait_time = 2
 
       # Start to End Dungeon

@@ -23,6 +23,8 @@ All notable changes to this project will be documented in this file.
 ## v5.80 Features
 
 - [Application] Added party leader feature to correspond with the party member
+- [Application] Refactored code structure of main class into object oriented approach
+- [Application] Added validate lock state for party and member feature
 
 ## v5.80 Fixes
 

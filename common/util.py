@@ -351,6 +351,7 @@ LBL_RESTART_NOTE_PREFIX = "Every "
 LBL_RESTART_NOTE_SUFFIX = " runs"
 
 LBL_RUN_RESTART = "Run Restart: "
+LBL_RUN_RESTART_EMPTY = "Run Restart: --"
 LBL_RUN_RESTART_NOTE = "Restart every run specified."
 LBL_DG_RESTART = "DG Restart"
 LBL_DG_RESTART_NOTE = "Restart first before auto."
@@ -440,7 +441,7 @@ def set_variables(access_level, char_class=0, mode=0, leader=0, member=0, buff=1
   is_battle_mode = False
 
   global val_leader
-  val_leader - leader
+  val_leader = leader
 
   global val_member
   val_member = member
@@ -874,10 +875,16 @@ def get_attack_type():
 
   return VAL_MELEE
 
-def get_leader_status():
+def get_party_status():
+  if get_party_leader_status() == STATE_ONE or get_party_member_status() == STATE_ONE:
+    return True
+
+  return False
+
+def get_party_leader_status():
   return val_leader
 
-def get_member_status():
+def get_party_member_status():
   return val_member
 
 def get_battle_mode():
@@ -1352,7 +1359,7 @@ def challenge_dungeon(sec=0):
     if challenging == False:
       break
 
-    if get_member_status() == STATE_ZERO:
+    if get_party_member_status() == STATE_ZERO:
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
         log_action(MSG_BUTTON_FOUND)
