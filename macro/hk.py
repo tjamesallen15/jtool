@@ -20,20 +20,17 @@ class HolyKeldrasil(Dungeon):
   val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
-    global frame_root
-    frame_root = frame
-
-    global btn_start
-    btn_start = btn
+    self.frame_root = frame
+    self.btn_start = btn
 
     shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    btn_start.config(state=util.STATE_DISABLED)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
 
     self.run_dungeon(runs)
 
-    btn_start.config(state=util.STATE_NORMAL)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
 
   def find_mobs(self, unit=util.UNIT_BLANK):
     finding = True
@@ -200,11 +197,11 @@ class HolyKeldrasil(Dungeon):
 
         try:
           util.move_click(600, 320)
-          util.move_click(600, 320)
-          util.move_click(600, 320)
+          # util.move_click(600, 320)
+          # util.move_click(600, 320)
           util.move_click(550, 320)
-          util.move_click(550, 320)
-          util.move_click(550, 320)
+          # util.move_click(550, 320)
+          # util.move_click(550, 320)
           util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -230,12 +227,12 @@ class HolyKeldrasil(Dungeon):
       # Attack Second Group
       util.move(300, 250)
       util.do_dash()
-      util.wait(7)
+      util.wait(4)
 
       util.move(900, 400)
       util.do_dash()
       util.do_fade()
-      util.wait(5)
+      util.wait(4)
       self.find_mobs(util.UNIT_HATCHLING)
       try:
         boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
@@ -285,11 +282,11 @@ class HolyKeldrasil(Dungeon):
 
         try:
           util.move_click(600, 320)
-          util.move_click(600, 320)
-          util.move_click(600, 320)
+          # util.move_click(600, 320)
+          # util.move_click(600, 320)
           util.move_click(550, 320)
-          util.move_click(550, 320)
-          util.move_click(550, 320)
+          # util.move_click(550, 320)
+          # util.move_click(550, 320)
           util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -309,7 +306,7 @@ class HolyKeldrasil(Dungeon):
       util.move_scroll(375, 150, 850, 150)
 
       # Third Group Sequence
-      util.wait(10)
+      util.wait(9)
       util.move(630, 320)
       util.do_dash()
       self.find_mobs(util.UNIT_OWL_BEAR)
@@ -396,11 +393,11 @@ class HolyKeldrasil(Dungeon):
 
         try:
           util.move_click(600, 320)
-          util.move_click(600, 320)
-          util.move_click(600, 320)
+          # util.move_click(600, 320)
+          # util.move_click(600, 320)
           util.move_click(550, 320)
-          util.move_click(550, 320)
-          util.move_click(550, 320)
+          # util.move_click(550, 320)
+          # util.move_click(550, 320)
           util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -448,7 +445,7 @@ class HolyKeldrasil(Dungeon):
       util.do_fade()
 
       # Attack Fourth Group
-      util.wait(12)
+      util.wait(9)
       util.move(620, 600)
       util.attack_mobs(util.UNIT_KNIGHT, 1, 0.3, 0)
 

@@ -21,11 +21,8 @@ class PanicCaveAwakened(Dungeon):
   val_fade_speed = 0.5
 
   def initialize(self, frame, btn, runs):
-    global frame_root
-    frame_root = frame
-
-    global btn_start
-    btn_start = btn
+    self.frame_root = frame
+    self.btn_start = btn
 
     if util.get_access_level() == util.ACCESS_SUPER:
       self.val_fade_speed = 0.3
@@ -33,13 +30,13 @@ class PanicCaveAwakened(Dungeon):
       self.val_fade_speed = 0.5
 
     shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    btn_start.config(state=util.STATE_DISABLED)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
 
     self.run_dungeon(runs)
 
-    btn_start.config(state=util.STATE_NORMAL)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
 
   def position_nualle(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -124,6 +121,8 @@ class PanicCaveAwakened(Dungeon):
 
       util.move(680, 380)
       util.do_fade(1)
+    else:
+      util.wait(2)
 
   def position_first_shadow(self):
     util.log_action(util.MSG_MOVING_POSITION)

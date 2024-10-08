@@ -20,20 +20,17 @@ class ChaosInfinity(Dungeon):
   val_sidestep = 0
 
   def initialize(self, frame, btn, runs):
-    global frame_root
-    frame_root = frame
-
-    global btn_start
-    btn_start = btn
+    self.frame_root = frame
+    self.btn_start = btn
 
     shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    btn_start.config(state=util.STATE_DISABLED)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
 
     self.run_dungeon(runs)
 
-    btn_start.config(state=util.STATE_NORMAL)
-    frame_root.update()
+    self.btn_start.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
 
   def reposition_center(self):
     util.log_action(util.MSG_MOVING_POSITION)
@@ -218,7 +215,7 @@ class ChaosInfinity(Dungeon):
 
         util.do_select(0.1)
 
-        if util.get_member_status() == util.STATE_ZERO:
+        if util.get_party_member_status() == util.STATE_ZERO:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
             util.focus_gate(util.UNIT_GATE, 0)
@@ -238,7 +235,7 @@ class ChaosInfinity(Dungeon):
       util.move(620, 150)
       util.do_dash()
 
-      if util.get_member_status() == util.STATE_ZERO:
+      if util.get_party_member_status() == util.STATE_ZERO:
         util.do_fade(6)
       else:
         util.do_fade()
@@ -261,6 +258,11 @@ class ChaosInfinity(Dungeon):
       mob_checker = 0
       chaos_move = 0
       reposition_count = 0
+      mob_threshold = 30
+
+      if util.get_party_leader_status() == util.STATE_ONE or util.get_party_member_status() == util.STATE_ONE:
+        mob_threshold = 100
+
       while arena:
         if not util.get_macro_state():
           util.log_action(util.MSG_TERMINATE)
@@ -318,7 +320,7 @@ class ChaosInfinity(Dungeon):
           chaos_move = 0
           util.plunder_box(1, 3, 1, 0)
 
-          if util.get_member_status() == util.STATE_ZERO:
+          if util.get_party_status() == util.STATE_ZERO:
             util.wait(1.5)
 
         except pyauto.ImageNotFoundException:
@@ -342,7 +344,7 @@ class ChaosInfinity(Dungeon):
         except pyauto.ImageNotFoundException:
           pass
 
-        if mob_checker >= 30:
+        if mob_checker >= mob_threshold:
           mob_checker = 0
           util.cancel_aura(1.2)
 
@@ -363,10 +365,14 @@ class ChaosInfinity(Dungeon):
         run_counter += 1000
         continue
 
+      wait_time = 1.5
+      if util.get_party_member_status() == util.STATE_ONE:
+        wait_time = 2
+
       # Start to End Dungeon
       util.reset_battle_mode()
       util.check_notifications()
       util.end_dungeon()
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
-      util.log_time()
+      util.log_time(wait_time)
