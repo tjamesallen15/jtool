@@ -106,7 +106,7 @@ class ChaosInfinity(Dungeon):
     util.do_dash(1.5)
     util.do_select(0.1)
 
-  def check_ulwaan_left():
+  def check_ulwaan_left(self):
     # HORIZONTAL
     util.move(100, 400)
     util.do_dash()

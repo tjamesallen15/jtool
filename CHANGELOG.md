@@ -126,6 +126,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Refactored some coding structure
 - [Application] Added trial user version
 - [Application] Added Class Input
+- [Application] Added new button Divide(1)
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
 - [CI] Added double checker for repositions

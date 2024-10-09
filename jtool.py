@@ -67,6 +67,7 @@ class JTool():
   btn_train = []
   btn_misc_test = []
   btn_misc_click = []
+  btn_divide_one = []
   chkbtn_leader = []
   chkbtn_member = []
   lbl_macro = []
@@ -495,6 +496,7 @@ class JTool():
   def test_custom_clicks(self):
     self.btn_misc_test.config(state=util.STATE_DISABLED)
     self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
     self.frame_root.update()
 
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -508,11 +510,13 @@ class JTool():
 
     self.btn_misc_test.config(state=util.STATE_NORMAL)
     self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
   def custom_clicks(self):
     self.btn_misc_test.config(state=util.STATE_DISABLED)
     self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
     self.frame_root.update()
 
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -528,7 +532,42 @@ class JTool():
 
     self.btn_misc_test.config(state=util.STATE_NORMAL)
     self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
     self.frame_root.update()
+
+  def divide_one(self):
+    self.btn_misc_test.config(state=util.STATE_DISABLED)
+    self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
+
+    cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+
+    coor_x = int(self.val_misc_x_coords.get())
+    coor_y = int(self.val_misc_y_coords.get())
+
+    util.move(coor_x, coor_y)
+
+    for x in range(int(self.val_click_count.get())):
+      pynboard.press(Key.shift_l)
+      time.sleep(0.15)
+      pyauto.click(button='right')
+      pynboard.release(Key.shift_l)
+      time.sleep(0.15)
+      pynboard.press('1')
+      pynboard.release('1')
+      time.sleep(0.15)
+      pynboard.press(Key.enter)
+      pynboard.release(Key.enter)
+      self.log_misc_action(util.MSG_CLICK + str(x+1))
+
+    self.btn_misc_test.config(state=util.STATE_NORMAL)
+    self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
+
 
   def get_features_free(self):
     self.text_features.configure(state=util.STATE_NORMAL)
@@ -758,7 +797,7 @@ class JTool():
 
     self.val_x_coords = StringVar()
     self.val_x_coords.set(self.val_def_x)
-    entry_x_coords = Entry(tab_pet, textvariable=self.val_x_coords, width=5)
+    entry_x_coords = Entry(tab_pet, textvariable=self.val_x_coords, justify='center', width=5)
     entry_x_coords.place(x=62, y=105)
 
     lbl_y_coords = Label(tab_pet, text=util.LBL_NPC_Y)
@@ -766,7 +805,7 @@ class JTool():
 
     self.val_y_coords = StringVar()
     self.val_y_coords.set(self.val_def_y)
-    entry_y_coords = Entry(tab_pet, textvariable=self.val_y_coords, width=5)
+    entry_y_coords = Entry(tab_pet, textvariable=self.val_y_coords, justify='center', width=5)
     entry_y_coords.place(x=162, y=105)
 
     self.btn_test = Button(tab_pet, text=util.BTN_TEST, command=self.pet_test)
@@ -842,31 +881,35 @@ class JTool():
 
     self.btn_mails = Button(tab_misc, text=util.BTN_MAILS, command=self.get_mails)
     self.btn_mails.config(width=8)
-    self.btn_mails.place(x=10, y=110)
+    self.btn_mails.place(x=235, y=40)
 
     lbl_misc_x_coords = Label(tab_misc, text=util.LBL_NPC_X)
-    lbl_misc_x_coords.place(x=10, y=153)
+    lbl_misc_x_coords.place(x=10, y=113)
 
     self.val_misc_x_coords = StringVar()
-    self.val_misc_x_coords.set('0')
-    entry_x_coords = Entry(tab_misc, textvariable=self.val_misc_x_coords, width=5)
-    entry_x_coords.place(x=62, y=155)
+    self.val_misc_x_coords.set('1050')
+    entry_x_coords = Entry(tab_misc, textvariable=self.val_misc_x_coords, justify='center', width=5)
+    entry_x_coords.place(x=62, y=115)
 
     lbl_misc_y_coords = Label(tab_misc, text=util.LBL_NPC_Y)
-    lbl_misc_y_coords.place(x=110, y=153)
+    lbl_misc_y_coords.place(x=110, y=113)
 
     self.val_misc_y_coords = StringVar()
-    self.val_misc_y_coords.set('0')
-    entry_y_coords = Entry(tab_misc, textvariable=self.val_misc_y_coords, width=5)
-    entry_y_coords.place(x=162, y=155)
+    self.val_misc_y_coords.set('375')
+    entry_y_coords = Entry(tab_misc, textvariable=self.val_misc_y_coords, justify='center', width=5)
+    entry_y_coords.place(x=162, y=115)
 
     self.btn_misc_test = Button(tab_misc, text=util.BTN_TEST, command=self.test_custom_clicks)
     self.btn_misc_test.config(width=5)
-    self.btn_misc_test.place(x=210, y=150)
+    self.btn_misc_test.place(x=10, y=150)
 
     self.btn_misc_click = Button(tab_misc, text=util.BTN_CLICK, command=self.custom_clicks)
     self.btn_misc_click.config(width=6)
-    self.btn_misc_click.place(x=260, y=150)
+    self.btn_misc_click.place(x=60, y=150)
+
+    self.btn_divide_one = Button(tab_misc, text=util.BTN_DIVIDE_ONE, command=self.divide_one)
+    self.btn_divide_one.config(width=9)
+    self.btn_divide_one.place(x=118, y=150)
 
     lbl_misc_custom_note = Label(tab_misc, text=util.LBL_CUSTON_CLICK_NOTE)
     lbl_misc_custom_note.place(x=10, y=190)
