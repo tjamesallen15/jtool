@@ -631,7 +631,7 @@ class JTool():
     lbl_class = Label(tab_dungeon, text=util.LBL_CLASS, state=self.get_access(util.DATA_MODE))
     lbl_class.place(x=10, y=73)
 
-    self.val_char_class = ttk.Combobox(tab_dungeon, values=util.LIST_CLASS, state=util.STATE_NORMAL)
+    self.val_char_class = ttk.Combobox(tab_dungeon, values=util.LIST_CLASS, state=util.STATE_READONLY)
     self.val_char_class.current(self.get_data(util.DATA_CLASS))
     self.val_char_class.config(width=5)
     self.val_char_class.place(x=75, y=73)

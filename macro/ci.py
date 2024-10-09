@@ -106,6 +106,51 @@ class ChaosInfinity(Dungeon):
     util.do_dash(1.5)
     util.do_select(0.1)
 
+  def check_ulwaan_left():
+    # HORIZONTAL
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(1200, 400)
+    util.do_dash()
+
+  def check_ulwaan_right(self):
+    util.move(1200, 400)
+    util.do_dash()
+
+    util.move(1200, 360)
+    util.do_fade()
+
+    util.move(1200, 400)
+    util.do_dash()
+
+    util.move(1200, 360)
+    util.do_fade()
+
+    util.move(1200, 400)
+    util.do_dash()
+
+    util.move(1200, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
   def reposition_mobs(self):
     # VERTICAL CHECK
     util.move(620, 100)
@@ -235,10 +280,21 @@ class ChaosInfinity(Dungeon):
       util.move(620, 150)
       util.do_dash()
 
-      if util.get_party_member_status() == util.STATE_ZERO:
-        util.do_fade(6)
-      else:
+      if util.get_party_member_status() == util.STATE_ONE:
         util.do_fade()
+      elif util.get_party_leader_status() == util.STATE_ONE:
+        util.do_fade(2)
+        counter = 0
+        while counter != 5:
+          try:
+            util.do_select(0.1)
+            mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+            util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
+          except pyauto.ImageNotFoundException:
+            pass
+          counter += 1
+      else:
+        util.do_fade(5.5)
 
       util.move(620, 150)
       util.do_dash()
@@ -261,7 +317,7 @@ class ChaosInfinity(Dungeon):
       mob_threshold = 30
 
       if util.get_party_leader_status() == util.STATE_ONE or util.get_party_member_status() == util.STATE_ONE:
-        mob_threshold = 100
+        mob_threshold = 200
 
       while arena:
         if not util.get_macro_state():
@@ -352,7 +408,10 @@ class ChaosInfinity(Dungeon):
             self.reposition_center()
 
           if bosses == 10 and reposition_count < 2:
-            self.reposition_ulwaan()
+            if reposition_count == 0:
+              self.check_ulwaan_left()
+            else:
+              self.check_ulwaan_right()
           else:
             self.reposition_mobs()
           reposition_count += 1
