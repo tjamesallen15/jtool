@@ -53,6 +53,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added party leader feature to correspond with the party member
 - [Application] Refactored code structure of main class into object oriented approach
 - [Application] Added validate lock state for party and member feature
+- [Application] Removed temporarily Panic Cave(Awakened) for all users
 
 ## v5.80 Fixes
 

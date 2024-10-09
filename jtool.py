@@ -220,7 +220,6 @@ class JTool():
         "Steamer Crazy (Awakened)",
         "Catacomb Frost (Awakened)",
         "Lava Hellfire (Awakened)",
-        "Panic Cave (Awakened)",
         "Holy Windmill",
         "Holy Keldrasil",
         "Terminus Machina",
@@ -229,9 +228,6 @@ class JTool():
     elif self.get_level() == util.ACCESS_TESTER_II:
       self.LIST_DUNGEON = [
         "Hazardous Valley (Awakened)",
-        "Hazardous Valley (Hard)",
-        "Hazardous Valley (Medium)",
-        "Hazardous Valley (Easy)",
         "Steamer Crazy (Awakened)",
         "Catacomb Frost (Awakened)",
         "Lava Hellfire (Awakened)",
