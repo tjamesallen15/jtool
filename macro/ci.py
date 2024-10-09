@@ -283,7 +283,7 @@ class ChaosInfinity(Dungeon):
       if util.get_party_member_status() == util.STATE_ONE:
         util.do_fade()
       elif util.get_party_leader_status() == util.STATE_ONE:
-        util.do_fade(2)
+        util.do_fade(1)
         counter = 0
         while counter != 5:
           try:
