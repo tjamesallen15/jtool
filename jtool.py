@@ -1,6 +1,3 @@
-from PIL import Image, ImageEnhance, ImageFilter
-import pytesseract
-
 from tkinter import *
 from tkinter import ttk
 from pynput import keyboard
