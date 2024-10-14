@@ -109,6 +109,8 @@ class CatacombsFrostAwakened(Dungeon):
 
       util.move(500, 500)
       util.do_dash()
+
+      # util.move_click(545, 300, 0.3)
       util.move(500, 300)
       util.do_fade()
 
