@@ -837,6 +837,9 @@ def check_run_restart(run_count):
       move_bead_window()
       val_run_restart_stack += run_count
 
+def get_archer_region():
+  return region_mode_bar
+
 def get_region():
   if is_battle_mode and get_attack_type() == STATE_ONE:
     return region_mode_bar

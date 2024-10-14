@@ -259,7 +259,6 @@ class ChaosInfinity(Dungeon):
           break
 
         util.do_select(0.1)
-
         if util.get_party_member_status() == util.STATE_ZERO:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
@@ -276,6 +275,13 @@ class ChaosInfinity(Dungeon):
             util.wait(2)
             has_gate = False
             break
+
+      try:
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.focus_gate(util.UNIT_GATE, 0)
+        util.wait(0.3)
+      except pyauto.ImageNotFoundException:
+        pass
 
       util.move(620, 150)
       util.do_dash()
