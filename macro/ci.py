@@ -128,7 +128,6 @@ class ChaosInfinity(Dungeon):
 
     util.move(1200, 400)
     util.do_dash()
-    util.do_fade()
 
   def check_ulwaan_right(self):
     util.move(1200, 400)
@@ -151,7 +150,6 @@ class ChaosInfinity(Dungeon):
 
     util.move(100, 400)
     util.do_dash()
-    util.do_fade()
 
   def reposition_mobs(self):
     # VERTICAL CHECK
@@ -323,6 +321,8 @@ class ChaosInfinity(Dungeon):
       chaos_move = 0
       reposition_count = 0
       mob_threshold = 30
+      check_left = 0
+      check_right = 0
 
       if util.get_party_leader_status() == util.STATE_ONE or util.get_party_member_status() == util.STATE_ONE:
         mob_threshold = 200
@@ -372,6 +372,16 @@ class ChaosInfinity(Dungeon):
           reposition_count = 0
           chaos_move = 0
           util.wait(0.2)
+
+          if check_left == util.STATE_ONE:
+            util.move(1200, 400)
+            util.do_dash()
+            check_left = 0
+          elif check_right == util.STATE_ONE:
+            util.move(100, 400)
+            util.do_dash()
+            check_right = 0
+
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
           pass
@@ -418,8 +428,10 @@ class ChaosInfinity(Dungeon):
           if bosses == 10 and reposition_count < 2:
             if reposition_count == 0:
               self.check_ulwaan_left()
+              check_left = 1
             else:
               self.check_ulwaan_right()
+              check_right = 1
           else:
             self.reposition_mobs()
           reposition_count += 1
