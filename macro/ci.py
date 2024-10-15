@@ -128,6 +128,7 @@ class ChaosInfinity(Dungeon):
 
     util.move(1200, 400)
     util.do_dash()
+    util.do_fade()
 
   def check_ulwaan_right(self):
     util.move(1200, 400)
@@ -150,6 +151,7 @@ class ChaosInfinity(Dungeon):
 
     util.move(100, 400)
     util.do_dash()
+    util.do_fade()
 
   def reposition_mobs(self):
     # VERTICAL CHECK
