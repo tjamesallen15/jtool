@@ -347,6 +347,7 @@ class ChaosInfinity(Dungeon):
         mob_checker += 1
         util.do_select(0.1)
         util.do_fast_plunder()
+        util.do_final_mode()
 
         try:
           chaos_gate = pyauto.locateOnScreen(util.IMG_CHAOS_GATE, grayscale=False, confidence=.7, region=util.get_full_region())
