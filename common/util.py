@@ -584,9 +584,10 @@ def log_action(message):
   global val_last_message
   if val_last_message != msg_builder:
     val_last_message = msg_builder
-    lbl_macro.config(text=msg_builder)
     print(msg_builder)
-    frame_root.update()
+
+  lbl_macro.config(text=msg_builder)
+  frame_root.update()
 
 def log_time(sec=1.5):
   check_time = time.time()
