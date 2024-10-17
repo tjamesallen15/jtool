@@ -211,7 +211,13 @@ class CatacombsFrostAwakened(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
+          pass
+
+        try:
+          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.attack_mobs(util.UNIT_SPECTOR, 0, 0.3, self.val_sidestep)
+        except pyauto.ImageNotFoundException:
+          pass
 
       # Check Macro State
       if not util.get_macro_state():

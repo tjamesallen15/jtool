@@ -58,6 +58,7 @@ val_leader = 0
 val_member = 0
 val_char_class = 'BL'
 val_access = 'Free'
+val_last_message = ''
 
 region_normal_bar = []
 region_mode_bar = []
@@ -216,6 +217,9 @@ IMG_CRIT_DAMAGE = "img/crit-dmg.jpg"
 IMG_CRIT_RESIST = "img/resist-rate.jpg"
 IMG_EVA = "img/evasion.jpg"
 IMG_CHAOS_GATE = "img/chaosgate.jpg"
+IMG_BLOODY_SWEEPER = "img/bloody-sweeper.jpg"
+IMG_BLOODY_FANG = "img/bloody-fang.jpg"
+IMG_BEELZEBUB = "img/beelzebub.jpg"
 
 # FILE
 FILE_CHANGELOG = "CHANGELOG.md"
@@ -428,6 +432,9 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_time
   val_time = time.time()
 
+  global val_last_message
+  val_last_message = ''
+
 def set_variables(access_level, char_class=0, mode=0, leader=0, member=0, buff=1, sbuffs=1, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
   global val_access_level
   val_access_level = access_level
@@ -573,10 +580,13 @@ def log_run(run_number, fail_run_count=0):
 
 def log_action(message):
   msg_builder = MSG_ACTION + message
-  lbl_macro.config(text=msg_builder)
 
-  print(msg_builder)
-  frame_root.update()
+  global val_last_message
+  if val_last_message != msg_builder:
+    val_last_message = msg_builder
+    lbl_macro.config(text=msg_builder)
+    print(msg_builder)
+    frame_root.update()
 
 def log_time(sec=1.5):
   check_time = time.time()
