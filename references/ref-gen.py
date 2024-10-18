@@ -100,3 +100,9 @@
 # util.do_dash()
 # util.do_fade(1.5)
 # util.do_fade()
+
+
+
+# util.move_click(700, 250, 4)
+# util.move_click(510, 225, 5)
+# util.move_click(1000, 300, 5)
