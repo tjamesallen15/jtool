@@ -1,9 +1,9 @@
 {
-    "dungeon": 15,
-    "class": 1,
-    "mode": 1,
+    "dungeon": 0,
+    "class": 0,
+    "mode": 0,
     "buffs": 1,
-    "shorts": 1,
+    "shorts": 0,
     "veradrix": 0,
     "pword": "",
     "pin": "",
