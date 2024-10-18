@@ -266,7 +266,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash(1.5)
 
       util.move(425, 350)
-      util.do_dash()
+      util.do_dash(1.5)
 
       ##########################
 
@@ -280,7 +280,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
 
       if util.get_party_member_status() == util.STATE_ONE:
-        util.wait(4)
+        util.wait(3)
       util.wait(3)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -288,7 +288,7 @@ class PurifierOfTheForest(Dungeon):
       # util.move_click(510, 225, 5)
       # util.move_click(1000, 300, 5)
       util.move_click(755, 210, 5)
-      util.move_click(510, 220, 5)
+      util.move_click(510, 220, 6)
       util.move_click(1000, 310, 5)
       util.move_scroll(375, 150, 700, 150, 0.5)
 
