@@ -160,6 +160,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
 
       # Attack First Boss (Bloody Sweeper)
+      util.set_last_cast_mode(3)
       self.find_kill_boss(util.IMG_BLOODY_SWEEPER, util.UNIT_BLOODY_SWEEPER)
 
       util.move(780, 200)
@@ -175,12 +176,16 @@ class PurifierOfTheForest(Dungeon):
       self.attack_monsters(util.UNIT_BLOODY_HORN, 3)
       self.attack_monsters(util.UNIT_BLOODY_HORN, 1)
 
+      util.move(625, 440)
+      util.do_fade()
+
       util.move_click(1050, 435, 5)
 
       util.move(660, 450)
       util.do_fade(3)
 
       # Attack Second Boss (Bloody Fang)
+      util.set_last_cast_mode(3)
       self.find_kill_boss(util.IMG_BLOODY_FANG, util.UNIT_BLOODY_FANG)
 
       util.move(825, 600)
@@ -194,6 +199,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.do_fade()
       util.do_dash()
+      util.do_fade()
 
       # First Portal
       self.go_portal(650, 400)
@@ -240,12 +246,13 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
       util.do_dash()
       util.do_fade()
-      util.wait(10)
+      util.wait(12)
 
       util.move(600, 600)
       util.do_fade()
 
       # Attack Third Boss
+      util.set_last_cast_mode(3)
       self.find_kill_boss(util.IMG_BEELZEBUB, util.UNIT_BEELZEBUB)
 
       # Move to Electrishia Base
@@ -261,11 +268,10 @@ class PurifierOfTheForest(Dungeon):
       util.move(425, 350)
       util.do_dash()
 
+      ##########################
+
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
-      else:
-        util.wait(4)
-      util.wait(3)
 
       util.move(100, 325)
       util.do_dash()
@@ -273,10 +279,17 @@ class PurifierOfTheForest(Dungeon):
       util.move(300, 400)
       util.do_fade()
 
+      if util.get_party_member_status() == util.STATE_ONE:
+        util.wait(4)
+      util.wait(3)
+
       util.move_scroll(700, 150, 375, 150, 0.5)
-      util.move_click(700, 250, 4)
-      util.move_click(510, 225, 5)
-      util.move_click(1000, 300, 5)
+      # util.move_click(700, 250, 4)
+      # util.move_click(510, 225, 5)
+      # util.move_click(1000, 300, 5)
+      util.move_click(755, 210, 5)
+      util.move_click(510, 220, 5)
+      util.move_click(1000, 310, 5)
       util.move_scroll(375, 150, 700, 150, 0.5)
 
       util.move_click(875, 200, 5)
@@ -360,6 +373,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
 
       # Attack Fourth Boss (Electula)
+      util.set_last_cast_mode(3)
       self.find_kill_boss(util.IMG_ELECTULA, util.UNIT_ELECTULA)
       util.move(1000, 425)
       util.do_dash()
@@ -378,7 +392,7 @@ class PurifierOfTheForest(Dungeon):
 
       util.force_battle_mode()
       util.do_aura(2)
-      util.set_last_case_mode(2)
+      util.set_last_cast_mode(2)
       util.move_click(900, 240, 5)
 
       # Attack First Ant Hill
@@ -410,6 +424,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.move(640, 250)
       util.do_fade()
+      util.cancel_aura(1.5)
 
       # Attack Fifth Boss (Queen Ripley)
       self.find_kill_boss(util.IMG_QUEEN_RIPLEY, util.UNIT_QUEEN_RIPLEY)
