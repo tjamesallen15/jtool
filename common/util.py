@@ -220,6 +220,11 @@ IMG_CHAOS_GATE = "img/chaosgate.jpg"
 IMG_BLOODY_SWEEPER = "img/bloody-sweeper.jpg"
 IMG_BLOODY_FANG = "img/bloody-fang.jpg"
 IMG_BEELZEBUB = "img/beelzebub.jpg"
+IMG_ELECTULA = "img/electula.jpg"
+IMG_QUEEN_RIPLEY = "img/queen-ripley.jpg"
+IMG_ANT_HILL = "img/ant-hill.jpg"
+IMG_BURNING_ANT_HILL = "img/burning-ant-hill.jpg"
+IMG_FULL_ANT_HILL = "img/full-ant-hill.jpg"
 
 # FILE
 FILE_CHANGELOG = "CHANGELOG.md"
@@ -278,6 +283,20 @@ UNIT_SIENA_BOX = "Siena Box"
 UNIT_BOX = "Box"
 UNIT_ARENA_MOBS = "Arena Monsters"
 
+UNIT_WEB_GATE = "Web Gate"
+UNIT_BLOODY_SWEEPER = "Bloody Sweeper"
+UNIT_BLOODY_FANG = "Bloody Fang"
+UNIT_BEELZEBUB = "Beelzebub"
+UNIT_ELECTULA = "Electula"
+UNIT_QUEEN_RIPLEY = "Queen Ripley"
+UNIT_OMERAI = "Omerai"
+
+UNIT_BLOODY_HORN = "Bloody Horn"
+UNIT_KORAIDER = "Koraider"
+UNIT_MUTANT_KORAIDER = "Mutang Koraider"
+UNIT_ELECTRISHIA = "Electrishia"
+UNIT_ANT_HILL = "Ant Hill"
+
 # JSON DATA
 DATA_JSON = "data/config.json"
 DATA_DUNGEON = "dungeon"
@@ -314,6 +333,8 @@ STRING_MIN = "m "
 STRING_SEC = "s"
 STATE_ONE = 1
 STATE_ZERO = 0
+STATE_TWO = 2
+STATE_THREE = 3
 STATE_DISABLED = "disabled"
 STATE_NORMAL = "normal"
 STATE_READONLY = "readonly"
@@ -996,10 +1017,25 @@ def do_battle_mode(sec=5, cancel=1):
     pynboard.release(val_bm_aura)
     time.sleep(1)
 
+def force_battle_mode(sec=5):
+  move(790, 670)
+  pyauto.click(button="right")
+
+  move(790, 670)
+  pyauto.click(button="right")
+
+  for x in range(sec):
+      do_essentials()
+      time.sleep(1.2)
+
 def do_veradrix():
   if get_veradrix_status() == STATE_ONE:
     pynboard.press(val_veradrix)
     pynboard.release(val_veradrix)
+
+def force_veradrix():
+  pynboard.press(val_veradrix)
+  pynboard.release(val_veradrix)
 
 def do_cont_battle_mode():
   move(790, 670)
@@ -1287,6 +1323,17 @@ def do_attack(sec=0, strict=0, cont=1):
   if sec != 0:
     time.sleep(sec)
 
+def do_special_attack(sec=0, strict=0, cont=0):
+  pynboard.press(val_bm3_atk)
+  pynboard.release(val_bm3_atk)
+
+  force_veradrix()
+  if strict == STATE_ZERO:
+    do_essentials()
+
+  if cont == STATE_ONE:
+    do_cont_battle_mode()
+
 def click_portal(x, y):
   portal_found = False
 
@@ -1532,6 +1579,130 @@ def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
       do_attack(0.1)
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOB_CLEARED)
+      combo = False
+
+def focus_high_normal_mobs(unit=UNIT_BLANK, select=1):
+  combo = True
+
+  if select == STATE_ONE:
+    do_select(0.1)
+
+  while combo:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      combo = False
+
+    if combo == False:
+        break
+
+    try:
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_ATTACK_MOBS + unit)
+      do_special_attack(0.1)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_MOB_CLEARED)
+      combo = False
+
+def focus_high_normal_boss(unit=UNIT_BLANK, select=1, aura=1):
+  combo = True
+  mode = 2
+  cast_mode = True
+  cast_aura = True
+
+  mode_time = time.time()
+
+  if select == STATE_ONE:
+    do_select(0.1)
+
+  while combo:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      combo = False
+
+    if combo == False:
+        break
+
+    check_time = time.time()
+    sec_difference = math.ceil(check_time - mode_time)
+
+    if sec_difference >= 30 and aura == STATE_ONE and cast_aura == True:
+      do_aura(2)
+      do_short_buffs()
+      cast_aura = False
+
+    if sec_difference >= 90:
+      cast_mode = True
+      cast_mode = True
+      cancel_aura(2)
+
+    if mode == STATE_THREE and cast_mode == True:
+      do_final_mode(2)
+      mode = 2
+      cast_mode = False
+      mode_time = time.time()
+    elif mode == STATE_TWO and cast_mode == True:
+      force_battle_mode(5)
+      mode = 3
+      cast_mode = False
+      mode_time = time.time()
+
+    try:
+      boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_ATTACK_MOBS + unit)
+      do_special_attack(0.1)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_BOSS_KILLED)
+      combo = False
+
+def focus_high_special_boss(unit=UNIT_BLANK, select=1, aura=1):
+  combo = True
+  mode = 2
+  cast_mode = True
+  cast_aura = True
+
+  mode_time = time.time()
+
+  if select == STATE_ONE:
+    do_select(0.1)
+
+  while combo:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      combo = False
+
+    if combo == False:
+        break
+
+    check_time = time.time()
+    sec_difference = math.ceil(check_time - mode_time)
+
+    if sec_difference >= 30 and aura == STATE_ONE and cast_aura == True:
+      do_aura(2)
+      do_short_buffs()
+      cast_aura = False
+
+    if sec_difference >= 90:
+      cast_mode = True
+      cast_mode = True
+      cancel_aura(2)
+
+    if mode == STATE_THREE and cast_mode == True:
+      do_final_mode(2)
+      mode = 2
+      cast_mode = False
+      mode_time = time.time()
+    elif mode == STATE_TWO and cast_mode == True:
+      force_battle_mode(5)
+      mode = 3
+      cast_mode = False
+      mode_time = time.time()
+
+    try:
+      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_ATTACK_MOBS + unit)
+      do_special_attack(0.1)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_BOSS_KILLED)
       combo = False
 
 def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):

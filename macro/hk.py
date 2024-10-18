@@ -197,11 +197,7 @@ class HolyKeldrasil(Dungeon):
 
         try:
           util.move_click(600, 320)
-          # util.move_click(600, 320)
-          # util.move_click(600, 320)
           util.move_click(550, 320)
-          # util.move_click(550, 320)
-          # util.move_click(550, 320)
           util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -282,11 +278,7 @@ class HolyKeldrasil(Dungeon):
 
         try:
           util.move_click(600, 320)
-          # util.move_click(600, 320)
-          # util.move_click(600, 320)
           util.move_click(550, 320)
-          # util.move_click(550, 320)
-          # util.move_click(550, 320)
           util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)
@@ -393,11 +385,7 @@ class HolyKeldrasil(Dungeon):
 
         try:
           util.move_click(600, 320)
-          # util.move_click(600, 320)
-          # util.move_click(600, 320)
           util.move_click(550, 320)
-          # util.move_click(550, 320)
-          # util.move_click(550, 320)
           util.wait(0.2)
           dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(util.MSG_CHECK_DIALOG_FOUND)

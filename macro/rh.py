@@ -11,6 +11,7 @@ import common.util as util
 pynboard = Controller()
 
 class RadiantHall(Dungeon):
+
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []

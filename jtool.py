@@ -3,7 +3,7 @@ from tkinter import ttk
 from pynput import keyboard
 from pynput.keyboard import Key, Listener, Controller
 
-import os
+import time
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
@@ -27,6 +27,7 @@ from macro.s1p import SienaB1FPrideus
 from macro.ci import ChaosInfinity
 from macro.hvv import HazardousValleyVeradrix
 from macro.rh import RadiantHall
+from macro.potf import PurifierOfTheForest
 
 pynboard = Controller()
 class JTool():
@@ -46,7 +47,8 @@ class JTool():
     "Altar of Siena B1F (Prideus)",
     "Chaos Infinity",
     "Hazardous Valley (Veradrix)",
-    "Radiant Hall"
+    "Radiant Hall",
+    "Purifier of the Forest"
   ]
 
   LIST_DUNGEON = []
@@ -181,6 +183,8 @@ class JTool():
       HazardousValleyVeradrix().initialize(self.frame_root, self.btn_start, runs)
     elif choice == self.LIST_MASTER[14]:
       RadiantHall().initialize(self.frame_root, self.btn_start, runs)
+    elif choice == self.LIST_MASTER[15]:
+      PurifierOfTheForest().initialize(self.frame_root, self.btn_start, runs)
 
   def get_dungeon_list(self):
     if self.get_level() == util.ACCESS_FREE:
@@ -252,7 +256,8 @@ class JTool():
         "Chaos Infinity",
         "Altar of Siena B1F (Prideus)",
         "Hazardous Valley (Veradrix)",
-        "Radiant Hall"
+        "Radiant Hall",
+        "Purifier of the Forest"
       ]
 
   def get_access(self, feature):
@@ -363,7 +368,7 @@ class JTool():
 
   def enable_party_features(self, args):
     choice = self.list_dg.get()
-    if choice == self.LIST_MASTER[12]:
+    if choice == self.LIST_MASTER[12] or choice == self.LIST_MASTER[15]:
       self.chkbtn_leader.config(state=util.STATE_NORMAL)
       self.chkbtn_member.config(state=util.STATE_NORMAL)
     else:

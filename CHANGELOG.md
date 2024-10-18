@@ -19,10 +19,18 @@ All notable changes to this project will be documented in this file.
 - [CI] Chaos Infinity [v5.50]
 - [HVV] Hazardous Valley (Veradrix) [v5.50]
 - [RH] Radiant Hall [v5.65] [Development]
+- [POTF] Purifier of the Forest [v5.85]
 
 ## v5.85 Features
 
+- [Application] Added force_veradrix()
+- [Application] Added force_battle_mode()
+- [Application] Added focus_high_normal_mobs()
+- [Application] Added focus_high_normal_boss()
+- [Application] Added focus_high_special_boss()
 - [CI] Added three cases in entering dungeon for solo and party states
+- [POTF] Added Purifier of the Forest in Development Phase
+- [POTF] Added Purieifer of the Forest to party states
 
 ## v5.85 Fixes
 
