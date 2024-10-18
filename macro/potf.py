@@ -433,7 +433,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.do_plunder(3)
       else:
-        util.wait(1)
+        util.wait(2)
       util.wait(2)
 
       util.move(300, 600)
