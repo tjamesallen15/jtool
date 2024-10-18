@@ -188,7 +188,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
-        util.wait(3)
+        util.wait(4)
 
       util.move(720, 500)
       util.do_dash()
@@ -264,7 +264,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
-        util.wait(3)
+        util.wait(4)
       util.wait(3)
 
       util.move(100, 325)
@@ -367,7 +367,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
-        util.wait(3)
+        util.wait(4)
 
       # Move to Ant Base
       util.move_click(1125, 325, 5)
@@ -375,6 +375,10 @@ class PurifierOfTheForest(Dungeon):
       util.move_click(760, 205, 5)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move_click(560, 175, 5)
+
+      util.force_battle_mode()
+      util.do_aura(2)
+      util.set_last_case_mode(2)
       util.move_click(900, 240, 5)
 
       # Attack First Ant Hill
@@ -412,7 +416,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
-        util.wait(3)
+        util.wait(4)
 
       util.move(620, 200)
       util.do_dash()
@@ -443,7 +447,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_final_box()
       else:
-        util.wait(3)
+        util.wait(5)
 
       # Check Macro State
       if not util.get_macro_state():

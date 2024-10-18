@@ -59,6 +59,7 @@ val_member = 0
 val_char_class = 'BL'
 val_access = 'Free'
 val_last_message = ''
+val_last_case_mode = 2
 
 region_normal_bar = []
 region_mode_bar = []
@@ -911,6 +912,10 @@ def get_attack_type():
 
   return VAL_MELEE
 
+def set_last_case_mode(mode):
+  global val_last_case_mode
+  val_last_case_mode = mode
+
 def get_party_status():
   if get_party_leader_status() == STATE_ONE or get_party_member_status() == STATE_ONE:
     return True
@@ -1657,6 +1662,13 @@ def focus_high_normal_boss(unit=UNIT_BLANK, select=1, aura=1):
 def focus_high_special_boss(unit=UNIT_BLANK, select=1, aura=1):
   combo = True
   mode = 2
+
+  global val_last_case_mode
+  if val_last_case_mode == STATE_TWO:
+    mode = 3
+  elif val_last_case_mode == STATE_THREE:
+    mode = 2
+
   cast_mode = True
   cast_aura = True
 
@@ -1687,11 +1699,13 @@ def focus_high_special_boss(unit=UNIT_BLANK, select=1, aura=1):
       cancel_aura(2)
 
     if mode == STATE_THREE and cast_mode == True:
+      val_last_case_mode = 2
       do_final_mode(2)
       mode = 2
       cast_mode = False
       mode_time = time.time()
     elif mode == STATE_TWO and cast_mode == True:
+      val_last_case_mode = 3
       force_battle_mode(5)
       mode = 3
       cast_mode = False
