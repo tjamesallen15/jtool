@@ -871,7 +871,7 @@ def check_run_restart(run_count):
       val_run_restart_stack += run_count
 
 def get_archer_region():
-  return region_mode_bar
+  return region_full_mode_bar
 
 def get_region():
   if is_battle_mode and get_attack_type() == STATE_ONE:
@@ -1605,7 +1605,7 @@ def focus_high_normal_mobs(unit=UNIT_BLANK, select=1):
         break
 
     try:
-      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
       do_special_attack(0.1)
     except pyauto.ImageNotFoundException:
@@ -1662,7 +1662,7 @@ def focus_high_normal_boss(unit=UNIT_BLANK, select=1, aura=1):
       mode_time = time.time()
 
     try:
-      boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
+      boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
       do_special_attack(0.1)
     except pyauto.ImageNotFoundException:
@@ -1719,7 +1719,7 @@ def focus_high_special_boss(unit=UNIT_BLANK, select=1, aura=1):
       mode_time = time.time()
 
     try:
-      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_region())
+      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
       do_special_attack(0.1)
     except pyauto.ImageNotFoundException:

@@ -44,7 +44,7 @@ class PurifierOfTheForest(Dungeon):
 
       try:
         util.do_select(0.1)
-        boss = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_full_region())
+        boss = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_archer_region())
         # util.focus_mobs(unit_name, 0, 1, 0)
         util.focus_high_normal_boss(unit_name, 0, 1)
         finding = False
@@ -67,7 +67,7 @@ class PurifierOfTheForest(Dungeon):
 
       try:
         util.do_select(0.1)
-        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_full_region())
+        boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
         util.focus_high_special_boss(unit_name, 0, 1)
         finding = False
         break
@@ -89,7 +89,7 @@ class PurifierOfTheForest(Dungeon):
 
       try:
         util.do_select(0.1)
-        boss = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_full_region())
+        boss = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_archer_region())
         util.focus_high_normal_mobs(unit_name, 0)
         finding = False
         break
