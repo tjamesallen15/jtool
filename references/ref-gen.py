@@ -43,8 +43,8 @@
 # pyauto.mouseUp(button="right")
 # pyauto.scroll(-10000)
 
-# hpBar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
-# im1 = pyauto.screenshot(region=hpBar)
+# hp_bar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+# im1 = pyauto.screenshot(region=hp_bar)
 # im1.save("c:\screenshot.png")
 
 #### MELEE

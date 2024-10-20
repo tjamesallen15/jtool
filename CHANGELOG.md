@@ -25,9 +25,8 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Added force_veradrix()
 - [Application] Added force_battle_mode()
-- [Application] Added focus_high_normal_mobs()
-- [Application] Added focus_high_normal_boss()
-- [Application] Added focus_high_special_boss()
+- [Application] Added focus_high_mobs()
+- [Application] Added focus_high_boss()
 - [CI] Added three cases in entering dungeon for solo and party states
 - [POTF] Added Purifier of the Forest in Development Phase
 - [POTF] Added Purieifer of the Forest to party states
@@ -35,6 +34,7 @@ All notable changes to this project will be documented in this file.
 ## v5.85 Fixes
 
 - [Application] Fixed class combobox to readonly state
+- [Application] Refactored some code structures in utility
 - [CI] Increase mob_threshold from 100 to 200 for party state
 - [CI] Refactored positioning for ulwaan mobs
 

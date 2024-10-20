@@ -21,8 +21,8 @@ val_loot = '7'
 val_fury = '8'
 val_pots = '9'
 val_bm_aura = '0'
-val_bm3_atk = '-'
-val_bm3 = '='
+val_bm_key_atk = '-'
+val_bm_key = '='
 val_interval_range = 0.3
 val_interval_melee = 0.8
 val_deselect = Key.esc
@@ -67,6 +67,7 @@ region_screen = []
 region_full_normal_bar = []
 region_full_mode_bar = []
 region_notification = []
+region_buffs = []
 region_dialog = []
 region_sub_screen = []
 region_train_screen = []
@@ -427,6 +428,7 @@ TAB_PRICING = "Pricing"
 
 VAL_MELEE = 0
 VAL_RANGE = 1
+VAL_CLASS_FB = 'FB'
 VAL_CLASS_FA = 'FA'
 VAL_CLASS_FG = 'FG'
 VAL_CLASS_DM = 'DM'
@@ -521,6 +523,9 @@ def initialize_region():
 
   global region_notification
   region_notification = (int(cabal_window[0]) + 1235, int(cabal_window[1]) + 270, 30, 400)
+
+  global region_buffs
+  region_buffs = (int(cabal_window[0]) + 1236, int(cabal_window[1]) + 160, 32, 300)
 
   global region_dialog
   region_dialog = (int(cabal_window[0]) + 5, int(cabal_window[1]) + 270, 30, 400)
@@ -891,6 +896,9 @@ def get_screen_region():
 def get_notification_region():
   return region_notification
 
+def get_buff_region():
+  return region_buffs
+
 def get_dialog_region():
   return region_dialog
 
@@ -1020,31 +1028,25 @@ def do_battle_mode(sec=5, cancel=1):
 
     for x in range(sec):
       do_essentials()
-      time.sleep(1.2)
+      time.sleep(1)
 
     pynboard.press(val_bm_aura)
     pynboard.release(val_bm_aura)
     time.sleep(1)
 
 def force_battle_mode(sec=5):
-  move(790, 670)
-  pyauto.click(button="right")
+  pynboard.press(Key.alt)
+  time.sleep(0.01)
+  pynboard.press(val_bm_key)
+  pynboard.release(val_bm_key)
+  pynboard.release(Key.alt)
 
-  move(790, 670)
-  pyauto.click(button="right")
+  if get_char_class() == VAL_CLASS_FB:
+    sec = 4
 
   for x in range(sec):
       do_essentials()
-      time.sleep(1.2)
-
-def do_veradrix():
-  if get_veradrix_status() == STATE_ONE:
-    pynboard.press(val_veradrix)
-    pynboard.release(val_veradrix)
-
-def force_veradrix():
-  pynboard.press(val_veradrix)
-  pynboard.release(val_veradrix)
+      time.sleep(1)
 
 def do_cont_battle_mode():
   move(790, 670)
@@ -1057,6 +1059,25 @@ def do_cont_battle_mode():
     do_aura()
     aura_counter = 0
 
+def check_battle_mode():
+  if get_last_cast_mode() == STATE_TWO:
+    pynboard.press(Key.alt)
+    time.sleep(0.01)
+    pynboard.press(val_bm_key)
+    pynboard.release(val_bm_key)
+    pynboard.release(Key.alt)
+  elif get_last_cast_mode() == STATE_THREE:
+    do_final_mode()
+
+def do_veradrix():
+  if get_veradrix_status() == STATE_ONE:
+    pynboard.press(val_veradrix)
+    pynboard.release(val_veradrix)
+
+def force_veradrix():
+  pynboard.press(val_veradrix)
+  pynboard.release(val_veradrix)
+
 def do_buffs():
   if get_buffs_status() == STATE_ONE:
     log_action(MSG_BUFFS)
@@ -1067,6 +1088,12 @@ def do_buffs():
     move(430, 670)
     pyauto.click(button="right")
     time.sleep(1)
+
+def cancel_buffs(reps=5):
+  for x in range(reps):
+    move(1250, 185)
+    pyauto.click(button="right")
+    time.sleep(0.2)
 
 def do_short_buffs():
   if get_shorts_status() == STATE_ONE:
@@ -1275,8 +1302,8 @@ def do_aura(sec=0):
 
 def do_final_mode(sec=0):
   if get_battle_mode_status() == False:
-    pynboard.press(val_bm3)
-    pynboard.release(val_bm3)
+    pynboard.press(val_bm_key)
+    pynboard.release(val_bm_key)
 
     if sec != 0:
       time.sleep(sec)
@@ -1285,28 +1312,28 @@ def do_attack(sec=0, strict=0, cont=1):
   do_veradrix()
 
   if get_battle_mode_status():
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
+    pynboard.press(val_bm_key_atk)
+    pynboard.release(val_bm_key_atk)
     if strict == STATE_ZERO:
       do_essentials()
 
     if cont == STATE_ONE:
       do_cont_battle_mode()
   else:
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
+    pynboard.press(val_bm_key_atk)
+    pynboard.release(val_bm_key_atk)
 
     if strict == STATE_ZERO:
       do_essentials()
 
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
+    pynboard.press(val_bm_key_atk)
+    pynboard.release(val_bm_key_atk)
 
     if strict == STATE_ZERO:
       do_essentials()
 
-    pynboard.press(val_bm3_atk)
-    pynboard.release(val_bm3_atk)
+    pynboard.press(val_bm_key_atk)
+    pynboard.release(val_bm_key_atk)
 
     if strict == STATE_ZERO:
       do_essentials()
@@ -1332,16 +1359,18 @@ def do_attack(sec=0, strict=0, cont=1):
   if sec != 0:
     time.sleep(sec)
 
-def do_special_attack(sec=0, strict=0, cont=0):
-  pynboard.press(val_bm3_atk)
-  pynboard.release(val_bm3_atk)
+def do_special_attack(sec=0, check_mode=0):
+  pynboard.press(val_bm_key_atk)
+  pynboard.release(val_bm_key_atk)
 
   force_veradrix()
-  if strict == STATE_ZERO:
-    do_essentials()
+  do_essentials()
 
-  if cont == STATE_ONE:
-    do_cont_battle_mode()
+  if check_mode == STATE_ONE:
+    check_battle_mode()
+
+  if sec != 0:
+    time.sleep(sec)
 
 def click_portal(x, y):
   portal_found = False
@@ -1590,7 +1619,7 @@ def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
       log_action(MSG_MOB_CLEARED)
       combo = False
 
-def focus_high_normal_mobs(unit=UNIT_BLANK, select=1):
+def focus_high_mobs(unit=UNIT_BLANK, select=1):
   combo = True
 
   if select == STATE_ONE:
@@ -1607,12 +1636,12 @@ def focus_high_normal_mobs(unit=UNIT_BLANK, select=1):
     try:
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
-      do_special_attack(0.1)
+      do_special_attack(0.1, 1)
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOB_CLEARED)
       combo = False
 
-def focus_high_normal_boss(unit=UNIT_BLANK, select=1, aura=1):
+def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
   combo = True
   cast_mode = True
   cast_aura = True
@@ -1649,79 +1678,25 @@ def focus_high_normal_boss(unit=UNIT_BLANK, select=1, aura=1):
       cancel_aura(2)
 
     if mode == STATE_THREE and cast_mode == True:
+      do_final_mode()
       set_last_cast_mode(mode)
-      do_final_mode(2)
       mode = 2
       cast_mode = False
       mode_time = time.time()
     elif mode == STATE_TWO and cast_mode == True:
+      force_battle_mode()
       set_last_cast_mode(mode)
-      force_battle_mode(5)
       mode = 3
       cast_mode = False
       mode_time = time.time()
 
     try:
-      boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
+      if type == 0:
+        boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
+      elif type == 1:
+        boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
-      do_special_attack(0.1)
-    except pyauto.ImageNotFoundException:
-      log_action(MSG_BOSS_KILLED)
-      combo = False
-
-def focus_high_special_boss(unit=UNIT_BLANK, select=1, aura=1):
-  combo = True
-  cast_mode = True
-  cast_aura = True
-  mode_time = time.time()
-  mode = 2
-
-  if get_last_cast_mode() == STATE_TWO:
-    mode = 3
-  elif get_last_cast_mode() == STATE_THREE:
-    mode = 2
-
-  if select == STATE_ONE:
-    do_select(0.1)
-
-  while combo:
-    if not get_macro_state():
-      log_action(MSG_TERMINATE)
-      combo = False
-
-    if combo == False:
-        break
-
-    check_time = time.time()
-    sec_difference = math.ceil(check_time - mode_time)
-
-    if sec_difference >= 30 and aura == STATE_ONE and cast_aura == True:
-      do_aura(2)
-      do_short_buffs()
-      cast_aura = False
-
-    if sec_difference >= 90:
-      cast_mode = True
-      cast_mode = True
-      cancel_aura(2)
-
-    if mode == STATE_THREE and cast_mode == True:
-      set_last_cast_mode(mode)
-      do_final_mode(2)
-      mode = 2
-      cast_mode = False
-      mode_time = time.time()
-    elif mode == STATE_TWO and cast_mode == True:
-      set_last_cast_mode(mode)
-      force_battle_mode(5)
-      mode = 3
-      cast_mode = False
-      mode_time = time.time()
-
-    try:
-      boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_archer_region())
-      log_action(MSG_ATTACK_MOBS + unit)
-      do_special_attack(0.1)
+      do_special_attack(0.1, 1)
     except pyauto.ImageNotFoundException:
       log_action(MSG_BOSS_KILLED)
       combo = False
