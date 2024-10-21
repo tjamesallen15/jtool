@@ -336,7 +336,7 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Boss Sequence
-      util.do_battle_mode(5, 0)
+      util.do_battle_mode(5, False)
       self.position_boss()
       util.force_short_buffs()
       moving = True

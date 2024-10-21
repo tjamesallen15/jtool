@@ -12,21 +12,31 @@ from pynput import keyboard
 pynboard = Controller()
 
 # GLOBAL VARIABLES
-val_select = 'z'
-val_dash = '1'
-val_fade = '2'
-val_attack = ['3', '4', '5']
-val_veradrix  = '6'
-val_loot = '7'
-val_fury = '8'
-val_pots = '9'
-val_bm_aura = '0'
-val_bm_key_atk = '-'
-val_bm_key = '='
+KEY_SELECT = 'z'
+KEY_DASH = '1'
+KEY_FADE = '2'
+KEY_ATTACK = ['3', '4', '5']
+KEY_VERADRIX  = '6'
+KEY_LOOT_ACTION = '7'
+KEY_FURY = '8'
+KEY_HP = '9'
+KEY_AURA = '0'
+KEY_BM_ATK = '-'
+KEY_BM = '='
+KEY_DESELECT = Key.esc
+KEY_LOOT_SPACE = Key.space
+KEY_BUFF_LONG_1 = '1'
+KEY_BUFF_LONG_2 = '2'
+KEY_BUFF_SHORT_1 = '3'
+KEY_BUFF_SHORT_2 = '4'
+KEY_BUFF_NORMAL_1 = '5'
+KEY_BUFF_NORMAL_2 = '6'
+KEY_DEBUFF_LIGHT = '7'
+KEY_DEBUFF_HARD = '8'
+
+# FIXED VARIABLES
 val_interval_range = 0.3
 val_interval_melee = 0.8
-val_deselect = Key.esc
-loot_space = Key.space
 
 # GLOBAL VARIABLES
 cabal_window = []
@@ -86,7 +96,7 @@ LIST_CLASS = ["BL", "FB", "WA", "GL", "FS", "FA", "FG", "DM"]
 MSG_START_DG = "Starting Dungeon"
 MSG_END_DG = "End Dungeon"
 MSG_EXIT = "Macro Exit"
-MSG_PAUSE = "Pause for 15 seconds"
+MSG_PAUSE = "Pause for 15 delayonds"
 MSG_TERMINATE ="Macro Terminate"
 MSG_PATH_FIND = "Pathfind, "
 MSG_ATTACK_MOBS = "Attack, "
@@ -120,6 +130,8 @@ MSG_BUTTON_FOUND = "Button Found"
 MSG_NO_BUTTON_FOUND = "No Button Found"
 MSG_BUFFS = "Buffing"
 MSG_SHORT_BUFFS = "Buffing Shorts"
+MSG_DEBUFF = "Debuffing"
+MSG_DEBUFF_HARD = "Hard Debuffing"
 MSG_BATTLE_MODE = "Doing Mode II"
 MSG_DICE_ROLL = "Check Dice Roll"
 MSG_DICE_ROLL_OKAY = "Check Dice Roll Okay"
@@ -340,13 +352,17 @@ STATE_THREE = 3
 STATE_DISABLED = "disabled"
 STATE_NORMAL = "normal"
 STATE_READONLY = "readonly"
+IS_TRUE = True
+IS_FALSE = False
+CLICK_LEFT = "left"
+CLICK_RIGHT = "right"
 
 # STATE LABEL
 LBL_LICENSE = "License: "
 LBL_EXPIRATION_NA = "Expiration: N/A"
 LBL_EXPIRATION = "Expiration: "
-LBL_OPEN_SECTION = " ("
-LBL_CLOSE_SECTION = ")"
+LBL_OPEN_delayTION = " ("
+LBL_CLOSE_delayTION = ")"
 LBL_HYPHEN = " | "
 
 # LABELS
@@ -543,43 +559,49 @@ def set_cabal_window(window):
 def go_cabal_window():
   move_click(50, 15)
 
-def move(x, y, sec=0):
+def press_combo(key_one, key_two):
+  pynboard.press(key_one)
+  time.sleep(0.01)
+  pynboard.press(key_two)
+  pynboard.release(key_two)
+  pynboard.release(key_one)
+
+def click_combo(x, y, right=False, delay=0):
+  click = CLICK_LEFT if right == IS_FALSE else CLICK_RIGHT
+  move(x, y)
+  pyauto.click(button=click)
+
+  if delay != 0: time.sleep(delay)
+
+def move(x, y, delay=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def move_rel(x, y, ref, sec=0):
+def move_rel(x, y, ref, delay=0):
   pyauto.moveTo(ref[0] + x, ref[1] + y)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def move_click(x, y, sec=0):
+def move_click(x, y, delay=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
   pyauto.click(cabal_window[0] + x, cabal_window[1] + y)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def move_right_click(x, y, sec=0):
+def move_right_click(x, y, delay=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
   pyauto.click(cabal_window[0] + x, cabal_window[1] + y, button="RIGHT")
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-  if sec != 0:
-    time.sleep(sec)
-
-def move_click_rel(x, y, ref, sec=0):
+def move_click_rel(x, y, ref, delay=0):
   pyauto.moveTo(ref[0] + x, ref[1] + y)
   pyauto.click(ref[0] + x, ref[1] + y)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def move_scroll(x1, y1, x2, y2, sec=0):
+def move_scroll(x1, y1, x2, y2, delay=0):
   move(x1, y1)
   pyauto.mouseDown(button="right")
 
@@ -587,18 +609,17 @@ def move_scroll(x1, y1, x2, y2, sec=0):
   pyauto.mouseUp(button="right")
   pyauto.scroll(-10000)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def wait(sec=1):
+def wait(delay=1):
   log_action(MSG_WAIT)
-  time.sleep(sec)
+  time.sleep(delay)
 
 def log_run(run_number, fail_run_count=0):
   if fail_run_count == STATE_ZERO:
     run_builder = MSG_RUN_NUMBER + str(run_number) + LBL_HYPHEN + str(get_total_run_count())
   else:
-    run_builder = MSG_RUN_NUMBER + str(run_number) + LBL_HYPHEN + str(get_total_run_count()) + LBL_OPEN_SECTION + str(fail_run_count) + LBL_CLOSE_SECTION
+    run_builder = MSG_RUN_NUMBER + str(run_number) + LBL_HYPHEN + str(get_total_run_count()) + LBL_OPEN_delayTION + str(fail_run_count) + LBL_CLOSE_delayTION
 
   lbl_current_run.config(text=run_builder)
 
@@ -613,10 +634,10 @@ def log_action(message):
     val_last_message = msg_builder
     print(msg_builder)
 
-  lbl_macro.config(text=msg_builder)
-  frame_root.update()
+  # lbl_macro.config(text=msg_builder)
+  # frame_root.update()
 
-def log_time(sec=1.5):
+def log_time(delay=1.5):
   check_time = time.time()
   sec_difference = math.ceil(check_time - val_time)
   min_difference = math.floor(sec_difference / 60)
@@ -635,8 +656,7 @@ def log_time(sec=1.5):
   lbl_run_time.config(text=val_time_difference)
   frame_root.update()
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
 def terminate():
   log_action(MSG_EXIT)
@@ -647,8 +667,8 @@ def pause():
   log_action(MSG_PAUSE)
   wait(15)
 
-def countdown_timer(sec):
-  for x in range(sec):
+def countdown_timer(delay):
+  for x in range(delay):
     log_action(MSG_COUNTDOWN + str(x+1))
     time.sleep(1)
 
@@ -993,60 +1013,53 @@ def force_exit_dungeon():
   move_click(620, 440)
   time.sleep(3)
 
-def go_skill_slot(sec=0):
+def go_skill_slot(delay=0):
   pynboard.press(Key.f3)
   pynboard.release(Key.f3)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def set_battle_mode(val, cancel=1):
-  if cancel == STATE_ONE:
-    cancel_aura(1.2)
+def set_battle_mode(val, cancel=True):
+  if cancel == IS_TRUE: cancel_aura(1.2)
 
   if get_battle_mode() == STATE_ONE:
     global is_battle_mode
     is_battle_mode = val
 
-def reset_battle_mode(sec=0):
-  cancel_aura(sec)
+def reset_battle_mode(delay=0):
+  cancel_aura(delay)
 
   if get_battle_mode() == STATE_ONE:
     global is_battle_mode
     is_battle_mode = False
 
-def do_battle_mode(sec=5, cancel=1):
+def do_battle_mode(delay=5, cancel=True, aura=True):
   if get_battle_mode() == STATE_ONE:
     log_action(MSG_BATTLE_MODE)
     set_battle_mode(True, cancel)
 
-    move(790, 670)
-    pyauto.click(button="right")
+    click_combo(790, 670, True)
+    click_combo(790, 670, True)
 
-    move(790, 670)
-    pyauto.click(button="right")
-
-    for x in range(sec):
+    for x in range(delay):
       do_essentials()
       time.sleep(1)
 
-    pynboard.press(val_bm_aura)
-    pynboard.release(val_bm_aura)
-    time.sleep(1)
+    if aura == IS_TRUE:
+      pynboard.press(KEY_AURA)
+      pynboard.release(KEY_AURA)
+      time.sleep(1)
 
-def force_battle_mode(sec=5):
-  pynboard.press(Key.alt)
-  time.sleep(0.01)
-  pynboard.press(val_bm_key)
-  pynboard.release(val_bm_key)
-  pynboard.release(Key.alt)
+def force_battle_mode(delay=5):
+  click_combo(790, 670, True)
+  click_combo(790, 670, True)
 
   if get_char_class() == VAL_CLASS_FB:
-    sec = 4
+    delay = 4
 
-  for x in range(sec):
-      do_essentials()
-      time.sleep(1)
+  for x in range(delay):
+    do_essentials()
+    time.sleep(1)
 
 def do_cont_battle_mode():
   move(790, 670)
@@ -1061,33 +1074,24 @@ def do_cont_battle_mode():
 
 def check_battle_mode():
   if get_last_cast_mode() == STATE_TWO:
-    pynboard.press(Key.alt)
-    time.sleep(0.01)
-    pynboard.press(val_bm_key)
-    pynboard.release(val_bm_key)
-    pynboard.release(Key.alt)
+    press_combo(Key.alt, KEY_BM)
   elif get_last_cast_mode() == STATE_THREE:
     do_final_mode()
 
 def do_veradrix():
   if get_veradrix_status() == STATE_ONE:
-    pynboard.press(val_veradrix)
-    pynboard.release(val_veradrix)
+    pynboard.press(KEY_VERADRIX)
+    pynboard.release(KEY_VERADRIX)
 
 def force_veradrix():
-  pynboard.press(val_veradrix)
-  pynboard.release(val_veradrix)
+  pynboard.press(KEY_VERADRIX)
+  pynboard.release(KEY_VERADRIX)
 
 def do_buffs():
   if get_buffs_status() == STATE_ONE:
     log_action(MSG_BUFFS)
-    move(400, 670)
-    pyauto.click(button="right")
-    time.sleep(0.6)
-
-    move(430, 670)
-    pyauto.click(button="right")
-    time.sleep(1)
+    click_combo(400, 670, True, 0.6)
+    click_combo(430, 670, True, 1)
 
 def cancel_buffs(reps=5):
   for x in range(reps):
@@ -1098,87 +1102,69 @@ def cancel_buffs(reps=5):
 def do_short_buffs():
   if get_shorts_status() == STATE_ONE:
     log_action(MSG_SHORT_BUFFS)
-    move(470, 670)
-    pyauto.click(button="right")
-    time.sleep(0.2)
-
-    move(500, 670)
-    pyauto.click(button="right")
-    time.sleep(0.2)
+    click_combo(470, 670, True, 0.2)
+    click_combo(500, 670, True, 0.2)
 
     if get_char_class() == VAL_CLASS_BL:
-      move(540, 670)
-      pyauto.click(button="right")
-      time.sleep(0.5)
-
-      move(570, 670)
-      pyauto.click(button="right")
-      time.sleep(0.5)
+      click_combo(540, 670, True, 0.5)
+      click_combo(570, 670, True, 0.5)
 
 def force_short_buffs():
-    log_action(MSG_SHORT_BUFFS)
-    move(470, 670)
-    pyauto.click(button="right")
-    time.sleep(0.2)
+  log_action(MSG_SHORT_BUFFS)
+  click_combo(470, 670, True, 0.2)
+  click_combo(500, 670, True, 0.2)
 
-    move(500, 670)
-    pyauto.click(button="right")
-    time.sleep(0.2)
+  if get_char_class() == VAL_CLASS_BL:
+    click_combo(540, 670, True, 0.5)
+    click_combo(570, 670, True, 0.5)
 
-    if get_char_class() == VAL_CLASS_BL:
-      move(540, 670)
-      pyauto.click(button="right")
-      time.sleep(0.5)
+def do_debuff(delay=1):
+  log_action(MSG_DEBUFF)
+  click_combo(610, 670, True, delay)
 
-      move(570, 670)
-      pyauto.click(button="right")
-      time.sleep(0.5)
+def do_hard_debuff(delay=1):
+  log_action(MSG_DEBUFF_HARD)
+  click_combo(650, 670, True, delay)
 
-def cancel_aura(sec=0):
-  move(175, 100)
-  pyauto.click(button="right")
+def cancel_aura(delay=0):
+  click_combo(175, 100, True)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def do_dash(sec=1.0):
-  pynboard.press(val_dash)
-  pynboard.release(val_dash)
+def do_dash(delay=1.0):
+  pynboard.press(KEY_DASH)
+  pynboard.release(KEY_DASH)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def do_fade(sec=0.5):
-  pynboard.press(val_fade)
-  pynboard.release(val_fade)
+def do_fade(delay=0.5):
+  pynboard.press(KEY_FADE)
+  pynboard.release(KEY_FADE)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def do_select(sec=0):
-  pynboard.press(val_select)
-  pynboard.release(val_select)
+def do_select(delay=0):
+  pynboard.press(KEY_SELECT)
+  pynboard.release(KEY_SELECT)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def do_deselect(sec=0):
-  pynboard.press(val_deselect)
-  pynboard.release(val_deselect)
+def do_deselect(delay=0):
+  pynboard.press(KEY_DESELECT)
+  pynboard.release(KEY_DESELECT)
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
 def do_deselect_pack():
   do_deselect()
   do_deselect(0.1)
   do_deselect(0.1)
 
-def plunder_box(select=1, reps=4, loot=1, sec=0.5):
+def plunder_box(select=1, reps=4, loot=1, delay=0.5):
   log_action(MSG_CHECK_BOX)
 
-  if sec != 0:
-    wait(sec)
+  if delay != 0:
+    wait(delay)
 
   if select == STATE_ONE:
     do_select(0.1)
@@ -1257,120 +1243,114 @@ def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
 def do_plunder(reps=4):
   for x in range(reps):
     log_action(MSG_LOOTING_DROP)
-    pynboard.press(val_loot)
-    pynboard.release(val_loot)
+    pynboard.press(KEY_LOOT_ACTION)
+    pynboard.release(KEY_LOOT_ACTION)
     time.sleep(0.3)
-    pynboard.press(loot_space)
-    pynboard.release(loot_space)
+    pynboard.press(KEY_LOOT_SPACE)
+    pynboard.release(KEY_LOOT_SPACE)
     time.sleep(0.3)
 
 def do_fast_plunder():
-    pynboard.press(val_loot)
-    pynboard.release(val_loot)
-    pynboard.press(loot_space)
-    pynboard.release(loot_space)
+    pynboard.press(KEY_LOOT_ACTION)
+    pynboard.release(KEY_LOOT_ACTION)
+    pynboard.press(KEY_LOOT_SPACE)
+    pynboard.release(KEY_LOOT_SPACE)
 
-def do_essentials():
-  pynboard.press(loot_space)
-  pynboard.release(loot_space)
-  pynboard.press(val_fury)
-  pynboard.release(val_fury)
-  pynboard.press(val_pots)
-  pynboard.release(val_pots)
-  pynboard.press(val_loot)
-  pynboard.release(val_loot)
+def do_essentials(rel_keys=1):
+  pynboard.press(KEY_LOOT_SPACE)
+  pynboard.release(KEY_LOOT_SPACE)
+  pynboard.press(KEY_FURY)
+  pynboard.release(KEY_FURY)
+  pynboard.press(KEY_HP)
+  pynboard.release(KEY_HP)
+  pynboard.press(KEY_LOOT_ACTION)
+  pynboard.release(KEY_LOOT_ACTION)
   do_veradrix()
 
+  if rel_keys == 1:
+    pynboard.release(Key.shift)
+    pynboard.release(Key.alt)
+    pynboard.release(Key.ctrl)
+
+def release_keys(delay=0):
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
 
-def release_keys(sec=0):
-  pynboard.release(Key.shift)
-  pynboard.release(Key.alt)
-  pynboard.release(Key.ctrl)
+  if delay != 0: time.sleep(delay)
 
-  if sec != 0:
-    time.sleep(sec)
+def do_aura(delay=0):
+  pynboard.press(KEY_AURA)
+  pynboard.release(KEY_AURA)
 
-def do_aura(sec=0):
-  pynboard.press(val_bm_aura)
-  pynboard.release(val_bm_aura)
+  if delay != 0: time.sleep(delay)
 
-  if sec != 0:
-    time.sleep(sec)
-
-def do_final_mode(sec=0):
+def do_final_mode(delay=0):
   if get_battle_mode_status() == False:
-    pynboard.press(val_bm_key)
-    pynboard.release(val_bm_key)
+    pynboard.press(KEY_BM)
+    pynboard.release(KEY_BM)
 
-    if sec != 0:
-      time.sleep(sec)
+    if delay != 0: time.sleep(delay)
 
-def do_attack(sec=0, strict=0, cont=1):
+def do_attack(delay=0, strict=0, cont=1):
   do_veradrix()
 
   if get_battle_mode_status():
-    pynboard.press(val_bm_key_atk)
-    pynboard.release(val_bm_key_atk)
+    pynboard.press(KEY_BM_ATK)
+    pynboard.release(KEY_BM_ATK)
     if strict == STATE_ZERO:
       do_essentials()
 
     if cont == STATE_ONE:
       do_cont_battle_mode()
   else:
-    pynboard.press(val_bm_key_atk)
-    pynboard.release(val_bm_key_atk)
+    pynboard.press(KEY_BM_ATK)
+    pynboard.release(KEY_BM_ATK)
 
     if strict == STATE_ZERO:
       do_essentials()
 
-    pynboard.press(val_bm_key_atk)
-    pynboard.release(val_bm_key_atk)
+    pynboard.press(KEY_BM_ATK)
+    pynboard.release(KEY_BM_ATK)
 
     if strict == STATE_ZERO:
       do_essentials()
 
-    pynboard.press(val_bm_key_atk)
-    pynboard.release(val_bm_key_atk)
+    pynboard.press(KEY_BM_ATK)
+    pynboard.release(KEY_BM_ATK)
 
     if strict == STATE_ZERO:
       do_essentials()
 
-    pynboard.press(val_attack[0])
-    pynboard.release(val_attack[0])
+    pynboard.press(KEY_ATTACK[0])
+    pynboard.release(KEY_ATTACK[0])
 
     if strict == STATE_ZERO:
       do_essentials()
 
-    pynboard.press(val_attack[1])
-    pynboard.release(val_attack[1])
+    pynboard.press(KEY_ATTACK[1])
+    pynboard.release(KEY_ATTACK[1])
 
     if strict == STATE_ZERO:
       do_essentials()
 
-    pynboard.press(val_attack[2])
-    pynboard.release(val_attack[2])
+    pynboard.press(KEY_ATTACK[2])
+    pynboard.release(KEY_ATTACK[2])
 
     if strict == STATE_ZERO:
       do_essentials()
 
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
-def do_special_attack(sec=0, check_mode=0):
-  pynboard.press(val_bm_key_atk)
-  pynboard.release(val_bm_key_atk)
+def do_special_attack(delay=0.1):
+  pynboard.press(KEY_BM_ATK)
+  pynboard.release(KEY_BM_ATK)
 
   force_veradrix()
   do_essentials()
+  check_battle_mode()
 
-  if check_mode == STATE_ONE:
-    check_battle_mode()
-
-  if sec != 0:
-    time.sleep(sec)
+  if delay != 0: time.sleep(delay)
 
 def click_portal(x, y):
   portal_found = False
@@ -1428,7 +1408,7 @@ def click_portal(x, y):
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
 
-def enter_dungeon(sec=1):
+def enter_dungeon(delay=1):
   entering = True
   while entering:
     if not get_macro_state():
@@ -1447,9 +1427,9 @@ def enter_dungeon(sec=1):
     except pyauto.ImageNotFoundException:
       log_action(MSG_NO_BUTTON_FOUND)
 
-  wait(sec)
+  wait(delay)
 
-def challenge_dungeon(sec=0):
+def challenge_dungeon(delay=0):
   challenging = True
   while challenging:
     if not get_macro_state():
@@ -1477,8 +1457,7 @@ def challenge_dungeon(sec=0):
         challenging = False
         break
 
-  if sec != 0:
-    wait(sec)
+  if delay != 0: wait(delay)
 
 def check_notifications():
   try:
@@ -1636,7 +1615,7 @@ def focus_high_mobs(unit=UNIT_BLANK, select=1):
     try:
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
-      do_special_attack(0.1, 1)
+      do_special_attack()
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOB_CLEARED)
       combo = False
@@ -1644,14 +1623,11 @@ def focus_high_mobs(unit=UNIT_BLANK, select=1):
 def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
   combo = True
   cast_mode = True
-  cast_aura = True
   mode_time = time.time()
   mode = 2
 
-  if get_last_cast_mode() == STATE_TWO:
-    mode = 3
-  elif get_last_cast_mode() == STATE_THREE:
-    mode = 2
+  if get_last_cast_mode() == STATE_TWO: mode = 3
+  elif get_last_cast_mode() == STATE_THREE: mode = 2
 
   if select == STATE_ONE:
     do_select(0.1)
@@ -1662,15 +1638,18 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
       combo = False
 
     if combo == False:
-        break
+      break
 
     check_time = time.time()
     sec_difference = math.ceil(check_time - mode_time)
 
-    if sec_difference >= 30 and aura == STATE_ONE and cast_aura == True:
+    if sec_difference >= 30 and sec_difference <= 35 and aura == STATE_ONE:
       do_aura(2)
       do_short_buffs()
-      cast_aura = False
+
+    if sec_difference % 30 == 0:
+      do_debuff()
+      do_hard_debuff()
 
     if sec_difference >= 90:
       cast_mode = True
@@ -1691,12 +1670,14 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
       mode_time = time.time()
 
     try:
-      if type == 0:
+      if type == STATE_ZERO:
         boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
-      elif type == 1:
+      elif type == STATE_ONE:
         boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_archer_region())
+      elif type == STATE_TWO:
+        boss = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
-      do_special_attack(0.1, 1)
+      do_special_attack()
     except pyauto.ImageNotFoundException:
       log_action(MSG_BOSS_KILLED)
       combo = False

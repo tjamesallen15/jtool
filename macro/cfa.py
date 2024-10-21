@@ -277,7 +277,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       # Final Boss
       self.pre_position_final_boss()
-      util.do_battle_mode(6, 0)
+      util.do_battle_mode(6, False)
       util.do_short_buffs()
 
       self.position_final_boss()

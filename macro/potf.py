@@ -111,7 +111,7 @@ class PurifierOfTheForest(Dungeon):
         util.move_click(x, y, 0.2)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
-        util.move_click_rel(10, 10, dialog, 0.2)
+        util.move_click_rel(10, 10, dialog, 0.5)
         check_dialog = False
       except pyauto.ImageNotFoundException:
         pass
@@ -336,12 +336,13 @@ class PurifierOfTheForest(Dungeon):
       util.move_scroll(700, 150, 375, 150, 0.5)
       util.move_click(755, 210, 5)
       util.move_click(510, 200, 6)
-      util.move_click(1000, 315, 5)
+
+      util.move_click(800, 300, 3)
       util.move_scroll(375, 150, 700, 150, 0.5)
 
-      util.move_click(875, 200, 5)
+      util.move_click(775, 130, 4)
 
-      util.move(900, 200)
+      util.move(910, 200)
       util.do_dash(2)
       util.do_fade(4)
 
@@ -374,13 +375,15 @@ class PurifierOfTheForest(Dungeon):
         continue
 
       # Move to Web Gate
-      util.move(900, 200)
+      util.move(910, 200)
       util.do_dash()
       util.do_fade()
       util.do_dash()
       util.do_fade()
       util.do_dash()
       util.do_fade()
+      util.do_dash()
+      util.do_fade(1.5)
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
@@ -458,17 +461,16 @@ class PurifierOfTheForest(Dungeon):
         util.wait(4)
 
       # Move to Ant Base
-      util.wait(5)
       util.move_click(1125, 325, 5)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move_click(760, 205, 5)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move_click(560, 175, 5)
-
       util.force_battle_mode()
       util.do_aura(2)
       util.set_last_cast_mode(2)
-      util.move_click(900, 240, 4)
+
+      util.move_click(900, 235, 4)
 
       # Attack First Ant Hill
       util.move(1050, 340)

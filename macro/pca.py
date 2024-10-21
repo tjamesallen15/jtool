@@ -524,7 +524,7 @@ class PanicCaveAwakened(Dungeon):
       # Final Boss
       util.move(620, 520)
       util.do_fade(self.val_fade_speed)
-      util.do_battle_mode(5, 0)
+      util.do_battle_mode(5, False)
 
       check_count = 0
       checking = True
