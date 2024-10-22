@@ -97,7 +97,7 @@ class PurifierOfTheForest(Dungeon):
 
     util.wait(0.5)
 
-  def go_portal(self, x, y):
+  def go_portal(self, x, y, deviate=False):
     check_dialog = True
     while check_dialog:
       if not util.get_macro_state():
@@ -109,6 +109,9 @@ class PurifierOfTheForest(Dungeon):
 
       try:
         util.move_click(x, y, 0.2)
+        if deviate == util.IS_TRUE:
+          util.move_click(x - 10, y, 0.2)
+          util.move_click(x + 10, y, 0.2)
         dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.5)
@@ -232,7 +235,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
 
       # First Portal
-      self.go_portal(650, 400)
+      self.go_portal(650, 400, True)
       util.move_scroll(1000, 150, 375, 150, 0.5)
 
       util.move(525, 175)
@@ -355,10 +358,6 @@ class PurifierOfTheForest(Dungeon):
       util.move(450, 550)
       util.do_dash()
 
-      if util.get_last_cast_mode() == util.STATE_TWO:
-        util.do_final_mode()
-        util.set_last_cast_mode(3)
-
       self.attack_monsters(util.UNIT_ELECTRISHIA, 1)
 
       util.move(450, 550)
@@ -375,7 +374,7 @@ class PurifierOfTheForest(Dungeon):
         continue
 
       # Move to Web Gate
-      util.move(910, 200)
+      util.move(915, 200)
       util.do_dash()
       util.do_fade()
       util.do_dash()
@@ -541,7 +540,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
 
       # Second Portal
-      self.go_portal(580, 300)
+      self.go_portal(580, 300, True)
       util.move(660, 275)
       util.do_dash()
 

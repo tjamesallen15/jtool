@@ -1648,10 +1648,10 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
       do_short_buffs()
 
     if sec_difference % 30 == 0:
-      do_debuff()
       do_hard_debuff()
+      do_debuff()
 
-    if sec_difference >= 90:
+    if sec_difference >= 95:
       cast_mode = True
       cast_mode = True
       cancel_aura(2)
