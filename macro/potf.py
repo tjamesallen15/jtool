@@ -129,6 +129,52 @@ class PurifierOfTheForest(Dungeon):
 
     util.wait(sec)
 
+  def go_web_gate(self):
+    util.move(735, 200)
+    util.do_fade()
+    util.force_veradrix()
+    util.do_dash()
+    util.do_fade()
+    util.force_veradrix()
+
+    util.do_dash()
+    util.do_fade()
+    util.force_veradrix()
+
+    util.move(820, 200)
+    util.do_dash()
+    util.do_fade()
+    util.force_veradrix()
+
+    util.do_dash()
+    util.do_fade()
+    util.force_veradrix()
+
+    util.move(250, 200)
+    util.do_dash()
+    util.do_fade()
+    util.force_veradrix()
+
+    util.move(350, 300)
+    util.do_dash()
+    util.do_fade()
+    util.force_veradrix()
+
+    util.move(415, 275)
+    util.do_dash()
+
+    util.move(435, 275)
+    util.do_fade()
+    util.force_veradrix()
+
+    util.move(550, 275)
+    util.do_dash()
+
+    util.move(475, 300)
+    util.do_fade()
+    util.force_veradrix()
+    util.do_dash()
+
   def run_dungeon(self, runs):
     run_counter = 0
     while run_counter < runs:
@@ -364,7 +410,6 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.do_fade()
       util.do_dash()
-      util.do_fade()
 
       self.attack_monsters(util.UNIT_ELECTRISHIA, 1)
 
@@ -374,68 +419,42 @@ class PurifierOfTheForest(Dungeon):
         continue
 
       # Move to Web Gate
-      util.move(915, 200)
+      util.move(910, 200)
       util.do_dash()
       util.do_fade()
       util.do_dash()
       util.do_fade()
       util.do_dash()
       util.do_fade()
-      util.do_dash()
-      util.do_fade(1.5)
+      util.do_fade()
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
-      util.move(735, 200)
-      util.do_fade()
-      util.force_veradrix()
-      util.do_dash()
-      util.do_fade()
-      util.force_veradrix()
+      self.go_web_gate()
 
-      util.do_dash()
-      util.do_fade()
-      util.force_veradrix()
+      check_gate = True
+      while check_gate:
+        if not util.get_macro_state():
+          util.log_action(util.MSG_TERMINATE)
+          check_gate = False
 
-      util.move(820, 200)
-      util.do_dash()
-      util.do_fade()
-      util.force_veradrix()
+        if check_gate == False:
+          break
 
-      util.do_dash()
-      util.do_fade()
-      util.force_veradrix()
-
-      util.move(250, 200)
-      util.do_dash()
-      util.do_fade()
-      util.force_veradrix()
-
-      util.move(350, 300)
-      util.do_dash()
-      util.do_fade()
-      util.force_veradrix()
-
-      util.move(415, 275)
-      util.do_dash()
-
-      util.move(435, 275)
-      util.do_fade()
-      util.force_veradrix()
-
-      util.move(550, 275)
-      util.do_dash()
-
-      util.move(475, 300)
-      util.do_fade()
-      util.force_veradrix()
-      util.do_dash()
+        try:
+          util.do_select(0.1)
+          gate = pyauto.locateOnScreen(util.IMG_WEB_GATE, grayscale=False, confidence=.7, region=util.get_archer_region())
+          check_gate = False
+          break
+        except pyauto.ImageNotFoundException:
+          util.do_deselect_pack()
+          self.go_web_gate()
 
       # Attack Web Gate
       if util.get_party_member_status() == util.STATE_ZERO:
-        util.focus_gate(util.UNIT_WEB_GATE)
+        util.focus_gate(util.UNIT_WEB_GATE, 0)
       else:
-        util.wait(2)
+        util.wait(4)
       util.wait(2)
       util.move_click(675, 300, 5)
 

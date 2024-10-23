@@ -78,6 +78,7 @@ region_full_normal_bar = []
 region_full_mode_bar = []
 region_notification = []
 region_buffs = []
+region_end_dungeon = []
 region_dialog = []
 region_sub_screen = []
 region_train_screen = []
@@ -239,6 +240,7 @@ IMG_QUEEN_RIPLEY = "img/queen-ripley.jpg"
 IMG_ANT_HILL = "img/ant-hill.jpg"
 IMG_BURNING_ANT_HILL = "img/burning-ant-hill.jpg"
 IMG_FULL_ANT_HILL = "img/full-ant-hill.jpg"
+IMG_WEB_GATE = "img/web-gate.jpg"
 
 # FILE
 FILE_CHANGELOG = "CHANGELOG.md"
@@ -542,6 +544,9 @@ def initialize_region():
 
   global region_buffs
   region_buffs = (int(cabal_window[0]) + 1236, int(cabal_window[1]) + 160, 32, 300)
+
+  global region_end_dungeon
+  region_end_dungeon = (int(cabal_window[0]) + 380, int(cabal_window[1]) + 20, 500, 600)
 
   global region_dialog
   region_dialog = (int(cabal_window[0]) + 5, int(cabal_window[1]) + 270, 30, 400)
@@ -919,6 +924,9 @@ def get_notification_region():
 def get_buff_region():
   return region_buffs
 
+def get_end_dungeon_region():
+  return region_end_dungeon
+
 def get_dialog_region():
   return region_dialog
 
@@ -1093,7 +1101,7 @@ def do_buffs():
     click_combo(400, 670, True, 0.6)
     click_combo(430, 670, True, 1)
 
-def cancel_buffs(reps=5):
+def cancel_buffs(reps=8):
   for x in range(reps):
     move(1250, 185)
     pyauto.click(button="right")
@@ -1495,7 +1503,7 @@ def end_dungeon():
       break
 
     try:
-      ending_dungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9)
+      ending_dungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9, region=get_end_dungeon_region())
       move_click_rel(50, 15, ending_dungeon, 0.2)
       ending = False
       break
@@ -1513,7 +1521,7 @@ def dice_dungeon():
         break
 
     try:
-      dice_roll = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9)
+      dice_roll = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9, region=get_end_dungeon_region())
       move_click_rel(50, 15, dice_roll, 0.2)
       dicing = False
       break
@@ -1530,7 +1538,7 @@ def dice_dungeon():
         break
 
     try:
-      dice_confirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9)
+      dice_confirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9, region=get_end_dungeon_region())
       move_click_rel(10, 5, dice_confirm, 0.2)
       confirming = False
       break
