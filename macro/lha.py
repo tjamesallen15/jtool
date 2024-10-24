@@ -133,6 +133,7 @@ class LavaHellfireAwakened(Dungeon):
     util.move(450, 300)
     util.do_dash()
     util.do_fade()
+    util.do_dash(1.5)
 
     util.move(550, 100)
     util.do_dash()
@@ -186,6 +187,8 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Click Dungeon
+      util.do_final_mode(1)
+      util.do_aura(2)
       util.click_portal(650, 260)
 
       # Enter Dungeon
@@ -205,7 +208,6 @@ class LavaHellfireAwakened(Dungeon):
       util.do_fade()
 
       # First Boss
-      util.do_final_mode(1)
       util.attack_boss()
       util.plunder_box(1, 3)
 
@@ -364,7 +366,7 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Final Boss
-      util.attack_boss(0, 1, 0, 0)
+      util.attack_boss(0, 0, 0, 0)
 
       checking = True
       while checking:
