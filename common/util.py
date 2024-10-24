@@ -78,7 +78,7 @@ region_full_normal_bar = []
 region_full_mode_bar = []
 region_notification = []
 region_buffs = []
-region_end_dungeon = []
+region_middle = []
 region_dialog = []
 region_sub_screen = []
 region_train_screen = []
@@ -198,6 +198,7 @@ IMG_END_DG = "img/enddg.jpg"
 IMG_EXIT_DG = "img/exitdg.jpg"
 IMG_LAUCHER_LOAD = "img/launcherloading.jpg"
 IMG_LAUNCHER_PLAY = "img/launcherplay.jpg"
+IMG_CHANNEL_FOUR = "img/channel-four.jpg"
 IMG_SUB_PASS = "img/subpass.jpg"
 IMG_DUAL_BOSS = "img/dualboss.jpg"
 IMG_BOSS = "img/boss.jpg"
@@ -545,8 +546,8 @@ def initialize_region():
   global region_buffs
   region_buffs = (int(cabal_window[0]) + 1236, int(cabal_window[1]) + 160, 32, 300)
 
-  global region_end_dungeon
-  region_end_dungeon = (int(cabal_window[0]) + 380, int(cabal_window[1]) + 20, 500, 600)
+  global region_middle
+  region_middle = (int(cabal_window[0]) + 380, int(cabal_window[1]) + 20, 500, 600)
 
   global region_dialog
   region_dialog = (int(cabal_window[0]) + 5, int(cabal_window[1]) + 270, 30, 400)
@@ -814,16 +815,20 @@ def enter_cabal_world():
   pynboard.release(Key.right)
   time.sleep(0.1)
 
-  pynboard.press(Key.down)
-  pynboard.release(Key.down)
-  time.sleep(0.1)
-  pynboard.press(Key.down)
-  pynboard.release(Key.down)
-  time.sleep(0.1)
+  try:
+    channel_four = pyauto.locateOnScreen(IMG_CHANNEL_FOUR, grayscale=False, confidence=.9, region=get_middle_region())
+    move_click_rel(10, 10, channel_four, 0.2)
+  except pyauto.ImageNotFoundException:
+    pynboard.press(Key.down)
+    pynboard.release(Key.down)
+    time.sleep(0.1)
+    pynboard.press(Key.down)
+    pynboard.release(Key.down)
+    time.sleep(0.1)
 
   pynboard.press(Key.enter)
   pynboard.release(Key.enter)
-  time.sleep(5)
+  time.sleep(8)
 
   try:
     pynboard.press(Key.enter)
@@ -850,7 +855,6 @@ def enter_cabal_world():
 
   pynboard.press(Key.esc)
   pynboard.release(Key.esc)
-  wait(3)
 
 def move_bead_window():
   try:
@@ -924,8 +928,8 @@ def get_notification_region():
 def get_buff_region():
   return region_buffs
 
-def get_end_dungeon_region():
-  return region_end_dungeon
+def get_middle_region():
+  return region_middle
 
 def get_dialog_region():
   return region_dialog
@@ -1520,7 +1524,7 @@ def end_dungeon():
       break
 
     try:
-      ending_dungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9, region=get_end_dungeon_region())
+      ending_dungeon = pyauto.locateOnScreen(IMG_END_DG, grayscale=False, confidence=.9, region=get_middle_region())
       move_click_rel(50, 15, ending_dungeon, 0.2)
       ending = False
       break
@@ -1538,7 +1542,7 @@ def dice_dungeon():
         break
 
     try:
-      dice_roll = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9, region=get_end_dungeon_region())
+      dice_roll = pyauto.locateOnScreen(IMG_DICE_ROLL, grayscale=False, confidence=.9, region=get_middle_region())
       move_click_rel(50, 15, dice_roll, 0.2)
       dicing = False
       break
@@ -1555,7 +1559,7 @@ def dice_dungeon():
         break
 
     try:
-      dice_confirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9, region=get_end_dungeon_region())
+      dice_confirm = pyauto.locateOnScreen(IMG_DICE_OKAY, grayscale=False, confidence=.9, region=get_middle_region())
       move_click_rel(10, 5, dice_confirm, 0.2)
       confirming = False
       break

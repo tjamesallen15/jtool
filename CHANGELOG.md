@@ -35,6 +35,7 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Fixed class combobox to readonly state
 - [Application] Refactored some code structures in utility
+- [Application] Added ability to check if channel four is available to select on reconnection
 - [CI] Increase mob_threshold from 100 to 200 for party state
 - [CI] Refactored positioning for ulwaan mobs
 
