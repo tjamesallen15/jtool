@@ -1007,16 +1007,16 @@ def get_interval_range():
 
 def force_exit_dungeon():
   check_notifications()
-  time.sleep(0.5)
+  time.sleep(0.2)
 
   move_click(830, 710)
-  time.sleep(0.5)
+  time.sleep(0.2)
 
   move_click(850, 430)
-  time.sleep(0.5)
+  time.sleep(0.2)
 
   move_click(1030, 485)
-  time.sleep(1)
+  time.sleep(0.2)
 
   move_click(620, 440)
   time.sleep(3)
@@ -1168,6 +1168,22 @@ def do_deselect_pack():
   do_deselect(0.1)
   do_deselect(0.1)
 
+def roll_box():
+  if get_party_status() == STATE_ONE:
+    try:
+      roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
+      log_action(MSG_ROLL_EQUIPMENT)
+      move_rel(10, 10, roll, 0.2)
+      move_click_rel(10, 10, roll, 0.2)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+
+def party_roll_box(reps=4):
+  roll_reps = reps * 2
+  for x in range(roll_reps):
+    roll_box()
+    time.sleep(0.3)
+
 def plunder_box(select=1, reps=4, loot=1, delay=0.5):
   log_action(MSG_CHECK_BOX)
 
@@ -1257,6 +1273,7 @@ def do_plunder(reps=4):
     pynboard.press(KEY_LOOT_SPACE)
     pynboard.release(KEY_LOOT_SPACE)
     time.sleep(0.3)
+    roll_box()
 
 def do_fast_plunder():
     pynboard.press(KEY_LOOT_ACTION)

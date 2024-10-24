@@ -133,7 +133,12 @@ class LavaHellfireAwakened(Dungeon):
     util.move(450, 300)
     util.do_dash()
     util.do_fade()
-    util.do_dash(1.5)
+
+    if util.get_attack_type() == util.VAL_MELEE:
+      util.do_dash()
+      util.do_fade()
+    else:
+      util.do_dash(1.5)
 
     util.move(550, 100)
     util.do_dash()
@@ -143,7 +148,10 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    util.move(650, 200)
+    if util.get_attack_type() == util.VAL_MELEE:
+      util.move(690, 200)
+    else:
+      util.move(670, 200)
     util.do_dash()
     util.do_fade()
 

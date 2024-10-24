@@ -366,7 +366,7 @@ class JTool():
     self.val_config_data[util.DATA_LOAD] = self.LIST_LOAD_TIME.index(self.val_load_time.get())
     config.save_data(self.val_config_data)
 
-  def enable_party_features(self, args):
+  def enable_dungeon_features(self, args):
     choice = self.list_dg.get()
     if choice == self.LIST_MASTER[12] or choice == self.LIST_MASTER[15]:
       self.chkbtn_leader.config(state=util.STATE_NORMAL)
@@ -642,7 +642,7 @@ class JTool():
     self.list_dg.current(self.get_data(util.DATA_DUNGEON))
     self.list_dg.config(width=30)
     self.list_dg.place(x=75, y=10)
-    self.list_dg.bind("<<ComboboxSelected>>", self.enable_party_features)
+    self.list_dg.bind("<<ComboboxSelected>>", self.enable_dungeon_features)
 
     lbl_runs = Label(tab_dungeon, text=util.LBL_RUNS)
     lbl_runs.place(x=10, y=43)
@@ -953,7 +953,7 @@ class JTool():
     btn_changelogs = Button(frame_btn, text=util.BTN_CHANGELOG, command=self.get_changelogs)
     btn_changelogs.pack(side=LEFT)
 
-    self.enable_party_features(None)
+    self.enable_dungeon_features(None)
     self.frame_root.mainloop()
 
 # GENERATE MAIN

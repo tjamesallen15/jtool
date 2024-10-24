@@ -272,7 +272,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
-        util.wait(4)
+        util.party_roll_box()
 
       util.move(720, 500)
       util.do_dash()
@@ -371,6 +371,8 @@ class PurifierOfTheForest(Dungeon):
 
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
+      else:
+        util.party_roll_box()
 
       util.move(100, 325)
       util.do_dash()
@@ -426,6 +428,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
       util.do_dash()
       util.do_fade()
+      util.do_dash()
       util.do_fade()
 
       util.move_scroll(375, 150, 700, 150, 0.5)
@@ -476,7 +479,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
-        util.wait(4)
+        util.party_roll_box()
 
       # Move to Ant Base
       util.move_click(1125, 325, 5)
@@ -552,7 +555,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
-        util.wait(4)
+        util.party_roll_box()
 
       util.move(620, 200)
       util.do_dash()
@@ -573,9 +576,9 @@ class PurifierOfTheForest(Dungeon):
 
       if util.get_party_member_status() == util.STATE_ZERO:
         util.do_plunder(3)
-      else:
         util.wait(2)
-      util.wait(2)
+      else:
+        util.wait(4)
 
       util.move(300, 600)
       util.do_dash()
@@ -588,7 +591,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_final_box()
       else:
-        util.wait(5)
+        util.party_roll_box()
 
       # Check Macro State
       if not util.get_macro_state():
