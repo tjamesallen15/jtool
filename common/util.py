@@ -1007,7 +1007,7 @@ def get_interval_range():
 
 def force_exit_dungeon():
   check_notifications()
-  time.sleep(2)
+  time.sleep(0.5)
 
   move_click(830, 710)
   time.sleep(0.5)
