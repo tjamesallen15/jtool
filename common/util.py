@@ -639,8 +639,8 @@ def log_action(message):
     val_last_message = msg_builder
     print(msg_builder)
 
-  # lbl_macro.config(text=msg_builder)
-  # frame_root.update()
+  lbl_macro.config(text=msg_builder)
+  frame_root.update()
 
 def log_time(delay=1.5):
   check_time = time.time()
@@ -1179,7 +1179,7 @@ def roll_box():
       log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
 
 def party_roll_box(reps=4):
-  roll_reps = reps * 2
+  roll_reps = reps * 3
   for x in range(roll_reps):
     roll_box()
     time.sleep(0.3)

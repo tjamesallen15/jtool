@@ -386,7 +386,7 @@ class PurifierOfTheForest(Dungeon):
 
       util.move_scroll(700, 150, 375, 150, 0.5)
       util.move_click(755, 210, 5)
-      util.move_click(510, 200, 6)
+      util.move_click(510, 200, 7)
 
       util.move_click(800, 300, 3)
       util.move_scroll(375, 150, 700, 150, 0.5)
