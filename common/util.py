@@ -1069,7 +1069,7 @@ def set_run_restart_status(status):
   val_run_restart = int(status)
 
 def get_run_restart_status():
-  val_run_restart
+  return val_run_restart
 
 def set_password(pword):
   global val_pword
