@@ -27,6 +27,11 @@ All notable changes to this project will be documented in this file.
 - [Application] Added force_battle_mode()
 - [Application] Added focus_high_mobs()
 - [Application] Added focus_high_boss()
+- [Application] Added cancel buffs
+- [Application] Added short hard buffs
+- [Application] Added debuffs
+- [Application] Added hard debuffs
+- [Application] Added exit cabal after macro
 - [CI] Added three cases in entering dungeon for solo and party states
 - [POTF] Added Purifier of the Forest in Development Phase
 - [POTF] Added Purieifer of the Forest to party states

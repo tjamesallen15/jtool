@@ -50,10 +50,14 @@ is_battle_mode = False
 trigger_reset_dungeon = False
 
 battle_mode = 0
-is_buffs_allowed = 1
-is_short_buffs_allowed = 1
-is_veradrix_allowed = 0
-is_veradrix_needed = 0
+val_buffs = 1
+val_cancel_buffs = 0
+val_shorts = 1
+val_hard_shorts = 0
+val_debuffs = 0
+val_hard_debuffs = 0
+val_close_app = 0
+val_vera = 0
 aura_counter = 0
 val_runs = 1
 val_run_restart = 0
@@ -85,7 +89,7 @@ region_train_screen = []
 
 # CONSTANT UI VARIABLES
 APP_FONT = "Tahoma 10"
-APP_FRAME_SIZE = "330x280"
+APP_FRAME_SIZE = "330x310"
 APP_NAME = "Cabal JTool"
 APP_VERSION = "5.85"
 APP_FULL_NAME = APP_NAME + " " + APP_VERSION
@@ -319,12 +323,21 @@ DATA_JSON = "data/config.json"
 DATA_DUNGEON = "dungeon"
 DATA_RUNS = "runs"
 DATA_MODE = "mode"
+DATA_ACCESS_LEVEL = "access_level"
+DATA_CHAR_CLASS = "char_class"
 DATA_LEADER = "leader"
 DATA_MEMBER = "member"
 DATA_BUFFS = "buffs"
+DATA_CANCEL_BUFFS = "cancel_buffs"
+DATA_DEBUFFS = "debuffs"
+DATA_HARD_DEBUFFS = "hard_debuffs"
 DATA_SHORTS = "shorts"
+DATA_HARD_SHORTS = "hard_shorts"
 DATA_CLASS = "class"
 DATA_VERADRIX = "veradrix"
+DATA_RUN_RESTART = "run_restart"
+DATA_CLOSE_APP = "close_app"
+DATA_RUNS = "runs"
 DATA_PWORD = "pword"
 DATA_PIN = "pin"
 DATA_RESOLUTION = "resolution"
@@ -383,10 +396,12 @@ LBL_RUNS = "Runs: "
 LBL_CLASS = "Class: "
 LBL_MODE = "Mode II: "
 LBL_BUFFS = "Buffs: "
+LBL_DEBUFFS = "Debuffs: "
 LBL_SHORTS = "Shorts: "
 LBL_LEADER = "Leader: "
 LBL_MEMBER = "Member: "
 LBL_VERADRIX = "Veradrix: "
+LBL_CLOSE_APP = "Exit Cabal: "
 LBL_CLICK = "Click #: N/A"
 LBL_MACRO = "Idle"
 LBL_CURRENT_RUN = "Run #: --"
@@ -400,8 +415,9 @@ LBL_RESTART_NOTE_SUFFIX = " runs"
 LBL_RUN_RESTART = "Run Restart: "
 LBL_RUN_RESTART_EMPTY = "Run Restart: --"
 LBL_RUN_RESTART_NOTE = "Restart every run specified."
-LBL_DG_RESTART = "DG Restart"
-LBL_DG_RESTART_NOTE = "Restart first before auto."
+LBL_DG_RESTART = "DG Restart: "
+LBL_DG_RESTART_NOTE = "Restart first before macro."
+LBL_CLOSE_APP_NOTE = "Close Cabal after macro."
 LBL_PWORD = "Password: "
 LBL_PIN = "PIN: "
 LBL_RESOLUTION = "Resolution: "
@@ -478,51 +494,27 @@ def initialize(window, frame, mlbl, rlbl, lrt):
   global val_last_message
   val_last_message = ''
 
-def set_variables(access_level, char_class=0, mode=0, leader=0, member=0, buff=1, sbuffs=1, vera=0, runs=1, run_restart=0, pword='default', pin='123', resolution='0', load_time=0):
-  global val_access_level
-  val_access_level = access_level
-
-  global val_char_class
-  val_char_class = char_class
-
-  global battle_mode
-  battle_mode = int(mode)
-
-  global is_battle_mode
-  is_battle_mode = False
-
-  global val_leader
-  val_leader = leader
-
-  global val_member
-  val_member = member
-
-  global is_buffs_allowed
-  is_buffs_allowed = int(buff)
-
-  global is_short_buffs_allowed
-  is_short_buffs_allowed = int(sbuffs)
-
-  global is_veradrix_allowed
-  is_veradrix_allowed = vera
-
-  global val_runs
-  val_runs = runs
-
-  global val_run_restart
-  val_run_restart = int(run_restart)
-
-  global val_pword
-  val_pword = pword
-
-  global val_pin
-  val_pin = pin
-
-  global val_resolution
-  val_resolution = resolution
-
-  global val_load_time
-  val_load_time = load_time
+def set_variables(args):
+  set_access_level(args[DATA_ACCESS_LEVEL])
+  set_char_class(args[DATA_CHAR_CLASS])
+  set_initial_battle_mode(int(args[DATA_MODE]))
+  set_battle_mode_status(False)
+  set_party_leader_status(args[DATA_LEADER])
+  set_party_member_status(args[DATA_MEMBER])
+  set_buffs_status(args[DATA_BUFFS])
+  set_cancel_buffs_status(args[DATA_CANCEL_BUFFS])
+  set_debuffs_status(args[DATA_DEBUFFS])
+  set_hard_debuffs_status(args[DATA_HARD_DEBUFFS])
+  set_shorts_status(args[DATA_SHORTS])
+  set_hard_shorts_status(args[DATA_HARD_SHORTS])
+  set_veradrix_status(args[DATA_VERADRIX])
+  set_total_run_count(args[DATA_RUNS])
+  set_run_restart_status(args[DATA_RUN_RESTART])
+  set_password(args[DATA_PWORD])
+  set_pin(args[DATA_PIN])
+  set_resolution(args[DATA_RESOLUTION])
+  set_load_time(args[DATA_LOAD])
+  set_close_app_status(args[DATA_CLOSE_APP])
 
 def initialize_region():
   global region_normal_bar
@@ -797,10 +789,8 @@ def type_pin():
     else:
       pin_number = pyauto.locateOnScreen(IMG_ZERO, grayscale=False, confidence=.8, region=get_sub_screen_region())
 
-    pyauto.moveTo(pin_number[0] + 10, pin_number[1] + 15)
-    time.sleep(0.5)
-    pyauto.click(pin_number[0] + 10, pin_number[1] + 15)
-    time.sleep(0.5)
+    move_rel(10, 15, pin_number, 0.4)
+    move_click_rel(10, 15, pin_number, 0.4)
 
   move(580, 530)
   move_click(580, 530)
@@ -847,14 +837,9 @@ def enter_cabal_world():
 
   wait(10)
   log_action(MSG_CLEARING_WINDOWS)
-  pynboard.press(Key.esc)
-  pynboard.release(Key.esc)
-
-  pynboard.press(Key.esc)
-  pynboard.release(Key.esc)
-
-  pynboard.press(Key.esc)
-  pynboard.release(Key.esc)
+  for x in range(3):
+    pynboard.press(Key.esc)
+    pynboard.release(Key.esc)
 
 def move_bead_window():
   try:
@@ -879,7 +864,7 @@ def select_task_bar():
     pyauto.moveTo(x, y)
     pyauto.click(x, y)
 
-def exit_cabal_application():
+def exit_cabal_application(finish=False):
   log_action(MSG_CLOSE_APPLICATION)
   go_cabal_window()
 
@@ -888,13 +873,15 @@ def exit_cabal_application():
 
   pynboard.press(Key.enter)
   pynboard.release(Key.enter)
-  countdown_timer(5)
+
+  if finish == IS_FALSE:
+    countdown_timer(5)
 
 def check_run_restart(run_count):
   global val_run_restart_stack
-  if val_run_restart > 0:
+  if get_run_restart_status() > 0:
     log_action(MSG_CHECK_RECONNECT)
-    if val_run_restart == (run_count - val_run_restart_stack):
+    if get_run_restart_status() == (run_count - val_run_restart_stack):
       exit_cabal_application()
       select_task_bar()
       open_cabal_application()
@@ -940,8 +927,16 @@ def get_sub_screen_region():
 def get_train_region():
   return region_train_screen
 
+def set_access_level(access_level):
+  global val_access_level
+  val_access_level = access_level
+
 def get_access_level():
   return val_access_level
+
+def set_char_class(char_class):
+  global val_char_class
+  val_char_class = char_class
 
 def get_char_class():
   return val_char_class
@@ -966,14 +961,30 @@ def get_party_status():
 
   return False
 
+def set_party_leader_status(leader):
+  global val_leader
+  val_leader = leader
+
 def get_party_leader_status():
   return val_leader
+
+def set_party_member_status(member):
+  global val_member
+  val_member = member
 
 def get_party_member_status():
   return val_member
 
+def set_initial_battle_mode(mode):
+  global battle_mode
+  battle_mode = mode
+
 def get_battle_mode():
   return battle_mode
+
+def set_battle_mode_status(status):
+  global is_battle_mode
+  is_battle_mode = status
 
 def get_battle_mode_status():
   return is_battle_mode
@@ -991,23 +1002,113 @@ def set_reset_status(val=False):
 def get_macro_state():
   return macro
 
+def set_total_run_count(runs):
+  global val_runs
+  val_runs = runs
+
 def get_total_run_count():
   return val_runs
 
+def set_veradrix_status(status):
+  global val_vera
+  val_vera = status
+
 def get_veradrix_status():
-  return is_veradrix_allowed
+  return val_vera
+
+def set_buffs_status(status):
+  global val_buffs
+  val_buffs = status
 
 def get_buffs_status():
-  return is_buffs_allowed
+  return val_buffs
+
+def set_debuffs_status(status):
+  global val_debuffs
+  val_debuffs = status
+
+def get_debuffs_status():
+  return val_debuffs
+
+def set_hard_debuffs_status(status):
+  global val_hard_debuffs
+  val_hard_debuffs = status
+
+def get_hard_debuffs_status():
+  return val_hard_debuffs
+
+def set_cancel_buffs_status(status):
+  global val_cancel_buffs
+  val_cancel_buffs = status
+
+def get_cancel_buffs_status():
+  return val_cancel_buffs
+
+def set_shorts_status(status):
+  global val_shorts
+  val_shorts = status
 
 def get_shorts_status():
-  return is_short_buffs_allowed
+  return val_shorts
+
+def set_hard_shorts_status(status):
+  global val_hard_shorts
+  val_hard_shorts = status
+
+def get_hard_shorts_status():
+  return val_hard_shorts
 
 def get_interval_melee():
   return val_interval_melee
 
 def get_interval_range():
   return val_interval_range
+
+def set_run_restart_status(status):
+  global val_run_restart
+  val_run_restart = int(status)
+
+def get_run_restart_status():
+  val_run_restart
+
+def set_password(pword):
+  global val_pword
+  val_pword = pword
+
+def get_password():
+  return val_pword
+
+def set_pin(pin):
+  global val_pin
+  val_pin = pin
+
+def get_pin():
+  return val_pin
+
+def set_resolution(resolution):
+  global val_resolution
+  val_resolution = resolution
+
+def get_resolution():
+  return val_resolution
+
+def set_load_time(load_time):
+  global val_load_time
+  val_load_time = load_time
+
+def get_load_time():
+  return val_load_time
+
+def set_close_app_status(status):
+  global val_close_app
+  val_close_app = status
+
+def get_close_app_status():
+  return val_close_app
+
+def do_close_app_status():
+  if get_close_app_status() == STATE_ONE:
+    exit_cabal_application(True)
 
 def force_exit_dungeon():
   check_notifications()
@@ -1106,10 +1207,11 @@ def do_buffs():
     click_combo(430, 670, True, 1)
 
 def cancel_buffs(reps=8):
-  for x in range(reps):
-    move(1250, 185)
-    pyauto.click(button="right")
-    time.sleep(0.2)
+  if get_cancel_buffs_status() == STATE_ONE:
+    for x in range(reps):
+      move(1250, 185)
+      pyauto.click(button="right")
+      time.sleep(0.2)
 
 def do_short_buffs():
   if get_shorts_status() == STATE_ONE:
@@ -1117,6 +1219,10 @@ def do_short_buffs():
     click_combo(470, 670, True, 0.2)
     click_combo(500, 670, True, 0.2)
 
+    do_hard_short_buffs()
+
+def do_hard_short_buffs():
+  if get_hard_shorts_status() == STATE_ONE:
     if get_char_class() == VAL_CLASS_BL:
       click_combo(540, 670, True, 0.5)
       click_combo(570, 670, True, 0.5)
@@ -1131,12 +1237,14 @@ def force_short_buffs():
     click_combo(570, 670, True, 0.5)
 
 def do_debuff(delay=1):
-  log_action(MSG_DEBUFF)
-  click_combo(610, 670, True, delay)
+  if get_debuffs_status() == STATE_ONE:
+    log_action(MSG_DEBUFF)
+    click_combo(610, 670, True, delay)
 
 def do_hard_debuff(delay=1):
-  log_action(MSG_DEBUFF_HARD)
-  click_combo(650, 670, True, delay)
+  if get_hard_debuffs_status() == STATE_ONE:
+    log_action(MSG_DEBUFF_HARD)
+    click_combo(650, 670, True, delay)
 
 def cancel_aura(delay=0):
   click_combo(175, 100, True)

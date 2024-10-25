@@ -91,9 +91,14 @@ class JTool():
   val_member = 0
   val_mode = 0
   val_buffs = 1
+  val_cancel_buffs = 0
+  val_debuffs = 0
+  val_hard_debuffs = 0
   val_shorts = 1
+  val_hard_shorts = 0
   val_atk_type = 0
   val_vera = 0
+  val_close_app = 0
   val_archer = 0
   val_resolution = 0
   val_load_time = 0
@@ -125,20 +130,30 @@ class JTool():
   def start(self):
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
     choice = self.list_dg.get()
-    runs = int(self.val_run_count.get())
-    access_level = self.get_level()
-    char_class = self.val_char_class.get()
-    mode = self.val_mode.get()
-    leader = self.val_leader.get()
-    member = self.val_member.get()
-    buff = self.val_buffs.get()
-    short = self.val_shorts.get()
-    vera = self.val_vera.get()
-    run_restart = self.val_run_restart.get()
-    pword = self.val_pword.get()
-    pin = self.val_pin.get()
-    reso = self.val_resolution.get()
-    load_time = int(self.val_load_time.get().split(' ')[0])
+
+    variable_args = {
+      util.DATA_ACCESS_LEVEL: self.get_level(),
+      util.DATA_LEADER: self.val_leader.get(),
+      util.DATA_MEMBER: self.val_member.get(),
+      util.DATA_CHAR_CLASS: self.val_char_class.get(),
+      util.DATA_MODE: self.val_mode.get(),
+      util.DATA_BUFFS: self.val_buffs.get(),
+      util.DATA_CANCEL_BUFFS: self.val_cancel_buffs.get(),
+      util.DATA_DEBUFFS: self.val_debuffs.get(),
+      util.DATA_HARD_DEBUFFS: self.val_hard_debuffs.get(),
+      util.DATA_SHORTS: self.val_shorts.get(),
+      util.DATA_HARD_SHORTS: self.val_hard_shorts.get(),
+      util.DATA_VERADRIX: self.val_vera.get(),
+      util.DATA_RUNS: int(self.val_run_count.get()),
+      util.DATA_RUN_RESTART: self.val_run_restart.get(),
+      util.DATA_CLOSE_APP: self.val_close_app.get(),
+      util.DATA_PWORD: self.val_pword.get(),
+      util.DATA_RESOLUTION: self.val_resolution.get(),
+      util.DATA_LOAD: int(self.val_load_time.get().split(' ')[0])
+    }
+
+    runs = variable_args[util.DATA_RUNS]
+    run_restart = variable_args[util.DATA_RUN_RESTART]
     dungeon_restart = self.val_dungeon_restart.get()
 
     self.lbl_run_time.config(text=util.LBL_RUN_TIME_EMPTY)
@@ -152,7 +167,7 @@ class JTool():
     self.save_data()
     util.initialize(cabal_window, self.frame_root, self.lbl_macro, self.lbl_current_run, self.lbl_run_time)
     util.initialize_region()
-    util.set_variables(access_level, char_class, mode, leader, member, buff, short, vera, runs, run_restart, pword, pin, reso, load_time)
+    util.set_variables(variable_args)
 
     if dungeon_restart == util.STATE_ONE:
       self.restart_cabal_application()
@@ -344,8 +359,17 @@ class JTool():
       case util.DATA_MODE:
         if self.get_level() == util.ACCESS_FREE:
           return util.STATE_ZERO
+      case util.DATA_DEBUFFS:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
+          return util.STATE_ZERO
+      case util.DATA_HARD_DEBUFFS:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
+          return util.STATE_ZERO
       case util.DATA_SHORTS:
         if self.get_level() == util.ACCESS_FREE:
+          return util.STATE_ZERO
+      case util.DATA_HARD_SHORTS:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
           return util.STATE_ZERO
       case util.DATA_VERADRIX:
         if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO:
@@ -358,7 +382,10 @@ class JTool():
     self.val_config_data[util.DATA_CLASS] = util.LIST_CLASS.index(self.val_char_class.get())
     self.val_config_data[util.DATA_MODE] = self.val_mode.get()
     self.val_config_data[util.DATA_BUFFS] = self.val_buffs.get()
+    self.val_config_data[util.DATA_DEBUFFS] = self.val_debuffs.get()
+    self.val_config_data[util.DATA_HARD_DEBUFFS] = self.val_hard_debuffs.get()
     self.val_config_data[util.DATA_SHORTS] = self.val_shorts.get()
+    self.val_config_data[util.DATA_HARD_SHORTS] = self.val_hard_shorts.get()
     self.val_config_data[util.DATA_VERADRIX] = self.val_vera.get()
     self.val_config_data[util.DATA_PWORD] = self.val_pword.get()
     self.val_config_data[util.DATA_PIN] = self.val_pin.get()
@@ -664,10 +691,10 @@ class JTool():
     self.btn_start.place(x=255, y=40)
 
     self.lbl_current_run = Label(tab_dungeon, text=util.LBL_CURRENT_RUN)
-    self.lbl_current_run.place(x=145, y=75)
+    self.lbl_current_run.place(x=145, y=105)
 
     self.lbl_run_time = Label(tab_dungeon, text=util.LBL_RUN_TIME_EMPTY)
-    self.lbl_run_time.place(x=145, y=105)
+    self.lbl_run_time.place(x=145, y=135)
 
     lbl_class = Label(tab_dungeon, text=util.LBL_CLASS, state=self.get_access(util.DATA_MODE))
     lbl_class.place(x=10, y=73)
@@ -691,6 +718,10 @@ class JTool():
     chkbtn_buffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_buffs, state=self.get_access(util.DATA_BUFFS))
     chkbtn_buffs.place(x=75, y=136)
 
+    self.val_cancel_buffs = IntVar(value=0)
+    chkbtn_cancel_buffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_cancel_buffs, state=self.get_access(util.DATA_BUFFS))
+    chkbtn_cancel_buffs.place(x=95, y=136)
+
     lbl_shorts = Label(tab_dungeon, text=util.LBL_SHORTS, state=self.get_access(util.DATA_SHORTS))
     lbl_shorts.place(x=10, y=165)
 
@@ -698,31 +729,46 @@ class JTool():
     chkbtn_shorts = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_shorts, state=self.get_access(util.DATA_SHORTS))
     chkbtn_shorts.place(x=75, y=166)
 
+    self.val_hard_shorts = IntVar(value=self.get_data(util.DATA_HARD_SHORTS))
+    chkbtn_hard_shorts = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_hard_shorts, state=self.get_access(util.DATA_HARD_SHORTS))
+    chkbtn_hard_shorts.place(x=95, y=166)
+
+    lbl_debuffs = Label(tab_dungeon, text=util.LBL_DEBUFFS, state=self.get_access(util.DATA_BUFFS))
+    lbl_debuffs.place(x=10, y=195)
+
+    self.val_debuffs = IntVar(value=self.get_data(util.DATA_DEBUFFS))
+    chkbtn_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_shorts, state=self.get_access(util.DATA_DEBUFFS))
+    chkbtn_debuffs.place(x=75, y=196)
+
+    self.val_hard_debuffs = IntVar(value=self.get_data(util.DATA_HARD_DEBUFFS))
+    chkbtn_hard_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_shorts, state=self.get_access(util.DATA_HARD_DEBUFFS))
+    chkbtn_hard_debuffs.place(x=95, y=196)
+
     lbl_leader = Label(tab_dungeon, text=util.LBL_LEADER, state=self.get_access(util.DATA_LEADER))
-    lbl_leader.place(x=10, y=195)
+    lbl_leader.place(x=10, y=225)
 
     self.val_leader = IntVar(value=0)
     self.chkbtn_leader = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_leader, command=self.check_party_leader_state, state=self.get_access(util.DATA_LEADER))
-    self.chkbtn_leader.place(x=75, y=196)
+    self.chkbtn_leader.place(x=75, y=226)
 
     lbl_member = Label(tab_dungeon, text=util.LBL_MEMBER, state=self.get_access(util.DATA_MEMBER))
-    lbl_member.place(x=10, y=225)
+    lbl_member.place(x=10, y=255)
 
     self.val_member = IntVar(value=0)
     self.chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_member, command=self.check_party_member_state, state=self.get_access(util.DATA_MEMBER))
-    self.chkbtn_member.place(x=75, y=226)
+    self.chkbtn_member.place(x=75, y=256)
 
     self.lbl_restart_note = Label(tab_dungeon, text=util.LBL_RUN_RESTART_EMPTY)
-    self.lbl_restart_note.place(x=145, y=135)
+    self.lbl_restart_note.place(x=145, y=165)
 
     lbl_license = Label(tab_dungeon, text=self.get_license())
-    lbl_license.place(x=145, y=165)
+    lbl_license.place(x=145, y=195)
 
     lbl_expiration = Label(tab_dungeon, text=self.get_expiration_status())
-    lbl_expiration.place(x=145, y=195)
+    lbl_expiration.place(x=145, y=225)
 
     self.lbl_macro = Label(tab_dungeon, text=util.LBL_MACRO)
-    self.lbl_macro.place(x=145, y=225)
+    self.lbl_macro.place(x=145, y=255)
 
     # Tab Connection
     lbl_run_restart = Label(tab_connection, text=util.LBL_RUN_RESTART)
@@ -746,46 +792,56 @@ class JTool():
     lbl_dungeon_restart_note = Label(tab_connection, text=util.LBL_DG_RESTART_NOTE)
     lbl_dungeon_restart_note.place(x=155, y=43)
 
+    lbl_close_app = Label(tab_connection, text=util.LBL_CLOSE_APP)
+    lbl_close_app.place(x=10, y=73)
+
+    self.val_close_app = IntVar(value=0)
+    chkbtn_close_app = ttk.Checkbutton(tab_connection, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_close_app)
+    chkbtn_close_app.place(x=90, y=74)
+
+    lbl_close_app_note = Label(tab_connection, text=util.LBL_CLOSE_APP_NOTE)
+    lbl_close_app_note.place(x=155, y=73)
+
     lbl_pword = Label(tab_connection, text=util.LBL_PWORD)
-    lbl_pword.place(x=10, y=75)
+    lbl_pword.place(x=10, y=105)
 
     self.val_pword = StringVar()
     self.val_pword.set(self.get_data(util.DATA_PWORD))
     entry_pword = Entry(tab_connection, show="*", textvariable=self.val_pword, width=15)
-    entry_pword.place(x=85, y=75)
+    entry_pword.place(x=85, y=105)
 
     lbl_pin = Label(tab_connection, text=util.LBL_PIN)
-    lbl_pin.place(x=205, y=75)
+    lbl_pin.place(x=205, y=105)
 
     self.val_pin = StringVar()
     self.val_pin.set(self.get_data(util.DATA_PIN))
     entry_pin = Entry(tab_connection, show="*", textvariable=self.val_pin, width=10)
-    entry_pin.place(x=240, y=75)
+    entry_pin.place(x=240, y=105)
 
     lbl_resolution = Label(tab_connection, text=util.LBL_RESOLUTION)
-    lbl_resolution.place(x=10, y=105)
+    lbl_resolution.place(x=10, y=135)
 
     self.val_resolution = ttk.Combobox(tab_connection, values=self.LIST_RESOLUTION, state=util.STATE_READONLY)
     self.val_resolution.current(self.get_data(util.DATA_RESOLUTION))
     self.val_resolution.config(width=12)
-    self.val_resolution.place(x=85, y=105)
+    self.val_resolution.place(x=85, y=135)
 
     lbl_resolution_note = Label(tab_connection, text=util.LBL_RESOLUTION_NOTE)
-    lbl_resolution_note.place(x=10, y=135)
+    lbl_resolution_note.place(x=10, y=165)
 
     lbl_load_time = Label(tab_connection, text=util.LBL_LOAD_TIME)
-    lbl_load_time.place(x=10, y=165)
+    lbl_load_time.place(x=10, y=195)
 
     self.val_load_time = ttk.Combobox(tab_connection, values=self.LIST_LOAD_TIME, state=util.STATE_READONLY)
     self.val_load_time.current(self.get_data(util.DATA_LOAD))
     self.val_load_time.config(width=12)
-    self.val_load_time.place(x=85, y=165)
+    self.val_load_time.place(x=85, y=195)
 
     lbl_load_time_note = Label(tab_connection, text=util.LBL_LOAD_TIME_NOTE)
-    lbl_load_time_note.place(x=10, y=195)
+    lbl_load_time_note.place(x=10, y=225)
 
     lbl_cabal_note = Label(tab_connection, text=util.LBL_CABAL_NOTE)
-    lbl_cabal_note.place(x=10, y=225)
+    lbl_cabal_note.place(x=10, y=255)
 
     # Tab Pet
     lbl_pet_note_1 = Label(tab_pet, text=util.LBL_PET_NOTE_1)
