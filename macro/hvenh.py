@@ -836,3 +836,4 @@ class HazardousValley(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
+    util.do_close_app_status()
