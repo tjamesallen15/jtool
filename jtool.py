@@ -737,11 +737,11 @@ class JTool():
     lbl_debuffs.place(x=10, y=195)
 
     self.val_debuffs = IntVar(value=self.get_data(util.DATA_DEBUFFS))
-    chkbtn_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_shorts, state=self.get_access(util.DATA_DEBUFFS))
+    chkbtn_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_debuffs, state=self.get_access(util.DATA_DEBUFFS))
     chkbtn_debuffs.place(x=75, y=196)
 
     self.val_hard_debuffs = IntVar(value=self.get_data(util.DATA_HARD_DEBUFFS))
-    chkbtn_hard_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_shorts, state=self.get_access(util.DATA_HARD_DEBUFFS))
+    chkbtn_hard_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_hard_debuffs, state=self.get_access(util.DATA_HARD_DEBUFFS))
     chkbtn_hard_debuffs.place(x=95, y=196)
 
     lbl_leader = Label(tab_dungeon, text=util.LBL_LEADER, state=self.get_access(util.DATA_LEADER))
