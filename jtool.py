@@ -148,6 +148,7 @@ class JTool():
       util.DATA_RUN_RESTART: self.val_run_restart.get(),
       util.DATA_CLOSE_APP: self.val_close_app.get(),
       util.DATA_PWORD: self.val_pword.get(),
+      util.DATA_PIN: self.val_pin.get(),
       util.DATA_RESOLUTION: self.val_resolution.get(),
       util.DATA_LOAD: int(self.val_load_time.get().split(' ')[0])
     }
