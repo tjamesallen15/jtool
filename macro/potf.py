@@ -52,7 +52,7 @@ class PurifierOfTheForest(Dungeon):
         pass
 
     util.wait(0.5)
-    util.cancel_aura(2)
+    util.cancel_aura(1.5)
 
   def find_kill_special_boss(self, unit_name):
     finding = True
@@ -74,7 +74,7 @@ class PurifierOfTheForest(Dungeon):
         pass
 
     util.wait(0.5)
-    util.cancel_aura(2)
+    util.cancel_aura(1.5)
 
   def find_kill_mobs(self, unit_image, unit_name):
     finding = True
@@ -119,13 +119,13 @@ class PurifierOfTheForest(Dungeon):
       except pyauto.ImageNotFoundException:
         pass
 
-  def attack_monsters(self, unit_name, sec=1):
-    util.attack_mobs(unit_name, 0, 0.3, 0)
+  def attack_monsters(self, unit_name, sec=1, aura=0):
+    util.attack_mobs(unit_name, aura, 0.3, 0)
     util.wait(sec)
 
-  def focus_monsters(self, unit_name, reps=4, sec=1):
+  def focus_monsters(self, unit_name, reps=4, sec=1, aura=0):
     for x in range(reps):
-      util.focus_mobs(unit_name, 1, 0, 0)
+      util.focus_mobs(unit_name, 1, aura, 0)
 
     util.wait(sec)
 
@@ -160,12 +160,12 @@ class PurifierOfTheForest(Dungeon):
     util.do_fade()
     util.force_veradrix()
 
-    util.move(415, 275)
-    util.do_dash()
+    # util.move(415, 275)
+    # util.do_dash()
 
-    util.move(435, 275)
-    util.do_fade()
-    util.force_veradrix()
+    # util.move(435, 275)
+    # util.do_fade()
+    # util.force_veradrix()
 
     util.move(550, 275)
     util.do_dash()
@@ -230,20 +230,20 @@ class PurifierOfTheForest(Dungeon):
       util.move(1100, 400)
       util.do_dash()
       util.do_fade()
-      util.wait(7)
 
-      if util.get_last_cast_mode() == util.STATE_TWO:
-        util.do_final_mode()
-        util.set_last_cast_mode(3)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(7)
+      else: util.wait(4)
 
-      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 3)
+      util.do_final_mode()
+      util.set_last_cast_mode(3)
+      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 3, 1)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 1)
+      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 1, 1)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -256,8 +256,9 @@ class PurifierOfTheForest(Dungeon):
       util.move_click(1050, 435, 5)
 
       util.move(660, 450)
-      util.do_fade(3)
-      util.cancel_aura(2.5)
+      if util.get_attack_type() == util.VAL_MELEE: util.do_fade(3)
+      else: util.do_fade()
+      util.cancel_aura(1.5)
 
       # Attack Second Boss (Bloody Fang)
       self.find_kill_boss(util.IMG_BLOODY_FANG, util.UNIT_BLOODY_FANG)
@@ -287,13 +288,12 @@ class PurifierOfTheForest(Dungeon):
       util.move(525, 175)
       util.do_dash()
       util.do_fade()
-      util.wait(6)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(6)
+      else: util.wait(4)
 
-      if util.get_last_cast_mode() == util.STATE_TWO:
-        util.do_final_mode()
-        util.set_last_cast_mode(3)
-
-      self.focus_monsters(util.UNIT_KORAIDER, 3, 1)
+      util.do_final_mode()
+      util.set_last_cast_mode(3)
+      self.focus_monsters(util.UNIT_KORAIDER, 3, 1, 1)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -314,19 +314,20 @@ class PurifierOfTheForest(Dungeon):
       util.move(1050, 325)
       util.do_dash(2)
       util.do_fade(2)
-      util.do_dash(3)
-
-      util.move(400, 475)
       util.do_dash()
 
-      self.focus_monsters(util.UNIT_MUTANT_KORAIDER, 2, 1)
+      if util.get_attack_type() == util.VAL_MELEE:
+        util.move(400, 475)
+        util.do_dash()
+
+      self.focus_monsters(util.UNIT_MUTANT_KORAIDER, 2, 1, 1)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      util.cancel_aura(2)
+      util.cancel_aura(1.5)
 
       # Move to Beelzebub Boss
       util.move(1050, 325)
@@ -341,10 +342,12 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
       util.do_dash()
       util.do_fade()
-      util.wait(10)
+      if util.get_attack_type() == util.VAL_MELEE:
+        util.wait(8)
 
-      util.move(600, 600)
-      util.do_fade()
+        util.move(600, 600)
+        util.do_fade()
+      else: util.wait(3)
 
       # Attack Third Boss
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -387,7 +390,6 @@ class PurifierOfTheForest(Dungeon):
       util.move_scroll(700, 150, 375, 150, 0.5)
       util.move_click(755, 210, 5)
       util.move_click(510, 200, 7)
-
       util.move_click(800, 300, 3)
       util.move_scroll(375, 150, 700, 150, 0.5)
 
@@ -406,14 +408,18 @@ class PurifierOfTheForest(Dungeon):
       util.move(450, 550)
       util.do_dash()
 
-      self.attack_monsters(util.UNIT_ELECTRISHIA, 1)
+      util.do_final_mode()
+      util.set_last_cast_mode(3)
+      self.attack_monsters(util.UNIT_ELECTRISHIA, 1, 1)
 
       util.move(450, 550)
       util.do_dash()
       util.do_fade()
       util.do_dash()
 
-      self.attack_monsters(util.UNIT_ELECTRISHIA, 1)
+      util.do_final_mode()
+      util.set_last_cast_mode(3)
+      self.attack_monsters(util.UNIT_ELECTRISHIA, 1, 1)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -430,6 +436,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
       util.do_dash()
       util.do_fade()
+      util.cancel_aura(1.5)
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
@@ -459,7 +466,9 @@ class PurifierOfTheForest(Dungeon):
       else:
         util.wait(4)
       util.wait(2)
-      util.move_click(675, 300, 5)
+      util.move(675, 300)
+      if util.get_attack_type() == util.VAL_MELEE: util.do_dash(4)
+      else: util.do_dash(2)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
       util.move(650, 420)
@@ -477,9 +486,12 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.do_fade()
       if util.get_party_member_status() == util.STATE_ZERO:
+        util.do_select(0.1)
         util.plunder_box()
       else:
         util.party_roll_box()
+
+      util.wait(10)
 
       # Move to Ant Base
       util.move_click(1125, 325, 5)
@@ -487,11 +499,11 @@ class PurifierOfTheForest(Dungeon):
       util.move_click(760, 205, 5)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move_click(560, 175, 5)
-      util.force_battle_mode()
-      util.do_aura(2)
-      util.set_last_cast_mode(2)
 
       util.move_click(900, 235, 4)
+      util.do_final_mode(2)
+      util.do_aura(2)
+      util.set_last_cast_mode(3)
 
       # Attack First Ant Hill
       util.move(1050, 340)

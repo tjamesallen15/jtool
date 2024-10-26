@@ -32,6 +32,8 @@ All notable changes to this project will be documented in this file.
 - [Application] Added debuffs
 - [Application] Added hard debuffs
 - [Application] Added exit cabal after macro
+- [Application] Added timeouts to capture dungeon that run out
+- [Application] Added ability to transfer items from inventory to warehouse
 - [CI] Added three cases in entering dungeon for solo and party states
 - [POTF] Added Purifier of the Forest in Development Phase
 - [POTF] Added Purieifer of the Forest to party states
@@ -43,6 +45,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added ability to check if channel four is available to select on reconnection
 - [CI] Increase mob_threshold from 100 to 200 for party state
 - [CI] Refactored positioning for ulwaan mobs
+- [PCA] Improved dungeon run time for range classes
 
 # v5.80
 

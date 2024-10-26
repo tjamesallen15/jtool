@@ -70,6 +70,7 @@ class JTool():
   btn_misc_test = []
   btn_misc_click = []
   btn_divide_one = []
+  btn_transfer = []
   chkbtn_leader = []
   chkbtn_member = []
   lbl_macro = []
@@ -530,6 +531,7 @@ class JTool():
     self.btn_misc_test.config(state=util.STATE_DISABLED)
     self.btn_misc_click.config(state=util.STATE_DISABLED)
     self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
     self.frame_root.update()
 
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -544,12 +546,14 @@ class JTool():
     self.btn_misc_test.config(state=util.STATE_NORMAL)
     self.btn_misc_click.config(state=util.STATE_NORMAL)
     self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
   def custom_clicks(self):
     self.btn_misc_test.config(state=util.STATE_DISABLED)
     self.btn_misc_click.config(state=util.STATE_DISABLED)
     self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
     self.frame_root.update()
 
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -566,12 +570,14 @@ class JTool():
     self.btn_misc_test.config(state=util.STATE_NORMAL)
     self.btn_misc_click.config(state=util.STATE_NORMAL)
     self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
   def divide_one(self):
     self.btn_misc_test.config(state=util.STATE_DISABLED)
     self.btn_misc_click.config(state=util.STATE_DISABLED)
     self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
     self.frame_root.update()
 
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -584,23 +590,48 @@ class JTool():
     util.move(coor_x, coor_y)
 
     for x in range(int(self.val_click_count.get())):
-      pynboard.press(Key.shift_l)
-      time.sleep(0.15)
-      pyauto.click(button='right')
-      pynboard.release(Key.shift_l)
-      time.sleep(0.15)
-      pynboard.press('1')
-      pynboard.release('1')
-      time.sleep(0.15)
-      pynboard.press(Key.enter)
-      pynboard.release(Key.enter)
+      util.click_press_combo(Key.shift_l, '1', True)
+      util.press_release(Key.enter)
       self.log_misc_action(util.MSG_CLICK + str(x+1))
 
     self.btn_misc_test.config(state=util.STATE_NORMAL)
     self.btn_misc_click.config(state=util.STATE_NORMAL)
     self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
+  def transfer(self):
+    self.btn_misc_test.config(state=util.STATE_DISABLED)
+    self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
+
+    click_count = int(self.val_click_count.get())
+
+    cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+
+    transferring = True
+    index = 0
+    while transferring:
+      if index >= 64 or index >= click_count:
+        transferring = False
+
+      if transferring == False:
+        break
+
+      util.move(leash.get_inventory_matrix()[index][0], leash.get_inventory_matrix()[index][1], 0.1)
+      util.click_press_combo(Key.ctrl, util.STATE_EMPTY, False)
+      self.log_misc_action(util.MSG_CLICK + str(index+1))
+      index += 1
+
+    self.btn_misc_test.config(state=util.STATE_NORMAL)
+    self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
 
   def get_features_free(self):
     self.text_features.configure(state=util.STATE_NORMAL)
@@ -972,6 +1003,10 @@ class JTool():
     self.btn_divide_one = Button(tab_misc, text=util.BTN_DIVIDE_ONE, command=self.divide_one)
     self.btn_divide_one.config(width=9)
     self.btn_divide_one.place(x=118, y=150)
+
+    self.btn_transfer = Button(tab_misc, text=util.BTN_TRANSFER, command=self.transfer)
+    self.btn_transfer.config(width=9)
+    self.btn_transfer.place(x=198, y=150)
 
     lbl_misc_custom_note = Label(tab_misc, text=util.LBL_CUSTON_CLICK_NOTE)
     lbl_misc_custom_note.place(x=10, y=190)

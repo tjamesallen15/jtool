@@ -203,6 +203,8 @@ IMG_EXIT_DG = "img/exitdg.jpg"
 IMG_LAUCHER_LOAD = "img/launcherloading.jpg"
 IMG_LAUNCHER_PLAY = "img/launcherplay.jpg"
 IMG_CHANNEL_FOUR = "img/channel-four.jpg"
+IMG_TIMEOUT = "img/timeout.jpg"
+IMG_TIMEOUT_EXIT = "img/timeout-exit.jpg"
 IMG_SUB_PASS = "img/subpass.jpg"
 IMG_DUAL_BOSS = "img/dualboss.jpg"
 IMG_BOSS = "img/boss.jpg"
@@ -389,6 +391,7 @@ BTN_LEADER = "Leader"
 BTN_TRAIN = "Train"
 BTN_CLICK = "Click"
 BTN_DIVIDE_ONE = "Divide (1)"
+BTN_TRANSFER = "Transfer"
 BTN_TEST = "Test"
 LBL_EMPTY = ""
 LBL_DUNGEON = "Dungeon: "
@@ -570,6 +573,24 @@ def click_combo(x, y, right=False, delay=0):
   pyauto.click(button=click)
 
   if delay != 0: time.sleep(delay)
+
+def click_press_combo(key_hold, key_one, right=False):
+  click = CLICK_LEFT if right == IS_FALSE else CLICK_RIGHT
+
+  pynboard.press(key_hold)
+  time.sleep(0.15)
+
+  pyauto.click(button=click)
+  pynboard.release(key_hold)
+  time.sleep(0.15)
+
+  if key_one != STATE_EMPTY:
+    press_release(key_one)
+    time.sleep(0.15)
+
+def press_release(key):
+  pynboard.press(key)
+  pynboard.release(key)
 
 def move(x, y, delay=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
@@ -1126,6 +1147,16 @@ def force_exit_dungeon():
   move_click(620, 440)
   time.sleep(3)
 
+def timeout_exit_dungeon():
+  try:
+    timeout = pyauto.locateOnScreen(IMG_TIMEOUT, grayscale=False, confidence=.7, region=get_middle_region())
+    timeout_exit = pyauto.locateOnScreen(IMG_TIMEOUT_EXIT, grayscale=False, confidence=.9, region=get_middle_region())
+    move_click_rel(10, 10, timeout_exit, 0.2)
+  except pyauto.ImageNotFoundException:
+    pass
+
+  time.sleep(3)
+
 def go_skill_slot(delay=0):
   pynboard.press(Key.f3)
   pynboard.release(Key.f3)
@@ -1236,12 +1267,12 @@ def force_short_buffs():
     click_combo(540, 670, True, 0.5)
     click_combo(570, 670, True, 0.5)
 
-def do_debuff(delay=1):
+def do_debuff(delay=1.5):
   if get_debuffs_status() == STATE_ONE:
     log_action(MSG_DEBUFF)
     click_combo(610, 670, True, delay)
 
-def do_hard_debuff(delay=1):
+def do_hard_debuff(delay=1.5):
   if get_hard_debuffs_status() == STATE_ONE:
     log_action(MSG_DEBUFF_HARD)
     click_combo(650, 670, True, delay)
@@ -1765,6 +1796,7 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
 
   if get_last_cast_mode() == STATE_TWO: mode = 3
   elif get_last_cast_mode() == STATE_THREE: mode = 2
+  else: mode = 2
 
   if select == STATE_ONE:
     do_select(0.1)
@@ -1791,7 +1823,7 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
     if sec_difference >= 95:
       cast_mode = True
       cast_mode = True
-      cancel_aura(2)
+      cancel_aura(1.5)
 
     if mode == STATE_THREE and cast_mode == True:
       do_final_mode()
