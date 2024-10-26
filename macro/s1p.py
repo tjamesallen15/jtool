@@ -90,7 +90,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -192,7 +192,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -246,7 +246,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -304,7 +304,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -344,7 +344,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -500,7 +500,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -573,7 +573,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -630,7 +630,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -698,7 +698,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -760,7 +760,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -893,7 +893,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -952,7 +952,7 @@ class SienaB1FPrideus(Dungeon):
           checking = False
         except pyauto.ImageNotFoundException:
           count_umpra += 1
-          util.log_action(util.MSG_NO_UMPRA_WEAK_FOUND)
+          util.log_action(util.MSG_UMPRA_WEAK_NOT_FOUND)
 
       if util.get_reset_status():
         continue
@@ -990,7 +990,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -1047,7 +1047,7 @@ class SienaB1FPrideus(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -1072,7 +1072,7 @@ class SienaB1FPrideus(Dungeon):
           util.plunder_ref_box(0, 10, util.IMG_SIENA)
           checking = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_SIENA_BOX_FOUND)
+          util.log_action(util.MSG_SIENA_BOX_NOT_FOUND)
 
       if util.get_reset_status():
         continue

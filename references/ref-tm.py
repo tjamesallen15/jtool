@@ -34,7 +34,7 @@
 #           break
 #         except pyauto.ImageNotFoundException:
 #           util.do_deselect_pack()
-#           util.log_action(util.MSG_NO_MOBS_FOUND)
+#           util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #         if pathing == False:
 #           break
@@ -64,7 +64,7 @@
 #           break
 #         except pyauto.ImageNotFoundException:
 #           util.do_deselect_pack()
-#           util.log_action(util.MSG_NO_MOBS_FOUND)
+#           util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #         if pathing == False:
 #           break
@@ -94,7 +94,7 @@
 #         break
 #       except pyauto.ImageNotFoundException:
 #         util.do_deselect_pack()
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -124,7 +124,7 @@
 #         break
 #       except pyauto.ImageNotFoundException:
 #         util.do_deselect_pack()
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -154,7 +154,7 @@
 #         break
 #       except pyauto.ImageNotFoundException:
 #         util.do_deselect_pack()
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -184,7 +184,7 @@
 #         break
 #       except pyauto.ImageNotFoundException:
 #         util.do_deselect_pack()
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -214,7 +214,7 @@
 #         break
 #       except pyauto.ImageNotFoundException:
 #         util.do_deselect_pack()
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       # Power Supply
 #       if unit == util.UNIT_ESPADA_3:
@@ -241,7 +241,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -255,7 +255,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -269,7 +269,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -283,7 +283,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -297,7 +297,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -311,7 +311,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -325,7 +325,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -339,7 +339,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -353,7 +353,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -367,7 +367,7 @@
 #         util.log_action(util.MSG_PATH_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_MOBS_FOUND)
+#         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #       if pathing == False:
 #         break
@@ -429,7 +429,7 @@
 #       util.focus_gate(unit, 0)
 #       backtrack_counter += 5
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_NO_MOBS_FOUND)
+#       util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #     try:
 #       util.move_click(620, 250)
@@ -441,7 +441,7 @@
 #       util.plunder_box()
 #       backtrack_counter += 5
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_NO_MOBS_FOUND)
+#       util.log_action(util.MSG_MOBS_NOT_FOUND)
 
 #     if backtracking == False:
 #       break
@@ -512,7 +512,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -635,7 +635,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     util.focus_gate(util.UNIT_GATE_TWO, 1)
 #     util.do_plunder(1)
@@ -832,7 +832,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -906,7 +906,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     if util.get_attack_type == util.STATE_ONE:
 #       util.move_click(650, 450, 1.5)
@@ -936,7 +936,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -993,7 +993,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     util.move(800, 400)
 #     util.do_fade(0.5)
@@ -1027,7 +1027,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():

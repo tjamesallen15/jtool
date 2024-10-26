@@ -297,7 +297,7 @@ class PanicCaveAwakened(Dungeon):
           corpse_found = True
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           checking = False
 
       if util.get_reset_status():
@@ -340,7 +340,7 @@ class PanicCaveAwakened(Dungeon):
             corpse_found = True
             dialog_count += 1
           except pyauto.ImageNotFoundException:
-            util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+            util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
             checking = False
 
       if corpse_found == util.IS_FALSE:
@@ -394,7 +394,7 @@ class PanicCaveAwakened(Dungeon):
           check_showorai = False
         except pyauto.ImageNotFoundException:
           count_showorai += 1
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # First Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_F, 0, 0, 0)
@@ -439,7 +439,7 @@ class PanicCaveAwakened(Dungeon):
           check_showorai = False
         except pyauto.ImageNotFoundException:
           count_showorai += 1
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Second Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_R, 0, 0, 0)
@@ -483,7 +483,7 @@ class PanicCaveAwakened(Dungeon):
           check_showorai = False
         except pyauto.ImageNotFoundException:
           count_showorai += 1
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Third Shadow
       util.focus_mobs(util.UNIT_SHOWORAI_M, 0, 0, 0)
@@ -514,7 +514,7 @@ class PanicCaveAwakened(Dungeon):
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.move_click(580, 430)
@@ -523,7 +523,7 @@ class PanicCaveAwakened(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -563,7 +563,7 @@ class PanicCaveAwakened(Dungeon):
           checking = False
           util.log_action(util.MSG_BOSS_FOUND)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       util.attack_boss(0, 0, 0, 0)
       util.plunder_box(1, 2)
@@ -586,7 +586,7 @@ class PanicCaveAwakened(Dungeon):
           util.do_select(0.1)
           util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.move_click(580, 430)
@@ -595,7 +595,7 @@ class PanicCaveAwakened(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -625,7 +625,7 @@ class PanicCaveAwakened(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False

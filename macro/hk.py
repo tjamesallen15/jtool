@@ -85,7 +85,7 @@ class HolyKeldrasil(Dungeon):
         util.focus_mobs(unit, 0, 1, self.val_sidestep)
       except pyauto.ImageNotFoundException:
         util.do_deselect_pack()
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -159,7 +159,7 @@ class HolyKeldrasil(Dungeon):
         # Attack First Boss
         util.focus_mob_boss(util.UNIT_AREIHORN, 0, 1, 0, 0)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -204,7 +204,7 @@ class HolyKeldrasil(Dungeon):
           util.move_click_rel(10, 10, dialog, 2)
           check_dialog = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           check_dialog = False
@@ -239,7 +239,7 @@ class HolyKeldrasil(Dungeon):
         util.focus_mob_boss(util.UNIT_PHIXIA, 0, 1, 0, 0)
         util.set_battle_mode(False)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       util.move(525, 400)
       util.do_fade()
@@ -287,7 +287,7 @@ class HolyKeldrasil(Dungeon):
           util.move_click_rel(10, 10, dialog, 2)
           check_dialog = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           check_dialog = False
@@ -332,7 +332,7 @@ class HolyKeldrasil(Dungeon):
           pass
 
       if vaour_found == False:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
@@ -394,7 +394,7 @@ class HolyKeldrasil(Dungeon):
           util.move_click_rel(10, 10, dialog, 2)
           check_dialog = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           check_dialog = False

@@ -59,7 +59,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -88,7 +88,7 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -99,7 +99,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -113,7 +113,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -128,7 +128,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -157,7 +157,7 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -168,7 +168,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -182,7 +182,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -197,7 +197,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -226,7 +226,7 @@ class SteamerCrazyAwakened(Dungeon):
           util.do_fade(4)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -237,7 +237,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -251,7 +251,7 @@ class SteamerCrazyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -318,7 +318,7 @@ class SteamerCrazyAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -364,7 +364,7 @@ class SteamerCrazyAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():

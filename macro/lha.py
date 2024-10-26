@@ -266,7 +266,7 @@ class LavaHellfireAwakened(Dungeon):
           util.attack_semi_boss(0)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
         time.sleep(0.2)
 
@@ -322,7 +322,7 @@ class LavaHellfireAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
         time.sleep(0.2)
 
@@ -366,7 +366,7 @@ class LavaHellfireAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():

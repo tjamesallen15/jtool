@@ -65,7 +65,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -93,7 +93,7 @@
 #         checking = False
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # First Boss
 #     util.attack_boss()
@@ -132,7 +132,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -150,7 +150,7 @@
 #       util.log_action(util.MSG_BOSS_FOUND)
 #       util.attack_boss()
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_NO_BOSS_FOUND)
+#       util.log_action(util.MSG_BOSS_NOT_FOUND)
 #       util.force_exit_dungeon()
 #       util.set_reset_status(True)
 
@@ -184,7 +184,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -202,7 +202,7 @@
 #       util.log_action(util.MSG_BOSS_FOUND)
 #       util.attack_boss()
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_NO_BOSS_FOUND)
+#       util.log_action(util.MSG_BOSS_NOT_FOUND)
 #       util.force_exit_dungeon()
 #       util.set_reset_status(True)
 
@@ -236,7 +236,7 @@
 #         util.log_action(util.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_NO_BOSS_FOUND)
+#         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -253,7 +253,7 @@
 #       util.log_action(util.MSG_BOSS_FOUND)
 #       util.attack_boss()
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_NO_BOSS_FOUND)
+#       util.log_action(util.MSG_BOSS_NOT_FOUND)
 #       util.force_exit_dungeon()
 #       util.set_reset_status(True)
 

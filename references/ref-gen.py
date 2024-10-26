@@ -79,7 +79,7 @@
 #         move_rel(10, 10, roll)
 #         move_click_rel(10, 10, roll)
 #       except pyauto.ImageNotFoundException:
-#         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+#         log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
 # LAVA HELLFIRE AWAKENED
 # util.move(550, 100)

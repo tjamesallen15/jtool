@@ -66,6 +66,7 @@ val_pword = 'default'
 val_pin = '123'
 val_resolution = '0'
 val_load_time = 0
+val_channel = 4
 val_default_interval = 0.3
 val_time = 0
 val_leader = 0
@@ -109,22 +110,22 @@ MSG_ATTACK_BOSS = "Boss Attack"
 MSG_MOBS_FOUND = "Mobs Found, "
 MSG_BOSS_FOUND = "Boss Found"
 MSG_BOSS_KILLED = "Boss Killed"
-MSG_NO_MOBS_FOUND = "No Mobs Found"
-MSG_NO_BOSS_FOUND = "No Boss Found"
+MSG_MOBS_NOT_FOUND = "Mobs Not Found"
+MSG_BOSS_NOT_FOUND = "Boss Not Found"
 MSG_BLOCKER_FOUND = "Blocker Found"
-MSG_NO_BLOCKER_FOUND = "No Blocker Found"
+MSG_BLOCKER_NOT_FOUND = "Blocker Not Found"
 MSG_MOBS_CLEARED = "Mobs Cleared"
 MSG_MOB_CLEARED = "Mob Cleared"
 MSG_CHECK_BOSS = "Checking Boss"
 MSG_CHECK_BOX = "Checking Box"
 MSG_BOX_FOUND = "Box Found"
-MSG_NO_BOX_FOUND = "No Box Found"
+MSG_BOX_NOT_FOUND = "Box Not Found"
 MSG_LOOTING_DROP = "Looting Drops"
 MSG_PATH_STOP = "Pathing stop, attacking"
 MSG_MOVE_STOP = "Moving stop, proceeding"
 MSG_CHECK_END_DG = "Check End Dungeon"
 MSG_NOTIFICATION_FOUND = "Notification Found"
-MSG_NO_NOTIFICATION_FOUND = "No Notification Found"
+MSG_NOTIFICATION_NOT_FOUND = "Notification Not Found"
 MSG_ACTION = ""
 MSG_RUN_NUMBER =  "Run #: "
 MSG_CLICK = "Click #: "
@@ -132,7 +133,7 @@ MSG_BACKTRACK = "Backtrack #: "
 MSG_CHALLENGE_DG = "Challenge Dungeon"
 MSG_ENTER_DG = "Enter Dungeon"
 MSG_BUTTON_FOUND = "Button Found"
-MSG_NO_BUTTON_FOUND = "No Button Found"
+MSG_BUTTON_NOT_FOUND = "Button Not Found"
 MSG_BUFFS = "Buffing"
 MSG_SHORT_BUFFS = "Buffing Shorts"
 MSG_DEBUFF = "Debuffing"
@@ -141,31 +142,32 @@ MSG_BATTLE_MODE = "Doing Mode II"
 MSG_DICE_ROLL = "Check Dice Roll"
 MSG_DICE_ROLL_OKAY = "Check Dice Roll Okay"
 MSG_CHECK_DIALOG_FOUND =  "Check Dialog Found"
-MSG_NO_CHECK_DIALOG_FOUND = "No Check Dialog Found"
+MSG_CHECK_DIALOG_NOT_FOUND = "Check Dialog Not Found"
 MSG_GATE_FOUND = "Gate Found "
-MSG_NO_GATE_FOUND = "No Gate Found"
+MSG_GATE_NOT_FOUND = "Gate Not Found"
 MSG_WAIT = "Waiting"
 MSG_MOVING_POSITION = "Moving to position"
 MSG_ROLL_EQUIPMENT = "Rolling Equipment"
-MSG_NO_ROLL_EQUIPMENT_FOUND = "No Roll Equipment Found"
+MSG_ROLL_EQUIPMENT_NOT_FOUND = "Roll Equipment Not Found"
 MSG_CHECK_UMPRA_WEAK = "Checking Umpra The Weak"
 MSG_UMPRA_WEAK_FOUND = "Umpra The Weak Found"
-MSG_NO_UMPRA_WEAK_FOUND = "No Umpra The Weak Found"
+MSG_UMPRA_WEAK_NOT_FOUND = "Umpra The Weak Not Found"
 MSG_CHECK_SIENA_BOX = "Checking Siena Box"
 MSG_SIENA_BOX_FOUND = "Found Siena Box"
-MSG_NO_SIENA_BOX_FOUND = "No Siena Box Found"
+MSG_SIENA_BOX_NOT_FOUND = "Siena Box Not Found"
 MSG_CHECKING_SUB_PASS = "Checking Sub Pass"
 MSG_CABAL_WINDOW_FOUND = "Cabal Window Found"
-MSG_NO_CABAL_WINDOW_FOUND = "No Cabal Window Found"
+MSG_CABAL_WINDOW_NOT_FOUND = "Cabal Window Not Found"
 MSG_LAUNCHER_LOAD = "Launcher Loading"
-MSG_NO_LAUNCHER_LOAD = "Fail Launcher Loading"
+MSG_LAUNCHER_LOAD_COMPLETE = "Launcher Complete"
+MSG_LAUNCHER_LOAD_FAIL = "Launcher Fail"
 MSG_PLAY_BTN_FOUND = "Play Button Found"
-MSG_NO_PLAY_BTN_FOUND = "No Play Button Found"
+MSG_PLAY_BTN_NOT_FOUND = "Play Button Not Found"
 MSG_CHECK_BEAD_WINDOW = "Checking Bead Window"
 MSG_BEAD_WINDOW_FOUND = "Bead Window Found"
-MSG_NO_BEAD_WINDOW_FOUND = "No Bead Window Found"
+MSG_BEAD_WINDOW_NOT_FOUND = "Bead Window Not Found"
 MSG_SUB_PASS_FOUND = "Sub Password Found"
-MSG_NO_SUB_PASS_FOUND = "No Sub Password Found"
+MSG_SUB_PASS_NOT_FOUND = "Sub Password Not Found"
 MSG_COUNTDOWN = "Countdown, "
 MSG_OPEN_APPLICATION = "Opening application"
 MSG_CLOSE_APPLICATION = "Closing application"
@@ -195,14 +197,20 @@ IMG_EIGHT = "img/8.jpg"
 IMG_NINE = "img/9.jpg"
 IMG_START_WINDOWS = "img/startwindows.jpg"
 IMG_CABAL_WINDOW = "img/cabalwindow.jpg"
+IMG_LOGIN = "img/login.jpg"
 IMG_CHALLENGE_DG = "img/challengedg.jpg"
 IMG_DUNGEON = "img/dungeon.jpg"
 IMG_ENTER_DG = "img/enterdg.jpg"
 IMG_END_DG = "img/enddg.jpg"
 IMG_EXIT_DG = "img/exitdg.jpg"
-IMG_LAUCHER_LOAD = "img/launcherloading.jpg"
-IMG_LAUNCHER_PLAY = "img/launcherplay.jpg"
+IMG_LAUCHER_LOAD = "img/launcher-loading.jpg"
+IMG_LAUCHER_COMPLETE = "img/launcher-complete.jpg"
+IMG_LAUNCHER_PLAY = "img/launcher-play.jpg"
+IMG_CHANNEL_ONE = "img/channel-one.jpg"
+IMG_CHANNEL_TWO = "img/channel-two.jpg"
+IMG_CHANNEL_THREE = "img/channel-three.jpg"
 IMG_CHANNEL_FOUR = "img/channel-four.jpg"
+IMG_SELECT_CHARACTER = "img/select-character.jpg"
 IMG_TIMEOUT = "img/timeout.jpg"
 IMG_TIMEOUT_EXIT = "img/timeout-exit.jpg"
 IMG_SUB_PASS = "img/subpass.jpg"
@@ -327,6 +335,7 @@ DATA_RUNS = "runs"
 DATA_MODE = "mode"
 DATA_ACCESS_LEVEL = "access_level"
 DATA_CHAR_CLASS = "char_class"
+DATA_CHANNEL = "channel"
 DATA_LEADER = "leader"
 DATA_MEMBER = "member"
 DATA_BUFFS = "buffs"
@@ -367,9 +376,11 @@ STATE_ONE = 1
 STATE_ZERO = 0
 STATE_TWO = 2
 STATE_THREE = 3
+STATE_FOUR = 4
 STATE_DISABLED = "disabled"
 STATE_NORMAL = "normal"
 STATE_READONLY = "readonly"
+STATE_CENTER = "center"
 IS_TRUE = True
 IS_FALSE = False
 CLICK_LEFT = "left"
@@ -424,6 +435,7 @@ LBL_CLOSE_APP_NOTE = "Close Cabal after macro."
 LBL_PWORD = "Password: "
 LBL_PIN = "PIN: "
 LBL_RESOLUTION = "Resolution: "
+LBL_CHANNEL = "CH: "
 LBL_RESOLUTION_NOTE = "Only listed resolution above are supported."
 LBL_LOAD_TIME = "Load Time: "
 LBL_LOAD_TIME_NOTE = "Adjust based on application load for login screen."
@@ -516,6 +528,7 @@ def set_variables(args):
   set_password(args[DATA_PWORD])
   set_pin(args[DATA_PIN])
   set_resolution(args[DATA_RESOLUTION])
+  set_channel(args[DATA_CHANNEL])
   set_load_time(args[DATA_LOAD])
   set_close_app_status(args[DATA_CLOSE_APP])
 
@@ -588,9 +601,11 @@ def click_press_combo(key_hold, key_one, right=False):
     press_release(key_one)
     time.sleep(0.15)
 
-def press_release(key):
+def press_release(key, delay=0):
   pynboard.press(key)
   pynboard.release(key)
+
+  if delay != 0: time.sleep(delay)
 
 def move(x, y, delay=0):
   pyauto.moveTo(cabal_window[0] + x, cabal_window[1] + y)
@@ -687,91 +702,84 @@ def pause():
   wait(15)
 
 def countdown_timer(delay):
+  total_countdown = delay
   for x in range(delay):
-    log_action(MSG_COUNTDOWN + str(x+1))
+    log_action(MSG_COUNTDOWN + str(total_countdown))
+    total_countdown -= 1
     time.sleep(1)
 
-def open_cabal_application():
+def countdown_rel_timer(rel, conf, delay):
+  total_countdown = delay
+  for x in range(delay):
+    log_action(MSG_COUNTDOWN + str(total_countdown))
+    total_countdown -= 1
+    time.sleep(1)
+
+    try:
+      window = pyauto.locateOnScreen(rel, grayscale=False, confidence=conf)
+      break
+    except pyauto.ImageNotFoundException:
+      pass
+
+def open_app():
   log_action(MSG_OPEN_APPLICATION)
   check_window = True
+  keyword = "CABAL W"
   while check_window:
     if check_window == False:
       break
 
     windows_start = pyauto.locateOnScreen(IMG_START_WINDOWS, grayscale=True, confidence=.8)
-    pyauto.moveTo(windows_start[0] + 10, windows_start[1] + 15)
-    pyauto.click(windows_start[0] + 10, windows_start[1] + 15)
+    move_click_rel(10, 15, windows_start, 1)
 
+    for key in keyword: press_release(key, 0.1)
     wait(1)
-    pynboard.press("C")
-    pynboard.release("C")
-    time.sleep(0.1)
-    pynboard.press("A")
-    pynboard.release("A")
-    time.sleep(0.1)
-    pynboard.press("B")
-    pynboard.release("B")
-    time.sleep(0.1)
-    pynboard.press("A")
-    pynboard.release("A")
-    time.sleep(0.1)
-    pynboard.press("L")
-    pynboard.release("L")
-    time.sleep(0.1)
-    pynboard.press(Key.space)
-    pynboard.release(Key.space)
-    time.sleep(0.1)
-    pynboard.press("W")
-    pynboard.release("W")
-    time.sleep(0.1)
-    pynboard.press("O")
-    pynboard.release("O")
-    time.sleep(0.1)
-
-    wait(1)
-    pynboard.press(Key.enter)
-    pynboard.release(Key.enter)
+    press_release(Key.enter)
     countdown_timer(10)
 
     try:
-      launcher_loading = pyauto.locateOnScreen(IMG_LAUCHER_LOAD, grayscale=False, confidence=.9)
-      log_action(MSG_NO_LAUNCHER_LOAD)
-      pyauto.moveTo(launcher_loading[0] + 20, launcher_loading[1] + 15)
+      launch_load = pyauto.locateOnScreen(IMG_LAUCHER_LOAD, grayscale=False, confidence=.9)
+      log_action(MSG_LAUNCHER_LOAD_FAIL)
       continue
     except pyauto.ImageNotFoundException:
       log_action(MSG_LAUNCHER_LOAD)
 
     try:
-      launcher_play = pyauto.locateOnScreen(IMG_LAUNCHER_PLAY, grayscale=False, confidence=.9)
-      log_action(MSG_PLAY_BTN_FOUND)
-      pyauto.moveTo(launcher_play[0] + 20, launcher_play[1] + 15)
-      pyauto.click(launcher_play[0] + 20, launcher_play[1] + 15)
+      launch_complete = pyauto.locateOnScreen(IMG_LAUCHER_COMPLETE, grayscale=False, confidence=.7)
+      log_action(MSG_LAUNCHER_LOAD_COMPLETE)
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_PLAY_BTN_FOUND)
+      log_action(MSG_LAUNCHER_LOAD_FAIL)
       continue
 
     try:
-      countdown_timer(val_load_time)
+      launch_play = pyauto.locateOnScreen(IMG_LAUNCHER_PLAY, grayscale=False, confidence=.9)
+      log_action(MSG_PLAY_BTN_FOUND)
+      move_click_rel(20, 15, launch_play)
+    except pyauto.ImageNotFoundException:
+      log_action(MSG_PLAY_BTN_NOT_FOUND)
+      continue
+
+    try:
+      countdown_rel_timer(IMG_LOGIN, 0.8, get_load_time())
       window = pyauto.locateOnScreen(IMG_CABAL_WINDOW, grayscale=False, confidence=.8)
       log_action(MSG_CABAL_WINDOW_FOUND)
       set_cabal_window(window)
       initialize_region()
       check_window = False
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_CABAL_WINDOW_FOUND)
+      log_action(MSG_CABAL_WINDOW_NOT_FOUND)
 
   countdown_timer(2)
 
-def move_cabal_application():
+def move_app():
   log_action(MSG_MOVE_APPLICATION)
+
   go_cabal_window()
-
   application = pyauto.getActiveWindow()
-
   if val_resolution == "2560x1440":
     application.moveTo(1260, 360)
   elif val_resolution == "1920x1080":
-    application.moveTo(630, 150)
+    application.moveTo(620, 150)
 
   window = pyauto.locateOnScreen(IMG_CABAL_WINDOW, grayscale=False, confidence=.8)
   set_cabal_window(window)
@@ -779,101 +787,77 @@ def move_cabal_application():
 
   countdown_timer(2)
 
-def type_pword():
+def type_password():
   log_action(MSG_TYPE_PASSWORD)
-  for x in val_pword:
-    pynboard.press(x)
-    pynboard.release(x)
-    time.sleep(0.1)
+  for key in val_pword: press_release(key, 0.1)
 
 def type_pin():
   log_action(MSG_TYPE_PIN)
-  for x in val_pin:
-    if x == "1":
-      pin_number = pyauto.locateOnScreen(IMG_ONE, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "2":
-      pin_number = pyauto.locateOnScreen(IMG_TWO, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "3":
-      pin_number = pyauto.locateOnScreen(IMG_THREE, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "4":
-      pin_number = pyauto.locateOnScreen(IMG_FOUR, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "5":
-      pin_number = pyauto.locateOnScreen(IMG_FIVE, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "6":
-      pin_number = pyauto.locateOnScreen(IMG_SIX, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "7":
-      pin_number = pyauto.locateOnScreen(IMG_SEVEN, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "8":
-      pin_number = pyauto.locateOnScreen(IMG_EIGHT, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    elif x == "9":
-      pin_number = pyauto.locateOnScreen(IMG_NINE, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    else:
-      pin_number = pyauto.locateOnScreen(IMG_ZERO, grayscale=False, confidence=.8, region=get_sub_screen_region())
+  for key in val_pin:
+    match key:
+      case "1": pin_number = pyauto.locateOnScreen(IMG_ONE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "2": pin_number = pyauto.locateOnScreen(IMG_TWO, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "3": pin_number = pyauto.locateOnScreen(IMG_THREE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "4": pin_number = pyauto.locateOnScreen(IMG_FOUR, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "5": pin_number = pyauto.locateOnScreen(IMG_FIVE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "6": pin_number = pyauto.locateOnScreen(IMG_SIX, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "7": pin_number = pyauto.locateOnScreen(IMG_SEVEN, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "8": pin_number = pyauto.locateOnScreen(IMG_EIGHT, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "9": pin_number = pyauto.locateOnScreen(IMG_NINE, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case "0": pin_number = pyauto.locateOnScreen(IMG_ZERO, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      case _: pin_number = pyauto.locateOnScreen(IMG_ZERO, grayscale=False, confidence=.8, region=get_sub_screen_region())
 
-    move_rel(10, 15, pin_number, 0.4)
-    move_click_rel(10, 15, pin_number, 0.4)
+    move_rel(10, 15, pin_number, 0.2)
+    move_click_rel(10, 15, pin_number, 0.2)
 
   move(580, 530)
-  move_click(580, 530)
+  move_click(580, 530, 2)
 
-def enter_cabal_world():
+def enter_world():
   log_action(MSG_ENTER_WORLD)
-  pynboard.press(Key.enter)
-  pynboard.release(Key.enter)
-  wait(5)
+  press_release(Key.enter, 8)
+  press_release(Key.right, 0.5)
 
-  pynboard.press(Key.right)
-  pynboard.release(Key.right)
-  time.sleep(0.1)
+  img_channel = IMG_CHANNEL_FOUR
+  if get_channel() == STATE_ONE: img_channel = IMG_CHANNEL_ONE
+  elif get_channel() == STATE_TWO: img_channel = IMG_CHANNEL_TWO
+  elif get_channel() == STATE_THREE: img_channel = IMG_CHANNEL_THREE
+  elif get_channel() == STATE_FOUR: img_channel = IMG_CHANNEL_FOUR
 
   try:
-    channel_four = pyauto.locateOnScreen(IMG_CHANNEL_FOUR, grayscale=False, confidence=.9, region=get_middle_region())
+    channel_four = pyauto.locateOnScreen(img_channel, grayscale=False, confidence=.9, region=get_middle_region())
     move_click_rel(10, 10, channel_four, 0.2)
+    press_release(Key.enter, 8)
   except pyauto.ImageNotFoundException:
-    pynboard.press(Key.down)
-    pynboard.release(Key.down)
-    time.sleep(0.1)
-    pynboard.press(Key.down)
-    pynboard.release(Key.down)
-    time.sleep(0.1)
-
-  pynboard.press(Key.enter)
-  pynboard.release(Key.enter)
-  time.sleep(8)
+    press_release(Key.down, 0.1)
+    press_release(Key.down, 0.1)
+    press_release(Key.enter, 8)
 
   try:
-    pynboard.press(Key.enter)
-    pynboard.release(Key.enter)
-    countdown_timer(5)
     log_action(MSG_CHECKING_SUB_PASS)
+    press_release(Key.enter)
     sub_pass = pyauto.locateOnScreen(IMG_SUB_PASS, grayscale=False, confidence=.8, region=get_sub_screen_region())
     log_action(MSG_SUB_PASS_FOUND)
     type_pin()
-    wait(2)
-
-    pynboard.press(Key.enter)
-    pynboard.release(Key.enter)
+    press_release(Key.enter)
   except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_SUB_PASS_FOUND)
+    log_action(MSG_SUB_PASS_NOT_FOUND)
 
-  wait(10)
+  countdown_timer(10)
   log_action(MSG_CLEARING_WINDOWS)
-  for x in range(3):
-    pynboard.press(Key.esc)
-    pynboard.release(Key.esc)
+  for x in range(3): press_release(Key.esc)
 
 def move_bead_window():
   try:
     log_action(MSG_MOVE_BEAD)
     bead_window = pyauto.locateOnScreen("img/bead.jpg", grayscale=False, confidence=.8, region=get_screen_region())
-    pyauto.moveTo(bead_window[0] + 10, bead_window[1] + 10)
-
+    move_rel(10, 10, bead_window)
     pyauto.mouseDown(button="left")
     move(100, 700)
     pyauto.mouseUp(button="left")
     countdown_timer(2)
   except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_BEAD_WINDOW_FOUND)
+    log_action(MSG_BEAD_WINDOW_NOT_FOUND)
 
 def select_task_bar():
   log_action(MSG_SELECT_TASK_BAR)
@@ -885,32 +869,30 @@ def select_task_bar():
     pyauto.moveTo(x, y)
     pyauto.click(x, y)
 
-def exit_cabal_application(finish=False):
+def exit_app(finish=False):
   log_action(MSG_CLOSE_APPLICATION)
   go_cabal_window()
-
   move(1260, 15)
   move_click(1260, 15)
+  press_release(Key.enter)
 
-  pynboard.press(Key.enter)
-  pynboard.release(Key.enter)
-
-  if finish == IS_FALSE:
-    countdown_timer(5)
+  if finish == IS_FALSE: countdown_timer(5)
 
 def check_run_restart(run_count):
   global val_run_restart_stack
   if get_run_restart_status() > 0:
     log_action(MSG_CHECK_RECONNECT)
     if get_run_restart_status() == (run_count - val_run_restart_stack):
-      exit_cabal_application()
-      select_task_bar()
-      open_cabal_application()
-      move_cabal_application()
-      type_pword()
-      enter_cabal_world()
-      move_bead_window()
+      restart_application()
       val_run_restart_stack += run_count
+
+def restart_application():
+  exit_app()
+  select_task_bar()
+  open_app()
+  move_app()
+  type_password()
+  enter_world()
 
 def get_archer_region():
   return region_full_mode_bar
@@ -1113,6 +1095,13 @@ def set_resolution(resolution):
 def get_resolution():
   return val_resolution
 
+def set_channel(channel):
+  global val_channel
+  val_channel = channel
+
+def get_channel():
+  return val_channel
+
 def set_load_time(load_time):
   global val_load_time
   val_load_time = load_time
@@ -1129,7 +1118,7 @@ def get_close_app_status():
 
 def do_close_app_status():
   if get_close_app_status() == STATE_ONE:
-    exit_cabal_application(True)
+    exit_app(True)
 
 def force_exit_dungeon():
   check_notifications()
@@ -1319,7 +1308,7 @@ def roll_box():
       move_rel(10, 10, roll, 0.2)
       move_click_rel(10, 10, roll, 0.2)
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+      log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
 def party_roll_box(reps=4):
   roll_reps = reps * 3
@@ -1351,7 +1340,7 @@ def plunder_box(select=1, reps=4, loot=1, delay=0.5):
       do_attack(0.1)
     except pyauto.ImageNotFoundException:
       checking = False
-      log_action(MSG_NO_BOX_FOUND)
+      log_action(MSG_BOX_NOT_FOUND)
 
   if loot == STATE_ONE:
     do_plunder(reps)
@@ -1377,7 +1366,7 @@ def plunder_final_box(select=1, reps=5, loot=1):
       do_attack(0.1)
     except pyauto.ImageNotFoundException:
       checking = False
-      log_action(MSG_NO_BOX_FOUND)
+      log_action(MSG_BOX_NOT_FOUND)
 
   if loot == STATE_ONE:
     do_plunder(reps)
@@ -1403,7 +1392,7 @@ def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
       do_attack(0.1)
     except pyauto.ImageNotFoundException:
       checking = False
-      log_action(MSG_NO_BOX_FOUND)
+      log_action(MSG_BOX_NOT_FOUND)
 
   do_plunder(reps)
 
@@ -1531,14 +1520,14 @@ def click_portal(x, y):
     wait(1)
     move_click(x, y, 1)
   except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_BLOCKER_FOUND)
+    log_action(MSG_BLOCKER_NOT_FOUND)
 
   try:
     enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
     portal_found = True
     log_action(MSG_BUTTON_FOUND)
   except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_BUTTON_FOUND)
+    log_action(MSG_BUTTON_NOT_FOUND)
 
   if portal_found == False:
     move_click(x, y)
@@ -1549,14 +1538,14 @@ def click_portal(x, y):
       wait(1)
       move_click(x, y, 1)
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BLOCKER_FOUND)
+      log_action(MSG_BLOCKER_NOT_FOUND)
 
     try:
       enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
       portal_found = True
       log_action(MSG_BUTTON_FOUND)
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BUTTON_FOUND)
+      log_action(MSG_BUTTON_NOT_FOUND)
 
   if portal_found == False:
     move_click(x, y)
@@ -1567,14 +1556,14 @@ def click_portal(x, y):
       wait(1)
       move_click(x, y, 1)
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BLOCKER_FOUND)
+      log_action(MSG_BLOCKER_NOT_FOUND)
 
     try:
       enterdg = pyauto.locateOnScreen(IMG_ENTER_DG, grayscale=False, confidence=.9)
       portal_found = True
       log_action(MSG_BUTTON_FOUND)
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BUTTON_FOUND)
+      log_action(MSG_BUTTON_NOT_FOUND)
 
 def enter_dungeon(delay=1):
   entering = True
@@ -1593,7 +1582,7 @@ def enter_dungeon(delay=1):
       entering = False
       break
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BUTTON_FOUND)
+      log_action(MSG_BUTTON_NOT_FOUND)
 
   wait(delay)
 
@@ -1615,13 +1604,13 @@ def challenge_dungeon(delay=0):
         challenging = False
         break
       except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_BUTTON_FOUND)
+        log_action(MSG_BUTTON_NOT_FOUND)
     else:
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
         log_action(MSG_BUTTON_FOUND)
       except pyauto.ImageNotFoundException:
-        log_action(MSG_NO_BUTTON_FOUND)
+        log_action(MSG_BUTTON_NOT_FOUND)
         challenging = False
         break
 
@@ -1633,7 +1622,7 @@ def check_notifications():
     move_click_rel(10, 10, check_notify, 0.2)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_NOTIFICATION_FOUND)
+    log_action(MSG_NOTIFICATION_NOT_FOUND)
 
   time.sleep(0.2)
 
@@ -1642,7 +1631,7 @@ def check_notifications():
     move_click_rel(10, 10, check_notify, 0.2)
     log_action(MSG_NOTIFICATION_FOUND)
   except pyauto.ImageNotFoundException:
-    log_action(MSG_NO_NOTIFICATION_FOUND)
+    log_action(MSG_NOTIFICATION_NOT_FOUND)
 
   time.sleep(0.2)
 
@@ -1888,7 +1877,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       if select == STATE_ONE:
         do_deselect_pack()
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_MOBS_FOUND)
+      log_action(MSG_MOBS_NOT_FOUND)
 
     try:
       if select == STATE_ONE:
@@ -1900,7 +1889,7 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
       if select == STATE_ONE:
         do_deselect_pack()
     except pyauto.ImageNotFoundException:
-      log_action(MSG_NO_BOX_FOUND)
+      log_action(MSG_BOX_NOT_FOUND)
       combo = False
       break
 

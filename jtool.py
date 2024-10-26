@@ -57,10 +57,10 @@ class JTool():
   LIST_CLICKS = [10, 20, 30, 40, 50, 100, 200, 300, 500]
   LIST_RESOLUTION = ["2560x1440", "1920x1080"]
   LIST_LOAD_TIME = ["30 seconds", "45 seconds", "60 seconds", "75 seconds", "90 seconds", "105 seconds", "120 seconds"]
+  LIST_CHANNEL = [1, 2, 3, 4]
 
   list_dg = []
   btn_start = []
-  btn_pause = []
   btn_fury = []
   btn_force = []
   btn_upgrade = []
@@ -103,6 +103,7 @@ class JTool():
   val_archer = 0
   val_resolution = 0
   val_load_time = 0
+  val_channel = 4
   val_dungeon_restart = 0
 
   val_def_x = "230"
@@ -151,6 +152,7 @@ class JTool():
       util.DATA_PWORD: self.val_pword.get(),
       util.DATA_PIN: self.val_pin.get(),
       util.DATA_RESOLUTION: self.val_resolution.get(),
+      util.DATA_CHANNEL: int(self.val_channel.get()),
       util.DATA_LOAD: int(self.val_load_time.get().split(' ')[0])
     }
 
@@ -172,7 +174,7 @@ class JTool():
     util.set_variables(variable_args)
 
     if dungeon_restart == util.STATE_ONE:
-      self.restart_cabal_application()
+      self.restart_application()
 
     if choice == self.LIST_MASTER[0]:
       HazardousValleyAwakened().initialize(self.frame_root, self.btn_start, runs)
@@ -282,7 +284,7 @@ class JTool():
       case util.DATA_DUNGEON:
         return util.STATE_NORMAL
       case util.DATA_CONNECTION:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -412,15 +414,9 @@ class JTool():
   def check_party_member_state(self):
     self.val_leader.set(0)
 
-  def restart_cabal_application(self):
+  def restart_application(self):
     util.log_action(util.MSG_DUNGEON_RESTART)
-    util.exit_cabal_application()
-    util.select_task_bar()
-    util.open_cabal_application()
-    util.move_cabal_application()
-    util.type_pword()
-    util.enter_cabal_world()
-    util.move_bead_window()
+    util.restart_application()
 
   def generate_matrix(self):
     leash.generate_matrix()
@@ -697,7 +693,7 @@ class JTool():
     lbl_dungeon_list = Label(tab_dungeon, text=util.LBL_DUNGEON)
     lbl_dungeon_list.place(x=10, y=10)
 
-    self.list_dg = ttk.Combobox(tab_dungeon, values=self.LIST_DUNGEON, state=util.STATE_READONLY)
+    self.list_dg = ttk.Combobox(tab_dungeon, values=self.LIST_DUNGEON, justify=util.STATE_CENTER, state=util.STATE_READONLY)
     self.list_dg.current(self.get_data(util.DATA_DUNGEON))
     self.list_dg.config(width=30)
     self.list_dg.place(x=75, y=10)
@@ -706,7 +702,7 @@ class JTool():
     lbl_runs = Label(tab_dungeon, text=util.LBL_RUNS)
     lbl_runs.place(x=10, y=43)
 
-    self.val_run_count = ttk.Combobox(tab_dungeon, values=self.LIST_RUN, state=util.STATE_NORMAL)
+    self.val_run_count = ttk.Combobox(tab_dungeon, justify=util.STATE_CENTER, values=self.LIST_RUN, state=util.STATE_NORMAL)
     self.val_run_count.current(0)
     self.val_run_count.config(width=5)
     self.val_run_count.place(x=75, y=43)
@@ -731,7 +727,7 @@ class JTool():
     lbl_class = Label(tab_dungeon, text=util.LBL_CLASS, state=self.get_access(util.DATA_MODE))
     lbl_class.place(x=10, y=73)
 
-    self.val_char_class = ttk.Combobox(tab_dungeon, values=util.LIST_CLASS, state=util.STATE_READONLY)
+    self.val_char_class = ttk.Combobox(tab_dungeon, justify=util.STATE_CENTER, values=util.LIST_CLASS, state=util.STATE_READONLY)
     self.val_char_class.current(self.get_data(util.DATA_CLASS))
     self.val_char_class.config(width=5)
     self.val_char_class.place(x=75, y=73)
@@ -806,7 +802,7 @@ class JTool():
     lbl_run_restart = Label(tab_connection, text=util.LBL_RUN_RESTART)
     lbl_run_restart.place(x=10, y=10)
 
-    self.val_run_restart = ttk.Combobox(tab_connection, values=self.LIST_RUN_RESTART)
+    self.val_run_restart = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_RUN_RESTART)
     self.val_run_restart.current(0)
     self.val_run_restart.config(width=5)
     self.val_run_restart.place(x=92, y=10)
@@ -853,10 +849,18 @@ class JTool():
     lbl_resolution = Label(tab_connection, text=util.LBL_RESOLUTION)
     lbl_resolution.place(x=10, y=135)
 
-    self.val_resolution = ttk.Combobox(tab_connection, values=self.LIST_RESOLUTION, state=util.STATE_READONLY)
+    self.val_resolution = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_RESOLUTION, state=util.STATE_READONLY)
     self.val_resolution.current(self.get_data(util.DATA_RESOLUTION))
     self.val_resolution.config(width=12)
     self.val_resolution.place(x=85, y=135)
+
+    lbl_channel = Label(tab_connection, text=util.LBL_CHANNEL)
+    lbl_channel.place(x=205, y=135)
+
+    self.val_channel = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_CHANNEL, state=util.STATE_READONLY)
+    self.val_channel.current(0)
+    self.val_channel.config(width=7)
+    self.val_channel.place(x=240, y=135)
 
     lbl_resolution_note = Label(tab_connection, text=util.LBL_RESOLUTION_NOTE)
     lbl_resolution_note.place(x=10, y=165)
@@ -864,7 +868,7 @@ class JTool():
     lbl_load_time = Label(tab_connection, text=util.LBL_LOAD_TIME)
     lbl_load_time.place(x=10, y=195)
 
-    self.val_load_time = ttk.Combobox(tab_connection, values=self.LIST_LOAD_TIME, state=util.STATE_READONLY)
+    self.val_load_time = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_LOAD_TIME, state=util.STATE_READONLY)
     self.val_load_time.current(self.get_data(util.DATA_LOAD))
     self.val_load_time.config(width=12)
     self.val_load_time.place(x=85, y=195)
@@ -1014,7 +1018,7 @@ class JTool():
     lbl_misc_clicks = Label(tab_misc, text=util.LBL_CLICKS)
     lbl_misc_clicks.place(x=10, y=220)
 
-    self.val_click_count = ttk.Combobox(tab_misc, values=self.LIST_CLICKS, state=util.STATE_NORMAL)
+    self.val_click_count = ttk.Combobox(tab_misc, justify=util.STATE_CENTER, values=self.LIST_CLICKS, state=util.STATE_NORMAL)
     self.val_click_count.current(0)
     self.val_click_count.config(width=5)
     self.val_click_count.place(x=75, y=220)

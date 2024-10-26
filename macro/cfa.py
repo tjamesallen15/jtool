@@ -146,7 +146,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
@@ -187,7 +187,7 @@ class CatacombsFrostAwakened(Dungeon):
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + util.UNIT_SPECTOR)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
@@ -301,7 +301,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
