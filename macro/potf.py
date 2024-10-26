@@ -466,9 +466,7 @@ class PurifierOfTheForest(Dungeon):
       else:
         util.wait(4)
       util.wait(2)
-      util.move(675, 300)
-      if util.get_attack_type() == util.VAL_MELEE: util.do_dash(4)
-      else: util.do_dash(2)
+      util.move_click(675, 300, 5)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
       util.move(650, 420)
