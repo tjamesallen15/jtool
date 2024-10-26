@@ -367,7 +367,7 @@ class PanicCaveAwakened(Dungeon):
       if util.get_attack_type() == util.STATE_ZERO:
         util.wait(8)
       else:
-        util.wait(1.5)
+        util.wait(2)
 
       check_showorai = True
       count_showorai = 0

@@ -228,7 +228,9 @@ class HolyKeldrasil(Dungeon):
       util.move(900, 400)
       util.do_dash()
       util.do_fade()
-      util.wait(4)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(4)
+      else: util.wait(1)
+
       self.find_mobs(util.UNIT_HATCHLING)
       try:
         boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
@@ -433,7 +435,9 @@ class HolyKeldrasil(Dungeon):
       util.do_fade()
 
       # Attack Fourth Group
-      util.wait(9)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(9)
+      else: util.wait(6)
+
       util.move(620, 600)
       util.attack_mobs(util.UNIT_KNIGHT, 1, 0.3, 0)
 
