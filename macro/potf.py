@@ -236,7 +236,7 @@ class PurifierOfTheForest(Dungeon):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 3, 1)
+      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 6, 1)
 
       # Check Macro State
       if not util.get_macro_state():
