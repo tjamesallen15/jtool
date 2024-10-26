@@ -8,8 +8,8 @@
     "shorts": 0,
     "hard_shorts": 0,
     "veradrix": 0,
-    "pword": "default",
-    "pin": "1234",
+    "pword": "",
+    "pin": "",
     "resolution": 0,
     "load": 2
 }
