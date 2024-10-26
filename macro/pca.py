@@ -367,7 +367,7 @@ class PanicCaveAwakened(Dungeon):
       if util.get_attack_type() == util.STATE_ZERO:
         util.wait(8)
       else:
-        util.wait(0.3)
+        util.wait(1.5)
 
       check_showorai = True
       count_showorai = 0
@@ -389,7 +389,6 @@ class PanicCaveAwakened(Dungeon):
 
         try:
           util.do_select(0.1)
-          util.log_action(util.MSG_CHECK_BOSS)
           mobs = pyauto.locateOnScreen(util.IMG_SHOWORAI, grayscale=False, confidence=.8, region=util.get_full_region())
           util.log_action(util.MSG_BOSS_FOUND)
           check_showorai = False
