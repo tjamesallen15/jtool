@@ -835,6 +835,7 @@ def enter_world():
 
   check_pass = True
   check_count = 0
+  log_action(MSG_CHECKING_SUB_PASS)
   while check_pass:
     if check_count >= 3:
       check_pass = False
@@ -843,7 +844,6 @@ def enter_world():
       break
 
     try:
-      log_action(MSG_CHECKING_SUB_PASS)
       press_release(Key.enter, 0.4)
       sub_pass = pyauto.locateOnScreen(IMG_SUB_PASS, grayscale=False, confidence=.8, region=get_sub_screen_region())
       log_action(MSG_SUB_PASS_FOUND)
