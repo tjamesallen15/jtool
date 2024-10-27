@@ -1840,12 +1840,9 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
       mode_time = time.time()
 
     try:
-      if type == STATE_ZERO:
-        boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
-      elif type == STATE_ONE:
-        boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_archer_region())
-      elif type == STATE_TWO:
-        boss = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_archer_region())
+      if type == STATE_ZERO: boss = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_archer_region())
+      elif type == STATE_ONE: boss = pyauto.locateOnScreen(IMG_BOSS, grayscale=False, confidence=.9, region=get_archer_region())
+      elif type == STATE_TWO: boss = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_archer_region())
       log_action(MSG_ATTACK_MOBS + unit)
       do_special_attack()
     except pyauto.ImageNotFoundException:
