@@ -479,7 +479,7 @@ class PurifierOfTheForest(Dungeon):
         util.focus_gate(util.UNIT_WEB_GATE, 0)
       else:
         util.wait(2)
-      util.wait(4)
+      util.wait(5)
 
       util.move(675, 300)
       util.do_fade()
