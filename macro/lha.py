@@ -195,6 +195,8 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Click Dungeon
+      util.do_final_mode(1.2)
+      util.do_aura(2)
       util.click_portal(650, 260)
 
       # Enter Dungeon
@@ -214,8 +216,6 @@ class LavaHellfireAwakened(Dungeon):
       util.do_fade()
 
       # First Boss
-      util.do_final_mode(1.2)
-      util.do_aura(2)
       util.attack_boss()
       util.plunder_box(1, 3)
 

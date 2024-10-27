@@ -115,6 +115,8 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_fade()
 
       # Click Dungeon
+      util.do_final_mode(1.2)
+      util.do_aura(2)
       util.click_portal(560, 330)
 
       # Enter Dungeon
@@ -125,8 +127,6 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(570, 300)
       util.do_dash()
 
-      util.do_final_mode(1.2)
-      util.do_aura(1)
       util.attack_boss(1, 0)
 
       if util.get_attack_type() == util.STATE_ZERO:
@@ -177,7 +177,8 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      util.move_scroll(1000, 150, 375, 150, 2)
+      if util.get_attack_type() == util.VAL_MELEE: util.move_scroll(1000, 150, 375, 150, 2)
+      else: util.move_scroll(1000, 150, 375, 150, 0.2)
       util.move(530, 420)
       util.do_dash()
 

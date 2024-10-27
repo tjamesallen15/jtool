@@ -167,11 +167,11 @@ class PanicCaveAwakened(Dungeon):
     util.move(770, 280)
     util.do_dash()
 
-    util.move(550, 370)
-    util.do_fade(self.val_post_fade_speed)
-
   def position_second_shadow(self):
     util.log_action(util.MSG_MOVING_POSITION)
+    util.move(550, 370)
+    util.do_dash()
+
     util.move(720, 200)
     util.do_fade(1)
 
