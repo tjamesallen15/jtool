@@ -457,7 +457,7 @@ class PanicCaveAwakened(Dungeon):
       if util.get_attack_type() == util.STATE_ZERO:
         util.wait(5)
       else:
-        util.wait(1)
+        util.wait(0.5)
 
       check_showorai = True
       count_showorai = 0
@@ -470,7 +470,7 @@ class PanicCaveAwakened(Dungeon):
         if check_showorai == False:
           break
 
-        if count_showorai > 20:
+        if count_showorai > 15:
           util.force_exit_dungeon()
           fail_run_counter += 1
           check_showorai = False
