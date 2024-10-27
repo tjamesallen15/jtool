@@ -834,7 +834,7 @@ class JTool():
     lbl_close_app = Label(tab_connection, text=util.LBL_CLOSE_APP)
     lbl_close_app.place(x=10, y=73)
 
-    self.val_close_app = IntVar(value=0)
+    self.val_close_app = IntVar(value=1)
     chkbtn_close_app = ttk.Checkbutton(tab_connection, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_close_app)
     chkbtn_close_app.place(x=90, y=74)
 
