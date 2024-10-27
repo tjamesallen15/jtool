@@ -475,10 +475,11 @@ class PurifierOfTheForest(Dungeon):
           self.go_web_gate()
 
       # Attack Web Gate
+      if util.get_party_leader_status() == util.STATE_ONE: util.wait(2)
       if util.get_party_member_status() == util.STATE_ZERO:
         util.focus_gate(util.UNIT_WEB_GATE, 0)
       else:
-        util.wait(2)
+        util.wait(4)
       util.wait(5)
 
       util.move(675, 300)
