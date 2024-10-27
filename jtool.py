@@ -1064,4 +1064,10 @@ class JTool():
     self.frame_root.mainloop()
 
 # GENERATE MAIN
-JTool().initialize()
+# JTool().initialize()
+
+# cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+# util.set_cabal_window(cabal_window)
+# util.move(1235, 585)
+
+# util.move(630, 440)
