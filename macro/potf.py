@@ -580,6 +580,7 @@ class PurifierOfTheForest(Dungeon):
             break
 
           try:
+            util.force_veradrix()
             util.do_select(0.1)
             box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
             util.plunder_box(0)
