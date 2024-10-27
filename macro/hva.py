@@ -59,7 +59,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -71,7 +71,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -86,7 +86,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -98,7 +98,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -114,7 +114,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -126,7 +126,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -141,7 +141,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -153,7 +153,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -167,7 +167,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -179,7 +179,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -193,7 +193,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -205,7 +205,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -219,7 +219,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -231,7 +231,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -246,7 +246,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -258,7 +258,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -295,7 +295,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -310,7 +310,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -325,7 +325,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -340,7 +340,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -355,7 +355,7 @@ class HazardousValleyAwakened(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -439,7 +439,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -489,7 +489,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -518,7 +518,7 @@ class HazardousValleyAwakened(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -554,7 +554,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -571,7 +571,7 @@ class HazardousValleyAwakened(Dungeon):
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
         util.attack_boss()
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOSS_FOUND)
+        util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -608,7 +608,7 @@ class HazardousValleyAwakened(Dungeon):
           util.do_deselect_pack()
           util.wait(5)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -647,7 +647,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -671,7 +671,7 @@ class HazardousValleyAwakened(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           util.plunder_final_box(0)
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           checkenddg = pyauto.locateOnScreen(util.IMG_END_DG, grayscale=False, confidence=.9)
@@ -693,3 +693,4 @@ class HazardousValleyAwakened(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
+    util.do_close_app_status()

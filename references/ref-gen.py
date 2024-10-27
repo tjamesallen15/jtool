@@ -43,8 +43,8 @@
 # pyauto.mouseUp(button="right")
 # pyauto.scroll(-10000)
 
-# hpBar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
-# im1 = pyauto.screenshot(region=hpBar)
+# hp_bar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+# im1 = pyauto.screenshot(region=hp_bar)
 # im1.save("c:\screenshot.png")
 
 #### MELEE
@@ -79,7 +79,7 @@
 #         move_rel(10, 10, roll)
 #         move_click_rel(10, 10, roll)
 #       except pyauto.ImageNotFoundException:
-#         log_action(MSG_NO_ROLL_EQUIPMENT_FOUND)
+#         log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
 # LAVA HELLFIRE AWAKENED
 # util.move(550, 100)
@@ -100,3 +100,9 @@
 # util.do_dash()
 # util.do_fade(1.5)
 # util.do_fade()
+
+
+
+# util.move_click(700, 250, 4)
+# util.move_click(510, 225, 5)
+# util.move_click(1000, 300, 5)

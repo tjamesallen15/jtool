@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.85
+
+## v5.85 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+- [RH] Radiant Hall [v5.65] [Development]
+- [POTF] Purifier of the Forest [v5.85]
+
+## v5.85 Features
+
+- [Application] Added force_veradrix()
+- [Application] Added force_battle_mode()
+- [Application] Added focus_high_mobs()
+- [Application] Added focus_high_boss()
+- [Application] Added cancel buffs
+- [Application] Added short hard buffs
+- [Application] Added debuffs
+- [Application] Added hard debuffs
+- [Application] Added exit cabal after macro
+- [Application] Added timeouts to capture dungeon that run out
+- [Application] Added ability to transfer items from inventory to warehouse
+- [Application] Added channels
+- [CI] Added three cases in entering dungeon for solo and party states
+- [POTF] Added Purifier of the Forest in Development Phase
+- [POTF] Added Purieifer of the Forest to party states
+
+## v5.85 Fixes
+
+- [Application] Fixed class combobox to readonly state
+- [Application] Refactored some code structures in utility
+- [Application] Added ability to check if channel four is available to select on reconnection
+- [Application] Improved reconnect performance
+- [CI] Increase mob_threshold from 100 to 200 for party state
+- [CI] Refactored positioning for ulwaan mobs
+- [PCA] Improved dungeon run time for range classes
+
 # v5.80
 
 ## v5.80 Dungeons Available
@@ -25,6 +72,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added party leader feature to correspond with the party member
 - [Application] Refactored code structure of main class into object oriented approach
 - [Application] Added validate lock state for party and member feature
+- [Application] Removed temporarily Panic Cave(Awakened) for all users
 
 ## v5.80 Fixes
 
@@ -97,6 +145,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Refactored some coding structure
 - [Application] Added trial user version
 - [Application] Added Class Input
+- [Application] Added new button Divide(1)
 - [CI] Added Cancel Aura before reposition center
 - [CI] Added mob selection on reposition center
 - [CI] Added double checker for repositions

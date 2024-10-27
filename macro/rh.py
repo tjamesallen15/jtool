@@ -11,6 +11,7 @@ import common.util as util
 pynboard = Controller()
 
 class RadiantHall(Dungeon):
+
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []
@@ -110,7 +111,7 @@ class RadiantHall(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.2)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           checking = False
 
       checking = True
@@ -134,7 +135,7 @@ class RadiantHall(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.2)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           checking = False
 
       util.move(100, 600)
@@ -173,7 +174,7 @@ class RadiantHall(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move(350, 300)
       util.do_dash()
@@ -195,7 +196,7 @@ class RadiantHall(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
 
       util.move(100, 550)
@@ -217,7 +218,7 @@ class RadiantHall(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move_click(500, 320, 1)
       try:
@@ -225,7 +226,7 @@ class RadiantHall(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move_click(770, 220, 1)
       try:
@@ -233,7 +234,7 @@ class RadiantHall(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move_click(650, 320)
       try:
@@ -241,7 +242,7 @@ class RadiantHall(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move(620, 600)
       util.do_dash(0.5)
@@ -291,7 +292,7 @@ class RadiantHall(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
 
       util.move(920, 440)
@@ -317,7 +318,7 @@ class RadiantHall(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
 
       util.move(640, 600)
@@ -345,7 +346,7 @@ class RadiantHall(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
 
       util.move(600, 100)
@@ -374,7 +375,7 @@ class RadiantHall(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.4)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
 
       # FOUR BIRDS STATUE END
@@ -434,7 +435,7 @@ class RadiantHall(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.4)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           checking = False
 
       util.move(900, 300)
@@ -504,7 +505,7 @@ class RadiantHall(Dungeon):
           util.move_click_rel(10, 10, dialog, 0.4)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
           util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
 
       util.move(100, 700)

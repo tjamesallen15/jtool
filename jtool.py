@@ -3,7 +3,7 @@ from tkinter import ttk
 from pynput import keyboard
 from pynput.keyboard import Key, Listener, Controller
 
-import os
+import time
 import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
@@ -27,6 +27,7 @@ from macro.s1p import SienaB1FPrideus
 from macro.ci import ChaosInfinity
 from macro.hvv import HazardousValleyVeradrix
 from macro.rh import RadiantHall
+from macro.potf import PurifierOfTheForest
 
 pynboard = Controller()
 class JTool():
@@ -46,7 +47,8 @@ class JTool():
     "Altar of Siena B1F (Prideus)",
     "Chaos Infinity",
     "Hazardous Valley (Veradrix)",
-    "Radiant Hall"
+    "Radiant Hall",
+    "Purifier of the Forest"
   ]
 
   LIST_DUNGEON = []
@@ -55,10 +57,10 @@ class JTool():
   LIST_CLICKS = [10, 20, 30, 40, 50, 100, 200, 300, 500]
   LIST_RESOLUTION = ["2560x1440", "1920x1080"]
   LIST_LOAD_TIME = ["30 seconds", "45 seconds", "60 seconds", "75 seconds", "90 seconds", "105 seconds", "120 seconds"]
+  LIST_CHANNEL = [1, 2, 3, 4]
 
   list_dg = []
   btn_start = []
-  btn_pause = []
   btn_fury = []
   btn_force = []
   btn_upgrade = []
@@ -67,6 +69,8 @@ class JTool():
   btn_train = []
   btn_misc_test = []
   btn_misc_click = []
+  btn_divide_one = []
+  btn_transfer = []
   chkbtn_leader = []
   chkbtn_member = []
   lbl_macro = []
@@ -88,12 +92,18 @@ class JTool():
   val_member = 0
   val_mode = 0
   val_buffs = 1
+  val_cancel_buffs = 0
+  val_debuffs = 0
+  val_hard_debuffs = 0
   val_shorts = 1
+  val_hard_shorts = 0
   val_atk_type = 0
   val_vera = 0
+  val_close_app = 0
   val_archer = 0
   val_resolution = 0
   val_load_time = 0
+  val_channel = 4
   val_dungeon_restart = 0
 
   val_def_x = "230"
@@ -122,20 +132,32 @@ class JTool():
   def start(self):
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
     choice = self.list_dg.get()
-    runs = int(self.val_run_count.get())
-    access_level = self.get_level()
-    char_class = self.val_char_class.get()
-    mode = self.val_mode.get()
-    leader = self.val_leader.get()
-    member = self.val_member.get()
-    buff = self.val_buffs.get()
-    short = self.val_shorts.get()
-    vera = self.val_vera.get()
-    run_restart = self.val_run_restart.get()
-    pword = self.val_pword.get()
-    pin = self.val_pin.get()
-    reso = self.val_resolution.get()
-    load_time = int(self.val_load_time.get().split(' ')[0])
+
+    variable_args = {
+      util.DATA_ACCESS_LEVEL: self.get_level(),
+      util.DATA_LEADER: self.val_leader.get(),
+      util.DATA_MEMBER: self.val_member.get(),
+      util.DATA_CHAR_CLASS: self.val_char_class.get(),
+      util.DATA_MODE: self.val_mode.get(),
+      util.DATA_BUFFS: self.val_buffs.get(),
+      util.DATA_CANCEL_BUFFS: self.val_cancel_buffs.get(),
+      util.DATA_DEBUFFS: self.val_debuffs.get(),
+      util.DATA_HARD_DEBUFFS: self.val_hard_debuffs.get(),
+      util.DATA_SHORTS: self.val_shorts.get(),
+      util.DATA_HARD_SHORTS: self.val_hard_shorts.get(),
+      util.DATA_VERADRIX: self.val_vera.get(),
+      util.DATA_RUNS: int(self.val_run_count.get()),
+      util.DATA_RUN_RESTART: self.val_run_restart.get(),
+      util.DATA_CLOSE_APP: self.val_close_app.get(),
+      util.DATA_PWORD: self.val_pword.get(),
+      util.DATA_PIN: self.val_pin.get(),
+      util.DATA_RESOLUTION: self.val_resolution.get(),
+      util.DATA_CHANNEL: int(self.val_channel.get()),
+      util.DATA_LOAD: int(self.val_load_time.get().split(' ')[0])
+    }
+
+    runs = variable_args[util.DATA_RUNS]
+    run_restart = variable_args[util.DATA_RUN_RESTART]
     dungeon_restart = self.val_dungeon_restart.get()
 
     self.lbl_run_time.config(text=util.LBL_RUN_TIME_EMPTY)
@@ -149,10 +171,10 @@ class JTool():
     self.save_data()
     util.initialize(cabal_window, self.frame_root, self.lbl_macro, self.lbl_current_run, self.lbl_run_time)
     util.initialize_region()
-    util.set_variables(access_level, char_class, mode, leader, member, buff, short, vera, runs, run_restart, pword, pin, reso, load_time)
+    util.set_variables(variable_args)
 
     if dungeon_restart == util.STATE_ONE:
-      self.restart_cabal_application()
+      self.restart_application()
 
     if choice == self.LIST_MASTER[0]:
       HazardousValleyAwakened().initialize(self.frame_root, self.btn_start, runs)
@@ -180,6 +202,8 @@ class JTool():
       HazardousValleyVeradrix().initialize(self.frame_root, self.btn_start, runs)
     elif choice == self.LIST_MASTER[14]:
       RadiantHall().initialize(self.frame_root, self.btn_start, runs)
+    elif choice == self.LIST_MASTER[15]:
+      PurifierOfTheForest().initialize(self.frame_root, self.btn_start, runs)
 
   def get_dungeon_list(self):
     if self.get_level() == util.ACCESS_FREE:
@@ -220,7 +244,6 @@ class JTool():
         "Steamer Crazy (Awakened)",
         "Catacomb Frost (Awakened)",
         "Lava Hellfire (Awakened)",
-        "Panic Cave (Awakened)",
         "Holy Windmill",
         "Holy Keldrasil",
         "Terminus Machina",
@@ -230,8 +253,6 @@ class JTool():
       self.LIST_DUNGEON = [
         "Hazardous Valley (Awakened)",
         "Hazardous Valley (Hard)",
-        "Hazardous Valley (Medium)",
-        "Hazardous Valley (Easy)",
         "Steamer Crazy (Awakened)",
         "Catacomb Frost (Awakened)",
         "Lava Hellfire (Awakened)",
@@ -254,7 +275,8 @@ class JTool():
         "Chaos Infinity",
         "Altar of Siena B1F (Prideus)",
         "Hazardous Valley (Veradrix)",
-        "Radiant Hall"
+        "Radiant Hall",
+        "Purifier of the Forest"
       ]
 
   def get_access(self, feature):
@@ -262,7 +284,7 @@ class JTool():
       case util.DATA_DUNGEON:
         return util.STATE_NORMAL
       case util.DATA_CONNECTION:
-        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_TESTER:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO:
           return util.STATE_DISABLED
         else:
           return util.STATE_NORMAL
@@ -293,7 +315,18 @@ class JTool():
           return util.STATE_NORMAL
       case util.DATA_BUFFS:
         return util.STATE_NORMAL
+      case util.DATA_DEBUFFS:
+        if self.get_level() != util.ACCESS_SUPER:
+          return util.STATE_DISABLED
+      case util.DATA_HARD_DEBUFFS:
+        if self.get_level() != util.ACCESS_SUPER:
+          return util.STATE_DISABLED
       case util.DATA_SHORTS:
+        if self.get_level() == util.ACCESS_FREE:
+          return util.STATE_DISABLED
+        else:
+          return util.STATE_NORMAL
+      case util.DATA_HARD_SHORTS:
         if self.get_level() == util.ACCESS_FREE:
           return util.STATE_DISABLED
         else:
@@ -341,8 +374,17 @@ class JTool():
       case util.DATA_MODE:
         if self.get_level() == util.ACCESS_FREE:
           return util.STATE_ZERO
+      case util.DATA_DEBUFFS:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
+          return util.STATE_ZERO
+      case util.DATA_HARD_DEBUFFS:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
+          return util.STATE_ZERO
       case util.DATA_SHORTS:
         if self.get_level() == util.ACCESS_FREE:
+          return util.STATE_ZERO
+      case util.DATA_HARD_SHORTS:
+        if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO or self.get_level() == util.ACCESS_PREMIUM or self.get_level() == util.ACCESS_TESTER or self.get_level() == util.ACCESS_TESTER_II:
           return util.STATE_ZERO
       case util.DATA_VERADRIX:
         if self.get_level() == util.ACCESS_FREE or self.get_level() == util.ACCESS_PRO:
@@ -355,7 +397,10 @@ class JTool():
     self.val_config_data[util.DATA_CLASS] = util.LIST_CLASS.index(self.val_char_class.get())
     self.val_config_data[util.DATA_MODE] = self.val_mode.get()
     self.val_config_data[util.DATA_BUFFS] = self.val_buffs.get()
+    self.val_config_data[util.DATA_DEBUFFS] = self.val_debuffs.get()
+    self.val_config_data[util.DATA_HARD_DEBUFFS] = self.val_hard_debuffs.get()
     self.val_config_data[util.DATA_SHORTS] = self.val_shorts.get()
+    self.val_config_data[util.DATA_HARD_SHORTS] = self.val_hard_shorts.get()
     self.val_config_data[util.DATA_VERADRIX] = self.val_vera.get()
     self.val_config_data[util.DATA_PWORD] = self.val_pword.get()
     self.val_config_data[util.DATA_PIN] = self.val_pin.get()
@@ -363,9 +408,9 @@ class JTool():
     self.val_config_data[util.DATA_LOAD] = self.LIST_LOAD_TIME.index(self.val_load_time.get())
     config.save_data(self.val_config_data)
 
-  def enable_party_features(self, args):
+  def enable_dungeon_features(self, args):
     choice = self.list_dg.get()
-    if choice == self.LIST_MASTER[12]:
+    if choice == self.LIST_MASTER[12] or choice == self.LIST_MASTER[15]:
       self.chkbtn_leader.config(state=util.STATE_NORMAL)
       self.chkbtn_member.config(state=util.STATE_NORMAL)
     else:
@@ -380,15 +425,9 @@ class JTool():
   def check_party_member_state(self):
     self.val_leader.set(0)
 
-  def restart_cabal_application(self):
+  def restart_application(self):
     util.log_action(util.MSG_DUNGEON_RESTART)
-    util.exit_cabal_application()
-    util.select_task_bar()
-    util.open_cabal_application()
-    util.move_cabal_application()
-    util.type_pword()
-    util.enter_cabal_world()
-    util.move_bead_window()
+    util.restart_application()
 
   def generate_matrix(self):
     leash.generate_matrix()
@@ -498,6 +537,8 @@ class JTool():
   def test_custom_clicks(self):
     self.btn_misc_test.config(state=util.STATE_DISABLED)
     self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
     self.frame_root.update()
 
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -511,11 +552,15 @@ class JTool():
 
     self.btn_misc_test.config(state=util.STATE_NORMAL)
     self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
   def custom_clicks(self):
     self.btn_misc_test.config(state=util.STATE_DISABLED)
     self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
     self.frame_root.update()
 
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -531,6 +576,68 @@ class JTool():
 
     self.btn_misc_test.config(state=util.STATE_NORMAL)
     self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
+
+  def divide_one(self):
+    self.btn_misc_test.config(state=util.STATE_DISABLED)
+    self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
+
+    cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+
+    coor_x = int(self.val_misc_x_coords.get())
+    coor_y = int(self.val_misc_y_coords.get())
+
+    util.move(coor_x, coor_y)
+
+    for x in range(int(self.val_click_count.get())):
+      util.click_press_combo(Key.shift_l, '1', True)
+      util.press_release(Key.enter)
+      self.log_misc_action(util.MSG_CLICK + str(x+1))
+
+    self.btn_misc_test.config(state=util.STATE_NORMAL)
+    self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
+    self.frame_root.update()
+
+  def transfer(self):
+    self.btn_misc_test.config(state=util.STATE_DISABLED)
+    self.btn_misc_click.config(state=util.STATE_DISABLED)
+    self.btn_divide_one.config(state=util.STATE_DISABLED)
+    self.btn_transfer.config(state=util.STATE_DISABLED)
+    self.frame_root.update()
+
+    click_count = int(self.val_click_count.get())
+
+    cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+
+    transferring = True
+    index = 0
+    while transferring:
+      if index >= 64 or index >= click_count:
+        transferring = False
+
+      if transferring == False:
+        break
+
+      util.move(leash.get_inventory_matrix()[index][0], leash.get_inventory_matrix()[index][1], 0.1)
+      util.click_press_combo(Key.ctrl, util.STATE_EMPTY, False)
+      self.log_misc_action(util.MSG_CLICK + str(index+1))
+      index += 1
+
+    self.btn_misc_test.config(state=util.STATE_NORMAL)
+    self.btn_misc_click.config(state=util.STATE_NORMAL)
+    self.btn_divide_one.config(state=util.STATE_NORMAL)
+    self.btn_transfer.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
   def get_features_free(self):
@@ -597,16 +704,16 @@ class JTool():
     lbl_dungeon_list = Label(tab_dungeon, text=util.LBL_DUNGEON)
     lbl_dungeon_list.place(x=10, y=10)
 
-    self.list_dg = ttk.Combobox(tab_dungeon, values=self.LIST_DUNGEON, state=util.STATE_READONLY)
+    self.list_dg = ttk.Combobox(tab_dungeon, values=self.LIST_DUNGEON, justify=util.STATE_CENTER, state=util.STATE_READONLY)
     self.list_dg.current(self.get_data(util.DATA_DUNGEON))
     self.list_dg.config(width=30)
     self.list_dg.place(x=75, y=10)
-    self.list_dg.bind("<<ComboboxSelected>>", self.enable_party_features)
+    self.list_dg.bind("<<ComboboxSelected>>", self.enable_dungeon_features)
 
     lbl_runs = Label(tab_dungeon, text=util.LBL_RUNS)
     lbl_runs.place(x=10, y=43)
 
-    self.val_run_count = ttk.Combobox(tab_dungeon, values=self.LIST_RUN, state=util.STATE_NORMAL)
+    self.val_run_count = ttk.Combobox(tab_dungeon, justify=util.STATE_CENTER, values=self.LIST_RUN, state=util.STATE_NORMAL)
     self.val_run_count.current(0)
     self.val_run_count.config(width=5)
     self.val_run_count.place(x=75, y=43)
@@ -623,15 +730,15 @@ class JTool():
     self.btn_start.place(x=255, y=40)
 
     self.lbl_current_run = Label(tab_dungeon, text=util.LBL_CURRENT_RUN)
-    self.lbl_current_run.place(x=145, y=75)
+    self.lbl_current_run.place(x=145, y=105)
 
     self.lbl_run_time = Label(tab_dungeon, text=util.LBL_RUN_TIME_EMPTY)
-    self.lbl_run_time.place(x=145, y=105)
+    self.lbl_run_time.place(x=145, y=135)
 
     lbl_class = Label(tab_dungeon, text=util.LBL_CLASS, state=self.get_access(util.DATA_MODE))
     lbl_class.place(x=10, y=73)
 
-    self.val_char_class = ttk.Combobox(tab_dungeon, values=util.LIST_CLASS, state=util.STATE_NORMAL)
+    self.val_char_class = ttk.Combobox(tab_dungeon, justify=util.STATE_CENTER, values=util.LIST_CLASS, state=util.STATE_READONLY)
     self.val_char_class.current(self.get_data(util.DATA_CLASS))
     self.val_char_class.config(width=5)
     self.val_char_class.place(x=75, y=73)
@@ -650,6 +757,10 @@ class JTool():
     chkbtn_buffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_buffs, state=self.get_access(util.DATA_BUFFS))
     chkbtn_buffs.place(x=75, y=136)
 
+    self.val_cancel_buffs = IntVar(value=0)
+    chkbtn_cancel_buffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_cancel_buffs, state=self.get_access(util.DATA_BUFFS))
+    chkbtn_cancel_buffs.place(x=95, y=136)
+
     lbl_shorts = Label(tab_dungeon, text=util.LBL_SHORTS, state=self.get_access(util.DATA_SHORTS))
     lbl_shorts.place(x=10, y=165)
 
@@ -657,37 +768,52 @@ class JTool():
     chkbtn_shorts = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_shorts, state=self.get_access(util.DATA_SHORTS))
     chkbtn_shorts.place(x=75, y=166)
 
+    self.val_hard_shorts = IntVar(value=self.get_data(util.DATA_HARD_SHORTS))
+    chkbtn_hard_shorts = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_hard_shorts, state=self.get_access(util.DATA_HARD_SHORTS))
+    chkbtn_hard_shorts.place(x=95, y=166)
+
+    lbl_debuffs = Label(tab_dungeon, text=util.LBL_DEBUFFS, state=self.get_access(util.DATA_BUFFS))
+    lbl_debuffs.place(x=10, y=195)
+
+    self.val_debuffs = IntVar(value=self.get_data(util.DATA_DEBUFFS))
+    chkbtn_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_debuffs, state=self.get_access(util.DATA_DEBUFFS))
+    chkbtn_debuffs.place(x=75, y=196)
+
+    self.val_hard_debuffs = IntVar(value=self.get_data(util.DATA_HARD_DEBUFFS))
+    chkbtn_hard_debuffs = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_hard_debuffs, state=self.get_access(util.DATA_HARD_DEBUFFS))
+    chkbtn_hard_debuffs.place(x=95, y=196)
+
     lbl_leader = Label(tab_dungeon, text=util.LBL_LEADER, state=self.get_access(util.DATA_LEADER))
-    lbl_leader.place(x=10, y=195)
+    lbl_leader.place(x=10, y=225)
 
     self.val_leader = IntVar(value=0)
     self.chkbtn_leader = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_leader, command=self.check_party_leader_state, state=self.get_access(util.DATA_LEADER))
-    self.chkbtn_leader.place(x=75, y=196)
+    self.chkbtn_leader.place(x=75, y=226)
 
     lbl_member = Label(tab_dungeon, text=util.LBL_MEMBER, state=self.get_access(util.DATA_MEMBER))
-    lbl_member.place(x=10, y=225)
+    lbl_member.place(x=10, y=255)
 
     self.val_member = IntVar(value=0)
     self.chkbtn_member = ttk.Checkbutton(tab_dungeon, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_member, command=self.check_party_member_state, state=self.get_access(util.DATA_MEMBER))
-    self.chkbtn_member.place(x=75, y=226)
+    self.chkbtn_member.place(x=75, y=256)
 
     self.lbl_restart_note = Label(tab_dungeon, text=util.LBL_RUN_RESTART_EMPTY)
-    self.lbl_restart_note.place(x=145, y=135)
+    self.lbl_restart_note.place(x=145, y=165)
 
     lbl_license = Label(tab_dungeon, text=self.get_license())
-    lbl_license.place(x=145, y=165)
+    lbl_license.place(x=145, y=195)
 
     lbl_expiration = Label(tab_dungeon, text=self.get_expiration_status())
-    lbl_expiration.place(x=145, y=195)
+    lbl_expiration.place(x=145, y=225)
 
     self.lbl_macro = Label(tab_dungeon, text=util.LBL_MACRO)
-    self.lbl_macro.place(x=145, y=225)
+    self.lbl_macro.place(x=145, y=255)
 
     # Tab Connection
     lbl_run_restart = Label(tab_connection, text=util.LBL_RUN_RESTART)
     lbl_run_restart.place(x=10, y=10)
 
-    self.val_run_restart = ttk.Combobox(tab_connection, values=self.LIST_RUN_RESTART)
+    self.val_run_restart = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_RUN_RESTART)
     self.val_run_restart.current(0)
     self.val_run_restart.config(width=5)
     self.val_run_restart.place(x=92, y=10)
@@ -705,46 +831,64 @@ class JTool():
     lbl_dungeon_restart_note = Label(tab_connection, text=util.LBL_DG_RESTART_NOTE)
     lbl_dungeon_restart_note.place(x=155, y=43)
 
+    lbl_close_app = Label(tab_connection, text=util.LBL_CLOSE_APP)
+    lbl_close_app.place(x=10, y=73)
+
+    self.val_close_app = IntVar(value=1)
+    chkbtn_close_app = ttk.Checkbutton(tab_connection, text=util.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_close_app)
+    chkbtn_close_app.place(x=90, y=74)
+
+    lbl_close_app_note = Label(tab_connection, text=util.LBL_CLOSE_APP_NOTE)
+    lbl_close_app_note.place(x=155, y=73)
+
     lbl_pword = Label(tab_connection, text=util.LBL_PWORD)
-    lbl_pword.place(x=10, y=75)
+    lbl_pword.place(x=10, y=105)
 
     self.val_pword = StringVar()
     self.val_pword.set(self.get_data(util.DATA_PWORD))
     entry_pword = Entry(tab_connection, show="*", textvariable=self.val_pword, width=15)
-    entry_pword.place(x=85, y=75)
+    entry_pword.place(x=85, y=105)
 
     lbl_pin = Label(tab_connection, text=util.LBL_PIN)
-    lbl_pin.place(x=205, y=75)
+    lbl_pin.place(x=205, y=105)
 
     self.val_pin = StringVar()
     self.val_pin.set(self.get_data(util.DATA_PIN))
     entry_pin = Entry(tab_connection, show="*", textvariable=self.val_pin, width=10)
-    entry_pin.place(x=240, y=75)
+    entry_pin.place(x=240, y=105)
 
     lbl_resolution = Label(tab_connection, text=util.LBL_RESOLUTION)
-    lbl_resolution.place(x=10, y=105)
+    lbl_resolution.place(x=10, y=135)
 
-    self.val_resolution = ttk.Combobox(tab_connection, values=self.LIST_RESOLUTION, state=util.STATE_READONLY)
+    self.val_resolution = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_RESOLUTION, state=util.STATE_READONLY)
     self.val_resolution.current(self.get_data(util.DATA_RESOLUTION))
     self.val_resolution.config(width=12)
-    self.val_resolution.place(x=85, y=105)
+    self.val_resolution.place(x=85, y=135)
+
+    lbl_channel = Label(tab_connection, text=util.LBL_CHANNEL)
+    lbl_channel.place(x=205, y=135)
+
+    self.val_channel = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_CHANNEL, state=util.STATE_READONLY)
+    self.val_channel.current(0)
+    self.val_channel.config(width=7)
+    self.val_channel.place(x=240, y=135)
 
     lbl_resolution_note = Label(tab_connection, text=util.LBL_RESOLUTION_NOTE)
-    lbl_resolution_note.place(x=10, y=135)
+    lbl_resolution_note.place(x=10, y=165)
 
     lbl_load_time = Label(tab_connection, text=util.LBL_LOAD_TIME)
-    lbl_load_time.place(x=10, y=165)
+    lbl_load_time.place(x=10, y=195)
 
-    self.val_load_time = ttk.Combobox(tab_connection, values=self.LIST_LOAD_TIME, state=util.STATE_READONLY)
+    self.val_load_time = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_LOAD_TIME, state=util.STATE_READONLY)
     self.val_load_time.current(self.get_data(util.DATA_LOAD))
     self.val_load_time.config(width=12)
-    self.val_load_time.place(x=85, y=165)
+    self.val_load_time.place(x=85, y=195)
 
     lbl_load_time_note = Label(tab_connection, text=util.LBL_LOAD_TIME_NOTE)
-    lbl_load_time_note.place(x=10, y=195)
+    lbl_load_time_note.place(x=10, y=225)
 
     lbl_cabal_note = Label(tab_connection, text=util.LBL_CABAL_NOTE)
-    lbl_cabal_note.place(x=10, y=225)
+    lbl_cabal_note.place(x=10, y=255)
 
     # Tab Pet
     lbl_pet_note_1 = Label(tab_pet, text=util.LBL_PET_NOTE_1)
@@ -761,7 +905,7 @@ class JTool():
 
     self.val_x_coords = StringVar()
     self.val_x_coords.set(self.val_def_x)
-    entry_x_coords = Entry(tab_pet, textvariable=self.val_x_coords, width=5)
+    entry_x_coords = Entry(tab_pet, textvariable=self.val_x_coords, justify='center', width=5)
     entry_x_coords.place(x=62, y=105)
 
     lbl_y_coords = Label(tab_pet, text=util.LBL_NPC_Y)
@@ -769,7 +913,7 @@ class JTool():
 
     self.val_y_coords = StringVar()
     self.val_y_coords.set(self.val_def_y)
-    entry_y_coords = Entry(tab_pet, textvariable=self.val_y_coords, width=5)
+    entry_y_coords = Entry(tab_pet, textvariable=self.val_y_coords, justify='center', width=5)
     entry_y_coords.place(x=162, y=105)
 
     self.btn_test = Button(tab_pet, text=util.BTN_TEST, command=self.pet_test)
@@ -845,31 +989,39 @@ class JTool():
 
     self.btn_mails = Button(tab_misc, text=util.BTN_MAILS, command=self.get_mails)
     self.btn_mails.config(width=8)
-    self.btn_mails.place(x=10, y=110)
+    self.btn_mails.place(x=235, y=40)
 
     lbl_misc_x_coords = Label(tab_misc, text=util.LBL_NPC_X)
-    lbl_misc_x_coords.place(x=10, y=153)
+    lbl_misc_x_coords.place(x=10, y=113)
 
     self.val_misc_x_coords = StringVar()
-    self.val_misc_x_coords.set('0')
-    entry_x_coords = Entry(tab_misc, textvariable=self.val_misc_x_coords, width=5)
-    entry_x_coords.place(x=62, y=155)
+    self.val_misc_x_coords.set('1050')
+    entry_x_coords = Entry(tab_misc, textvariable=self.val_misc_x_coords, justify='center', width=5)
+    entry_x_coords.place(x=62, y=115)
 
     lbl_misc_y_coords = Label(tab_misc, text=util.LBL_NPC_Y)
-    lbl_misc_y_coords.place(x=110, y=153)
+    lbl_misc_y_coords.place(x=110, y=113)
 
     self.val_misc_y_coords = StringVar()
-    self.val_misc_y_coords.set('0')
-    entry_y_coords = Entry(tab_misc, textvariable=self.val_misc_y_coords, width=5)
-    entry_y_coords.place(x=162, y=155)
+    self.val_misc_y_coords.set('375')
+    entry_y_coords = Entry(tab_misc, textvariable=self.val_misc_y_coords, justify='center', width=5)
+    entry_y_coords.place(x=162, y=115)
 
     self.btn_misc_test = Button(tab_misc, text=util.BTN_TEST, command=self.test_custom_clicks)
     self.btn_misc_test.config(width=5)
-    self.btn_misc_test.place(x=210, y=150)
+    self.btn_misc_test.place(x=10, y=150)
 
     self.btn_misc_click = Button(tab_misc, text=util.BTN_CLICK, command=self.custom_clicks)
     self.btn_misc_click.config(width=6)
-    self.btn_misc_click.place(x=260, y=150)
+    self.btn_misc_click.place(x=60, y=150)
+
+    self.btn_divide_one = Button(tab_misc, text=util.BTN_DIVIDE_ONE, command=self.divide_one)
+    self.btn_divide_one.config(width=9)
+    self.btn_divide_one.place(x=118, y=150)
+
+    self.btn_transfer = Button(tab_misc, text=util.BTN_TRANSFER, command=self.transfer)
+    self.btn_transfer.config(width=9)
+    self.btn_transfer.place(x=198, y=150)
 
     lbl_misc_custom_note = Label(tab_misc, text=util.LBL_CUSTON_CLICK_NOTE)
     lbl_misc_custom_note.place(x=10, y=190)
@@ -877,7 +1029,7 @@ class JTool():
     lbl_misc_clicks = Label(tab_misc, text=util.LBL_CLICKS)
     lbl_misc_clicks.place(x=10, y=220)
 
-    self.val_click_count = ttk.Combobox(tab_misc, values=self.LIST_CLICKS, state=util.STATE_NORMAL)
+    self.val_click_count = ttk.Combobox(tab_misc, justify=util.STATE_CENTER, values=self.LIST_CLICKS, state=util.STATE_NORMAL)
     self.val_click_count.current(0)
     self.val_click_count.config(width=5)
     self.val_click_count.place(x=75, y=220)
@@ -908,7 +1060,7 @@ class JTool():
     btn_changelogs = Button(frame_btn, text=util.BTN_CHANGELOG, command=self.get_changelogs)
     btn_changelogs.pack(side=LEFT)
 
-    self.enable_party_features(None)
+    self.enable_dungeon_features(None)
     self.frame_root.mainloop()
 
 # GENERATE MAIN

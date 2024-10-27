@@ -55,7 +55,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -69,7 +69,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -83,7 +83,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -97,7 +97,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -112,7 +112,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -127,7 +127,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -142,7 +142,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -156,7 +156,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -170,7 +170,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -184,7 +184,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -198,7 +198,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -213,7 +213,7 @@ class HolyWindmill(Dungeon):
             util.log_action(util.MSG_PATH_STOP)
             break
           except pyauto.ImageNotFoundException:
-            util.log_action(util.MSG_NO_GATE_FOUND)
+            util.log_action(util.MSG_GATE_NOT_FOUND)
 
           if pathing == False:
             break
@@ -227,7 +227,7 @@ class HolyWindmill(Dungeon):
             util.log_action(util.MSG_PATH_STOP)
             break
           except pyauto.ImageNotFoundException:
-            util.log_action(util.MSG_NO_GATE_FOUND)
+            util.log_action(util.MSG_GATE_NOT_FOUND)
 
           if pathing == False:
             break
@@ -243,7 +243,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_GATE_FOUND)
+          util.log_action(util.MSG_GATE_NOT_FOUND)
 
         if pathing == False:
           break
@@ -269,7 +269,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_GATE_FOUND)
+        util.log_action(util.MSG_GATE_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -281,7 +281,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.move_click(580, 260)
@@ -292,7 +292,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_GATE_FOUND)
+        util.log_action(util.MSG_GATE_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -304,7 +304,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.move_click(620, 260)
@@ -315,7 +315,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_GATE_FOUND)
+        util.log_action(util.MSG_GATE_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -327,7 +327,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.move_click(300, 260)
@@ -338,7 +338,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_GATE_FOUND)
+        util.log_action(util.MSG_GATE_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -350,7 +350,7 @@ class HolyWindmill(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
     if boss_found == util.STATE_ZERO:
       util.focus_gate(util.UNIT_LEGRIN)
@@ -390,7 +390,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         if pathing == False:
           break
@@ -405,7 +405,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         if pathing == False:
           break
@@ -419,7 +419,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         if pathing == False:
           break
@@ -434,7 +434,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -446,7 +446,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -460,7 +460,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -472,7 +472,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -486,7 +486,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -498,7 +498,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -513,7 +513,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -525,7 +525,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -539,7 +539,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -551,7 +551,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -565,7 +565,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -577,7 +577,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -591,7 +591,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -603,7 +603,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -617,7 +617,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -629,7 +629,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -655,7 +655,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -667,7 +667,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -682,7 +682,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -694,7 +694,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -708,7 +708,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -720,7 +720,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -734,7 +734,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -746,7 +746,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -760,7 +760,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -772,7 +772,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -787,7 +787,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -799,7 +799,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -814,7 +814,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -826,7 +826,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -840,7 +840,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -852,7 +852,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -866,7 +866,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -878,7 +878,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -892,7 +892,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -904,7 +904,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -955,7 +955,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -969,7 +969,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -983,7 +983,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -998,7 +998,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1012,7 +1012,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1026,7 +1026,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1041,7 +1041,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1055,7 +1055,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1069,7 +1069,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1083,7 +1083,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1097,7 +1097,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if backtracking == False:
           break
@@ -1157,7 +1157,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1196,7 +1196,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1244,7 +1244,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1279,7 +1279,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1329,7 +1329,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1373,7 +1373,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1419,7 +1419,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1465,7 +1465,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1511,7 +1511,7 @@ class HolyWindmill(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOX_FOUND)
+          util.log_action(util.MSG_BOX_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1541,3 +1541,4 @@ class HolyWindmill(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
+    util.do_close_app_status()

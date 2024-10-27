@@ -109,6 +109,8 @@ class CatacombsFrostAwakened(Dungeon):
 
       util.move(500, 500)
       util.do_dash()
+
+      # util.move_click(545, 300, 0.3)
       util.move(500, 300)
       util.do_fade()
 
@@ -144,7 +146,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
@@ -185,7 +187,7 @@ class CatacombsFrostAwakened(Dungeon):
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND + util.UNIT_SPECTOR)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
@@ -209,7 +211,13 @@ class CatacombsFrostAwakened(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
+          pass
+
+        try:
+          mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.attack_mobs(util.UNIT_SPECTOR, 0, 0.3, self.val_sidestep)
+        except pyauto.ImageNotFoundException:
+          pass
 
       # Check Macro State
       if not util.get_macro_state():
@@ -269,7 +277,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       # Final Boss
       self.pre_position_final_boss()
-      util.do_battle_mode(6, 0)
+      util.do_battle_mode(6, False)
       util.do_short_buffs()
 
       self.position_final_boss()
@@ -293,7 +301,7 @@ class CatacombsFrostAwakened(Dungeon):
         util.log_action(util.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.3)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_CHECK_DIALOG_FOUND)
+        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
         util.force_exit_dungeon()
         fail_run_counter += 1
         util.set_reset_status(True)
@@ -312,3 +320,4 @@ class CatacombsFrostAwakened(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
+    util.do_close_app_status()

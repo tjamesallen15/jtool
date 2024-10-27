@@ -134,15 +134,24 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    util.move(550, 100)
-    util.do_dash()
-    util.do_fade()
+    if util.get_attack_type() == util.VAL_MELEE:
+      util.do_dash()
+      util.do_fade()
+    else:
+      util.do_dash(1.5)
 
     util.move(550, 100)
     util.do_dash()
     util.do_fade()
 
-    util.move(650, 200)
+    util.move(550, 100)
+    util.do_dash()
+    util.do_fade()
+
+    if util.get_attack_type() == util.VAL_MELEE:
+      util.move(690, 200)
+    else:
+      util.move(670, 200)
     util.do_dash()
     util.do_fade()
 
@@ -186,6 +195,8 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Click Dungeon
+      util.do_final_mode(1)
+      util.do_aura(2)
       util.click_portal(650, 260)
 
       # Enter Dungeon
@@ -205,7 +216,6 @@ class LavaHellfireAwakened(Dungeon):
       util.do_fade()
 
       # First Boss
-      util.do_final_mode(1)
       util.attack_boss()
       util.plunder_box(1, 3)
 
@@ -256,7 +266,7 @@ class LavaHellfireAwakened(Dungeon):
           util.attack_semi_boss(0)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
         time.sleep(0.2)
 
@@ -312,7 +322,7 @@ class LavaHellfireAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
         time.sleep(0.2)
 
@@ -336,7 +346,7 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Boss Sequence
-      util.do_battle_mode(5, 0)
+      util.do_battle_mode(5, False)
       self.position_boss()
       util.force_short_buffs()
       moving = True
@@ -356,7 +366,7 @@ class LavaHellfireAwakened(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -364,7 +374,7 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Final Boss
-      util.attack_boss(0, 1, 0, 0)
+      util.attack_boss(0, 0, 0, 0)
 
       checking = True
       while checking:
@@ -395,3 +405,4 @@ class LavaHellfireAwakened(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time(2)
+    util.do_close_app_status()

@@ -60,7 +60,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -72,7 +72,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -87,7 +87,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -99,7 +99,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -115,7 +115,7 @@ class HazardousValleyVeradrix(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -127,7 +127,7 @@ class HazardousValleyVeradrix(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -141,7 +141,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -153,7 +153,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -170,7 +170,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -182,7 +182,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       if pathing == False:
         break
@@ -202,7 +202,7 @@ class HazardousValleyVeradrix(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -214,7 +214,7 @@ class HazardousValleyVeradrix(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -233,7 +233,7 @@ class HazardousValleyVeradrix(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         try:
           util.do_select(0.1)
@@ -245,7 +245,7 @@ class HazardousValleyVeradrix(Dungeon):
           util.log_action(util.MSG_PATH_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_MOBS_FOUND)
+          util.log_action(util.MSG_MOBS_NOT_FOUND)
 
         if pathing == False:
           break
@@ -286,7 +286,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -296,7 +296,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOX_FOUND)
+        util.log_action(util.MSG_BOX_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -311,7 +311,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -321,7 +321,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOX_FOUND)
+        util.log_action(util.MSG_BOX_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -336,7 +336,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -346,7 +346,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOX_FOUND)
+        util.log_action(util.MSG_BOX_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -361,7 +361,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -371,7 +371,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOX_FOUND)
+        util.log_action(util.MSG_BOX_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -386,7 +386,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_MOBS_FOUND)
+        util.log_action(util.MSG_MOBS_NOT_FOUND)
 
       try:
         util.do_select(0.1)
@@ -396,7 +396,7 @@ class HazardousValleyVeradrix(Dungeon):
         util.log_action(util.MSG_PATH_STOP)
         break
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_NO_BOX_FOUND)
+        util.log_action(util.MSG_BOX_NOT_FOUND)
 
       if backtracking == False:
         break
@@ -487,7 +487,7 @@ class HazardousValleyVeradrix(Dungeon):
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -515,7 +515,7 @@ class HazardousValleyVeradrix(Dungeon):
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_NO_BOSS_FOUND)
+          util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # First Boss
       util.attack_boss()
@@ -543,3 +543,4 @@ class HazardousValleyVeradrix(Dungeon):
       util.force_exit_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time()
+    util.do_close_app_status()

@@ -106,6 +106,51 @@ class ChaosInfinity(Dungeon):
     util.do_dash(1.5)
     util.do_select(0.1)
 
+  def check_ulwaan_left(self):
+    # HORIZONTAL
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
+    util.move(100, 360)
+    util.do_fade()
+
+    util.move(1200, 400)
+    util.do_dash()
+
+  def check_ulwaan_right(self):
+    util.move(1200, 400)
+    util.do_dash()
+
+    util.move(1200, 360)
+    util.do_fade()
+
+    util.move(1200, 400)
+    util.do_dash()
+
+    util.move(1200, 360)
+    util.do_fade()
+
+    util.move(1200, 400)
+    util.do_dash()
+
+    util.move(1200, 360)
+    util.do_fade()
+
+    util.move(100, 400)
+    util.do_dash()
+
   def reposition_mobs(self):
     # VERTICAL CHECK
     util.move(620, 100)
@@ -214,7 +259,6 @@ class ChaosInfinity(Dungeon):
           break
 
         util.do_select(0.1)
-
         if util.get_party_member_status() == util.STATE_ZERO:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
@@ -232,13 +276,31 @@ class ChaosInfinity(Dungeon):
             has_gate = False
             break
 
+      try:
+        gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
+        util.focus_gate(util.UNIT_GATE, 0)
+        util.wait(0.3)
+      except pyauto.ImageNotFoundException:
+        pass
+
       util.move(620, 150)
       util.do_dash()
 
-      if util.get_party_member_status() == util.STATE_ZERO:
-        util.do_fade(6)
-      else:
+      if util.get_party_member_status() == util.STATE_ONE:
         util.do_fade()
+      elif util.get_party_leader_status() == util.STATE_ONE:
+        util.do_fade(1)
+        counter = 0
+        while counter != 5:
+          try:
+            util.do_select(0.1)
+            mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+            util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
+          except pyauto.ImageNotFoundException:
+            pass
+          counter += 1
+      else:
+        util.do_fade(5.5)
 
       util.move(620, 150)
       util.do_dash()
@@ -259,9 +321,11 @@ class ChaosInfinity(Dungeon):
       chaos_move = 0
       reposition_count = 0
       mob_threshold = 30
+      check_left = 0
+      check_right = 0
 
       if util.get_party_leader_status() == util.STATE_ONE or util.get_party_member_status() == util.STATE_ONE:
-        mob_threshold = 100
+        mob_threshold = 200
 
       while arena:
         if not util.get_macro_state():
@@ -283,6 +347,7 @@ class ChaosInfinity(Dungeon):
         mob_checker += 1
         util.do_select(0.1)
         util.do_fast_plunder()
+        util.do_final_mode()
 
         try:
           chaos_gate = pyauto.locateOnScreen(util.IMG_CHAOS_GATE, grayscale=False, confidence=.7, region=util.get_full_region())
@@ -308,6 +373,16 @@ class ChaosInfinity(Dungeon):
           reposition_count = 0
           chaos_move = 0
           util.wait(0.2)
+
+          if check_left == util.STATE_ONE:
+            util.move(1200, 400)
+            util.do_dash()
+            check_left = 0
+          elif check_right == util.STATE_ONE:
+            util.move(100, 400)
+            util.do_dash()
+            check_right = 0
+
           util.do_select(0.1)
         except pyauto.ImageNotFoundException:
           pass
@@ -352,7 +427,12 @@ class ChaosInfinity(Dungeon):
             self.reposition_center()
 
           if bosses == 10 and reposition_count < 2:
-            self.reposition_ulwaan()
+            if reposition_count == 0:
+              self.check_ulwaan_left()
+              check_left = 1
+            else:
+              self.check_ulwaan_right()
+              check_right = 1
           else:
             self.reposition_mobs()
           reposition_count += 1
@@ -376,3 +456,4 @@ class ChaosInfinity(Dungeon):
       util.dice_dungeon()
       util.log_action(util.MSG_END_DG)
       util.log_time(wait_time)
+    util.do_close_app_status()
