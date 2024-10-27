@@ -479,12 +479,15 @@ class PurifierOfTheForest(Dungeon):
         util.focus_gate(util.UNIT_WEB_GATE, 0)
       else:
         util.wait(2)
-      util.wait(2)
-      util.move_click(675, 300, 5)
+      util.wait(4)
+
+      util.move(675, 300)
+      util.do_fade()
+      util.do_dash(5)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
-      util.move(650, 420)
-      util.do_fade()
+      # util.move(650, 420)
+      # util.do_fade()
 
       # Attack Fourth Boss (Electula)
       self.find_kill_boss(util.IMG_ELECTULA, util.UNIT_ELECTULA)
@@ -494,7 +497,8 @@ class PurifierOfTheForest(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(1000, 425)
+      # util.move(1000, 425)
+      util.move(835, 425)
       util.do_dash()
       util.do_fade()
       if util.get_party_member_status() == util.STATE_ZERO:

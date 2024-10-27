@@ -131,10 +131,11 @@ class JTool():
     self.generate_gui()
 
   def join_war(self):
+    cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
     i = 0
-    while i <= 20:
-      cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-      util.set_cabal_window(cabal_window)
+    while i <= 40:
       util.move_click(1235, 585)
       util.move_click(630, 440)
       i += 1
