@@ -315,7 +315,18 @@ class JTool():
           return util.STATE_NORMAL
       case util.DATA_BUFFS:
         return util.STATE_NORMAL
+      case util.DATA_DEBUFFS:
+        if self.get_level() != util.ACCESS_SUPER:
+          return util.STATE_DISABLED
+      case util.DATA_HARD_DEBUFFS:
+        if self.get_level() != util.ACCESS_SUPER:
+          return util.STATE_DISABLED
       case util.DATA_SHORTS:
+        if self.get_level() == util.ACCESS_FREE:
+          return util.STATE_DISABLED
+        else:
+          return util.STATE_NORMAL
+      case util.DATA_HARD_SHORTS:
         if self.get_level() == util.ACCESS_FREE:
           return util.STATE_DISABLED
         else:

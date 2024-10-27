@@ -498,10 +498,12 @@ class PurifierOfTheForest(Dungeon):
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move_click(560, 175, 5)
 
-      util.move_click(900, 235, 4)
       util.do_final_mode(2)
       util.do_aura(2)
       util.set_last_cast_mode(3)
+
+      if util.get_party_member_status() == util.STATE_ONE: util.move_click(900, 235, 7)
+      else: util.move_click(900, 235, 4)
 
       # Attack First Ant Hill
       util.move(1050, 340)
