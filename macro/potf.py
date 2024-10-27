@@ -384,7 +384,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
 
       if util.get_party_member_status() == util.STATE_ONE:
-        util.wait(4)
+        util.wait(8)
       util.wait(3)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -464,7 +464,7 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.focus_gate(util.UNIT_WEB_GATE, 0)
       else:
-        util.wait(4)
+        util.wait(2)
       util.wait(2)
       util.move_click(675, 300, 5)
 
