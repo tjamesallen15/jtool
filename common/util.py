@@ -1225,13 +1225,10 @@ def check_battle_mode():
     do_final_mode()
 
 def do_veradrix():
-  if get_veradrix_status() == STATE_ONE:
-    pynboard.press(KEY_VERADRIX)
-    pynboard.release(KEY_VERADRIX)
+  if get_veradrix_status() == STATE_ONE: press_release(KEY_VERADRIX)
 
 def force_veradrix():
-  pynboard.press(KEY_VERADRIX)
-  pynboard.release(KEY_VERADRIX)
+  press_release(KEY_VERADRIX)
 
 def do_buffs():
   if get_buffs_status() == STATE_ONE:
@@ -1327,6 +1324,7 @@ def party_roll_box(reps=4):
   roll_reps = reps * 3
   for x in range(roll_reps):
     roll_box()
+    if get_veradrix_status() == STATE_ONE: do_veradrix()
     time.sleep(0.3)
 
 def plunder_box(select=1, reps=4, loot=1, delay=0.5):
