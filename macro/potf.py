@@ -395,18 +395,32 @@ class PurifierOfTheForest(Dungeon):
 
       util.move_click(775, 130, 4)
 
-      util.move(910, 200)
-      util.do_dash(2)
-      util.do_fade(4)
+      if util.get_party_member_status() == util.STATE_ZERO:
+        util.move(910, 200)
+        util.do_dash(2)
+        util.do_fade(4)
 
-      util.do_dash(2)
-      util.do_fade(3)
+        util.do_dash(2)
+        util.do_fade(3)
 
-      util.do_dash()
-      util.do_fade(5)
+        util.do_dash()
+        util.do_fade(5)
 
-      util.move(450, 550)
-      util.do_dash()
+        util.move(450, 550)
+        util.do_dash()
+      else:
+        util.move(910, 200)
+        util.do_dash()
+        util.do_fade()
+
+        util.do_dash()
+        util.do_fade()
+
+        util.do_dash()
+        util.do_fade()
+
+        util.move(450, 550)
+        util.do_dash()
 
       util.do_final_mode()
       util.set_last_cast_mode(3)

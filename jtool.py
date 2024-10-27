@@ -69,6 +69,7 @@ class JTool():
   btn_train = []
   btn_misc_test = []
   btn_misc_click = []
+  btn_join_war = []
   btn_divide_one = []
   btn_transfer = []
   chkbtn_leader = []
@@ -128,6 +129,15 @@ class JTool():
     self.load_data()
     self.generate_matrix()
     self.generate_gui()
+
+  def join_war(self):
+    i = 0
+    while i <= 20:
+      cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+      util.set_cabal_window(cabal_window)
+      util.move_click(1235, 585)
+      util.move_click(630, 440)
+      i += 1
 
   def start(self):
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -1037,6 +1047,10 @@ class JTool():
     self.lbl_misc = Label(tab_misc, text=util.LBL_CLICK)
     self.lbl_misc.place(x=160, y=220)
 
+    self.btn_join_war = Button(tab_misc, text=util.BTN_JOIN_WAR, command=self.join_war)
+    self.btn_join_war.config(width=9)
+    self.btn_join_war.place(x=10, y=250)
+
     # Tab Pricing
     frame_btn = Frame(tab_pricing)
     frame_btn.pack(anchor="w")
@@ -1064,10 +1078,4 @@ class JTool():
     self.frame_root.mainloop()
 
 # GENERATE MAIN
-# JTool().initialize()
-
-# cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-# util.set_cabal_window(cabal_window)
-# util.move(1235, 585)
-
-# util.move(630, 440)
+JTool().initialize()
