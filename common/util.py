@@ -825,23 +825,36 @@ def enter_world():
   elif get_channel() == STATE_FOUR: img_channel = IMG_CHANNEL_FOUR
 
   try:
-    channel_four = pyauto.locateOnScreen(img_channel, grayscale=False, confidence=.9, region=get_middle_region())
-    move_click_rel(10, 10, channel_four, 0.2)
+    channel = pyauto.locateOnScreen(img_channel, grayscale=False, confidence=.9, region=get_middle_region())
+    move_click_rel(10, 10, channel, 0.2)
     press_release(Key.enter, 8)
   except pyauto.ImageNotFoundException:
     press_release(Key.down, 0.1)
     press_release(Key.down, 0.1)
-    press_release(Key.enter, 8)
+    press_release(Key.enter, 10)
 
-  try:
-    log_action(MSG_CHECKING_SUB_PASS)
-    press_release(Key.enter)
-    sub_pass = pyauto.locateOnScreen(IMG_SUB_PASS, grayscale=False, confidence=.8, region=get_sub_screen_region())
-    log_action(MSG_SUB_PASS_FOUND)
-    type_pin()
-    press_release(Key.enter)
-  except pyauto.ImageNotFoundException:
-    log_action(MSG_SUB_PASS_NOT_FOUND)
+  check_pass = True
+  check_count = 0
+  while check_pass:
+    if check_count >= 3:
+      check_pass = False
+
+    if check_pass == False:
+      break
+
+    try:
+      log_action(MSG_CHECKING_SUB_PASS)
+      press_release(Key.enter, 0.4)
+      sub_pass = pyauto.locateOnScreen(IMG_SUB_PASS, grayscale=False, confidence=.8, region=get_sub_screen_region())
+      log_action(MSG_SUB_PASS_FOUND)
+      check_count += 3
+      check_pass = False
+      type_pin()
+      press_release(Key.enter, 0.4)
+      break
+    except pyauto.ImageNotFoundException:
+      check_count += 1
+      log_action(MSG_SUB_PASS_NOT_FOUND)
 
   countdown_timer(10)
   log_action(MSG_CLEARING_WINDOWS)
