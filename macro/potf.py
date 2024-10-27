@@ -562,15 +562,31 @@ class PurifierOfTheForest(Dungeon):
       util.cancel_aura(1.5)
 
       # Attack Fifth Boss (Queen Ripley)
-      self.find_kill_boss(util.IMG_QUEEN_RIPLEY, util.UNIT_QUEEN_RIPLEY, False)
+      self.find_kill_boss(util.IMG_QUEEN_RIPLEY, util.UNIT_QUEEN_RIPLEY)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
-        continue        
-  
+        continue
+
       if util.get_party_member_status() == util.STATE_ZERO:
-        util.plunder_box()
+        finding = True
+        while finding:
+          if not util.get_macro_state():
+            util.log_action(util.MSG_TERMINATE)
+            finding = False
+
+          if finding == False:
+            break
+
+          try:
+            util.do_select(0.1)
+            box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
+            util.plunder_box(0)
+            finding = False
+            break
+          except pyauto.ImageNotFoundException:
+            pass
       else:
         util.party_roll_box()
 
@@ -580,7 +596,6 @@ class PurifierOfTheForest(Dungeon):
 
       # Second Portal
       self.go_portal(580, 300, True)
-      util.cancel_aura(1.5)
       util.move(660, 275)
       util.do_dash()
 
