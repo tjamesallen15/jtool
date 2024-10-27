@@ -479,12 +479,12 @@ class PurifierOfTheForest(Dungeon):
       if util.get_party_member_status() == util.STATE_ZERO:
         util.focus_gate(util.UNIT_WEB_GATE, 0)
       else:
-        util.wait(4)
+        util.wait(8)
       util.wait(5)
 
       util.move(675, 300)
-      util.do_fade()
-      util.do_dash(5)
+      util.do_fade(5)
+      util.do_dash()
 
       util.move_scroll(700, 150, 375, 150, 0.5)
       # util.move(650, 420)
