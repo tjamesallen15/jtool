@@ -160,12 +160,12 @@ class PurifierOfTheForest(Dungeon):
     util.do_fade()
     util.force_veradrix()
 
-    # util.move(415, 275)
-    # util.do_dash()
+    util.move(415, 275)
+    util.do_dash()
 
-    # util.move(435, 275)
-    # util.do_fade()
-    # util.force_veradrix()
+    util.move(435, 275)
+    util.do_fade()
+    util.force_veradrix()
 
     util.move(550, 275)
     util.do_dash()
@@ -384,7 +384,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
 
       if util.get_party_member_status() == util.STATE_ONE:
-        util.wait(8)
+        util.wait(12)
       util.wait(3)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -507,6 +507,7 @@ class PurifierOfTheForest(Dungeon):
       util.move(1050, 340)
       util.do_dash()
       util.do_fade()
+      util.force_veradrix()
       util.move(690, 380)
       util.do_dash()
       self.find_kill_mobs(util.IMG_FULL_ANT_HILL, util.UNIT_ANT_HILL)
@@ -520,6 +521,7 @@ class PurifierOfTheForest(Dungeon):
       util.move(1050, 470)
       util.do_dash()
       util.do_fade()
+      util.force_veradrix()
       self.find_kill_mobs(util.IMG_FULL_ANT_HILL, util.UNIT_ANT_HILL)
 
       # Check Macro State
@@ -530,6 +532,7 @@ class PurifierOfTheForest(Dungeon):
       # Attack Third Ant Hill
       util.move(690, 290)
       util.do_dash()
+      util.force_veradrix()
       self.find_kill_mobs(util.IMG_FULL_ANT_HILL, util.UNIT_ANT_HILL)
 
       # Check Macro State
@@ -541,6 +544,7 @@ class PurifierOfTheForest(Dungeon):
       util.move(340, 300)
       util.do_dash()
       util.do_fade()
+      util.force_veradrix()
       self.find_kill_mobs(util.IMG_FULL_ANT_HILL, util.UNIT_ANT_HILL)
 
       # Check Macro State
@@ -552,6 +556,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.move(640, 250)
       util.do_fade()
+      util.force_veradrix()
       util.cancel_aura(1.5)
 
       # Attack Fifth Boss (Queen Ripley)
