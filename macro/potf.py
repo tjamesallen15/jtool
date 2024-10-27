@@ -32,7 +32,7 @@ class PurifierOfTheForest(Dungeon):
     self.btn_start.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
-  def find_kill_boss(self, unit_image, unit_name):
+  def find_kill_boss(self, unit_image, unit_name, cancel=True):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -52,7 +52,7 @@ class PurifierOfTheForest(Dungeon):
         pass
 
     util.wait(0.5)
-    util.cancel_aura(1.5)
+    if cancel == util.IS_TRUE: util.cancel_aura(1.5)
 
   def find_kill_special_boss(self, unit_name):
     finding = True
@@ -562,13 +562,13 @@ class PurifierOfTheForest(Dungeon):
       util.cancel_aura(1.5)
 
       # Attack Fifth Boss (Queen Ripley)
-      self.find_kill_boss(util.IMG_QUEEN_RIPLEY, util.UNIT_QUEEN_RIPLEY)
+      self.find_kill_boss(util.IMG_QUEEN_RIPLEY, util.UNIT_QUEEN_RIPLEY, False)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
-        continue
-
+        continue        
+  
       if util.get_party_member_status() == util.STATE_ZERO:
         util.plunder_box()
       else:
@@ -580,6 +580,7 @@ class PurifierOfTheForest(Dungeon):
 
       # Second Portal
       self.go_portal(580, 300, True)
+      util.cancel_aura(1.5)
       util.move(660, 275)
       util.do_dash()
 
