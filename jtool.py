@@ -70,6 +70,7 @@ class JTool():
   btn_misc_test = []
   btn_misc_click = []
   btn_join_war = []
+  btn_move_window = []
   btn_divide_one = []
   btn_transfer = []
   chkbtn_leader = []
@@ -139,6 +140,18 @@ class JTool():
       util.move_click(1235, 585)
       util.move_click(630, 440)
       i += 1
+
+  def move_app(self):
+    cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+
+    resolution = self.val_resolution.get()
+    application = pyauto.getActiveWindow()
+    if resolution == "2560x1440":
+      application.moveTo(1260, 360)
+    elif resolution == "1920x1080":
+      application.moveTo(620, 150)
 
   def start(self):
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -1051,6 +1064,10 @@ class JTool():
     self.btn_join_war = Button(tab_misc, text=util.BTN_JOIN_WAR, command=self.join_war)
     self.btn_join_war.config(width=9)
     self.btn_join_war.place(x=10, y=250)
+
+    self.btn_move_window = Button(tab_misc, text=util.BTN_MOVE_WINDOW, command=self.move_app)
+    self.btn_move_window.config(width=12)
+    self.btn_move_window.place(x=90, y=250)
 
     # Tab Pricing
     frame_btn = Frame(tab_pricing)

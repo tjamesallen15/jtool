@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 ## v5.90 Features
 
 - [Application] Added Join War feature
+- [Application] Added Move Window feature
 
 ## v5.90 Fixes
 
