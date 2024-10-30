@@ -25,12 +25,15 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Added Join War feature
 - [Application] Added Move Window feature
+- [Application] Improved coordination selection
+- [Application] Added ability to save channel selection
 
 ## v5.90 Fixes
 
 - [HK] Improved wait time for range classes
 - [PCA] Improved positioning on first shadow
 - [POTF] Improved party state performance
+- [TM] Improved dungeon automation for Range Classes
 
 # v5.85
 

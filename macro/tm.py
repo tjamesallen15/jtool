@@ -528,9 +528,8 @@ class TerminusMachina(Dungeon):
 
       util.enter_dungeon()
       util.challenge_dungeon()
-      util.move_scroll(700, 150, 375, 150)
+      util.move_scroll(700, 150, 375, 150, 0.5)
 
-      util.wait(0.5)
       util.move(630, 150)
       util.do_dash()
       util.do_fade()
@@ -601,7 +600,7 @@ class TerminusMachina(Dungeon):
 
       # Gate One
       util.focus_gate(util.UNIT_GATE_ONE)
-      util.wait(1)
+      util.wait(0.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -626,7 +625,8 @@ class TerminusMachina(Dungeon):
       util.move(500, 420)
       util.do_fade(1)
 
-      util.wait(7)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(7)
+      else: util.wait(0.5)
       util.attack_mobs(util.UNIT_MECH_LIHONAR, 1, 0.3, 0)
 
       # Check Macro State
@@ -673,7 +673,7 @@ class TerminusMachina(Dungeon):
 
       # Gate Two
       util.focus_gate(util.UNIT_GATE_TWO)
-      util.wait(1)
+      util.wait(0.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -698,7 +698,8 @@ class TerminusMachina(Dungeon):
       util.move(800, 380)
       util.do_dash()
       util.do_fade()
-      util.wait(8)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(8)
+      else: util.wait(1)
 
       util.move(500, 380)
       util.do_dash()
@@ -792,7 +793,8 @@ class TerminusMachina(Dungeon):
       util.move(540, 260)
       util.do_dash()
       util.do_fade()
-      util.wait(5)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(8)
+      else: util.wait(2)
 
       # Espada II Sequence
       util.attack_mobs(util.UNIT_ESPADA_2, 1, 0.3, 0)
@@ -833,7 +835,8 @@ class TerminusMachina(Dungeon):
 
       util.move(800, 500)
       util.do_fade()
-      util.wait(12)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(12)
+      else: util.wait(1)
 
       # Espada III Sequence
       power_ticks = 0
@@ -880,9 +883,10 @@ class TerminusMachina(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      util.move(450, 250)
-      util.do_dash()
-      util.do_fade()
+      if util.get_attack_type() == util.VAL_MELEE:
+        util.move(450, 250)
+        util.do_dash()
+        util.do_fade()
 
       # Power Supply III
       util.do_select(0.1)
@@ -915,16 +919,15 @@ class TerminusMachina(Dungeon):
 
       util.move(800, 400)
       util.do_dash()
-      util.wait(4)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(4)
+      else: util.wait(2)
 
       util.move(400, 400)
       util.do_dash()
 
       util.move(640, 150)
       util.do_dash()
-      util.do_fade()
-
-      util.wait(1)
+      util.do_fade(1.5)
 
       util.move(620, 600)
       util.do_dash()
@@ -947,6 +950,7 @@ class TerminusMachina(Dungeon):
 
       # Second Boss
       util.attack_boss(1, 1, 0, 0)
+      util.wait(0.5)
       util.plunder_box()
 
       # Check Macro State
@@ -987,7 +991,7 @@ class TerminusMachina(Dungeon):
 
       # Gate Three
       util.focus_gate(util.UNIT_GATE_THREE)
-      util.wait(1)
+      util.wait(0.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1004,7 +1008,8 @@ class TerminusMachina(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      util.wait(5)
+      if util.get_attack_type() == util.VAL_MELEE: util.wait(5)
+      else: util.wait(2)
 
       # Redonno Sequence
       moving = True
@@ -1030,9 +1035,15 @@ class TerminusMachina(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(750, 150)
-      util.do_dash()
-      util.do_fade()
+      util.do_deselect_pack()
+      if util.get_attack_type() == util.VAL_MELEE:
+        util.move(750, 150)
+        util.do_dash()
+        util.do_fade()
+      else:
+        util.move(950, 150)
+        util.do_dash()
+        util.do_fade()
 
       # Third Boss
       util.attack_boss()
@@ -1071,7 +1082,7 @@ class TerminusMachina(Dungeon):
       util.move(800, 400)
       util.do_fade()
       util.focus_gate(util.UNIT_GATE_FOUR)
-      util.wait(1)
+      util.wait(0.2)
 
       # Check Macro State
       if not util.get_macro_state():

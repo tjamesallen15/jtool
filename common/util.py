@@ -773,6 +773,15 @@ def open_app():
 
   countdown_timer(2)
 
+def get_window_coordinates(resolution):
+  coords = []
+  if resolution == "2560x1440":
+    coords = [1260, 360]
+  elif resolution == "1920x1080":
+    coords = [620, 150]
+
+  return coords
+
 def move_app():
   log_action(MSG_MOVE_APPLICATION)
 

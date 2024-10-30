@@ -136,7 +136,7 @@ class JTool():
     util.set_cabal_window(cabal_window)
     util.go_cabal_window()
     i = 0
-    while i <= 40:
+    while i <= 25:
       util.move_click(1235, 585)
       util.move_click(630, 440)
       i += 1
@@ -147,11 +147,9 @@ class JTool():
     util.go_cabal_window()
 
     resolution = self.val_resolution.get()
+    coords = util.get_window_coordinates(resolution)
     application = pyauto.getActiveWindow()
-    if resolution == "2560x1440":
-      application.moveTo(1260, 360)
-    elif resolution == "1920x1080":
-      application.moveTo(620, 150)
+    application.moveTo(coords[0], coords[1])
 
   def start(self):
     cabal_window = pyauto.locateOnScreen(util.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
@@ -429,6 +427,7 @@ class JTool():
     self.val_config_data[util.DATA_PWORD] = self.val_pword.get()
     self.val_config_data[util.DATA_PIN] = self.val_pin.get()
     self.val_config_data[util.DATA_RESOLUTION] = self.LIST_RESOLUTION.index(self.val_resolution.get())
+    self.val_config_data[util.DATA_CHANNEL] = self.LIST_CHANNEL.index(int(self.val_channel.get()))
     self.val_config_data[util.DATA_LOAD] = self.LIST_LOAD_TIME.index(self.val_load_time.get())
     config.save_data(self.val_config_data)
 
@@ -893,7 +892,7 @@ class JTool():
     lbl_channel.place(x=205, y=135)
 
     self.val_channel = ttk.Combobox(tab_connection, justify=util.STATE_CENTER, values=self.LIST_CHANNEL, state=util.STATE_READONLY)
-    self.val_channel.current(0)
+    self.val_channel.current(self.get_data(util.DATA_CHANNEL))
     self.val_channel.config(width=7)
     self.val_channel.place(x=240, y=135)
 
