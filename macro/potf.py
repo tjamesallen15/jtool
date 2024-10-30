@@ -270,8 +270,8 @@ class PurifierOfTheForest(Dungeon):
 
       util.move(825, 600)
       util.do_dash()
-      if util.get_party_member_status() == util.IS_TRUE: util.plunder_box()
-      else: util.party_roll_box()
+      if util.get_party_member_status() == util.IS_FALSE: util.plunder_box()
+      else: util.plunder_box_party()
 
       util.move(720, 500)
       util.do_dash()
@@ -370,8 +370,8 @@ class PurifierOfTheForest(Dungeon):
       util.move(425, 350)
       util.do_dash(1.5)
 
-      if util.get_party_member_status() == util.IS_TRUE: util.plunder_box()
-      else: util.party_roll_box()
+      if util.get_party_member_status() == util.IS_FALSE: util.plunder_box()
+      else: util.plunder_box_party()
 
       util.move(100, 325)
       util.do_dash()
@@ -379,7 +379,7 @@ class PurifierOfTheForest(Dungeon):
       util.move(300, 400)
       util.do_fade()
 
-      if util.get_party_member_status() == util.IS_TRUE: util.wait(12)
+      if util.get_party_member_status() == util.IS_FALSE: util.wait(12)
       util.wait(3)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -390,7 +390,7 @@ class PurifierOfTheForest(Dungeon):
 
       util.move_click(775, 130, 4)
 
-      if util.get_party_member_status() == util.IS_TRUE:
+      if util.get_party_member_status() == util.IS_FALSE:
         util.move(910, 200)
         util.do_dash(2)
         util.do_fade(4)
@@ -471,7 +471,7 @@ class PurifierOfTheForest(Dungeon):
 
       # Attack Web Gate
       if util.get_party_leader_status() == util.IS_TRUE: util.wait(2)
-      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate(util.UNIT_WEB_GATE, 0)
+      if util.get_party_member_status() == util.IS_FALSE: util.focus_gate(util.UNIT_WEB_GATE, 0)
       else: util.wait(8)
 
       if util.get_party_status() == util.IS_TRUE: util.wait(5)
@@ -497,11 +497,11 @@ class PurifierOfTheForest(Dungeon):
       util.move(835, 425)
       util.do_dash()
       util.do_fade()
-      if util.get_party_member_status() == util.IS_TRUE:
+      if util.get_party_member_status() == util.IS_FALSE:
         util.do_select(0.1)
         util.plunder_box()
       else:
-        util.party_roll_box()
+        util.plunder_box_party()
 
       util.wait(10)
 
@@ -583,7 +583,7 @@ class PurifierOfTheForest(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == util.IS_TRUE:
+      if util.get_party_member_status() == util.IS_FALSE:
         finding = True
         while finding:
           if not util.get_macro_state():
@@ -603,7 +603,7 @@ class PurifierOfTheForest(Dungeon):
           except pyauto.ImageNotFoundException:
             pass
       else:
-        util.party_roll_box()
+        util.plunder_box_party()
 
       util.move(620, 200)
       util.do_dash()
@@ -622,7 +622,7 @@ class PurifierOfTheForest(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == util.IS_TRUE:
+      if util.get_party_member_status() == util.IS_FALSE:
         util.do_plunder(3)
         util.wait(2)
       else:
@@ -636,8 +636,8 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      if util.get_party_member_status() == util.IS_TRUE: util.plunder_final_box()
-      else: util.party_roll_box()
+      if util.get_party_member_status() == util.IS_FALSE: util.plunder_final_box()
+      else: util.plunder_box_party()
 
       # Check Macro State
       if not util.get_macro_state():

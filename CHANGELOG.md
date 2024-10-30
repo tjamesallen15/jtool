@@ -35,6 +35,7 @@ All notable changes to this project will be documented in this file.
 - [PCA] Improved positioning on first shadow
 - [POTF] Improved party state performance
 - [TM] Improved dungeon automation for Range Classes
+- [TM] Reenabled for party state
 
 # v5.85
 

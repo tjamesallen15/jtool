@@ -599,7 +599,8 @@ class TerminusMachina(Dungeon):
       util.do_fade()
 
       # Gate One
-      util.focus_gate(util.UNIT_GATE_ONE)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate_party(util.UNIT_GATE_ONE)
+      else: util.focus_gate(util.UNIT_GATE_ONE)
       util.wait(0.5)
 
       # Check Macro State
@@ -672,7 +673,8 @@ class TerminusMachina(Dungeon):
       util.do_fade()
 
       # Gate Two
-      util.focus_gate(util.UNIT_GATE_TWO)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate_party(util.UNIT_GATE_TWO)
+      else: util.focus_gate(util.UNIT_GATE_TWO)
       util.wait(0.5)
 
       # Check Macro State
@@ -775,7 +777,8 @@ class TerminusMachina(Dungeon):
 
       # Power Supply
       util.do_select(0.1)
-      util.focus_gate(util.UNIT_POWER_SUPPLY)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate_party(util.UNIT_POWER_SUPPLY)
+      else: util.focus_gate(util.UNIT_POWER_SUPPLY)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -815,7 +818,8 @@ class TerminusMachina(Dungeon):
 
       # Power Supply II
       util.do_select(0.1)
-      util.focus_gate(util.UNIT_POWER_SUPPLY)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate_party(util.UNIT_POWER_SUPPLY)
+      else: util.focus_gate(util.UNIT_POWER_SUPPLY)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -890,7 +894,8 @@ class TerminusMachina(Dungeon):
 
       # Power Supply III
       util.do_select(0.1)
-      util.focus_gate(util.UNIT_POWER_SUPPLY)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate_party(util.UNIT_POWER_SUPPLY)
+      else: util.focus_gate(util.UNIT_POWER_SUPPLY)
       util.wait(0.4)
 
       # Check Macro State
@@ -901,7 +906,8 @@ class TerminusMachina(Dungeon):
       util.move(900, 300)
       util.do_dash()
       util.do_fade()
-      util.plunder_box()
+      if util.get_party_member_status() == util.IS_FALSE: util.plunder_box()
+      else: util.plunder_box_party()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -951,7 +957,8 @@ class TerminusMachina(Dungeon):
       # Second Boss
       util.attack_boss(True, True, False, False)
       util.wait(0.5)
-      util.plunder_box()
+      if util.get_party_member_status() == util.IS_FALSE: util.plunder_box()
+      else: util.plunder_box_party()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -990,7 +997,8 @@ class TerminusMachina(Dungeon):
       util.do_fade()
 
       # Gate Three
-      util.focus_gate(util.UNIT_GATE_THREE)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate_party(util.UNIT_GATE_THREE)
+      else: util.focus_gate(util.UNIT_GATE_THREE)
       util.wait(0.5)
 
       # Check Macro State
@@ -1048,7 +1056,8 @@ class TerminusMachina(Dungeon):
       # Third Boss
       util.attack_boss()
       util.set_battle_mode(False)
-      util.plunder_box(True, 4, False)
+      if util.get_party_member_status() == util.IS_FALSE: util.plunder_box(True, 4, False)
+      else: util.plunder_box_party()
 
       util.move(670, 150)
       util.do_dash()
@@ -1081,7 +1090,8 @@ class TerminusMachina(Dungeon):
 
       util.move(800, 400)
       util.do_fade()
-      util.focus_gate(util.UNIT_GATE_FOUR)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate_party(util.UNIT_GATE_FOUR)
+      else: util.focus_gate(util.UNIT_GATE_FOUR)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1124,7 +1134,8 @@ class TerminusMachina(Dungeon):
       # Final Boss
       util.wait(1)
       util.attack_boss(True, True, False, False)
-      util.plunder_final_box()
+      if util.get_party_member_status() == util.IS_FALSE: util.plunder_final_box()
+      else: util.plunder_box_party()
 
       # Check Macro State
       if not util.get_macro_state():

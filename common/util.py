@@ -115,6 +115,7 @@ MSG_BOSS_NOT_FOUND = "Boss Not Found"
 MSG_BLOCKER_FOUND = "Blocker Found"
 MSG_BLOCKER_NOT_FOUND = "Blocker Not Found"
 MSG_MOBS_CLEARED = "Mobs Cleared"
+MSG_GATE_CLEARED = "Gate Cleared"
 MSG_MOB_CLEARED = "Mob Cleared"
 MSG_CHECK_BOSS = "Checking Boss"
 MSG_CHECK_BOX = "Checking Box"
@@ -1330,11 +1331,35 @@ def roll_box():
       log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
 def party_roll_box(reps=4):
-  roll_reps = reps * 3
+  roll_reps = reps * 2
   for x in range(roll_reps):
     roll_box()
     if get_veradrix_status() == IS_TRUE: do_veradrix()
     time.sleep(0.3)
+
+def plunder_box_party(select=True, reps=4, loot=True, delay=1.0):
+  log_action(MSG_CHECK_BOX)
+  if delay != 0: wait(delay)
+  if select == IS_TRUE: do_select(0.1)
+
+  checking = True
+  while checking:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      checking = False
+
+    if checking == False:
+      break
+
+    try:
+      box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_BOX_FOUND)
+    except pyauto.ImageNotFoundException:
+      checking = False
+      log_action(MSG_BOX_NOT_FOUND)
+
+  if loot == IS_TRUE:
+    party_roll_box()
 
 def plunder_box(select=True, reps=4, loot=True, delay=1.0):
   log_action(MSG_CHECK_BOX)
@@ -1421,10 +1446,10 @@ def do_plunder(reps=4):
     roll_box()
 
 def do_fast_plunder():
-    pynboard.press(KEY_LOOT_ACTION)
-    pynboard.release(KEY_LOOT_ACTION)
-    pynboard.press(KEY_LOOT_SPACE)
-    pynboard.release(KEY_LOOT_SPACE)
+  pynboard.press(KEY_LOOT_ACTION)
+  pynboard.release(KEY_LOOT_ACTION)
+  pynboard.press(KEY_LOOT_SPACE)
+  pynboard.release(KEY_LOOT_SPACE)
 
 def do_essentials(release_keys=True):
   pynboard.press(KEY_LOOT_SPACE)
@@ -1692,12 +1717,10 @@ def dice_dungeon():
     except pyauto.ImageNotFoundException:
       log_action(MSG_DICE_ROLL_OKAY)
 
-def party_check_gate(unit=UNIT_EMPTY, select=1):
+def focus_gate_party(unit=UNIT_EMPTY, select=True):
   checking = True
 
-  if select == STATE_ONE:
-    do_select(0.1)
-
+  if select == IS_TRUE: do_select(0.1)
   while checking:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -1711,14 +1734,13 @@ def party_check_gate(unit=UNIT_EMPTY, select=1):
       log_action(MSG_GATE_FOUND + unit)
     except pyauto.ImageNotFoundException:
       checking = False
-      log_action(MSG_MOBS_CLEARED)
+      log_action(MSG_GATE_CLEARED)
       break
 
 def focus_gate(unit=UNIT_EMPTY, select=True):
   combo = True
 
   if select == IS_TRUE: do_select(0.1)
-
   while combo:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -1730,12 +1752,11 @@ def focus_gate(unit=UNIT_EMPTY, select=True):
     try:
       gate = pyauto.locateOnScreen(IMG_GATE, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
-
       do_attack(0.3)
       do_attack(0.3)
     except pyauto.ImageNotFoundException:
       combo = False
-      log_action(MSG_MOBS_CLEARED)
+      log_action(MSG_GATE_CLEARED)
       break
 
 def focus_mobs(unit=UNIT_EMPTY, select=True, aura=True, sidestep=True):
@@ -1743,7 +1764,6 @@ def focus_mobs(unit=UNIT_EMPTY, select=True, aura=True, sidestep=True):
   fade_count = 0
 
   if select == IS_TRUE: do_select(0.1)
-
   while combo:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -1777,7 +1797,6 @@ def focus_high_mobs(unit=UNIT_EMPTY, select=True):
   combo = True
 
   if select == IS_TRUE: do_select(0.1)
-
   while combo:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
@@ -1805,7 +1824,6 @@ def focus_high_boss(unit=UNIT_EMPTY, select=True, aura=True, type=0):
   else: mode = 2
 
   if select == IS_TRUE: do_select(0.1)
-
   while combo:
     if not get_macro_state():
       log_action(MSG_TERMINATE)

@@ -259,7 +259,7 @@ class ChaosInfinity(Dungeon):
           break
 
         util.do_select(0.1)
-        if util.get_party_member_status() == util.IS_TRUE:
+        if util.get_party_member_status() == util.IS_FALSE:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
             util.focus_gate(util.UNIT_GATE, False)
@@ -324,7 +324,7 @@ class ChaosInfinity(Dungeon):
       check_left = 0
       check_right = 0
 
-      if util.get_party_leader_status() == util.IS_TRUE or util.get_party_member_status() == util.IS_TRUE:
+      if util.get_party_status() == util.IS_TRUE:
         mob_threshold = 200
 
       while arena:
