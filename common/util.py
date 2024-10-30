@@ -1737,6 +1737,8 @@ def focus_gate_party(unit=UNIT_EMPTY, select=True):
       log_action(MSG_GATE_CLEARED)
       break
 
+  wait(1)
+
 def focus_gate(unit=UNIT_EMPTY, select=True):
   combo = True
 
