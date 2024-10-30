@@ -1069,7 +1069,7 @@ class TerminusMachina(Dungeon):
         continue
 
       # Gate IV
-      if util.get_party_leader_status() == util.IS_TRUE: util.wait(4)
+      if util.get_party_leader_status() == util.IS_TRUE: util.wait(5)
       moving = True
       while moving:
         if not util.get_macro_state():
