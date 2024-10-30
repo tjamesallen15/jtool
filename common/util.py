@@ -1619,7 +1619,7 @@ def challenge_dungeon(delay=0):
     if challenging == False:
       break
 
-    if get_party_member_status() == IS_TRUE:
+    if get_party_member_status() == IS_FALSE:
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
         log_action(MSG_BUTTON_FOUND)
