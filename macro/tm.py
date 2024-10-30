@@ -1048,7 +1048,7 @@ class TerminusMachina(Dungeon):
       # Third Boss
       util.attack_boss()
       util.set_battle_mode(False)
-      util.plunder_box()
+      util.plunder_box(1, 4, 0)
 
       util.move(670, 150)
       util.do_dash()
