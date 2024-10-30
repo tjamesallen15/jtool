@@ -1082,7 +1082,6 @@ class TerminusMachina(Dungeon):
       util.move(800, 400)
       util.do_fade()
       util.focus_gate(util.UNIT_GATE_FOUR)
-      util.wait(0.2)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -1123,6 +1122,7 @@ class TerminusMachina(Dungeon):
       util.do_fade()
 
       # Final Boss
+      util.wait(1)
       util.attack_boss(1, 1, 0, 0)
       util.plunder_final_box()
 
