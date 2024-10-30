@@ -17,7 +17,7 @@ class PurifierOfTheForest(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -45,7 +45,7 @@ class PurifierOfTheForest(Dungeon):
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_archer_region())
-        util.focus_high_boss(unit_name, 0, 1, 0)
+        util.focus_high_boss(unit_name, False, True, False)
         finding = False
         break
       except pyauto.ImageNotFoundException:
@@ -67,7 +67,7 @@ class PurifierOfTheForest(Dungeon):
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
-        util.focus_high_boss(unit_name, 0, 1, 1)
+        util.focus_high_boss(unit_name, False, True, True)
         finding = False
         break
       except pyauto.ImageNotFoundException:
@@ -89,7 +89,7 @@ class PurifierOfTheForest(Dungeon):
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_archer_region())
-        util.focus_high_mobs(unit_name, 0)
+        util.focus_high_mobs(unit_name, False)
         finding = False
         break
       except pyauto.ImageNotFoundException:
@@ -119,13 +119,13 @@ class PurifierOfTheForest(Dungeon):
       except pyauto.ImageNotFoundException:
         pass
 
-  def attack_monsters(self, unit_name, sec=1, aura=0):
-    util.attack_mobs(unit_name, aura, 0.3, 0)
+  def attack_monsters(self, unit_name, sec=1, aura=False):
+    util.attack_mobs(unit_name, aura, 0.3, False)
     util.wait(sec)
 
-  def focus_monsters(self, unit_name, reps=4, sec=1, aura=0):
+  def focus_monsters(self, unit_name, reps=4, sec=1, aura=False):
     for x in range(reps):
-      util.focus_mobs(unit_name, 1, aura, 0)
+      util.focus_mobs(unit_name, True, aura, False)
 
     util.wait(sec)
 
@@ -231,19 +231,19 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(7)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(7)
       else: util.wait(4)
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 6, 1)
+      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 6, True)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 1, 1)
+      self.focus_monsters(util.UNIT_BLOODY_HORN, 4, 1, True)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -256,7 +256,7 @@ class PurifierOfTheForest(Dungeon):
       util.move_click(1050, 435, 5)
 
       util.move(660, 450)
-      if util.get_attack_type() == util.VAL_MELEE: util.do_fade(3)
+      if util.get_attack_type() == util.IS_MELEE: util.do_fade(3)
       else: util.do_fade()
       util.cancel_aura(1.5)
 
@@ -270,10 +270,8 @@ class PurifierOfTheForest(Dungeon):
 
       util.move(825, 600)
       util.do_dash()
-      if util.get_party_member_status() == util.STATE_ZERO:
-        util.plunder_box()
-      else:
-        util.party_roll_box()
+      if util.get_party_member_status() == util.IS_TRUE: util.plunder_box()
+      else: util.party_roll_box()
 
       util.move(720, 500)
       util.do_dash()
@@ -288,12 +286,12 @@ class PurifierOfTheForest(Dungeon):
       util.move(525, 175)
       util.do_dash()
       util.do_fade()
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(6)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(6)
       else: util.wait(4)
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.focus_monsters(util.UNIT_KORAIDER, 3, 1, 1)
+      self.focus_monsters(util.UNIT_KORAIDER, 3, 1, True)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -316,11 +314,11 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade(2)
       util.do_dash()
 
-      if util.get_attack_type() == util.VAL_MELEE:
+      if util.get_attack_type() == util.IS_MELEE:
         util.move(400, 475)
         util.do_dash()
 
-      self.focus_monsters(util.UNIT_MUTANT_KORAIDER, 2, 1, 1)
+      self.focus_monsters(util.UNIT_MUTANT_KORAIDER, 2, 1, True)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -342,7 +340,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_fade()
       util.do_dash()
       util.do_fade()
-      if util.get_attack_type() == util.VAL_MELEE:
+      if util.get_attack_type() == util.IS_MELEE:
         util.wait(8)
 
         util.move(600, 600)
@@ -372,10 +370,8 @@ class PurifierOfTheForest(Dungeon):
       util.move(425, 350)
       util.do_dash(1.5)
 
-      if util.get_party_member_status() == util.STATE_ZERO:
-        util.plunder_box()
-      else:
-        util.party_roll_box()
+      if util.get_party_member_status() == util.IS_TRUE: util.plunder_box()
+      else: util.party_roll_box()
 
       util.move(100, 325)
       util.do_dash()
@@ -383,8 +379,7 @@ class PurifierOfTheForest(Dungeon):
       util.move(300, 400)
       util.do_fade()
 
-      if util.get_party_member_status() == util.STATE_ONE:
-        util.wait(12)
+      if util.get_party_member_status() == util.IS_TRUE: util.wait(12)
       util.wait(3)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -395,7 +390,7 @@ class PurifierOfTheForest(Dungeon):
 
       util.move_click(775, 130, 4)
 
-      if util.get_party_member_status() == util.STATE_ZERO:
+      if util.get_party_member_status() == util.IS_TRUE:
         util.move(910, 200)
         util.do_dash(2)
         util.do_fade(4)
@@ -424,7 +419,7 @@ class PurifierOfTheForest(Dungeon):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(util.UNIT_ELECTRISHIA, 1, 1)
+      self.attack_monsters(util.UNIT_ELECTRISHIA, 1, True)
 
       util.move(450, 550)
       util.do_dash()
@@ -433,7 +428,7 @@ class PurifierOfTheForest(Dungeon):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(util.UNIT_ELECTRISHIA, 1, 1)
+      self.attack_monsters(util.UNIT_ELECTRISHIA, 1, True)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -475,8 +470,8 @@ class PurifierOfTheForest(Dungeon):
           self.go_web_gate()
 
       # Attack Web Gate
-      if util.get_party_leader_status() == util.STATE_ONE: util.wait(2)
-      if util.get_party_member_status() == util.STATE_ZERO: util.focus_gate(util.UNIT_WEB_GATE, 0)
+      if util.get_party_leader_status() == util.IS_TRUE: util.wait(2)
+      if util.get_party_member_status() == util.IS_TRUE: util.focus_gate(util.UNIT_WEB_GATE, 0)
       else: util.wait(8)
 
       if util.get_party_status() == util.IS_TRUE: util.wait(5)
@@ -502,7 +497,7 @@ class PurifierOfTheForest(Dungeon):
       util.move(835, 425)
       util.do_dash()
       util.do_fade()
-      if util.get_party_member_status() == util.STATE_ZERO:
+      if util.get_party_member_status() == util.IS_TRUE:
         util.do_select(0.1)
         util.plunder_box()
       else:
@@ -521,7 +516,7 @@ class PurifierOfTheForest(Dungeon):
       util.do_aura(2)
       util.set_last_cast_mode(3)
 
-      if util.get_party_member_status() == util.STATE_ONE: util.move_click(900, 235, 7)
+      if util.get_party_member_status() == util.IS_TRUE: util.move_click(900, 235, 7)
       else: util.move_click(900, 235, 4)
 
       # Attack First Ant Hill
@@ -588,7 +583,7 @@ class PurifierOfTheForest(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == util.STATE_ZERO:
+      if util.get_party_member_status() == util.IS_TRUE:
         finding = True
         while finding:
           if not util.get_macro_state():
@@ -602,7 +597,7 @@ class PurifierOfTheForest(Dungeon):
             util.force_veradrix()
             util.do_select(0.1)
             box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
-            util.plunder_box(0)
+            util.plunder_box(False)
             finding = False
             break
           except pyauto.ImageNotFoundException:
@@ -627,7 +622,7 @@ class PurifierOfTheForest(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == util.STATE_ZERO:
+      if util.get_party_member_status() == util.IS_TRUE:
         util.do_plunder(3)
         util.wait(2)
       else:
@@ -641,10 +636,8 @@ class PurifierOfTheForest(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      if util.get_party_member_status() == util.STATE_ZERO:
-        util.plunder_final_box()
-      else:
-        util.party_roll_box()
+      if util.get_party_member_status() == util.IS_TRUE: util.plunder_final_box()
+      else: util.party_roll_box()
 
       # Check Macro State
       if not util.get_macro_state():

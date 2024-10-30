@@ -17,7 +17,7 @@ class ChaosInfinity(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -259,10 +259,10 @@ class ChaosInfinity(Dungeon):
           break
 
         util.do_select(0.1)
-        if util.get_party_member_status() == util.STATE_ZERO:
+        if util.get_party_member_status() == util.IS_TRUE:
           try:
             gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
-            util.focus_gate(util.UNIT_GATE, 0)
+            util.focus_gate(util.UNIT_GATE, False)
             util.wait(0.3)
             has_gate = False
             break
@@ -278,7 +278,7 @@ class ChaosInfinity(Dungeon):
 
       try:
         gate = pyauto.locateOnScreen(util.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
-        util.focus_gate(util.UNIT_GATE, 0)
+        util.focus_gate(util.UNIT_GATE, False)
         util.wait(0.3)
       except pyauto.ImageNotFoundException:
         pass
@@ -286,16 +286,16 @@ class ChaosInfinity(Dungeon):
       util.move(620, 150)
       util.do_dash()
 
-      if util.get_party_member_status() == util.STATE_ONE:
+      if util.get_party_member_status() == util.IS_TRUE:
         util.do_fade()
-      elif util.get_party_leader_status() == util.STATE_ONE:
+      elif util.get_party_leader_status() == util.IS_TRUE:
         util.do_fade(1)
         counter = 0
         while counter != 5:
           try:
             util.do_select(0.1)
             mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-            util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
+            util.focus_mobs(util.UNIT_ARENA_MOBS, False, True, self.val_sidestep)
           except pyauto.ImageNotFoundException:
             pass
           counter += 1
@@ -324,7 +324,7 @@ class ChaosInfinity(Dungeon):
       check_left = 0
       check_right = 0
 
-      if util.get_party_leader_status() == util.STATE_ONE or util.get_party_member_status() == util.STATE_ONE:
+      if util.get_party_leader_status() == util.IS_TRUE or util.get_party_member_status() == util.IS_TRUE:
         mob_threshold = 200
 
       while arena:
@@ -367,7 +367,7 @@ class ChaosInfinity(Dungeon):
         try:
           boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOSS_FOUND)
-          util.attack_boss(0, 1)
+          util.attack_boss(False, True)
           bosses += 1
           mob_checker = 0
           reposition_count = 0
@@ -393,10 +393,8 @@ class ChaosInfinity(Dungeon):
           mob_checker = 0
           reposition_count = 0
           chaos_move = 0
-          util.plunder_box(1, 3, 1, 0)
-
-          if util.get_party_status() == util.STATE_ZERO:
-            util.wait(1.5)
+          util.plunder_box(True, 3, True, 0)
+          if util.get_party_status() == util.IS_FALSE: util.wait(1.5)
 
         except pyauto.ImageNotFoundException:
           pass
@@ -406,10 +404,8 @@ class ChaosInfinity(Dungeon):
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ARENA_MOBS)
           mob_checker = 0
 
-          if util.get_attack_type() == util.STATE_ONE and util.get_access_level() == util.ACCESS_SUPER:
-            util.do_attack(0.1)
-          else:
-            util.focus_mobs(util.UNIT_ARENA_MOBS, 0, 1, self.val_sidestep)
+          if util.get_attack_type() == util.IS_RANGE and util.get_access_level() == util.ACCESS_SUPER: util.do_attack(0.1)
+          else: util.focus_mobs(util.UNIT_ARENA_MOBS, False, True, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           pass
 
@@ -446,8 +442,7 @@ class ChaosInfinity(Dungeon):
         continue
 
       wait_time = 1.5
-      if util.get_party_member_status() == util.STATE_ONE:
-        wait_time = 2
+      if util.get_party_member_status() == util.IS_TRUE: wait_time = 2
 
       # Start to End Dungeon
       util.reset_battle_mode()

@@ -1,4 +1,4 @@
-# def path_find_deprecated(unit=util.UNIT_BLANK):
+# def path_find_deprecated(unit=util.UNIT_EMPTY):
 #   pathing = True
 #   boss_found = 0
 #   boss_check = 0

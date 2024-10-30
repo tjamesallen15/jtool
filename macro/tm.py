@@ -17,7 +17,7 @@ class TerminusMachina(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -32,7 +32,7 @@ class TerminusMachina(Dungeon):
     self.btn_start.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
-  def path_find(self, unit=util.UNIT_BLANK):
+  def path_find(self, unit=util.UNIT_EMPTY):
     pathing = True
     boss_found = 0
     backtrack_counter = 0
@@ -189,7 +189,7 @@ class TerminusMachina(Dungeon):
         break
 
     if boss_found == util.STATE_ZERO:
-      util.focus_mobs(unit, 0, 1, self.val_sidestep)
+      util.focus_mobs(unit, False, True, self.val_sidestep)
 
   def path_backtrack(self, unit):
     util.log_action(util.MSG_BACKTRACK + unit)
@@ -201,7 +201,7 @@ class TerminusMachina(Dungeon):
     util.do_dash()
     util.do_fade()
 
-  def find_gate(self, unit=util.UNIT_BLANK):
+  def find_gate(self, unit=util.UNIT_EMPTY):
     pathing = True
     gate_counter = 0
     while pathing:
@@ -571,7 +571,7 @@ class TerminusMachina(Dungeon):
 
       util.do_short_buffs()
       util.do_battle_mode()
-      util.attack_boss(1, 1, 0, 0)
+      util.attack_boss(True, True, False, False)
       util.plunder_box()
 
       # Check Macro State
@@ -625,9 +625,9 @@ class TerminusMachina(Dungeon):
       util.move(500, 420)
       util.do_fade(1)
 
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(7)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(7)
       else: util.wait(0.5)
-      util.attack_mobs(util.UNIT_MECH_LIHONAR, 1, 0.3, 0)
+      util.attack_mobs(util.UNIT_MECH_LIHONAR, True, 0.3, False)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -688,7 +688,7 @@ class TerminusMachina(Dungeon):
       util.do_dash()
 
       util.do_select(0.1)
-      util.focus_mobs(util.UNIT_ESPADA_1, 0, 1, self.val_sidestep)
+      util.focus_mobs(util.UNIT_ESPADA_1, False, True, self.val_sidestep)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -698,7 +698,7 @@ class TerminusMachina(Dungeon):
       util.move(800, 380)
       util.do_dash()
       util.do_fade()
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(8)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(8)
       else: util.wait(1)
 
       util.move(500, 380)
@@ -729,7 +729,7 @@ class TerminusMachina(Dungeon):
         try:
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ESPADA_1)
-          util.focus_mobs(util.UNIT_ESPADA_1, 0, 1, self.val_sidestep)
+          util.focus_mobs(util.UNIT_ESPADA_1, False, True, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_CLEARED)
           power_ticks += 1
@@ -793,11 +793,11 @@ class TerminusMachina(Dungeon):
       util.move(540, 260)
       util.do_dash()
       util.do_fade()
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(8)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(8)
       else: util.wait(2)
 
       # Espada II Sequence
-      util.attack_mobs(util.UNIT_ESPADA_2, 1, 0.3, 0)
+      util.attack_mobs(util.UNIT_ESPADA_2, True, 0.3, False)
       util.cancel_aura(1.5)
 
       # Check Macro State
@@ -835,7 +835,7 @@ class TerminusMachina(Dungeon):
 
       util.move(800, 500)
       util.do_fade()
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(12)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(12)
       else: util.wait(1)
 
       # Espada III Sequence
@@ -863,7 +863,7 @@ class TerminusMachina(Dungeon):
         try:
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_MOBS_FOUND + util.UNIT_ESPADA_3)
-          util.focus_mobs(util.UNIT_ESPADA_3, 0, 0, self.val_sidestep)
+          util.focus_mobs(util.UNIT_ESPADA_3, False, False, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_CLEARED)
           power_ticks += 1
@@ -883,7 +883,7 @@ class TerminusMachina(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      if util.get_attack_type() == util.VAL_MELEE:
+      if util.get_attack_type() == util.IS_MELEE:
         util.move(450, 250)
         util.do_dash()
         util.do_fade()
@@ -919,7 +919,7 @@ class TerminusMachina(Dungeon):
 
       util.move(800, 400)
       util.do_dash()
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(4)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(4)
       else: util.wait(2)
 
       util.move(400, 400)
@@ -933,7 +933,7 @@ class TerminusMachina(Dungeon):
       util.do_dash()
 
       # Poerte Sequence
-      util.attack_mobs(util.UNIT_POERTE, 0, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_POERTE, False, 0.3, self.val_sidestep)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -949,7 +949,7 @@ class TerminusMachina(Dungeon):
       util.do_battle_mode()
 
       # Second Boss
-      util.attack_boss(1, 1, 0, 0)
+      util.attack_boss(True, True, False, False)
       util.wait(0.5)
       util.plunder_box()
 
@@ -1008,7 +1008,7 @@ class TerminusMachina(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(5)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(5)
       else: util.wait(2)
 
       # Redonno Sequence
@@ -1036,7 +1036,7 @@ class TerminusMachina(Dungeon):
         continue
 
       util.do_deselect_pack()
-      if util.get_attack_type() == util.VAL_MELEE:
+      if util.get_attack_type() == util.IS_MELEE:
         util.move(750, 150)
         util.do_dash()
         util.do_fade()
@@ -1048,7 +1048,7 @@ class TerminusMachina(Dungeon):
       # Third Boss
       util.attack_boss()
       util.set_battle_mode(False)
-      util.plunder_box(1, 4, 0)
+      util.plunder_box(True, 4, False)
 
       util.move(670, 150)
       util.do_dash()
@@ -1123,7 +1123,7 @@ class TerminusMachina(Dungeon):
 
       # Final Boss
       util.wait(1)
-      util.attack_boss(1, 1, 0, 0)
+      util.attack_boss(True, True, False, False)
       util.plunder_final_box()
 
       # Check Macro State

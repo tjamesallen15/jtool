@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 
 ## v5.90 Fixes
 
+- [Application] Refactor necessary variables from integer to boolean
 - [HK] Improved wait time for range classes
 - [PCA] Improved positioning on first shadow
 - [POTF] Improved party state performance

@@ -18,7 +18,7 @@ class HolyWindmill(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -33,7 +33,7 @@ class HolyWindmill(Dungeon):
     self.btn_start.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
-  def path_find_gate_strict(self, unit=util.UNIT_BLANK):
+  def path_find_gate_strict(self, unit=util.UNIT_EMPTY):
     pathing = True
     while pathing:
       if not util.get_macro_state():
@@ -248,7 +248,7 @@ class HolyWindmill(Dungeon):
         if pathing == False:
           break
 
-  def path_find_legrin_gate(self, unit=util.UNIT_BLANK):
+  def path_find_legrin_gate(self, unit=util.UNIT_EMPTY):
     pathing = True
     boss_found = 0
     while pathing:
@@ -355,7 +355,7 @@ class HolyWindmill(Dungeon):
     if boss_found == util.STATE_ZERO:
       util.focus_gate(util.UNIT_LEGRIN)
 
-  def path_find(self, unit=util.UNIT_BLANK):
+  def path_find(self, unit=util.UNIT_EMPTY):
     pathing = True
     boss_found = 0
     boss_check = 0
@@ -917,13 +917,13 @@ class HolyWindmill(Dungeon):
 
     interval = 0.3
     if unit == util.UNIT_BOX:
-      util.attack_mobs(unit, 0, interval, self.val_sidestep)
+      util.attack_mobs(unit, False, interval, self.val_sidestep)
     elif boss_found == util.STATE_ZERO and box_found == util.STATE_ZERO and unit != util.UNIT_ESPI:
-      util.attack_mobs(unit, 1, interval, self.val_sidestep)
+      util.attack_mobs(unit, True, interval, self.val_sidestep)
     elif boss_found == util.STATE_ZERO and box_found == util.STATE_ZERO and unit == util.UNIT_ESPI:
-      if util.get_attack_type() == util.STATE_ZERO:
+      if util.get_attack_type() == util.IS_MELEE:
         interval = 0.8
-      util.attack_mobs(unit, 1, interval, self.val_sidestep)
+      util.attack_mobs(unit, True, interval, self.val_sidestep)
 
   def path_backtrack(self, unit):
     backtracking = True

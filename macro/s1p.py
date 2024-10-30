@@ -17,7 +17,7 @@ class SienaB1FPrideus(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -948,7 +948,7 @@ class SienaB1FPrideus(Dungeon):
           util.do_select(0.1)
           umpra = pyauto.locateOnScreen(util.IMG_UMPRA_WEAK, grayscale=False, confidence=.8, region=util.get_full_region())
           util.log_action(util.MSG_UMPRA_WEAK_FOUND)
-          util.focus_mobs(util.UNIT_UMPRA_WEAK, 0, 0, self.val_sidestep)
+          util.focus_mobs(util.UNIT_UMPRA_WEAK, False, False, self.val_sidestep)
           checking = False
         except pyauto.ImageNotFoundException:
           count_umpra += 1
@@ -1069,7 +1069,7 @@ class SienaB1FPrideus(Dungeon):
           siena = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
           util.log_action(util.MSG_SIENA_BOX_FOUND)
           util.wait(1)
-          util.plunder_ref_box(0, 10, util.IMG_SIENA)
+          util.plunder_ref_box(True, 10, util.IMG_SIENA)
           checking = False
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_SIENA_BOX_NOT_FOUND)

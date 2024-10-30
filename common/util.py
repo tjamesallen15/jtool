@@ -262,7 +262,7 @@ FILE_CHANGELOG = "CHANGELOG.md"
 FILE_READ = "r"
 
 # CONSTANT UNITS
-UNIT_BLANK = "--"
+UNIT_EMPTY = "--"
 UNIT_BLOCKER = "Blocker"
 UNIT_MUSH_FLOWER = "Mushed and Ectoflower"
 UNIT_MOSS_TOAD = "Mossite and Toad"
@@ -478,8 +478,8 @@ TAB_PET = "Pet"
 TAB_OTHERS = "Others"
 TAB_PRICING = "Pricing"
 
-VAL_MELEE = 0
-VAL_RANGE = 1
+IS_MELEE = 0
+IS_RANGE = 1
 VAL_CLASS_FB = 'FB'
 VAL_CLASS_FA = 'FA'
 VAL_CLASS_FG = 'FG'
@@ -922,13 +922,13 @@ def get_archer_region():
   return region_full_mode_bar
 
 def get_region():
-  if is_battle_mode and get_attack_type() == STATE_ONE:
+  if is_battle_mode and get_attack_type() == IS_RANGE:
     return region_mode_bar
   else:
     return region_normal_bar
 
 def get_full_region():
-  if is_battle_mode and get_attack_type() == STATE_ONE:
+  if is_battle_mode and get_attack_type() == IS_RANGE:
     return region_full_mode_bar
   else:
     return region_full_normal_bar
@@ -970,9 +970,9 @@ def get_char_class():
 
 def get_attack_type():
   if get_char_class() == VAL_CLASS_FA or get_char_class() == VAL_CLASS_FG or get_char_class() == VAL_CLASS_DM:
-    return VAL_RANGE
+    return IS_RANGE
 
-  return VAL_MELEE
+  return IS_MELEE
 
 def set_last_cast_mode(mode):
   global val_last_cast_mode
@@ -983,21 +983,19 @@ def get_last_cast_mode():
   return val_last_cast_mode
 
 def get_party_status():
-  if get_party_leader_status() == STATE_ONE or get_party_member_status() == STATE_ONE:
-    return True
-
+  if get_party_leader_status() == IS_TRUE or get_party_member_status() == IS_TRUE: return True
   return False
 
 def set_party_leader_status(leader):
   global val_leader
-  val_leader = leader
+  val_leader = True if leader == STATE_ONE else False
 
 def get_party_leader_status():
   return val_leader
 
 def set_party_member_status(member):
   global val_member
-  val_member = member
+  val_member = True if member == STATE_ONE else False
 
 def get_party_member_status():
   return val_member
@@ -1038,49 +1036,49 @@ def get_total_run_count():
 
 def set_veradrix_status(status):
   global val_vera
-  val_vera = status
+  val_vera = True if status == STATE_ONE else False
 
 def get_veradrix_status():
   return val_vera
 
 def set_buffs_status(status):
   global val_buffs
-  val_buffs = status
+  val_buffs = True if status == STATE_ONE else False
 
 def get_buffs_status():
   return val_buffs
 
 def set_debuffs_status(status):
   global val_debuffs
-  val_debuffs = status
+  val_debuffs = True if status == STATE_ONE else False
 
 def get_debuffs_status():
   return val_debuffs
 
 def set_hard_debuffs_status(status):
   global val_hard_debuffs
-  val_hard_debuffs = status
+  val_hard_debuffs = True if status == STATE_ONE else False
 
 def get_hard_debuffs_status():
   return val_hard_debuffs
 
 def set_cancel_buffs_status(status):
   global val_cancel_buffs
-  val_cancel_buffs = status
+  val_cancel_buffs = True if status == STATE_ONE else False
 
 def get_cancel_buffs_status():
   return val_cancel_buffs
 
 def set_shorts_status(status):
   global val_shorts
-  val_shorts = status
+  val_shorts = True if status == STATE_ONE else False
 
 def get_shorts_status():
   return val_shorts
 
 def set_hard_shorts_status(status):
   global val_hard_shorts
-  val_hard_shorts = status
+  val_hard_shorts = True if status == STATE_ONE else False
 
 def get_hard_shorts_status():
   return val_hard_shorts
@@ -1135,13 +1133,13 @@ def get_load_time():
 
 def set_close_app_status(status):
   global val_close_app
-  val_close_app = status
+  val_close_app = True if status == STATE_ONE else False
 
 def get_close_app_status():
   return val_close_app
 
 def do_close_app_status():
-  if get_close_app_status() == STATE_ONE:
+  if get_close_app_status() == IS_TRUE:
     exit_app(True)
 
 def force_exit_dungeon():
@@ -1236,26 +1234,26 @@ def check_battle_mode():
     do_final_mode()
 
 def do_veradrix():
-  if get_veradrix_status() == STATE_ONE: press_release(KEY_VERADRIX)
+  if get_veradrix_status() == IS_TRUE: press_release(KEY_VERADRIX)
 
 def force_veradrix():
   press_release(KEY_VERADRIX)
 
 def do_buffs():
-  if get_buffs_status() == STATE_ONE:
+  if get_buffs_status() == IS_TRUE:
     log_action(MSG_BUFFS)
     click_combo(400, 670, True, 0.6)
     click_combo(430, 670, True, 1)
 
 def cancel_buffs(reps=8):
-  if get_cancel_buffs_status() == STATE_ONE:
+  if get_cancel_buffs_status() == IS_TRUE:
     for x in range(reps):
       move(1250, 185)
       pyauto.click(button="right")
       time.sleep(0.2)
 
 def do_short_buffs():
-  if get_shorts_status() == STATE_ONE:
+  if get_shorts_status() == IS_TRUE:
     log_action(MSG_SHORT_BUFFS)
     click_combo(470, 670, True, 0.2)
     click_combo(500, 670, True, 0.2)
@@ -1263,7 +1261,7 @@ def do_short_buffs():
     do_hard_short_buffs()
 
 def do_hard_short_buffs():
-  if get_hard_shorts_status() == STATE_ONE:
+  if get_hard_shorts_status() == IS_TRUE:
     if get_char_class() == VAL_CLASS_BL:
       click_combo(540, 670, True, 0.5)
       click_combo(570, 670, True, 0.5)
@@ -1278,12 +1276,12 @@ def force_short_buffs():
     click_combo(570, 670, True, 0.5)
 
 def do_debuff(delay=1.5):
-  if get_debuffs_status() == STATE_ONE:
+  if get_debuffs_status() == IS_TRUE:
     log_action(MSG_DEBUFF)
     click_combo(610, 670, True, delay)
 
 def do_hard_debuff(delay=1.5):
-  if get_hard_debuffs_status() == STATE_ONE:
+  if get_hard_debuffs_status() == IS_TRUE:
     log_action(MSG_DEBUFF_HARD)
     click_combo(650, 670, True, delay)
 
@@ -1322,7 +1320,7 @@ def do_deselect_pack():
   do_deselect(0.1)
 
 def roll_box():
-  if get_party_status() == STATE_ONE:
+  if get_party_status() == IS_TRUE:
     try:
       roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
       log_action(MSG_ROLL_EQUIPMENT)
@@ -1335,17 +1333,13 @@ def party_roll_box(reps=4):
   roll_reps = reps * 3
   for x in range(roll_reps):
     roll_box()
-    if get_veradrix_status() == STATE_ONE: do_veradrix()
+    if get_veradrix_status() == IS_TRUE: do_veradrix()
     time.sleep(0.3)
 
-def plunder_box(select=1, reps=4, loot=1, delay=1.0):
+def plunder_box(select=True, reps=4, loot=True, delay=1.0):
   log_action(MSG_CHECK_BOX)
-
-  if delay != 0:
-    wait(delay)
-
-  if select == STATE_ONE:
-    do_select(0.1)
+  if delay != 0: wait(delay)
+  if select == IS_TRUE: do_select(0.1)
 
   checking = True
   while checking:
@@ -1364,14 +1358,13 @@ def plunder_box(select=1, reps=4, loot=1, delay=1.0):
       checking = False
       log_action(MSG_BOX_NOT_FOUND)
 
-  if loot == STATE_ONE:
+  if loot == IS_TRUE:
     do_plunder(reps)
 
-def plunder_final_box(select=1, reps=5, loot=1):
+def plunder_final_box(select=True, reps=5, loot=True, delay=1.0):
   log_action(MSG_CHECK_BOX)
-  wait(1)
-  if select == STATE_ONE:
-    do_select(0.1)
+  if delay != 0: wait(delay)
+  if select == IS_TRUE: do_select(0.1)
 
   checking = True
   while checking:
@@ -1390,14 +1383,12 @@ def plunder_final_box(select=1, reps=5, loot=1):
       checking = False
       log_action(MSG_BOX_NOT_FOUND)
 
-  if loot == STATE_ONE:
-    do_plunder(reps)
+  if loot == IS_TRUE: do_plunder(reps)
 
-def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
+def plunder_ref_box(select=True, reps=4, ref=IMG_BOX, loot=True, delay=1.0):
   log_action(MSG_CHECK_BOX)
-  wait(1)
-  if select == STATE_ONE:
-    do_select(0.1)
+  if delay != 0: wait(delay)
+  if select == IS_TRUE: do_select(0.1)
 
   checking = True
   while checking:
@@ -1416,7 +1407,7 @@ def plunder_ref_box(select=1, reps=4, ref=IMG_BOX):
       checking = False
       log_action(MSG_BOX_NOT_FOUND)
 
-  do_plunder(reps)
+  if loot == IS_TRUE: do_plunder(reps)
 
 def do_plunder(reps=4):
   for x in range(reps):
@@ -1435,7 +1426,7 @@ def do_fast_plunder():
     pynboard.press(KEY_LOOT_SPACE)
     pynboard.release(KEY_LOOT_SPACE)
 
-def do_essentials(rel_keys=1):
+def do_essentials(release_keys=True):
   pynboard.press(KEY_LOOT_SPACE)
   pynboard.release(KEY_LOOT_SPACE)
   pynboard.press(KEY_FURY)
@@ -1446,7 +1437,7 @@ def do_essentials(rel_keys=1):
   pynboard.release(KEY_LOOT_ACTION)
   do_veradrix()
 
-  if rel_keys == 1:
+  if release_keys == IS_TRUE:
     pynboard.release(Key.shift)
     pynboard.release(Key.alt)
     pynboard.release(Key.ctrl)
@@ -1471,53 +1462,38 @@ def do_final_mode(delay=0):
 
     if delay != 0: time.sleep(delay)
 
-def do_attack(delay=0, strict=0, cont=1):
+def do_attack(delay=0, strict=False, cont=True):
   do_veradrix()
 
   if get_battle_mode_status():
     pynboard.press(KEY_BM_ATK)
     pynboard.release(KEY_BM_ATK)
-    if strict == STATE_ZERO:
-      do_essentials()
-
-    if cont == STATE_ONE:
-      do_cont_battle_mode()
+    if strict == IS_FALSE: do_essentials()
+    if cont == IS_TRUE: do_cont_battle_mode()
   else:
     pynboard.press(KEY_BM_ATK)
     pynboard.release(KEY_BM_ATK)
-
-    if strict == STATE_ZERO:
-      do_essentials()
+    if strict == IS_FALSE: do_essentials()
 
     pynboard.press(KEY_BM_ATK)
     pynboard.release(KEY_BM_ATK)
-
-    if strict == STATE_ZERO:
-      do_essentials()
+    if strict == IS_FALSE: do_essentials()
 
     pynboard.press(KEY_BM_ATK)
     pynboard.release(KEY_BM_ATK)
-
-    if strict == STATE_ZERO:
-      do_essentials()
+    if strict == IS_FALSE: do_essentials()
 
     pynboard.press(KEY_ATTACK[0])
     pynboard.release(KEY_ATTACK[0])
-
-    if strict == STATE_ZERO:
-      do_essentials()
+    if strict == IS_FALSE: do_essentials()
 
     pynboard.press(KEY_ATTACK[1])
     pynboard.release(KEY_ATTACK[1])
-
-    if strict == STATE_ZERO:
-      do_essentials()
+    if strict == IS_FALSE: do_essentials()
 
     pynboard.press(KEY_ATTACK[2])
     pynboard.release(KEY_ATTACK[2])
-
-    if strict == STATE_ZERO:
-      do_essentials()
+    if strict == IS_FALSE: do_essentials()
 
   if delay != 0: time.sleep(delay)
 
@@ -1538,7 +1514,7 @@ def click_portal(x, y):
   try:
     mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
     log_action(MSG_BLOCKER_FOUND)
-    focus_mobs(UNIT_BLOCKER, 0, 0, 0)
+    focus_mobs(UNIT_BLOCKER, False, False, False)
     wait(1)
     move_click(x, y, 1)
   except pyauto.ImageNotFoundException:
@@ -1556,7 +1532,7 @@ def click_portal(x, y):
     try:
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BLOCKER_FOUND)
-      focus_mobs(UNIT_BLOCKER, 0, 0, 0)
+      focus_mobs(UNIT_BLOCKER, False, False, False)
       wait(1)
       move_click(x, y, 1)
     except pyauto.ImageNotFoundException:
@@ -1574,7 +1550,7 @@ def click_portal(x, y):
     try:
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BLOCKER_FOUND)
-      focus_mobs(UNIT_BLOCKER, 0, 0, 0)
+      focus_mobs(UNIT_BLOCKER, False, False, False)
       wait(1)
       move_click(x, y, 1)
     except pyauto.ImageNotFoundException:
@@ -1618,7 +1594,7 @@ def challenge_dungeon(delay=0):
     if challenging == False:
       break
 
-    if get_party_member_status() == STATE_ZERO:
+    if get_party_member_status() == IS_TRUE:
       try:
         challengedg = pyauto.locateOnScreen(IMG_CHALLENGE_DG, grayscale=False, confidence=.9)
         log_action(MSG_BUTTON_FOUND)
@@ -1716,11 +1692,32 @@ def dice_dungeon():
     except pyauto.ImageNotFoundException:
       log_action(MSG_DICE_ROLL_OKAY)
 
-def focus_gate(unit=UNIT_BLANK, select=1):
-  combo = True
+def party_check_gate(unit=UNIT_EMPTY, select=1):
+  checking = True
 
   if select == STATE_ONE:
     do_select(0.1)
+
+  while checking:
+    if not get_macro_state():
+      log_action(MSG_TERMINATE)
+      checking = False
+
+    if checking == False:
+      break
+
+    try:
+      gate = pyauto.locateOnScreen(IMG_GATE, grayscale=False, confidence=.9, region=get_region())
+      log_action(MSG_GATE_FOUND + unit)
+    except pyauto.ImageNotFoundException:
+      checking = False
+      log_action(MSG_MOBS_CLEARED)
+      break
+
+def focus_gate(unit=UNIT_EMPTY, select=True):
+  combo = True
+
+  if select == IS_TRUE: do_select(0.1)
 
   while combo:
     if not get_macro_state():
@@ -1741,12 +1738,11 @@ def focus_gate(unit=UNIT_BLANK, select=1):
       log_action(MSG_MOBS_CLEARED)
       break
 
-def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
+def focus_mobs(unit=UNIT_EMPTY, select=True, aura=True, sidestep=True):
   combo = True
   fade_count = 0
 
-  if select == STATE_ONE:
-    do_select(0.1)
+  if select == IS_TRUE: do_select(0.1)
 
   while combo:
     if not get_macro_state():
@@ -1756,11 +1752,11 @@ def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
     if combo == False:
         break
 
-    if aura == STATE_ONE:
+    if aura == IS_TRUE:
       do_final_mode()
       do_aura()
 
-    if sidestep == STATE_ONE:
+    if sidestep == IS_TRUE:
       if (fade_count == 20):
         fade_count = 0
         move_click(700, 440, 0.2)
@@ -1777,11 +1773,10 @@ def focus_mobs(unit=UNIT_BLANK, select=1, aura=1, sidestep=1):
       log_action(MSG_MOB_CLEARED)
       combo = False
 
-def focus_high_mobs(unit=UNIT_BLANK, select=1):
+def focus_high_mobs(unit=UNIT_EMPTY, select=True):
   combo = True
 
-  if select == STATE_ONE:
-    do_select(0.1)
+  if select == IS_TRUE: do_select(0.1)
 
   while combo:
     if not get_macro_state():
@@ -1799,7 +1794,7 @@ def focus_high_mobs(unit=UNIT_BLANK, select=1):
       log_action(MSG_MOB_CLEARED)
       combo = False
 
-def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
+def focus_high_boss(unit=UNIT_EMPTY, select=True, aura=True, type=0):
   combo = True
   cast_mode = True
   mode_time = time.time()
@@ -1809,8 +1804,7 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
   elif get_last_cast_mode() == STATE_THREE: mode = 2
   else: mode = 2
 
-  if select == STATE_ONE:
-    do_select(0.1)
+  if select == IS_TRUE: do_select(0.1)
 
   while combo:
     if not get_macro_state():
@@ -1823,7 +1817,7 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
     check_time = time.time()
     sec_difference = math.ceil(check_time - mode_time)
 
-    if sec_difference >= 30 and sec_difference <= 35 and aura == STATE_ONE:
+    if sec_difference >= 30 and sec_difference <= 35 and aura == IS_TRUE:
       do_aura(2)
       do_short_buffs()
 
@@ -1859,24 +1853,21 @@ def focus_high_boss(unit=UNIT_BLANK, select=1, aura=1, type=0):
       log_action(MSG_BOSS_KILLED)
       combo = False
 
-def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
+def attack_backtrack(unit=UNIT_EMPTY, aura=True, select=True, sidestep=True):
   combo = True
   fade_count = 0
 
-  if select == STATE_ONE:
-    do_select(0.1)
-
+  if select == IS_TRUE: do_select(0.1)
   while combo:
     if not get_macro_state():
       log_action(MSG_TERMINATE)
       combo = False
-      sys.exit()
 
-    if aura == STATE_ONE:
+    if aura == IS_TRUE:
       do_final_mode()
       do_aura()
 
-    if sidestep == STATE_ONE:
+    if sidestep == IS_TRUE:
       if (fade_count == 20):
         fade_count = 0
         move_click(700, 440, 0.2)
@@ -1885,34 +1876,30 @@ def attack_backtrack(unit=UNIT_BLANK, aura=1, select=1, sidestep=1):
         fade_count += 1
 
     try:
-      if select == STATE_ONE:
-        do_select(0.1)
+      if select == IS_TRUE: do_select(0.1)
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
 
       do_attack(0.1)
       do_attack(0.1)
 
-      if select == STATE_ONE:
+      if select == IS_TRUE:
         do_deselect_pack()
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOBS_NOT_FOUND)
 
     try:
-      if select == STATE_ONE:
-        do_select(0.1)
+      if select == IS_TRUE: do_select(0.1)
       box = pyauto.locateOnScreen(IMG_BOX, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_BOX_FOUND)
       plunder_box(select, 3)
-
-      if select == STATE_ONE:
-        do_deselect_pack()
+      if select == IS_TRUE: do_deselect_pack()
     except pyauto.ImageNotFoundException:
       log_action(MSG_BOX_NOT_FOUND)
       combo = False
       break
 
-def attack_mobs(unit=UNIT_BLANK, aura=1, interval=val_default_interval, sidestep=1):
+def attack_mobs(unit=UNIT_EMPTY, aura=True, interval=val_default_interval, sidestep=True):
   combo = True
   fade_count = 0
 
@@ -1924,11 +1911,11 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=val_default_interval, sidestep
     if combo == False:
       break
 
-    if aura == STATE_ONE:
+    if aura == IS_TRUE:
       do_final_mode()
       do_aura()
 
-    if sidestep == STATE_ONE:
+    if sidestep == IS_TRUE:
       if (fade_count == 20):
         fade_count = 0
         move_click(700, 440, 0.2)
@@ -1953,17 +1940,16 @@ def attack_mobs(unit=UNIT_BLANK, aura=1, interval=val_default_interval, sidestep
       mobs = pyauto.locateOnScreen(IMG_MOBS, grayscale=False, confidence=.9, region=get_region())
       log_action(MSG_ATTACK_MOBS + unit)
       do_attack(interval)
-      do_attack(interval, 1)
+      do_attack(interval, True)
     except pyauto.ImageNotFoundException:
       log_action(MSG_MOBS_CLEARED)
       combo = False
       break
 
-def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
+def focus_mob_boss(unit=UNIT_EMPTY, select=True, aura=True, strict=False, cont=True):
   combo = True
 
-  if select == STATE_ONE:
-    do_select(0.1)
+  if select == IS_TRUE: do_select(0.1)
 
   while combo:
     if not get_macro_state():
@@ -1973,7 +1959,7 @@ def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
     if combo == False:
         break
 
-    if aura == STATE_ONE:
+    if aura == IS_TRUE:
       do_final_mode()
       do_aura()
 
@@ -1988,13 +1974,13 @@ def focus_mob_boss(unit=UNIT_BLANK, select=1, aura=1, strict=0, cont=1):
       combo = False
       break
 
-def attack_boss(select=1, aura=1, strict=0, cont=1):
+def attack_boss(select=True, aura=True, strict=False, cont=True):
   combo = True
 
-  if get_battle_mode_status() and get_char_class() == VAL_CLASS_FA and select == STATE_ONE:
+  if get_battle_mode_status() and get_char_class() == VAL_CLASS_FA and select == IS_TRUE:
     do_select(0.1)
     do_select(0.1)
-  elif select == STATE_ONE:
+  elif select == IS_TRUE:
     do_select(0.1)
 
   while combo:
@@ -2006,7 +1992,7 @@ def attack_boss(select=1, aura=1, strict=0, cont=1):
     if combo == False:
       break
 
-    if aura == STATE_ONE:
+    if aura == IS_TRUE:
       do_final_mode()
       do_aura()
 
@@ -2020,11 +2006,10 @@ def attack_boss(select=1, aura=1, strict=0, cont=1):
       combo = False
       break
 
-def attack_semi_boss(select=1, aura=1, strict=0, cont=1):
+def attack_semi_boss(select=True, aura=True, strict=False, cont=True):
   combo = True
 
-  if select == STATE_ONE:
-    do_select(0.1)
+  if select == IS_TRUE: do_select(0.1)
 
   while combo:
     if not get_macro_state():
@@ -2035,7 +2020,7 @@ def attack_semi_boss(select=1, aura=1, strict=0, cont=1):
     if combo == False:
       break
 
-    if aura == STATE_ONE:
+    if aura == IS_TRUE:
       do_final_mode()
       do_aura()
 

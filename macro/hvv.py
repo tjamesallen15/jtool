@@ -15,7 +15,7 @@ class HazardousValleyVeradrix(Dungeon):
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -401,7 +401,7 @@ class HazardousValleyVeradrix(Dungeon):
       if backtracking == False:
         break
 
-    util.attack_backtrack(unit, 1, 1, 0)
+    util.attack_backtrack(unit, True, True, False)
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -437,14 +437,14 @@ class HazardousValleyVeradrix(Dungeon):
       util.move(500, 300)
       util.do_dash(0.5)
       util.wait(3)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep)
 
       util.move(375, 150)
       util.do_dash()
       util.do_fade(1.5)
       util.do_fade()
       util.wait(6)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep)
 
       util.move(375, 175)
       util.do_dash()
@@ -455,7 +455,7 @@ class HazardousValleyVeradrix(Dungeon):
       util.move(250, 350)
       util.do_dash(3)
       util.do_fade(2)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 0, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep)
 
       util.move(535, 150)
       util.do_dash()

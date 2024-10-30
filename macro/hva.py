@@ -595,7 +595,7 @@ class HazardousValleyAwakened(Dungeon):
         if boss_count > 2:
           break
 
-        if (boss_count == util.STATE_ONE and short_buffs_counter == util.STATE_ZERO and util.is_short_buffs_allowed == util.STATE_ONE):
+        if (boss_count == util.STATE_ONE and short_buffs_counter == util.STATE_ZERO and util.get_shorts_status() == util.IS_TRUE):
           short_buffs_counter = 1
           util.do_short_buffs()
 
@@ -604,7 +604,7 @@ class HazardousValleyAwakened(Dungeon):
           boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOSS_FOUND)
           boss_count += 1
-          util.attack_boss(0, 1)
+          util.attack_boss(False, True)
           util.do_deselect_pack()
           util.wait(5)
         except pyauto.ImageNotFoundException:
@@ -669,7 +669,7 @@ class HazardousValleyAwakened(Dungeon):
           box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(util.MSG_BOX_FOUND)
           util.log_action(util.MSG_PATH_STOP)
-          util.plunder_final_box(0)
+          util.plunder_final_box(False)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_BOX_NOT_FOUND)
 

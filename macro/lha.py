@@ -16,7 +16,7 @@ class LavaHellfireAwakened(Dungeon):
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -31,7 +31,7 @@ class LavaHellfireAwakened(Dungeon):
     self.btn_start.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
-  def path_find_gate(self, unit=util.UNIT_BLANK):
+  def path_find_gate(self, unit=util.UNIT_EMPTY):
     pathing = True
     gate_counter = 0
     path_counter = 0
@@ -134,7 +134,7 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    if util.get_attack_type() == util.VAL_MELEE:
+    if util.get_attack_type() == util.IS_MELEE:
       util.do_dash()
       util.do_fade()
     else:
@@ -148,7 +148,7 @@ class LavaHellfireAwakened(Dungeon):
     util.do_dash()
     util.do_fade()
 
-    if util.get_attack_type() == util.VAL_MELEE:
+    if util.get_attack_type() == util.IS_MELEE:
       util.move(690, 200)
     else:
       util.move(670, 200)
@@ -217,7 +217,7 @@ class LavaHellfireAwakened(Dungeon):
 
       # First Boss
       util.attack_boss()
-      util.plunder_box(1, 3)
+      util.plunder_box(True, 3)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -263,7 +263,7 @@ class LavaHellfireAwakened(Dungeon):
           boss = pyauto.locateOnScreen(util.IMG_FIRE_GUARD, grayscale=False, confidence=.8, region=util.get_full_region())
           util.log_action(util.MSG_MOVE_STOP)
           moving = False
-          util.attack_semi_boss(0)
+          util.attack_semi_boss(False)
           break
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_BOSS_NOT_FOUND)
@@ -318,7 +318,7 @@ class LavaHellfireAwakened(Dungeon):
           check_count += 1
           boss = pyauto.locateOnScreen(util.IMG_GATEKEEPER, grayscale=False, confidence=.7, region=util.get_full_region())
           moving = False
-          util.attack_semi_boss(0)
+          util.attack_semi_boss(False)
           util.log_action(util.MSG_MOVE_STOP)
           break
         except pyauto.ImageNotFoundException:
@@ -338,7 +338,7 @@ class LavaHellfireAwakened(Dungeon):
       util.set_battle_mode(False)
       self.position_lava_gate()
       self.path_find_gate(util.UNIT_LAVA_GATE)
-      util.focus_mobs(util.UNIT_LAVA_GATE, 0, 0, self.val_sidestep)
+      util.focus_mobs(util.UNIT_LAVA_GATE, False, False, self.val_sidestep)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -374,7 +374,7 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Final Boss
-      util.attack_boss(0, 0, 0, 0)
+      util.attack_boss(False, False, False, False)
 
       checking = True
       while checking:
@@ -388,7 +388,7 @@ class LavaHellfireAwakened(Dungeon):
         try:
           util.do_select(0.1)
           box = pyauto.locateOnScreen(util.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
-          util.plunder_box(1, 3)
+          util.plunder_box(True, 3)
           checking = False
         except pyauto.ImageNotFoundException:
           pass

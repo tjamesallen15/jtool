@@ -17,7 +17,7 @@ class RadiantHall(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -68,7 +68,7 @@ class RadiantHall(Dungeon):
       util.move(620, 300)
       util.do_dash()
 
-      util.attack_mobs(util.UNIT_BLANK, 0, sidestep=0)
+      util.attack_mobs(util.UNIT_EMPTY, False, sidestep=False)
 
       util.move(620, 100)
       util.do_dash()
@@ -197,7 +197,7 @@ class RadiantHall(Dungeon):
           break
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
+          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
 
       util.move(100, 550)
       util.do_dash()
@@ -249,7 +249,7 @@ class RadiantHall(Dungeon):
 
       # First Boss
       util.wait(3)
-      util.attack_boss(1, 0)
+      util.attack_boss(True, False)
       util.plunder_box()
 
       util.move(1020, 400)
@@ -293,7 +293,7 @@ class RadiantHall(Dungeon):
           break
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
+          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
 
       util.move(920, 440)
       util.do_fade()
@@ -319,7 +319,7 @@ class RadiantHall(Dungeon):
           break
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
+          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
 
       util.move(640, 600)
       util.do_dash()
@@ -347,7 +347,7 @@ class RadiantHall(Dungeon):
           break
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
+          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
 
       util.move(600, 100)
       util.do_dash()
@@ -376,7 +376,7 @@ class RadiantHall(Dungeon):
           dialog_count += 1
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
+          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
 
       # FOUR BIRDS STATUE END
       util.move_scroll(1000, 150, 350, 150, 0.8)
@@ -394,7 +394,7 @@ class RadiantHall(Dungeon):
 
       # Second Boss
       util.wait(1)
-      util.attack_boss(1, 0)
+      util.attack_boss(True, False)
       util.do_plunder(4)
 
       util.move(620, 100)
@@ -506,7 +506,7 @@ class RadiantHall(Dungeon):
           dialog_count += 1
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_BLANK, 0, 0, 0)
+          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
 
       util.move(100, 700)
       util.do_dash()

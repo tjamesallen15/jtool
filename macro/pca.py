@@ -17,7 +17,7 @@ class PanicCaveAwakened(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
   val_fade_speed = 0.5
   val_post_fade_speed = 0.45
 
@@ -116,7 +116,7 @@ class PanicCaveAwakened(Dungeon):
     util.do_final_mode(2)
     util.do_aura(1)
 
-    if util.get_attack_type() == util.STATE_ONE:
+    if util.get_attack_type() == util.IS_RANGE:
       util.move(610, 440)
       util.do_fade(1)
 
@@ -254,7 +254,7 @@ class PanicCaveAwakened(Dungeon):
       util.force_short_buffs()
       util.attack_boss()
 
-      if util.get_attack_type() == util.STATE_ONE:
+      if util.get_attack_type() == util.IS_RANGE:
         util.move(590, 460)
         util.do_fade()
       else:
@@ -262,15 +262,14 @@ class PanicCaveAwakened(Dungeon):
         util.wait(2)
 
       util.move_scroll(375, 150, 1000, 150)
-      util.plunder_box(1, 2)
+      util.plunder_box(True, 2)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      if util.get_attack_type() == util.STATE_ZERO:
-        util.cancel_aura(1.2)
+      if util.get_attack_type() == util.IS_MELEE: util.cancel_aura(1.2)
       util.move(1000, 520)
       util.do_dash()
 
@@ -364,10 +363,8 @@ class PanicCaveAwakened(Dungeon):
 
       # First Shadow Sequence
       self.position_first_shadow()
-      if util.get_attack_type() == util.STATE_ZERO:
-        util.wait(8)
-      else:
-        util.wait(2)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(8)
+      else: util.wait(2)
 
       check_showorai = True
       count_showorai = 0
@@ -382,7 +379,7 @@ class PanicCaveAwakened(Dungeon):
 
         if count_showorai > 10:
           check_showorai = False
-          if util.get_attack_type() != util.VAL_RANGE:
+          if util.get_attack_type() != util.IS_RANGE:
             util.force_exit_dungeon()
             fail_run_counter += 1
             util.set_reset_status(True)
@@ -397,7 +394,7 @@ class PanicCaveAwakened(Dungeon):
           util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # First Shadow
-      util.focus_mobs(util.UNIT_SHOWORAI_F, 0, 0, 0)
+      util.focus_mobs(util.UNIT_SHOWORAI_F, False, False, False)
 
       if util.get_reset_status():
         continue
@@ -409,10 +406,8 @@ class PanicCaveAwakened(Dungeon):
 
       # Second Shadow Sequence
       self.position_second_shadow()
-      if util.get_attack_type() == util.STATE_ZERO:
-        util.wait(6)
-      else:
-        util.wait(0.3)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(6)
+      else: util.wait(0.3)
 
       check_showorai = True
       count_showorai = 0
@@ -427,7 +422,7 @@ class PanicCaveAwakened(Dungeon):
 
         if count_showorai > 10:
           check_showorai = False
-          if util.get_attack_type() != util.VAL_RANGE:
+          if util.get_attack_type() != util.IS_RANGE:
             util.force_exit_dungeon()
             fail_run_counter += 1
             util.set_reset_status(True)
@@ -442,7 +437,7 @@ class PanicCaveAwakened(Dungeon):
           util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Second Shadow
-      util.focus_mobs(util.UNIT_SHOWORAI_R, 0, 0, 0)
+      util.focus_mobs(util.UNIT_SHOWORAI_R, False, False, False)
 
       if util.get_reset_status():
         continue
@@ -454,10 +449,8 @@ class PanicCaveAwakened(Dungeon):
 
       # Third Shadow Sequence
       self.position_third_shadow()
-      if util.get_attack_type() == util.STATE_ZERO:
-        util.wait(5)
-      else:
-        util.wait(0.5)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(5)
+      else: util.wait(0.5)
 
       check_showorai = True
       count_showorai = 0
@@ -486,9 +479,9 @@ class PanicCaveAwakened(Dungeon):
           util.log_action(util.MSG_BOSS_NOT_FOUND)
 
       # Third Shadow
-      util.focus_mobs(util.UNIT_SHOWORAI_M, 0, 0, 0)
+      util.focus_mobs(util.UNIT_SHOWORAI_M, False, False, False)
 
-      if util.get_attack_type() == util.STATE_ONE and util.get_battle_mode() == util.STATE_ONE:
+      if util.get_attack_type() == util.IS_RANGE and util.get_battle_mode() == util.STATE_ONE:
         util.cancel_aura(1.5)
 
       if util.get_reset_status():
@@ -512,7 +505,7 @@ class PanicCaveAwakened(Dungeon):
         try:
           util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
-          util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
+          util.focus_mobs(util.UNIT_GHOST, False, False, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_NOT_FOUND)
 
@@ -565,8 +558,8 @@ class PanicCaveAwakened(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_BOSS_NOT_FOUND)
 
-      util.attack_boss(0, 0, 0, 0)
-      util.plunder_box(1, 2)
+      util.attack_boss(False, False, False, False)
+      util.plunder_box(True, 2)
 
       util.move(650, 350)
       util.do_fade(0.5)
@@ -584,7 +577,7 @@ class PanicCaveAwakened(Dungeon):
           util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.do_select(0.1)
-          util.focus_mobs(util.UNIT_GHOST, 0, 0, self.val_sidestep)
+          util.focus_mobs(util.UNIT_GHOST, False, False, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           util.log_action(util.MSG_MOBS_NOT_FOUND)
 

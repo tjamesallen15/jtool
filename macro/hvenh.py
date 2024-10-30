@@ -15,7 +15,7 @@ class HazardousValley(Dungeon):
   # GLOBAL VARIABLES
   frame_root = []
   btn_start = []
-  val_sidestep = 0
+  val_sidestep = False
 
   difficulty = "Hazardous Valley (Easy)"
   dungeon_list = [
@@ -263,7 +263,7 @@ class HazardousValley(Dungeon):
       interval = 0.5
 
     if boss_found == util.STATE_ZERO:
-      util.attack_mobs(unit, 1, interval)
+      util.attack_mobs(unit, True, interval)
 
   def path_find_boss(self, unit):
     pathing = True
@@ -293,7 +293,7 @@ class HazardousValley(Dungeon):
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
         util.log_action(util.MSG_MOBS_FOUND)
-        util.focus_mobs(util.UNIT_WHITE_SNAKE, 0, 0)
+        util.focus_mobs(util.UNIT_WHITE_SNAKE, False, False)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_MOBS_NOT_FOUND)
 
@@ -478,7 +478,7 @@ class HazardousValley(Dungeon):
       if backtracking == False:
         break
 
-    util.attack_backtrack(unit, 1, 1, 0)
+    util.attack_backtrack(unit, True, True, False)
 
   def position_orphidia(self):
     util.do_deselect_pack()
@@ -569,14 +569,14 @@ class HazardousValley(Dungeon):
       util.move(500, 300)
       util.do_dash(0.5)
       util.wait(3)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep)
 
       util.move(375, 150)
       util.do_dash()
       util.do_fade(1.5)
       util.do_fade()
       util.wait(6)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep)
 
       util.move(375, 175)
       util.do_dash()
@@ -587,7 +587,7 @@ class HazardousValley(Dungeon):
       util.move(250, 350)
       util.do_dash(3)
       util.do_fade(2)
-      util.attack_mobs(util.UNIT_CUTTER_TOAD, 1, 0.3, self.val_sidestep)
+      util.attack_mobs(util.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep)
 
       util.move(535, 150)
       util.do_dash()

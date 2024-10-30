@@ -16,7 +16,7 @@ class SteamerCrazyAwakened(Dungeon):
   frame_root = []
   btn_start = []
   portal_counter = 0
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -257,7 +257,7 @@ class SteamerCrazyAwakened(Dungeon):
         break
 
     if boss_found == util.STATE_ZERO and mobs_found == util.STATE_ONE:
-      util.attack_mobs(unit, 1, util.val_default_interval, self.val_sidestep)
+      util.attack_mobs(unit, True, util.val_default_interval, self.val_sidestep)
 
       util.move(630, 250)
       util.do_dash()
@@ -328,8 +328,8 @@ class SteamerCrazyAwakened(Dungeon):
       # First Boss
       util.do_deselect_pack()
       util.do_battle_mode()
-      util.attack_semi_boss(1, 1, 0, 0)
-      util.plunder_box(1, 3)
+      util.attack_semi_boss(True, True, False, False)
+      util.plunder_box(True, 3)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -383,11 +383,11 @@ class SteamerCrazyAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_attack_type() == util.STATE_ONE:
+      if util.get_attack_type() == util.IS_RANGE:
         util.move(620, 350)
         util.do_dash(0.5)
 
-      util.plunder_box(1, 3)
+      util.plunder_box(True, 3)
 
       # Check Macro State
       if not util.get_macro_state():

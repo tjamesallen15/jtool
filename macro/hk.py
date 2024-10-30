@@ -17,7 +17,7 @@ class HolyKeldrasil(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -32,7 +32,7 @@ class HolyKeldrasil(Dungeon):
     self.btn_start.config(state=util.STATE_NORMAL)
     self.frame_root.update()
 
-  def find_mobs(self, unit=util.UNIT_BLANK):
+  def find_mobs(self, unit=util.UNIT_EMPTY):
     finding = True
     find_count = 0
     while finding:
@@ -82,7 +82,7 @@ class HolyKeldrasil(Dungeon):
       try:
         mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.8, region=util.get_full_region())
         util.log_action(util.MSG_MOBS_FOUND + unit)
-        util.focus_mobs(unit, 0, 1, self.val_sidestep)
+        util.focus_mobs(unit, False, True, self.val_sidestep)
       except pyauto.ImageNotFoundException:
         util.do_deselect_pack()
         util.log_action(util.MSG_MOBS_NOT_FOUND)
@@ -157,7 +157,7 @@ class HolyKeldrasil(Dungeon):
       try:
         boss = pyauto.locateOnScreen(util.IMG_AREIHORN, grayscale=False, confidence=.6, region=util.get_full_region())
         # Attack First Boss
-        util.focus_mob_boss(util.UNIT_AREIHORN, 0, 1, 0, 0)
+        util.focus_mob_boss(util.UNIT_AREIHORN, False, True, False, False)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_BOSS_NOT_FOUND)
 
@@ -166,7 +166,7 @@ class HolyKeldrasil(Dungeon):
         run_counter += 1000
         continue
 
-      if util.get_attack_type() == util.STATE_ONE:
+      if util.get_attack_type() == util.IS_RANGE:
         util.move(420, 150)
         util.do_dash()
         util.do_fade()
@@ -228,7 +228,7 @@ class HolyKeldrasil(Dungeon):
       util.move(900, 400)
       util.do_dash()
       util.do_fade()
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(4)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(4)
       else: util.wait(1)
 
       self.find_mobs(util.UNIT_HATCHLING)
@@ -236,7 +236,7 @@ class HolyKeldrasil(Dungeon):
         boss = pyauto.locateOnScreen(util.IMG_PHIXIA, grayscale=False, confidence=.7, region=util.get_full_region())
         # Attack Second Boss
         util.do_battle_mode()
-        util.focus_mob_boss(util.UNIT_PHIXIA, 0, 1, 0, 0)
+        util.focus_mob_boss(util.UNIT_PHIXIA, False, True, False, False)
         util.set_battle_mode(False)
       except pyauto.ImageNotFoundException:
         util.log_action(util.MSG_BOSS_NOT_FOUND)
@@ -244,7 +244,7 @@ class HolyKeldrasil(Dungeon):
       util.move(525, 400)
       util.do_fade()
 
-      if util.get_attack_type() == util.STATE_ONE:
+      if util.get_attack_type() == util.IS_RANGE:
         util.move(500, 400)
         util.do_dash(1.5)
 
@@ -338,7 +338,7 @@ class HolyKeldrasil(Dungeon):
         util.set_reset_status(True)
       else:
         # Attack Third Boss
-        util.focus_mob_boss(util.UNIT_VAOUR, 0, 1, 0, 0)
+        util.focus_mob_boss(util.UNIT_VAOUR, False, True, False, False)
 
       if util.get_reset_status():
         continue
@@ -421,7 +421,7 @@ class HolyKeldrasil(Dungeon):
       util.do_fade()
 
       util.do_select(0.1)
-      util.focus_mobs(util.UNIT_GATE_FOUR, 0, 0, self.val_sidestep)
+      util.focus_mobs(util.UNIT_GATE_FOUR, False, False, self.val_sidestep)
       util.wait(2)
 
       # Check Macro State
@@ -435,11 +435,11 @@ class HolyKeldrasil(Dungeon):
       util.do_fade()
 
       # Attack Fourth Group
-      if util.get_attack_type() == util.VAL_MELEE: util.wait(9)
+      if util.get_attack_type() == util.IS_MELEE: util.wait(9)
       else: util.wait(6)
 
       util.move(620, 600)
-      util.attack_mobs(util.UNIT_KNIGHT, 1, 0.3, 0)
+      util.attack_mobs(util.UNIT_KNIGHT, True, 0.3, False)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -464,7 +464,7 @@ class HolyKeldrasil(Dungeon):
       util.do_fade()
 
       # Attack Final Boss
-      util.focus_mob_boss(util.UNIT_SHIRDRAHN, 1, 1, 0, 0)
+      util.focus_mob_boss(util.UNIT_SHIRDRAHN, True, True, False, False)
       util.plunder_final_box()
       util.set_battle_mode(False)
 

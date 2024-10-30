@@ -17,7 +17,7 @@ class CatacombsFrostAwakened(Dungeon):
   btn_start = []
 
   # UNIQUE VARIABLES
-  val_sidestep = 0
+  val_sidestep = False
 
   def initialize(self, frame, btn, runs):
     self.frame_root = frame
@@ -127,10 +127,9 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(570, 300)
       util.do_dash()
 
-      util.attack_boss(1, 0)
+      util.attack_boss(True, False)
 
-      if util.get_attack_type() == util.STATE_ZERO:
-        util.cancel_aura(1.2)
+      if util.get_attack_type() == util.IS_MELEE: util.cancel_aura(1.2)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -164,7 +163,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.move_scroll(375, 150, 1000, 150, 1)
 
       util.do_select(0.1)
-      util.focus_mobs(util.UNIT_ICE_BLOCK, 0, 0, 0)
+      util.focus_mobs(util.UNIT_ICE_BLOCK, False, False, False)
       util.wait(1.5)
 
       util.move_click(450, 520, 1)
@@ -177,7 +176,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      if util.get_attack_type() == util.VAL_MELEE: util.move_scroll(1000, 150, 375, 150, 2)
+      if util.get_attack_type() == util.IS_MELEE: util.move_scroll(1000, 150, 375, 150, 2)
       else: util.move_scroll(1000, 150, 375, 150, 0.2)
       util.move(530, 420)
       util.do_dash()
@@ -216,7 +215,7 @@ class CatacombsFrostAwakened(Dungeon):
 
         try:
           mobs = pyauto.locateOnScreen(util.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-          util.attack_mobs(util.UNIT_SPECTOR, 0, 0.3, self.val_sidestep)
+          util.attack_mobs(util.UNIT_SPECTOR, False, 0.3, self.val_sidestep)
         except pyauto.ImageNotFoundException:
           pass
 
@@ -227,7 +226,7 @@ class CatacombsFrostAwakened(Dungeon):
 
       util.attack_boss()
       util.cancel_aura(1.2)
-      util.plunder_box(1, 3)
+      util.plunder_box(True, 3)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -282,8 +281,8 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_short_buffs()
 
       self.position_final_boss()
-      util.attack_boss(1, 1, 0, 0)
-      util.plunder_box(1, 4, 4, 1)
+      util.attack_boss(True, True, False, False)
+      util.plunder_box()
       util.set_battle_mode(False)
 
       # Check Macro State
