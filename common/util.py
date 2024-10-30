@@ -1338,7 +1338,7 @@ def party_roll_box(reps=4):
     if get_veradrix_status() == STATE_ONE: do_veradrix()
     time.sleep(0.3)
 
-def plunder_box(select=1, reps=4, loot=1, delay=0.5):
+def plunder_box(select=1, reps=4, loot=1, delay=1.0):
   log_action(MSG_CHECK_BOX)
 
   if delay != 0:
