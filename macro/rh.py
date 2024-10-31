@@ -2,35 +2,19 @@ import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
 
-from common.dungeon import Dungeon
-from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 from tkinter import *
+from pynput.keyboard import Key, Listener, Controller
 
+from common.dungeon import Dungeon
+
+import common.constants as consts
 import common.util as util
+import common.attack as atk
+
 pynboard = Controller()
 
 class RadiantHall(Dungeon):
-
-  # GLOBAL VARIABLES
-  frame_root = []
-  btn_start = []
-
-  # UNIQUE VARIABLES
-  val_sidestep = False
-
-  def initialize(self, frame, btn, runs):
-    self.frame_root = frame
-    self.btn_start = btn
-
-    shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    self.btn_start.config(state=util.STATE_DISABLED)
-    self.frame_root.update()
-
-    self.run_dungeon(runs)
-
-    self.btn_start.config(state=util.STATE_NORMAL)
-    self.frame_root.update()
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -39,7 +23,7 @@ class RadiantHall(Dungeon):
       util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
-      util.log_action(util.MSG_START_DG)
+      util.log_action(consts.MSG_START_DG)
       util.log_run(run_counter)
 
       # Click Cabal Window
@@ -52,11 +36,11 @@ class RadiantHall(Dungeon):
       util.do_dash()
 
       # Click Dungeon
-      util.click_portal(700, 320)
+      self.click_dungeon_portal(700, 320)
 
       # Enter Dungeon
-      util.enter_dungeon()
-      util.challenge_dungeon()
+      self.enter_dungeon()
+      self.challenge_dungeon()
       util.wait(2)
 
       util.move_scroll(620, 100, 620, 175, 0.8)
@@ -68,7 +52,7 @@ class RadiantHall(Dungeon):
       util.move(620, 300)
       util.do_dash()
 
-      util.attack_mobs(util.UNIT_EMPTY, False, sidestep=False)
+      atk.attack_monsters(consts.UNIT_EMPTY, False, sidestep=False)
 
       util.move(620, 100)
       util.do_dash()
@@ -78,7 +62,7 @@ class RadiantHall(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      util.focus_gate()
+      atk.focus_gate()
 
       util.move(620, 250)
       util.do_dash(1.5)
@@ -95,7 +79,7 @@ class RadiantHall(Dungeon):
       util.move_click(750, 200)
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -106,12 +90,12 @@ class RadiantHall(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           checking = False
 
       checking = True
@@ -119,7 +103,7 @@ class RadiantHall(Dungeon):
       util.move_click(500, 320)
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -130,12 +114,12 @@ class RadiantHall(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           checking = False
 
       util.move(100, 600)
@@ -160,7 +144,7 @@ class RadiantHall(Dungeon):
       util.move(660, 300)
       util.do_fade()
 
-      util.focus_gate()
+      atk.focus_gate()
 
       util.move(620, 100)
       util.do_dash()
@@ -170,11 +154,11 @@ class RadiantHall(Dungeon):
 
       util.move_click(750, 400)
       try:
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+        util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move(350, 300)
       util.do_dash()
@@ -182,7 +166,7 @@ class RadiantHall(Dungeon):
       checking = True
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -190,20 +174,20 @@ class RadiantHall(Dungeon):
 
         util.move_click(660, 270)
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
+          atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
       util.move(100, 550)
       util.do_dash()
       util.do_fade()
 
-      util.focus_gate()
+      atk.focus_gate()
 
       util.move(100, 440)
       util.do_dash()
@@ -214,43 +198,43 @@ class RadiantHall(Dungeon):
 
       util.move_click(630, 320)
       try:
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+        util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move_click(500, 320, 1)
       try:
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+        util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move_click(770, 220, 1)
       try:
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+        util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move_click(650, 320)
       try:
-        dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-        util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+        dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.2)
       except pyauto.ImageNotFoundException:
-        util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+        util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
 
       util.move(620, 600)
       util.do_dash(0.5)
 
       # First Boss
       util.wait(3)
-      util.attack_boss(True, False)
-      util.plunder_box()
+      atk.attack_boss(True, False)
+      atk.plunder_box()
 
       util.move(1020, 400)
       util.do_dash()
@@ -278,7 +262,7 @@ class RadiantHall(Dungeon):
       checking = True
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -286,14 +270,14 @@ class RadiantHall(Dungeon):
 
         util.move_click(680, 360)
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
+          atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
       util.move(920, 440)
       util.do_fade()
@@ -304,7 +288,7 @@ class RadiantHall(Dungeon):
       checking = True
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -312,14 +296,14 @@ class RadiantHall(Dungeon):
 
         util.move_click(570, 360)
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
+          atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
       util.move(640, 600)
       util.do_dash()
@@ -332,7 +316,7 @@ class RadiantHall(Dungeon):
       checking = True
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -340,14 +324,14 @@ class RadiantHall(Dungeon):
 
         util.move_click(700, 330)
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
           checking = False
           break
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
+          atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
       util.move(600, 100)
       util.do_dash()
@@ -356,7 +340,7 @@ class RadiantHall(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -366,17 +350,17 @@ class RadiantHall(Dungeon):
           checking = False
           break
 
-        if dialog_count == util.STATE_ZERO:
+        if dialog_count == consts.STATE_ZERO:
           util.move_click(750, 360)
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.4)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
+          atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
       # FOUR BIRDS STATUE END
       util.move_scroll(1000, 150, 350, 150, 0.8)
@@ -394,7 +378,7 @@ class RadiantHall(Dungeon):
 
       # Second Boss
       util.wait(1)
-      util.attack_boss(True, False)
+      atk.attack_boss(True, False)
       util.do_plunder(4)
 
       util.move(620, 100)
@@ -419,7 +403,7 @@ class RadiantHall(Dungeon):
       util.move_click(720, 420)
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -430,12 +414,12 @@ class RadiantHall(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.4)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           checking = False
 
       util.move(900, 300)
@@ -486,7 +470,7 @@ class RadiantHall(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -496,17 +480,17 @@ class RadiantHall(Dungeon):
           checking = False
           break
 
-        if dialog_count == util.STATE_ZERO:
+        if dialog_count == consts.STATE_ZERO:
           util.move_click(700, 200)
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.4)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
-          util.focus_mobs(util.UNIT_EMPTY, False, False, False)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
+          atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
       util.move(100, 700)
       util.do_dash()

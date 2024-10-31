@@ -6,7 +6,9 @@ import keyboard as shortcut
 from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 
+import common.constants as consts
 import common.util as util
+
 pynboard = Controller()
 
 inventory_matrix = []
@@ -83,7 +85,7 @@ def click_test_npc(x, y):
   util.move_click(x, y)
 
 def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0, eva=0):
-  shortcut.add_hotkey(util.HOTKEY_TERMINATE, terminate)
+  shortcut.add_hotkey(consts.HOTKEY_TERMINATE, terminate)
   set_train_state(True)
   if mcr != 0 or crt != 0 or cdi != 0 or crr != 0 or eva != 0:
     index = 2
@@ -104,37 +106,37 @@ def pet_train(x, y, mcr=0, crt=0, cdi=0, crr=0, eva=0):
       click_core(index)
       click_train()
 
-      if mcr == util.STATE_ONE:
+      if mcr == consts.STATE_ONE:
         try:
-          skill_icon = pyauto.locateOnScreen(util.IMG_MAX_CRIT_RATE, grayscale=False, confidence=.9, region=util.get_train_region())
+          skill_icon = pyauto.locateOnScreen(consts.IMG_MAX_CRIT_RATE, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if crt == util.STATE_ONE and skill_found == False:
+      if crt == consts.STATE_ONE and skill_found == False:
         try:
-          skill_icon = pyauto.locateOnScreen(util.IMG_CRIT_RATE, grayscale=False, confidence=.9, region=util.get_train_region())
+          skill_icon = pyauto.locateOnScreen(consts.IMG_CRIT_RATE, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if cdi == util.STATE_ONE and skill_found == False:
+      if cdi == consts.STATE_ONE and skill_found == False:
         try:
-          skill_icon = pyauto.locateOnScreen(util.IMG_CRIT_DAMAGE, grayscale=False, confidence=.9, region=util.get_train_region())
+          skill_icon = pyauto.locateOnScreen(consts.IMG_CRIT_DAMAGE, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if crr == util.STATE_ONE and skill_found == False:
+      if crr == consts.STATE_ONE and skill_found == False:
         try:
-          skill_icon = pyauto.locateOnScreen(util.IMG_CRIT_RESIST, grayscale=False, confidence=.9, region=util.get_train_region())
+          skill_icon = pyauto.locateOnScreen(consts.IMG_CRIT_RESIST, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass
 
-      if eva == util.STATE_ONE and skill_found == False:
+      if eva == consts.STATE_ONE and skill_found == False:
         try:
-          skill_icon = pyauto.locateOnScreen(util.IMG_EVA, grayscale=False, confidence=.9, region=util.get_train_region())
+          skill_icon = pyauto.locateOnScreen(consts.IMG_EVA, grayscale=False, confidence=.9, region=util.get_train_region())
           skill_found = True
         except pyauto.ImageNotFoundException:
           pass

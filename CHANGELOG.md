@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - [HVV] Hazardous Valley (Veradrix) [v5.50]
 - [RH] Radiant Hall [v5.65] [Development]
 - [POTF] Purifier of the Forest [v5.85]
+- [MI] Mirage Island [v5.90]
 
 ## v5.90 Features
 
@@ -27,6 +28,8 @@ All notable changes to this project will be documented in this file.
 - [Application] Added Move Window feature
 - [Application] Improved coordination selection
 - [Application] Added ability to save channel selection
+- [Application] Strucure Refactors (Special, Attack, Constants)
+- [MI] Added Mirage Island in Development Phase
 
 ## v5.90 Fixes
 
@@ -315,7 +318,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added new button in pricing for changelogs
 - [Dungeon] Added fail counter for dungeons that has fail reset instance
 - [Dungeon] Changed thread sleep on some areas during end dungeon cycle
-- [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
+- [Dungeon] Changed the order of method focus_monsters() similar to attack_mobs()
 - [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
 - [Dungeon] Updated all existing dungeon macro to class oriented
 - [LHA] Updated gatekeeper sprite for better accuracy on image reading

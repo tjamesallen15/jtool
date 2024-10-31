@@ -4,7 +4,7 @@
 #     util.set_reset_status(False)
 #     util.check_run_restart(run_counter)
 #     run_counter += 1
-#     util.log_action(util.MSG_START_DG)
+#     util.log_action(consts.MSG_START_DG)
 #     util.log_run(run_counter)
 
 #     # Click Cabal Window
@@ -21,7 +21,7 @@
 #     # Click Dungeon
 #     util.move(677, 361)
 #     util.move(735, 361, 0.5)
-#     util.click_portal(735, 361)
+#     self.click_dungeon_portal(735, 361)
 
 #     if difficulty == dungeonList[0]:
 #       util.move_click(440, 300, 1)
@@ -31,8 +31,8 @@
 #       util.move_click(440, 260, 1)
 
 #     # Enter Dungeon
-#     util.enter_dungeon()
-#     util.challenge_dungeon()
+#     self.enter_dungeon()
+#     self.challenge_dungeon()
 
 #     util.move(250, 150)
 #     pyauto.mouseDown(button="right")
@@ -52,20 +52,20 @@
 #     moving = True
 #     while moving:
 #       if not util.get_macro_state():
-#           util.log_action(util.MSG_TERMINATE)
+#           util.log_action(consts.MSG_TERMINATE)
 #           moving = False
 
 #       if moving == False:
 #         break
 
-#       path_find(util.UNIT_CUTTER_TOAD)
+#       path_find(consts.UNIT_CUTTER_TOAD)
 #       try:
-#         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#         boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
 #         moving = False
-#         util.log_action(util.MSG_MOVE_STOP)
+#         util.log_action(consts.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_BOSS_NOT_FOUND)
+#         util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -81,7 +81,7 @@
 #     checking = True
 #     while checking:
 #       if not util.get_macro_state():
-#         util.log_action(util.MSG_TERMINATE)
+#         util.log_action(consts.MSG_TERMINATE)
 #         checking = False
 
 #       if checking == False:
@@ -89,14 +89,14 @@
 
 #       try:
 #         util.do_select(0.1)
-#         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#         boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
 #         checking = False
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_BOSS_NOT_FOUND)
+#         util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
 #     # First Boss
-#     util.attack_boss()
+#     action.attack_boss()
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -108,7 +108,7 @@
 #     util.do_fade(1.5)
 #     util.do_fade(0.5)
 
-#     util.plunder_box()
+#     atk.plunder_box()
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -119,20 +119,20 @@
 #     moving = True
 #     while moving:
 #       if not util.get_macro_state():
-#           util.log_action(util.MSG_TERMINATE)
+#           util.log_action(consts.MSG_TERMINATE)
 #           moving = False
 
 #       if moving == False:
 #         break
 
-#       path_find(util.UNIT_BOAR_SNAKE)
+#       path_find(consts.UNIT_BOAR_SNAKE)
 #       try:
-#         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#         boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
 #         moving = False
-#         util.log_action(util.MSG_MOVE_STOP)
+#         util.log_action(consts.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_BOSS_NOT_FOUND)
+#         util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -146,11 +146,11 @@
 #     # Attack Orphidia I
 #     try:
 #       util.do_select(0.1)
-#       boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-#       util.log_action(util.MSG_BOSS_FOUND)
-#       util.attack_boss()
+#       boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#       util.log_action(consts.MSG_BOSS_FOUND)
+#       action.attack_boss()
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_BOSS_NOT_FOUND)
+#       util.log_action(consts.MSG_BOSS_NOT_FOUND)
 #       util.force_exit_dungeon()
 #       util.set_reset_status(True)
 
@@ -164,27 +164,27 @@
 
 #     util.move(640, 560)
 #     util.do_fade(0.5)
-#     util.plunder_box()
+#     atk.plunder_box()
 
 #     # Orphidia Sequence II
 #     path_find_white_snake()
 #     moving = True
 #     while moving:
 #       if not util.get_macro_state():
-#           util.log_action(util.MSG_TERMINATE)
+#           util.log_action(consts.MSG_TERMINATE)
 #           moving = False
 
 #       if moving == False:
 #         break
 
-#       path_find(util.UNIT_WHITE_SNAKE)
+#       path_find(consts.UNIT_WHITE_SNAKE)
 #       try:
-#         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#         boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
 #         moving = False
-#         util.log_action(util.MSG_MOVE_STOP)
+#         util.log_action(consts.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_BOSS_NOT_FOUND)
+#         util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -198,11 +198,11 @@
 #     # Attack Orphidia II
 #     try:
 #       util.do_select(0.1)
-#       boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-#       util.log_action(util.MSG_BOSS_FOUND)
-#       util.attack_boss()
+#       boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#       util.log_action(consts.MSG_BOSS_FOUND)
+#       action.attack_boss()
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_BOSS_NOT_FOUND)
+#       util.log_action(consts.MSG_BOSS_NOT_FOUND)
 #       util.force_exit_dungeon()
 #       util.set_reset_status(True)
 
@@ -216,27 +216,27 @@
 
 #     util.move(640, 560)
 #     util.do_fade(0.5)
-#     util.plunder_box()
+#     atk.plunder_box()
 
 #     # Orphidia Sequence III
 #     path_find_white_snake()
 #     moving = True
 #     while moving:
 #       if not util.get_macro_state():
-#           util.log_action(util.MSG_TERMINATE)
+#           util.log_action(consts.MSG_TERMINATE)
 #           moving = False
 
 #       if moving == False:
 #         break
 
-#       path_find(util.UNIT_WHITE_SNAKE)
+#       path_find(consts.UNIT_WHITE_SNAKE)
 #       try:
-#         boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#         boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
 #         moving = False
-#         util.log_action(util.MSG_MOVE_STOP)
+#         util.log_action(consts.MSG_MOVE_STOP)
 #         break
 #       except pyauto.ImageNotFoundException:
-#         util.log_action(util.MSG_BOSS_NOT_FOUND)
+#         util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -249,11 +249,11 @@
 #     # Attack Orphidia III
 #     try:
 #       util.do_select(0.1)
-#       boss = pyauto.locateOnScreen(util.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-#       util.log_action(util.MSG_BOSS_FOUND)
-#       util.attack_boss()
+#       boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#       util.log_action(consts.MSG_BOSS_FOUND)
+#       action.attack_boss()
 #     except pyauto.ImageNotFoundException:
-#       util.log_action(util.MSG_BOSS_NOT_FOUND)
+#       util.log_action(consts.MSG_BOSS_NOT_FOUND)
 #       util.force_exit_dungeon()
 #       util.set_reset_status(True)
 
@@ -267,7 +267,7 @@
 
 #     util.move(640, 560)
 #     util.do_fade(0.5)
-#     util.plunder_final_box()
+#     atk.plunder_final_box()
 
 #     # Check Macro State
 #     if not util.get_macro_state():
@@ -278,7 +278,7 @@
 
 #     # Start to End Dungeon
 #     util.check_notifications()
-#     util.end_dungeon()
-#     util.dice_dungeon()
-#     util.log_action(util.MSG_END_DG)
+#     self.end_dungeon()
+#     self.dice_dungeon()
+#     util.log_action(consts.MSG_END_DG)
 #     util.wait(3)

@@ -4,7 +4,7 @@ import psycopg2
 
 from datetime import date
 
-import common.util as util
+import common.constants as consts
 
 publicKey, privateKey = rsa.newkeys(512)
 conn = []
@@ -64,7 +64,7 @@ def get_user_value():
   raw_data_count = len(raw_data)
   val_uuid = get_node()
 
-  if raw_data_count == util.STATE_ZERO:
+  if raw_data_count == consts.STATE_ZERO:
     insert_user_value(val_uuid)
     raw_data = get_user_data()
 
@@ -73,7 +73,7 @@ def get_user_value():
   today = date.today()
 
   if user_exp != None:
-    if user_exp < today and user_access != util.ACCESS_FREE:
+    if user_exp < today and user_access != consts.ACCESS_FREE:
       update_user_free(val_uuid)
       raw_data = get_user_data()
 
