@@ -383,10 +383,14 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
 
       self.click_portal(575, 410)
-      util.do_final_mode(1)
-      util.set_last_cast_mode(3)
       util.move_scroll(750, 150, 375, 150, 0.5)
-      self.attack_monsters(consts.UNIT_GNELL, 1.5, True)
+
+      if util.get_party_status() == consts.IS_TRUE:
+        util.do_final_mode(1)
+        util.set_last_cast_mode(3)
+        self.attack_monsters(consts.UNIT_GNELL, 1.5, True)
+      else:
+        self.attack_monsters(consts.UNIT_GNELL, 1.5, False)
 
       util.move(630, 125)
       util.do_dash()
