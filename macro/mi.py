@@ -71,7 +71,8 @@ class MirageIsland(Dungeon, Special):
 
       # attack boss (watchman tolerant)
       self.find_kill_special_boss(consts.UNIT_EMPTY)
-      self.find_kill_box()
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      else: atk.plunder_box_party()
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
@@ -153,7 +154,8 @@ class MirageIsland(Dungeon, Special):
 
       util.move(750, 240)
       util.do_dash()
-      self.find_kill_box()
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      else: atk.plunder_box_party()
 
       util.move(990, 225)
       util.do_dash()
@@ -221,13 +223,12 @@ class MirageIsland(Dungeon, Special):
         util.move(390, 680)
         util.do_fade()
         util.do_dash()
-
-        self.find_kill_special_boss(consts.UNIT_EMPTY)
-        self.find_kill_box()
       else:
         util.wait(8)
-        self.find_kill_special_boss(consts.UNIT_EMPTY)
-        atk.plunder_box_party()
+
+      self.find_kill_special_boss(consts.UNIT_EMPTY)
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      else: atk.plunder_box_party()
 
       continue
 
