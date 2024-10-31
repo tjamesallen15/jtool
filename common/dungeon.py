@@ -356,6 +356,27 @@ class Special(ABC):
     atk.plunder_final_box(False)
     util.wait(delay)
 
+  def find_kill_box_party(self, delay=0.5):
+    finding = True
+    while finding:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        finding = False
+
+      if finding == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        pass
+
+    atk.plunder_box_party(False)
+    util.wait(delay)
+
   def attack_monsters(self, unit_name, delay=1, aura=False):
     atk.attack_monsters(unit_name, aura, 0.3, False)
     util.wait(delay)

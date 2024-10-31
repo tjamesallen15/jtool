@@ -91,10 +91,10 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
       util.do_fade()
       util.do_dash()
-      util.do_fade(4)
+      util.do_fade(3)
 
       util.move(775, 185)
-      util.do_dash(3)
+      util.do_dash(4)
       util.do_fade()
 
       # attack mobs (border crab)
@@ -330,6 +330,8 @@ class MirageIsland(Dungeon, Special):
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_EMPTY)
       self.find_kill_box()
+      if util.get_party_member_status() == consts.IS_FALSE: self.find_kill_box()
+      else: self.find_kill_box_party()
 
       util.move(650, 270)
       util.do_dash()
@@ -377,7 +379,8 @@ class MirageIsland(Dungeon, Special):
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_EMPTY)
-      self.find_kill_box()
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      else: atk.plunder_box_party()
 
       util.move(570, 145)
       util.do_dash()
@@ -402,13 +405,19 @@ class MirageIsland(Dungeon, Special):
       self.find_kill_special_boss(consts.UNIT_EMPTY)
       self.find_kill_box()
 
+      if util.get_party_member_status() == consts.IS_TRUE: util.wait(2)
+
       util.move(630, 125)
       util.do_dash()
       util.do_fade()
-      util.do_dash()
+
+      if util.get_party_member_status() == consts.IS_TRUE: util.do_dash()
+
 
       self.find_kill_special_boss(consts.UNIT_EMPTY)
       self.find_kill_final_box()
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
+      else: atk.plunder_box_party()
 
       # Check Macro State
       if not util.get_macro_state():
