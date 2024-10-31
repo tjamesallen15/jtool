@@ -156,7 +156,9 @@ class MirageIsland(Dungeon, Special):
       util.move(750, 240)
       util.do_dash()
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
-      else: atk.plunder_box_party()
+      else:
+        util.wait(2)
+        atk.plunder_box_party()
 
       util.move(990, 225)
       util.do_dash()
@@ -292,6 +294,7 @@ class MirageIsland(Dungeon, Special):
         util.do_dash()
         util.do_fade()
       else:
+        util.wait(1)
         util.move(715, 385)
         util.do_fade()
         util.wait(8)
@@ -300,8 +303,9 @@ class MirageIsland(Dungeon, Special):
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
-      util.move(420, 670)
-      util.do_dash()
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.move(420, 670)
+        util.do_dash()
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
 
@@ -331,7 +335,9 @@ class MirageIsland(Dungeon, Special):
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_EMPTY)
       self.find_kill_box()
-      if util.get_party_member_status() == consts.IS_FALSE: self.find_kill_box()
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.wait(2)
+        self.find_kill_box()
       else: self.find_kill_box_party()
 
       util.move(650, 270)
