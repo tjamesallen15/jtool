@@ -413,12 +413,15 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
+      wait_time = 1.5
+      if util.get_party_leader_status() == consts.IS_TRUE: wait_time = 2
+
       # Start to End Dungeon
       util.check_notifications()
       self.end_dungeon()
       self.dice_dungeon()
       util.log_action(consts.MSG_END_DG)
-      util.log_time()
+      util.log_time(wait_time)
     util.do_close_app_status()
 
       
