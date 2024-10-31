@@ -908,7 +908,7 @@ def roll_box():
     except pyauto.ImageNotFoundException:
       log_action(consts.MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
-def party_roll_box(reps=5):
+def party_roll_box(reps=4):
   roll_reps = reps * 2
   for x in range(roll_reps):
     roll_box()
