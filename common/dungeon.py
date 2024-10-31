@@ -312,7 +312,7 @@ class Special(ABC):
 
     util.wait(delay)
 
-  def find_kill_box(self, delay=0.5):
+  def find_kill_box(self, rep=4, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -330,12 +330,10 @@ class Special(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    print("WILL DO PLUNDER")
-    atk.plunder_box(False)
-    print("DONE PLUNDER")
+    atk.plunder_box(False, rep)
     util.wait(delay)
 
-  def find_kill_final_box(self, delay=0.5):
+  def find_kill_final_box(self, rep=5, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -354,10 +352,10 @@ class Special(ABC):
         pass
 
 
-    atk.plunder_final_box(False)
+    atk.plunder_final_box(False, rep)
     util.wait(delay)
 
-  def find_kill_box_party(self, delay=0.5):
+  def find_kill_box_party(self, rep=4, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -375,9 +373,7 @@ class Special(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    print("WILL DO PLUNDER PARTY")
-    atk.plunder_box_party(False)
-    print("DONE PARTY TOLL")
+    atk.plunder_box_party(False, rep)
     util.wait(delay)
 
   def attack_monsters(self, unit_name, delay=1, aura=False):

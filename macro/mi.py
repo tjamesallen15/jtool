@@ -230,6 +230,7 @@ class MirageIsland(Dungeon, Special):
         util.wait(8)
 
       # Attack Boss (Grogo)
+      util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GROGO)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
@@ -297,11 +298,11 @@ class MirageIsland(Dungeon, Special):
         util.wait(1)
         util.move(715, 385)
         util.do_fade()
-        util.wait(8)
+        util.wait(7)
 
       self.find_kill_special_boss(consts.UNIT_EMPTY)
-      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
-      else: atk.plunder_box_party()
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 2)
+      else: atk.plunder_box_party(True, 2)
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.move(420, 670)
