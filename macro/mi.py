@@ -383,23 +383,24 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
 
       self.click_portal(575, 410)
-
+      util.do_final_mode(1)
+      util.set_last_cast_mode(3)
       util.move_scroll(750, 150, 375, 150, 0.5)
-      self.attack_monsters(consts.UNIT_GNELL, 1.5, False)
+      self.attack_monsters(consts.UNIT_GNELL, 1.5, True)
 
       util.move(630, 125)
       util.do_dash()
+      util.do_fade()
+      util.do_dash()
+      util.do_fade()
 
-      self.find_kill_special_boss(consts.UNIT_WATCHMAN_DARTHPENCIO)
+      self.find_kill_special_boss(consts.UNIT_DARTHPENCIO)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
       if util.get_party_member_status() == consts.IS_TRUE: util.wait(2)
 
       util.move(630, 125)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
       util.do_dash()
       util.do_fade(1.5)
       util.do_fade()

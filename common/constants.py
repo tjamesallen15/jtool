@@ -277,7 +277,7 @@ UNIT_GROGO = "Grogo"
 UNIT_GROGO_II = "Grogo II"
 UNIT_GARLIARDO = "Garliardo"
 UNIT_GUARDIAN_GOLEM = "Guardian Golem"
-UNIT_WATCHMAN_DARTHPENCIO = "Watchman Darthpencio"
+UNIT_DARTHPENCIO = "Darthpencio"
 UNIT_GNELL = "Gnell"
 UNIT_RULER_BARIALD = "Ruler Bariald"
 
