@@ -330,8 +330,9 @@ class Special(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-
+    print("WILL DO PLUNDER")
     atk.plunder_box(False)
+    print("DONE PLUNDER")
     util.wait(delay)
 
   def find_kill_final_box(self, delay=0.5):
@@ -374,7 +375,9 @@ class Special(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
+    print("WILL DO PLUNDER PARTY")
     atk.plunder_box_party(False)
+    print("DONE PARTY TOLL")
     util.wait(delay)
 
   def attack_monsters(self, unit_name, delay=1, aura=False):

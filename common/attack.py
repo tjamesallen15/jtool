@@ -372,6 +372,7 @@ def plunder_box(select=True, reps=4, loot=True, delay=1.0):
       checking = False
       util.log_action(consts.MSG_BOX_NOT_FOUND)
 
+  print("do_plunder")
   if loot == consts.IS_TRUE:
     util.do_plunder(reps)
 
@@ -396,6 +397,7 @@ def plunder_box_party(select=True, reps=4, loot=True, delay=1.0):
       checking = False
       util.log_action(consts.MSG_BOX_NOT_FOUND)
 
+  print("party roll")
   if loot == consts.IS_TRUE:
     util.party_roll_box()
 
