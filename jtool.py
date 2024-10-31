@@ -319,58 +319,43 @@ class JTool():
       case consts.DATA_DUNGEON:
         return consts.STATE_NORMAL
       case consts.DATA_CONNECTION:
-        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_PET:
-        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_PREMIUM or self.get_level() == consts.ACCESS_TESTER_II:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_PREMIUM or self.get_level() == consts.ACCESS_TESTER_II: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_OTHERS:
-        if self.get_level() == consts.ACCESS_FREE:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_MODE:
-        if self.get_level() == consts.ACCESS_FREE:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_LEADER:
-        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_PREMIUM:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_PREMIUM: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_MEMBER:
-        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_PREMIUM:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_PREMIUM: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_BUFFS:
         return consts.STATE_NORMAL
       case consts.DATA_DEBUFFS:
-        if self.get_level() != consts.ACCESS_SUPER:
-          return consts.STATE_DISABLED
+        if self.get_level() != consts.ACCESS_SUPER: return consts.STATE_DISABLED
       case consts.DATA_HARD_DEBUFFS:
-        if self.get_level() != consts.ACCESS_SUPER:
-          return consts.STATE_DISABLED
+        if self.get_level() != consts.ACCESS_SUPER: return consts.STATE_DISABLED
       case consts.DATA_SHORTS:
-        if self.get_level() == consts.ACCESS_FREE:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_HARD_SHORTS:
-        if self.get_level() == consts.ACCESS_FREE:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
       case consts.DATA_VERADRIX:
-        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_TESTER_II:
-          return consts.STATE_DISABLED
-        else:
-          return consts.STATE_NORMAL
+        if self.get_level() == consts.ACCESS_FREE or self.get_level() == consts.ACCESS_PRO or self.get_level() == consts.ACCESS_TESTER_II: return consts.STATE_DISABLED
+        else: return consts.STATE_NORMAL
+      case consts.DATA_JOIN_WAR:
+        if self.get_level() == consts.ACCESS_SUPER: return consts.STATE_NORMAL
+        else: return consts.STATE_DISABLED
+      case _:
+        return consts.STATE_DISABLED
 
   def load_node(self):
     self.val_node_data = guard.get_user_value()
@@ -1073,7 +1058,7 @@ class JTool():
     self.lbl_misc = Label(tab_misc, text=consts.LBL_CLICK)
     self.lbl_misc.place(x=160, y=220)
 
-    self.btn_join_war = Button(tab_misc, text=consts.BTN_JOIN_WAR, command=self.join_war)
+    self.btn_join_war = Button(tab_misc, text=consts.BTN_JOIN_WAR, state=self.get_access(consts.DATA_JOIN_WAR), command=self.join_war)
     self.btn_join_war.config(width=9)
     self.btn_join_war.place(x=10, y=250)
 

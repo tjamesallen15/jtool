@@ -311,6 +311,7 @@ DATA_LOAD = "load"
 DATA_CONNECTION = "connection"
 DATA_PET = "pet"
 DATA_OTHERS = "others"
+DATA_JOIN_WAR = "war"
 
 # ACCESS LEVEL
 ACCESS_FREE = "Free"
