@@ -269,6 +269,12 @@ UNIT_MUTANT_KORAIDER = "Mutang Koraider"
 UNIT_ELECTRISHIA = "Electrishia"
 UNIT_ANT_HILL = "Ant Hill"
 
+UNIT_BORDER_CRAB = "Border Crab"
+UNIT_CRAG_CRAB = "Crag Crab"
+UNIT_WATCHMAN_TOLERANT = "Watchman Tolerant"
+UNIT_CRASIO = "Crasio"
+UNIT_GROGO = "Grogo"
+
 # JSON DATA
 DATA_JSON = "data/config.json"
 DATA_FRAME = "frame"

@@ -64,14 +64,14 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
       util.do_fade()
 
-      # attack mobs (crag crab)
+      # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_EMPTY, 1, True)
+      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
       util.cancel_aura(1.2)
 
-      # attack boss (watchman tolerant)
-      self.find_kill_special_boss(consts.UNIT_EMPTY)
+      # Attack Boss (Watchman Tolerant)
+      self.find_kill_special_boss(consts.UNIT_WATCHMAN_TOLERANT)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
@@ -82,10 +82,10 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
       util.do_dash(2)
 
-      # attack mobs (border crab)
+      # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_EMPTY, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
 
       util.move(1200, 235)
       util.do_dash()
@@ -97,10 +97,10 @@ class MirageIsland(Dungeon, Special):
       util.do_dash(4)
       util.do_fade()
 
-      # attack mobs (border crab)
+      # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_EMPTY, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
 
       util.move(575, 235)
       util.do_dash()
@@ -109,10 +109,10 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
       util.do_dash(2)
 
-      # attack mobs (border crab)
+      # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_EMPTY, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
 
       util.move(155, 170)
       util.do_dash()
@@ -125,10 +125,10 @@ class MirageIsland(Dungeon, Special):
       util.move(575, 180)
       util.do_dash(2)
 
-      # attack mobs (border crab)
+      # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_EMPTY, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
 
       util.move(590, 255)
       util.do_dash(1.5)
@@ -143,15 +143,15 @@ class MirageIsland(Dungeon, Special):
       util.move(740, 210)
       util.do_fade()
 
-      # # attack mobs (crag crab)
+      # Attack Monsters (Crag Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_EMPTY, 1, True)
+      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
       util.cancel_aura(1.2)
 
-      # attack boss (Crasio)
+      # Attack Boss (Crasio)
       util.move(500, 225)
-      self.find_kill_special_boss(consts.UNIT_EMPTY, 1)
+      self.find_kill_special_boss(consts.UNIT_CRASIO, 1)
 
       util.move(750, 240)
       util.do_dash()
@@ -227,7 +227,8 @@ class MirageIsland(Dungeon, Special):
       else:
         util.wait(8)
 
-      self.find_kill_special_boss(consts.UNIT_EMPTY)
+      # Attack Boss (Grogo)
+      self.find_kill_special_boss(consts.UNIT_GROGO)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
