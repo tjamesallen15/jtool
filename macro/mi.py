@@ -57,7 +57,8 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
       util.do_dash()
 
-      self.click_dialog(590, 350, False)
+      if util.get_party_member_status() == consts.IS_FALSE: self.click_dialog(590, 350, False)
+      else: util.wait(2)
 
       util.move(1150, 400)
       util.do_dash()
