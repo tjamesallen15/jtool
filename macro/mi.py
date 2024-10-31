@@ -387,7 +387,7 @@ class MirageIsland(Dungeon, Special):
 
       if util.get_party_status() == consts.IS_TRUE:
         util.do_final_mode(1)
-        util.set_last_cast_mode(3)
+        util.set_last_cast_mode(2)
         self.attack_monsters(consts.UNIT_GNELL, 1.5, True)
       else:
         self.attack_monsters(consts.UNIT_GNELL, 1.5, False)
