@@ -73,7 +73,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Boss (Watchman Tolerant)
       self.find_kill_special_boss(consts.UNIT_WATCHMAN_TOLERANT)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
-      else: util.wait(2.5)
+      else: util.wait(4)
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
@@ -228,7 +228,7 @@ class MirageIsland(Dungeon, Special):
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GROGO)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
-      else: util.wait(2.5)
+      else: util.wait(4)
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.move(515, 565)
@@ -293,9 +293,9 @@ class MirageIsland(Dungeon, Special):
         util.do_fade()
         util.wait(5)
 
-      self.find_kill_special_boss(consts.UNIT_EMPTY)
+      self.find_kill_special_boss(consts.UNIT_GROGO_II)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 2)
-      else: util.wait(1)
+      else: util.wait(0.2)
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.move(420, 670)
@@ -326,7 +326,7 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
 
       util.set_last_cast_mode(3)
-      self.find_kill_special_boss(consts.UNIT_EMPTY)
+      self.find_kill_special_boss(consts.UNIT_GARLIARDO)
       if util.get_party_member_status() == consts.IS_FALSE: self.find_kill_box()
       else: self.find_kill_box_party()
 
@@ -372,7 +372,7 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
       util.do_dash()
 
-      util.set_last_cast_mode(2)
+      util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GUARDIAN_GOLEM)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
@@ -389,7 +389,6 @@ class MirageIsland(Dungeon, Special):
 
       util.move(630, 125)
       util.do_dash()
-      util.do_fade()
 
       self.find_kill_special_boss(consts.UNIT_WATCHMAN_DARTHPENCIO)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
@@ -398,6 +397,7 @@ class MirageIsland(Dungeon, Special):
       if util.get_party_member_status() == consts.IS_TRUE: util.wait(2)
 
       util.move(630, 125)
+      util.do_fade()
       util.do_dash()
       util.do_fade()
       util.do_dash()

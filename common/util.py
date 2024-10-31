@@ -909,7 +909,7 @@ def roll_box():
       log_action(consts.MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
 def party_roll_box(reps=4):
-  roll_reps = reps * 2
+  roll_reps = reps * 3
   for x in range(roll_reps):
     roll_box()
     if get_veradrix_status() == consts.IS_TRUE: do_veradrix()
