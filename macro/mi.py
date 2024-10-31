@@ -61,14 +61,14 @@ class MirageIsland(Dungeon, Special):
       else: util.wait(2)
 
       util.move(1150, 400)
-      util.do_dash()
+      util.do_dash(2)
       util.do_fade()
 
       # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
-      util.cancel_aura(1.2)
+      util.cancel_aura(1.5)
 
       # Attack Boss (Watchman Tolerant)
       self.find_kill_special_boss(consts.UNIT_WATCHMAN_TOLERANT)
@@ -144,14 +144,12 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
 
       # Attack Monsters (Crag Crab)
-      util.do_final_mode()
-      util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
-      util.cancel_aura(1.2)
+      util.cancel_aura(1.5)
 
       # Attack Boss (Crasio)
       util.move(500, 225)
-      self.find_kill_special_boss(consts.UNIT_CRASIO, 1)
+      self.find_kill_special_boss(consts.UNIT_CRASIO, 1.5)
 
       util.move(750, 240)
       util.do_dash()
@@ -239,7 +237,7 @@ class MirageIsland(Dungeon, Special):
         util.move(515, 565)
         util.do_dash(1.5)
       else:
-        util.wait(2.5)
+        util.wait(3)
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
 
@@ -295,8 +293,7 @@ class MirageIsland(Dungeon, Special):
         util.do_dash()
         util.do_fade()
       else:
-        util.wait(1)
-        util.move(715, 385)
+        util.move(715, 385, 1)
         util.do_fade()
         util.wait(7)
 
@@ -309,7 +306,6 @@ class MirageIsland(Dungeon, Special):
         util.do_dash()
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
-
       util.move(735, 85)
       util.do_dash()
       util.do_fade()
@@ -335,16 +331,13 @@ class MirageIsland(Dungeon, Special):
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_EMPTY)
-      if util.get_party_member_status() == consts.IS_FALSE:
-        util.wait(2)
-        self.find_kill_box()
+      if util.get_party_member_status() == consts.IS_FALSE: self.find_kill_box()
       else: self.find_kill_box_party()
 
       util.move(650, 270)
       util.do_dash()
 
       util.move_scroll(700, 150, 375, 150, 0.5)
-
       util.move(885, 95)
       util.do_dash()
       util.do_fade()
@@ -357,7 +350,6 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
 
       util.move_scroll(700, 150, 375, 150, 0.5)
-
       util.move(940, 85)
       util.do_fade()
       util.do_dash()
@@ -397,10 +389,9 @@ class MirageIsland(Dungeon, Special):
       self.click_portal(575, 410)
 
       util.move_scroll(750, 150, 375, 150, 0.5)
-
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_EMPTY, 1, True)
+      self.attack_monsters(consts.UNIT_EMPTY, 1.5, True)
 
       util.move(630, 125)
       util.do_dash()
@@ -408,21 +399,21 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
       util.do_fade()
 
-      util.cancel_aura(1.2)
+      util.cancel_aura(1.5)
       self.find_kill_special_boss(consts.UNIT_EMPTY)
-      self.find_kill_box()
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      else: atk.plunder_box_party()
 
       if util.get_party_member_status() == consts.IS_TRUE: util.wait(2)
 
       util.move(630, 125)
       util.do_dash()
+      util.do_fade(1.5)
       util.do_fade()
 
       if util.get_party_member_status() == consts.IS_TRUE: util.do_dash()
 
-
       self.find_kill_special_boss(consts.UNIT_EMPTY)
-      self.find_kill_final_box()
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_box_party()
 

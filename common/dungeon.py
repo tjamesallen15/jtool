@@ -266,7 +266,7 @@ class Special(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    if cancel == consts.IS_TRUE: util.cancel_aura(1.2)
+    if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
     util.wait(delay)
 
   def find_kill_special_boss(self, unit_name, cancel=True, delay=0.5):
@@ -288,7 +288,7 @@ class Special(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    if cancel == consts.IS_TRUE: util.cancel_aura(1.2)
+    if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
     util.wait(delay)
 
   def find_kill_mobs(self, unit_image, unit_name, delay=0.5):
