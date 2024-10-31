@@ -446,7 +446,7 @@ class JTool():
 
   def enable_dungeon_features(self, args):
     selected_dungeon = self.list_dg.get()
-    if selected_dungeon == self.LIST_MASTER[8] or selected_dungeon == self.LIST_MASTER[12] or selected_dungeon == self.LIST_MASTER[15]:
+    if selected_dungeon == self.LIST_MASTER[8] or selected_dungeon == self.LIST_MASTER[12] or selected_dungeon == self.LIST_MASTER[15]or selected_dungeon == self.LIST_MASTER[16]:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
     else:
