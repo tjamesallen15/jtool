@@ -148,8 +148,7 @@ class MirageIsland(Dungeon, Special):
       util.cancel_aura(1.5)
 
       # Attack Boss (Crasio)
-      util.move(500, 225)
-      self.find_kill_special_boss(consts.UNIT_CRASIO, 1.5)
+      self.find_kill_special_boss(consts.UNIT_CRASIO, True, 1.5)
 
       util.move(750, 240)
       util.do_dash()
