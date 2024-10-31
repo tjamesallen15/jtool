@@ -334,7 +334,6 @@ class MirageIsland(Dungeon, Special):
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_EMPTY)
-      self.find_kill_box()
       if util.get_party_member_status() == consts.IS_FALSE:
         util.wait(2)
         self.find_kill_box()
