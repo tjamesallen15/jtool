@@ -415,7 +415,7 @@ class MirageIsland(Dungeon, Special):
 
       self.find_kill_special_boss(consts.UNIT_EMPTY)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
-      else: atk.plunder_box_party()
+      else: atk.plunder_final_box_party()
 
       # Check Macro State
       if not util.get_macro_state():
