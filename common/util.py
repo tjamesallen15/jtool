@@ -794,15 +794,16 @@ def force_battle_mode(delay=5):
     time.sleep(1)
 
 def do_cont_battle_mode():
-  move(790, 670)
-  pyauto.click(button="right")
+  if get_battle_mode() == consts.STATE_ONE:
+    move(790, 670)
+    pyauto.click(button="right")
 
-  do_veradrix()
-  global aura_counter
-  aura_counter += 1
-  if aura_counter > 45:
-    do_aura()
-    aura_counter = 0
+    do_veradrix()
+    global aura_counter
+    aura_counter += 1
+    if aura_counter > 45:
+      do_aura()
+      aura_counter = 0
 
 def check_battle_mode():
   if get_last_cast_mode() == consts.STATE_TWO:

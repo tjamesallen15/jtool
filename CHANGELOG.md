@@ -37,6 +37,7 @@ All notable changes to this project will be documented in this file.
 - [HK] Improved wait time for range classes
 - [PCA] Improved positioning on first shadow
 - [POTF] Improved party state performance
+- [SCA] Improved dungeon automation
 - [TM] Improved dungeon automation for Range Classes
 - [TM] Reenabled for party state
 

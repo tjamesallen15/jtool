@@ -45,7 +45,7 @@ class SteamerCrazyAwakened(Dungeon):
       self.click_dungeon_portal(600, 250)
 
       # Enter Dungeon
-      self.enter_dungeon()
+      self.enter_dungeon(0.3)
       self.challenge_dungeon()
       util.move_scroll(700, 150, 375, 150)
 
@@ -79,19 +79,19 @@ class SteamerCrazyAwakened(Dungeon):
         continue
 
       # First Boss
-      util.do_deselect_pack()
-      util.do_battle_mode()
+      util.do_short_buffs()
       atk.attack_semi_boss(True, True, False, False)
-      atk.plunder_box(True, 3)
+      atk.plunder_box(True, 0)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      util.set_battle_mode(False)
-
       util.move(630, 250)
+      util.do_dash()
+      util.do_fade()
+
       util.do_dash()
       util.do_fade()
 
@@ -125,36 +125,27 @@ class SteamerCrazyAwakened(Dungeon):
         continue
 
       # Final Boss
-      util.do_deselect_pack()
-      util.do_dash(0.1)
-      util.do_short_buffs()
-      atk.attack_boss()
-      util.do_plunder(2)
+      atk.attack_boss(True, False, False, False)
+      util.do_plunder(1)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      if util.get_attack_type() == consts.IS_RANGE:
-        util.move(620, 350)
-        util.do_dash(0.5)
-
-      atk.plunder_box(True, 3)
+      atk.plunder_box(True, 0)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
-
-      util.set_battle_mode(False)
 
       # Start to End Dungeon
       util.check_notifications()
       self.end_dungeon()
       self.dice_dungeon()
       util.log_action(consts.MSG_END_DG)
-      util.log_time()
+      util.log_time(1)
     util.do_close_app_status()
 
   def path_find(self, unit):
@@ -175,7 +166,8 @@ class SteamerCrazyAwakened(Dungeon):
       try:
         util.move_click(630, 250)
         if self.portal_counter % 2 == consts.STATE_ZERO:
-          util.do_dash(0.1)
+          util.do_dash()
+          util.do_fade(0.1)
 
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
@@ -199,19 +191,22 @@ class SteamerCrazyAwakened(Dungeon):
         if self.portal_counter % 2 == consts.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
-          util.do_dash(0.1)
+          util.do_dash()
+          util.do_fade(0.1)
         elif self.portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
+          util.cancel_aura(1.5)
           util.move(630, 250)
           util.do_dash()
           util.do_fade()
 
           util.do_dash()
-          util.do_fade()
+          util.do_fade(0.1)
         else:
           util.move_click_rel(10, 10, dialog, 0.5)
-          util.move(630, 500)
-          util.do_fade(4)
+          util.move(630, 400)
+          util.do_fade(2)
+          util.do_final_mode(1)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
@@ -268,19 +263,22 @@ class SteamerCrazyAwakened(Dungeon):
         if self.portal_counter % 2 == consts.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
-          util.do_dash(0.1)
+          util.do_dash()
+          util.do_fade(0.1)
         elif self.portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
+          util.cancel_aura(1.5)
           util.move(630, 250)
           util.do_dash()
           util.do_fade()
 
           util.do_dash()
-          util.do_fade()
+          util.do_fade(0.1)
         else:
           util.move_click_rel(10, 10, dialog, 0.5)
-          util.move(630, 500)
-          util.do_fade(4)
+          util.move(630, 400)
+          util.do_fade(2)
+          util.do_final_mode(1)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
@@ -337,19 +335,22 @@ class SteamerCrazyAwakened(Dungeon):
         if self.portal_counter % 2 == consts.STATE_ZERO:
           util.move_click_rel(10, 10, dialog, 0.5)
           util.move(630, 250)
-          util.do_dash(0.1)
+          util.do_dash()
+          util.do_fade(0.1)
         elif self.portal_counter == 9:
           util.move_click_rel(10, 10, dialog, 0.5)
+          util.cancel_aura(1.5)
           util.move(630, 250)
           util.do_dash()
           util.do_fade()
 
           util.do_dash()
-          util.do_fade()
+          util.do_fade(0.1)
         else:
           util.move_click_rel(10, 10, dialog, 0.5)
-          util.move(630, 500)
-          util.do_fade(4)
+          util.move(630, 400)
+          util.do_fade(2)
+          util.do_final_mode(1)
         break
       except pyauto.ImageNotFoundException:
         util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
@@ -383,9 +384,12 @@ class SteamerCrazyAwakened(Dungeon):
         break
 
     if boss_found == consts.STATE_ZERO and mobs_found == consts.STATE_ONE:
-      atk.attack_monsters(unit, True, util.val_default_interval, self.val_sidestep_disabled)
+      atk.attack_monsters(unit, True, consts.VAL_INTERVAL_DEFAULT, self.val_sidestep_disabled)
 
       util.move(630, 250)
+      util.do_dash()
+      util.do_fade()
+
       util.do_dash()
       util.do_fade()
 
