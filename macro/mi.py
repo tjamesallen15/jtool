@@ -423,10 +423,6 @@ class MirageIsland(Dungeon, Special):
       util.move(630, 250)
       util.do_dash()
 
-      if util.get_party_member_status() == consts.IS_FALSE:
-        util.move(630, 125)
-        util.do_fade()
-
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_final_box_party()
