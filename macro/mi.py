@@ -67,11 +67,11 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
+      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1.5, True)
       util.cancel_aura(1.5)
 
       # Attack Boss (Watchman Tolerant)
-      self.find_kill_special_boss(consts.UNIT_WATCHMAN_TOLERANT)
+      self.find_kill_special_boss(consts.UNIT_TOLERANT)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: util.wait(4)
 
@@ -85,7 +85,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
 
       util.move(1200, 235)
       util.do_dash()
@@ -100,7 +100,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
 
       util.move(575, 235)
       util.do_dash()
@@ -112,7 +112,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
 
       util.move(155, 170)
       util.do_dash()
@@ -128,7 +128,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Border Crab)
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
 
       util.move(590, 255)
       util.do_dash(1.5)
@@ -144,7 +144,7 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
 
       # Attack Monsters (Crag Crab)
-      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
+      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1.5, True)
       util.cancel_aura(1.5)
 
       # Attack Boss (Crasio)

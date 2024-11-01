@@ -376,11 +376,11 @@ class Special(ABC):
     atk.plunder_box_party(False, rep)
     util.wait(delay)
 
-  def attack_monsters(self, unit_name, delay=1, aura=False):
+  def attack_monsters(self, unit_name, delay=1.5, aura=False):
     atk.attack_monsters(unit_name, aura, 0.3, False)
     util.wait(delay)
 
-  def focus_monsters(self, unit_name, reps=4, delay=1, aura=False):
+  def focus_monsters(self, unit_name, reps=4, delay=1.5, aura=False):
     for x in range(reps):
       atk.focus_monsters(unit_name, True, aura, False)
 

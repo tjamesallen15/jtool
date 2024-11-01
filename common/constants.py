@@ -271,7 +271,7 @@ UNIT_ANT_HILL = "Ant Hill"
 
 UNIT_BORDER_CRAB = "Border Crab"
 UNIT_CRAG_CRAB = "Crag Crab"
-UNIT_WATCHMAN_TOLERANT = "Watchman Tolerant"
+UNIT_TOLERANT = "Tolerant"
 UNIT_CRASIO = "Crasio"
 UNIT_GROGO = "Grogo"
 UNIT_GROGO_II = "Grogo II"
