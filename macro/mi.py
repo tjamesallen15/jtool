@@ -72,8 +72,19 @@ class MirageIsland(Dungeon, Special):
 
       # Attack Boss (Watchman Tolerant)
       self.find_kill_special_boss(consts.UNIT_TOLERANT)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: util.wait(4)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
@@ -86,6 +97,11 @@ class MirageIsland(Dungeon, Special):
       util.do_final_mode()
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move(1200, 235)
       util.do_dash()
@@ -102,6 +118,11 @@ class MirageIsland(Dungeon, Special):
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
 
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       util.move(575, 235)
       util.do_dash()
 
@@ -113,6 +134,11 @@ class MirageIsland(Dungeon, Special):
       util.do_final_mode()
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move(155, 170)
       util.do_dash()
@@ -129,6 +155,11 @@ class MirageIsland(Dungeon, Special):
       util.do_final_mode()
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move(590, 255)
       util.do_dash(1.5)
@@ -147,14 +178,29 @@ class MirageIsland(Dungeon, Special):
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 1.5, True)
       util.cancel_aura(1.5)
 
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       # Attack Boss (Crasio)
       self.find_kill_special_boss(consts.UNIT_CRASIO, True, 3)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move(750, 240)
       util.do_dash()
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move(990, 225)
       util.do_dash()
@@ -228,8 +274,19 @@ class MirageIsland(Dungeon, Special):
       # Attack Boss (Grogo)
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GROGO)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: util.wait(4)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.move(515, 565)
@@ -301,8 +358,19 @@ class MirageIsland(Dungeon, Special):
         util.wait(7)
 
       self.find_kill_special_boss(consts.UNIT_GROGO_II)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 2)
       else: util.wait(0.2)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.move(1030, 455)
@@ -337,8 +405,19 @@ class MirageIsland(Dungeon, Special):
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GARLIARDO)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       if util.get_party_member_status() == consts.IS_FALSE: self.find_kill_box()
       else: atk.plunder_final_box_party()
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move(650, 270)
       util.do_dash()
@@ -384,8 +463,19 @@ class MirageIsland(Dungeon, Special):
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GUARDIAN_GOLEM)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       util.move(570, 145)
       util.do_dash()
@@ -402,6 +492,11 @@ class MirageIsland(Dungeon, Special):
       else:
         self.attack_monsters(consts.UNIT_GNELL, 1.5, False)
 
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       util.move(630, 125)
       util.do_dash()
       util.do_fade()
@@ -411,8 +506,19 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
 
       self.find_kill_special_boss(consts.UNIT_DARTHPENCIO, True, 3)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
 
       if util.get_party_member_status() == consts.IS_TRUE: util.wait(2)
 
@@ -424,6 +530,12 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
 
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_final_box_party()
 
