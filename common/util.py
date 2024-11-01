@@ -871,6 +871,7 @@ def cancel_aura(delay=0):
   if delay != 0: time.sleep(delay)
 
 def do_dash(delay=1.0):
+  do_heal()
   pynboard.press(consts.KEY_DASH)
   pynboard.release(consts.KEY_DASH)
 
@@ -932,6 +933,10 @@ def do_fast_plunder():
   pynboard.release(consts.KEY_LOOT_ACTION)
   pynboard.press(consts.KEY_LOOT_SPACE)
   pynboard.release(consts.KEY_LOOT_SPACE)
+
+def do_heal():
+  pynboard.press(consts.KEY_HP)
+  pynboard.release(consts.KEY_HP)
 
 def do_essentials(release_keys=True):
   pynboard.press(consts.KEY_LOOT_SPACE)
