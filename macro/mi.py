@@ -328,7 +328,7 @@ class MirageIsland(Dungeon, Special):
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GARLIARDO)
       if util.get_party_member_status() == consts.IS_FALSE: self.find_kill_box()
-      else: self.find_kill_box_party()
+      else: atk.plunder_final_box_party()
 
       util.move(650, 270)
       util.do_dash()
