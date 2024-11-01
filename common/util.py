@@ -494,6 +494,7 @@ def restart_application():
   move_app()
   type_password()
   enter_world()
+  check_notifications()
 
 def get_archer_region():
   return region_full_mode_bar
