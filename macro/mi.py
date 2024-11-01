@@ -145,7 +145,7 @@ class MirageIsland(Dungeon, Special):
 
       # Attack Monsters (Crag Crab)
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
-      util.cancel_aura(1.5)
+      util.cancel_aura(2.5)
 
       # Attack Boss (Crasio)
       self.find_kill_special_boss(consts.UNIT_CRASIO, True, 1.5)
