@@ -145,13 +145,14 @@ class MirageIsland(Dungeon, Special):
 
       # Attack Monsters (Crag Crab)
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 1, True)
-      util.cancel_aura(2.5)
+      util.cancel_aura(1.5)
 
       # Attack Boss (Crasio)
-      self.find_kill_special_boss(consts.UNIT_CRASIO, True, 1.5)
+      self.find_kill_special_boss(consts.UNIT_CRASIO, True, 3)
 
       util.move(750, 240)
       util.do_dash()
+
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
@@ -268,6 +269,8 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
       util.do_dash()
       util.do_fade()
+
+      continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.move(1045, 120)
