@@ -500,10 +500,6 @@ class MirageIsland(Dungeon, Special):
       util.move(630, 125)
       util.do_dash()
       util.do_fade()
-      util.do_dash()
-
-      util.move(630, 250)
-      util.do_fade()
 
       self.find_kill_special_boss(consts.UNIT_DARTHPENCIO, True, 3)
 
@@ -511,6 +507,15 @@ class MirageIsland(Dungeon, Special):
       if not util.get_macro_state():
         run_counter += 1000
         continue
+
+      util.move(630, 600)
+      util.do_dash()
+      util.do_fade()
+
+      util.move(630, 125)
+      util.do_dash()
+      util.do_fade()
+      util.do_dash()
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
