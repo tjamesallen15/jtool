@@ -104,6 +104,9 @@ class TerminusMachina(Dungeon):
       util.do_dash()
       util.do_fade()
       util.do_dash()
+      util.do_fade()
+      util.do_dash()
+      util.do_fade()
 
       # util.do_battle_mode()
       util.do_short_buffs()
@@ -161,6 +164,8 @@ class TerminusMachina(Dungeon):
       util.do_fade(1)
 
       if util.get_attack_type() == consts.IS_MELEE: util.wait(7)
+      else: util.wait(2)
+
       atk.attack_monsters(consts.UNIT_MECH_LIHONAR, True, 0.3, False)
 
       # Check Macro State
@@ -170,11 +175,13 @@ class TerminusMachina(Dungeon):
 
       util.move(530, 150)
       util.do_dash()
-      util.do_fade()
 
-      util.move(530, 150)
-      util.do_dash()
-      util.do_fade()
+      if util.get_attack_type() == consts.IS_MELEE:
+        util.do_fade()
+
+        util.move(530, 150)
+        util.do_dash()
+        util.do_fade()
 
       util.move(500, 440)
       util.do_dash()
@@ -217,9 +224,9 @@ class TerminusMachina(Dungeon):
 
       util.move(650, 260)
       util.do_dash()
-      util.do_fade()
 
       util.move(590, 260)
+      util.do_fade()
       util.do_dash()
 
       util.do_select(0.1)
@@ -632,7 +639,6 @@ class TerminusMachina(Dungeon):
 
       util.move(945, 355)
       util.do_dash()
-      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
