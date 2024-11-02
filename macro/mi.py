@@ -219,8 +219,10 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
       util.do_dash()
       util.do_fade()
+      util.do_dash()
+      util.do_fade()
 
-      self.click_portal(680, 325, False)
+      self.click_portal(520, 415, False)
 
       util.move(510, 130)
       util.do_dash()
