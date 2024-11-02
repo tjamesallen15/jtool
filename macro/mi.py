@@ -436,8 +436,8 @@ class MirageIsland(Dungeon, Special):
       util.move(745, 610)
       util.do_dash(1.5)
 
-      util.move(380, 625)
-      util.do_dash(1.5)
+      util.move(440, 625)
+      util.do_dash()
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
       util.move(735, 85)
