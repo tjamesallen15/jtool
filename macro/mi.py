@@ -105,7 +105,9 @@ class MirageIsland(Dungeon, Special):
       util.do_dash(2)
 
       # Attack Monsters (Border Crab)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, False)
+      util.do_final_mode(1)
+      util.set_last_cast_mode(3)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 1.5, True)
 
       # Check Macro State
       if not util.get_macro_state():
