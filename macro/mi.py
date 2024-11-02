@@ -145,7 +145,7 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
 
       util.move(835, 120)
-      util.do_dash(2)
+      util.do_dash(3)
       util.do_fade(2)
 
       util.move(575, 180)
