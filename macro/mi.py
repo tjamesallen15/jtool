@@ -498,15 +498,14 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
+      if util.get_party_member_status() == consts.IS_TRUE:
+        util.move(540, 85)
+        util.do_dash(1.5)
+
       util.move(570, 145)
       util.do_dash()
       util.do_fade()
       util.do_dash()
-
-      if util.get_party_member_status() == consts.IS_TRUE:
-        util.move(550, 145)
-        util.do_fade()
-        util.do_dash()
 
       self.click_portal(575, 410)
       util.move_scroll(750, 150, 375, 150, 0.5)
@@ -525,7 +524,6 @@ class MirageIsland(Dungeon, Special):
 
       util.move(630, 125)
       util.do_dash()
-      util.do_fade()
 
       self.find_kill_special_boss(consts.UNIT_DARTHPENCIO, True, 3)
 
@@ -562,7 +560,7 @@ class MirageIsland(Dungeon, Special):
       util.move(630, 250)
       util.do_dash()
 
-      if util.get_party_member_status() == consts.IS_TRUE: util.do_fade()
+      if util.get_party_member_status() == consts.IS_FALSE: util.do_fade()
 
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
 
