@@ -64,7 +64,7 @@ class MirageIsland(Dungeon, Special):
         self.click_dialog(590, 350, False)
         util.move(1150, 400)
         util.do_dash(2)
-        util.do_fade()
+        util.do_fade(2)
       else:
         util.do_dash(1.5)
 
@@ -74,7 +74,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1.5, False)
+      self.attack_monsters(consts.UNIT_CRAG_CRAB, 1.5, True)
       util.cancel_aura(1.5)
 
       # Attack Boss (Watchman Tolerant)
