@@ -412,8 +412,6 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 2)
-      else: util.wait(0.2)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -430,11 +428,13 @@ class MirageIsland(Dungeon, Special):
       util.move(765, 725)
       util.do_dash()
 
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 2)
+
       util.move(745, 610)
-      util.do_dash()
+      util.do_dash(1.5)
 
       util.move(380, 625)
-      util.do_dash()
+      util.do_dash(1.5)
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
       util.move(735, 85)
