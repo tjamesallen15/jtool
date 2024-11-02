@@ -47,7 +47,7 @@ class MirageIsland(Dungeon, Special):
 
       util.move_scroll(700, 150, 375, 150, 0.5)
 
-      if util.get_party_member_status() == consts.IS_TRUE: util.wait(4)
+      if util.get_party_member_status() == consts.IS_TRUE: util.wait(6)
 
       util.move(750, 190)
       util.do_dash()
