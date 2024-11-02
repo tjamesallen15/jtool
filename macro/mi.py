@@ -46,6 +46,9 @@ class MirageIsland(Dungeon, Special):
         continue
 
       util.move_scroll(700, 150, 375, 150, 0.5)
+
+      if util.get_party_member_status() == consts.IS_TRUE: util.wait(4)
+
       util.move(750, 190)
       util.do_dash()
 
@@ -55,14 +58,18 @@ class MirageIsland(Dungeon, Special):
 
       util.move(650, 150)
       util.do_fade()
-      util.do_dash()
 
-      if util.get_party_member_status() == consts.IS_FALSE: self.click_dialog(590, 350, False)
-      else: util.wait(2)
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.do_dash()
+        self.click_dialog(590, 350, False)
+        util.move(1150, 400)
+        util.do_dash(2)
+        util.do_fade()
+      else:
+        util.do_dash(1.5)
 
-      util.move(1150, 400)
-      util.do_dash(2)
-      util.do_fade()
+        util.move(1150, 400)
+        util.do_dash(2)
 
       # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
@@ -78,8 +85,12 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
-      else: util.wait(4)
+      if util.get_party_member_status() == consts.IS_FALSE:
+        atk.plunder_box()
+      else:
+        util.move(1150, 400)
+        util.do_fade()
+        util.wait(4)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -176,6 +187,11 @@ class MirageIsland(Dungeon, Special):
 
       # Attack Monsters (Crag Crab)
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 1.5, True)
+
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.move(750, 240)
+        util.do_dash()
+
       util.cancel_aura(1.5)
 
       # Check Macro State
@@ -191,11 +207,11 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(750, 240)
-      util.do_dash()
-
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
-      else: atk.plunder_box_party()
+      else:
+        atk.plunder_box_party()
+        util.move(750, 240)
+        util.do_dash()
 
       # Check Macro State
       if not util.get_macro_state():
@@ -460,7 +476,9 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
       util.do_dash()
       util.do_fade()
-      util.do_dash()
+
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.do_dash()
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GUARDIAN_GOLEM)
@@ -482,6 +500,10 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
       util.do_fade()
       util.do_dash()
+
+      if util.get_party_member_status() == consts.IS_TRUE:
+        util.do_dash()
+        util.do_fade()
 
       self.click_portal(575, 410)
       util.move_scroll(750, 150, 375, 150, 0.5)
@@ -536,6 +558,8 @@ class MirageIsland(Dungeon, Special):
 
       util.move(630, 250)
       util.do_dash()
+
+      if util.get_party_member_status() == consts.IS_TRUE: util.do_fade()
 
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
 
