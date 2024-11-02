@@ -368,7 +368,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.force_veradrix()
       util.move(690, 380)
       util.do_dash()
-      self.find_kill_mobs(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -380,7 +380,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash()
       util.do_fade()
       util.force_veradrix()
-      self.find_kill_mobs(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -391,7 +391,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.move(690, 290)
       util.do_dash()
       util.force_veradrix()
-      self.find_kill_mobs(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -403,7 +403,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash()
       util.do_fade()
       util.force_veradrix()
-      self.find_kill_mobs(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       # Check Macro State
       if not util.get_macro_state():

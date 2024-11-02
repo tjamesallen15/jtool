@@ -290,7 +290,7 @@ class Special(ABC):
     if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
     util.wait(delay)
 
-  def find_kill_mobs(self, unit_image, unit_name, delay=0.5):
+  def find_focus_monsters(self, unit_image, unit_name, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -304,6 +304,32 @@ class Special(ABC):
         util.do_select(0.1)
         mobs = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_archer_region())
         atk.focus_high_monsters(unit_name, False)
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        pass
+
+    util.wait(delay)
+
+  def find_kill_monsters(self, unit_name, tick=15, delay=0.5):
+    timeout = 0
+    finding = True
+    while finding:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        finding = False
+
+      if finding == False:
+        break
+
+      timeout += 1
+      if timeout >= tick:
+        finding = False
+
+      try:
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())
+        self.attack_monsters(unit_name, 1.5, True)
         finding = False
         break
       except pyauto.ImageNotFoundException:
