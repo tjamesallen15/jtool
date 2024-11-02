@@ -425,10 +425,13 @@ class MirageIsland(Dungeon, Special):
       #   util.move(1030, 455)
       #   util.do_dash()
 
-      util.move(765, 725)
-      util.do_dash()
-
-      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 2)
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.move(765, 725)
+        util.do_dash()
+        atk.plunder_box(True, 2)
+      else:
+        util.move(765, 725)
+        util.do_dash(1.5)
 
       util.move(745, 610)
       util.do_dash(1.5)
