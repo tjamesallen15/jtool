@@ -47,6 +47,25 @@ class TerminusMachina(Dungeon):
       util.move(630, 150)
       util.do_dash()
       util.do_fade()
+      util.do_dash()
+      util.do_fade(1.5)
+      util.do_dash(3)
+
+      util.move(630, 550)
+      util.do_dash()
+      util.do_fade(1.5)
+      util.do_dash()
+
+      util.do_final_mode(1)
+      util.do_aura(2)
+
+      atk.attack_monsters(consts.UNIT_MECH_LION, False, consts.VAL_INTERVAL_DEFAULT, self.val_sidestep_disabled)
+
+      util.move(630, 150)
+      if util.get_attack_type() == consts.IS_MELEE: util.do_dash(3)
+      else: util.do_dash()
+
+      atk.attack_monsters(consts.UNIT_MECH_LION, False, consts.VAL_INTERVAL_DEFAULT, self.val_sidestep_disabled)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -54,37 +73,40 @@ class TerminusMachina(Dungeon):
         continue
 
       # Mech Lion Sequence
-      moving = True
-      while moving:
-        if not util.get_macro_state():
-          util.log_action(consts.MSG_TERMINATE)
-          moving = False
+      # moving = True
+      # while moving:
+      #   if not util.get_macro_state():
+      #     util.log_action(consts.MSG_TERMINATE)
+      #     moving = False
 
-        if moving == False:
-          break
+      #   if moving == False:
+      #     break
 
-        self.path_find(consts.UNIT_MECH_LION)
-        try:
-          boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-          moving = False
-          util.log_action(consts.MSG_MOVE_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(consts.MSG_BOSS_NOT_FOUND)
+      #   self.path_find(consts.UNIT_MECH_LION)
+      #   try:
+      #     boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      #     moving = False
+      #     util.log_action(consts.MSG_MOVE_STOP)
+      #     break
+      #   except pyauto.ImageNotFoundException:
+      #     util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      # Check Macro State
-      if not util.get_macro_state():
-        run_counter += 1000
-        continue
+      # # Check Macro State
+      # if not util.get_macro_state():
+      #   run_counter += 1000
+      #   continue
 
       # First Boss
-      util.do_deselect_pack()
-      util.move(700, 260)
+      # util.do_deselect_pack()
+      # util.move(700, 260)
+      util.do_battle_mode()
+      util.move(630, 150)
       util.do_dash()
       util.do_fade()
+      util.do_dash()
 
+      # util.do_battle_mode()
       util.do_short_buffs()
-      util.do_battle_mode()
       atk.attack_boss(True, True, False, False)
       atk.plunder_box()
 
@@ -95,9 +117,9 @@ class TerminusMachina(Dungeon):
 
       util.set_battle_mode(False)
 
-      util.move(710, 260)
-      util.do_dash()
-      util.do_fade()
+      # util.move(710, 260)
+      # util.do_dash()
+      # util.do_fade()
 
       util.move(710, 260)
       util.do_dash()
@@ -128,20 +150,17 @@ class TerminusMachina(Dungeon):
 
       util.move(530, 150)
       util.do_dash()
-      util.do_fade()
-      util.wait(3)
+      util.do_fade(3)
 
       util.move(500, 150)
-      util.do_dash()
+      util.do_dash(2)
 
-      util.wait(2)
       util.do_fade()
 
       util.move(500, 420)
       util.do_fade(1)
 
       if util.get_attack_type() == consts.IS_MELEE: util.wait(7)
-      else: util.wait(0.5)
       atk.attack_monsters(consts.UNIT_MECH_LIHONAR, True, 0.3, False)
 
       # Check Macro State
@@ -261,33 +280,40 @@ class TerminusMachina(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(550, 380)
+      util.move(130, 225)
       util.do_dash()
       util.do_fade()
 
-      util.move(680, 150)
+      util.move(360, 430)
       util.do_dash()
-      util.do_fade()
 
-      util.move(680, 150)
-      util.do_dash()
-      util.do_fade()
+      # util.move(550, 380)
+      # util.do_dash()
+      # util.do_fade()
 
-      util.move(1000, 400)
-      util.do_dash()
-      util.do_fade()
+      # util.move(680, 150)
+      # util.do_dash()
+      # util.do_fade()
 
-      util.move(320, 500)
-      util.do_dash()
-      util.do_fade()
+      # util.move(680, 150)
+      # util.do_dash()
+      # util.do_fade()
 
-      util.move(320, 500)
-      util.do_dash()
-      util.do_fade()
+      # util.move(1000, 400)
+      # util.do_dash()
+      # util.do_fade()
 
-      util.move(320, 500)
-      util.do_dash()
-      util.do_fade()
+      # util.move(320, 500)
+      # util.do_dash()
+      # util.do_fade()
+
+      # util.move(320, 500)
+      # util.do_dash()
+      # util.do_fade()
+
+      # util.move(320, 500)
+      # util.do_dash()
+      # util.do_fade()
 
       # Power Supply
       util.do_select(0.1)
@@ -315,7 +341,7 @@ class TerminusMachina(Dungeon):
 
       # Espada II Sequence
       atk.attack_monsters(consts.UNIT_ESPADA_2, True, 0.3, False)
-      util.cancel_aura(1.5)
+      # util.cancel_aura(1.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -326,7 +352,7 @@ class TerminusMachina(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      util.move(580, 150)
+      util.move(630, 150)
       util.do_dash()
       util.do_fade()
 
@@ -352,6 +378,8 @@ class TerminusMachina(Dungeon):
       util.do_dash()
 
       util.move(800, 500)
+      util.do_fade(1.5)
+      util.do_dash(2.5)
       util.do_fade()
       if util.get_attack_type() == consts.IS_MELEE: util.wait(12)
       else: util.wait(1)
@@ -381,7 +409,8 @@ class TerminusMachina(Dungeon):
         try:
           mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(consts.MSG_MONSTERS_FOUND + consts.UNIT_ESPADA_3)
-          atk.focus_monsters(consts.UNIT_ESPADA_3, False, False, self.val_sidestep_disabled)
+          if util.get_attack_type() == consts.IS_MELEE: atk.focus_monsters(consts.UNIT_ESPADA_3, False, False, self.val_sidestep_disabled)
+          else: atk.focus_monsters(consts.UNIT_ESPADA_3, False, True, self.val_sidestep_disabled)
         except pyauto.ImageNotFoundException:
           util.log_action(consts.MSG_MONSTERS_CLEARED)
           power_ticks += 1
@@ -397,14 +426,14 @@ class TerminusMachina(Dungeon):
         run_counter += 1000
         continue
 
+      util.cancel_aura(1.5)
       util.move(350, 250)
       util.do_dash()
       util.do_fade()
 
-      if util.get_attack_type() == consts.IS_MELEE:
-        util.move(450, 250)
-        util.do_dash()
-        util.do_fade()
+      util.move(450, 250)
+      util.do_dash()
+      util.do_fade()
 
       # Power Supply III
       util.do_select(0.1)
@@ -451,6 +480,8 @@ class TerminusMachina(Dungeon):
 
       util.move(620, 600)
       util.do_dash()
+      util.do_fade()
+      util.do_dash(2)
 
       # Poerte Sequence
       atk.attack_monsters(consts.UNIT_POERTE, False, 0.3, self.val_sidestep_disabled)
@@ -461,12 +492,13 @@ class TerminusMachina(Dungeon):
         continue
 
       util.do_deselect_pack()
+      util.do_battle_mode()
+      util.do_short_buffs()
+
       util.move(580, 260)
       util.do_dash()
+      util.do_fade(1.2)
       util.do_fade()
-
-      util.do_short_buffs()
-      util.do_battle_mode()
 
       # Second Boss
       atk.attack_boss(True, True, False, False)
@@ -528,44 +560,61 @@ class TerminusMachina(Dungeon):
 
       util.move(590, 150)
       util.do_dash()
-      util.do_fade()
+      util.do_fade(3)
 
-      if util.get_attack_type() == consts.IS_MELEE: util.wait(5)
-      else: util.wait(2)
+      util.move(590, 150)
+      util.do_dash()
 
-      # Redonno Sequence
-      moving = True
-      while moving:
-        if not util.get_macro_state():
-          util.log_action(consts.MSG_TERMINATE)
-          moving = False
-
-        if moving == False:
-          break
-
-        self.path_find(consts.UNIT_REDONNO)
-        try:
-          boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-          moving = False
-          util.log_action(consts.MSG_MOVE_STOP)
-          break
-        except pyauto.ImageNotFoundException:
-          util.log_action(consts.MSG_BOSS_NOT_FOUND)
+      if util.get_attack_type() == consts.IS_MELEE:
+        util.wait(5)
+        atk.attack_monsters(consts.UNIT_REDONNO, False, consts.VAL_INTERVAL_MELEE, self.val_sidestep_disabled)
+      else:
+        util.wait(1)
+        atk.attack_monsters(consts.UNIT_REDONNO, True, consts.VAL_INTERVAL_DEFAULT, self.val_sidestep_disabled)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      util.do_deselect_pack()
-      if util.get_attack_type() == consts.IS_MELEE:
-        util.move(750, 150)
-        util.do_dash()
-        util.do_fade()
-      else:
-        util.move(950, 150)
-        util.do_dash()
-        util.do_fade()
+      util.move(710, 190)
+      util.do_dash()
+      util.do_fade()
+      util.do_dash()
+
+      # # Redonno Sequence
+      # moving = True
+      # while moving:
+      #   if not util.get_macro_state():
+      #     util.log_action(consts.MSG_TERMINATE)
+      #     moving = False
+
+      #   if moving == False:
+      #     break
+
+      #   self.path_find(consts.UNIT_REDONNO)
+      #   try:
+      #     boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      #     moving = False
+      #     util.log_action(consts.MSG_MOVE_STOP)
+      #     break
+      #   except pyauto.ImageNotFoundException:
+      #     util.log_action(consts.MSG_BOSS_NOT_FOUND)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
+      # util.do_deselect_pack()
+      # if util.get_attack_type() == consts.IS_MELEE:
+      #   util.move(750, 150)
+      #   util.do_dash()
+      #   util.do_fade()
+      # else:
+      #   util.move(950, 150)
+      #   util.do_dash()
+      #   util.do_fade()
 
       # Third Boss
       atk.attack_boss()
@@ -573,7 +622,15 @@ class TerminusMachina(Dungeon):
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 4, False)
       else: atk.plunder_box_party()
 
-      util.move(670, 150)
+      # util.move(670, 150)
+      # util.do_dash()
+      # util.do_fade()
+
+      util.move(630, 150)
+      util.do_dash()
+      util.do_fade()
+
+      util.move(945, 355)
       util.do_dash()
       util.do_fade()
 
@@ -644,10 +701,10 @@ class TerminusMachina(Dungeon):
       util.do_deselect_pack()
       util.move(560, 260)
       util.do_dash()
+      util.do_fade(1.2)
       util.do_fade()
 
       # Final Boss
-      util.wait(1)
       atk.attack_boss(True, True, False, False)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_box_party()

@@ -871,17 +871,18 @@ def cancel_aura(delay=0):
 
   if delay != 0: time.sleep(delay)
 
-def do_dash(delay=1.0):
-  do_heal()
+def do_dash(delay=1.0, potion=True):
   pynboard.press(consts.KEY_DASH)
   pynboard.release(consts.KEY_DASH)
 
+  if potion == consts.IS_TRUE: do_heal()
   if delay != 0: time.sleep(delay)
 
-def do_fade(delay=0.5):
+def do_fade(delay=0.5, potion=True):
   pynboard.press(consts.KEY_FADE)
   pynboard.release(consts.KEY_FADE)
 
+  if potion == consts.IS_TRUE: do_heal()
   if delay != 0: time.sleep(delay)
 
 def do_select(delay=0):
@@ -897,7 +898,7 @@ def do_deselect(delay=0):
   if delay != 0: time.sleep(delay)
 
 def do_deselect_pack():
-  do_deselect()
+  do_deselect(0.1)
   do_deselect(0.1)
   do_deselect(0.1)
 
@@ -909,7 +910,7 @@ def roll_box():
       move_rel(10, 10, roll, 0.2)
       move_click_rel(10, 10, roll, 0.2)
     except pyauto.ImageNotFoundException:
-      log_action(consts.MSG_ROLL_EQUIPMENT_NOT_FOUND)
+      pass
 
 def party_roll_box(reps=4):
   roll_reps = reps * 3

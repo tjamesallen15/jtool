@@ -158,7 +158,7 @@ def attack_backtrack(unit=consts.UNIT_EMPTY, aura=True, select=True, sidestep=Tr
       if select == consts.IS_TRUE: util.do_select(0.1)
       box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(consts.MSG_BOX_FOUND)
-      atk.plunder_box(select, 3)
+      plunder_box(select, 3)
       if select == consts.IS_TRUE: util.do_deselect_pack()
     except pyauto.ImageNotFoundException:
       util.log_action(consts.MSG_BOX_NOT_FOUND)
