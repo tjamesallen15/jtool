@@ -211,7 +211,7 @@ class MirageIsland(Dungeon, Special):
       else:
         atk.plunder_box_party()
         util.move(750, 240)
-        util.do_dash()
+        util.do_dash(1.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -502,8 +502,8 @@ class MirageIsland(Dungeon, Special):
       util.do_dash()
 
       if util.get_party_member_status() == consts.IS_TRUE:
-        util.do_dash()
         util.do_fade()
+        util.do_dash()
 
       self.click_portal(575, 410)
       util.move_scroll(750, 150, 375, 150, 0.5)
