@@ -344,6 +344,31 @@ class MirageIsland(Dungeon, Special):
       util.do_fade()
 
       if util.get_party_member_status() == consts.IS_FALSE:
+        # util.move(1045, 120)
+        # util.do_dash()
+        # util.do_fade()
+        # util.do_dash()
+
+        # util.move(705, 90)
+        # util.do_fade()
+        # util.do_dash()
+
+        # self.click_dialog(675, 350)
+
+        # util.move(575, 675)
+        # util.do_dash()
+        # util.do_fade()
+
+        # util.move(220, 695)
+        # util.do_dash()
+        # util.do_fade()
+
+        # util.move(420, 670)
+        # util.do_dash(1.5)
+
+        # util.move(245, 380)
+        # util.do_dash()
+
         util.move(1045, 120)
         util.do_dash()
         util.do_fade()
@@ -361,17 +386,23 @@ class MirageIsland(Dungeon, Special):
 
         util.move(220, 695)
         util.do_dash()
+
+        util.move(510, 555)
         util.do_fade()
 
-        util.move(420, 670)
-        util.do_dash(1.5)
-
-        util.move(245, 380)
+        util.move(505, 170)
         util.do_dash()
+        util.do_fade()
       else:
-        util.wait(8)
-        util.move(355, 360)
+        util.move(1045, 120)
         util.do_dash()
+        util.wait(8)
+
+        util.move(505, 170)
+        util.do_dash()
+        util.do_fade()
+        # util.move(355, 360)
+        # util.do_dash()
         util.wait(3)
 
       self.find_kill_special_boss(consts.UNIT_GROGO_II)
@@ -389,12 +420,21 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == consts.IS_FALSE:
-        util.move(1030, 455)
-        util.do_dash()
-      else:
-        util.move(1030, 455)
-        util.do_dash()
+      # if util.get_party_member_status() == consts.IS_FALSE:
+      #   util.move(1030, 455)
+      #   util.do_dash()
+      # else:
+      #   util.move(1030, 455)
+      #   util.do_dash()
+
+      util.move(765, 725)
+      util.do_dash()
+
+      util.move(745, 610)
+      util.do_dash()
+
+      util.move(380, 625)
+      util.do_dash()
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
       util.move(735, 85)
