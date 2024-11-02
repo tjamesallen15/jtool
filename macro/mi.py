@@ -353,9 +353,10 @@ class MirageIsland(Dungeon, Special):
         util.move(245, 380)
         util.do_dash()
       else:
+        util.wait(8)
         util.move(355, 360)
         util.do_dash()
-        util.wait(10)
+        util.wait(3)
 
       self.find_kill_special_boss(consts.UNIT_GROGO_II)
 
