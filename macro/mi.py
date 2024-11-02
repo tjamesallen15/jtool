@@ -102,7 +102,7 @@ class MirageIsland(Dungeon, Special):
       util.move(475, 100)
       util.do_dash()
       util.do_fade()
-      util.do_dash(2)
+      util.do_dash(4)
 
       # Attack Monsters (Border Crab)
       util.do_final_mode(1)
