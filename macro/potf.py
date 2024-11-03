@@ -526,7 +526,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_plunder(3)
-        util.wait(2)
+        util.wait(4)
       else:
         util.wait(4)
 
