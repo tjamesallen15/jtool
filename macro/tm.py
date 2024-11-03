@@ -72,33 +72,6 @@ class TerminusMachina(Dungeon):
         run_counter += 1000
         continue
 
-      # Mech Lion Sequence
-      # moving = True
-      # while moving:
-      #   if not util.get_macro_state():
-      #     util.log_action(consts.MSG_TERMINATE)
-      #     moving = False
-
-      #   if moving == False:
-      #     break
-
-      #   self.path_find(consts.UNIT_MECH_LION)
-      #   try:
-      #     boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      #     moving = False
-      #     util.log_action(consts.MSG_MOVE_STOP)
-      #     break
-      #   except pyauto.ImageNotFoundException:
-      #     util.log_action(consts.MSG_BOSS_NOT_FOUND)
-
-      # # Check Macro State
-      # if not util.get_macro_state():
-      #   run_counter += 1000
-      #   continue
-
-      # First Boss
-      # util.do_deselect_pack()
-      # util.move(700, 260)
       util.do_battle_mode()
       util.move(630, 150)
       util.do_dash()
@@ -108,7 +81,6 @@ class TerminusMachina(Dungeon):
       util.do_dash()
       util.do_fade()
 
-      # util.do_battle_mode()
       util.do_short_buffs()
       atk.attack_boss(True, True, False, False)
 
@@ -125,9 +97,9 @@ class TerminusMachina(Dungeon):
 
       util.set_battle_mode(False)
 
-      # util.move(710, 260)
-      # util.do_dash()
-      # util.do_fade()
+      util.move(710, 260)
+      util.do_dash()
+      util.do_fade()
 
       util.move(710, 260)
       util.do_dash()
