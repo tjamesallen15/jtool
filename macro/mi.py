@@ -77,7 +77,7 @@ class MirageIsland(Dungeon, Special):
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 2.0, True)
-      util.(1.5)
+      util.cancel_aura(2.0)
 
       # Attack Boss (Watchman Tolerant)
       self.find_kill_special_boss(consts.UNIT_TOLERANT)
