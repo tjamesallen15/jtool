@@ -299,34 +299,6 @@ class TerminusMachina(Dungeon):
       util.move(360, 430)
       util.do_dash()
 
-      # util.move(550, 380)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(680, 150)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(680, 150)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(1000, 400)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(320, 500)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(320, 500)
-      # util.do_dash()
-      # util.do_fade()
-
-      # util.move(320, 500)
-      # util.do_dash()
-      # util.do_fade()
-
       # Power Supply
       util.do_select(0.1)
       if util.get_party_member_status() == consts.IS_TRUE: atk.focus_gate_party(consts.UNIT_POWER_SUPPLY)
@@ -353,7 +325,8 @@ class TerminusMachina(Dungeon):
 
       # Espada II Sequence
       atk.attack_monsters(consts.UNIT_ESPADA_2, True, 0.3, False)
-      # util.cancel_aura(1.5)
+
+      if util.get_attack_type() == consts.IS_MELEE: util.cancel_aura(1.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -366,7 +339,8 @@ class TerminusMachina(Dungeon):
 
       util.move(630, 150)
       util.do_dash()
-      util.do_fade()
+
+      if util.get_attack_type() == consts.IS_RANGE: util.do_fade()
 
       # Power Supply II
       util.do_select(0.1)
@@ -594,49 +568,16 @@ class TerminusMachina(Dungeon):
       util.do_fade()
       util.do_dash()
 
-      # # Redonno Sequence
-      # moving = True
-      # while moving:
-      #   if not util.get_macro_state():
-      #     util.log_action(consts.MSG_TERMINATE)
-      #     moving = False
-
-      #   if moving == False:
-      #     break
-
-      #   self.path_find(consts.UNIT_REDONNO)
-      #   try:
-      #     boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      #     moving = False
-      #     util.log_action(consts.MSG_MOVE_STOP)
-      #     break
-      #   except pyauto.ImageNotFoundException:
-      #     util.log_action(consts.MSG_BOSS_NOT_FOUND)
-
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
-
-      # util.do_deselect_pack()
-      # if util.get_attack_type() == consts.IS_MELEE:
-      #   util.move(750, 150)
-      #   util.do_dash()
-      #   util.do_fade()
-      # else:
-      #   util.move(950, 150)
-      #   util.do_dash()
-      #   util.do_fade()
 
       # Third Boss
       atk.attack_boss()
       util.set_battle_mode(False)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box(True, 4, False)
       else: atk.plunder_box_party()
-
-      # util.move(670, 150)
-      # util.do_dash()
-      # util.do_fade()
 
       util.move(630, 150)
       util.do_dash()

@@ -106,3 +106,23 @@
 # util.move_click(700, 250, 4)
 # util.move_click(510, 225, 5)
 # util.move_click(1000, 300, 5)
+
+
+# # Redonno Sequence
+# moving = True
+# while moving:
+#   if not util.get_macro_state():
+#     util.log_action(consts.MSG_TERMINATE)
+#     moving = False
+
+#   if moving == False:
+#     break
+
+#   self.path_find(consts.UNIT_REDONNO)
+#   try:
+#     boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#     moving = False
+#     util.log_action(consts.MSG_MOVE_STOP)
+#     break
+#   except pyauto.ImageNotFoundException:
+#     util.log_action(consts.MSG_BOSS_NOT_FOUND)
