@@ -102,7 +102,7 @@ class TerminusMachina(Dungeon):
       util.do_battle_mode()
       util.move(630, 150)
       util.do_dash()
-      util.do_fade()
+      util.do_fade(2)
       util.do_dash()
       util.do_fade()
       util.do_dash()
@@ -111,7 +111,12 @@ class TerminusMachina(Dungeon):
       # util.do_battle_mode()
       util.do_short_buffs()
       atk.attack_boss(True, True, False, False)
+
+      util.move(630, 550)
+      util.do_fade()
       atk.plunder_box()
+      util.move(630, 150)
+      util.do_fade()
 
       # Check Macro State
       if not util.get_macro_state():
