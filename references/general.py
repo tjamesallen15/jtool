@@ -43,9 +43,9 @@
 # pyauto.mouseUp(button="right")
 # pyauto.scroll(-10000)
 
-# hp_bar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
-# im1 = pyauto.screenshot(region=hp_bar)
-# im1.save("c:\screenshot.png")
+# image_region = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+# image_screenshot = pyauto.screenshot(region=hp_bar)
+# image_screenshot.save("c:\screenshot.png")
 
 #### MELEE
 # util.move(620, 550)
@@ -73,13 +73,13 @@
 # }
 
 # if get_party_status() == consts.STATE_ONE:
-#       try:
-#         roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
-#         log_action(MSG_ROLL_EQUIPMENT)
-#         move_rel(10, 10, roll)
-#         move_click_rel(10, 10, roll)
-#       except pyauto.ImageNotFoundException:
-#         log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
+#   try:
+#     roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
+#     log_action(MSG_ROLL_EQUIPMENT)
+#     move_rel(10, 10, roll)
+#     move_click_rel(10, 10, roll)
+#   except pyauto.ImageNotFoundException:
+#     log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
 # LAVA HELLFIRE AWAKENED
 # util.move(550, 100)

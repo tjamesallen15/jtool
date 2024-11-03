@@ -258,8 +258,6 @@ class PurifierOfTheForest(Dungeon, Special):
         util.do_dash(2)
         util.do_fade(3)
 
-        util.do_dash(5)
-
         util.move(450, 550)
         util.do_dash()
       else:
@@ -270,12 +268,10 @@ class PurifierOfTheForest(Dungeon, Special):
         util.do_dash()
         util.do_fade()
 
-        util.do_dash(1.5)
-
         util.move(450, 550)
         util.do_dash()
 
-      util.do_final_mode()
+      util.do_final_mode(1)
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
 
@@ -288,7 +284,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade()
       util.do_dash()
 
-      util.do_final_mode()
+      util.do_final_mode(1)
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
 
@@ -389,6 +385,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.move(759, 389)
       util.do_dash()
 
+      util.do_final_mode(2)
       util.do_final_mode(2)
       util.do_aura(2)
       util.set_last_cast_mode(3)
@@ -516,11 +513,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       # Second Portal
       self.click_portal(627, 316, True)
-      util.move(715, 250)
-      util.do_dash()
-      util.move(715, 250)
-      util.do_dash()
-      util.move(715, 250)
+      util.move(626, 291)
       util.do_dash()
 
        # Attack Final Boss
@@ -537,13 +530,13 @@ class PurifierOfTheForest(Dungeon, Special):
       else:
         util.wait(4)
 
-      util.move(418, 581)
+      util.move(512, 633)
       util.do_dash()
 
-      util.move(449, 587)
+      util.move(486, 617)
       util.do_fade()
 
-      util.move(470, 581)
+      util.move(560, 607)
       util.do_dash()
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()

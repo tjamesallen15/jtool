@@ -314,7 +314,8 @@ def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=0):
     sec_difference = math.ceil(check_time - mode_time)
 
     if sec_difference >= 30 and sec_difference <= 35 and aura == consts.IS_TRUE:
-      util.do_aura(1.5)
+      util.do_aura()
+      util.do_aura(2)
       util.force_veradrix()
       util.do_short_buffs()
 
@@ -333,12 +334,16 @@ def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=0):
       mode = 2
       cast_mode = False
       mode_time = time.time()
+      util.set_mode_exist(False)
+      util.set_battle_counter(0)
     elif mode == consts.STATE_TWO and cast_mode == True:
       util.force_battle_mode()
       util.set_last_cast_mode(mode)
       mode = 3
       cast_mode = False
       mode_time = time.time()
+      util.set_mode_exist(False)
+      util.set_battle_counter(0)
 
     try:
       if type == consts.STATE_ZERO: boss = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())

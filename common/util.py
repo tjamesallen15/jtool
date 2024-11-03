@@ -50,6 +50,8 @@ val_char_class = 'BL'
 val_access = 'Free'
 val_last_message = ''
 val_last_cast_mode = 0
+val_battle_counter = 0
+val_mode_exist = False
 
 region_normal_bar = []
 region_mode_bar = []
@@ -62,6 +64,7 @@ region_middle = []
 region_dialog = []
 region_sub_screen = []
 region_train_screen = []
+region_mode_icon = []
 
 def initialize(window, frame, mlbl, rlbl, lrt):
   global macro
@@ -144,6 +147,9 @@ def initialize_region():
 
   global region_train_screen
   region_train_screen = (int(cabal_window[0]) + 5, int(cabal_window[1]) + 280, 50, 55)
+
+  global region_mode_icon
+  region_mode_icon = (int(cabal_window[0] + 153), int(cabal_window[1] + 77), 33, 33)
 
 def set_cabal_window(window):
   global cabal_window
@@ -532,6 +538,9 @@ def get_sub_screen_region():
 def get_train_region():
   return region_train_screen
 
+def get_icon_mode_region():
+  return region_mode_icon
+
 def set_access_level(access_level):
   global val_access_level
   val_access_level = access_level
@@ -557,8 +566,15 @@ def set_last_cast_mode(mode):
   val_last_cast_mode = mode
 
 def get_last_cast_mode():
-  global val_last_cast_mode
+  # global val_last_cast_mode
   return val_last_cast_mode
+
+def set_battle_counter(value=0):
+  global val_battle_counter
+  val_battle_counter = value
+
+def get_battle_counter():
+  return val_battle_counter
 
 def get_party_status():
   if get_party_leader_status() == consts.IS_TRUE or get_party_member_status() == consts.IS_TRUE: return True
@@ -806,11 +822,52 @@ def do_cont_battle_mode():
       do_aura()
       aura_counter = 0
 
+def set_mode_exist(value=False):
+  global val_mode_exist
+  val_mode_exist = value
+
+def get_mode_exist():
+  return val_mode_exist
+
+def get_battle_image():
+  match get_char_class():
+    case consts.VAL_CLASS_FA:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_FA
+      else: return consts.IMG_MODE_FINAL_FA
+    case consts.VAL_CLASS_FB:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_FB
+      else: return consts.IMG_MODE_FINAL_FB
+    case consts.VAL_CLASS_FS:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_FS
+      else: return consts.IMG_MODE_FINAL_FS
+    case consts.VAL_CLASS_FG:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_FG
+      else: return consts.IMG_MODE_FINAL_FG
+    case consts.VAL_CLASS_WA:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_WA
+      else: return consts.IMG_MODE_FINAL_WA
+    case consts.VAL_CLASS_DM:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_DM
+      else: return consts.IMG_MODE_FINAL_DM
+    case consts.VAL_CLASS_BL:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_BL
+      else: return consts.IMG_MODE_FINAL_BL
+    case consts.VAL_CLASS_GL:
+      if get_last_cast_mode() == consts.STATE_TWO: return consts.IMG_MODE_BATTLE_GL
+      else: return consts.IMG_MODE_FINAL_GL
+    case _:
+      return consts.IMG_MODE_BATTLE_FA
+
 def check_battle_mode():
-  if get_last_cast_mode() == consts.STATE_TWO:
-    press_combo(Key.alt, consts.KEY_BM)
-  elif get_last_cast_mode() == consts.STATE_THREE:
-    do_final_mode()
+  log_action(consts.MSG_CHECK_BATTLE_IMAGE)
+  battle_image = get_battle_image()
+  try:
+    battle_aura = pyauto.locateOnScreen(battle_image, grayscale=False, confidence=.9, region=get_icon_mode_region())
+    set_mode_exist(True)
+  except pyauto.ImageNotFoundException:
+    set_mode_exist(False)
+    if get_last_cast_mode() == consts.STATE_TWO: press_combo(Key.alt, consts.KEY_BM)
+    elif get_last_cast_mode() == consts.STATE_THREE: do_final_mode()
 
 def do_veradrix():
   if get_veradrix_status() == consts.IS_TRUE: press_release(consts.KEY_VERADRIX)
@@ -1011,13 +1068,20 @@ def do_attack(delay=0, strict=False, cont=True):
 
   if delay != 0: time.sleep(delay)
 
-def do_special_attack(delay=0.1):
+def do_special_attack(delay=0.1, check_mode=True):
   pynboard.press(consts.KEY_BM_ATK)
   pynboard.release(consts.KEY_BM_ATK)
 
   force_veradrix()
   do_essentials()
-  check_battle_mode()
+
+  if check_mode == consts.IS_TRUE:
+    if get_battle_counter() >= consts.STATE_FIVE and get_mode_exist() == consts.IS_FALSE:
+      check_battle_mode()
+      set_battle_counter(0)
+    else:
+      val_counter = get_battle_counter() + 1
+      set_battle_counter(val_counter)
 
   if delay != 0: time.sleep(delay)
 

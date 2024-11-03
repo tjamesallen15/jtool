@@ -123,6 +123,7 @@ MSG_SELECT_TASK_BAR = "Selecting taskbar"
 MSG_DUNGEON_RESTART = "Restarting before automation"
 MSG_PET_SKILL_FOUND = "Pet Skill Found"
 MSG_PET_SKILL_FOUND = "Pet Skill Not Found"
+MSG_CHECK_BATTLE_IMAGE = "Check Battle Image"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
@@ -197,6 +198,24 @@ IMG_ANT_HILL = "img/ant-hill.jpg"
 IMG_BURNING_ANT_HILL = "img/burning-ant-hill.jpg"
 IMG_FULL_ANT_HILL = "img/full-ant-hill.jpg"
 IMG_WEB_GATE = "img/web-gate.jpg"
+
+# IMG - CLASSES MODE
+IMG_MODE_BATTLE_FA = "img/mode-classes/battle-fa.jpg"
+IMG_MODE_FINAL_FA = "img/mode-classes/final-fa.jpg"
+IMG_MODE_BATTLE_FG = "img/mode-classes/battle-fg.jpg"
+IMG_MODE_FINAL_FG = "img/mode-classes/final-fg.jpg"
+IMG_MODE_BATTLE_DM = "img/mode-classes/battle-dm.jpg"
+IMG_MODE_FINAL_DM = "img/mode-classes/final-dm.jpg"
+IMG_MODE_BATTLE_WA = "img/mode-classes/battle-wa.jpg"
+IMG_MODE_FINAL_WA = "img/mode-classes/final-wa.jpg"
+IMG_MODE_BATTLE_FB = "img/mode-classes/battle-fb.jpg"
+IMG_MODE_FINAL_FB = "img/mode-classes/final-fb.jpg"
+IMG_MODE_BATTLE_BL = "img/mode-classes/battle-bl.jpg"
+IMG_MODE_FINAL_BL = "img/mode-classes/final-bl.jpg"
+IMG_MODE_BATTLE_GL = "img/mode-classes/battle-gl.jpg"
+IMG_MODE_FINAL_GL = "img/mode-classes/final-gl.jpg"
+IMG_MODE_BATTLE_FS = "img/mode-classes/battle-fs.jpg"
+IMG_MODE_FINAL_FS = "img/mode-classes/final-fs.jpg"
 
 # FILE
 FILE_CHANGELOG = "CHANGELOG.md"
@@ -333,6 +352,7 @@ STATE_ZERO = 0
 STATE_TWO = 2
 STATE_THREE = 3
 STATE_FOUR = 4
+STATE_FIVE = 5
 STATE_DISABLED = "disabled"
 STATE_NORMAL = "normal"
 STATE_READONLY = "readonly"
@@ -438,6 +458,9 @@ IS_MELEE = 0
 IS_RANGE = 1
 VAL_CLASS_FB = 'FB'
 VAL_CLASS_FA = 'FA'
+VAL_CLASS_FS = 'FS'
 VAL_CLASS_FG = 'FG'
 VAL_CLASS_DM = 'DM'
 VAL_CLASS_BL = 'BL'
+VAL_CLASS_GL = 'GL'
+VAL_CLASS_WA = 'WA'

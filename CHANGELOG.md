@@ -29,6 +29,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Improved coordination selection
 - [Application] Added ability to save channel selection
 - [Application] Strucure Refactors (Special, Attack, Constants)
+- [Application] Added mode images to verify if the mode is in effect to prevent spamming of keys
 - [MI] Added Mirage Island in Development Phase
 
 ## v5.90 Fixes
