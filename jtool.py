@@ -281,7 +281,8 @@ class JTool():
         "Holy Windmill",
         "Holy Keldrasil",
         "Terminus Machina",
-        "Chaos Infinity"
+        "Chaos Infinity",
+        "Mirage Island"
       ]
     elif self.get_level() == consts.ACCESS_TESTER_II:
       self.LIST_DUNGEON = [
