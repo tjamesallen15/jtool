@@ -34,14 +34,21 @@ from macro.mi import MirageIsland
 
 pynboard = Controller()
 
-LBL_DASH = "Dash: "
-LBL_FADE = "Fade: "
 CONNECTOR = ", "
 KEY_1 = "1"
 KEY_2 = "2"
 KEY_EQ = "="
 LBL_ATTACK = "Attack"
+LBL_PAREN_PREFIX = "("
+LBL_PAREN_SUFFIX = ")"
+LBL_MOVE_PREFIX = "util.move("
+LBL_MOVE_SUFFIX = ")"
+LBL_DASH_CON = "util.do_dash()"
+LBL_FADE_CON = "util.do_fade()"
 
+cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
+util.set_cabal_window(cabal_window)
+util.go_cabal_window()
 def on_press(key):
   window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
   if key == keyboard.Key.esc: return False
@@ -52,18 +59,19 @@ def on_press(key):
       x, y = pyauto.position()
       true_x = str(x - window[0])
       true_y = str(y - window[1])
-      print(LBL_DASH + true_x + CONNECTOR + true_y)
+      print(LBL_MOVE_PREFIX + true_x + CONNECTOR + true_y + LBL_MOVE_SUFFIX + LBL_DASH_CON)
   elif k == KEY_2:
       x, y = pyauto.position()
       true_x = str(x - window[0])
       true_y = str(y - window[1])
-      print(LBL_FADE + true_x + CONNECTOR + true_y)
+      print(LBL_MOVE_PREFIX + true_x + CONNECTOR + true_y + LBL_MOVE_SUFFIX + LBL_FADE_CON)
   elif k == KEY_EQ: print(LBL_ATTACK)
 
   if key == Key.space:
       x, y = pyauto.position()
-      print(x - window[0])
-      print(y - window[1])
+      true_x = str(x - window[0])
+      true_y = str(y - window[1])
+      print(LBL_PAREN_PREFIX + true_x + CONNECTOR + true_y + LBL_PAREN_SUFFIX)
 
 listener = keyboard.Listener(on_press=on_press)
 listener.start()
@@ -74,6 +82,6 @@ class Drafter():
     cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
     util.set_cabal_window(cabal_window)
     util.go_cabal_window()
-    # pyauto.displayMousePosition(cabal_window[0], cabal_window[1])
+    pyauto.displayMousePosition(cabal_window[0], cabal_window[1])
 
 Drafter().initialize()
