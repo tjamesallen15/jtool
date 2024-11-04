@@ -508,9 +508,15 @@ class PurifierOfTheForest(Dungeon, Special):
       self.click_portal(627, 316, True)
       util.move_click(632, 387)
       util.do_deselect()
-      util.move(626, 291)
-      util.do_fade()
-      util.do_dash()
+
+      if util.get_party_member_status() == consts.IS_TRUE:
+        util.move(826, 291)
+        util.do_fade()
+        util.do_dash()
+      else:
+        util.move(626, 291)
+        util.do_fade()
+        util.do_dash()
 
        # Attack Final Boss
       self.find_kill_special_boss(consts.UNIT_OMERAI)
