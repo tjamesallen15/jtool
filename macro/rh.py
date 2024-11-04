@@ -233,7 +233,7 @@ class RadiantHall(Dungeon):
 
       # First Boss
       util.wait(3)
-      atk.attack_boss(True, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, False)
       atk.plunder_box()
 
       util.move(1020, 400)
@@ -378,7 +378,7 @@ class RadiantHall(Dungeon):
 
       # Second Boss
       util.wait(1)
-      atk.attack_boss(True, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, False)
       util.do_plunder(4)
 
       util.move(620, 100)

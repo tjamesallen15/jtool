@@ -125,7 +125,7 @@ class SteamerCrazyAwakened(Dungeon):
         continue
 
       # Final Boss
-      atk.attack_boss(True, False, False, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, False, False, False)
       util.do_plunder(1)
 
       # Check Macro State

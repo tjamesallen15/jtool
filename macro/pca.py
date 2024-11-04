@@ -379,7 +379,7 @@ class PanicCaveAwakened(Dungeon):
         except pyauto.ImageNotFoundException:
           util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      atk.attack_boss(False, False, False, False)
+      atk.attack_boss(consts.UNIT_EMPTY, False, False, False, False)
       atk.plunder_box(True, 2)
 
       util.move(650, 350)

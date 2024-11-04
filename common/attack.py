@@ -44,14 +44,14 @@ def attack_monsters(unit=consts.UNIT_EMPTY, aura=True, interval=consts.VAL_INTER
       combo = False
       break
     except pyauto.ImageNotFoundException:
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
 
     if combo == False:
       break
 
     try:
       mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
       util.do_attack(interval)
       util.do_attack(interval, True)
     except pyauto.ImageNotFoundException:
@@ -59,7 +59,7 @@ def attack_monsters(unit=consts.UNIT_EMPTY, aura=True, interval=consts.VAL_INTER
       combo = False
       break
 
-def attack_boss(select=True, aura=True, strict=False, cont=True):
+def attack_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, strict=False, cont=True):
   combo = True
 
   if util.get_battle_mode_status() and util.get_char_class() == consts.VAL_CLASS_FA and select == consts.IS_TRUE:
@@ -83,7 +83,9 @@ def attack_boss(select=True, aura=True, strict=False, cont=True):
 
     try:
       boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_ATTACK_BOSS)
+      if unit == consts.UNIT_EMPTY: util.log_action(consts.MSG_ATTACK_BOSS)
+      else: util.log_action(consts.MSG_ATTACK + unit)
+      
       util.do_attack(0.1, strict, cont)
       util.do_attack(0.1, strict, cont)
     except pyauto.ImageNotFoundException:
@@ -144,7 +146,7 @@ def attack_backtrack(unit=consts.UNIT_EMPTY, aura=True, select=True, sidestep=Tr
     try:
       if select == consts.IS_TRUE: util.do_select(0.1)
       mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
 
       util.do_attack(0.1)
       util.do_attack(0.1)
@@ -192,7 +194,7 @@ def focus_monsters(unit=consts.UNIT_EMPTY, select=True, aura=True, sidestep=True
 
     try:
       mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
 
       util.do_attack(0.1)
     except pyauto.ImageNotFoundException:
@@ -213,7 +215,7 @@ def focus_gate(unit=consts.UNIT_EMPTY, select=True):
 
     try:
       gate = pyauto.locateOnScreen(consts.IMG_GATE, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
       util.do_attack(0.3)
       util.do_attack(0.3)
     except pyauto.ImageNotFoundException:
@@ -262,7 +264,7 @@ def focus_monster_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, strict=Fa
 
     try:
       mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
 
       util.do_attack(0.1, strict, cont)
       util.do_attack(0.1, strict, cont)
@@ -285,7 +287,7 @@ def focus_high_monsters(unit=consts.UNIT_EMPTY, select=True):
 
     try:
       mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
       util.do_special_attack()
     except pyauto.ImageNotFoundException:
       util.log_action(consts.MSG_MONSTER_CLEARED)
@@ -349,7 +351,7 @@ def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=0):
       if type == consts.STATE_ZERO: boss = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())
       elif type == consts.STATE_ONE: boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
       elif type == consts.STATE_TWO: boss = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
-      util.log_action(consts.MSG_ATTACK_MOBS + unit)
+      util.log_action(consts.MSG_ATTACK + unit)
       util.do_special_attack()
     except pyauto.ImageNotFoundException:
       util.log_action(consts.MSG_BOSS_KILLED)

@@ -153,7 +153,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.move(1042, 575)
       util.do_fade()
       util.move(1043, 563)
-      util.do_dash()
+      util.do_dash(2)
       util.move(1039, 560)
       util.do_fade(2)
       util.move(970, 550)

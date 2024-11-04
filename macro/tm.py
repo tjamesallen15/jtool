@@ -82,7 +82,7 @@ class TerminusMachina(Dungeon):
       util.do_fade()
 
       util.do_short_buffs()
-      atk.attack_boss(True, True, False, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, True, False, False)
 
       util.move(630, 550)
       util.do_fade()
@@ -459,7 +459,7 @@ class TerminusMachina(Dungeon):
       util.do_fade()
 
       # Second Boss
-      atk.attack_boss(True, True, False, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, True, False, False)
       util.wait(0.5)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
@@ -629,7 +629,7 @@ class TerminusMachina(Dungeon):
       util.do_fade()
 
       # Final Boss
-      atk.attack_boss(True, True, False, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, True, False, False)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_box_party()
 

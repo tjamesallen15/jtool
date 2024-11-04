@@ -245,6 +245,114 @@ class Dungeon(ABC):
         check_dialog = False
       except pyauto.ImageNotFoundException:
         pass
+
+  def click_exit(self, x, y, deviate=False):
+    check_dialog = True
+    while check_dialog:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        check_dialog = False
+
+      if check_dialog == False:
+        break
+
+      try:
+        util.move_click(x, y, 0.2)
+        if deviate == consts.IS_TRUE:
+          util.move_click(x - 10, y, 0.2)
+          util.move_click(x + 10, y, 0.2)
+        dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 0.5)
+        check_dialog = False
+      except pyauto.ImageNotFoundException:
+        pass
+
+  def find_kill_low_monsters(self, unit_image, unit_name, delay=0.5):
+    finding = True
+    while finding:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        finding = False
+
+      if finding == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        mobs = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_archer_region())
+        atk.focus_monsters(unit_name, False, False, False)
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        pass
+
+    util.wait(delay)
+
+  def find_kill_low_special_boss(self, unit_name, delay=0.5):
+    finding = True
+    while finding:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        finding = False
+
+      if finding == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
+        atk.attack_boss(unit_name, False, False, False, False)
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        pass
+
+    util.wait(delay)
+
+  def find_kill_box(self, rep=4, delay=0.5):
+    finding = True
+    while finding:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        finding = False
+
+      if finding == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        pass
+
+    atk.plunder_box(False, rep)
+    util.wait(delay)
+
+  def find_kill_final_box(self, rep=5, delay=0.5):
+    finding = True
+    while finding:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        finding = False
+
+      if finding == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        pass
+
+
+    atk.plunder_final_box(False, rep)
+    util.wait(delay)
+
 class Special(ABC):
   def find_kill_boss(self, unit_image, unit_name, cancel=True, delay=0.5):
     finding = True
@@ -335,49 +443,6 @@ class Special(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    util.wait(delay)
-
-  def find_kill_box(self, rep=4, delay=0.5):
-    finding = True
-    while finding:
-      if not util.get_macro_state():
-        util.log_action(consts.MSG_TERMINATE)
-        finding = False
-
-      if finding == False:
-        break
-
-      try:
-        util.do_select(0.1)
-        box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
-        finding = False
-        break
-      except pyauto.ImageNotFoundException:
-        pass
-
-    atk.plunder_box(False, rep)
-    util.wait(delay)
-
-  def find_kill_final_box(self, rep=5, delay=0.5):
-    finding = True
-    while finding:
-      if not util.get_macro_state():
-        util.log_action(consts.MSG_TERMINATE)
-        finding = False
-
-      if finding == False:
-        break
-
-      try:
-        util.do_select(0.1)
-        box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
-        finding = False
-        break
-      except pyauto.ImageNotFoundException:
-        pass
-
-
-    atk.plunder_final_box(False, rep)
     util.wait(delay)
 
   def attack_monsters(self, unit_name, delay=1.5, aura=False):

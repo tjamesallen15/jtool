@@ -57,7 +57,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(570, 300)
       util.do_dash()
 
-      atk.attack_boss(True, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, False)
 
       if util.get_attack_type() == consts.IS_MELEE: util.cancel_aura(1.2)
 
@@ -211,7 +211,7 @@ class CatacombsFrostAwakened(Dungeon):
       util.do_short_buffs()
 
       self.position_final_boss()
-      atk.attack_boss(True, True, False, False)
+      atk.attack_boss(consts.UNIT_EMPTY, True, True, False, False)
       atk.plunder_box()
       util.set_battle_mode(False)
 

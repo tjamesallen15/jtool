@@ -236,7 +236,7 @@ class HazardousValleyAwakened(Dungeon):
           boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
           util.log_action(consts.MSG_BOSS_FOUND)
           boss_count += 1
-          atk.attack_boss(False, True)
+          atk.attack_boss(consts.UNIT_EMPTY, False, True)
           util.do_deselect_pack()
           util.wait(5)
         except pyauto.ImageNotFoundException:
