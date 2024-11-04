@@ -336,10 +336,8 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       util.move(675, 300)
-      util.do_fade(5)
-
-      if util.get_party_status() == consts.IS_TRUE: util.wait(5)
-      else: util.wait(2)
+      if util.get_party_status() == consts.IS_TRUE: util.do_fade(7)
+      else: util.do_fade(5)
 
       util.do_dash()
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -363,6 +361,7 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Ant Base
+      util.wait(5)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move(549, 180)
       util.do_dash()
@@ -510,7 +509,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_deselect()
 
       if util.get_party_member_status() == consts.IS_TRUE:
-        util.move(826, 291)
+        util.move(686, 291)
         util.do_fade()
         util.do_dash()
       else:
