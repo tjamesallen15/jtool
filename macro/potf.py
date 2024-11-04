@@ -63,6 +63,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash()
 
        # Attack First Boss (Bloody Sweeper)
+      util.set_last_cast_mode(3)
       self.find_kill_boss(consts.IMG_BLOODY_SWEEPER, consts.UNIT_BLOODY_SWEEPER)
 
       if not util.get_macro_state():
@@ -511,9 +512,13 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade()
 
       # Second Portal
-      self.click_portal(627, 316, True)
+      self.click_portal(627, 316, True, 0.5)
       util.move(626, 291)
       util.do_dash()
+      util.move(626, 291)
+      util.do_dash()
+      util.move(626, 291)
+      util.do_fade()
 
        # Attack Final Boss
       self.find_kill_special_boss(consts.UNIT_OMERAI)
