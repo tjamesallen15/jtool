@@ -361,7 +361,7 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Ant Base
-      util.wait(5)
+      util.wait(10)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move(549, 180)
       util.do_dash()
