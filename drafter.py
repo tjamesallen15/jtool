@@ -49,6 +49,7 @@ LBL_FADE_CON = "util.do_fade()"
 cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 util.set_cabal_window(cabal_window)
 util.go_cabal_window()
+
 def on_press(key):
   window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
   if key == keyboard.Key.esc: return False

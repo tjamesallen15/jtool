@@ -925,6 +925,7 @@ def do_hard_debuff(delay=1.5):
 
 def cancel_aura(delay=0):
   click_combo(175, 100, True)
+  set_mode_exist(False)
 
   if delay != 0: time.sleep(delay)
 

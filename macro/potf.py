@@ -155,7 +155,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.move(1043, 563)
       util.do_dash()
       util.move(1039, 560)
-      util.do_fade()
+      util.do_fade(2)
       util.move(970, 550)
       util.do_dash(3)
       util.move(1084, 282)
@@ -335,13 +335,13 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
+      util.move(675, 300)
+      util.do_fade(5)
+
       if util.get_party_status() == consts.IS_TRUE: util.wait(5)
       else: util.wait(2)
 
-      util.move(675, 300)
-      util.do_fade(5)
       util.do_dash()
-
       util.move_scroll(700, 150, 375, 150, 0.5)
       self.find_kill_boss(consts.IMG_ELECTULA, consts.UNIT_ELECTULA)
 
@@ -363,7 +363,6 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Ant Base
-      util.wait(10)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.move(549, 180)
       util.do_dash()
@@ -384,11 +383,8 @@ class PurifierOfTheForest(Dungeon, Special):
       util.move(863, 377)
       util.do_fade()
       util.move(759, 389)
-      util.do_dash()
+      util.do_dash(1.5)
 
-      util.do_final_mode(2)
-      util.do_final_mode(2)
-      util.do_aura(2)
       util.set_last_cast_mode(3)
 
       util.move(910, 466)
@@ -469,9 +465,6 @@ class PurifierOfTheForest(Dungeon, Special):
       # Attack Fifth Boss (Queen Ripley)
       self.find_kill_boss(consts.IMG_QUEEN_RIPLEY, consts.UNIT_QUEEN_RIPLEY)
 
-      util.move(643, 528)
-      util.do_fade()
-
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
@@ -512,13 +505,12 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade()
 
       # Second Portal
-      self.click_portal(627, 316, True, 1)
-      util.move(626, 291)
-      util.do_dash()
-      util.move(626, 291)
-      util.do_dash()
+      self.click_portal(627, 316, True)
+      util.move_click(632, 387)
+      util.do_deselect()
       util.move(626, 291)
       util.do_fade()
+      util.do_dash()
 
        # Attack Final Boss
       self.find_kill_special_boss(consts.UNIT_OMERAI)
