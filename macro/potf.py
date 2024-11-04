@@ -512,7 +512,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade()
 
       # Second Portal
-      self.click_portal(627, 316, True, 0.5)
+      self.click_portal(627, 316, True, 1)
       util.move(626, 291)
       util.do_dash()
       util.move(626, 291)
@@ -531,17 +531,17 @@ class PurifierOfTheForest(Dungeon, Special):
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_plunder(3)
         util.wait(4)
+
+        util.move(512, 633)
+        util.do_dash()
+
+        util.move(486, 617)
+        util.do_fade()
+
+        util.move(560, 607)
+        util.do_dash()
       else:
-        util.wait(4)
-
-      util.move(512, 633)
-      util.do_dash()
-
-      util.move(486, 617)
-      util.do_fade()
-
-      util.move(560, 607)
-      util.do_dash()
+        util.wait(8)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_box_party()
