@@ -31,6 +31,7 @@ from macro.rh import RadiantHall
 from macro.potf import PurifierOfTheForest
 from macro.mi import MirageIsland
 from macro.scp import SteamerCrazyPremium
+from macro.cls import Celestia
 
 pynboard = Controller()
 class JTool():
@@ -53,7 +54,8 @@ class JTool():
     "Radiant Hall",
     "Purifier of the Forest",
     "Mirage Island",
-    "Steamer Crazy (Premium)"
+    "Steamer Crazy (Premium)",
+    "Celestia"
   ]
 
   LIST_DUNGEON = []
@@ -242,6 +244,8 @@ class JTool():
       MirageIsland().initialize(dungeon_args)
     elif selected_dungeon == self.LIST_MASTER[17]:
       SteamerCrazyPremium().initialize(dungeon_args)
+    elif selected_dungeon == self.LIST_MASTER[18]:
+      Celestia().initialize(dungeon_args)
 
   def get_dungeon_list(self):
     if self.get_level() == consts.ACCESS_FREE:
@@ -317,6 +321,7 @@ class JTool():
         "Hazardous Valley (Veradrix)",
         "Radiant Hall",
         "Mirage Island",
+        "Celestia",
         "Purifier of the Forest"
       ]
 

@@ -354,7 +354,7 @@ class Dungeon(ABC):
     util.wait(delay)
 
 class Special(ABC):
-  def find_kill_boss(self, unit_image, unit_name, cancel=True, delay=0.5):
+  def find_kill_boss(self, unit_image, unit_name=consts.UNIT_EMPTY, cancel=True, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -367,7 +367,7 @@ class Special(ABC):
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(unit_image, grayscale=False, confidence=.7, region=util.get_archer_region())
-        atk.focus_high_boss(unit_name, False, True, False)
+        atk.focus_high_boss(unit_name, False, True, consts.TYPE_MONSTER)
         finding = False
         break
       except pyauto.ImageNotFoundException:
@@ -376,7 +376,29 @@ class Special(ABC):
     if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
     util.wait(delay)
 
-  def find_kill_special_boss(self, unit_name, cancel=True, delay=0.5):
+  def find_kill_semi_boss(self, unit_name=consts.UNIT_EMPTY, cancel=True, delay=0.5):
+    finding = True
+    while finding:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        finding = False
+
+      if finding == False:
+        break
+
+      try:
+        util.do_select(0.1)
+        boss = pyauto.locateOnScreen(consts.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
+        atk.focus_high_boss(unit_name, False, True, consts.TYPE_SEMI)
+        finding = False
+        break
+      except pyauto.ImageNotFoundException:
+        pass
+
+    if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
+    util.wait(delay)
+
+  def find_kill_special_boss(self, unit_name=consts.UNIT_EMPTY, cancel=True, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -389,7 +411,7 @@ class Special(ABC):
       try:
         util.do_select(0.1)
         boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
-        atk.focus_high_boss(unit_name, False, True, True)
+        atk.focus_high_boss(unit_name, False, True, consts.TYPE_BOSS)
         finding = False
         break
       except pyauto.ImageNotFoundException:
@@ -398,7 +420,7 @@ class Special(ABC):
     if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
     util.wait(delay)
 
-  def find_focus_monsters(self, unit_image, unit_name, delay=0.5):
+  def find_focus_monsters(self, unit_image, unit_name=consts.UNIT_EMPTY, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -419,7 +441,7 @@ class Special(ABC):
 
     util.wait(delay)
 
-  def find_kill_monsters(self, unit_name, tick=15, delay=0.5):
+  def find_kill_monsters(self, unit_name=consts.UNIT_EMPTY, tick=15, delay=0.5):
     timeout = 0
     finding = True
     while finding:
@@ -445,10 +467,10 @@ class Special(ABC):
 
     util.wait(delay)
 
-  def attack_monsters(self, unit_name, delay=1.5, aura=False):
+  def attack_monsters(self, unit_name=consts.UNIT_EMPTY, delay=1.5, aura=False):
     atk.attack_monsters(unit_name, aura, 0.3, False)
     if delay != 0: util.wait(delay)
 
-  def focus_monsters(self, unit_name, reps=4, delay=1.5, aura=False):
+  def focus_monsters(self, unit_name=consts.UNIT_EMPTY, reps=4, delay=1.5, aura=False):
     for x in range(reps): atk.focus_monsters(unit_name, True, aura, False)
     if delay != 0: util.wait(delay)

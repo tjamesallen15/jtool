@@ -16,6 +16,8 @@ import common.constants as consts
 import common.util as util
 import common.attack as atk
 
+from common.dungeon import Dungeon
+
 from macro.hva import HazardousValleyAwakened
 from macro.hvenh import HazardousValley
 from macro.sca import SteamerCrazyAwakened
@@ -49,6 +51,7 @@ LBL_FADE_CON = "util.do_fade()"
 cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 util.set_cabal_window(cabal_window)
 util.go_cabal_window()
+util.initialize_region()
 
 def on_press(key):
   window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
@@ -78,11 +81,11 @@ listener = keyboard.Listener(on_press=on_press)
 listener.start()
 listener.join()
 
-class Drafter():
+class Drafter(Dungeon):
+  def run_dungeon(self, runs):
+    return super().run_dungeon(runs)
+
   def initialize(self):
-    cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-    util.set_cabal_window(cabal_window)
-    util.go_cabal_window()
     pyauto.displayMousePosition(cabal_window[0], cabal_window[1])
 
 Drafter().initialize()

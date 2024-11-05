@@ -21,6 +21,8 @@ All notable changes to this project will be documented in this file.
 - [RH] Radiant Hall [v5.65] [Development]
 - [POTF] Purifier of the Forest [v5.85]
 - [MI] Mirage Island [v5.90]
+- [SCP] Steamer Crazy (Premium) [v5.90]
+- [CLS] Celestia [v5.90]
 
 ## v5.90 Features
 
@@ -31,6 +33,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Strucure Refactors (Special, Attack, Constants)
 - [Application] Added mode images to verify if the mode is in effect to prevent spamming of keys
 - [MI] Added Mirage Island in Development Phase
+- [SCP] Added Steamer Crazy (Premium) in Development Phase
 
 ## v5.90 Fixes
 

@@ -12,7 +12,7 @@ from pynput import keyboard
 import common.constants as consts
 import common.util as util
 
-def attack_monsters(unit=consts.UNIT_EMPTY, aura=True, interval=consts.VAL_INTERVAL_DEFAULT, sidestep=True):
+def attack_monsters(unit=consts.UNIT_EMPTY, aura=True, interval=consts.VAL_INTERVAL_DEFAULT, sidestep=True, type=consts.TYPE_BOSS):
   combo = True
   fade_count = 0
 
@@ -38,7 +38,9 @@ def attack_monsters(unit=consts.UNIT_EMPTY, aura=True, interval=consts.VAL_INTER
 
     util.do_select(0.1)
     try:
-      boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      if type == consts.TYPE_BOSS: pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      elif type == consts.TYPE_SEMI: pyauto.locateOnScreen(consts.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      elif type == consts.TYPE_SHADE: pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
       util.do_deselect_pack()
       util.log_action(consts.MSG_BOSS_FOUND)
       combo = False
@@ -293,7 +295,7 @@ def focus_high_monsters(unit=consts.UNIT_EMPTY, select=True):
       util.log_action(consts.MSG_MONSTER_CLEARED)
       combo = False
 
-def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=0):
+def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=consts.TYPE_BOSS):
   combo = True
   cast_mode = True
   mode_time = time.time()
@@ -348,9 +350,10 @@ def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=0):
       util.set_battle_counter(0)
 
     try:
-      if type == consts.STATE_ZERO: boss = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())
-      elif type == consts.STATE_ONE: boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
-      elif type == consts.STATE_TWO: boss = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
+      if type == consts.TYPE_BOSS: pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      elif type == consts.TYPE_SEMI: pyauto.locateOnScreen(consts.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      elif type == consts.TYPE_SHADE: pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+      elif type == consts.TYPE_MONSTER: pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(consts.MSG_ATTACK + unit)
       util.do_special_attack()
     except pyauto.ImageNotFoundException:

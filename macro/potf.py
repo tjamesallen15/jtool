@@ -115,6 +115,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.move(718, 396)
       util.do_fade()
 
+      util.wait(2)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
@@ -212,7 +213,7 @@ class PurifierOfTheForest(Dungeon, Special):
         util.wait(4)
       else:
         atk.plunder_box_party()
-        util.wait(8)
+        util.wait(12)
 
       if not util.get_macro_state():
         run_counter += 1000

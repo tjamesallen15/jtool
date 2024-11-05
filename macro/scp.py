@@ -31,9 +31,8 @@ class SteamerCrazyPremium(Dungeon):
       util.go_skill_slot(0.2)
       util.do_buffs()
 
-      util.move_scroll(375, 150, 700, 150)
-
       # Click Dungeon
+      util.move_scroll(375, 150, 700, 150)
       self.click_dungeon_portal(600, 250)
 
       # Enter Dungeon
@@ -46,6 +45,7 @@ class SteamerCrazyPremium(Dungeon):
       util.do_dash()
 
       atk.attack_monsters(consts.UNIT_APE, True, sidestep=self.val_sidestep_disabled)
+      util.wait(1)
 
       util.move(625, 200)
       util.do_dash()
@@ -57,6 +57,7 @@ class SteamerCrazyPremium(Dungeon):
       util.do_fade()
 
       atk.attack_monsters(consts.UNIT_FLOATER, True, sidestep=self.val_sidestep_disabled)
+      util.wait(1)
 
       util.move(625, 200)
       util.do_dash()
@@ -64,6 +65,9 @@ class SteamerCrazyPremium(Dungeon):
       util.do_fade()
       util.move(625, 200)
       util.do_dash()
+
+      atk.attack_monsters(consts.UNIT_FLOATER, True, sidestep=self.val_sidestep_disabled)
+      util.wait(1)
 
       util.move(625, 700)
       util.do_fade()
@@ -84,6 +88,7 @@ class SteamerCrazyPremium(Dungeon):
       util.do_dash()
 
       atk.attack_monsters(consts.UNIT_COPTER, True, sidestep=self.val_sidestep_disabled)
+      util.wait(1)
 
       util.move(625, 150)
       util.do_dash()
@@ -121,10 +126,11 @@ class SteamerCrazyPremium(Dungeon):
       util.do_dash()
 
       atk.attack_boss(consts.UNIT_PENNA, True, False, False)
-      atk.plunder_box()
 
       util.move(625, 150)
       util.do_dash()
+      atk.plunder_box()
+
       util.move(625, 150)
       util.do_fade()
       util.move(625, 150)
@@ -133,6 +139,7 @@ class SteamerCrazyPremium(Dungeon):
       util.do_fade()
 
       atk.attack_monsters(consts.UNIT_STEAKY, True, sidestep=self.val_sidestep_disabled)
+      util.wait(1)
 
       util.move(625, 200)
       util.do_dash()
@@ -144,6 +151,7 @@ class SteamerCrazyPremium(Dungeon):
       util.do_fade()
 
       atk.focus_gate(consts.UNIT_OBSTACLE)
+      util.wait(1)
 
       util.move(625, 200)
       util.do_dash()
@@ -163,7 +171,6 @@ class SteamerCrazyPremium(Dungeon):
 
       util.move(625, 250)
       util.do_fade()
-
       self.click_exit(640, 230)
 
       # Start to End Dungeon

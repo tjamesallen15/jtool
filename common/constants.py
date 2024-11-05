@@ -308,6 +308,15 @@ UNIT_PENNA = "Penna"
 UNIT_STEAMER = "Steamer"
 UNIT_OBSTACLE = "Obstacle"
 
+UNIT_FLA_3571 = 'FLA 3571'
+UNIT_MONAD_FRAGMENT = 'Monad Fragment'
+UNIT_MONAD = 'Monad'
+UNIT_SEEKER = 'Seeker'
+UNIT_AION = 'Aion'
+UNIT_SERVANT = 'Servant'
+UNIT_VITO = 'Vito'
+UNIT_PLUMA = 'Pluma'
+UNIT_PERIUS = 'Perius'
 # JSON DATA
 DATA_JSON = "data/config.json"
 DATA_FRAME = "frame"
@@ -472,3 +481,8 @@ VAL_CLASS_DM = 'DM'
 VAL_CLASS_BL = 'BL'
 VAL_CLASS_GL = 'GL'
 VAL_CLASS_WA = 'WA'
+
+TYPE_BOSS = 'Boss'
+TYPE_SEMI = 'Semi'
+TYPE_MONSTER = 'Monster'
+TYPE_SHADE = 'Shade'
