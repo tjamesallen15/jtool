@@ -350,10 +350,10 @@ def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=consts.
       util.set_battle_counter(0)
 
     try:
-      if type == consts.TYPE_BOSS: pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      elif type == consts.TYPE_SEMI: pyauto.locateOnScreen(consts.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
-      elif type == consts.TYPE_SHADE: pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
-      elif type == consts.TYPE_MONSTER: pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+      if type == consts.TYPE_BOSS: pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
+      elif type == consts.TYPE_SEMI: pyauto.locateOnScreen(consts.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_archer_region())
+      elif type == consts.TYPE_SHADE: pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_archer_region())
+      elif type == consts.TYPE_MONSTER: pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())
       util.log_action(consts.MSG_ATTACK + unit)
       util.do_special_attack()
     except pyauto.ImageNotFoundException:
