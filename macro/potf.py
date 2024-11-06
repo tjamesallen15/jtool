@@ -116,6 +116,8 @@ class PurifierOfTheForest(Dungeon, Special):
       if util.get_attack_type() == consts.IS_MELEE: util.wait(6)
       else: util.wait(4)
 
+      util.do_fade_rel(657, 482)
+
       util.do_final_mode()
       util.set_last_cast_mode(3)
 
@@ -126,6 +128,7 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
+      util.do_dash_rel(610, 306)
       util.do_fade_rel(804, 282)
       util.do_dash_rel(803, 322)
       util.do_fade_rel(1042, 575)
