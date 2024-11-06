@@ -78,7 +78,8 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.focus_monsters(consts.UNIT_BLOODY_HORN, 6, 6, True)
+      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_BLOODY_HORN, 8, 6, True)
+      else: self.focus_monsters(consts.UNIT_BLOODY_HORN, 6, 6, True)
       util.cancel_aura(2.0)
 
       if not util.get_macro_state():
@@ -117,7 +118,9 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      self.focus_monsters(consts.UNIT_KORAIDER, 3, 1, True)
+
+      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_KORAIDER, 6, 1, True)
+      else: self.focus_monsters(consts.UNIT_KORAIDER, 3, 1, True)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -133,7 +136,8 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade_rel(938, 313, 3)
       util.do_dash_rel(935, 315, 2)
 
-      self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 2, 1, True)
+      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_KORAIDER, 4, 1, True)
+      else: self.focus_monsters(consts.UNIT_KORAIDER, 2, 1, True)
       util.cancel_aura(2.0)
 
       if not util.get_macro_state():
@@ -294,7 +298,7 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Ant Base
-      util.wait(10)
+      util.countdown_timer(10)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.do_dash_rel(549, 180)
       util.do_fade_rel(539, 262)
