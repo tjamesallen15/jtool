@@ -435,7 +435,7 @@ class MirageIsland(Dungeon, Special):
       util.do_fade_rel(570, 145)
       util.do_dash_rel(570, 145)
 
-      self.click_portal(575, 410)
+      self.click_portal(575, 410, 1)
       util.move_scroll(750, 150, 375, 150, 0.5)
 
       if util.get_party_status() == consts.IS_TRUE:
