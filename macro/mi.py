@@ -133,12 +133,18 @@ class MirageIsland(Dungeon, Special):
         continue
 
       util.do_dash_rel(155, 170)
-      util.do_fade_rel(155, 170)
+      util.do_fade_rel(155, 170, 2)
+      util.do_dash_rel(835, 120, 4)
 
-      util.do_dash_rel(835, 120, 3)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
       util.do_fade_rel(835, 120, 2)
-
-      util.do_dash_rel(575, 180, 2)
+      util.do_dash_rel(575, 180, 3)
 
       # Attack Monsters (Border Crab)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
