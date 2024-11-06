@@ -31,7 +31,6 @@ class PurifierOfTheForest(Dungeon, Special):
       util.go_cabal_window()
       util.release_keys()
       util.go_skill_slot(0.2)
-      util.cancel_buffs()
       util.do_buffs()
 
       if not util.get_macro_state():

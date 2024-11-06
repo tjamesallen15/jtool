@@ -152,7 +152,7 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(890, 250)
 
       util.do_fade_rel(770, 175)
-      util.do_dash_rel(770, 175)
+      util.do_dash_rel(770, 175, 2)
 
       util.do_fade_rel(740, 210)
 

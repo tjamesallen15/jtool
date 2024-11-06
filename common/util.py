@@ -876,6 +876,7 @@ def force_veradrix():
   press_release(consts.KEY_VERADRIX)
 
 def do_buffs():
+  cancel_buffs()
   if get_buffs_status() == consts.IS_TRUE:
     log_action(consts.MSG_BUFFS)
     click_combo(400, 670, True, 0.6)
