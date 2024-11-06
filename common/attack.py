@@ -87,7 +87,7 @@ def attack_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, strict=False, co
       boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
       if unit == consts.UNIT_EMPTY: util.log_action(consts.MSG_ATTACK_BOSS)
       else: util.log_action(consts.MSG_ATTACK + unit)
-      
+
       util.do_attack(0.1, strict, cont)
       util.do_attack(0.1, strict, cont)
     except pyauto.ImageNotFoundException:
