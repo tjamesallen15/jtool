@@ -413,8 +413,8 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_deselect()
 
       if util.get_party_member_status() == consts.IS_TRUE:
-        util.do_fade_rel(646, 291)
-        util.do_dash_rel(646, 291)
+        util.do_fade_rel(666, 291)
+        util.do_dash_rel(666, 291)
       else:
         util.do_fade_rel(626, 291)
         util.do_dash_rel(626, 291)
