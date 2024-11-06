@@ -485,6 +485,7 @@ class MirageIsland(Dungeon, Special):
       if util.get_party_member_status() == consts.IS_FALSE: util.do_fade_rel(630, 250)
 
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
+      util.do_plunder(2)
 
       # Check Macro State
       if not util.get_macro_state():
