@@ -410,8 +410,8 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_deselect()
 
       if util.get_party_member_status() == consts.IS_TRUE:
-        util.do_fade_rel(686, 291)
-        util.do_dash_rel(686, 291)
+        util.do_fade_rel(646, 291)
+        util.do_dash_rel(646, 291)
       else:
         util.do_fade_rel(626, 291)
         util.do_dash_rel(626, 291)
@@ -431,7 +431,9 @@ class PurifierOfTheForest(Dungeon, Special):
         util.do_dash_rel(512, 633)
         util.do_fade_rel(486, 617)
         util.do_dash_rel(560, 607)
-      else: util.wait(8)
+      else:
+        util.do_plunder(2)
+        util.wait(8)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_box_party()
