@@ -278,15 +278,17 @@ class Celestia(Dungeon, Special):
       util.do_fade_rel(626, 244)
       util.do_dash_rel(618, 237)
 
-      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
-      else: atk.plunder_final_box_party()
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.move_scroll(375, 150, 800, 150)
+        atk.plunder_final_box()
+      else:
+        util.move_scroll(375, 150, 800, 150)
+        atk.plunder_box_party()
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
-
-      util.move_scroll(375, 150, 800, 150)
 
       # Start to End Dungeon
       util.check_notifications()
