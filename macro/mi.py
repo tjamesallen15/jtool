@@ -64,8 +64,7 @@ class MirageIsland(Dungeon, Special):
         util.do_fade_rel(1150, 400, 2)
       else:
         util.do_dash_rel(650, 150, 1.5)
-        util.do_dash_rel(1150, 400, 1.5)
-        util.do_dash_rel(1150, 400, 2)
+        util.do_dash_rel(1150, 400)
 
       # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
