@@ -32,8 +32,10 @@ All notable changes to this project will be documented in this file.
 - [Application] Added ability to save channel selection
 - [Application] Strucure Refactors (Special, Attack, Constants)
 - [Application] Added mode images to verify if the mode is in effect to prevent spamming of keys
-- [MI] Added Mirage Island in Development Phase
-- [SCP] Added Steamer Crazy (Premium) in Development Phase
+- [Application] Added do_dash_rel and do_fade_rel for better movement option in large maps
+- [CLS] Added Celestia in Beta Phase
+- [MI] Added Mirage Island in Beta Phase
+- [SCP] Added Steamer Crazy (Premium) in Beta Phase
 
 ## v5.90 Fixes
 

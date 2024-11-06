@@ -34,9 +34,8 @@ class MirageIsland(Dungeon, Special):
       util.do_buffs()
 
       # Click Dungeon
-      util.move(630, 610)
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(630, 610)
+      util.do_fade_rel(630, 610)
       self.click_dungeon_portal(630, 440)
 
       # Enter Dungeon
@@ -51,27 +50,21 @@ class MirageIsland(Dungeon, Special):
       util.move_scroll(700, 150, 375, 150, 0.5)
       if util.get_party_member_status() == consts.IS_TRUE: util.wait(6)
 
-      util.move(750, 190)
-      util.do_dash()
+      util.do_dash_rel(750, 190)
 
-      util.move(840, 215)
-      util.do_fade()
-      util.do_dash()
+      util.do_fade_rel(840, 215)
+      util.do_dash_rel(840, 215)
 
-      util.move(650, 150)
-      util.do_fade()
+      util.do_fade_rel(650, 150)
 
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.do_dash()
+        util.do_dash_rel()
         self.click_dialog(590, 350, False)
-        util.move(1150, 400)
-        util.do_dash(2)
-        util.do_fade(2)
+        util.do_dash_rel(1150, 400, 2)
+        util.do_fade_rel(1150, 400, 2)
       else:
-        util.do_dash(1.5)
-
-        util.move(1150, 400)
-        util.do_dash(2)
+        util.do_dash_rel(1150, 400, 1.5)
+        util.do_dash_rel(1150, 400, 2)
 
       # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
@@ -87,12 +80,8 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == consts.IS_FALSE:
-        atk.plunder_box()
-      else:
-        util.move(1150, 400)
-        util.do_fade()
-        util.wait(4)
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      else: util.do_fade_rel(1150, 400, 4.5)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -101,10 +90,9 @@ class MirageIsland(Dungeon, Special):
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
-      util.move(475, 100)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash(4)
+      util.do_dash_rel(475, 100)
+      util.do_fade_rel(475, 100)
+      util.do_dash_rel(475, 100, 4)
 
       # Attack Monsters (Border Crab)
       util.do_final_mode(1)
@@ -116,15 +104,13 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(1200, 235)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade(3)
+      util.do_dash_rel(1200, 235)
+      util.do_fade_rel(1200, 235)
+      util.do_dash_rel(1200, 235)
+      util.do_fade_rel(1200, 235, 3)
 
-      util.move(775, 185)
-      util.do_dash(4)
-      util.do_fade()
+      util.do_dash_rel(775, 185, 4)
+      util.do_fade_rel(775, 185)
 
       # Attack Monsters (Border Crab)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
@@ -134,12 +120,9 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(575, 235)
-      util.do_dash()
-
-      util.move(155, 170)
-      util.do_fade(2)
-      util.do_dash(2)
+      util.do_dash_rel(575, 235)
+      util.do_fade_rel(155, 170, 2)
+      util.do_dash_rel(155, 170, 2)
 
       # Attack Monsters (Border Crab)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
@@ -149,16 +132,13 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(155, 170)
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(155, 170)
+      util.do_fade_rel(155, 170)
 
-      util.move(835, 120)
-      util.do_dash(3)
-      util.do_fade(2)
+      util.do_dash_rel(835, 120, 3)
+      util.do_fade_rel(835, 120, 2)
 
-      util.move(575, 180)
-      util.do_dash(2)
+      util.do_dash_rel(575, 180, 2)
 
       # Attack Monsters (Border Crab)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
@@ -168,25 +148,18 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(590, 255)
-      util.do_dash(1.5)
+      util.do_dash_rel(590, 255, 1.5)
+      util.do_dash_rel(890, 250)
 
-      util.move(890, 250)
-      util.do_dash()
+      util.do_fade_rel(770, 175)
+      util.do_dash_rel(770, 175)
 
-      util.move(770, 175)
-      util.do_fade()
-      util.do_dash()
-
-      util.move(740, 210)
-      util.do_fade()
+      util.do_fade_rel(740, 210)
 
       # Attack Monsters (Crag Crab)
       self.attack_monsters(consts.UNIT_CRAG_CRAB, 2.0, False)
 
-      if util.get_party_member_status() == consts.IS_FALSE:
-        util.move(750, 240)
-        util.do_dash()
+      if util.get_party_member_status() == consts.IS_FALSE: util.do_dash_rel(750, 240)
 
       util.cancel_aura(2.0)
 
@@ -206,82 +179,63 @@ class MirageIsland(Dungeon, Special):
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else:
         atk.plunder_box_party()
-        util.move(750, 240)
-        util.do_dash(1.5)
+        util.do_dash_rel(750, 240, 1.5)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      util.move(990, 225)
-      util.do_dash()
+      util.do_dash_rel(990, 225)
 
-      util.move(1075, 80)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-
+      util.do_fade_rel(1075, 80)
+      util.do_dash_rel(1075, 80)
+      util.do_fade_rel(1075, 80)
+      util.do_dash_rel(1075, 80)
+      util.do_fade_rel(1075, 80)
       self.click_portal(520, 415, False, 2)
 
-      util.move(510, 130)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(510, 130)
+      util.do_fade_rel(510, 130)
+      util.do_dash_rel(510, 130)
+      util.do_fade_rel(510, 130)
 
-      util.move(325, 260)
-      util.do_dash()
+      util.do_dash_rel(325, 260)
+      util.do_fade_rel(500, 110)
+      util.do_dash_rel(500, 110)
+      util.do_fade_rel(500, 110)
 
-      util.move(500, 110)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(500, 110)
 
-      util.move(725, 135)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_fade_rel(725, 135)
+      util.do_dash_rel(725, 135)
+      util.do_fade_rel(725, 135)
 
-      util.move(425, 115)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(425, 115)
+      util.do_fade_rel(425, 115)
+      util.do_dash_rel(425, 115)
+      util.do_fade_rel(425, 115)
+      util.do_dash_rel(425, 115)
 
-      util.move(615, 100)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_fade_rel(615, 100)
+      util.do_dash_rel(615, 100)
+      util.do_fade_rel(615, 100)
 
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.move(935, 105)
-        util.do_dash()
-        util.do_fade()
+        util.do_dash_rel(935, 105)
+        util.do_fade_rel(935, 105)
 
-        util.move(750, 115)
-        util.do_dash()
-
-        util.move(560, 190)
-        util.do_fade()
-        util.do_dash()
+        util.do_dash_rel(750, 115)
+        util.do_fade_rel(560, 190)
+        util.do_dash_rel(560, 190)
 
         self.click_dialog(570, 390, False)
 
-        util.move(700, 635)
-        util.do_dash()
-        util.do_fade()
-
-        util.move(485, 675)
-        util.do_dash()
-
-        util.move(390, 680)
-        util.do_fade()
-        util.do_dash()
+        util.do_dash_rel(700, 635)
+        util.do_fade_rel(700, 635)
+        util.do_dash_rel(485, 675)
+        util.do_fade_rel(390, 680)
+        util.do_dash_rel(390, 680)
       else:
         util.wait(8)
 
@@ -303,77 +257,62 @@ class MirageIsland(Dungeon, Special):
         continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.move(515, 565)
-        util.do_dash(1.5)
+        util.do_dash_rel(515, 565, 1.5)
       else: util.wait(2)
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
 
-      util.move(515, 55)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(515, 55)
+      util.do_fade_rel(515, 55)
+      util.do_dash_rel(515, 55)
+      util.do_fade_rel(515, 55)
 
-      util.move(255, 170)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(255, 170)
+      util.do_fade_rel(255, 170)
+      util.do_dash_rel(255, 170)
+      util.do_fade_rel(255, 170)
 
-      util.move(75, 335)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(75, 335)
+      util.do_fade_rel(75, 335)
+      util.do_dash_rel(75, 335)
 
       util.move_scroll(375, 150, 1000, 150, 0.5)
 
-      util.move(930, 215)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_fade_rel(930, 215)
+      util.do_dash_rel(930, 215)
+      util.do_fade_rel(930, 215)
+      util.do_dash_rel(930, 215)
 
-      util.move(795, 75)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_fade_rel(795, 75)
+      util.do_dash_rel(795, 75)
+      util.do_fade_rel(795, 75)
+      util.do_dash_rel(795, 75)
+      util.do_fade_rel(795, 75)
 
       if util.get_party_member_status() == consts.IS_FALSE:
+        util.do_dash_rel(1045, 120)
+        util.do_fade_rel(1045, 120)
+        util.do_dash_rel(1045, 120)
 
-        util.move(1045, 120)
-        util.do_dash()
-        util.do_fade()
-        util.do_dash()
-
-        util.move(705, 90)
-        util.do_fade()
-        util.do_dash()
+        util.do_fade_rel(705, 90)
+        util.do_dash_rel(705, 90)
 
         self.click_dialog(675, 350)
 
-        util.move(575, 675)
-        util.do_dash()
-        util.do_fade()
+        util.do_dash_rel(575, 675)
+        util.do_fade_rel(575, 675)
 
-        util.move(220, 695)
-        util.do_dash()
+        util.do_dash_rel(220, 695)
 
-        util.move(510, 555)
-        util.do_fade()
+        util.do_fade_rel(510, 555)
 
-        util.move(505, 170)
-        util.do_dash()
-        util.do_fade()
+        util.do_dash_rel(505, 170)
+        util.do_fade_rel(505, 170)
       else:
-        util.move(1045, 120)
-        util.do_dash(9)
+        util.do_dash_rel(1045, 120, 9)
 
-        util.move(505, 170)
-        util.do_dash()
-        util.do_fade(3.5)
+        util.do_dash_rel(505, 170)
+        util.do_fade_rel(505, 170, 3.5)
 
       self.find_kill_special_boss(consts.UNIT_GROGO_II)
 
@@ -389,42 +328,32 @@ class MirageIsland(Dungeon, Special):
         continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.move(765, 725)
-        util.do_dash()
+        util.do_dash_rel(765, 725)
         atk.plunder_box(True, 2)
-      else:
-        util.move(765, 725)
-        util.do_dash(1.5)
+      else: util.do_dash_rel(765, 725, 1.5)
 
-      util.move(745, 610)
-      util.do_dash(1.5)
+      util.do_dash_rel(745, 610, 1.5)
 
-      util.move(440, 625)
-      util.do_dash()
+      util.do_dash_rel(440, 625)
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
-      util.move(735, 85)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(735, 85)
+      util.do_fade_rel(735, 85)
+      util.do_dash_rel(735, 85)
+      util.do_fade_rel(735, 85)
 
-      util.move(715, 85)
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(715, 85)
+      util.do_fade_rel(715, 85)
 
-      util.move(790, 160)
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(790, 160)
+      util.do_fade_rel(790, 160)
 
-      util.move(990, 115)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(990, 115)
+      util.do_fade_rel(990, 115)
+      util.do_dash_rel(990, 115)
+      util.do_fade_rel(990, 115)
 
-      util.move(305, 330)
-      util.do_dash()
+      util.do_dash_rel(305, 330)
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GARLIARDO)
@@ -442,49 +371,41 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(650, 270)
-      util.do_dash()
+      util.do_dash_rel(650, 270)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
-      util.move(885, 95)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(885, 95)
+      util.do_fade_rel(885, 95)
+      util.do_dash_rel(885, 95)
+      util.do_fade_rel(885, 95)
 
-      util.move(570, 80)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(570, 80)
+      util.do_fade_rel(570, 80)
+      util.do_dash_rel(570, 80)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
-      util.move(940, 85)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_fade_rel(940, 85)
+      util.do_dash_rel(940, 85)
+      util.do_fade_rel(940, 85)
+      util.do_dash_rel(940, 85)
 
-      util.move(795, 75)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_fade_rel(795, 75)
+      util.do_dash_rel(795, 75)
+      util.do_fade_rel(795, 75)
+      util.do_dash_rel(795, 75)
+      util.do_fade_rel(795, 75)
 
-      util.move(735, 70)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(735, 70)
+      util.do_fade_rel(735, 70)
+      util.do_dash_rel(735, 70)
+      util.do_fade_rel(735, 70)
+      util.do_dash_rel(735, 70)
 
-      util.move(540, 85)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_fade_rel(540, 85)
+      util.do_dash_rel(540, 85)
+      util.do_fade_rel(540, 85)
 
-      if util.get_party_member_status() == consts.IS_FALSE:
-        util.do_dash()
+      if util.get_party_member_status() == consts.IS_FALSE: util.do_dash_rel(540, 85)
 
       util.set_last_cast_mode(3)
       self.find_kill_special_boss(consts.UNIT_GUARDIAN_GOLEM)
@@ -502,14 +423,11 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == consts.IS_TRUE:
-        util.move(540, 85)
-        util.do_dash(1.5)
+      if util.get_party_member_status() == consts.IS_TRUE: util.do_dash_rel(540, 85, 1.5)
 
-      util.move(570, 145)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(570, 145)
+      util.do_fade_rel(570, 145)
+      util.do_dash_rel(570, 145)
 
       self.click_portal(575, 410)
       util.move_scroll(750, 150, 375, 150, 0.5)
@@ -526,9 +444,7 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(630, 125)
-      util.do_dash()
-
+      util.do_dash_rel(630, 125)
       self.find_kill_special_boss(consts.UNIT_DARTHPENCIO, True, 3)
 
       # Check Macro State
@@ -536,16 +452,14 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(630, 600)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(630, 600)
+      util.do_fade_rel(630, 600)
+      util.do_dash_rel(630, 600)
+      util.do_fade_rel(630, 600)
 
-      util.move(630, 125)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(630, 125)
+      util.do_fade_rel(630, 125)
+      util.do_dash_rel(630, 125)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
@@ -557,14 +471,12 @@ class MirageIsland(Dungeon, Special):
 
       if util.get_party_member_status() == consts.IS_TRUE: util.wait(2)
 
-      util.move(630, 125)
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(630, 125)
+      util.do_fade_rel(630, 125)
 
-      util.move(630, 250)
-      util.do_dash()
+      util.do_dash_rel(630, 250)
 
-      if util.get_party_member_status() == consts.IS_FALSE: util.do_fade()
+      if util.get_party_member_status() == consts.IS_FALSE: util.do_fade_rel(630, 250)
 
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
 

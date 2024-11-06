@@ -47,20 +47,15 @@ class PurifierOfTheForest(Dungeon, Special):
       self.enter_dungeon()
       self.challenge_dungeon(1)
 
-      util.move(1035, 350)
-      util.do_dash()
+      util.do_dash_rel(1035, 350)
 
-      util.move(985, 390)
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_fade_rel(985, 390)
+      util.do_dash_rel(985, 390)
+      util.do_fade_rel(985, 390)
 
-      util.move(900, 370)
-      util.do_dash()
-      util.move(830, 630)
-      util.do_fade()
-      util.move(825, 560)
-      util.do_dash()
+      util.do_dash_rel(900, 370)
+      util.do_fade_rel(830, 630)
+      util.do_dash_rel(825, 560)
 
        # Attack First Boss (Bloody Sweeper)
       util.set_last_cast_mode(3)
@@ -70,28 +65,17 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(678, 259)
-      util.do_dash()
-      util.move(847, 294)
-      util.do_fade()
-      util.move(888, 318)
-      util.do_dash()
-      util.move(925, 368)
-      util.do_fade()
-      util.move(1002, 405)
-      util.do_dash()
-      util.move(1002, 405)
-      util.do_fade(2)
-      util.move(1002, 405)
-      util.do_dash(4)
-      util.move(824, 598)
-      util.do_fade()
-      util.move(614, 592)
-      util.do_dash()
-      util.move(465, 539)
-      util.do_fade()
-      util.move(434, 477)
-      util.do_dash(4)
+      util.do_dash_rel(678, 259)
+      util.do_fade_rel(847, 294)
+      util.do_dash_rel(888, 318)
+      util.do_fade_rel(925, 368)
+      util.do_dash_rel(1002, 405)
+      util.do_fade_rel(1002, 405, 2)
+      util.do_dash_rel(1002, 405, 4)
+      util.do_fade_rel(824, 598)
+      util.do_dash_rel(614, 592)
+      util.do_fade_rel(465, 539)
+      util.do_dash_rel(434, 477, 4)
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
@@ -109,11 +93,8 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(990, 320)
-      util.do_dash()
-
-      util.move(718, 396)
-      util.do_fade()
+      util.do_dash_rel(990, 320)
+      util.do_fade_rel(718, 396)
 
       util.wait(2)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
@@ -123,19 +104,15 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(848, 668)
-      util.do_dash()
-
-      util.move(721, 554)
-      util.do_fade()
+      util.do_dash_rel(848, 668)
+      util.do_fade_rel(721, 554)
 
       # First Portal
       self.click_portal(656, 386, True)
       util.move_scroll(1000, 150, 375, 150, 0.5)
 
-      util.move(525, 175)
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(525, 175)
+      util.do_fade_rel(525, 175)
       if util.get_attack_type() == consts.IS_MELEE: util.wait(6)
       else: util.wait(4)
 
@@ -147,24 +124,15 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(804, 282)
-      util.do_fade()
-      util.move(803, 322)
-      util.do_dash()
-      util.move(1042, 575)
-      util.do_fade()
-      util.move(1043, 563)
-      util.do_dash(2)
-      util.move(1039, 560)
-      util.do_fade(2)
-      util.move(970, 550)
-      util.do_dash(3)
-      util.move(1084, 282)
-      util.do_dash(2)
-      util.move(938, 313)
-      util.do_fade(3)
-      util.move(935, 315)
-      util.do_dash(2)
+      util.do_fade_rel(804, 282)
+      util.do_dash_rel(803, 322)
+      util.do_fade_rel(1042, 575)
+      util.do_dash_rel(1043, 563, 2)
+      util.do_fade_rel(1039, 560, 2)
+      util.do_dash_rel(970, 550, 3)
+      util.do_dash_rel(1084, 282, 2)
+      util.do_fade_rel(938, 313, 3)
+      util.do_dash_rel(935, 315, 2)
 
       self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 2, 1, True)
       util.cancel_aura(2.0)
@@ -174,28 +142,17 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Beelzebub Boss
-      util.move(560, 352)
-      util.do_fade()
-      util.move(773, 244)
-      util.do_dash()
-      util.move(717, 261)
-      util.do_fade()
-      util.move(726, 226)
-      util.do_dash()
-      util.move(703, 264)
-      util.do_fade()
-      util.move(754, 267)
-      util.do_dash()
-      util.move(792, 285)
-      util.do_fade()
-      util.move(688, 150)
-      util.do_dash()
-      util.move(626, 168)
-      util.do_fade()
-      util.move(617, 188)
-      util.do_dash()
-      util.move(615, 296)
-      util.do_fade(10)
+      util.do_fade_rel(560, 352)
+      util.do_dash_rel(773, 244)
+      util.do_fade_rel(717, 261)
+      util.do_dash_rel(726, 226)
+      util.do_fade_rel(703, 264)
+      util.do_dash_rel(754, 267)
+      util.do_fade_rel(792, 285)
+      util.do_dash_rel(688, 150)
+      util.do_fade_rel(626, 168)
+      util.do_dash_rel(617, 188)
+      util.do_fade_rel(615, 296, 10)
 
       # Attack Third Boss
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -205,8 +162,7 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(774, 344)
-      util.do_dash()
+      util.do_dash_rel(774, 344)
 
       if util.get_party_member_status() == consts.IS_FALSE:
         atk.plunder_box()
@@ -220,58 +176,39 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Electrishia Base
-      util.move(710, 178)
-      util.do_dash()
-      util.move(710, 233)
-      util.do_fade()
-      util.move(706, 248)
-      util.do_dash()
-      util.move(668, 291)
-      util.do_fade()
-      util.move(520, 287)
-      util.do_dash()
-      util.move(518, 320)
-      util.do_fade()
-      util.move(597, 279)
-      util.do_dash()
-      util.move(744, 308)
-      util.do_fade()
-      util.move(763, 322)
-      util.do_dash()
-      util.move(936, 409)
-      util.do_fade()
-      util.move(920, 439)
-      util.do_dash()
-      util.move(846, 474)
-      util.do_fade(1.5)
-      util.move(664, 478)
-      util.do_fade()
-      util.move(931, 541)
-      util.do_dash()
-      util.move(740, 492)
-      util.do_fade()
+      util.do_dash_rel(710, 178)
+      util.do_fade_rel(710, 233)
+      util.do_dash_rel(706, 248)
+      util.do_fade_rel(668, 291)
+      util.do_dash_rel(520, 287)
+      util.do_fade_rel(518, 320)
+      util.do_dash_rel(597, 279)
+      util.do_fade_rel(744, 308)
+      util.do_dash_rel(763, 322)
+      util.do_fade_rel(936, 409)
+      util.do_dash_rel(920, 439)
+      util.do_fade_rel(846, 474, 1.5)
+      util.do_fade_rel(664, 478)
+      util.do_dash_rel(931, 541)
+      util.do_fade_rel(740, 492)
 
       util.move_scroll(375, 150, 700, 150, 0.5)
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.move(910, 200)
-        util.do_dash(2)
-        util.do_fade(4)
+        util.do_dash_rel(910, 200, 2)
+        util.do_fade_rel(910, 200, 4)
 
-        util.do_dash(2)
-        util.do_fade(3)
+        util.do_dash_rel(910, 200, 2)
+        util.do_fade_rel(910, 200, 3)
 
-        util.move(450, 550)
-        util.do_dash()
+        util.do_dash_rel(450, 550)
       else:
-        util.move(910, 200)
-        util.do_dash()
-        util.do_fade()
+        util.do_dash_rel(910, 200)
+        util.do_fade_rel(910, 200)
 
-        util.do_dash()
-        util.do_fade()
+        util.do_dash_rel(910, 200)
+        util.do_fade_rel(910, 200)
 
-        util.move(450, 550)
-        util.do_dash()
+        util.do_dash_rel(450, 550)
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
@@ -281,10 +218,9 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(450, 550)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
+      util.do_dash_rel(450, 550)
+      util.do_fade_rel(450, 550)
+      util.do_dash_rel(450, 550)
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
@@ -295,15 +231,14 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Web Gate
-      util.move(910, 200)
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(910, 200)
+      util.do_fade_rel(910, 200)
+      util.do_dash_rel(910, 200)
+      util.do_fade_rel(910, 200)
+      util.do_dash_rel(910, 200)
+      util.do_fade_rel(910, 200)
+      util.do_dash_rel(910, 200)
+      util.do_fade_rel(910, 200)
       util.cancel_aura(2.0)
 
       util.move_scroll(375, 150, 700, 150, 0.5)
@@ -336,11 +271,10 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(675, 300)
-      if util.get_party_status() == consts.IS_TRUE: util.do_fade(7)
-      else: util.do_fade(5)
+      if util.get_party_status() == consts.IS_TRUE: util.do_fade_rel(675, 300, 7)
+      else: util.do_fade_rel(675, 300, 5)
 
-      util.do_dash()
+      util.do_dash_rel(675, 300)
       util.move_scroll(700, 150, 375, 150, 0.5)
       self.find_kill_boss(consts.IMG_ELECTULA, consts.UNIT_ELECTULA)
 
@@ -349,9 +283,8 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(835, 425)
-      util.do_dash()
-      util.do_fade()
+      util.do_dash_rel(835, 425)
+      util.do_fade_rel(835, 425)
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_select(0.1)
         atk.plunder_box()
@@ -364,47 +297,30 @@ class PurifierOfTheForest(Dungeon, Special):
       # Move to Ant Base
       util.wait(10)
       util.move_scroll(375, 150, 700, 150, 0.5)
-      util.move(549, 180)
-      util.do_dash()
-      util.move(539, 262)
-      util.do_fade()
+      util.do_dash_rel(549, 180)
+      util.do_fade_rel(539, 262)
 
-      util.move(573, 286)
-      util.do_dash()
-      util.move(675, 255)
-      util.do_fade()
+      util.do_dash_rel(573, 286)
+      util.do_fade_rel(675, 255)
 
-      util.move(629, 293)
-      util.do_dash()
-      util.move(842, 338)
-      util.do_fade()
-      util.move(842, 338)
-      util.do_dash()
-      util.move(863, 377)
-      util.do_fade()
-      util.move(759, 389)
-      util.do_dash(1.5)
+      util.do_dash_rel(629, 293)
+      util.do_fade_rel(842, 338)
+      util.do_dash_rel(842, 338)
+      util.do_fade_rel(863, 377)
+      util.do_dash_rel(759, 389, 1.5)
 
       util.set_last_cast_mode(3)
 
-      util.move(910, 466)
-      util.do_dash()
-      util.move(876, 537)
-      util.do_fade()
-      util.move(799, 581)
-      util.do_dash()
-      util.move(686, 586)
-      util.do_fade()
-      util.move(704, 571)
-      util.do_dash()
+      util.do_dash_rel(910, 466)
+      util.do_fade_rel(876, 537)
+      util.do_dash_rel(799, 581)
+      util.do_fade_rel(686, 586)
+      util.do_dash_rel(704, 571)
 
       util.move_scroll(375, 150, 700, 150, 0.5)
 
-      util.move(849, 349)
-      util.do_dash()
-      util.force_veradrix()
-      util.move(611, 384)
-      util.do_fade()
+      util.do_dash_rel(849, 349, veradrix=True)
+      util.do_fade_rel(611, 384)
       # Attack First Ant Hill
       self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
@@ -412,11 +328,8 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(971, 510)
-      util.do_dash()
-      util.force_veradrix()
-      util.move(666, 439)
-      util.do_fade()
+      util.do_dash_rel(971, 510, veradrix=True)
+      util.do_fade_rel(666, 439)
       # Attack Second Ant Hill
       self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
@@ -424,11 +337,8 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(759, 276)
-      util.do_dash()
-      util.force_veradrix()
-      util.move(660, 399)
-      util.do_fade()
+      util.do_dash_rel(759, 276, veradrix=True)
+      util.do_fade_rel(660, 399)
       # Attack Third Ant Hill
       self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
@@ -436,11 +346,8 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(323, 310)
-      util.do_dash()
-      util.force_veradrix()
-      util.move(504, 355)
-      util.do_fade()
+      util.do_dash_rel(323, 310, veradrix=True)
+      util.do_fade_rel(504, 355)
       # Attack Fourth Ant Hill
       self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
@@ -448,18 +355,12 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(832, 361)
-      util.do_dash()
-      util.force_veradrix()
+      util.do_dash_rel(832, 361, veradrix=True)
 
       if util.get_attack_type() == consts.IS_MELEE:
-        util.move(607, 259)
-        util.do_fade(1.5)
-        util.move(614, 283)
-        util.do_fade()
-      else:
-        util.move(607, 259)
-        util.do_fade()
+        util.do_fade_rel(607, 259, 1.5)
+        util.do_fade_rel(614, 283)
+      else: util.do_fade_rel(607, 259)
 
       util.cancel_aura(2.0)
       # Attack Fifth Boss (Queen Ripley)
@@ -495,14 +396,10 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.move(592, 170)
-      util.do_dash()
-      util.move(599, 217)
-      util.do_fade()
-      util.move(604, 230)
-      util.do_dash()
-      util.move(604, 232)
-      util.do_fade()
+      util.do_dash_rel(592, 170)
+      util.do_fade_rel(599, 217)
+      util.do_dash_rel(604, 230)
+      util.do_fade_rel(604, 232)
 
       # Second Portal
       self.click_portal(627, 316, True)
@@ -510,13 +407,11 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_deselect()
 
       if util.get_party_member_status() == consts.IS_TRUE:
-        util.move(686, 291)
-        util.do_fade()
-        util.do_dash()
+        util.do_fade_rel(686, 291)
+        util.do_dash_rel(686, 291)
       else:
-        util.move(626, 291)
-        util.do_fade()
-        util.do_dash()
+        util.do_fade_rel(626, 291)
+        util.do_dash_rel(626, 291)
 
        # Attack Final Boss
       self.find_kill_special_boss(consts.UNIT_OMERAI)
@@ -530,16 +425,10 @@ class PurifierOfTheForest(Dungeon, Special):
         util.do_plunder(3)
         util.wait(4)
 
-        util.move(512, 633)
-        util.do_dash()
-
-        util.move(486, 617)
-        util.do_fade()
-
-        util.move(560, 607)
-        util.do_dash()
-      else:
-        util.wait(8)
+        util.do_dash_rel(512, 633)
+        util.do_fade_rel(486, 617)
+        util.do_dash_rel(560, 607)
+      else: util.wait(8)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
       else: atk.plunder_box_party()
@@ -558,47 +447,27 @@ class PurifierOfTheForest(Dungeon, Special):
     util.do_close_app_status()
 
   def go_web_gate(self):
-    util.move(735, 200)
-    util.do_fade()
-    util.force_veradrix()
-    util.do_dash()
-    util.do_fade()
-    util.force_veradrix()
+    util.do_fade_rel(735, 200, veradrix=True)
+    util.do_dash_rel(735, 200)
+    util.do_fade_rel(735, 200, veradrix=True)
+    util.do_dash_rel(735, 200)
+    util.do_fade_rel(735, 200, veradrix=True)
 
-    util.do_dash()
-    util.do_fade()
-    util.force_veradrix()
+    util.do_dash_rel(820, 200)
+    util.do_fade_rel(820, 200, veradrix=True)
+    util.do_dash_rel(820, 200)
+    util.do_fade_rel(820, 200, veradrix=True)
 
-    util.move(820, 200)
-    util.do_dash()
-    util.do_fade()
-    util.force_veradrix()
+    util.do_dash_rel(250, 200)
+    util.do_fade_rel(250, 200, veradrix=True)
 
-    util.do_dash()
-    util.do_fade()
-    util.force_veradrix()
+    util.do_dash_rel(350, 300)
+    util.do_fade_rel(350, 300, veradrix=True)
 
-    util.move(250, 200)
-    util.do_dash()
-    util.do_fade()
-    util.force_veradrix()
+    util.do_dash_rel(415, 275)
+    util.do_fade_rel(435, 275, veradrix=True)
 
-    util.move(350, 300)
-    util.do_dash()
-    util.do_fade()
-    util.force_veradrix()
+    util.do_dash_rel(550, 275)
 
-    util.move(415, 275)
-    util.do_dash()
-
-    util.move(435, 275)
-    util.do_fade()
-    util.force_veradrix()
-
-    util.move(550, 275)
-    util.do_dash()
-
-    util.move(475, 300)
-    util.do_fade()
-    util.force_veradrix()
-    util.do_dash()
+    util.do_fade_rel(475, 300, veradrix=True)
+    util.do_dash_rel(475, 300)

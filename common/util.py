@@ -929,17 +929,37 @@ def cancel_aura(delay=0):
 
   if delay != 0: time.sleep(delay)
 
-def do_dash(delay=1.0, potion=True):
+def do_dash(delay=1.0, veradrix=False, potion=True):
   pynboard.press(consts.KEY_DASH)
   pynboard.release(consts.KEY_DASH)
 
+  if veradrix == consts.IS_TRUE: force_veradrix()
   if potion == consts.IS_TRUE: do_heal()
   if delay != 0: time.sleep(delay)
 
-def do_fade(delay=0.5, potion=True):
+def do_dash_rel(x=0, y=0, delay=1.0, veradrix=False, potion=True):
+  move(x, y)
+  pynboard.press(consts.KEY_DASH)
+  pynboard.release(consts.KEY_DASH)
+
+  if veradrix == consts.IS_TRUE: force_veradrix()
+  if potion == consts.IS_TRUE: do_heal()
+  if delay != 0: time.sleep(delay)
+
+def do_fade(delay=0.5, veradrix=False, potion=True):
   pynboard.press(consts.KEY_FADE)
   pynboard.release(consts.KEY_FADE)
 
+  if veradrix == consts.IS_TRUE: force_veradrix()
+  if potion == consts.IS_TRUE: do_heal()
+  if delay != 0: time.sleep(delay)
+
+def do_fade_rel(x=0, y=0, delay=0.5, veradrix=False, potion=True):
+  move(x, y)
+  pynboard.press(consts.KEY_FADE)
+  pynboard.release(consts.KEY_FADE)
+
+  if veradrix == consts.IS_TRUE: force_veradrix()
   if potion == consts.IS_TRUE: do_heal()
   if delay != 0: time.sleep(delay)
 

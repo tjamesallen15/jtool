@@ -48,6 +48,12 @@ LBL_MOVE_SUFFIX = ")"
 LBL_DASH_CON = "util.do_dash()"
 LBL_FADE_CON = "util.do_fade()"
 
+LBL_DASH_CON_REL_PREFIX = "util.do_dash_rel("
+LBL_DASH_CON_REL_SUFFIX = ")"
+
+LBL_FADE_CON_REL_PREFIX = "util.do_fade_rel("
+LBL_FADE_CON_REL_SUFFIX = ")"
+
 cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
 util.set_cabal_window(cabal_window)
 util.go_cabal_window()
@@ -63,12 +69,14 @@ def on_press(key):
       x, y = pyauto.position()
       true_x = str(x - window[0])
       true_y = str(y - window[1])
-      print(LBL_MOVE_PREFIX + true_x + CONNECTOR + true_y + LBL_MOVE_SUFFIX + LBL_DASH_CON)
+      # print(LBL_MOVE_PREFIX + true_x + CONNECTOR + true_y + LBL_MOVE_SUFFIX + LBL_DASH_CON)
+      print(LBL_DASH_CON_REL_PREFIX + true_x + CONNECTOR + true_y + LBL_DASH_CON_REL_SUFFIX)
   elif k == KEY_2:
       x, y = pyauto.position()
       true_x = str(x - window[0])
       true_y = str(y - window[1])
-      print(LBL_MOVE_PREFIX + true_x + CONNECTOR + true_y + LBL_MOVE_SUFFIX + LBL_FADE_CON)
+      # print(LBL_MOVE_PREFIX + true_x + CONNECTOR + true_y + LBL_MOVE_SUFFIX + LBL_FADE_CON)
+      print(LBL_FADE_CON_REL_PREFIX + true_x + CONNECTOR + true_y + LBL_FADE_CON_REL_SUFFIX)
   elif k == KEY_EQ: print(LBL_ATTACK)
 
   if key == Key.space:
