@@ -133,14 +133,14 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(803, 322)
       util.do_fade_rel(1042, 575)
       util.do_dash_rel(1043, 563, 2)
-      util.do_fade_rel(1039, 560, 2)
+      util.do_fade_rel(1039, 560, 4)
       util.do_dash_rel(970, 550, 3)
-      util.do_dash_rel(1084, 282, 2)
+      util.do_dash_rel(1084, 282, 4)
       util.do_fade_rel(938, 313, 3)
       util.do_dash_rel(935, 315, 2)
 
-      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_KORAIDER, 4, 1, True)
-      else: self.focus_monsters(consts.UNIT_KORAIDER, 2, 1, True)
+      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 4, 1, True)
+      else: self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 2, 1, True)
       util.cancel_aura(2.0)
 
       if not util.get_macro_state():
@@ -200,13 +200,13 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.move_scroll(375, 150, 700, 150, 0.5)
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.do_dash_rel(910, 200, 2)
+        util.do_dash_rel(910, 200, 3)
         util.do_fade_rel(910, 200, 4)
 
         util.do_dash_rel(910, 200, 2)
         util.do_fade_rel(910, 200, 3)
 
-        util.do_dash_rel(450, 550)
+        util.do_dash_rel(450, 550, 3)
       else:
         util.do_dash_rel(910, 200)
         util.do_fade_rel(910, 200)

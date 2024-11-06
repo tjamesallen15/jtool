@@ -782,7 +782,7 @@ def reset_battle_mode(delay=0):
     global is_battle_mode
     is_battle_mode = False
 
-def do_battle_mode(delay=5, cancel=True, aura=True):
+def do_battle_mode(delay=5, cancel=True, aura=False):
   if get_battle_mode() == consts.STATE_ONE:
     log_action(consts.MSG_BATTLE_MODE)
     set_battle_mode(True, cancel)
