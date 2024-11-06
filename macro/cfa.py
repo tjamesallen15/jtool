@@ -40,13 +40,13 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(500, 500)
       util.do_dash()
 
-      # util.move_click(545, 300, 0.3)
       util.move(500, 300)
       util.do_fade()
 
       # Click Dungeon
-      util.do_final_mode(1.2)
-      util.do_aura(2)
+      if util.get_access_level() == consts.ACCESS_SUPER:
+        util.do_final_mode(1.2)
+        util.do_aura(2)
       self.click_dungeon_portal(560, 330)
 
       # Enter Dungeon
@@ -57,7 +57,10 @@ class CatacombsFrostAwakened(Dungeon):
       util.move(570, 300)
       util.do_dash()
 
-      atk.attack_boss(consts.UNIT_EMPTY, True, False)
+      if util.get_access_level() != consts.ACCESS_SUPER:
+        util.do_final_mode(1.2)
+        util.do_aura(2)
+      atk.attack_boss(consts.UNIT_AKENAPH, True, False)
 
       if util.get_attack_type() == consts.IS_MELEE: util.cancel_aura(1.2)
 

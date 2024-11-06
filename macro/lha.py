@@ -39,8 +39,9 @@ class LavaHellfireAwakened(Dungeon):
         continue
 
       # Click Dungeon
-      util.do_final_mode(1.2)
-      util.do_aura(2)
+      if util.get_access_level() == consts.ACCESS_SUPER:
+        util.do_final_mode(1.2)
+        util.do_aura(2)
       self.click_dungeon_portal(650, 260)
 
       # Enter Dungeon
@@ -60,6 +61,9 @@ class LavaHellfireAwakened(Dungeon):
       util.do_fade()
 
       # First Boss
+      if util.get_access_level() != consts.ACCESS_SUPER:
+        util.do_final_mode(1.2)
+        util.do_aura(2)
       atk.attack_boss()
       atk.plunder_box(True, 3)
 
