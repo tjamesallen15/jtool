@@ -372,7 +372,7 @@ class PurifierOfTheForest(Dungeon, Special):
         util.do_fade_rel(614, 283)
       else: util.do_fade_rel(607, 259)
 
-      util.cancel_aura(2.0)
+      util.cancel_aura(1)
       # Attack Fifth Boss (Queen Ripley)
       self.find_kill_boss(consts.IMG_QUEEN_RIPLEY, consts.UNIT_QUEEN_RIPLEY)
 
