@@ -41,6 +41,7 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Refactor necessary variables from integer to boolean
 - [HK] Improved wait time for range classes
+- [HVV] Fixed dungeon movement for range classes
 - [PCA] Improved positioning on first shadow
 - [POTF] Improved party state performance
 - [SCA] Improved dungeon automation

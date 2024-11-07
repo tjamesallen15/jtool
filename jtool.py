@@ -156,10 +156,6 @@ class JTool():
     application = pyauto.getActiveWindow()
     application.moveTo(coords[0], coords[1])
 
-  def get_dungeon_master_list(self, index):
-    val_master_index = self.LIST_MASTER[index]
-    return val_master_index
-
   def start(self):
     cabal_window = pyauto.locateOnScreen(consts.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
     selected_dungeon = self.list_dg.get()
@@ -215,24 +211,24 @@ class JTool():
       self.restart_application()
 
     match selected_dungeon:
-      case self.get_dungeon_master_list(0): HazardousValleyAwakened().initialize(dungeon_args)
-      case self.get_dungeon_master_list(1): HazardousValley().initialize(dungeon_args)
-      case self.get_dungeon_master_list(2): HazardousValley().initialize(dungeon_args)
-      case self.get_dungeon_master_list(3): HazardousValley().initialize(dungeon_args)
-      case self.get_dungeon_master_list(4): SteamerCrazyAwakened().initialize(dungeon_args)
-      case self.get_dungeon_master_list(5): CatacombsFrostAwakened().initialize(dungeon_args)
-      case self.get_dungeon_master_list(6): LavaHellfireAwakened().initialize(dungeon_args)
-      case self.get_dungeon_master_list(7): HolyWindmill().initialize(dungeon_args)
-      case self.get_dungeon_master_list(8): TerminusMachina().initialize(dungeon_args)
-      case self.get_dungeon_master_list(9): PanicCaveAwakened().initialize(dungeon_args)
-      case self.get_dungeon_master_list(10): HolyKeldrasil().initialize(dungeon_args)
-      case self.get_dungeon_master_list(11): SienaB1FPrideus().initialize(dungeon_args)
-      case self.get_dungeon_master_list(12): ChaosInfinity().initialize(dungeon_args)
-      case self.get_dungeon_master_list(13): HazardousValleyVeradrix().initialize(dungeon_args)
-      case self.get_dungeon_master_list(14): PurifierOfTheForest().initialize(dungeon_args)
-      case self.get_dungeon_master_list(15): HazardousValleyAwakened().initialize(dungeon_args)
-      case self.get_dungeon_master_list(16): MirageIsland().initialize(dungeon_args)
-      case self.get_dungeon_master_list(17): Celestia().initialize(dungeon_args)
+      case consts.DG_HVA: HazardousValleyAwakened().initialize(dungeon_args)
+      case consts.DG_HVH: HazardousValley().initialize(dungeon_args)
+      case consts.DG_HVM: HazardousValley().initialize(dungeon_args)
+      case consts.DG_HVE: HazardousValley().initialize(dungeon_args)
+      case consts.DG_SCA: SteamerCrazyAwakened().initialize(dungeon_args)
+      case consts.DG_CFA: CatacombsFrostAwakened().initialize(dungeon_args)
+      case consts.DG_LHA: LavaHellfireAwakened().initialize(dungeon_args)
+      case consts.DG_HW: HolyWindmill().initialize(dungeon_args)
+      case consts.DG_TM: TerminusMachina().initialize(dungeon_args)
+      case consts.DG_PCA: PanicCaveAwakened().initialize(dungeon_args)
+      case consts.DG_HK: HolyKeldrasil().initialize(dungeon_args)
+      case consts.DG_S1P: SienaB1FPrideus().initialize(dungeon_args)
+      case consts.DG_CI: ChaosInfinity().initialize(dungeon_args)
+      case consts.DG_HVV: HazardousValleyVeradrix().initialize(dungeon_args)
+      case consts.DG_POTF: PurifierOfTheForest().initialize(dungeon_args)
+      case consts.DG_SCP: SteamerCrazyPremium().initialize(dungeon_args)
+      case consts.DG_MI: MirageIsland().initialize(dungeon_args)
+      case consts.DG_CLS: Celestia().initialize(dungeon_args)
 
   def get_dungeon_list(self):
     if self.get_level() == consts.ACCESS_FREE:
@@ -306,7 +302,6 @@ class JTool():
         "Chaos Infinity",
         "Altar of Siena B1F (Prideus)",
         "Hazardous Valley (Veradrix)",
-        "Radiant Hall",
         "Mirage Island",
         "Celestia",
         "Purifier of the Forest"
@@ -430,19 +425,19 @@ class JTool():
   def enable_dungeon_features(self, args):
     selected_dungeon = self.list_dg.get()
 
-    if selected_dungeon == self.LIST_MASTER[8]:
+    if selected_dungeon == consts.DG_TM:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
-    elif selected_dungeon == self.LIST_MASTER[12] :
+    elif selected_dungeon == consts.DG_CI:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
-    elif selected_dungeon == self.LIST_MASTER[14]:
+    elif selected_dungeon == consts.DG_POTF:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
-    elif selected_dungeon == self.LIST_MASTER[16]:
+    elif selected_dungeon == consts.DG_MI:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
-    elif selected_dungeon == self.LIST_MASTER[17]:
+    elif selected_dungeon == consts.DG_CLS:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
     else:

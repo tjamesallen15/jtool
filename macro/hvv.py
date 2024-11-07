@@ -48,15 +48,19 @@ class HazardousValleyVeradrix(Dungeon):
       util.move_scroll(250, 150, 700, 150, 0.3)
 
       util.move(500, 300)
-      util.do_dash(0.5)
-      util.wait(3)
+      if util.get_attack_type() == consts.IS_MELEE: util.do_dash(3.5)
+      else: util.do_dash(1.5)
       atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
 
       util.move(375, 150)
       util.do_dash()
-      util.do_fade(1.5)
+
+      if util.get_attack_type() == consts.IS_MELEE: util.do_fade(5.5)
+      else: util.do_fade(2.5)
+      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
+
+      util.move(375, 150)
       util.do_fade()
-      util.wait(6)
       atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
 
       util.move(375, 175)
@@ -67,7 +71,8 @@ class HazardousValleyVeradrix(Dungeon):
 
       util.move(250, 350)
       util.do_dash(3)
-      util.do_fade(2)
+      if util.get_attack_type() == consts.IS_MELEE: util.do_fade(2)
+      else: util.do_fade(1)
       atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
 
       util.move(535, 150)

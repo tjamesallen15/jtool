@@ -318,6 +318,7 @@ UNIT_SERVANT = 'Servant'
 UNIT_VITO = 'Vito'
 UNIT_PLUMA = 'Pluma'
 UNIT_PERIUS = 'Perius'
+
 # JSON DATA
 DATA_JSON = "data/config.json"
 DATA_FRAME = "frame"
@@ -349,6 +350,26 @@ DATA_CONNECTION = "connection"
 DATA_PET = "pet"
 DATA_OTHERS = "others"
 DATA_JOIN_WAR = "war"
+
+# DUNGEON NAMES
+DG_HVA = "Hazardous Valley (Awakened)"
+DG_HVH = "Hazardous Valley (Hard)"
+DG_HVM ="Hazardous Valley (Medium)"
+DG_HVE =  "Hazardous Valley (Easy)"
+DG_SCA = "Steamer Crazy (Awakened)"
+DG_CFA = "Catacomb Frost (Awakened)"
+DG_LHA = "Lava Hellfire (Awakened)"
+DG_HW = "Holy Windmill"
+DG_TM = "Terminus Machina"
+DG_PCA = "Panic Cave (Awakened)"
+DG_HK = "Holy Keldrasil"
+DG_S1P = "Altar of Siena B1F (Prideus)"
+DG_CI = "Chaos Infinity"
+DG_HVV = "Hazardous Valley (Veradrix)"
+DG_POTF = "Purifier of the Forest"
+DG_MI = "Mirage Island"
+DG_SCP = "Steamer Crazy (Premium)"
+DG_CLS = "Celestia"
 
 # ACCESS LEVEL
 ACCESS_FREE = "Free"
