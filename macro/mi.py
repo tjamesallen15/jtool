@@ -133,8 +133,7 @@ class MirageIsland(Dungeon, Special):
         continue
 
       util.do_dash_rel(155, 170)
-      util.do_fade_rel(155, 170)
-      util.do_dash_rel(835, 120, 4)
+      util.do_fade_rel(155, 170, 4)
 
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
 
@@ -143,6 +142,7 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
+      util.do_dash_rel(835, 120)
       util.do_fade_rel(835, 120)
       util.do_dash_rel(575, 180, 3)
 
