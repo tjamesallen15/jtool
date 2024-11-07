@@ -135,7 +135,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(1043, 563)
       util.do_fade_rel(1039, 560, 4)
 
-      if util.get_access_level() == consts.VAL_CLASS_FA:
+      if util.get_char_class() == consts.VAL_CLASS_FA:
         self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 2, 1, True)
 
       util.do_dash_rel(970, 550, 3)
