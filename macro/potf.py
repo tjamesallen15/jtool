@@ -132,7 +132,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade_rel(804, 282)
       util.do_dash_rel(803, 322)
       util.do_fade_rel(1042, 575)
-      util.do_dash_rel(1043, 563, 2)
+      util.do_dash_rel(1043, 563)
       util.do_fade_rel(1039, 560, 4)
 
       if util.get_access_level() == consts.VAL_CLASS_FA:
