@@ -93,6 +93,7 @@ class Drafter(Dungeon):
     return super().run_dungeon(runs)
 
   def initialize(self):
-    pyauto.displayMousePosition(cabal_window[0], cabal_window[1])
+    # pyauto.displayMousePosition(cabal_window[0], cabal_window[1])
+    pass
 
 Drafter().initialize()
