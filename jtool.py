@@ -436,13 +436,13 @@ class JTool():
     elif selected_dungeon == self.LIST_MASTER[12] :
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
-    elif selected_dungeon == self.LIST_MASTER[15]:
+    elif selected_dungeon == self.LIST_MASTER[14]:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
     elif selected_dungeon == self.LIST_MASTER[16]:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
-    elif selected_dungeon == self.LIST_MASTER[18]:
+    elif selected_dungeon == self.LIST_MASTER[17]:
       self.chkbtn_leader.config(state=consts.STATE_NORMAL)
       self.chkbtn_member.config(state=consts.STATE_NORMAL)
     else:
