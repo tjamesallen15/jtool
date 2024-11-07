@@ -224,7 +224,7 @@ class Dungeon(ABC):
 
     util.wait(delay)
 
-  def click_dialog(self, x, y, deviate=False):
+  def click_dialog(self, x, y, deviate=False, click_delay=0.2):
     check_dialog = True
     while check_dialog:
       if not util.get_macro_state():
@@ -235,16 +235,48 @@ class Dungeon(ABC):
         break
 
       try:
-        util.move_click(x, y, 0.2)
+        util.move_click(x, y, click_delay)
         if deviate == consts.IS_TRUE:
-          util.move_click(x - 10, y, 0.2)
-          util.move_click(x + 10, y, 0.2)
+          util.move_click(x - 10, y, click_delay)
+          util.move_click(x + 10, y, click_delay)
         dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.5)
         check_dialog = False
       except pyauto.ImageNotFoundException:
         pass
+
+  def click_dialogs(self, x, y, deviate=False, count=2, attack=True):
+    checking = True
+    dialog_count = 0
+    while checking:
+      if not util.get_macro_state():
+        util.log_action(consts.MSG_TERMINATE)
+        checking = False
+
+      if checking == False:
+        break
+
+      if dialog_count == count:
+        checking = False
+        break
+
+      if dialog_count == consts.STATE_ZERO:
+        util.move_click(x, y, 0.2)
+        if deviate == consts.IS_TRUE:
+          util.move_click(x - 10, y, 0.2)
+          util.move_click(x + 10, y, 0.2)
+
+      try:
+        dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+        util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
+        util.move_click_rel(10, 10, dialog, 0.4)
+        dialog_count += 1
+      except pyauto.ImageNotFoundException:
+        if attack == consts.IS_TRUE:
+          util.wait(1)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
+          atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
   def click_exit(self, x, y, deviate=False):
     check_dialog = True
@@ -268,7 +300,7 @@ class Dungeon(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-  def find_kill_low_monsters(self, unit_image, unit_name, delay=0.5):
+  def find_kill_low_monsters(self, unit_image, unit_name=consts.UNIT_EMPTY, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -289,7 +321,7 @@ class Dungeon(ABC):
 
     util.wait(delay)
 
-  def find_kill_low_special_boss(self, unit_name, delay=0.5):
+  def find_kill_low_special_boss(self, unit_name=consts.UNIT_EMPTY, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -348,7 +380,6 @@ class Dungeon(ABC):
         break
       except pyauto.ImageNotFoundException:
         pass
-
 
     atk.plunder_final_box(False, rep)
     util.wait(delay)

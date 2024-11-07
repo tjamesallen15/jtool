@@ -27,7 +27,6 @@ from macro.hk import HolyKeldrasil
 from macro.s1p import SienaB1FPrideus
 from macro.ci import ChaosInfinity
 from macro.hvv import HazardousValleyVeradrix
-from macro.rh import RadiantHall
 from macro.potf import PurifierOfTheForest
 from macro.mi import MirageIsland
 from macro.scp import SteamerCrazyPremium
@@ -51,7 +50,6 @@ class JTool():
     "Altar of Siena B1F (Prideus)",
     "Chaos Infinity",
     "Hazardous Valley (Veradrix)",
-    "Radiant Hall",
     "Purifier of the Forest",
     "Mirage Island",
     "Steamer Crazy (Premium)",
@@ -158,6 +156,10 @@ class JTool():
     application = pyauto.getActiveWindow()
     application.moveTo(coords[0], coords[1])
 
+  def get_dungeon_master_list(self, index):
+    val_master_index = self.LIST_MASTER[index]
+    return val_master_index
+
   def start(self):
     cabal_window = pyauto.locateOnScreen(consts.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
     selected_dungeon = self.list_dg.get()
@@ -212,40 +214,25 @@ class JTool():
     if dungeon_restart == consts.STATE_ONE:
       self.restart_application()
 
-    if selected_dungeon == self.LIST_MASTER[0]:
-      HazardousValleyAwakened().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[1] or selected_dungeon == self.LIST_MASTER[2] or selected_dungeon == self.LIST_MASTER[3]:
-      HazardousValley().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[4]:
-      SteamerCrazyAwakened().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[5]:
-      CatacombsFrostAwakened().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[6]:
-      LavaHellfireAwakened().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[7]:
-      HolyWindmill().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[8]:
-      TerminusMachina().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[9]:
-      PanicCaveAwakened().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[10]:
-      HolyKeldrasil().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[11]:
-      SienaB1FPrideus().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[12]:
-      ChaosInfinity().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[13]:
-      HazardousValleyVeradrix().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[14]:
-      RadiantHall().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[15]:
-      PurifierOfTheForest().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[16]:
-      MirageIsland().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[17]:
-      SteamerCrazyPremium().initialize(dungeon_args)
-    elif selected_dungeon == self.LIST_MASTER[18]:
-      Celestia().initialize(dungeon_args)
+    match selected_dungeon:
+      case self.get_dungeon_master_list(0): HazardousValleyAwakened().initialize(dungeon_args)
+      case self.get_dungeon_master_list(1): HazardousValley().initialize(dungeon_args)
+      case self.get_dungeon_master_list(2): HazardousValley().initialize(dungeon_args)
+      case self.get_dungeon_master_list(3): HazardousValley().initialize(dungeon_args)
+      case self.get_dungeon_master_list(4): SteamerCrazyAwakened().initialize(dungeon_args)
+      case self.get_dungeon_master_list(5): CatacombsFrostAwakened().initialize(dungeon_args)
+      case self.get_dungeon_master_list(6): LavaHellfireAwakened().initialize(dungeon_args)
+      case self.get_dungeon_master_list(7): HolyWindmill().initialize(dungeon_args)
+      case self.get_dungeon_master_list(8): TerminusMachina().initialize(dungeon_args)
+      case self.get_dungeon_master_list(9): PanicCaveAwakened().initialize(dungeon_args)
+      case self.get_dungeon_master_list(10): HolyKeldrasil().initialize(dungeon_args)
+      case self.get_dungeon_master_list(11): SienaB1FPrideus().initialize(dungeon_args)
+      case self.get_dungeon_master_list(12): ChaosInfinity().initialize(dungeon_args)
+      case self.get_dungeon_master_list(13): HazardousValleyVeradrix().initialize(dungeon_args)
+      case self.get_dungeon_master_list(14): PurifierOfTheForest().initialize(dungeon_args)
+      case self.get_dungeon_master_list(15): HazardousValleyAwakened().initialize(dungeon_args)
+      case self.get_dungeon_master_list(16): MirageIsland().initialize(dungeon_args)
+      case self.get_dungeon_master_list(17): Celestia().initialize(dungeon_args)
 
   def get_dungeon_list(self):
     if self.get_level() == consts.ACCESS_FREE:

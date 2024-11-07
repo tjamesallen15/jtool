@@ -61,6 +61,54 @@ def attack_monsters(unit=consts.UNIT_EMPTY, aura=True, interval=consts.VAL_INTER
       combo = False
       break
 
+def attack_shade_monsters(unit=consts.UNIT_EMPTY, aura=True, interval=consts.VAL_INTERVAL_DEFAULT, sidestep=True, type=consts.TYPE_BOSS):
+  combo = True
+  fade_count = 0
+
+  while combo:
+    if not util.get_macro_state():
+      util.log_action(consts.MSG_TERMINATE)
+      combo = False
+
+    if combo == False:
+      break
+
+    if aura == consts.IS_TRUE:
+      util.do_final_mode()
+      util.do_aura()
+
+    if sidestep == consts.IS_TRUE:
+      if (fade_count == 20):
+        fade_count = 0
+        util.move_click(700, 440, 0.2)
+        util.do_fade(0.1)
+      else:
+        fade_count += 1
+
+    util.do_select(0.1)
+    try:
+      if type == consts.TYPE_BOSS: pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      elif type == consts.TYPE_SEMI: pyauto.locateOnScreen(consts.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+      util.do_deselect_pack()
+      util.log_action(consts.MSG_BOSS_FOUND)
+      combo = False
+      break
+    except pyauto.ImageNotFoundException:
+      util.log_action(consts.MSG_ATTACK + unit)
+
+    if combo == False:
+      break
+
+    try:
+      mobs = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(consts.MSG_ATTACK + unit)
+      util.do_attack(interval)
+      util.do_attack(interval, True)
+    except pyauto.ImageNotFoundException:
+      util.log_action(consts.MSG_MONSTERS_CLEARED)
+      combo = False
+      break
+
 def attack_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, strict=False, cont=True):
   combo = True
 
@@ -196,6 +244,40 @@ def focus_monsters(unit=consts.UNIT_EMPTY, select=True, aura=True, sidestep=True
 
     try:
       mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(consts.MSG_ATTACK + unit)
+
+      util.do_attack(0.1)
+    except pyauto.ImageNotFoundException:
+      util.log_action(consts.MSG_MONSTER_CLEARED)
+      combo = False
+
+def focus_shade_monsters(unit=consts.UNIT_EMPTY, select=True, aura=True, sidestep=True):
+  combo = True
+  fade_count = 0
+
+  if select == consts.IS_TRUE: util.do_select(0.1)
+  while combo:
+    if not util.get_macro_state():
+      util.log_action(consts.MSG_TERMINATE)
+      combo = False
+
+    if combo == False:
+        break
+
+    if aura == consts.IS_TRUE:
+      util.do_final_mode()
+      util.do_aura()
+
+    if sidestep == consts.IS_TRUE:
+      if (fade_count == 20):
+        fade_count = 0
+        util.move_click(700, 440, 0.2)
+        util.do_fade(0.1)
+      else:
+        fade_count += 1
+
+    try:
+      mobs = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
       util.log_action(consts.MSG_ATTACK + unit)
 
       util.do_attack(0.1)

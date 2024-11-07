@@ -18,7 +18,6 @@ All notable changes to this project will be documented in this file.
 - [S1P] Altar of Siena B1F (Prideus) [v5.11]
 - [CI] Chaos Infinity [v5.50]
 - [HVV] Hazardous Valley (Veradrix) [v5.50]
-- [RH] Radiant Hall [v5.65] [Development]
 - [POTF] Purifier of the Forest [v5.85]
 - [MI] Mirage Island [v5.90]
 - [SCP] Steamer Crazy (Premium) [v5.90]
@@ -35,6 +34,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added do_dash_rel and do_fade_rel for better movement option in large maps
 - [CLS] Added Celestia in Beta Phase
 - [MI] Added Mirage Island in Beta Phase
+- [RH] Removed Radiant Hall for Dungeon Automation
 - [SCP] Added Steamer Crazy (Premium) in Beta Phase
 
 ## v5.90 Fixes

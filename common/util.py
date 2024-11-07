@@ -782,7 +782,7 @@ def reset_battle_mode(delay=0):
     global is_battle_mode
     is_battle_mode = False
 
-def do_battle_mode(delay=5, cancel=True, aura=False):
+def do_battle_mode(delay=5, cancel=True):
   if get_battle_mode() == consts.STATE_ONE:
     log_action(consts.MSG_BATTLE_MODE)
     set_battle_mode(True, cancel)
@@ -792,11 +792,6 @@ def do_battle_mode(delay=5, cancel=True, aura=False):
 
     for x in range(delay):
       do_essentials()
-      time.sleep(1)
-
-    if aura == consts.IS_TRUE:
-      pynboard.press(consts.KEY_AURA)
-      pynboard.release(consts.KEY_AURA)
       time.sleep(1)
 
 def force_battle_mode(delay=5):
