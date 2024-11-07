@@ -981,7 +981,6 @@ def roll_box():
     try:
       roll = pyauto.locateOnScreen(consts.IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
       log_action(consts.MSG_ROLL_EQUIPMENT)
-      move_rel(10, 10, roll, 0.2)
       move_click_rel(10, 10, roll, 0.2)
     except pyauto.ImageNotFoundException:
       pass
@@ -989,8 +988,9 @@ def roll_box():
 def party_roll_box(reps=4):
   roll_reps = reps * 3
   for x in range(roll_reps):
-    roll_box()
     if get_veradrix_status() == consts.IS_TRUE: do_veradrix()
+    if get_access_level() == consts.ACCESS_SUPER: do_fast_plunder()
+    roll_box()
     time.sleep(0.3)
 
 def do_plunder(reps=4):
