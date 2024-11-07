@@ -493,7 +493,8 @@ class MirageIsland(Dungeon, Special):
 
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_dash_rel(630, 250)
-        util.do_fade_rel(630, 250)
+        util.do_fade_rel(630, 250, 1.5)
+        util.do_fade_rel(630, 250, 1.5)
       else: util.do_dash_rel(630, 285)
 
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
