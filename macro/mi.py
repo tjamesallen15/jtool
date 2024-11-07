@@ -190,8 +190,6 @@ class MirageIsland(Dungeon, Special):
         atk.plunder_box_party()
         util.do_dash_rel(750, 240, 1.5)
 
-      continue
-
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
