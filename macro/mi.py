@@ -184,8 +184,8 @@ class MirageIsland(Dungeon, Special):
         continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
+        util.do_dash_rel(496, 356)
         atk.plunder_box()
-        util.do_dash_rel(493, 359)
       else:
         atk.plunder_box_party()
         util.do_dash_rel(750, 240, 1.5)
