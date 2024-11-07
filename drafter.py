@@ -30,7 +30,6 @@ from macro.hk import HolyKeldrasil
 from macro.s1p import SienaB1FPrideus
 from macro.ci import ChaosInfinity
 from macro.hvv import HazardousValleyVeradrix
-from macro.rh import RadiantHall
 from macro.potf import PurifierOfTheForest
 from macro.mi import MirageIsland
 
