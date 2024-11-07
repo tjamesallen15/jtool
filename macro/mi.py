@@ -187,6 +187,8 @@ class MirageIsland(Dungeon, Special):
         atk.plunder_box_party()
         util.do_dash_rel(750, 240, 1.5)
 
+      continue
+
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
@@ -480,9 +482,10 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(630, 125)
       util.do_fade_rel(630, 125)
 
-      util.do_dash_rel(630, 250)
-
-      if util.get_party_member_status() == consts.IS_FALSE: util.do_fade_rel(630, 250)
+      if util.get_party_member_status() == consts.IS_FALSE:
+        util.do_dash_rel(630, 250)
+        util.do_fade_rel(630, 250)
+      else: util.do_dash_rel(630, 275)
 
       self.find_kill_special_boss(consts.UNIT_RULER_BARIALD)
       util.do_plunder(2)

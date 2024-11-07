@@ -401,7 +401,8 @@ def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=consts.
 
     if sec_difference >= 30 and sec_difference <= 35 and aura == consts.IS_TRUE:
       util.do_aura()
-      util.do_aura(2)
+      util.do_aura()
+      util.do_aura()
       util.force_veradrix()
       util.do_short_buffs()
 

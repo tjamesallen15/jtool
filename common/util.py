@@ -1015,15 +1015,14 @@ def do_heal():
   pynboard.release(consts.KEY_HP)
 
 def do_essentials(release_keys=True):
+  do_heal()
+  do_veradrix()
   pynboard.press(consts.KEY_LOOT_SPACE)
   pynboard.release(consts.KEY_LOOT_SPACE)
   pynboard.press(consts.KEY_FURY)
   pynboard.release(consts.KEY_FURY)
-  pynboard.press(consts.KEY_HP)
-  pynboard.release(consts.KEY_HP)
   pynboard.press(consts.KEY_LOOT_ACTION)
   pynboard.release(consts.KEY_LOOT_ACTION)
-  do_veradrix()
 
   if release_keys == consts.IS_TRUE:
     pynboard.release(Key.shift)
