@@ -276,7 +276,22 @@ class PurifierOfTheForest(Dungeon, Special):
       # Attack Web Gate
       if util.get_party_leader_status() == consts.IS_TRUE: util.wait(2)
       if util.get_party_member_status() == consts.IS_FALSE: atk.focus_gate(consts.UNIT_WEB_GATE, 0)
-      else: util.wait(8)
+      else:
+        web_gate = True
+        while web_gate:
+          if not util.get_macro_state():
+            util.log_action(consts.MSG_TERMINATE)
+            web_gate = False
+
+          if web_gate == False:
+            break
+
+          try:
+            gate = pyauto.locateOnScreen(consts.IMG_WEB_GATE, grayscale=False, confidence=.7, region=util.get_archer_region())
+          except pyauto.ImageNotFoundException:
+            util.wait(2)
+            web_gate = False
+            break
 
       if not util.get_macro_state():
         run_counter += 1000
