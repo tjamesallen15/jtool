@@ -439,7 +439,7 @@ class PurifierOfTheForest(Dungeon, Special):
         util.do_fade_rel(486, 617)
         util.do_dash_rel(560, 607)
       else:
-        util.do_plunder(2)
+        util.do_fast_plunder(2)
         util.wait(8)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()

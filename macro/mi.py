@@ -164,18 +164,17 @@ class MirageIsland(Dungeon, Special):
 
       util.do_dash_rel(590, 255, 1.5)
       util.do_dash_rel(890, 250)
-
       util.do_fade_rel(770, 175)
       util.do_dash_rel(770, 175, 2)
-
       util.do_fade_rel(740, 210)
 
       # Attack Monsters (Crag Crab)
-      self.attack_monsters(consts.UNIT_CRAG_CRAB, 2.0, False)
-
       if util.get_party_member_status() == consts.IS_FALSE:
+        self.attack_monsters(consts.UNIT_CRAG_CRAB, 0, False)
         util.do_dash_rel(750, 240)
-        util.do_fade_rel(803, 467)
+        util.do_fade_rel(773, 482)
+      else:
+        self.attack_monsters(consts.UNIT_CRAG_CRAB, 2.0, False)
       util.cancel_aura(2.0)
 
       # Check Macro State
@@ -192,7 +191,7 @@ class MirageIsland(Dungeon, Special):
         continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.do_dash_rel(496, 356)
+        util.do_dash_rel(494, 367)
         atk.plunder_box()
       else:
         atk.plunder_box_party()
