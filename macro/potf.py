@@ -297,8 +297,8 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      if util.get_party_status() == consts.IS_TRUE: util.do_fade_rel(675, 300, 7)
-      else: util.do_fade_rel(675, 300, 5)
+      if util.get_party_member_status() == consts.IS_FALSE: util.do_fade_rel(675, 300, 7)
+      else: util.do_fade_rel(675, 300, 2)
 
       util.do_dash_rel(675, 300)
       util.move_scroll(700, 150, 375, 150, 0.5)
