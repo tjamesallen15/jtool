@@ -49,39 +49,53 @@ class HazardousValleyVeradrix(Dungeon):
 
       util.move(500, 300)
       if util.get_attack_type() == consts.IS_MELEE: util.do_dash(3.5)
-      else: util.do_dash(1.5)
-      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
+      else: util.do_dash()
+      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, False, 0.3, self.val_sidestep_disabled)
 
       util.move(375, 150)
       util.do_dash()
+      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, False, 0.3, self.val_sidestep_disabled)
 
-      if util.get_attack_type() == consts.IS_MELEE: util.do_fade(5.5)
-      else: util.do_fade(2.5)
-      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
-
-      util.move(375, 150)
+      if util.get_attack_type() == consts.IS_MELEE: util.do_dash(5.5)
+      else: util.do_dash()
       util.do_fade()
-      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
+      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, False, 0.3, self.val_sidestep_disabled)
 
       util.move(375, 175)
       util.do_dash()
       util.do_fade()
       util.do_dash()
-      util.do_fade(1)
+      if util.get_attack_type() == consts.IS_MELEE:
+        util.move(375, 175)
+        util.do_fade(1)
 
-      util.move(250, 350)
-      util.do_dash(3)
-      if util.get_attack_type() == consts.IS_MELEE: util.do_fade(2)
-      else: util.do_fade(1)
-      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, True, 0.3, self.val_sidestep_disabled)
+        util.move(250, 350)
+        util.do_dash(3)
+        util.do_fade(2)
+      else:
+        util.move(375, 175)
+        util.do_fade()
+
+        util.move(250, 350)
+        util.do_dash()
+        util.do_fade()
+      util.do_final_mode(1)
+      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, False, 0.3, self.val_sidestep_disabled)
 
       util.move(535, 150)
       util.do_dash()
       util.do_fade()
-
       util.move(400, 200)
       util.do_dash()
-      util.do_fade(1.5)
+
+      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, False, 0.3, self.val_sidestep_disabled)
+
+      util.do_dash_rel(456, 156)
+      util.do_fade_rel(416, 253)
+      util.do_dash_rel(434, 333)
+
+      atk.attack_monsters(consts.UNIT_CUTTER_TOAD, False, 0.3, self.val_sidestep_disabled)
+      util.do_fade_rel(533, 327)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -116,7 +130,7 @@ class HazardousValleyVeradrix(Dungeon):
       util.move(630, 520)
       util.do_fade()
       util.move(550, 250)
-      util.do_dash(0.5)
+      util.do_dash(0.1)
 
       checking = True
       while checking:
@@ -143,10 +157,9 @@ class HazardousValleyVeradrix(Dungeon):
         run_counter += 1000
         continue
 
-      util.do_deselect_pack()
-      util.move_click(570, 260)
-      util.do_fade(1.5)
+      util.move(570, 260)
       util.do_fade()
+      util.do_dash()
 
       atk.plunder_box()
 
