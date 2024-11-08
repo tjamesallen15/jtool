@@ -170,7 +170,7 @@ class MirageIsland(Dungeon, Special):
 
       # Attack Monsters (Crag Crab)
       if util.get_party_member_status() == consts.IS_FALSE:
-        self.attack_monsters(consts.UNIT_CRAG_CRAB, 0, False)
+        self.attack_monsters(consts.UNIT_CRAG_CRAB, 0.5, False)
         util.do_dash_rel(750, 240)
         util.do_fade_rel(773, 482)
       else:
@@ -326,7 +326,6 @@ class MirageIsland(Dungeon, Special):
         util.do_fade_rel(505, 170)
       else:
         util.do_dash_rel(1045, 120, 9)
-
         util.do_dash_rel(505, 170)
         util.do_fade_rel(505, 170, 3.5)
 
@@ -346,9 +345,10 @@ class MirageIsland(Dungeon, Special):
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_dash_rel(765, 725)
         atk.plunder_box(True, 2)
-      else: util.do_dash_rel(765, 725, 1.5)
-
-      util.do_dash_rel(745, 610, 1.5)
+        util.do_dash_rel(745, 610, 1.5)
+      else:
+        util.do_dash_rel(765, 725)
+        util.do_fade_rel(745, 610)
 
       util.do_dash_rel(440, 625)
 
@@ -387,22 +387,11 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(526, 199)
-      util.do_fade_rel(526, 199)
-      util.do_dash_rel(526, 199)
-      util.do_fade_rel(526, 199)
-      util.do_dash_rel(526, 199)
-      util.do_fade_rel(526, 199)
-
-      # util.do_dash_rel(650, 270)
-
+      util.do_dash_rel(650, 270)
       util.move_scroll(700, 150, 375, 150, 0.5)
-      util.do_dash_rel(438, 228)
-      util.do_fade_rel(566, 344)
-      # util.do_dash_rel(885, 95)
-      # util.do_fade_rel(885, 95)
-      # util.do_dash_rel(885, 95)
-
+      util.do_dash_rel(885, 95)
+      util.do_fade_rel(885, 95)
+      util.do_dash_rel(885, 95)
       util.do_fade_rel(885, 95)
 
       util.do_dash_rel(570, 80)
