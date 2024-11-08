@@ -160,7 +160,8 @@ class MirageIsland(Dungeon, Special):
         continue
 
       util.do_fade_rel(835, 120)
-      util.do_dash_rel(575, 180, 3)
+      util.do_dash_rel(575, 180, 1.5)
+      util.do_dash_rel(590, 255, 1.5)
 
       # Attack Monsters (Border Crab)
       self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
@@ -170,7 +171,6 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(590, 255, 1.5)
       util.do_dash_rel(890, 250)
       util.do_fade_rel(770, 175)
       util.do_dash_rel(770, 175, 2)
