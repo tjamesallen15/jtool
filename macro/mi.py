@@ -387,12 +387,22 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(650, 270)
+      util.do_dash_rel(526, 199)
+      util.do_fade_rel(526, 199)
+      util.do_dash_rel(526, 199)
+      util.do_fade_rel(526, 199)
+      util.do_dash_rel(526, 199)
+      util.do_fade_rel(526, 199)
+
+      # util.do_dash_rel(650, 270)
 
       util.move_scroll(700, 150, 375, 150, 0.5)
-      util.do_dash_rel(885, 95)
-      util.do_fade_rel(885, 95)
-      util.do_dash_rel(885, 95)
+      util.do_dash_rel(438, 228)
+      util.do_fade_rel(566, 344)
+      # util.do_dash_rel(885, 95)
+      # util.do_fade_rel(885, 95)
+      # util.do_dash_rel(885, 95)
+
       util.do_fade_rel(885, 95)
 
       util.do_dash_rel(570, 80)
