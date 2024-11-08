@@ -289,7 +289,7 @@ class PurifierOfTheForest(Dungeon, Special):
           try:
             gate = pyauto.locateOnScreen(consts.IMG_WEB_GATE, grayscale=False, confidence=.7, region=util.get_archer_region())
           except pyauto.ImageNotFoundException:
-            util.wait(2)
+            util.wait(6)
             web_gate = False
             break
 
