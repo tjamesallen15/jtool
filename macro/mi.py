@@ -237,6 +237,8 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(615, 100)
       util.do_fade_rel(615, 100)
 
+      continue
+
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_dash_rel(935, 105)
         util.do_fade_rel(935, 105)
