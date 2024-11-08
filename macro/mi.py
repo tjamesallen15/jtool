@@ -237,8 +237,6 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(615, 100)
       util.do_fade_rel(615, 100)
 
-      continue
-
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_dash_rel(935, 105)
         util.do_fade_rel(935, 105)
@@ -253,9 +251,14 @@ class MirageIsland(Dungeon, Special):
         util.do_fade_rel(700, 635)
         util.do_dash_rel(485, 675)
         util.do_fade_rel(390, 680)
-        util.do_dash_rel(390, 680)
+        # util.do_dash_rel(390, 680, 1.5)
+        util.do_dash_rel(383, 306)
+        util.do_fade_rel(484, 385)
       else:
-        util.wait(8)
+        util.do_dash_rel(625, 146)
+        util.do_fade_rel(625, 146)
+        util.do_dash_rel(625, 146)
+        util.wait(7)
 
       # Attack Boss (Grogo)
       util.set_last_cast_mode(3)
@@ -266,17 +269,25 @@ class MirageIsland(Dungeon, Special):
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
-      else: util.wait(4)
+      # if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      # else: util.wait(4)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      if util.get_party_member_status() == consts.IS_FALSE:
-        util.do_dash_rel(515, 565, 1.5)
-      else: util.wait(2)
+      # if util.get_party_member_status() == consts.IS_FALSE: util.do_dash_rel(515, 565, 1.5)
+      # else: util.wait(2)
+
+      util.do_dash_rel(634, 697)
+      if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
+      else: util.wait(4)
+
+      util.do_fade_rel(634, 697)
+      util.do_dash_rel(626, 561)
+
+      continue
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
 
