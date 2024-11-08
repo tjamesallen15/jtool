@@ -346,11 +346,11 @@ class MirageIsland(Dungeon, Special):
         util.do_dash_rel(765, 725)
         atk.plunder_box(True, 2)
         util.do_dash_rel(745, 610, 1.5)
+        util.do_dash_rel(440, 625)
       else:
         util.do_dash_rel(765, 725)
-        util.do_fade_rel(745, 610)
-
-      util.do_dash_rel(440, 625)
+        util.do_fade_rel(564, 711)
+        util.do_dash_rel(625, 671)
 
       util.move_scroll(1000, 150, 375, 150, 0.5)
       util.do_dash_rel(735, 85)
