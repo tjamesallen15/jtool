@@ -105,10 +105,18 @@ class MirageIsland(Dungeon, Special):
         continue
 
       util.do_dash_rel(1200, 235)
-      util.do_fade_rel(1200, 235)
-      util.do_dash_rel(1200, 235)
       util.do_fade_rel(1200, 235, 3)
+      util.do_dash_rel(1200, 235)
 
+      # Attack Monsters (Border Crab)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+
+      # Check Macro State
+      if not util.get_macro_state():
+        run_counter += 1000
+        continue
+
+      util.do_fade_rel(1200, 235, 2)
       util.do_dash_rel(775, 185, 4)
       util.do_fade_rel(775, 185)
 
@@ -287,8 +295,6 @@ class MirageIsland(Dungeon, Special):
       util.do_fade_rel(634, 697)
       util.do_dash_rel(626, 561)
 
-      continue
-
       util.move_scroll(1000, 150, 375, 150, 0.5)
 
       util.do_dash_rel(515, 55)
@@ -385,6 +391,7 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(305, 330)
 
       util.set_last_cast_mode(3)
+      util.do_short_buffs()
       self.find_kill_special_boss(consts.UNIT_GARLIARDO)
 
       # Check Macro State
