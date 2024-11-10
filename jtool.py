@@ -233,78 +233,79 @@ class JTool():
   def get_dungeon_list(self):
     if self.get_level() == consts.ACCESS_FREE:
       self.LIST_DUNGEON = [
-        "Hazardous Valley (Awakened)",
-        "Hazardous Valley (Hard)",
-        "Hazardous Valley (Medium)",
-        "Hazardous Valley (Easy)"
+        consts.DG_HVA,
+        consts.DG_HVH,
+        consts.DG_HVM,
+        consts.DG_HVE
       ]
     elif self.get_level() == consts.ACCESS_PRO:
       self.LIST_DUNGEON = [
-        "Hazardous Valley (Awakened)",
-        "Hazardous Valley (Hard)",
-        "Hazardous Valley (Medium)",
-        "Hazardous Valley (Easy)",
-        "Steamer Crazy (Awakened)",
-        "Catacomb Frost (Awakened)",
-        "Lava Hellfire (Awakened)"
+        consts.DG_HVA,
+        consts.DG_HVH,
+        consts.DG_HVM,
+        consts.DG_HVE,
+        consts.DG_SCA,
+        consts.DG_CFA,
+        consts.DG_LHA
       ]
     elif self.get_level() == consts.ACCESS_PREMIUM:
       self.LIST_DUNGEON = [
-        "Hazardous Valley (Awakened)",
-        "Hazardous Valley (Hard)",
-        "Hazardous Valley (Medium)",
-        "Hazardous Valley (Easy)",
-        "Steamer Crazy (Awakened)",
-        "Catacomb Frost (Awakened)",
-        "Lava Hellfire (Awakened)",
-        "Holy Windmill",
-        "Holy Keldrasil",
+        consts.DG_HVA,
+        consts.DG_HVH,
+        consts.DG_HVM,
+        consts.DG_HVE,
+        consts.DG_SCA,
+        consts.DG_CFA,
+        consts.DG_LHA,
+        consts.DG_HW,
+        consts.DG_HK
       ]
     elif self.get_level() == consts.ACCESS_TESTER:
       self.LIST_DUNGEON = [
-        "Hazardous Valley (Awakened)",
-        "Hazardous Valley (Hard)",
-        "Hazardous Valley (Medium)",
-        "Hazardous Valley (Easy)",
-        "Steamer Crazy (Awakened)",
-        "Catacomb Frost (Awakened)",
-        "Lava Hellfire (Awakened)",
-        "Holy Windmill",
-        "Holy Keldrasil",
-        "Terminus Machina",
-        "Chaos Infinity",
-        "Mirage Island"
+        consts.DG_HVA,
+        consts.DG_HVH,
+        consts.DG_HVM,
+        consts.DG_HVE,
+        consts.DG_SCA,
+        consts.DG_CFA,
+        consts.DG_LHA,
+        consts.DG_HW,
+        consts.DG_HK,
+        consts.DG_TM,
+        consts.DG_CI,
+        consts.DG_MI,
+        consts.DG_CLS
       ]
     elif self.get_level() == consts.ACCESS_TESTER_II:
       self.LIST_DUNGEON = [
-        "Hazardous Valley (Awakened)",
-        "Hazardous Valley (Hard)",
-        "Steamer Crazy (Awakened)",
-        "Catacomb Frost (Awakened)",
-        "Lava Hellfire (Awakened)",
-        "Holy Keldrasil",
-        "Chaos Infinity"
+        consts.DG_HVA,
+        consts.DG_HVH,
+        consts.DG_SCA,
+        consts.DG_CFA,
+        consts.DG_LHA,
+        consts.DG_HK,
+        consts.DG_CI
       ]
     elif self.get_level() == consts.ACCESS_SUPER:
       self.LIST_DUNGEON = [
-        "Hazardous Valley (Awakened)",
-        "Hazardous Valley (Hard)",
-        "Hazardous Valley (Medium)",
-        "Hazardous Valley (Easy)",
-        "Steamer Crazy (Premium)",
-        "Steamer Crazy (Awakened)",
-        "Catacomb Frost (Awakened)",
-        "Lava Hellfire (Awakened)",
-        "Panic Cave (Awakened)",
-        "Holy Windmill",
-        "Holy Keldrasil",
-        "Terminus Machina",
-        "Chaos Infinity",
-        "Altar of Siena B1F (Prideus)",
-        "Hazardous Valley (Veradrix)",
-        "Mirage Island",
-        "Celestia",
-        "Purifier of the Forest"
+        consts.DG_HVA,
+        consts.DG_HVH,
+        consts.DG_HVM,
+        consts.DG_HVE,
+        consts.DG_SCP,
+        consts.DG_SCA,
+        consts.DG_CFA,
+        consts.DG_LHA,
+        consts.DG_PCA,
+        consts.DG_HW,
+        consts.DG_HK,
+        consts.DG_TM,
+        consts.DG_CI,
+        consts.DG_S1P,
+        consts.DG_HVV,
+        consts.DG_MI,
+        consts.DG_CLS,
+        consts.DG_POTF
       ]
 
   def get_access(self, feature):

@@ -888,24 +888,24 @@ def do_short_buffs():
   if get_shorts_status() == consts.IS_TRUE:
     log_action(consts.MSG_SHORT_BUFFS)
     click_combo(470, 670, True, 0.2)
+    click_combo(470, 670, True, 0.2)
     click_combo(500, 670, True, 0.2)
-
-    do_hard_short_buffs()
+    click_combo(500, 670, True, 0.2)
 
 def do_hard_short_buffs():
   if get_hard_shorts_status() == consts.IS_TRUE:
     if get_char_class() == consts.VAL_CLASS_BL:
       click_combo(540, 670, True, 0.5)
+      click_combo(540, 670, True, 0.5)
+      click_combo(570, 670, True, 0.5)
       click_combo(570, 670, True, 0.5)
 
 def force_short_buffs():
   log_action(consts.MSG_SHORT_BUFFS)
   click_combo(470, 670, True, 0.2)
+  click_combo(470, 670, True, 0.2)
   click_combo(500, 670, True, 0.2)
-
-  if get_char_class() == consts.VAL_CLASS_BL:
-    click_combo(540, 670, True, 0.5)
-    click_combo(570, 670, True, 0.5)
+  click_combo(500, 670, True, 0.2)
 
 def do_debuff(delay=1.5):
   if get_debuffs_status() == consts.IS_TRUE:
@@ -1039,6 +1039,12 @@ def release_keys(delay=0):
 def do_aura(delay=0):
   pynboard.press(consts.KEY_AURA)
   pynboard.release(consts.KEY_AURA)
+
+  if delay != 0: time.sleep(delay)
+
+def click_aura(delay=0):
+  click_combo(715, 700, True)
+  click_combo(715, 700, True)
 
   if delay != 0: time.sleep(delay)
 

@@ -594,7 +594,7 @@ class TerminusMachina(Dungeon):
         run_counter += 1000
         continue
 
-      util.do_battle_mode()
+      util.do_battle_mode(5, False)
       util.do_aura()
       util.do_short_buffs()
 
