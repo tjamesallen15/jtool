@@ -380,7 +380,6 @@ def focus_high_monsters(unit=consts.UNIT_EMPTY, select=True):
 def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=consts.TYPE_BOSS):
   combo = True
   cast_mode = True
-  cast_aura = True
   mode_time = time.time()
   mode = 2
 
@@ -400,21 +399,19 @@ def focus_high_boss(unit=consts.UNIT_EMPTY, select=True, aura=True, type=consts.
     check_time = time.time()
     sec_difference = math.ceil(check_time - mode_time)
 
-    if sec_difference >= 30 and cast_aura == consts.IS_TRUE and aura == consts.IS_TRUE:
+    if sec_difference % 30 == 0 and aura == consts.IS_TRUE:
       util.do_aura()
       util.do_aura()
       util.do_aura()
       util.force_veradrix()
-      util.do_short_buffs()
-      cast_aura = False
 
     if sec_difference % 30 == 0:
+      util.do_short_buffs()
       util.do_hard_debuff()
       util.do_debuff()
 
     if sec_difference >= 95:
       cast_mode = True
-      cast_aura = True
       util.cancel_aura(1.5)
 
     if mode == consts.STATE_THREE and cast_mode == True:

@@ -141,7 +141,7 @@ class JTool():
     util.set_cabal_window(cabal_window)
     util.go_cabal_window()
     i = 0
-    while i <= 25:
+    while i <= 50:
       util.move_click(1235, 585)
       util.move_click(630, 440)
       i += 1
