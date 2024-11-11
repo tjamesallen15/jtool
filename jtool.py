@@ -197,6 +197,7 @@ class JTool():
     util.initialize(cabal_window, self.frame_root, self.lbl_macro, self.lbl_current_run, self.lbl_run_time)
     util.initialize_region()
     util.set_variables(variable_args)
+    util.set_loot_status(True)
 
     if dungeon_restart == consts.STATE_ONE:
       self.restart_application()

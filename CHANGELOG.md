@@ -26,10 +26,12 @@ All notable changes to this project will be documented in this file.
 
 ## v5.95 Features
 
+- [Dungeon] Added loot status to enable/disable looting function
 - [SCQ] Added Steamer Crazy (Quest) for Beta Phase
 
 ## v5.95 Fixes
 
+- [Application] Method Updates and Cleanup
 - [PCA] Adjusted wait time in challenge dungeon
 
 # v5.90

@@ -17,6 +17,20 @@ pynboard = Controller()
 
 class SteamerCrazyQuest(Dungeon):
 
+  def initialize(self, args):
+    self.frame_root = args[consts.DATA_FRAME]
+    self.btn_start = args[consts.DATA_BUTTON]
+
+    shortcut.add_hotkey(consts.HOTKEY_TERMINATE, util.terminate)
+    self.btn_start.config(state=consts.STATE_DISABLED)
+    self.frame_root.update()
+
+    util.set_loot_status(False)
+    self.run_dungeon(args[consts.DATA_RUNS])
+
+    self.btn_start.config(state=consts.STATE_NORMAL)
+    self.frame_root.update()
+
   def run_dungeon(self, runs):
     run_counter = 0
     while run_counter < runs:
@@ -28,7 +42,7 @@ class SteamerCrazyQuest(Dungeon):
 
       # Click Cabal Window
       util.go_cabal_window()
-      util.release_keys()
+      util.do_key_release()
       util.go_skill_slot(0.2)
       util.do_buffs()
 
@@ -172,7 +186,7 @@ class SteamerCrazyQuest(Dungeon):
 
       util.move(625, 150)
       util.do_dash()
-      atk.plunder_box()
+      atk.plunder_box(loot=False)
 
       util.move(625, 150)
       util.do_fade()
@@ -210,7 +224,7 @@ class SteamerCrazyQuest(Dungeon):
       util.do_battle_mode()
       self.find_kill_low_special_boss(consts.UNIT_STEAMER)
       util.set_battle_mode(False)
-      self.find_kill_final_box()
+      self.find_kill_final_box(loot=False)
 
       util.move(625, 250)
       util.do_fade()

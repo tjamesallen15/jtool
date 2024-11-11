@@ -52,6 +52,7 @@ val_last_message = ''
 val_last_cast_mode = 0
 val_battle_counter = 0
 val_mode_exist = False
+val_loot_status = False
 
 region_normal_bar = []
 region_mode_bar = []
@@ -690,6 +691,13 @@ def set_run_restart_status(status):
 def get_run_restart_status():
   return val_run_restart
 
+def set_loot_status(status):
+  global val_loot_status
+  val_loot_status = status
+
+def get_loot_status():
+  return val_loot_status
+
 def set_password(pword):
   global val_pword
   val_pword = pword
@@ -763,9 +771,7 @@ def timeout_exit_dungeon():
   time.sleep(3)
 
 def go_skill_slot(delay=0):
-  pynboard.press(Key.f3)
-  pynboard.release(Key.f3)
-
+  press_release(Key.f3)
   if delay != 0: time.sleep(delay)
 
 def set_battle_mode(val, cancel=True):
@@ -790,9 +796,7 @@ def do_battle_mode(delay=5, cancel=True):
     click_combo(790, 670, True)
     click_combo(790, 670, True)
 
-    for x in range(delay):
-      do_essentials()
-      time.sleep(1)
+    for x in range(delay): do_essentials(True, 1)
 
 def force_battle_mode(delay=5):
   click_combo(790, 670, True)
@@ -801,9 +805,7 @@ def force_battle_mode(delay=5):
   if get_char_class() == consts.VAL_CLASS_FB:
     delay = 4
 
-  for x in range(delay):
-    do_essentials()
-    time.sleep(1)
+  for x in range(delay): do_essentials(True, 1)
 
 def do_cont_battle_mode():
   if get_battle_mode() == consts.STATE_ONE:
@@ -926,25 +928,21 @@ def cancel_aura(delay=0):
   if delay != 0: time.sleep(delay)
 
 def do_dash(delay=1.0, veradrix=False, potion=True):
-  pynboard.press(consts.KEY_DASH)
-  pynboard.release(consts.KEY_DASH)
-
+  press_release(consts.KEY_DASH)
   if veradrix == consts.IS_TRUE: force_veradrix()
   if potion == consts.IS_TRUE: do_heal()
   if delay != 0: time.sleep(delay)
 
 def do_dash_rel(x=0, y=0, delay=1.0, veradrix=False, potion=True):
   move(x, y)
-  pynboard.press(consts.KEY_DASH)
-  pynboard.release(consts.KEY_DASH)
+  press_release(consts.KEY_DASH)
 
   if veradrix == consts.IS_TRUE: force_veradrix()
   if potion == consts.IS_TRUE: do_heal()
   if delay != 0: time.sleep(delay)
 
 def do_fade(delay=0.5, veradrix=False, potion=True):
-  pynboard.press(consts.KEY_FADE)
-  pynboard.release(consts.KEY_FADE)
+  press_release(consts.KEY_FADE)
 
   if veradrix == consts.IS_TRUE: force_veradrix()
   if potion == consts.IS_TRUE: do_heal()
@@ -952,23 +950,18 @@ def do_fade(delay=0.5, veradrix=False, potion=True):
 
 def do_fade_rel(x=0, y=0, delay=0.5, veradrix=False, potion=True):
   move(x, y)
-  pynboard.press(consts.KEY_FADE)
-  pynboard.release(consts.KEY_FADE)
+  press_release(consts.KEY_FADE)
 
   if veradrix == consts.IS_TRUE: force_veradrix()
   if potion == consts.IS_TRUE: do_heal()
   if delay != 0: time.sleep(delay)
 
 def do_select(delay=0):
-  pynboard.press(consts.KEY_SELECT)
-  pynboard.release(consts.KEY_SELECT)
-
+  press_release(consts.KEY_SELECT)
   if delay != 0: time.sleep(delay)
 
 def do_deselect(delay=0):
-  pynboard.press(consts.KEY_DESELECT)
-  pynboard.release(consts.KEY_DESELECT)
-
+  press_release(consts.KEY_DESELECT)
   if delay != 0: time.sleep(delay)
 
 def do_deselect_pack():
@@ -996,40 +989,29 @@ def party_roll_box(reps=4):
 def do_plunder(reps=4):
   for x in range(reps):
     log_action(consts.MSG_LOOTING_DROP)
-    pynboard.press(consts.KEY_LOOT_ACTION)
-    pynboard.release(consts.KEY_LOOT_ACTION)
-    time.sleep(0.3)
-    pynboard.press(consts.KEY_LOOT_SPACE)
-    pynboard.release(consts.KEY_LOOT_SPACE)
-    time.sleep(0.3)
+    press_release(consts.KEY_LOOT_ACTION, 0.3)
+    press_release(consts.KEY_LOOT_ACTION, 0.3)
     roll_box()
 
 def do_fast_plunder():
-  pynboard.press(consts.KEY_LOOT_ACTION)
-  pynboard.release(consts.KEY_LOOT_ACTION)
-  pynboard.press(consts.KEY_LOOT_SPACE)
-  pynboard.release(consts.KEY_LOOT_SPACE)
+  press_release(consts.KEY_LOOT_ACTION)
+  press_release(consts.KEY_LOOT_SPACE)
 
 def do_heal():
-  pynboard.press(consts.KEY_HP)
-  pynboard.release(consts.KEY_HP)
+  press_release(consts.KEY_HP)
 
-def do_essentials(release_keys=True):
+def do_fury():
+  press_release(consts.KEY_FURY)
+
+def do_essentials(release_keys=True, delay=0):
   do_heal()
   do_veradrix()
-  pynboard.press(consts.KEY_LOOT_SPACE)
-  pynboard.release(consts.KEY_LOOT_SPACE)
-  pynboard.press(consts.KEY_FURY)
-  pynboard.release(consts.KEY_FURY)
-  pynboard.press(consts.KEY_LOOT_ACTION)
-  pynboard.release(consts.KEY_LOOT_ACTION)
+  do_fury()
+  if get_loot_status() == consts.IS_TRUE: do_fast_plunder()
+  if release_keys == consts.IS_TRUE: do_key_release()
+  if delay != 0: time.sleep(delay)
 
-  if release_keys == consts.IS_TRUE:
-    pynboard.release(Key.shift)
-    pynboard.release(Key.alt)
-    pynboard.release(Key.ctrl)
-
-def release_keys(delay=0):
+def do_key_release(delay=0):
   pynboard.release(Key.shift)
   pynboard.release(Key.alt)
   pynboard.release(Key.ctrl)
@@ -1050,42 +1032,33 @@ def click_aura(delay=0):
 
 def do_final_mode(delay=0):
   if get_battle_mode_status() == False:
-    pynboard.press(consts.KEY_BM)
-    pynboard.release(consts.KEY_BM)
-
+    press_release(consts.KEY_BM)
     if delay != 0: time.sleep(delay)
 
 def do_attack(delay=0, strict=False, cont=True):
   do_veradrix()
 
   if get_battle_mode_status():
-    pynboard.press(consts.KEY_BM_ATK)
-    pynboard.release(consts.KEY_BM_ATK)
+    press_release(consts.KEY_BM_ATK)
     if strict == consts.IS_FALSE: do_essentials()
     if cont == consts.IS_TRUE: do_cont_battle_mode()
   else:
-    pynboard.press(consts.KEY_BM_ATK)
-    pynboard.release(consts.KEY_BM_ATK)
+    press_release(consts.KEY_BM_ATK)
     if strict == consts.IS_FALSE: do_essentials()
 
-    pynboard.press(consts.KEY_BM_ATK)
-    pynboard.release(consts.KEY_BM_ATK)
+    press_release(consts.KEY_BM_ATK)
     if strict == consts.IS_FALSE: do_essentials()
 
-    pynboard.press(consts.KEY_BM_ATK)
-    pynboard.release(consts.KEY_BM_ATK)
+    press_release(consts.KEY_BM_ATK)
     if strict == consts.IS_FALSE: do_essentials()
 
-    pynboard.press(consts.KEY_ATTACK[0])
-    pynboard.release(consts.KEY_ATTACK[0])
+    press_release(consts.KEY_BM_ATK)
     if strict == consts.IS_FALSE: do_essentials()
 
-    pynboard.press(consts.KEY_ATTACK[1])
-    pynboard.release(consts.KEY_ATTACK[1])
+    press_release(consts.KEY_ATTACK[1])
     if strict == consts.IS_FALSE: do_essentials()
 
-    pynboard.press(consts.KEY_ATTACK[2])
-    pynboard.release(consts.KEY_ATTACK[2])
+    press_release(consts.KEY_ATTACK[2])
     if strict == consts.IS_FALSE: do_essentials()
 
   if delay != 0: time.sleep(delay)

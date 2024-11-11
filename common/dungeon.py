@@ -342,7 +342,7 @@ class Dungeon(ABC):
 
     util.wait(delay)
 
-  def find_kill_box(self, rep=4, delay=0.5):
+  def find_kill_box(self, rep=4, loot=True, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -360,10 +360,10 @@ class Dungeon(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    atk.plunder_box(False, rep)
+    atk.plunder_box(False, rep, loot)
     util.wait(delay)
 
-  def find_kill_final_box(self, rep=5, delay=0.5):
+  def find_kill_final_box(self, rep=5, loot=True, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -381,7 +381,7 @@ class Dungeon(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    atk.plunder_final_box(False, rep)
+    atk.plunder_final_box(False, rep, loot)
     util.wait(delay)
 
 class Special(ABC):
