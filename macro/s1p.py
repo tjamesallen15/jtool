@@ -2,35 +2,19 @@ import pyautogui as pyauto
 import pyscreeze
 import keyboard as shortcut
 
-from common.dungeon import Dungeon
-from pynput.keyboard import Key, Listener, Controller
 from pynput import keyboard
 from tkinter import *
+from pynput.keyboard import Key, Listener, Controller
 
+from common.dungeon import Dungeon
+
+import common.constants as consts
 import common.util as util
+import common.attack as atk
+
 pynboard = Controller()
 
 class SienaB1FPrideus(Dungeon):
-
-  # GLOBAL VARIABLES
-  frame_root = []
-  btn_start = []
-
-  # UNIQUE VARIABLES
-  val_sidestep = 0
-
-  def initialize(self, frame, btn, runs):
-    self.frame_root = frame
-    self.btn_start = btn
-
-    shortcut.add_hotkey(util.HOTKEY_TERMINATE, util.terminate)
-    self.btn_start.config(state=util.STATE_DISABLED)
-    self.frame_root.update()
-
-    self.run_dungeon(runs)
-
-    self.btn_start.config(state=util.STATE_NORMAL)
-    self.frame_root.update()
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -39,7 +23,7 @@ class SienaB1FPrideus(Dungeon):
       util.set_reset_status(False)
       util.check_run_restart(run_counter)
       run_counter += 1
-      util.log_action(util.MSG_START_DG)
+      util.log_action(consts.MSG_START_DG)
       util.log_run(run_counter, fail_run_counter)
 
       # Click Cabal Window
@@ -55,11 +39,11 @@ class SienaB1FPrideus(Dungeon):
       # Click Dungeon
       util.move(500, 610)
       util.do_dash(0.8)
-      util.click_portal(620, 380)
+      self.click_dungeon_portal(620, 380)
 
       # Enter Dungeon
-      util.enter_dungeon()
-      util.challenge_dungeon()
+      self.enter_dungeon()
+      self.challenge_dungeon()
       util.do_buffs()
 
       util.move_scroll(375, 150, 500, 150, 0.8)
@@ -74,7 +58,7 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -85,12 +69,12 @@ class SienaB1FPrideus(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -106,7 +90,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move_click(490, 400, 1.5)
 
       util.do_final_mode(1)
@@ -118,7 +102,7 @@ class SienaB1FPrideus(Dungeon):
 
       # First Boss
       util.do_essentials()
-      util.attack_boss()
+      atk.attack_boss()
       util.set_battle_mode(False)
       util.do_essentials()
 
@@ -127,7 +111,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(580, 150)
       util.do_dash()
       util.do_fade()
@@ -176,7 +160,7 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -187,12 +171,12 @@ class SienaB1FPrideus(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -206,7 +190,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(630, 600)
       util.do_dash()
       util.do_fade()
@@ -230,7 +214,7 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -241,12 +225,12 @@ class SienaB1FPrideus(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -260,7 +244,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(750, 600)
       util.do_dash()
       util.do_fade()
@@ -288,23 +272,23 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
           break
 
-        if dialog_count == util.STATE_ONE:
+        if dialog_count == consts.STATE_ONE:
           checking = False
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -328,23 +312,23 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
           break
 
-        if dialog_count == util.STATE_ONE:
+        if dialog_count == consts.STATE_ONE:
           checking = False
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -360,7 +344,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(600, 650)
       util.do_dash()
       util.do_fade()
@@ -404,7 +388,7 @@ class SienaB1FPrideus(Dungeon):
 
       # Second Boss
       util.do_essentials()
-      util.attack_boss()
+      atk.attack_boss()
       util.do_essentials()
 
       # Check Macro State
@@ -412,7 +396,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(330, 300)
       util.do_dash(1.3)
 
@@ -484,7 +468,7 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -495,12 +479,12 @@ class SienaB1FPrideus(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -516,7 +500,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(700, 550)
       util.do_dash()
 
@@ -530,7 +514,7 @@ class SienaB1FPrideus(Dungeon):
 
       # Third Boss
       util.do_essentials()
-      util.attack_boss()
+      atk.attack_boss()
       util.set_battle_mode(False)
       util.do_essentials()
 
@@ -557,7 +541,7 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -568,12 +552,12 @@ class SienaB1FPrideus(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -587,7 +571,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(700, 160)
       util.do_dash()
       util.do_fade()
@@ -614,23 +598,23 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
           break
 
-        if dialog_count == util.STATE_ONE:
+        if dialog_count == consts.STATE_ONE:
           checking = False
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -644,7 +628,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(350, 400)
       util.do_dash(1.3)
 
@@ -682,23 +666,23 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
           break
 
-        if dialog_count == util.STATE_ONE:
+        if dialog_count == consts.STATE_ONE:
           checking = False
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -712,7 +696,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(680, 625)
       util.do_dash()
       util.do_fade()
@@ -744,7 +728,7 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -755,12 +739,12 @@ class SienaB1FPrideus(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -774,7 +758,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(680, 150)
       util.do_dash()
       util.do_fade()
@@ -843,7 +827,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_dash()
 
       util.do_essentials()
-      util.attack_boss()
+      atk.attack_boss()
 
       util.wait(1)
 
@@ -857,7 +841,7 @@ class SienaB1FPrideus(Dungeon):
       util.do_fade()
 
       util.do_essentials()
-      util.attack_boss()
+      atk.attack_boss()
       util.set_battle_mode(False)
       util.do_essentials()
 
@@ -877,23 +861,23 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
           break
 
-        if dialog_count == util.STATE_ONE:
+        if dialog_count == consts.STATE_ONE:
           checking = False
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -907,7 +891,7 @@ class SienaB1FPrideus(Dungeon):
         run_counter += 1000
         continue
 
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move_scroll(375, 150, 1000, 150, 0.8)
 
       util.move(100, 350)
@@ -927,12 +911,12 @@ class SienaB1FPrideus(Dungeon):
       util.do_fade()
 
       # Umpra The Weak Sequence
-      util.log_action(util.MSG_CHECK_UMPRA_WEAK)
+      util.log_action(consts.MSG_CHECK_UMPRA_WEAK)
       checking = True
       count_umpra = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -946,13 +930,13 @@ class SienaB1FPrideus(Dungeon):
 
         try:
           util.do_select(0.1)
-          umpra = pyauto.locateOnScreen(util.IMG_UMPRA_WEAK, grayscale=False, confidence=.8, region=util.get_full_region())
-          util.log_action(util.MSG_UMPRA_WEAK_FOUND)
-          util.focus_mobs(util.UNIT_UMPRA_WEAK, 0, 0, self.val_sidestep)
+          umpra = pyauto.locateOnScreen(consts.IMG_UMPRA_WEAK, grayscale=False, confidence=.8, region=util.get_full_region())
+          util.log_action(consts.MSG_UMPRA_WEAK_FOUND)
+          atk.focus_monsters(consts.UNIT_UMPRA_WEAK, False, False, self.val_sidestep_disabled)
           checking = False
         except pyauto.ImageNotFoundException:
           count_umpra += 1
-          util.log_action(util.MSG_UMPRA_WEAK_NOT_FOUND)
+          util.log_action(consts.MSG_UMPRA_WEAK_NOT_FOUND)
 
       if util.get_reset_status():
         continue
@@ -974,7 +958,7 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -985,12 +969,12 @@ class SienaB1FPrideus(Dungeon):
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
@@ -1005,7 +989,7 @@ class SienaB1FPrideus(Dungeon):
         continue
 
       # Going to the Siena Secret Room
-      util.log_action(util.MSG_MOVING_POSITION)
+      util.log_action(consts.MSG_MOVING_POSITION)
       util.move(200, 425)
       util.do_dash()
       util.do_fade()
@@ -1031,34 +1015,34 @@ class SienaB1FPrideus(Dungeon):
       dialog_count = 0
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
           break
 
-        if dialog_count == util.STATE_ONE:
+        if dialog_count == consts.STATE_ONE:
           checking = False
           break
 
         try:
-          dialog = pyauto.locateOnScreen(util.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
-          util.log_action(util.MSG_CHECK_DIALOG_FOUND)
+          dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
+          util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.5)
           dialog_count += 1
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_CHECK_DIALOG_NOT_FOUND)
+          util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           util.force_exit_dungeon()
           fail_run_counter += 1
           checking = False
           util.set_reset_status(True)
 
       # Siena Box Sequence
-      util.log_action(util.MSG_CHECK_SIENA_BOX)
+      util.log_action(consts.MSG_CHECK_SIENA_BOX)
       checking = True
       while checking:
         if not util.get_macro_state():
-          util.log_action(util.MSG_TERMINATE)
+          util.log_action(consts.MSG_TERMINATE)
           checking = False
 
         if checking == False:
@@ -1066,13 +1050,13 @@ class SienaB1FPrideus(Dungeon):
 
         try:
           util.do_select(0.1)
-          siena = pyauto.locateOnScreen(util.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
-          util.log_action(util.MSG_SIENA_BOX_FOUND)
+          siena = pyauto.locateOnScreen(consts.IMG_SIENA, grayscale=False, confidence=.8, region=util.get_full_region())
+          util.log_action(consts.MSG_SIENA_BOX_FOUND)
           util.wait(1)
-          util.plunder_ref_box(0, 10, util.IMG_SIENA)
+          atk.plunder_ref_box(False, 10, consts.IMG_SIENA)
           checking = False
         except pyauto.ImageNotFoundException:
-          util.log_action(util.MSG_SIENA_BOX_NOT_FOUND)
+          util.log_action(consts.MSG_SIENA_BOX_NOT_FOUND)
 
       if util.get_reset_status():
         continue
@@ -1083,6 +1067,6 @@ class SienaB1FPrideus(Dungeon):
         continue
 
       util.force_exit_dungeon()
-      util.log_action(util.MSG_END_DG)
+      util.log_action(consts.MSG_END_DG)
       util.log_time()
     util.do_close_app_status()

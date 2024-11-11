@@ -1,8 +1,8 @@
-import common.util as util
+import common.constants as consts
 
 def get_features(features):
-  val_features = util.LBL_EMPTY
-  if features == util.ACCESS_FREE:
+  val_features = consts.LBL_EMPTY
+  if features == consts.ACCESS_FREE:
     val_features += "License: Free\n"
     val_features += "Price: Free\n"
     val_features += "\n"
@@ -18,7 +18,7 @@ def get_features(features):
     val_features += "\n"
     val_features += "For license upgrade, please contact the page.\n"
     val_features += "https://www.facebook.com/TheTeamAei\n"
-  elif features == util.ACCESS_PRO:
+  elif features == consts.ACCESS_PRO:
     val_features += "License: Pro\n"
     val_features += "Price: $6.00 (30 days subscription)\n"
     val_features += "\n"
@@ -42,7 +42,7 @@ def get_features(features):
     val_features += "\n"
     val_features += "For license upgrade, please contact the page.\n"
     val_features += "https://www.facebook.com/TheTeamAei\n"
-  elif features == util.ACCESS_PREMIUM:
+  elif features == consts.ACCESS_PREMIUM:
     val_features += "License: Premium\n"
     val_features += "Price: $10.00 (40 days subscription)\n"
     val_features += "\n"

@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.90
+
+## v5.90 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix) [v5.50]
+- [POTF] Purifier of the Forest [v5.85]
+- [MI] Mirage Island [v5.90]
+- [SCP] Steamer Crazy (Premium) [v5.90]
+- [CLS] Celestia [v5.90]
+
+## v5.90 Features
+
+- [Application] Added Join War feature
+- [Application] Added Move Window feature
+- [Application] Improved coordination selection
+- [Application] Added ability to save channel selection
+- [Application] Strucure Refactors (Special, Attack, Constants)
+- [Application] Added mode images to verify if the mode is in effect to prevent spamming of keys
+- [Application] Added do_dash_rel and do_fade_rel for better movement option in large maps
+- [CLS] Added Celestia in Beta Phase
+- [MI] Added Mirage Island in Beta Phase
+- [RH] Removed Radiant Hall for Dungeon Automation
+- [SCP] Added Steamer Crazy (Premium) in Beta Phase
+
+## v5.90 Fixes
+
+- [Application] Refactor necessary variables from integer to boolean
+- [HK] Improved wait time for range classes
+- [HVV] Fixed dungeon movement for range classes
+- [PCA] Improved positioning on first shadow
+- [POTF] Improved party state performance
+- [SCA] Improved dungeon automation
+- [TM] Improved dungeon automation for Range Classes
+- [TM] Reenabled for party state
+
 # v5.85
 
 ## v5.85 Dungeons Available
@@ -280,7 +326,7 @@ All notable changes to this project will be documented in this file.
 - [Application] Added new button in pricing for changelogs
 - [Dungeon] Added fail counter for dungeons that has fail reset instance
 - [Dungeon] Changed thread sleep on some areas during end dungeon cycle
-- [Dungeon] Changed the order of method focus_mobs() similar to attack_mobs()
+- [Dungeon] Changed the order of method focus_monsters() similar to attack_mobs()
 - [Dungeon] Added focus_mob_boss() to be used for mobs that behaves like a boss on certain dungeons
 - [Dungeon] Updated all existing dungeon macro to class oriented
 - [LHA] Updated gatekeeper sprite for better accuracy on image reading

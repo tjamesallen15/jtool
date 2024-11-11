@@ -11,5 +11,6 @@
     "pword": "",
     "pin": "",
     "resolution": 0,
+    "channel": 0,
     "load": 2
 }

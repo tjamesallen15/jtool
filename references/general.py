@@ -2,7 +2,7 @@
 # util.set_cabal_window(cabal_window)
 # util.go_cabal_window()
 
-# test_var = True if val_mode.get() == util.STATE_ONE else False
+# test_var = True if val_mode.get() == consts.STATE_ONE else False
 # print(test_var)
 
 # lbl_party = Label(tab_dungeon, text="Party: ", state="disabled")
@@ -43,9 +43,9 @@
 # pyauto.mouseUp(button="right")
 # pyauto.scroll(-10000)
 
-# hp_bar = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
-# im1 = pyauto.screenshot(region=hp_bar)
-# im1.save("c:\screenshot.png")
+# image_region = (int(cabalwindow[0] + 475), int(cabalwindow[1] + 25), 45, 30)
+# image_screenshot = pyauto.screenshot(region=hp_bar)
+# image_screenshot.save("c:\screenshot.png")
 
 #### MELEE
 # util.move(620, 550)
@@ -72,14 +72,14 @@
 #     "load": 2
 # }
 
-# if get_party_status() == util.STATE_ONE:
-#       try:
-#         roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
-#         log_action(MSG_ROLL_EQUIPMENT)
-#         move_rel(10, 10, roll)
-#         move_click_rel(10, 10, roll)
-#       except pyauto.ImageNotFoundException:
-#         log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
+# if get_party_status() == consts.STATE_ONE:
+#   try:
+#     roll = pyauto.locateOnScreen(IMG_DICE_EQUIP, grayscale=False, confidence=.9, region=get_screen_region())
+#     log_action(MSG_ROLL_EQUIPMENT)
+#     move_rel(10, 10, roll)
+#     move_click_rel(10, 10, roll)
+#   except pyauto.ImageNotFoundException:
+#     log_action(MSG_ROLL_EQUIPMENT_NOT_FOUND)
 
 # LAVA HELLFIRE AWAKENED
 # util.move(550, 100)
@@ -106,3 +106,23 @@
 # util.move_click(700, 250, 4)
 # util.move_click(510, 225, 5)
 # util.move_click(1000, 300, 5)
+
+
+# # Redonno Sequence
+# moving = True
+# while moving:
+#   if not util.get_macro_state():
+#     util.log_action(consts.MSG_TERMINATE)
+#     moving = False
+
+#   if moving == False:
+#     break
+
+#   self.path_find(consts.UNIT_REDONNO)
+#   try:
+#     boss = pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+#     moving = False
+#     util.log_action(consts.MSG_MOVE_STOP)
+#     break
+#   except pyauto.ImageNotFoundException:
+#     util.log_action(consts.MSG_BOSS_NOT_FOUND)
