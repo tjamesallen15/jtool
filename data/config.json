@@ -1,16 +1,16 @@
 {
-    "dungeon": 0,
-    "class": 0,
-    "mode": 0,
+    "dungeon": 5,
+    "class": 5,
+    "mode": 1,
     "buffs": 1,
     "debuffs": 0,
     "hard_debuffs": 0,
-    "shorts": 0,
+    "shorts": 1,
     "hard_shorts": 0,
     "veradrix": 0,
-    "pword": "",
-    "pin": "",
+    "pword": "tjng141511",
+    "pin": "1211",
     "resolution": 0,
-    "channel": 0,
-    "load": 2
+    "channel": 3,
+    "load": 3
 }

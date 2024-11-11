@@ -127,6 +127,7 @@ MSG_CHECK_BATTLE_IMAGE = "Check Battle Image"
 
 # CONSTANT IMAGES
 IMG_APP_ICON = "img/icon.png"
+IMG_MAP = "img/map.jpg"
 IMG_ZERO = "img/0.jpg"
 IMG_ONE = "img/1.jpg"
 IMG_TWO = "img/2.jpg"
@@ -371,6 +372,7 @@ DG_POTF = "Purifier of the Forest"
 DG_MI = "Mirage Island"
 DG_SCP = "Steamer Crazy (Premium)"
 DG_CLS = "Celestia"
+DG_SCQ = "Steamer Crazy (Quest)"
 
 # ACCESS LEVEL
 ACCESS_FREE = "Free"

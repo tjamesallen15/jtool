@@ -278,7 +278,7 @@ class Dungeon(ABC):
           util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
-  def click_exit(self, x, y, deviate=False):
+  def click_exit(self, x, y, deviate=False, deviate_points=10):
     check_dialog = True
     while check_dialog:
       if not util.get_macro_state():
@@ -291,8 +291,8 @@ class Dungeon(ABC):
       try:
         util.move_click(x, y, 0.2)
         if deviate == consts.IS_TRUE:
-          util.move_click(x - 10, y, 0.2)
-          util.move_click(x + 10, y, 0.2)
+          util.move_click(x - deviate_points, y, 0.2)
+          util.move_click(x + deviate_points, y, 0.2)
         dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.5)

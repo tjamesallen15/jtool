@@ -1126,8 +1126,10 @@ def check_notifications():
 
   time.sleep(0.2)
 
-def open_map(x1, y1, x2, y2):
+def open_map():
   move_click(835, 705, 0.2)
   move_click(865, 315, 0.2)
-  move_click(x1, y1, 0.2)
-  move_click(x2, y2, 0.2)
+
+def open_inventory():
+  move_click(835, 705, 0.2)
+  move_click(910, 270, 0.2)

@@ -61,7 +61,7 @@ class PanicCaveAwakened(Dungeon):
       self.click_dungeon_portal(720, 360)
 
       # Enter Dungeon
-      self.enter_dungeon(1.5)
+      self.enter_dungeon()
       self.challenge_dungeon()
       util.move_scroll(700, 150, 375, 150)
 

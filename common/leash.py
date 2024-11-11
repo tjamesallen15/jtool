@@ -32,6 +32,9 @@ def generate_matrix():
 def get_inventory_matrix():
   return inventory_matrix
 
+def get_inventory_matrix_defined(pos=0):
+  return inventory_matrix[pos]
+
 def terminate():
   set_train_state(False)
 

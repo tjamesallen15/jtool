@@ -31,6 +31,7 @@ from macro.potf import PurifierOfTheForest
 from macro.mi import MirageIsland
 from macro.scp import SteamerCrazyPremium
 from macro.cls import Celestia
+from macro.scq import SteamerCrazyQuest
 
 pynboard = Controller()
 class JTool():
@@ -219,6 +220,7 @@ class JTool():
       case consts.DG_SCP: SteamerCrazyPremium().initialize(dungeon_args)
       case consts.DG_MI: MirageIsland().initialize(dungeon_args)
       case consts.DG_CLS: Celestia().initialize(dungeon_args)
+      case consts.DG_SCQ: SteamerCrazyQuest().initialize(dungeon_args)
 
   def get_dungeon_list(self):
     if self.get_level() == consts.ACCESS_FREE:
@@ -285,6 +287,7 @@ class JTool():
         consts.DG_HVM,
         consts.DG_HVE,
         consts.DG_SCP,
+        consts.DG_SCQ,
         consts.DG_SCA,
         consts.DG_CFA,
         consts.DG_LHA,
