@@ -136,16 +136,6 @@ class JTool():
     self.generate_matrix()
     self.generate_gui()
 
-  def join_war(self):
-    cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
-    util.set_cabal_window(cabal_window)
-    util.go_cabal_window()
-    i = 0
-    while i <= 50:
-      util.move_click(1235, 585)
-      util.move_click(630, 440)
-      i += 1
-
   def move_app(self):
     cabal_window = pyauto.locateOnScreen("img/cabalwindow.jpg", grayscale=False, confidence=.9)
     util.set_cabal_window(cabal_window)
@@ -284,7 +274,9 @@ class JTool():
         consts.DG_CFA,
         consts.DG_LHA,
         consts.DG_HK,
-        consts.DG_CI
+        consts.DG_CI,
+        consts.DG_MI,
+        consts.DG_CLS
       ]
     elif self.get_level() == consts.ACCESS_SUPER:
       self.LIST_DUNGEON = [
@@ -501,6 +493,24 @@ class JTool():
     self.lbl_pet_action.config(text=consts.LBL_STATUS_IDLE)
     self.frame_root.update()
 
+  def join_war(self):
+    self.btn_join_war.config(state=consts.STATE_DISABLED)
+    self.frame_root.update()
+
+    cabal_window = pyauto.locateOnScreen(consts.IMG_CABAL_WINDOW, grayscale=False, confidence=.9)
+    util.set_cabal_window(cabal_window)
+    util.go_cabal_window()
+    i = 0
+    counter = int(self.val_click_count.get())
+    while i < counter:
+      util.move_click(1235, 585)
+      util.move_click(630, 440)
+      self.log_misc_action(consts.MSG_CLICK + str(i + 1))
+      i += 1
+
+    self.btn_join_war.config(state=consts.STATE_NORMAL)
+    self.frame_root.update()
+
   def buy_fury(self):
     self.btn_fury.config(state=consts.STATE_DISABLED)
     self.frame_root.update()
@@ -511,7 +521,7 @@ class JTool():
 
     for x in range(int(self.val_click_count.get())):
       util.move_click(125, 205)
-      self.log_misc_action(consts.MSG_CLICK + str(x+1))
+      self.log_misc_action(consts.MSG_CLICK + str(x + 1))
 
     self.btn_fury.config(state=consts.STATE_NORMAL)
     self.frame_root.update()
