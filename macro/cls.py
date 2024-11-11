@@ -183,7 +183,7 @@ class Celestia(Dungeon, Special):
         continue
 
       util.do_fade_rel(625, 614, 2, True)
-      util.do_dash_rel(656, 560, 3, True)
+      util.do_dash_rel(656, 560, 4, True)
       util.do_fade_rel(584, 364, 3, True)
 
       atk.attack_monsters(consts.UNIT_SERVANT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
@@ -201,6 +201,7 @@ class Celestia(Dungeon, Special):
       util.do_fade_rel(695, 547, 2)
       util.do_dash_rel(632, 579, 4)
       util.do_fade_rel(637, 268)
+      util.do_dash_rel(646, 522)
 
       self.find_kill_semi_boss(consts.UNIT_VITO)
 
@@ -209,9 +210,10 @@ class Celestia(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_fade_rel(609, 256, 1.5)
-      util.do_fade_rel(607, 265)
-      util.do_dash_rel(672, 251)
+      util.do_fade_rel(604, 308)
+      util.do_dash_rel(610, 228)
+      util.do_fade_rel(640, 249)
+      util.do_dash_rel(636, 333)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
@@ -221,10 +223,9 @@ class Celestia(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(569, 198)
-      util.do_fade_rel(548, 205)
-      util.do_dash_rel(576, 203)
-      self.click_portal(614, 291)
+      util.do_dash_rel(581, 232)
+      util.do_fade_rel(577, 263)
+      self.click_portal(606, 295)
       util.move_scroll(500, 150, 375, 150, 5)
 
       util.do_dash_rel(159, 245)
