@@ -613,9 +613,7 @@ def get_reset_status():
   return trigger_reset_dungeon
 
 def set_reset_status(val=False):
-  if val != False:
-    reset_battle_mode(1.2)
-
+  if val != False: reset_battle_mode(1.2)
   global trigger_reset_dungeon
   trigger_reset_dungeon = val
 
