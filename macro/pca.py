@@ -382,8 +382,8 @@ class PanicCaveAwakened(Dungeon):
       atk.attack_boss(consts.UNIT_EMPTY, False, False, False, False)
       atk.plunder_box(True, 2)
 
-      util.move(650, 350)
-      util.do_fade(0.5)
+      # util.move(650, 350)
+      # util.do_fade(0.5)
 
       checking = True
       while checking:
@@ -395,7 +395,8 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(580, 430)
+          util.move_click(600, 365)
+          # util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.do_select(0.1)
           atk.focus_monsters(consts.UNIT_GHOST, False, False, self.val_sidestep_disabled)
@@ -403,7 +404,8 @@ class PanicCaveAwakened(Dungeon):
           util.log_action(consts.MSG_MONSTERS_NOT_FOUND)
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
@@ -433,7 +435,8 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
