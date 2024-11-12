@@ -459,7 +459,6 @@ class PanicCaveAwakened(Dungeon):
       self.dice_dungeon()
       util.log_action(consts.MSG_END_DG)
       util.log_time()
-      util.set_battle_mode(False)
     util.do_close_app_status()
 
   def position_nualle(self):
