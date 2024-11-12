@@ -33,6 +33,8 @@ All notable changes to this project will be documented in this file.
 
 - [Application] Method Updates and Cleanup
 - [PCA] Adjusted wait time in challenge dungeon
+- [PCA] Reduced exit animation
+- [POTF] Fixed bug on second boss when they skip it abruptly
 
 # v5.90
 

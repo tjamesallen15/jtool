@@ -78,8 +78,8 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_BLOODY_HORN, 8, 6, True)
-      else: self.focus_monsters(consts.UNIT_BLOODY_HORN, 6, 6, True)
+      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_BLOODY_HORN, 12, 6, True)
+      else: self.focus_monsters(consts.UNIT_BLOODY_HORN, 8, 6, True)
       util.cancel_aura(2.0)
 
       if not util.get_macro_state():
