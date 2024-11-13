@@ -422,10 +422,10 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(592, 170)
-      util.do_fade_rel(599, 217)
-      util.do_dash_rel(604, 230)
-      util.do_fade_rel(604, 232)
+      util.do_dash_rel(592, 170, veradrix=True)
+      util.do_fade_rel(599, 217, veradrix=True)
+      util.do_dash_rel(604, 230, veradrix=True)
+      util.do_fade_rel(604, 232, veradrix=True)
 
       # Second Portal
       self.click_portal(627, 316, True)
