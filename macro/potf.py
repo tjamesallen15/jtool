@@ -249,7 +249,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
       self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
-      
+
       util.do_fade_rel(910, 200)
       util.do_dash_rel(910, 200)
       util.do_fade_rel(910, 200)
