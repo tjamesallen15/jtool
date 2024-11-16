@@ -194,14 +194,14 @@ class Celestia(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(637, 170)
-      util.do_fade_rel(624, 218, 2)
-      util.do_fade_rel(637, 617, 2)
-      util.do_dash_rel(647, 638, 2)
-      util.do_fade_rel(695, 547, 2)
-      util.do_dash_rel(632, 579, 4)
-      util.do_fade_rel(637, 268)
-      util.do_dash_rel(646, 522)
+      util.do_dash_rel(637, 170, veradrix=True)
+      util.do_fade_rel(624, 218, 2, veradrix=True)
+      util.do_fade_rel(637, 617, 2, veradrix=True)
+      util.do_dash_rel(647, 638, 2, veradrix=True)
+      util.do_fade_rel(695, 547, 2, veradrix=True)
+      util.do_dash_rel(632, 579, 4, veradrix=True)
+      util.do_fade_rel(637, 268, veradrix=True)
+      util.do_dash_rel(646, 522, veradrix=True)
 
       self.find_kill_semi_boss(consts.UNIT_VITO)
 

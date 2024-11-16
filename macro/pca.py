@@ -301,9 +301,8 @@ class PanicCaveAwakened(Dungeon):
 
       # Third Shadow
       atk.focus_monsters(consts.UNIT_SHOWORAI_M, False, False, False)
-
-      if util.get_attack_type() == consts.IS_RANGE and util.get_battle_mode() == consts.STATE_ONE:
-        util.cancel_aura(1.5)
+      util.move(620, 520)
+      util.do_fade(0.7)
 
       if util.get_reset_status():
         continue
@@ -324,14 +323,16 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           atk.focus_monsters(consts.UNIT_GHOST, False, False, self.val_sidestep_disabled)
         except pyauto.ImageNotFoundException:
           util.log_action(consts.MSG_MONSTERS_NOT_FOUND)
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
@@ -351,11 +352,10 @@ class PanicCaveAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      # Final Boss
-      util.move(620, 520)
-      util.do_fade(self.val_fade_speed)
+      if util.get_attack_type() == consts.IS_RANGE and util.get_battle_mode() == consts.STATE_ONE: util.cancel_aura(1.2)
       util.do_battle_mode(5, False)
 
+      # Final Boss
       check_count = 0
       checking = True
       while checking:
@@ -395,7 +395,7 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(600, 365)
+          util.move_click(601, 362)
           # util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.do_select(0.1)
