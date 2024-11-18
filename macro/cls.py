@@ -80,8 +80,10 @@ class Celestia(Dungeon, Special):
       # Attack Monad Group
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
-      util.cancel_aura(2.0)
+      if util.get_party_status() == consts.IS_TRUE: self.find_focus_until_boss(consts.UNIT_MONAD_FRAGMENT, True, consts.TYPE_SEMI)
+      else:
+        atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
+        util.cancel_aura(2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -113,8 +115,10 @@ class Celestia(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
-      util.cancel_aura(2.0)
+      if util.get_party_status() == consts.IS_TRUE: self.find_focus_until_boss(consts.UNIT_MONAD_FRAGMENT, True, consts.TYPE_SEMI)
+      else:
+        atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
+        util.cancel_aura(2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -148,8 +152,10 @@ class Celestia(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.focus_monsters(consts.UNIT_SEEKER, 6)
-      util.cancel_aura(2.0)
+      if util.get_party_status() == consts.IS_TRUE: self.find_focus_until_boss(consts.UNIT_SEEKER, True, consts.TYPE_SEMI)
+      else:
+        self.focus_monsters(consts.UNIT_SEEKER, 6)
+        util.cancel_aura(2.0)
 
       # Check Macro State
       if not util.get_macro_state():

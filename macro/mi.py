@@ -69,7 +69,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Crag Crab)
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_CRAG_CRAB, 2.0, True)
+      self.attack_monsters(consts.UNIT_CRAG_CRAB, True, delay=2.0)
       util.cancel_aura(2.0)
 
       # Attack Boss (Watchman Tolerant)
@@ -97,7 +97,7 @@ class MirageIsland(Dungeon, Special):
       # Attack Monsters (Border Crab)
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, True)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, True, delay=2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -109,7 +109,7 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(1200, 235)
 
       # Attack Monsters (Border Crab)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, False, delay=2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -121,7 +121,7 @@ class MirageIsland(Dungeon, Special):
       util.do_fade_rel(775, 185)
 
       # Attack Monsters (Border Crab)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, False, delay=2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -133,7 +133,7 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(155, 170)
 
       # Attack Monsters (Border Crab)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, False, delay=2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -143,7 +143,7 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(155, 170)
       util.do_fade_rel(155, 170, 4)
 
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, False, delay=2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -152,7 +152,7 @@ class MirageIsland(Dungeon, Special):
 
       util.do_dash_rel(835, 120, 2)
 
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, False, delay=2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -164,7 +164,7 @@ class MirageIsland(Dungeon, Special):
       util.do_dash_rel(590, 255, 1.5)
 
       # Attack Monsters (Border Crab)
-      self.attack_monsters(consts.UNIT_BORDER_CRAB, 2.0, False)
+      self.attack_monsters(consts.UNIT_BORDER_CRAB, False, delay=2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -178,11 +178,11 @@ class MirageIsland(Dungeon, Special):
 
       # Attack Monsters (Crag Crab)
       if util.get_party_member_status() == consts.IS_FALSE:
-        self.attack_monsters(consts.UNIT_CRAG_CRAB, 0.5, False)
+        self.attack_monsters(consts.UNIT_CRAG_CRAB, False, delay=0.5)
         util.do_dash_rel(750, 240)
         util.do_fade_rel(773, 482)
       else:
-        self.attack_monsters(consts.UNIT_CRAG_CRAB, 2.0, False)
+        self.attack_monsters(consts.UNIT_CRAG_CRAB, False, delay=2.0)
       util.cancel_aura(2.0)
 
       # Check Macro State
@@ -470,9 +470,9 @@ class MirageIsland(Dungeon, Special):
       if util.get_party_status() == consts.IS_TRUE:
         util.do_final_mode(1)
         util.set_last_cast_mode(2)
-        self.attack_monsters(consts.UNIT_GNELL, 2.0, True)
+        self.attack_monsters(consts.UNIT_GNELL, True, delay=0.5)
       else:
-        self.attack_monsters(consts.UNIT_GNELL, 2.0, False)
+        self.attack_monsters(consts.UNIT_GNELL, False, delay=0.5)
 
       # Check Macro State
       if not util.get_macro_state():

@@ -223,7 +223,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
+      self.attack_monsters(consts.UNIT_ELECTRISHIA, True, delay=1.0)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -235,7 +235,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
+      self.attack_monsters(consts.UNIT_ELECTRISHIA, True, delay=1.0)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -248,7 +248,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
+      self.attack_monsters(consts.UNIT_ELECTRISHIA, True, delay=1.0)
 
       util.do_fade_rel(910, 200)
       util.do_dash_rel(910, 200)
@@ -353,7 +353,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(849, 349, veradrix=True)
       util.do_fade_rel(611, 384)
       # Attack First Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -362,7 +362,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(971, 510, veradrix=True)
       util.do_fade_rel(666, 439)
       # Attack Second Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -371,7 +371,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(759, 276, veradrix=True)
       util.do_fade_rel(660, 399)
       # Attack Third Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -380,7 +380,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(323, 310, veradrix=True)
       util.do_fade_rel(504, 355)
       # Attack Fourth Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000

@@ -32,9 +32,13 @@ All notable changes to this project will be documented in this file.
 ## v5.95 Fixes
 
 - [Application] Method Updates and Cleanup
+- [CLS] Fixed bug on party base automation where characters will skip a sequence
+- [Dungeon] Tweaked functionalities for better performance
+- [MI] Fixed bug on party base automation where characters will skip a sequence
 - [PCA] Adjusted wait time in challenge dungeon
 - [PCA] Reduced exit animation
 - [POTF] Fixed bug on second boss when they skip it abruptly
+- [POTF] Fixed bug on party base automation where characters will skip a sequence
 
 # v5.90
 
