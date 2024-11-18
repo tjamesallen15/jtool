@@ -991,9 +991,10 @@ def do_plunder(reps=4):
     press_release(consts.KEY_LOOT_ACTION, 0.3)
     roll_box()
 
-def do_fast_plunder():
-  press_release(consts.KEY_LOOT_ACTION)
-  press_release(consts.KEY_LOOT_SPACE)
+def do_fast_plunder(reps=1):
+  for x in range(reps):
+    press_release(consts.KEY_LOOT_ACTION)
+    press_release(consts.KEY_LOOT_SPACE)
 
 def do_heal():
   press_release(consts.KEY_HP)

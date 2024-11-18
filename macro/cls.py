@@ -274,7 +274,7 @@ class Celestia(Dungeon, Special):
       util.do_fade_rel(586, 304)
 
       self.find_kill_special_boss(consts.UNIT_PERIUS)
-      if util.get_party_member_status() == consts.IS_FALSE: util.do_plunder(2)
+      if util.get_party_member_status() == consts.IS_FALSE: util.do_fast_plunder(10)
 
       # Check Macro State
       if not util.get_macro_state():
