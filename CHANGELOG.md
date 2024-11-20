@@ -41,6 +41,7 @@ All notable changes to this project will be documented in this file.
 - [POTF] Increased drop repetition from 2 to 10
 - [POTF] Fixed bug on second boss when they skip it abruptly
 - [POTF] Fixed bug on party base automation where characters will skip a sequence
+- [POTF] Removed some wait times
 
 # v5.90
 

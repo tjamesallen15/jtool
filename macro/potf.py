@@ -96,7 +96,6 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(990, 320)
       util.do_fade_rel(718, 396)
 
-      util.wait(2)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
@@ -120,7 +119,6 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-
       if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_KORAIDER, 6, 1, True)
       else: self.focus_monsters(consts.UNIT_KORAIDER, 3, 1, True)
 
@@ -163,7 +161,9 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(688, 150)
       util.do_fade_rel(626, 168)
       util.do_dash_rel(617, 188)
-      util.do_fade_rel(615, 296, 10)
+
+      if util.get_attack_type() == consts.IS_MELEE: util.do_fade_rel(615, 296, 10)
+      else: util.do_fade_rel(615, 296, 7)
 
       # Attack Third Boss
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -318,7 +318,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade_rel(835, 425)
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_select(0.1)
-        atk.plunder_box()
+        atk.plunder_box(delay=0)
       else: atk.plunder_box_party()
 
       if not util.get_macro_state():
@@ -326,7 +326,7 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Ant Base
-      util.countdown_timer(10)
+      if util.get_party_status() == consts.IS_FALSE: util.countdown_timer(10)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.do_dash_rel(549, 180)
       util.do_fade_rel(539, 262)
@@ -453,14 +453,14 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.do_fast_plunder(10)
+        util.do_fast_plunder(15)
         util.wait(4)
 
         util.do_dash_rel(512, 633)
         util.do_fade_rel(486, 617)
         util.do_dash_rel(560, 607)
       else:
-        util.do_fast_plunder(10)
+        util.do_fast_plunder(15)
         util.wait(8)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()
