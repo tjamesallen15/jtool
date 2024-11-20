@@ -159,7 +159,7 @@ class HazardousValleyVeradrix(Dungeon):
 
       util.move(570, 260)
       util.do_fade()
-      util.do_dash()
+      util.do_dash(0.5)
 
       atk.plunder_box()
 
