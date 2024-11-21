@@ -326,7 +326,7 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       # Move to Ant Base
-      if util.get_party_status() == consts.IS_FALSE: util.countdown_timer(10)
+      util.countdown_timer(10)
       util.move_scroll(375, 150, 700, 150, 0.5)
       util.do_dash_rel(549, 180)
       util.do_fade_rel(539, 262)
