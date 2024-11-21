@@ -995,6 +995,7 @@ def do_fast_plunder(reps=1):
   for x in range(reps):
     press_release(consts.KEY_LOOT_ACTION)
     press_release(consts.KEY_LOOT_SPACE)
+    time.sleep(0.1)
 
 def do_heal():
   press_release(consts.KEY_HP)
