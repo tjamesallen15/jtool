@@ -224,6 +224,7 @@ class SteamerCrazyQuest(Dungeon):
       util.do_battle_mode()
       self.find_kill_low_special_boss(consts.UNIT_STEAMER)
       util.set_battle_mode(False)
+      util.do_fast_plunder(15)
       self.find_kill_final_box(loot=False)
 
       util.move(625, 250)
