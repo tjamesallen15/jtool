@@ -194,6 +194,10 @@ class SteamerCrazyQuest(Dungeon):
       util.do_dash()
       util.move(625, 150)
       util.do_fade()
+      util.move(625, 150)
+      util.do_dash()
+      util.move(625, 150)
+      util.do_fade()
 
       atk.attack_monsters(consts.UNIT_STEAKY, True, sidestep=self.val_sidestep_disabled)
       util.wait(1)
