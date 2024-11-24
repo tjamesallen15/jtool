@@ -214,9 +214,6 @@ class PanicCaveAwakened(Dungeon):
           count_showorai += 1
           util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      # First Shadow
-      atk.focus_monsters(consts.UNIT_SHOWORAI_F, False, False, False)
-
       if util.get_reset_status():
         continue
 
@@ -224,6 +221,9 @@ class PanicCaveAwakened(Dungeon):
       if not util.get_macro_state():
         run_counter += 1000
         continue
+
+      # First Shadow
+      atk.focus_monsters(consts.UNIT_SHOWORAI_F, False, False, False)
 
       # Second Shadow Sequence
       self.position_second_shadow()
@@ -257,9 +257,6 @@ class PanicCaveAwakened(Dungeon):
           count_showorai += 1
           util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      # Second Shadow
-      atk.focus_monsters(consts.UNIT_SHOWORAI_R, False, False, False)
-
       if util.get_reset_status():
         continue
 
@@ -267,6 +264,9 @@ class PanicCaveAwakened(Dungeon):
       if not util.get_macro_state():
         run_counter += 1000
         continue
+
+      # Second Shadow
+      atk.focus_monsters(consts.UNIT_SHOWORAI_R, False, False, False)
 
       # Third Shadow Sequence
       self.position_third_shadow()
@@ -299,11 +299,6 @@ class PanicCaveAwakened(Dungeon):
           count_showorai += 1
           util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      # Third Shadow
-      atk.focus_monsters(consts.UNIT_SHOWORAI_M, False, False, False)
-      util.move(620, 520)
-      util.do_fade(0.7)
-
       if util.get_reset_status():
         continue
 
@@ -311,6 +306,11 @@ class PanicCaveAwakened(Dungeon):
       if not util.get_macro_state():
         run_counter += 1000
         continue
+
+      # Third Shadow
+      atk.focus_monsters(consts.UNIT_SHOWORAI_M, False, False, False)
+      util.move(620, 520)
+      util.do_fade(0.7)
 
       # Final Boss Sequence
       checking = True
