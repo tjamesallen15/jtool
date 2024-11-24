@@ -113,7 +113,7 @@ class PanicCaveAwakened(Dungeon):
         try:
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 0.3)
+          util.move_click_rel(10, 10, dialog, 0.4)
           corpse_found = True
           dialog_count += 1
         except pyauto.ImageNotFoundException:
@@ -156,7 +156,7 @@ class PanicCaveAwakened(Dungeon):
           try:
             dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
             util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
-            util.move_click_rel(10, 10, dialog, 0.3)
+            util.move_click_rel(10, 10, dialog, 0.4)
             corpse_found = True
             dialog_count += 1
           except pyauto.ImageNotFoundException:
