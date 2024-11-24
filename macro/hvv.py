@@ -186,7 +186,7 @@ class HazardousValleyVeradrix(Dungeon):
         run_counter += 1000
         continue
 
-      util.move(570, 260)
+      util.move_click(570, 260)
       util.do_fade()
       util.do_dash(0.5)
 
