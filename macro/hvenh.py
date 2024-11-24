@@ -20,7 +20,7 @@ class HazardousValley(Dungeon):
   selected_dungeon = "Hazardous Valley (Easy)"
   dungeon_list = [
     "Hazardous Valley (Hard)",
-    "Hazardous Valley (Medium)",
+    "Hazardous Valley (Normal)",
     "Hazardous Valley (Easy)"
   ]
 

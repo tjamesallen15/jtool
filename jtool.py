@@ -37,24 +37,27 @@ pynboard = Controller()
 class JTool():
 
   LIST_MASTER = [
-    "Hazardous Valley (Awakened)",
-    "Hazardous Valley (Hard)",
-    "Hazardous Valley (Medium)",
-    "Hazardous Valley (Easy)",
-    "Steamer Crazy (Awakened)",
-    "Catacomb Frost (Awakened)",
-    "Lava Hellfire (Awakened)",
-    "Holy Windmill",
-    "Terminus Machina",
-    "Panic Cave (Awakened)",
-    "Holy Keldrasil",
-    "Altar of Siena B1F (Prideus)",
-    "Chaos Infinity",
-    "Hazardous Valley (Veradrix)",
-    "Purifier of the Forest",
-    "Mirage Island",
-    "Steamer Crazy (Premium)",
-    "Celestia"
+    consts.DG_HVA,
+    consts.DG_HVH,
+    consts.DG_HVM,
+    consts.DG_HVE,
+    consts.DG_SCA,
+    consts.DG_CFA,
+    consts.DG_LHA,
+    consts.DG_HW,
+    consts.DG_TM,
+    consts.DG_PCA,
+    consts.DG_HK,
+    consts.DG_S1P,
+    consts.DG_CI,
+    consts.DG_HVVH,
+    consts.DG_HVVN,
+    consts.DG_HVVE,
+    consts.DG_POTF,
+    consts.DG_MI,
+    consts.DG_SCP,
+    consts.DG_SCQ,
+    consts.DG_CLS
   ]
 
   LIST_DUNGEON = []
@@ -216,7 +219,9 @@ class JTool():
       case consts.DG_HK: HolyKeldrasil().initialize(dungeon_args)
       case consts.DG_S1P: SienaB1FPrideus().initialize(dungeon_args)
       case consts.DG_CI: ChaosInfinity().initialize(dungeon_args)
-      case consts.DG_HVV: HazardousValleyVeradrix().initialize(dungeon_args)
+      case consts.DG_HVVH: HazardousValleyVeradrix().initialize(dungeon_args)
+      case consts.DG_HVVN: HazardousValleyVeradrix().initialize(dungeon_args)
+      case consts.DG_HVVE: HazardousValleyVeradrix().initialize(dungeon_args)
       case consts.DG_POTF: PurifierOfTheForest().initialize(dungeon_args)
       case consts.DG_SCP: SteamerCrazyPremium().initialize(dungeon_args)
       case consts.DG_MI: MirageIsland().initialize(dungeon_args)
@@ -287,6 +292,9 @@ class JTool():
         consts.DG_HVH,
         consts.DG_HVM,
         consts.DG_HVE,
+        consts.DG_HVVH,
+        consts.DG_HVVN,
+        consts.DG_HVVE,
         consts.DG_SCP,
         consts.DG_SCQ,
         consts.DG_SCA,
@@ -298,7 +306,6 @@ class JTool():
         consts.DG_TM,
         consts.DG_CI,
         consts.DG_S1P,
-        consts.DG_HVV,
         consts.DG_MI,
         consts.DG_CLS,
         consts.DG_POTF
@@ -748,7 +755,7 @@ class JTool():
 
     self.list_dg = ttk.Combobox(tab_dungeon, values=self.LIST_DUNGEON, justify=consts.STATE_CENTER, state=consts.STATE_READONLY)
     self.list_dg.current(self.get_data(consts.DATA_DUNGEON))
-    self.list_dg.config(width=30)
+    self.list_dg.config(width=31)
     self.list_dg.place(x=75, y=10)
     self.list_dg.bind("<<ComboboxSelected>>", self.enable_dungeon_features)
 
@@ -769,7 +776,7 @@ class JTool():
 
     self.btn_start = Button(tab_dungeon, text=consts.BTN_START, command=self.start)
     self.btn_start.config(width=6)
-    self.btn_start.place(x=255, y=40)
+    self.btn_start.place(x=263, y=40)
 
     self.lbl_current_run = Label(tab_dungeon, text=consts.LBL_CURRENT_RUN)
     self.lbl_current_run.place(x=145, y=105)

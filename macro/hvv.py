@@ -15,6 +15,29 @@ import common.attack as atk
 pynboard = Controller()
 
 class HazardousValleyVeradrix(Dungeon):
+  DG_HVV = ""
+
+  # UNIQUE VARIABLES
+  selected_dungeon = "Hazardous Valley (Veradrix - Easy)"
+  dungeon_list = [
+    "Hazardous Valley (Veradrix - Hard)",
+    "Hazardous Valley (Veradrix - Normal)",
+    "Hazardous Valley (Veradrix - Easy)"
+  ]
+
+  def initialize(self, args):
+    self.frame_root = args[consts.DATA_FRAME]
+    self.btn_start = args[consts.DATA_BUTTON]
+    self.selected_dungeon = args[consts.DATA_DUNGEON]
+
+    shortcut.add_hotkey(consts.HOTKEY_TERMINATE, util.terminate)
+    self.btn_start.config(state=consts.STATE_DISABLED)
+    self.frame_root.update()
+
+    self.run_dungeon(args[consts.DATA_RUNS])
+
+    self.btn_start.config(state=consts.STATE_NORMAL)
+    self.frame_root.update()
 
   def run_dungeon(self, runs):
     run_counter = 0
@@ -40,7 +63,13 @@ class HazardousValleyVeradrix(Dungeon):
       util.move(677, 361)
       util.move(735, 361, 0.5)
       self.click_dungeon_portal(735, 361)
-      util.move_click(440, 300, 0.5)
+
+      if self.selected_dungeon == self.dungeon_list[0]:
+        util.move_click(440, 300, 0.5)
+      elif self.selected_dungeon == self.dungeon_list[1]:
+        util.move_click(440, 280, 0.5)
+      elif self.selected_dungeon == self.dungeon_list[2]:
+        util.move_click(440, 260, 0.5)
 
       # Enter Dungeon
       self.enter_dungeon()

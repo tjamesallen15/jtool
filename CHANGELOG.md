@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 ## v5.95 Dungeons Available
 
 - [HVA] Hazardous Valley (Awakened) [v1.00]
-- [HVENH] Hazardous Valley (Easy | Medium | Hard) [v3.40]
+- [HVENH] Hazardous Valley (Easy | Normal | Hard) [v3.40]
 - [SCA] Steamer Crazy (Awakened) [v4.51]
 - [CFA] Catacomb Frost (Awakened) [v4.61]
 - [LHA] Lava Hellfire (Awakened) [v4.95]
@@ -17,7 +17,7 @@ All notable changes to this project will be documented in this file.
 - [HK] Holy Keldrasil [v5.11]
 - [S1P] Altar of Siena B1F (Prideus) [v5.11]
 - [CI] Chaos Infinity [v5.50]
-- [HVV] Hazardous Valley (Veradrix) [v5.50]
+- [HVV] Hazardous Valley (Veradrix - Easy | Normal | Hard) [v5.50]
 - [POTF] Purifier of the Forest [v5.85]
 - [MI] Mirage Island [v5.90]
 - [SCP] Steamer Crazy (Premium) [v5.90]
@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 
 - [Dungeon] Added loot status to enable/disable looting function
 - [SCQ] Added Steamer Crazy (Quest) for Beta Phase
+- [HVV] Broked down dungeon into three parts (Easy, Normal, Hard)
 
 ## v5.95 Fixes
 
