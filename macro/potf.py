@@ -177,10 +177,10 @@ class PurifierOfTheForest(Dungeon, Special):
 
       if util.get_party_member_status() == consts.IS_FALSE:
         atk.plunder_box()
-        util.wait(4)
+        util.wait(6)
       else:
         atk.plunder_box_party()
-        util.wait(12)
+        util.wait(14)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -279,7 +279,7 @@ class PurifierOfTheForest(Dungeon, Special):
           self.go_web_gate()
 
       # Attack Web Gate
-      if util.get_party_leader_status() == consts.IS_TRUE: util.wait(2)
+      if util.get_party_leader_status() == consts.IS_TRUE: util.wait(8)
       if util.get_party_member_status() == consts.IS_FALSE: atk.focus_gate(consts.UNIT_WEB_GATE, 0)
       else:
         web_gate = True
