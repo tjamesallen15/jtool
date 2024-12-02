@@ -139,7 +139,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(970, 550, 3)
       util.do_dash_rel(1084, 282, 4)
       util.do_fade_rel(938, 313, 3)
-      util.do_dash_rel(935, 315, 2)
+      util.do_dash_rel(935, 315, 4)
 
       if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 4, 1, True)
       else: self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 2, 1, True)
