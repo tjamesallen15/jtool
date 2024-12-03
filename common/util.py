@@ -107,6 +107,7 @@ def set_variables(args):
   set_shorts_status(args[consts.DATA_SHORTS])
   set_hard_shorts_status(args[consts.DATA_HARD_SHORTS])
   set_veradrix_status(args[consts.DATA_VERADRIX])
+  set_event_status(args[consts.DATA_EVENT])
   set_total_run_count(args[consts.DATA_RUNS])
   set_run_restart_status(args[consts.DATA_RUN_RESTART])
   set_password(args[consts.DATA_PWORD])
