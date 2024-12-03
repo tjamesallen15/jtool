@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 
 ## v5.95 Features
 
+- [Application] Added Event Check for double drop loot
 - [Dungeon] Added loot status to enable/disable looting function
 - [SCQ] Added Steamer Crazy (Quest) for Beta Phase
 - [HVV] Broked down dungeon into three parts (Easy, Normal, Hard)

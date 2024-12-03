@@ -34,6 +34,7 @@ val_debuffs = False
 val_hard_debuffs = False
 val_close_app = False
 val_vera = True
+val_event = False
 aura_counter = 0
 val_runs = 1
 val_run_restart = 0
@@ -634,6 +635,13 @@ def set_veradrix_status(status):
 def get_veradrix_status():
   return val_vera
 
+def set_event_status(status):
+  global val_event
+  val_event = True if status == consts.STATE_ONE else False
+
+def get_event_status():
+  return val_event
+
 def set_buffs_status(status):
   global val_buffs
   val_buffs = True if status == consts.STATE_ONE else False
@@ -985,6 +993,8 @@ def party_roll_box(reps=4):
     time.sleep(0.3)
 
 def do_plunder(reps=4):
+  if get_event_status() == consts.IS_TRUE: reps = reps * 2
+
   for x in range(reps):
     log_action(consts.MSG_LOOTING_DROP)
     press_release(consts.KEY_LOOT_ACTION, 0.3)

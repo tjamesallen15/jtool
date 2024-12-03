@@ -110,6 +110,7 @@ class JTool():
   val_hard_shorts = 0
   val_atk_type = 0
   val_vera = 0
+  val_event = 0
   val_close_app = 0
   val_archer = 0
   val_resolution = 0
@@ -167,6 +168,7 @@ class JTool():
       consts.DATA_SHORTS: self.val_shorts.get(),
       consts.DATA_HARD_SHORTS: self.val_hard_shorts.get(),
       consts.DATA_VERADRIX: self.val_vera.get(),
+      consts.DATA_EVENT: self.val_event.get(),
       consts.DATA_RUNS: int(self.val_run_count.get()),
       consts.DATA_RUN_RESTART: self.val_run_restart.get(),
       consts.DATA_CLOSE_APP: self.val_close_app.get(),
@@ -791,6 +793,13 @@ class JTool():
     self.val_char_class.current(self.get_data(consts.DATA_CLASS))
     self.val_char_class.config(width=5)
     self.val_char_class.place(x=75, y=73)
+
+    lbl_event = Label(tab_dungeon, text=consts.LBL_EVENT, state=self.get_access(consts.DATA_VERADRIX))
+    lbl_event.place(x=145, y=73)
+
+    self.val_event = IntVar(value=0)
+    chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=consts.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_event, state=self.get_access(consts.DATA_VERADRIX))
+    chkbtn_vera.place(x=210, y=74)
 
     lbl_mode = Label(tab_dungeon, text=consts.LBL_MODE, state=self.get_access(consts.DATA_MODE))
     lbl_mode.place(x=10, y=105)
