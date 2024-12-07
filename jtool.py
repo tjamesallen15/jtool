@@ -31,29 +31,33 @@ from macro.potf import PurifierOfTheForest
 from macro.mi import MirageIsland
 from macro.scp import SteamerCrazyPremium
 from macro.cls import Celestia
+from macro.scq import SteamerCrazyQuest
 
 pynboard = Controller()
 class JTool():
 
   LIST_MASTER = [
-    "Hazardous Valley (Awakened)",
-    "Hazardous Valley (Hard)",
-    "Hazardous Valley (Medium)",
-    "Hazardous Valley (Easy)",
-    "Steamer Crazy (Awakened)",
-    "Catacomb Frost (Awakened)",
-    "Lava Hellfire (Awakened)",
-    "Holy Windmill",
-    "Terminus Machina",
-    "Panic Cave (Awakened)",
-    "Holy Keldrasil",
-    "Altar of Siena B1F (Prideus)",
-    "Chaos Infinity",
-    "Hazardous Valley (Veradrix)",
-    "Purifier of the Forest",
-    "Mirage Island",
-    "Steamer Crazy (Premium)",
-    "Celestia"
+    consts.DG_HVA,
+    consts.DG_HVH,
+    consts.DG_HVM,
+    consts.DG_HVE,
+    consts.DG_SCA,
+    consts.DG_CFA,
+    consts.DG_LHA,
+    consts.DG_HW,
+    consts.DG_TM,
+    consts.DG_PCA,
+    consts.DG_HK,
+    consts.DG_S1P,
+    consts.DG_CI,
+    consts.DG_HVVH,
+    consts.DG_HVVN,
+    consts.DG_HVVE,
+    consts.DG_POTF,
+    consts.DG_MI,
+    consts.DG_SCP,
+    consts.DG_SCQ,
+    consts.DG_CLS
   ]
 
   LIST_DUNGEON = []
@@ -106,6 +110,7 @@ class JTool():
   val_hard_shorts = 0
   val_atk_type = 0
   val_vera = 0
+  val_event = 0
   val_close_app = 0
   val_archer = 0
   val_resolution = 0
@@ -163,6 +168,7 @@ class JTool():
       consts.DATA_SHORTS: self.val_shorts.get(),
       consts.DATA_HARD_SHORTS: self.val_hard_shorts.get(),
       consts.DATA_VERADRIX: self.val_vera.get(),
+      consts.DATA_EVENT: self.val_event.get(),
       consts.DATA_RUNS: int(self.val_run_count.get()),
       consts.DATA_RUN_RESTART: self.val_run_restart.get(),
       consts.DATA_CLOSE_APP: self.val_close_app.get(),
@@ -196,6 +202,7 @@ class JTool():
     util.initialize(cabal_window, self.frame_root, self.lbl_macro, self.lbl_current_run, self.lbl_run_time)
     util.initialize_region()
     util.set_variables(variable_args)
+    util.set_loot_status(True)
 
     if dungeon_restart == consts.STATE_ONE:
       self.restart_application()
@@ -214,11 +221,14 @@ class JTool():
       case consts.DG_HK: HolyKeldrasil().initialize(dungeon_args)
       case consts.DG_S1P: SienaB1FPrideus().initialize(dungeon_args)
       case consts.DG_CI: ChaosInfinity().initialize(dungeon_args)
-      case consts.DG_HVV: HazardousValleyVeradrix().initialize(dungeon_args)
+      case consts.DG_HVVH: HazardousValleyVeradrix().initialize(dungeon_args)
+      case consts.DG_HVVN: HazardousValleyVeradrix().initialize(dungeon_args)
+      case consts.DG_HVVE: HazardousValleyVeradrix().initialize(dungeon_args)
       case consts.DG_POTF: PurifierOfTheForest().initialize(dungeon_args)
       case consts.DG_SCP: SteamerCrazyPremium().initialize(dungeon_args)
       case consts.DG_MI: MirageIsland().initialize(dungeon_args)
       case consts.DG_CLS: Celestia().initialize(dungeon_args)
+      case consts.DG_SCQ: SteamerCrazyQuest().initialize(dungeon_args)
 
   def get_dungeon_list(self):
     if self.get_level() == consts.ACCESS_FREE:
@@ -284,7 +294,11 @@ class JTool():
         consts.DG_HVH,
         consts.DG_HVM,
         consts.DG_HVE,
+        consts.DG_HVVH,
+        consts.DG_HVVN,
+        consts.DG_HVVE,
         consts.DG_SCP,
+        consts.DG_SCQ,
         consts.DG_SCA,
         consts.DG_CFA,
         consts.DG_LHA,
@@ -294,7 +308,6 @@ class JTool():
         consts.DG_TM,
         consts.DG_CI,
         consts.DG_S1P,
-        consts.DG_HVV,
         consts.DG_MI,
         consts.DG_CLS,
         consts.DG_POTF
@@ -504,7 +517,8 @@ class JTool():
     counter = int(self.val_click_count.get())
     while i < counter:
       util.move_click(1235, 585)
-      util.move_click(630, 440)
+      # util.move_click(630, 440)
+      util.press_release(Key.enter)
       self.log_misc_action(consts.MSG_CLICK + str(i + 1))
       i += 1
 
@@ -744,7 +758,7 @@ class JTool():
 
     self.list_dg = ttk.Combobox(tab_dungeon, values=self.LIST_DUNGEON, justify=consts.STATE_CENTER, state=consts.STATE_READONLY)
     self.list_dg.current(self.get_data(consts.DATA_DUNGEON))
-    self.list_dg.config(width=30)
+    self.list_dg.config(width=31)
     self.list_dg.place(x=75, y=10)
     self.list_dg.bind("<<ComboboxSelected>>", self.enable_dungeon_features)
 
@@ -765,7 +779,7 @@ class JTool():
 
     self.btn_start = Button(tab_dungeon, text=consts.BTN_START, command=self.start)
     self.btn_start.config(width=6)
-    self.btn_start.place(x=255, y=40)
+    self.btn_start.place(x=263, y=40)
 
     self.lbl_current_run = Label(tab_dungeon, text=consts.LBL_CURRENT_RUN)
     self.lbl_current_run.place(x=145, y=105)
@@ -780,6 +794,13 @@ class JTool():
     self.val_char_class.current(self.get_data(consts.DATA_CLASS))
     self.val_char_class.config(width=5)
     self.val_char_class.place(x=75, y=73)
+
+    lbl_event = Label(tab_dungeon, text=consts.LBL_EVENT, state=self.get_access(consts.DATA_VERADRIX))
+    lbl_event.place(x=145, y=73)
+
+    self.val_event = IntVar(value=0)
+    chkbtn_vera = ttk.Checkbutton(tab_dungeon, text=consts.LBL_EMPTY, onvalue=1, offvalue=0, variable=self.val_event, state=self.get_access(consts.DATA_VERADRIX))
+    chkbtn_vera.place(x=210, y=74)
 
     lbl_mode = Label(tab_dungeon, text=consts.LBL_MODE, state=self.get_access(consts.DATA_MODE))
     lbl_mode.place(x=10, y=105)

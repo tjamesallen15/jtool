@@ -464,54 +464,7 @@ def plunder_box(select=True, reps=4, loot=True, delay=1.0):
       checking = False
       util.log_action(consts.MSG_BOX_NOT_FOUND)
 
-  if loot == consts.IS_TRUE:
-    util.do_plunder(reps)
-
-def plunder_box_party(select=True, reps=4, loot=True, delay=1.0):
-  util.log_action(consts.MSG_CHECK_BOX)
-  if delay != 0: util.wait(delay)
-  if select == consts.IS_TRUE: util.do_select(0.1)
-
-  checking = True
-  while checking:
-    if not util.get_macro_state():
-      util.log_action(consts.MSG_TERMINATE)
-      checking = False
-
-    if checking == False:
-      break
-
-    try:
-      box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_BOX_FOUND)
-    except pyauto.ImageNotFoundException:
-      checking = False
-      util.log_action(consts.MSG_BOX_NOT_FOUND)
-
-  if loot == consts.IS_TRUE: util.party_roll_box(reps)
-
-def plunder_final_box_party(select=True, reps=5, loot=True, delay=1.0):
-  util.log_action(consts.MSG_CHECK_BOX)
-  if delay != 0: util.wait(delay)
-  if select == consts.IS_TRUE: util.do_select(0.1)
-
-  checking = True
-  while checking:
-    if not util.get_macro_state():
-      util.log_action(consts.MSG_TERMINATE)
-      checking = False
-
-    if checking == False:
-      break
-
-    try:
-      box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
-      util.log_action(consts.MSG_BOX_FOUND)
-    except pyauto.ImageNotFoundException:
-      checking = False
-      util.log_action(consts.MSG_BOX_NOT_FOUND)
-
-  if loot == consts.IS_TRUE: util.party_roll_box(reps)
+  if loot == consts.IS_TRUE: util.do_plunder(reps)
 
 def plunder_final_box(select=True, reps=5, loot=True, delay=1.0):
   util.log_action(consts.MSG_CHECK_BOX)
@@ -560,3 +513,49 @@ def plunder_ref_box(select=True, reps=4, ref=consts.IMG_BOX, loot=True, delay=1.
       util.log_action(consts.MSG_BOX_NOT_FOUND)
 
   if loot == consts.IS_TRUE: util.do_plunder(reps)
+
+def plunder_box_party(select=True, reps=4, loot=True, delay=1.0):
+  util.log_action(consts.MSG_CHECK_BOX)
+  if delay != 0: util.wait(delay)
+  if select == consts.IS_TRUE: util.do_select(0.1)
+
+  checking = True
+  while checking:
+    if not util.get_macro_state():
+      util.log_action(consts.MSG_TERMINATE)
+      checking = False
+
+    if checking == False:
+      break
+
+    try:
+      box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(consts.MSG_BOX_FOUND)
+    except pyauto.ImageNotFoundException:
+      checking = False
+      util.log_action(consts.MSG_BOX_NOT_FOUND)
+
+  if loot == consts.IS_TRUE: util.party_roll_box(reps)
+
+def plunder_final_box_party(select=True, reps=5, loot=True, delay=1.0):
+  util.log_action(consts.MSG_CHECK_BOX)
+  if delay != 0: util.wait(delay)
+  if select == consts.IS_TRUE: util.do_select(0.1)
+
+  checking = True
+  while checking:
+    if not util.get_macro_state():
+      util.log_action(consts.MSG_TERMINATE)
+      checking = False
+
+    if checking == False:
+      break
+
+    try:
+      box = pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+      util.log_action(consts.MSG_BOX_FOUND)
+    except pyauto.ImageNotFoundException:
+      checking = False
+      util.log_action(consts.MSG_BOX_NOT_FOUND)
+
+  if loot == consts.IS_TRUE: util.party_roll_box(reps)

@@ -29,7 +29,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       # Click Cabal Window
       util.go_cabal_window()
-      util.release_keys()
+      util.do_key_release()
       util.go_skill_slot(0.2)
       util.do_buffs()
 
@@ -78,8 +78,8 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_BLOODY_HORN, 8, 6, True)
-      else: self.focus_monsters(consts.UNIT_BLOODY_HORN, 6, 6, True)
+      if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_BLOODY_HORN, 12, 6, True)
+      else: self.focus_monsters(consts.UNIT_BLOODY_HORN, 8, 6, True)
       util.cancel_aura(2.0)
 
       if not util.get_macro_state():
@@ -96,7 +96,6 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(990, 320)
       util.do_fade_rel(718, 396)
 
-      util.wait(2)
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
 
@@ -120,7 +119,6 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode()
       util.set_last_cast_mode(3)
-
       if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_KORAIDER, 6, 1, True)
       else: self.focus_monsters(consts.UNIT_KORAIDER, 3, 1, True)
 
@@ -141,7 +139,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(970, 550, 3)
       util.do_dash_rel(1084, 282, 4)
       util.do_fade_rel(938, 313, 3)
-      util.do_dash_rel(935, 315, 2)
+      util.do_dash_rel(935, 315, 4)
 
       if util.get_party_status() == consts.IS_TRUE: self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 4, 1, True)
       else: self.focus_monsters(consts.UNIT_MUTANT_KORAIDER, 2, 1, True)
@@ -163,7 +161,9 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(688, 150)
       util.do_fade_rel(626, 168)
       util.do_dash_rel(617, 188)
-      util.do_fade_rel(615, 296, 10)
+
+      if util.get_attack_type() == consts.IS_MELEE: util.do_fade_rel(615, 296, 10)
+      else: util.do_fade_rel(615, 296, 7)
 
       # Attack Third Boss
       util.move_scroll(700, 150, 375, 150, 0.5)
@@ -223,7 +223,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
+      self.attack_monsters(consts.UNIT_ELECTRISHIA, True, delay=1.0)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -235,7 +235,7 @@ class PurifierOfTheForest(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.attack_monsters(consts.UNIT_ELECTRISHIA, 1, True)
+      self.attack_monsters(consts.UNIT_ELECTRISHIA, True, delay=1.0)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -245,6 +245,11 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(910, 200)
       util.do_fade_rel(910, 200)
       util.do_dash_rel(910, 200)
+
+      util.do_final_mode(1)
+      util.set_last_cast_mode(3)
+      self.attack_monsters(consts.UNIT_ELECTRISHIA, True, delay=1.0)
+
       util.do_fade_rel(910, 200)
       util.do_dash_rel(910, 200)
       util.do_fade_rel(910, 200)
@@ -313,7 +318,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_fade_rel(835, 425)
       if util.get_party_member_status() == consts.IS_FALSE:
         util.do_select(0.1)
-        atk.plunder_box()
+        atk.plunder_box(delay=0)
       else: atk.plunder_box_party()
 
       if not util.get_macro_state():
@@ -348,7 +353,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(849, 349, veradrix=True)
       util.do_fade_rel(611, 384)
       # Attack First Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -357,7 +362,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(971, 510, veradrix=True)
       util.do_fade_rel(666, 439)
       # Attack Second Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -366,7 +371,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(759, 276, veradrix=True)
       util.do_fade_rel(660, 399)
       # Attack Third Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -375,7 +380,7 @@ class PurifierOfTheForest(Dungeon, Special):
       util.do_dash_rel(323, 310, veradrix=True)
       util.do_fade_rel(504, 355)
       # Attack Fourth Ant Hill
-      self.find_focus_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
+      self.find_focus_rel_monsters(consts.IMG_FULL_ANT_HILL, consts.UNIT_ANT_HILL)
 
       if not util.get_macro_state():
         run_counter += 1000
@@ -422,10 +427,10 @@ class PurifierOfTheForest(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(592, 170)
-      util.do_fade_rel(599, 217)
-      util.do_dash_rel(604, 230)
-      util.do_fade_rel(604, 232)
+      util.do_dash_rel(592, 170, veradrix=True)
+      util.do_fade_rel(599, 217, veradrix=True)
+      util.do_dash_rel(604, 230, veradrix=True)
+      util.do_fade_rel(604, 232, veradrix=True)
 
       # Second Portal
       self.click_portal(627, 316, True)
@@ -448,14 +453,14 @@ class PurifierOfTheForest(Dungeon, Special):
         continue
 
       if util.get_party_member_status() == consts.IS_FALSE:
-        util.do_plunder(3)
+        util.do_fast_plunder(15)
         util.wait(4)
 
         util.do_dash_rel(512, 633)
         util.do_fade_rel(486, 617)
         util.do_dash_rel(560, 607)
       else:
-        util.do_fast_plunder()
+        util.do_fast_plunder(15)
         util.wait(8)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_final_box()

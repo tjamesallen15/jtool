@@ -26,7 +26,7 @@ class TerminusMachina(Dungeon):
 
       # Click Cabal Window
       util.go_cabal_window()
-      util.release_keys()
+      util.do_key_release()
       util.go_skill_slot(0.2)
       util.do_buffs()
 
