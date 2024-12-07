@@ -169,9 +169,12 @@ class SteamerCrazyPremium(Dungeon):
       util.set_battle_mode(False)
       self.find_kill_final_box()
 
+      util.move(500, 400)
+      util.do_dash()
       util.move(625, 250)
       util.do_fade()
-      self.click_exit(640, 230)
+
+      self.click_exit(640, 260, True, 25)
 
       # Start to End Dungeon
       util.check_notifications()
