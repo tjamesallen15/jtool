@@ -517,7 +517,8 @@ class JTool():
     counter = int(self.val_click_count.get())
     while i < counter:
       util.move_click(1235, 585)
-      util.move_click(630, 440)
+      # util.move_click(630, 440)
+      util.press_release(Key.enter)
       self.log_misc_action(consts.MSG_CLICK + str(i + 1))
       i += 1
 
