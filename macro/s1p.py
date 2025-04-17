@@ -28,7 +28,7 @@ class SienaB1FPrideus(Dungeon):
 
       # Click Cabal Window
       util.go_cabal_window()
-      util.release_keys()
+      util.do_key_release()
       util.go_skill_slot(0.1)
 
       # Check Macro State

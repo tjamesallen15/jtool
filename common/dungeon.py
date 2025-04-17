@@ -278,7 +278,7 @@ class Dungeon(ABC):
           util.log_action(consts.MSG_CHECK_DIALOG_NOT_FOUND)
           atk.focus_monsters(consts.UNIT_EMPTY, False, False, False)
 
-  def click_exit(self, x, y, deviate=False):
+  def click_exit(self, x, y, deviate=False, deviate_points=10):
     check_dialog = True
     while check_dialog:
       if not util.get_macro_state():
@@ -291,8 +291,8 @@ class Dungeon(ABC):
       try:
         util.move_click(x, y, 0.2)
         if deviate == consts.IS_TRUE:
-          util.move_click(x - 10, y, 0.2)
-          util.move_click(x + 10, y, 0.2)
+          util.move_click(x - deviate_points, y, 0.2)
+          util.move_click(x + deviate_points, y, 0.2)
         dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
         util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
         util.move_click_rel(10, 10, dialog, 0.5)
@@ -342,7 +342,7 @@ class Dungeon(ABC):
 
     util.wait(delay)
 
-  def find_kill_box(self, rep=4, delay=0.5):
+  def find_kill_box(self, rep=4, loot=True, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -360,10 +360,10 @@ class Dungeon(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    atk.plunder_box(False, rep)
+    atk.plunder_box(False, rep, loot)
     util.wait(delay)
 
-  def find_kill_final_box(self, rep=5, delay=0.5):
+  def find_kill_final_box(self, rep=5, loot=True, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -381,7 +381,7 @@ class Dungeon(ABC):
       except pyauto.ImageNotFoundException:
         pass
 
-    atk.plunder_final_box(False, rep)
+    atk.plunder_final_box(False, rep, loot)
     util.wait(delay)
 
 class Special(ABC):
@@ -451,7 +451,7 @@ class Special(ABC):
     if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
     util.wait(delay)
 
-  def find_focus_monsters(self, unit_image, unit_name=consts.UNIT_EMPTY, delay=0.5):
+  def find_focus_rel_monsters(self, unit_image, unit_name=consts.UNIT_EMPTY, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -472,8 +472,7 @@ class Special(ABC):
 
     util.wait(delay)
 
-  def find_kill_monsters(self, unit_name=consts.UNIT_EMPTY, tick=15, delay=0.5):
-    timeout = 0
+  def find_focus_until_boss(self, unit_name=consts.UNIT_EMPTY, cancel=True, type=consts.TYPE_BOSS, delay=0.5):
     finding = True
     while finding:
       if not util.get_macro_state():
@@ -483,23 +482,29 @@ class Special(ABC):
       if finding == False:
         break
 
-      timeout += 1
-      if timeout >= tick:
-        finding = False
-
+      util.do_select(0.1)
       try:
-        util.do_select(0.1)
-        mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())
-        self.attack_monsters(unit_name, 1.5, True)
+        if type == consts.TYPE_BOSS: pyauto.locateOnScreen(consts.IMG_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        elif type == consts.TYPE_SEMI: pyauto.locateOnScreen(consts.IMG_SEMI_BOSS, grayscale=False, confidence=.9, region=util.get_region())
+        elif type == consts.TYPE_SHADE: pyauto.locateOnScreen(consts.IMG_BOX, grayscale=False, confidence=.9, region=util.get_region())
+        util.do_deselect_pack()
+        util.log_action(consts.MSG_BOSS_FOUND)
         finding = False
         break
       except pyauto.ImageNotFoundException:
         pass
 
+      try:
+        mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_archer_region())
+        atk.focus_monsters(unit_name, False, True, False)
+      except pyauto.ImageNotFoundException:
+        pass
+
+    if cancel == consts.IS_TRUE: util.cancel_aura(1.5)
     util.wait(delay)
 
-  def attack_monsters(self, unit_name=consts.UNIT_EMPTY, delay=1.5, aura=False):
-    atk.attack_monsters(unit_name, aura, 0.3, False)
+  def attack_monsters(self, unit_name=consts.UNIT_EMPTY, aura=False, type=consts.TYPE_BOSS, delay=1.5):
+    atk.attack_monsters(unit_name, aura, 0.3, False, type)
     if delay != 0: util.wait(delay)
 
   def focus_monsters(self, unit_name=consts.UNIT_EMPTY, reps=4, delay=1.5, aura=False):
