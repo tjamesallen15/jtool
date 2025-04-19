@@ -7,7 +7,7 @@ A Cabal Online Macro and Automation
 Listed below are the contributors for this project.
 
 * James Allen Tadique
-* Genessa Nepomuceno
+* Genessa Nepomuceno-Tadique
 
 # Project Rules
 
