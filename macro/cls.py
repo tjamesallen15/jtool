@@ -29,7 +29,7 @@ class Celestia(Dungeon, Special):
 
       # Click Cabal Window
       util.go_cabal_window()
-      util.release_keys()
+      util.do_key_release()
       util.go_skill_slot(0.2)
       util.do_buffs()
 
@@ -68,53 +68,57 @@ class Celestia(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(644, 161)
-      util.do_fade_rel(629, 225)
-      util.do_dash_rel(620, 243)
-      util.do_fade_rel(495, 276)
-      util.do_dash_rel(500, 291)
-      util.do_fade_rel(845, 209)
-      util.do_dash_rel(820, 205)
-      util.do_fade_rel(584, 243)
+      util.do_dash_rel(644, 161, veradrix=True)
+      util.do_fade_rel(629, 225, veradrix=True)
+      util.do_dash_rel(620, 243, veradrix=True)
+      util.do_fade_rel(495, 276, veradrix=True)
+      util.do_dash_rel(500, 291, veradrix=True)
+      util.do_fade_rel(845, 209, veradrix=True)
+      util.do_dash_rel(820, 205, veradrix=True)
+      util.do_fade_rel(584, 243, veradrix=True)
 
       # Attack Monad Group
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
-      util.cancel_aura(2.0)
+      if util.get_party_status() == consts.IS_TRUE: self.find_focus_until_boss(consts.UNIT_MONAD_FRAGMENT, True, consts.TYPE_SEMI)
+      else:
+        atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
+        util.cancel_aura(2.0)
 
       # Check Macro State
       if not util.get_macro_state():
         run_counter += 1000
         continue
 
-      util.do_dash_rel(655, 505)
-      util.do_fade_rel(547, 640)
-      util.do_dash_rel(547, 640)
-      util.do_fade_rel(412, 524)
-      util.do_dash_rel(412, 524)
-      util.do_fade_rel(586, 474)
-      util.do_dash_rel(783, 537)
-      util.do_fade_rel(577, 594)
-      util.do_dash_rel(637, 607)
-      util.do_fade_rel(636, 607)
-      util.do_dash_rel(577, 601)
+      util.do_dash_rel(655, 505, veradrix=True)
+      util.do_fade_rel(547, 640, veradrix=True)
+      util.do_dash_rel(547, 640, veradrix=True)
+      util.do_fade_rel(412, 524, veradrix=True)
+      util.do_dash_rel(412, 524, veradrix=True)
+      util.do_fade_rel(586, 474, veradrix=True)
+      util.do_dash_rel(783, 537, veradrix=True)
+      util.do_fade_rel(577, 594, veradrix=True)
+      util.do_dash_rel(637, 607, veradrix=True)
+      util.do_fade_rel(636, 607, veradrix=True)
+      util.do_dash_rel(577, 601, veradrix=True)
 
       util.countdown_timer(30)
 
-      util.do_dash_rel(644, 161)
-      util.do_fade_rel(629, 225)
-      util.do_dash_rel(620, 243)
-      util.do_fade_rel(495, 276)
-      util.do_dash_rel(500, 291)
-      util.do_fade_rel(845, 209)
-      util.do_dash_rel(820, 205)
-      util.do_fade_rel(584, 243)
+      util.do_dash_rel(644, 161, veradrix=True)
+      util.do_fade_rel(629, 225, veradrix=True)
+      util.do_dash_rel(620, 243, veradrix=True)
+      util.do_fade_rel(495, 276, veradrix=True)
+      util.do_dash_rel(500, 291, veradrix=True)
+      util.do_fade_rel(845, 209, veradrix=True)
+      util.do_dash_rel(820, 205, veradrix=True)
+      util.do_fade_rel(584, 243, veradrix=True)
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
-      util.cancel_aura(2.0)
+      if util.get_party_status() == consts.IS_TRUE: self.find_focus_until_boss(consts.UNIT_MONAD_FRAGMENT, True, consts.TYPE_SEMI)
+      else:
+        atk.attack_monsters(consts.UNIT_MONAD_FRAGMENT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
+        util.cancel_aura(2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -148,8 +152,10 @@ class Celestia(Dungeon, Special):
 
       util.do_final_mode(1)
       util.set_last_cast_mode(3)
-      self.focus_monsters(consts.UNIT_SEEKER, 6)
-      util.cancel_aura(2.0)
+      if util.get_party_status() == consts.IS_TRUE: self.find_focus_until_boss(consts.UNIT_SEEKER, True, consts.TYPE_SEMI)
+      else:
+        self.focus_monsters(consts.UNIT_SEEKER, 6)
+        util.cancel_aura(2.0)
 
       # Check Macro State
       if not util.get_macro_state():
@@ -183,7 +189,7 @@ class Celestia(Dungeon, Special):
         continue
 
       util.do_fade_rel(625, 614, 2, True)
-      util.do_dash_rel(656, 560, 3, True)
+      util.do_dash_rel(656, 560, 4, True)
       util.do_fade_rel(584, 364, 3, True)
 
       atk.attack_monsters(consts.UNIT_SERVANT, sidestep=self.val_sidestep_disabled, type=consts.TYPE_SEMI)
@@ -194,13 +200,14 @@ class Celestia(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(637, 170)
-      util.do_fade_rel(624, 218, 2)
-      util.do_fade_rel(637, 617, 2)
-      util.do_dash_rel(647, 638, 2)
-      util.do_fade_rel(695, 547, 2)
-      util.do_dash_rel(632, 579, 4)
-      util.do_fade_rel(637, 268)
+      util.do_dash_rel(637, 170, veradrix=True)
+      util.do_fade_rel(624, 218, 2, veradrix=True)
+      util.do_fade_rel(637, 617, 2, veradrix=True)
+      util.do_dash_rel(647, 638, 2, veradrix=True)
+      util.do_fade_rel(695, 547, 2, veradrix=True)
+      util.do_dash_rel(632, 579, 4, veradrix=True)
+      util.do_fade_rel(637, 268, veradrix=True)
+      util.do_dash_rel(646, 522, veradrix=True)
 
       self.find_kill_semi_boss(consts.UNIT_VITO)
 
@@ -209,9 +216,10 @@ class Celestia(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_fade_rel(609, 256, 1.5)
-      util.do_fade_rel(607, 265)
-      util.do_dash_rel(672, 251)
+      util.do_fade_rel(604, 308)
+      util.do_dash_rel(610, 228)
+      util.do_fade_rel(640, 249)
+      util.do_dash_rel(636, 333)
 
       if util.get_party_member_status() == consts.IS_FALSE: atk.plunder_box()
       else: atk.plunder_box_party()
@@ -221,10 +229,9 @@ class Celestia(Dungeon, Special):
         run_counter += 1000
         continue
 
-      util.do_dash_rel(569, 198)
-      util.do_fade_rel(548, 205)
-      util.do_dash_rel(576, 203)
-      self.click_portal(614, 291)
+      util.do_dash_rel(581, 232)
+      util.do_fade_rel(577, 263)
+      self.click_portal(606, 295)
       util.move_scroll(500, 150, 375, 150, 5)
 
       util.do_dash_rel(159, 245)
@@ -267,7 +274,7 @@ class Celestia(Dungeon, Special):
       util.do_fade_rel(586, 304)
 
       self.find_kill_special_boss(consts.UNIT_PERIUS)
-      if util.get_party_member_status() == consts.IS_FALSE: util.do_plunder(2)
+      util.do_fast_plunder(20)
 
       # Check Macro State
       if not util.get_macro_state():

@@ -17,6 +17,7 @@ import common.util as util
 import common.attack as atk
 
 from common.dungeon import Dungeon
+from common.dungeon import Special
 
 from macro.hva import HazardousValleyAwakened
 from macro.hvenh import HazardousValley
@@ -88,7 +89,7 @@ listener = keyboard.Listener(on_press=on_press)
 listener.start()
 listener.join()
 
-class Drafter(Dungeon):
+class Drafter(Dungeon, Special):
   def run_dungeon(self, runs):
     return super().run_dungeon(runs)
 

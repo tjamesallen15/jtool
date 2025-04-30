@@ -48,7 +48,7 @@ class PanicCaveAwakened(Dungeon):
 
       # Click Cabal Window
       util.go_cabal_window()
-      util.release_keys()
+      util.do_key_release()
       util.go_skill_slot(0.2)
       util.do_buffs()
 
@@ -61,7 +61,7 @@ class PanicCaveAwakened(Dungeon):
       self.click_dungeon_portal(720, 360)
 
       # Enter Dungeon
-      self.enter_dungeon(1.5)
+      self.enter_dungeon()
       self.challenge_dungeon()
       util.move_scroll(700, 150, 375, 150)
 
@@ -113,7 +113,7 @@ class PanicCaveAwakened(Dungeon):
         try:
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
-          util.move_click_rel(10, 10, dialog, 0.3)
+          util.move_click_rel(10, 10, dialog, 0.4)
           corpse_found = True
           dialog_count += 1
         except pyauto.ImageNotFoundException:
@@ -156,7 +156,7 @@ class PanicCaveAwakened(Dungeon):
           try:
             dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
             util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
-            util.move_click_rel(10, 10, dialog, 0.3)
+            util.move_click_rel(10, 10, dialog, 0.4)
             corpse_found = True
             dialog_count += 1
           except pyauto.ImageNotFoundException:
@@ -214,9 +214,6 @@ class PanicCaveAwakened(Dungeon):
           count_showorai += 1
           util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      # First Shadow
-      atk.focus_monsters(consts.UNIT_SHOWORAI_F, False, False, False)
-
       if util.get_reset_status():
         continue
 
@@ -224,6 +221,9 @@ class PanicCaveAwakened(Dungeon):
       if not util.get_macro_state():
         run_counter += 1000
         continue
+
+      # First Shadow
+      atk.focus_monsters(consts.UNIT_SHOWORAI_F, False, False, False)
 
       # Second Shadow Sequence
       self.position_second_shadow()
@@ -257,9 +257,6 @@ class PanicCaveAwakened(Dungeon):
           count_showorai += 1
           util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      # Second Shadow
-      atk.focus_monsters(consts.UNIT_SHOWORAI_R, False, False, False)
-
       if util.get_reset_status():
         continue
 
@@ -267,6 +264,9 @@ class PanicCaveAwakened(Dungeon):
       if not util.get_macro_state():
         run_counter += 1000
         continue
+
+      # Second Shadow
+      atk.focus_monsters(consts.UNIT_SHOWORAI_R, False, False, False)
 
       # Third Shadow Sequence
       self.position_third_shadow()
@@ -299,12 +299,6 @@ class PanicCaveAwakened(Dungeon):
           count_showorai += 1
           util.log_action(consts.MSG_BOSS_NOT_FOUND)
 
-      # Third Shadow
-      atk.focus_monsters(consts.UNIT_SHOWORAI_M, False, False, False)
-
-      if util.get_attack_type() == consts.IS_RANGE and util.get_battle_mode() == consts.STATE_ONE:
-        util.cancel_aura(1.5)
-
       if util.get_reset_status():
         continue
 
@@ -312,6 +306,11 @@ class PanicCaveAwakened(Dungeon):
       if not util.get_macro_state():
         run_counter += 1000
         continue
+
+      # Third Shadow
+      atk.focus_monsters(consts.UNIT_SHOWORAI_M, False, False, False)
+      util.move(620, 520)
+      util.do_fade(0.7)
 
       # Final Boss Sequence
       checking = True
@@ -324,14 +323,16 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           atk.focus_monsters(consts.UNIT_GHOST, False, False, self.val_sidestep_disabled)
         except pyauto.ImageNotFoundException:
           util.log_action(consts.MSG_MONSTERS_NOT_FOUND)
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
@@ -351,11 +352,10 @@ class PanicCaveAwakened(Dungeon):
         run_counter += 1000
         continue
 
-      # Final Boss
-      util.move(620, 520)
-      util.do_fade(self.val_fade_speed)
+      if util.get_attack_type() == consts.IS_RANGE and util.get_battle_mode() == consts.STATE_ONE: util.cancel_aura(1.2)
       util.do_battle_mode(5, False)
 
+      # Final Boss
       check_count = 0
       checking = True
       while checking:
@@ -382,8 +382,8 @@ class PanicCaveAwakened(Dungeon):
       atk.attack_boss(consts.UNIT_EMPTY, False, False, False, False)
       atk.plunder_box(True, 2)
 
-      util.move(650, 350)
-      util.do_fade(0.5)
+      # util.move(650, 350)
+      # util.do_fade(0.5)
 
       checking = True
       while checking:
@@ -395,7 +395,8 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           mobs = pyauto.locateOnScreen(consts.IMG_MOBS, grayscale=False, confidence=.9, region=util.get_full_region())
           util.do_select(0.1)
           atk.focus_monsters(consts.UNIT_GHOST, False, False, self.val_sidestep_disabled)
@@ -403,7 +404,8 @@ class PanicCaveAwakened(Dungeon):
           util.log_action(consts.MSG_MONSTERS_NOT_FOUND)
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)
@@ -433,7 +435,8 @@ class PanicCaveAwakened(Dungeon):
           break
 
         try:
-          util.move_click(580, 430)
+          util.move_click(601, 362)
+          # util.move_click(580, 430)
           dialog = pyauto.locateOnScreen(consts.IMG_CHECK_DIALOG, grayscale=False, confidence=.9, region=util.get_dialog_region())
           util.log_action(consts.MSG_CHECK_DIALOG_FOUND)
           util.move_click_rel(10, 10, dialog, 0.2)

@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
+# v5.95
+
+## v5.95 Dungeons Available
+
+- [HVA] Hazardous Valley (Awakened) [v1.00]
+- [HVENH] Hazardous Valley (Easy | Normal | Hard) [v3.40]
+- [SCA] Steamer Crazy (Awakened) [v4.51]
+- [CFA] Catacomb Frost (Awakened) [v4.61]
+- [LHA] Lava Hellfire (Awakened) [v4.95]
+- [HW] Holy Windmill [v4.95]
+- [TM] Terminus Machina [v4.95]
+- [PCA] Panic Cave (Awakened) [v5.01]
+- [HK] Holy Keldrasil [v5.11]
+- [S1P] Altar of Siena B1F (Prideus) [v5.11]
+- [CI] Chaos Infinity [v5.50]
+- [HVV] Hazardous Valley (Veradrix - Easy | Normal | Hard) [v5.50]
+- [POTF] Purifier of the Forest [v5.85]
+- [MI] Mirage Island [v5.90]
+- [SCP] Steamer Crazy (Premium) [v5.90]
+- [CLS] Celestia [v5.90]
+- [SCQ] Steamer Crazy (Quest) [v5.95]
+
+## v5.95 Features
+
+- [Application] Added Event Check for double drop loot
+- [Dungeon] Added loot status to enable/disable looting function
+- [SCQ] Added Steamer Crazy (Quest) for Beta Phase
+- [HVV] Broked down dungeon into three parts (Easy, Normal, Hard)
+
+## v5.95 Fixes
+
+- [Application] Method Updates and Cleanup
+- [CLS] Fixed bug on party base automation where characters will skip a sequence
+- [CLS] Increased drop repetition from 2 to 10
+- [Dungeon] Tweaked functionalities for better performance
+- [MI] Fixed bug on party base automation where characters will skip a sequence
+- [PCA] Adjusted wait time in challenge dungeon
+- [PCA] Reduced exit animation
+- [PCA] Fixed dashing animation after force exit dungeon
+- [POTF] Increased drop repetition from 2 to 10
+- [POTF] Fixed bug on second boss when they skip it abruptly
+- [POTF] Fixed bug on party base automation where characters will skip a sequence
+- [POTF] Removed some wait times
+
 # v5.90
 
 ## v5.90 Dungeons Available
